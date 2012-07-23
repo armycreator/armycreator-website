@@ -26,8 +26,8 @@
         {
             "package": "friendsofsymfony/user-bundle",
             "version": "dev-master",
-            "source-reference": "341967051bf08776517deecbe01ae8ce2f5ec9fc",
-            "commit-date": "1342615978"
+            "source-reference": "93b174df2ca884a70ecd99cd12adc29c378ca053",
+            "commit-date": "1342876759"
         },
         {
             "package": "jms/aop-bundle",
@@ -116,8 +116,8 @@
         {
             "package": "symfony/assetic-bundle",
             "version": "dev-master",
-            "source-reference": "fb69c4ea16ea33ba4481637b7cf362ec6ae20a6c",
-            "commit-date": "1342744871"
+            "source-reference": "e5e9a56a872d9e1f305d14cd8296bf77888388af",
+            "commit-date": "1342820047"
         },
         {
             "package": "symfony/monolog-bundle",
@@ -140,8 +140,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "9f157a1616b343a36f6e2c4ac944229163feb546",
-            "commit-date": "1342776908"
+            "source-reference": "c20c1d18dc0b588e10a8fab24264441f0e4a3e7c",
+            "commit-date": "1342944184"
         },
         {
             "package": "twig/extensions",
@@ -158,8 +158,8 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "8a84838798e45424c5fe2d87149db6855ae037bf",
-            "commit-date": "1342788098"
+            "source-reference": "657de7bdeb680815e0df95f63da9f81e1533d2ea",
+            "commit-date": "1342953178"
         }
     ],
     "packages-dev": null,
