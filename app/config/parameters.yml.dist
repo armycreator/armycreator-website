@@ -2,9 +2,9 @@ parameters:
     database_driver: pdo_mysql
     database_host: localhost
     database_port: null
-    database_name: armycreator
-    database_user: armycreator
-    database_password: dev4acsql
+    database_name: ***
+    database_user: ***
+    database_password: ***
 
     mailer_transport: smtp
     mailer_host: localhost
@@ -12,6 +12,6 @@ parameters:
     mailer_password: null
 
     locale: fr
-    secret: d673d61024014f880916c4be4187f1291
+    secret: ***
 
 
