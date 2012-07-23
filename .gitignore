@@ -2,6 +2,6 @@
 /app/bootstrap*
 /app/cache/*
 /app/logs/*
-/build/
 /vendor/
 /app/config/parameters.yml
+/build/
