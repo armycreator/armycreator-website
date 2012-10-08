@@ -72,6 +72,27 @@ class Breed
      */
     private $breedGroup;
 
+	/**
+	 * unitList
+	 * 
+	 * @var array
+	 * @access private
+	 *
+	 * @ORM\OneToMany(targetEntity="AbstractUnit", mappedBy="breed")
+	 */
+	private $unitList;
+
+
+    /**
+     * __construct
+     *
+     * @access public
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->unitList = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -197,4 +218,37 @@ class Breed
 	{
 		return $this->getName();
 	}
+
+    /**
+     * Add unitList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unitList
+     * @return Breed
+     */
+    public function addUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unitList)
+    {
+        $this->unitList[] = $unitList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove unitList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unitList
+     */
+    public function removeUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unitList)
+    {
+        $this->unitList->removeElement($unitList);
+    }
+
+    /**
+     * Get unitList
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUnitList()
+    {
+        return $this->unitList;
+    }
 }

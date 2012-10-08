@@ -50,6 +50,17 @@ class BreedGroup
 	private $breedList;
 
     /**
+     * __construct
+     *
+     * @access public
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->breedList = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -101,10 +112,6 @@ class BreedGroup
     public function getGame()
     {
         return $this->game;
-    }
-    public function __construct()
-    {
-        $this->breedList = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
