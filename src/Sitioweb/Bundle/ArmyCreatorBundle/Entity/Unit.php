@@ -26,6 +26,16 @@ class Unit extends AbstractUnit
      */
     private $viewInList;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Unit", mappedBy="parent")
+     */
+    private $childrenList;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Unit", inversedBy="childrenList")
+     */
+    private $parent;
+
 	/**
 	 * unitHasGroupList
 	 * 
@@ -46,6 +56,7 @@ class Unit extends AbstractUnit
     public function __construct()
     {
         $this->unitHasGroupList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->childrenList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
