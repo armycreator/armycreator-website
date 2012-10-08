@@ -5,11 +5,11 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game
+ * Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup
  *
- * @ORM\Entity(repositoryClass="GameRepository")
+ * @ORM\Entity
  */
-class Game
+class BreedGroup
 {
     /**
      * @var integer $id
@@ -22,20 +22,22 @@ class Game
     private $id;
 
     /**
-     * @var string $code
-     * @access private
-     *
-     * @ORM\Column(type="string", length=32, unique=true)
-     */
-    private $code;
-
-    /**
      * @var string $name
      * @access private
      *
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * game
+     * 
+     * @var mixed
+     * @access private
+	 *
+	 * @ORM\ManyToOne(targetEntity="Game", inversedBy="breedGroupList")
+     */
+    private $game;
 
 	/**
 	 * breedList
@@ -43,25 +45,10 @@ class Game
 	 * @var mixed
 	 * @access private
 	 *
-	 * @ORM\OneToMany(targetEntity="Breed", mappedBy="game")
+	 * @ORM\OneToMany(targetEntity="Breed", mappedBy="breedGroup")
 	 */
 	private $breedList;
 
-	/**
-	 * breedGroupList
-	 * 
-	 * @var mixed
-	 * @access private
-	 *
-	 * @ORM\OneToMany(targetEntity="BreedGroup", mappedBy="game")
-	 */
-	private $breedGroupList;
-
-    public function __construct()
-    {
-        $this->breedGroupList = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
     /**
      * Get id
      *
@@ -73,32 +60,10 @@ class Game
     }
 
     /**
-     * Set code
-     *
-     * @param string $code
-     * @return Game
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
-        return $this;
-    }
-
-    /**
-     * Get code
-     *
-     * @return string 
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
      * Set name
      *
      * @param string $name
-     * @return Game
+     * @return BreedGroup
      */
     public function setName($name)
     {
@@ -117,42 +82,36 @@ class Game
     }
 
     /**
-     * Add breedGroupList
+     * Set game
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup $breedGroupList
-     * @return Game
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game $game
+     * @return BreedGroup
      */
-    public function addBreedGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup $breedGroupList)
+    public function setGame(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game $game = null)
     {
-        $this->breedGroupList[] = $breedGroupList;
+        $this->game = $game;
         return $this;
     }
 
     /**
-     * Remove breedGroupList
+     * Get game
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup $breedGroupList
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game 
      */
-    public function removeBreedGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup $breedGroupList)
+    public function getGame()
     {
-        $this->breedGroupList->removeElement($breedGroupList);
+        return $this->game;
     }
-
-    /**
-     * Get breedGroupList
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getBreedGroupList()
+    public function __construct()
     {
-        return $this->breedGroupList;
+        $this->breedList = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Add breedList
      *
      * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breedList
-     * @return Game
+     * @return BreedGroup
      */
     public function addBreedList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breedList)
     {

@@ -1,50 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Demo Bundle{% endblock %}</title>
-        <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/acmedemo/css/demo.css') }}" />
-    </head>
-    <body>
-        <div id="symfony-wrapper">
-            <div id="symfony-header">
-                <a href="{{ path('_welcome') }}">
-                    <img src="{{ asset('bundles/acmedemo/images/logo.gif') }}" alt="Symfony logo" />
-                </a>
-                <form id="symfony-search" method="GET" action="http://symfony.com/search">
-                    <label for="symfony-search-field"><span>Search on Symfony Website</span></label>
-                    <input name="q" id="symfony-search-field" type="search" placeholder="Search on Symfony website" class="medium_txt" />
-                    <input type="submit" class="symfony-button-grey" value="OK" />
-                </form>
-            </div>
+{% extends '::base.html.twig' %}
 
-            {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="flash-message">
-                    <em>Notice</em>: {{ flashMessage }}
-                </div>
-            {% endfor %}
+{% block title "ArmyCreator" %}
 
-            {% block content_header %}
-                <ul id="menu">
-                    {% block content_header_more %}
-                        <li><a href="{{ path('_demo') }}">Demo Home</a></li>
-                    {% endblock %}
-                </ul>
+{% block body %}
+	<header id="websiteHeader">
+		{% block websiteHeader %}
+			Website Header
+		{% endblock %}
+	</header>
 
-                <div style="clear: both"></div>
-            {% endblock %}
+	{% block websiteNav %}
+		<nav id="websiteNav">
+			Navigation
+		</nav>
+	{% endblock %}
 
-            <div class="symfony-content">
-                {% block content %}
-                {% endblock %}
-            </div>
+	<div id="websiteContent">
+		<h1><span>{{ block('title') }}</span> {% block h1 %}{% endblock %}</h1>
+		
+		{% block content %}
+		{% endblock %}
+	</div>
 
-            {% if code is defined %}
-                <h2>Code behind this page</h2>
-                <div class="symfony-content">{{ code|raw }}</div>
-            {% endif %}
-        </div>
-    </body>
-</html>
+	<footer id="websiteFooter">
+		{% block websiteFooter %}
+			Website Footer
+		{% endblock %}
+	</footer>
+{% endblock %}
 
+{% block javascripts %}
+	{% javascripts '@SitiowebArmyCreatorBundle/Resources/public/js/*' %}
+		 <script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+	{% stylesheets 
+		'%kernel.root_dir%/../vendor/raphaelgoetter/knacss/css/knacss.css'
+		'@SitiowebArmyCreatorBundle/Resources/public/css/*' 
+		filter='less' output='css/global.css' %}
+		 <link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
