@@ -46,6 +46,17 @@ class Unit extends AbstractUnit
 	 */
 	private $unitHasGroupList;
 
+    /**
+     * squadLineList
+     * 
+     * @var array<SquadLine>
+     * @access private
+     *
+	 * @ORM\OneToMany(targetEntity="SquadLine", mappedBy="unit")
+     */
+    private $squadLineList;
+
+
 
     /**
      * __construct
@@ -57,6 +68,7 @@ class Unit extends AbstractUnit
     {
         $this->unitHasGroupList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->childrenList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->squadLineList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -136,5 +148,94 @@ class Unit extends AbstractUnit
     public function getUnitHasGroupList()
     {
         return $this->unitHasGroupList;
+    }
+
+    /**
+     * Add childrenList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $childrenList
+     * @return Unit
+     */
+    public function addChildrenList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $childrenList)
+    {
+        $this->childrenList[] = $childrenList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove childrenList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $childrenList
+     */
+    public function removeChildrenList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $childrenList)
+    {
+        $this->childrenList->removeElement($childrenList);
+    }
+
+    /**
+     * Get childrenList
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getChildrenList()
+    {
+        return $this->childrenList;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $parent
+     * @return Unit
+     */
+    public function setParent(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $parent = null)
+    {
+        $this->parent = $parent;
+    
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit 
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Add squadLineList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList
+     * @return Unit
+     */
+    public function addSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
+    {
+        $this->squadLineList[] = $squadLineList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove squadLineList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList
+     */
+    public function removeSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
+    {
+        $this->squadLineList->removeElement($squadLineList);
+    }
+
+    /**
+     * Get squadLineList
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSquadLineList()
+    {
+        return $this->squadLineList;
     }
 }

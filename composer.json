@@ -25,8 +25,7 @@
 		"raulfraile/LadybugBundle": "dev-master",
 		"raphaelgoetter/knacss": "master",
 
-		"mysql-workbench-schema-exporter/mysql-workbench-schema-exporter": "dev-master",
-
+        "elnur/blowfish-password-encoder-bundle": "dev-master",
 		"friendsofsymfony/user-bundle": "*"
     },
     "scripts": {

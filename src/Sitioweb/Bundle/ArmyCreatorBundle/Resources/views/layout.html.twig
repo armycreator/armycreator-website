@@ -18,6 +18,15 @@
 	<div id="websiteContent">
 		<h1><span>{{ block('title') }}</span> {% block h1 %}{% endblock %}</h1>
 		
+
+        {% block flashes %}
+            {% for key, message in app.session.getFlashes() %}
+                <div class="{{ key }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endblock %}
+
 		{% block content %}
 		{% endblock %}
 	</div>

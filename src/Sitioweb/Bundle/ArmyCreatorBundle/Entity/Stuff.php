@@ -5,15 +5,15 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit
+ * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff
  *
  * @ORM\Table()
  * @ORM\Entity
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discriminator", type="string")
- * @ORM\DiscriminatorMap({"unit" = "Unit", "group" = "UnitGroup"})
+ * @ORM\DiscriminatorMap({"weapon" = "Weapon", "equipement" = "Equipement"})
  */
-class AbstractUnit
+class Stuff
 {
     /**
      * @var integer $id
@@ -31,43 +31,16 @@ class AbstractUnit
      */
     private $name;
 
-    /**
-     * breed
-     * 
-     * @var Breed
-     * @access private
-	 *
-	 * @ORM\ManyToOne(targetEntity="Breed", inversedBy="unitList")
-     */
-    private $breed;
-
-    /**
-     * unitType
-     * 
-     * @var UnitType
-     * @access private
-	 *
-	 * @ORM\ManyToOne(targetEntity="UnitType", inversedBy="unitList")
-     */
-    private $unitType;
-
 	/**
 	 * unitStuffList
 	 * 
 	 * @var array<UnitStuff>
 	 * @access private
 	 *
-	 * @ORM\OneToMany(targetEntity="UnitStuff", mappedBy="unit")
+	 * @ORM\OneToMany(targetEntity="UnitStuff", mappedBy="stuff")
 	 */
 	private $unitStuffList;
 
-
-    /**
-     * __construct
-     *
-     * @access public
-     * @return void
-     */
     public function __construct()
     {
         $this->unitStuffList = new \Doctrine\Common\Collections\ArrayCollection();
@@ -88,7 +61,7 @@ class AbstractUnit
      * Set name
      *
      * @param string $name
-     * @return AbstractUnit
+     * @return Stuff
      */
     public function setName($name)
     {
@@ -108,58 +81,10 @@ class AbstractUnit
     }
 
     /**
-     * setBreed
-     *
-     * @param Breed $breed
-     * @access public
-     * @return AbstractUnit
-     */
-    public function setBreed($breed)
-    {
-        $this->breed = $breed;
-        return $this;
-    }
-
-    /**
-     * getBreed
-     *
-     * @access public
-     * @return Breed
-     */
-    public function getBreed()
-    {
-        return $this->breed;
-    }
-
-    /**
-     * setUnitType
-     *
-     * @param UnitType $unitType
-     * @access public
-     * @return AbstractUnit
-     */
-    public function setUnitType($unitType)
-    {
-        $this->unitType = $unitType;
-        return $this;
-    }
-
-    /**
-     * getUnitType
-     *
-     * @access public
-     * @return UnitType
-     */
-    public function getUnitType()
-    {
-        return $this->unitType;
-    }
-
-    /**
      * Add unitStuffList
      *
      * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList
-     * @return AbstractUnit
+     * @return Stuff
      */
     public function addUnitStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList)
     {

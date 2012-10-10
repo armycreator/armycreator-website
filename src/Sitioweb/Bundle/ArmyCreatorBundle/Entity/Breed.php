@@ -82,6 +82,16 @@ class Breed
 	 */
 	private $unitList;
 
+    /**
+     * armyList
+     * 
+     * @var array<Army>
+     * @access private
+     *
+	 * @ORM\OneToMany(targetEntity="Army", mappedBy="breed")
+     */
+    private $armyList;
+
 
     /**
      * __construct
@@ -250,5 +260,38 @@ class Breed
     public function getUnitList()
     {
         return $this->unitList;
+    }
+
+    /**
+     * Add armyList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army $armyList
+     * @return Breed
+     */
+    public function addArmyList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army $armyList)
+    {
+        $this->armyList[] = $armyList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove armyList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army $armyList
+     */
+    public function removeArmyList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army $armyList)
+    {
+        $this->armyList->removeElement($armyList);
+    }
+
+    /**
+     * Get armyList
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getArmyList()
+    {
+        return $this->armyList;
     }
 }

@@ -1,5 +1,5 @@
 {
-    "hash": "8e0114c601f9355ebc580ed44102bb8d",
+    "hash": "4e839c564cda405a223026e4c5679c0f",
     "packages": [
         {
             "name": "doctrine/common",
@@ -71,12 +71,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/doctrine/DoctrineBundle.git",
-                "reference": "e69a6fd75fa3979e35b7004e6da6e9aea3765997"
+                "reference": "75e0ac4a4be04bfa39b282f8ebccd3ef4c8ebe32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/DoctrineBundle/zipball/e69a6fd75fa3979e35b7004e6da6e9aea3765997",
-                "reference": "e69a6fd75fa3979e35b7004e6da6e9aea3765997",
+                "url": "https://github.com/doctrine/DoctrineBundle/zipball/75e0ac4a4be04bfa39b282f8ebccd3ef4c8ebe32",
+                "reference": "75e0ac4a4be04bfa39b282f8ebccd3ef4c8ebe32",
                 "shasum": ""
             },
             "require": {
@@ -93,7 +93,7 @@
             "suggest": {
                 "doctrine/orm": "The Doctrine ORM integration is optional in the bundle."
             },
-            "time": "1349273376",
+            "time": "1349890948",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -105,7 +105,32 @@
                 "psr-0": {
                     "Doctrine\\Bundle\\DoctrineBundle": ""
                 }
-            }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                }
+            ],
+            "description": "Symfony DoctrineBundle",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "database",
+                "orm",
+                "persistence",
+                "dbal"
+            ]
         },
         {
             "name": "doctrine/orm",
@@ -147,6 +172,52 @@
                     "Doctrine\\ORM": "lib/"
                 }
             }
+        },
+        {
+            "name": "elnur/blowfish-password-encoder-bundle",
+            "version": "dev-master",
+            "target-dir": "Elnur/BlowfishPasswordEncoderBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elnur/ElnurBlowfishPasswordEncoderBundle",
+                "reference": "70ab6ed08795c860e1b3277cec7919d7fc6ea3c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/elnur/ElnurBlowfishPasswordEncoderBundle/zipball/70ab6ed08795c860e1b3277cec7919d7fc6ea3c2",
+                "reference": "70ab6ed08795c860e1b3277cec7919d7fc6ea3c2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.0,<2.2",
+                "symfony/security-bundle": ">=2.0,<2.2"
+            },
+            "time": "1345668058",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Elnur\\BlowfishPasswordEncoderBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elnur Abdurrakhimov",
+                    "email": "elnur@elnur.pro",
+                    "homepage": "http://www.elnur.pro"
+                }
+            ],
+            "description": "Blowfish (bcrypt) based password encoder for Symfony2",
+            "keywords": [
+                "security",
+                "blowfish",
+                "bcrypt",
+                "password-encoder"
+            ]
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -201,12 +272,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/l3pp4rd/DoctrineExtensions.git",
-                "reference": "0add69ccb0cb22e3216c30166805ae27615cb8f0"
+                "reference": "117f14e0f8fd069d679ca0f84fa05c781cca3119"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/l3pp4rd/DoctrineExtensions/zipball/0add69ccb0cb22e3216c30166805ae27615cb8f0",
-                "reference": "0add69ccb0cb22e3216c30166805ae27615cb8f0",
+                "url": "https://github.com/l3pp4rd/DoctrineExtensions/zipball/117f14e0f8fd069d679ca0f84fa05c781cca3119",
+                "reference": "117f14e0f8fd069d679ca0f84fa05c781cca3119",
                 "shasum": ""
             },
             "require": {
@@ -217,7 +288,7 @@
                 "doctrine/orm": ">=2.1",
                 "doctrine/mongodb-odm": "*"
             },
-            "time": "1349375111",
+            "time": "1349888959",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -229,7 +300,31 @@
                 "psr-0": {
                     "Gedmo": "lib/"
                 }
-            }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gediminas Morkevicius",
+                    "email": "gediminas.morkevicius@gmail"
+                }
+            ],
+            "description": "Doctrine2 behavioral extensions",
+            "homepage": "http://gediminasm.org/",
+            "keywords": [
+                "tree",
+                "behaviors",
+                "doctrine2",
+                "extensions",
+                "gedmo",
+                "sluggable",
+                "loggable",
+                "translatable",
+                "nestedset",
+                "sortable",
+                "timestampable"
+            ]
         },
         {
             "name": "jms/aop-bundle",
@@ -582,27 +677,6 @@
             }
         },
         {
-            "name": "mysql-workbench-schema-exporter/mysql-workbench-schema-exporter",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/johmue/mysql-workbench-schema-exporter",
-                "reference": "45d12f5bf80c45b45f2d8a5a9c5b2f71155a6532"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/johmue/mysql-workbench-schema-exporter/zipball/45d12f5bf80c45b45f2d8a5a9c5b2f71155a6532",
-                "reference": "45d12f5bf80c45b45f2d8a5a9c5b2f71155a6532",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "time": "1349426781",
-            "type": "cli",
-            "installation-source": "source"
-        },
-        {
             "name": "raphaelgoetter/knacss",
             "version": "master",
             "source": {
@@ -750,19 +824,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioFrameworkExtraBundle",
-                "reference": "bf2ea090d602e02b975d1bf1d8ffca8f02ef8bdb"
+                "reference": "53a2a5e5ba052b2ae281f3b8bd9b530947a328b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/zipball/bf2ea090d602e02b975d1bf1d8ffca8f02ef8bdb",
-                "reference": "bf2ea090d602e02b975d1bf1d8ffca8f02ef8bdb",
+                "url": "https://github.com/sensio/SensioFrameworkExtraBundle/zipball/53a2a5e5ba052b2ae281f3b8bd9b530947a328b4",
+                "reference": "53a2a5e5ba052b2ae281f3b8bd9b530947a328b4",
                 "shasum": ""
             },
             "require": {
                 "symfony/framework-bundle": "2.1.*",
                 "doctrine/common": ">=2.1,<2.4-dev"
             },
-            "time": "1349361259",
+            "time": "1349786071",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -774,7 +848,21 @@
                 "psr-0": {
                     "Sensio\\Bundle\\FrameworkExtraBundle": ""
                 }
-            }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "This bundle provides a way to configure your controllers with annotations",
+            "keywords": [
+                "annotations",
+                "controllers"
+            ]
         },
         {
             "name": "sensio/generator-bundle",
@@ -900,12 +988,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle",
-                "reference": "5ebcf72d9b2d7028ca8c9b71b464ccc81d4795d2"
+                "reference": "bc7cddba9b63ca47d3e1eba725cae1a52ec32897"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/AsseticBundle/zipball/5ebcf72d9b2d7028ca8c9b71b464ccc81d4795d2",
-                "reference": "5ebcf72d9b2d7028ca8c9b71b464ccc81d4795d2",
+                "url": "https://github.com/symfony/AsseticBundle/zipball/bc7cddba9b63ca47d3e1eba725cae1a52ec32897",
+                "reference": "bc7cddba9b63ca47d3e1eba725cae1a52ec32897",
                 "shasum": ""
             },
             "require": {
@@ -925,7 +1013,7 @@
             "suggest": {
                 "symfony/twig-bundle": ">=2.1.0,<2.3-dev"
             },
-            "time": "1348938560",
+            "time": "1349897943",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -937,7 +1025,24 @@
                 "psr-0": {
                     "Symfony\\Bundle\\AsseticBundle": ""
                 }
-            }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kris Wallsmith",
+                    "email": "kris.wallsmith@gmail.com",
+                    "homepage": "http://kriswallsmith.net/"
+                }
+            ],
+            "description": "Integrates Assetic into Symfony2",
+            "homepage": "https://github.com/symfony/AsseticBundle",
+            "keywords": [
+                "assets",
+                "compression",
+                "minification"
+            ]
         },
         {
             "name": "symfony/monolog-bundle",
@@ -1025,12 +1130,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony/symfony.git",
-                "reference": "f152170899634d9ee66292dac177186cf4696408"
+                "reference": "0247dd5237f11db4ee4bbc4efadfb72aabdb5887"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/symfony/zipball/f152170899634d9ee66292dac177186cf4696408",
-                "reference": "f152170899634d9ee66292dac177186cf4696408",
+                "url": "https://github.com/symfony/symfony/zipball/0247dd5237f11db4ee4bbc4efadfb72aabdb5887",
+                "reference": "0247dd5237f11db4ee4bbc4efadfb72aabdb5887",
                 "shasum": ""
             },
             "require": {
@@ -1079,7 +1184,7 @@
                 "propel/propel1": "dev-master",
                 "monolog/monolog": "dev-master"
             },
-            "time": "1349553363",
+            "time": "1349880543",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1092,7 +1197,25 @@
                     "Symfony": "src/",
                     "SessionHandlerInterface": "src/Symfony/Component/HttpFoundation/Resources/stubs"
                 }
-            }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "The Symfony PHP framework",
+            "homepage": "http://symfony.com",
+            "keywords": [
+                "framework"
+            ]
         },
         {
             "name": "twig/extensions",
@@ -1100,18 +1223,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig-extensions",
-                "reference": "f904575642b1213db69b4a98f08397e722ba1cae"
+                "reference": "dcdff02fbac1282e6b8f4d0558cc7e9580105688"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig-extensions/zipball/f904575642b1213db69b4a98f08397e722ba1cae",
-                "reference": "f904575642b1213db69b4a98f08397e722ba1cae",
+                "url": "https://github.com/fabpot/Twig-extensions/zipball/dcdff02fbac1282e6b8f4d0558cc7e9580105688",
+                "reference": "dcdff02fbac1282e6b8f4d0558cc7e9580105688",
                 "shasum": ""
             },
             "require": {
                 "twig/twig": "1.*"
             },
-            "time": "1346770278",
+            "time": "1349889206",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1123,7 +1246,23 @@
                 "psr-0": {
                     "Twig_Extensions_": "lib/"
                 }
-            }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Common additional features for Twig that do not directly belong in core",
+            "homepage": "https://github.com/fabpot/Twig-extensions",
+            "keywords": [
+                "debug",
+                "i18n",
+                "text"
+            ]
         },
         {
             "name": "twig/twig",
@@ -1166,6 +1305,6 @@
         "stof/doctrine-extensions-bundle": 20,
         "jms/debugging-bundle": 20,
         "raulfraile/ladybugbundle": 20,
-        "mysql-workbench-schema-exporter/mysql-workbench-schema-exporter": 20
+        "elnur/blowfish-password-encoder-bundle": 20
     }
 }
