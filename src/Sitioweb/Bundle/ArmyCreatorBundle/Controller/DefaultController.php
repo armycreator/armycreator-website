@@ -14,6 +14,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        ladybug_dump($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'));
+        ladybug_dump($this->get('security.context')->getToken()->getRoles());
         return array('name' => 'test');
     }
 }

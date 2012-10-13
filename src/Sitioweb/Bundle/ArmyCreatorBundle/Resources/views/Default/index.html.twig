@@ -1,5 +1,8 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
 {% block content %}
-	Hellou {{ name }}!
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {{ app.user|ladybug_dump }}
+        Hello {{ app.user.username }} !
+    {% endif %}
 {% endblock %}

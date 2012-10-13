@@ -16,6 +16,11 @@ framework:
     trust_proxy_headers: false # Should Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     session:         ~
 
+services: 
+    phpbb_fos_user_manager:
+        class: Sitioweb\Service\PhpbbFosUserService\UserManager
+        arguments: ["@security.encoder_factory", "@fos_user.util.username_canonicalizer", "@fos_user.util.email_canonicalizer","@fos_user.entity_manager",%fos_user.model.user.class%]
+
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
@@ -63,6 +68,8 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
+    service: 
+        user_manager: phpbb_fos_user_manager
     user_class: Sitioweb\Bundle\ArmyCreatorBundle\Entity\User
 
 elnur_blowfish_password_encoder:
