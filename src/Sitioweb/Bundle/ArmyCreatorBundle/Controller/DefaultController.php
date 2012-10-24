@@ -2,11 +2,10 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     /**
      * @Route("/")
@@ -14,8 +13,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        ladybug_dump($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY'));
-        ladybug_dump($this->get('security.context')->getToken()->getRoles());
+        $this->getUser();
+        //$this->get('fos_user.security.login_manager')->loginUser('main', $currentUser);
+
         return array('name' => 'test');
     }
 }

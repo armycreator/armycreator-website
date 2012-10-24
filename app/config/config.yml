@@ -68,8 +68,8 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    service: 
-        user_manager: phpbb_fos_user_manager
+    #service: 
+    #    user_manager: phpbb_fos_user_manager
     user_class: Sitioweb\Bundle\ArmyCreatorBundle\Entity\User
 
 elnur_blowfish_password_encoder:
