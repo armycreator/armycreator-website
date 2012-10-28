@@ -6,6 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class BaseController extends Controller
 {
+
+    /**
+     * getUser
+     *
+     * @access public
+     * @return User
+     */
     public function getUser ()
     {
         global $db, $template, $config, $auth, $phpEx, $phpbb_root_path, $cache;

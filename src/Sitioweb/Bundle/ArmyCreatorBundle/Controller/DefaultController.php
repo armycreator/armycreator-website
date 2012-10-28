@@ -8,14 +8,26 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends BaseController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="homepage")
      * @Template()
      */
     public function indexAction()
     {
         $this->getUser();
-        //$this->get('fos_user.security.login_manager')->loginUser('main', $currentUser);
+        if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->authenticatedIndex();
+        } else {
+            return array('test' => 'test');
+        }
+    }
 
-        return array('name' => 'test');
+    /**
+     * authenticatedIndex
+     *
+     * @access public
+     * @return void
+     */
+    public function authenticatedIndex() {
+        return $this->render('SitiowebArmyCreatorBundle:Default:authenticatedIndex.html.twig', array());
     }
 }

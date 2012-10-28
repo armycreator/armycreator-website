@@ -22,6 +22,7 @@ class AppKernel extends Kernel
 			new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
             new Elnur\BlowfishPasswordEncoderBundle\ElnurBlowfishPasswordEncoderBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sitioweb\Bundle\ArmyCreatorBundle\SitiowebArmyCreatorBundle(),
         );
 

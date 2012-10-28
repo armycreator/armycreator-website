@@ -1,0 +1,21 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block title %}
+    Hello {{ app.user.username }} !
+{% endblock %}
+
+{% block content %}
+    </p>
+        Welcome to Army Creator. Here what can we do for you :
+        <ul>
+            <li> bla
+            <li> bli 
+            <li> blou
+        </ul>
+    </p>
+
+    {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:homepageMenu') }}
+
+    {{ app.user|ladybug_dump }}
+{% endblock %}
+

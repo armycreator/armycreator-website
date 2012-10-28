@@ -4,15 +4,19 @@
 
 {% block body %}
 	<header id="websiteHeader">
+		{% block websiteHeaderBar %}
+			Website HeaderBar
+		{% endblock %}
+
 		{% block websiteHeader %}
 			Website Header
 		{% endblock %}
 	</header>
 
 	{% block websiteNav %}
-		<nav id="websiteNav">
-			Navigation
-		</nav>
+        <nav id="websiteNav">
+            {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:mainMenu') }}
+        </nav>
 	{% endblock %}
 
 	<div id="websiteContent">

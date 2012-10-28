@@ -26,6 +26,7 @@
 		"raphaelgoetter/knacss": "master",
 
         "elnur/blowfish-password-encoder-bundle": "dev-master",
+        "knplabs/knp-menu-bundle":"dev-master",
 		"friendsofsymfony/user-bundle": "*"
     },
     "scripts": {
