@@ -1,0 +1,65 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block title %}My army list{% endblock %}
+
+{% block content %}
+    {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:armyListMenu') }}
+
+    <div>
+        <h2>
+            {% if group %}
+                {{ group.name }}
+            {% else %}
+                No group
+            {% endif %}
+        </h2>
+
+        <a href="#">Update group name</a>
+        <a href="#">Delete group</a>
+    </div>
+
+    <a href="#">
+        Create a new army
+    </a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Breed
+                <th>Points
+                <th>Name
+                <th>Status
+                <th>Creation date
+                <th>Actions
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Space Marine
+                <td>1000
+                <td>
+                    <a href="#">
+                        Bataillon de poilus
+                    </a>
+                </td>
+                <td>Finish
+                <td>01/01/2010
+                <td>del
+            </tr>
+
+            <tr>
+                <td>Necron
+                <td>2000
+                <td>
+                    <a href="#">
+                        Frappe de Zangdar
+                    </a>
+                </td>
+                <td>Draft
+                <td>10/09/2012
+                <td>del
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -7,3 +7,4 @@
 /app/config/parameters.yml
 /build/
 composer.lock
+/src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/doc/maquettes/

@@ -5,11 +5,32 @@
 {% block body %}
 	<header id="websiteHeader">
 		{% block websiteHeaderBar %}
-			Website HeaderBar
+			<div class="headerBar">
+                <a href="{{ path('homepage') }}" title="Army Creator">
+                    Picto accueil
+                </a>
+                Bienvenue sur Army Creator
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    Hello {{ app.user.username }}
+                {% else %}
+                    <a href="#">
+                        Connectez-vous
+                    </a>
+                    ou 
+                    <a href="#">
+                        Créer un compte
+                    </a>
+                    | 
+                {% endif %}
+                <a href="#">
+                    Aide
+                </a>
+            </div>
 		{% endblock %}
 
 		{% block websiteHeader %}
-			Website Header
+			<div class="logo"></div>
 		{% endblock %}
 	</header>
 
@@ -20,7 +41,10 @@
 	{% endblock %}
 
 	<div id="websiteContent">
-		<h1><span>{{ block('title') }}</span> {% block h1 %}{% endblock %}</h1>
+		{# <h1><span>{{ block('title') }}</span> {% block h1 %}{% endblock %}</h1> #}
+        {% block h1Container %}
+            <h1>{% block h1 %}{{ block('title') }}{% endblock %}</h1>
+        {% endblock %}
 		
 
         {% block flashes %}

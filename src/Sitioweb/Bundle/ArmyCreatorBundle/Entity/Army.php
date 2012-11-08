@@ -107,6 +107,16 @@ class Army
      */
     private $armyGroup;
 
+    /**
+     * user
+     * 
+     * @var User
+     * @access private
+     *
+	 * @ORM\ManyToOne(targetEntity="User", inversedBy="armyList")
+     */
+    private $user;
+
 
     /**
      * __construct
@@ -390,5 +400,28 @@ class Army
     public function getArmyGroup()
     {
         return $this->armyGroup;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $user
+     * @return Army
+     */
+    public function setUser(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

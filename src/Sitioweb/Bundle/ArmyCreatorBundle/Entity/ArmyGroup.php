@@ -29,6 +29,16 @@ class ArmyGroup
     private $name;
 
     /**
+     * user
+     * 
+     * @var User
+     * @access private
+     *
+	 * @ORM\ManyToOne(targetEntity="User", inversedBy="armyList")
+     */
+    private $user;
+
+    /**
      * armyList
      * 
      * @var array<Army>
@@ -113,5 +123,28 @@ class ArmyGroup
     public function getArmyList()
     {
         return $this->armyList;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $user
+     * @return Army
+     */
+    public function setUser(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
