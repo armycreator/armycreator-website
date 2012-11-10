@@ -4,6 +4,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * ArmyController
@@ -13,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  *
  * @author Julien Deniau <julien@sitioweb.fr> 
  */
-class ArmyController extends BaseController
+class ArmyController
 {
     /**
      * listAction
@@ -24,6 +25,7 @@ class ArmyController extends BaseController
      * @Route("/group/{groupId}", name="army_group_list")
      * @Route("/", name="army_list", defaults={"groupId" = null})
      * @Template()
+     * @Secure(roles="IS_AUTHENTICATED_FULLY")
      */
     public function listAction($groupId)
     {

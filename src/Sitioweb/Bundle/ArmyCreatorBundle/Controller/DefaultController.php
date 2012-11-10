@@ -5,7 +5,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class DefaultController extends BaseController
+class DefaultController
 {
     /**
      * @Route("/", name="homepage")
