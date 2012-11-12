@@ -33,7 +33,8 @@ class UserService
         //define('PHPBB_ROOT_PATH', 'forum');
         $phpbb_root_path = 'forum/';
         $phpEx = 'php';
-        require($container->get('kernel')->getRootDir() . '/../web/forum/common.php');
+        require_once($container->get('kernel')->getRootDir() . '/../web/forum/common.php');
+        if ($user) {
         $user->session_begin();
         $auth->acl($user->data);
         //$user->setup();
@@ -79,6 +80,7 @@ class UserService
             
             return $container->get('security.context')->getToken()->getUser();
             //$this->get('fos_user.security.login_manager')->loginUser('main', null);
+        }
         }
     }
 }

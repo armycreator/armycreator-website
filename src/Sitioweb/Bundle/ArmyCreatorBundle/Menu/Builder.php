@@ -94,7 +94,7 @@ class Builder extends ContainerAware
                 ));
             }
         }
-        $menu->addChild('+', array('route' => ''));
+        $menu->addChild('+', array('route' => 'army_group_new'));
 
         return $menu;
     }

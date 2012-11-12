@@ -14,8 +14,10 @@
             {% endif %}
         </h2>
 
-        <a href="#">Update group name</a>
-        <a href="#">Delete group</a>
+        {% if group %}
+            <a href="{{ path('army_group_edit', {'id' : group.id} ) }}">Update group name</a>
+            <a href="#">Delete group</a>
+        {% endif %}
     </div>
 
     <a href="#">
