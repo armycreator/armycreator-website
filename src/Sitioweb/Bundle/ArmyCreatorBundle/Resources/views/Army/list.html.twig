@@ -16,7 +16,10 @@
 
         {% if group %}
             <a href="{{ path('army_group_edit', {'id' : group.id} ) }}">Update group name</a>
-            <a href="#">Delete group</a>
+            <form action="{{ path('army_group_delete', { 'id': group.id }) }}" method="post">
+                {{ form_widget(deleteForm.createView) }}
+                <button type="submit">Delete group</button>
+            </form>
         {% endif %}
     </div>
 
@@ -41,7 +44,7 @@
                 <td>Space Marine
                 <td>1000
                 <td>
-                    <a href="#">
+                    <a href="{{ path('army_detail', {'slug' : 'toto-vend-son-chapeau'} ) }}">
                         Bataillon de poilus
                     </a>
                 </td>
@@ -54,7 +57,7 @@
                 <td>Necron
                 <td>2000
                 <td>
-                    <a href="#">
+                    <a href="{{ path('army_detail', {'slug' : 'toto-vend-son-chapeau'} ) }}">
                         Frappe de Zangdar
                     </a>
                 </td>

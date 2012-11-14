@@ -3,6 +3,7 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army
@@ -34,6 +35,17 @@ class Army
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * slug
+     * 
+     * @var string
+     * @access private
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(length=255, unique=true)
+     */
+    private $slug;
 
     /**
      * @var string $description
@@ -183,6 +195,18 @@ class Army
     public function getName()
     {
         return $this->name;
+    }
+
+
+    /**
+     * getSlug
+     *
+     * @access public
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
@@ -32,12 +33,15 @@ class ArmyController extends Controller
     {
         if ($groupId > 0) {
             $group = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')->find((int) $groupId);
+            $deleteForm = $this->createDeleteForm($id);
         } else {
             $group = null;
+            $deleteForm = null;
         }
         
         return array(
-            'group' => $group
+            'group' => $group,
+            'deleteForm' => $deleteForm
         );
     }
 
@@ -47,12 +51,35 @@ class ArmyController extends Controller
      * @access public
      * @return void
      *
-     * @Route("/", name="army_detail")
+     * @Route("/{slug}", name="army_detail")
      * @Template()
      */
-    public function detailAction()
+    public function detailAction($slug)
     {
+        $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBy(array(
+            'slug' => $slug
+        ));
+        if ($army === null) {
+            throw new NotFoundHttpException('Army not found');
+        }
+        
+        
         return array();
+    }
+
+    /**
+     * createDeleteForm
+     *
+     * @param int $id
+     * @access private
+     * @return void
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
     }
 }
 

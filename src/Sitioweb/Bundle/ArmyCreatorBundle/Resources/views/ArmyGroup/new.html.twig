@@ -1,5 +1,8 @@
-<h1>ArmyGroup creation</h1>
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
+{% block title %}Army goup creation{% endblock %}
+
+{% block content %}
 <form action="{{ path('army_group_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
@@ -14,3 +17,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}
