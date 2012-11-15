@@ -40,31 +40,20 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>Space Marine
-                <td>1000
-                <td>
-                    <a href="{{ path('army_detail', {'slug' : 'toto-vend-son-chapeau'} ) }}">
-                        Bataillon de poilus
-                    </a>
-                </td>
-                <td>Finish
-                <td>01/01/2010
-                <td>del
-            </tr>
-
-            <tr>
-                <td>Necron
-                <td>2000
-                <td>
-                    <a href="{{ path('army_detail', {'slug' : 'toto-vend-son-chapeau'} ) }}">
-                        Frappe de Zangdar
-                    </a>
-                </td>
-                <td>Draft
-                <td>10/09/2012
-                <td>del
-            </tr>
+            {% for army in armyList %}
+                <tr>
+                    <td>{{ army.breed.name }}
+                    <td>{{ army.points }}
+                    <td>
+                        <a href="{{ path('army_detail', {'slug' : army.slug} ) }}">
+                            {{ army.name }}
+                        </a>
+                    </td>
+                    <td>{{ army.status }}
+                    <td>{{ army.createDate|date() }}
+                    <td>del
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}

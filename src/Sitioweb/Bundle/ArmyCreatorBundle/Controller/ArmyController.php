@@ -38,9 +38,13 @@ class ArmyController extends Controller
             $group = null;
             $deleteForm = null;
         }
-        
+
+        // getting armyList
+        $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findByUser($this->getUser());
+
         return array(
             'group' => $group,
+            'armyList' => $armyList,
             'deleteForm' => $deleteForm
         );
     }
@@ -56,15 +60,19 @@ class ArmyController extends Controller
      */
     public function detailAction($slug)
     {
-        $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBy(array(
-            'slug' => $slug
-        ));
+        // getting army
+        $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($slug);
         if ($army === null) {
             throw new NotFoundHttpException('Army not found');
         }
+
+        // get unit type list
+        $unitTypeList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitType')->findByBreed($army->getBreed());
         
-        
-        return array();
+        return array(
+            'army' => $army,
+            'unitTypeList' => $unitTypeList
+        );
     }
 
     /**

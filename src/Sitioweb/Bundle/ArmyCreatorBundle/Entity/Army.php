@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Sitioweb\Bundle\ArmyCreatorBundle\Entity\Repository\Army")
  */
 class Army
 {
@@ -42,7 +42,7 @@ class Army
      * @var string
      * @access private
      *
-     * @Gedmo\Slug(fields={"name"})
+     * @Gedmo\Slug(fields={"name"}, unique=true, updatable=true)
      * @ORM\Column(length=255, unique=true)
      */
     private $slug;
@@ -197,6 +197,18 @@ class Army
         return $this->name;
     }
 
+    /**
+     * setSlug
+     *
+     * @param string $slug
+     * @access public
+     * @return $this
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
 
     /**
      * getSlug

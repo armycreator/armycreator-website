@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Sitioweb\Bundle\ArmyCreatorBundle\Entity\Repository\UnitTypeRepository")
  */
 class UnitType
 {
@@ -37,6 +37,17 @@ class UnitType
 	 * @ORM\OneToMany(targetEntity="Unit", mappedBy="unitType")
 	 */
 	private $unitList;
+
+    /**
+     * breed
+     * 
+     * @var Breed
+     * @access private
+	 *
+	 * @ORM\ManyToOne(targetEntity="Breed", inversedBy="unitTypeList")
+     */
+    private $breed;
+
 
 
     /**
@@ -114,5 +125,29 @@ class UnitType
     public function getUnitList()
     {
         return $this->unitList;
+    }
+
+    /**
+     * setBreed
+     *
+     * @param Breed $breed
+     * @access public
+     * @return AbstractUnit
+     */
+    public function setBreed($breed)
+    {
+        $this->breed = $breed;
+        return $this;
+    }
+
+    /**
+     * getBreed
+     *
+     * @access public
+     * @return Breed
+     */
+    public function getBreed()
+    {
+        return $this->breed;
     }
 }

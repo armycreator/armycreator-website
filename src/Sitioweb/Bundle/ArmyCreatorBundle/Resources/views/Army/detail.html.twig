@@ -8,8 +8,38 @@
 {% block content %}
 <header>
     <div>
-        Army Detail
+        Breed logo
+    </div>
+
+    <div>
+        {{ army.name }}
+        {{ army.breed.name }}
+        {{ army.wantedPoints }}
+
+
+        {{ army.points }}
+        {{ army.wantedPoints }}
+
+        <a href="#">
+            Print list
+        </a>
+        <a href="#">
+            Share list
+        </a>
+        <a href="#">
+            Delete list
+        </a>
     </div>
 </header>
+
+<section>
+    {% for unitType in unitTypeList %}
+        <div>
+            <h3>{{ unitType.name }}</h3>
+            {% for squad in army.squadList %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</section>
 {% endblock %}
 
