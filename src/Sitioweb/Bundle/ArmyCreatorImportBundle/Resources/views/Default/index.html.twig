@@ -1,1 +1,25 @@
-Hello {{ name }}!
+{% extends 'SitiowebArmyCreatorImportBundle::layout.html.twig' %}
+
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>Type
+            <th>Entities
+            <th>Import
+            <th>Clear
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for import in importList %}
+            <tr>
+                <td>{{ import.name }}
+                <td>{{ import.count }}
+                <td><a href="{{ path(import.route) }}">Import</a>
+                <td><a href="{{ path('clear_entity_class', {'entityClass' : import.name} ) }}">Clear</a>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

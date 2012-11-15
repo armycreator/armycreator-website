@@ -22,11 +22,11 @@ class UnitHasUnitGroup
     private $id;
 
     /**
-     * @var integer $number
+     * @var integer $unitNumber
      *
-     * @ORM\Column(name="number", type="integer")
+     * @ORM\Column(name="unitNumber", type="integer")
      */
-    private $number;
+    private $unitNumber;
 
     /**
      * unit
@@ -34,7 +34,7 @@ class UnitHasUnitGroup
      * @var Unit
      * @access private
 	 *
-	 * @ORM\ManyToOne(targetEntity="Unit", inversedBy="unitHasGroupList")
+	 * @ORM\ManyToOne(targetEntity="Unit", inversedBy="unitHasUnitGroupList")
      */
     private $unit;
 
@@ -44,9 +44,37 @@ class UnitHasUnitGroup
      * @var UnitGroup
      * @access private
 	 *
-	 * @ORM\ManyToOne(targetEntity="UnitGroup", inversedBy="unitHasGroupList")
+	 * @ORM\ManyToOne(targetEntity="UnitGroup", inversedBy="unitHasUnitGroupList")
      */
     private $group;
+
+    /**
+     * importedId
+     * 
+     * @ORM\Column(type="integer")
+     * @var mixed
+     * @access private
+     */
+    private $importedId;
+
+    /**
+     * mainUnit
+     * 
+     * @ORM\Column(type="boolean")
+     * @var boolean
+     * @access private
+     */
+    private $mainUnit;
+
+    /**
+     * canChooseNumber
+     * 
+     * @ORM\Column(type="boolean")
+     * @var boolean
+     * @access private
+     */
+    private $canChooseNumber;
+
 
     /**
      * Get id
@@ -59,26 +87,26 @@ class UnitHasUnitGroup
     }
 
     /**
-     * Set number
+     * Set unitNumber
      *
-     * @param integer $number
+     * @param integer $unitNumber
      * @return UnitHasUnitGroup
      */
-    public function setNumber($number)
+    public function setUnitNumber($unitNumber)
     {
-        $this->number = $number;
+        $this->unitNumber = $unitNumber;
     
         return $this;
     }
 
     /**
-     * Get number
+     * Get unitNumber
      *
      * @return integer 
      */
-    public function getNumber()
+    public function getUnitNumber()
     {
-        return $this->number;
+        return $this->unitNumber;
     }
 
     /**
@@ -125,5 +153,74 @@ class UnitHasUnitGroup
     public function getGroup()
     {
         return $this->group;
+    }
+
+    /**
+     * Set importedId
+     *
+     * @param integer $importedId
+     * @return UnitHasUnitGroup
+     */
+    public function setImportedId($importedId)
+    {
+        $this->importedId = $importedId;
+    
+        return $this;
+    }
+
+    /**
+     * Get importedId
+     *
+     * @return integer 
+     */
+    public function getImportedId()
+    {
+        return $this->importedId;
+    }
+
+    /**
+     * Set mainUnit
+     *
+     * @param boolean $mainUnit
+     * @return UnitHasUnitGroup
+     */
+    public function setMainUnit($mainUnit)
+    {
+        $this->mainUnit = $mainUnit;
+    
+        return $this;
+    }
+
+    /**
+     * Get mainUnit
+     *
+     * @return boolean 
+     */
+    public function getMainUnit()
+    {
+        return $this->mainUnit;
+    }
+
+    /**
+     * Set canChooseNumber
+     *
+     * @param boolean $canChooseNumber
+     * @return UnitHasUnitGroup
+     */
+    public function setCanChooseNumber($canChooseNumber)
+    {
+        $this->canChooseNumber = $canChooseNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get canChooseNumber
+     *
+     * @return boolean 
+     */
+    public function getCanChooseNumber()
+    {
+        return $this->canChooseNumber;
     }
 }

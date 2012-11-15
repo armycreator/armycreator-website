@@ -37,14 +37,14 @@ class Unit extends AbstractUnit
     private $parent;
 
 	/**
-	 * unitHasGroupList
-	 * 
-	 * @var array<UnitHasGroup>
+	 * unitHasUnitGroupList
+	 *
+	 * @var array<UnitHasUnitGroup>
 	 * @access private
 	 *
 	 * @ORM\OneToMany(targetEntity="UnitHasUnitGroup", mappedBy="unit")
 	 */
-	private $unitHasGroupList;
+	private $unitHasUnitGroupList;
 
     /**
      * squadLineList
@@ -66,7 +66,7 @@ class Unit extends AbstractUnit
      */
     public function __construct()
     {
-        $this->unitHasGroupList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->unitHasUnitGroupList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->childrenList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->squadLineList = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -118,36 +118,36 @@ class Unit extends AbstractUnit
     }
 
     /**
-     * Add unitHasGroupList
+     * Add unitHasUnitGroupList
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasGroup $unitHasGroupList
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup $unitHasUnitGroupList
      * @return Unit
      */
-    public function addUnitHasGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasGroup $unitHasGroupList)
+    public function addUnitHasUnitGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup $unitHasUnitGroupList)
     {
-        $this->unitHasGroupList[] = $unitHasGroupList;
+        $this->unitHasUnitGroupList[] = $unitHasUnitGroupList;
     
         return $this;
     }
 
     /**
-     * Remove unitHasGroupList
+     * Remove unitHasUnitGroupList
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasGroup $unitHasGroupList
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup $unitHasUnitGroupList
      */
-    public function removeUnitHasGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasGroup $unitHasGroupList)
+    public function removeUnitHasUnitGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup $unitHasUnitGroupList)
     {
-        $this->unitHasGroupList->removeElement($unitHasGroupList);
+        $this->unitHasUnitGroupList->removeElement($unitHasUnitGroupList);
     }
 
     /**
-     * Get unitHasGroupList
+     * Get unitHasUnitGroupList
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getUnitHasGroupList()
+    public function getUnitHasUnitGroupList()
     {
-        return $this->unitHasGroupList;
+        return $this->unitHasUnitGroupList;
     }
 
     /**

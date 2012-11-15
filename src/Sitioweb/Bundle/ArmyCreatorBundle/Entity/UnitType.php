@@ -22,11 +22,29 @@ class UnitType
     private $id;
 
     /**
+     * importedId
+     * 
+     * @ORM\Column(type="integer")
+     * @var mixed
+     * @access private
+     */
+    private $importedId;
+
+    /**
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * position
+     * 
+     * @ORM\Column(type="integer")
+     * @var int
+     * @access private
+     */
+    private $position;
 
 	/**
 	 * unitList
@@ -62,6 +80,19 @@ class UnitType
     }
 
     /**
+     * Set id
+     *
+     * @param int $id
+     * @return UnitType
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -69,6 +100,52 @@ class UnitType
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set position
+     *
+     * @param int $position
+     * @return UnitType
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer 
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * Set imported id
+     *
+     * @param int $id
+     * @return UnitType
+     */
+    public function setImportedId($importedId)
+    {
+        $this->importedId = $importedId;
+    
+        return $this;
+    }
+
+    /**
+     * Get imported id
+     *
+     * @return integer 
+     */
+    public function getImportedId()
+    {
+        return $this->importedId;
     }
 
     /**

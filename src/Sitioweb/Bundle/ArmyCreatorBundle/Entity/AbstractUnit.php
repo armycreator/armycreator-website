@@ -42,6 +42,15 @@ class AbstractUnit
     private $breed;
 
     /**
+     * importedId
+     * 
+     * @ORM\Column(type="integer")
+     * @var mixed
+     * @access private
+     */
+    private $importedId;
+
+    /**
      * unitType
      * 
      * @var UnitType
@@ -186,5 +195,28 @@ class AbstractUnit
     public function getUnitStuffList()
     {
         return $this->unitStuffList;
+    }
+
+    /**
+     * Set imported id
+     *
+     * @param int $id
+     * @return UnitType
+     */
+    public function setImportedId($importedId)
+    {
+        $this->importedId = $importedId;
+    
+        return $this;
+    }
+
+    /**
+     * Get imported id
+     *
+     * @return integer 
+     */
+    public function getImportedId()
+    {
+        return $this->importedId;
     }
 }

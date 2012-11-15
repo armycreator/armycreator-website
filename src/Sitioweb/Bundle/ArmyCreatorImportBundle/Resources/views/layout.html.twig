@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+
+{% block title "ArmyCreator Import" %}
+
+{% block body %}
+	<div id="websiteContent">
+		{# <h1><span>{{ block('title') }}</span> {% block h1 %}{% endblock %}</h1> #}
+        {% block h1Container %}
+            <h1>{% block h1 %}{{ block('title') }}{% endblock %}</h1>
+        {% endblock %}
+		
+
+        {% block flashes %}
+            {% for key, message in app.session.getFlashes() %}
+                <div class="{{ key }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endblock %}
+
+		{% block content %}
+		{% endblock %}
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{% javascripts '@SitiowebArmyCreatorBundle/Resources/public/js/*' %}
+		 <script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+	{% stylesheets 
+		'%kernel.root_dir%/../vendor/raphaelgoetter/knacss/css/knacss.css'
+		'@SitiowebArmyCreatorBundle/Resources/public/css/*' 
+		filter='less' output='css/global.css' %}
+		 <link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+{% endblock %}
+
