@@ -49,17 +49,38 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   %database_driver%
-        host:     %database_host%
-        port:     %database_port%
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
-        charset:  UTF8
+        default_connection: default
+        connections:
+            default:
+                driver:   %database_driver%
+                host:     %database_host%
+                port:     %database_port%
+                dbname:   %database_name%
+                user:     %database_user%
+                password: %database_password%
+                charset:  UTF8
+            import:
+                driver:   %database_driver%
+                host:     %database_host%
+                port:     %database_port%
+                dbname:   %import_database_name%
+                user:     %import_database_user%
+                password: %import_database_password%
+                #charset:  ISO-8859-1
+
 
     orm:
+        default_entity_manager: default
         auto_generate_proxy_classes: %kernel.debug%
-        auto_mapping: true
+#       auto_mapping: true
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    SitiowebArmyCreatorBundle: ~
+                    FOSUserBundle: ~
+            import:
+                connection: import
 
 stof_doctrine_extensions:
     default_locale: en_US

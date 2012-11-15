@@ -63,6 +63,7 @@ class User extends BaseUser
      */
     public function __construct()
     {
+        parent::__construct();
         $this->armyList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->armyGroupList = new \Doctrine\Common\Collections\ArrayCollection();
     }

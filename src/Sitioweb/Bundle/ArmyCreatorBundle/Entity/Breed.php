@@ -126,6 +126,19 @@ class Breed
     }
 
     /**
+     * setId
+     *
+     * @param int $id
+     * @access public
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * Set name
      *
      * @param string $name

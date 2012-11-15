@@ -3,6 +3,11 @@ SitiowebArmyCreatorBundle:
     type:     annotation
     prefix:   /
 
+SitiowebArmyCreatorImportBundle:
+    resource: "@SitiowebArmyCreatorImportBundle/Controller/"
+    type:     annotation
+    prefix:   /import
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
