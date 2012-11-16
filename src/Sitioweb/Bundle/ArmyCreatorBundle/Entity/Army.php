@@ -42,8 +42,8 @@ class Army
      * @var string
      * @access private
      *
-     * @Gedmo\Slug(fields={"name"}, unique=true, updatable=true)
-     * @ORM\Column(length=255, unique=true)
+     * @Gedmo\Slug(fields={"name"}, unique=false, updatable=true)
+     * @ORM\Column(length=255, unique=false)
      */
     private $slug;
 
@@ -78,14 +78,14 @@ class Army
     /**
      * @var \DateTime $createDate
      *
-     * @ORM\Column(name="createDate", type="datetime")
+     * @ORM\Column(name="createDate", type="datetime", nullable=true)
      */
     private $createDate;
 
     /**
      * @var \DateTime $updateDate
      *
-     * @ORM\Column(name="updateDate", type="datetime")
+     * @ORM\Column(name="updateDate", type="datetime", nullable=true)
      */
     private $updateDate;
 
@@ -139,6 +139,19 @@ class Army
     public function __construct()
     {
         $this->squadList = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * setId
+     *
+     * @param int $id
+     * @access public
+     * @return void
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
     /**

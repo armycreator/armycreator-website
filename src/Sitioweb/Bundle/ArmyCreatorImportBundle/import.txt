@@ -8,13 +8,11 @@ equipement
 arme 
 unite_has_equipement 
 phpbb_users
-
-TODO 
 wac_user_preferences 
-
 wac_armee_groupe 
 armee 
 
+TODO 
 SquadType ( ~ UnitType ?)
 
 escouade 

@@ -60,6 +60,19 @@ class ArmyGroup
     }
 
     /**
+     * setId
+     *
+     * @param int $id
+     * @access public
+     * @return void
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return integer 

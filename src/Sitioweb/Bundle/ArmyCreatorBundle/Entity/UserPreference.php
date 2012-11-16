@@ -104,7 +104,7 @@ class UserPreference
      * @var User
      * @access private
      *
-	 * @ORM\OneToOne(targetEntity="User", mappedBy="preferences")
+	 * @ORM\OneToOne(targetEntity="User", inversedBy="preferences")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;

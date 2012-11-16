@@ -30,6 +30,8 @@ class DefaultController extends Controller
             'import_unit_stuff' => 'SitiowebArmyCreatorBundle:UnitStuff',
             'import_user' => 'SitiowebArmyCreatorBundle:User',
             'import_user_preference' => 'SitiowebArmyCreatorBundle:UserPreference',
+            'import_army_group' => 'SitiowebArmyCreatorBundle:ArmyGroup',
+            'import_army' => 'SitiowebArmyCreatorBundle:Army',
         );
 
         $em = $this->get('doctrine')->getEntityManager();
@@ -166,8 +168,8 @@ class DefaultController extends Controller
                 $this->em->persist($entity);
                 //$this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
             }
-            $this->em->flush();
         }
+        $this->em->flush();
         
         $this->get('session')->setFlash('notice', $entityClass . ' imported');
         return $this->redirect($this->generateUrl('import_index'));
@@ -627,6 +629,156 @@ class DefaultController extends Controller
         
         $this->get('session')->setFlash('notice', $entityClass . ' imported : ' . $start);
 
+        if ($continue) {
+            return $this->redirect($continue);
+        } else {
+            return $this->redirect($this->generateUrl('import_index'));
+        }
+    }
+
+    /**
+     * importArmyGroupAction
+     * @Route("/army_group/{start}", name="import_army_group", defaults={"start" = 0})
+     *
+     * @access public
+     * @return void
+     */
+    public function importArmyGroupAction ($start)
+    {
+        // conf
+        $this->configure();
+        $entityClass = 'SitiowebArmyCreatorBundle:ArmyGroup';
+        if ($start == 0) {
+            $this->clearEntityList($entityClass);
+        }
+
+        // inserting
+        $limit = 300;
+        $importList = $this->emImport->query("
+            SELECT *
+            FROM wac_armee_groupe
+            ORDER BY id
+            LIMIT " . (int) $start . ", " . $limit . "
+        ");
+
+        if ($importList->rowCount() >= $limit) {
+            $continue = $this->generateUrl('import_army_group', array('start' => (int) $start + $limit));
+        } else {
+            $continue = null;
+        }
+
+        while ($row = $importList->fetch()) {
+            $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\ArmyGroup();
+            $entity->setId((int) $row['id']);
+            $name = ($row['type_groupe'] == 'T' ? 'Type' : 'Brouillon');
+            $entity->setName($name . ' | ' . utf8_encode($row['name']));
+
+            $user = $this->em->getRepository('SitiowebArmyCreatorBundle:User')->findOneByForumId($row['joueur_id']);
+            $entity->setUser($user);
+
+            $this->em->persist($entity);
+        }
+        $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+        $this->em->flush();
+        
+        $this->get('session')->setFlash('notice', $entityClass . ' imported');
+        if ($continue) {
+            return $this->redirect($continue);
+        } else {
+            return $this->redirect($this->generateUrl('import_index'));
+        }
+    }
+
+    /**
+     * importArmyAction
+     * @Route("/army/{start}", name="import_army", defaults={"start" = 0})
+     *
+     * @access public
+     * @return void
+     */
+    public function importArmyAction ($start)
+    {
+        ini_set('memory_limit', '1024M');
+        $minId = 0;
+        
+        // conf
+        $this->configure();
+        $entityClass = 'SitiowebArmyCreatorBundle:Army';
+        if ($start == 0 && $minId == 0) {
+            $this->clearEntityList($entityClass);
+        }
+        $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+
+        // inserting
+        $limit = 5000;
+        $importList = $this->emImport->query("
+            SELECT *
+            FROM armee
+            WHERE id > " . (int) $minId . "
+            ORDER BY id
+            LIMIT " . (int) $start . ", " . $limit . "
+        ");
+
+        if ($importList->rowCount() >= $limit) {
+            $continue = $this->generateUrl('import_army', array('start' => (int) $start + $limit, 'minId' => (int) $minId));
+        } else {
+            $continue = null;
+        }
+
+        $cpt = 0;
+        while ($row = $importList->fetch()) {
+            $user = $this->em->getRepository('SitiowebArmyCreatorBundle:User')->findOneByForumId($row['joueur_id']);
+            $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army();
+            $entity->setId((int) $row['id']);
+            $entity->setName(!empty($row['nom']) ? utf8_encode($row['nom']) : 'Sans nom');
+            $entity->setStatus($row['type_armee'] == 'T' ? 'finish' : 'draft');
+            $entity->setDescription(utf8_encode($row['description']));
+            $entity->setWantedPoints((int) $row['nbPointsSouhaites']);
+            $entity->setPoints((int) $row['nbPoints']);
+            $entity->setIsShared((int) $row['isShared']);
+
+            $breed = $this->em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($row['race_id']);
+            $entity->setBreed($breed);
+
+            $entity->setUser($user);
+
+            if ($row['groupe_id'] > 0) {
+                $armyGroup = $this->em->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')->find($row['groupe_id']);
+                $entity->setArmyGroup($armyGroup);
+            }
+
+            $this->em->persist($entity);
+            if ($cpt >= 100) {
+                $cpt = 0;
+                set_time_limit(30);
+                $this->em->flush();
+                $this->em->clear();
+            }
+            $cpt++;
+
+            /*
+            $armyName = (!empty($row['nom']) ? utf8_encode($row['nom']) : 'Sans nom');
+            $query = "INSERT INTO Army
+                (breed_id, user_id, status, name, slug, description, wantedPoints, points, isShared, armyGroup_id)
+                VALUES (
+                '" . $row['race_id'] . "',
+                '" . $user->getId() . "',
+                '" . ($row['type_armee'] == 'T' ? 'finish' : 'draft') . "',
+                '" . addslashes($armyName) . "',
+                '" . addslashes(\Gedmo\Sluggable\Util\Urlizer::urlize($armyName)) . "',
+                '" . addslashes(utf8_encode($row['description'])) . "',
+                '" . (int) $row['nbPointsSouhaites'] . "',
+                '" . (int) $row['nbPoints'] . "',
+                '" . (int) $row['isShared'] . "',
+                " . ($row['groupe_id'] ? (int) $row['groupe_id'] : 'NULL') . "
+                )
+            ";
+            $this->em->getConnection()->executeUpdate($query);
+            */
+        }
+        $this->em->flush();
+        
+        $this->get('session')->setFlash('notice', $entityClass . ' imported');
         if ($continue) {
             return $this->redirect($continue);
         } else {
