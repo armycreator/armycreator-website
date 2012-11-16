@@ -31,6 +31,25 @@ class Stuff
      */
     private $name;
 
+    /**
+     * importedId
+     * @ORM\Column(type="integer")
+     * 
+     * @var int
+     * @access private
+     */
+    private $importedId;
+
+    /**
+     * breed
+     * 
+     * @var Breed
+     * @access private
+	 *
+	 * @ORM\ManyToOne(targetEntity="Breed", inversedBy="stuffList")
+     */
+    private $breed;
+
 	/**
 	 * unitStuffList
 	 * 
@@ -55,6 +74,30 @@ class Stuff
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * setImportedId
+     *
+     * @param int $importedId
+     * @access public
+     * @return Stuff
+     */
+    public function setImportedId($importedId)
+    {
+        $this->importedId = $importedId;
+        return $this;
+    }
+
+    /**
+     * getImportedId
+     *
+     * @access public
+     * @return int
+     */
+    public function getImportedId()
+    {
+        return $this->importedId;
     }
 
     /**
@@ -111,5 +154,28 @@ class Stuff
     public function getUnitStuffList()
     {
         return $this->unitStuffList;
+    }
+
+    /**
+     * Set breed
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breed
+     * @return Stuff
+     */
+    public function setBreed(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breed = null)
+    {
+        $this->breed = $breed;
+    
+        return $this;
+    }
+
+    /**
+     * Get breed
+     *
+     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed 
+     */
+    public function getBreed()
+    {
+        return $this->breed;
     }
 }

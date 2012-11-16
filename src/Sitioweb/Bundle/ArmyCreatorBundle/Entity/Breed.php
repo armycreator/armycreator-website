@@ -92,6 +92,26 @@ class Breed
 	 */
 	private $unitTypeList;
 
+	/**
+	 * userPreferenceList
+	 * 
+	 * @var array
+	 * @access private
+	 *
+	 * @ORM\OneToMany(targetEntity="UserPreference", mappedBy="breed")
+	 */
+	private $userPreferenceList;
+
+	/**
+	 * stuffList
+	 * 
+	 * @var array
+	 * @access private
+	 *
+	 * @ORM\OneToMany(targetEntity="Stuff", mappedBy="breed")
+	 */
+	private $stuffList;
+
     /**
      * armyList
      * 
@@ -113,6 +133,9 @@ class Breed
     {
         $this->unitList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->unitTypeList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->stuffList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userPreferenceList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->armyList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -350,5 +373,71 @@ class Breed
     public function getArmyList()
     {
         return $this->armyList;
+    }
+
+    /**
+     * Add stuffList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff $stuffList
+     * @return Breed
+     */
+    public function addStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff $stuffList)
+    {
+        $this->stuffList[] = $stuffList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove stuffList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff $stuffList
+     */
+    public function removeStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff $stuffList)
+    {
+        $this->stuffList->removeElement($stuffList);
+    }
+
+    /**
+     * Get stuffList
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStuffList()
+    {
+        return $this->stuffList;
+    }
+
+    /**
+     * Add userPreferenceList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference $userPreferenceList
+     * @return Breed
+     */
+    public function addUserPreferenceList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference $userPreferenceList)
+    {
+        $this->userPreferenceList[] = $userPreferenceList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove userPreferenceList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference $userPreferenceList
+     */
+    public function removeUserPreferenceList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference $userPreferenceList)
+    {
+        $this->userPreferenceList->removeElement($userPreferenceList);
+    }
+
+    /**
+     * Get userPreferenceList
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUserPreferenceList()
+    {
+        return $this->userPreferenceList;
     }
 }

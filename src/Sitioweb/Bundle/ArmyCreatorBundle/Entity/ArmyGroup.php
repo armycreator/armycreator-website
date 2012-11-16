@@ -34,7 +34,7 @@ class ArmyGroup
      * @var User
      * @access private
      *
-	 * @ORM\ManyToOne(targetEntity="User", inversedBy="armyList")
+	 * @ORM\ManyToOne(targetEntity="User", inversedBy="armyGroupList")
      */
     private $user;
 

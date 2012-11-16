@@ -36,6 +36,16 @@ class UnitStuff
     private $auto;
 
     /**
+     * visible
+     * 
+     * @var boolean
+     * @access private
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $visible;
+
+    /**
      * unit
      * 
      * @var Unit
@@ -210,5 +220,28 @@ class UnitStuff
     public function getSquadLineStuffList()
     {
         return $this->squadLineStuffList;
+    }
+
+    /**
+     * Set visible
+     *
+     * @param boolean $visible
+     * @return UnitStuff
+     */
+    public function setVisible($visible)
+    {
+        $this->visible = $visible;
+    
+        return $this;
+    }
+
+    /**
+     * Get visible
+     *
+     * @return boolean 
+     */
+    public function getVisible()
+    {
+        return $this->visible;
     }
 }

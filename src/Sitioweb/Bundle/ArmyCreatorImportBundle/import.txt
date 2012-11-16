@@ -1,0 +1,37 @@
+DONE
+race 
+type_unite 
+regroupement 
+unite 
+regroupement_unite 
+equipement 
+arme 
+unite_has_equipement 
+phpbb_users
+
+TODO 
+wac_user_preferences 
+
+wac_armee_groupe 
+armee 
+
+SquadType ( ~ UnitType ?)
+
+escouade 
+escouade_has_equipement 
+
+wac_collection_race 
+wac_collection_unite 
+
+MAYBE
+combat 
+equipe 
+invite 
+wac_armee_note 
+wac_combat_comments 
+wac_combat_result 
+
+WONT'T BE DONE
+wac_logError => logs
+wac_memory_log => logs
+wac_config => in a yaml file

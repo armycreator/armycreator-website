@@ -56,6 +56,16 @@ class User extends BaseUser
     private $armyGroupList;
 
     /**
+     * preferences
+     * 
+     * @var UserPreference
+     * @access private
+     *
+	 * @ORM\OneToOne(targetEntity="UserPreference", mappedBy="user")
+     */
+    private $preferences;
+
+    /**
      * __construct
      *
      * @access public
@@ -154,5 +164,38 @@ class User extends BaseUser
     public function getArmyGroupList()
     {
         return $this->armyGroupList;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set preferences
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference $preferences
+     * @return User
+     */
+    public function setPreferences(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference $preferences = null)
+    {
+        $this->preferences = $preferences;
+    
+        return $this;
+    }
+
+    /**
+     * Get preferences
+     *
+     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference 
+     */
+    public function getPreferences()
+    {
+        return $this->preferences;
     }
 }
