@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit
  *
- * @ORM\Table()
+ * @ORM\Table(indexes={@ORM\Index(name="import_idx", columns={"importedId","discriminator"})})
  * @ORM\Entity
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discriminator", type="string")

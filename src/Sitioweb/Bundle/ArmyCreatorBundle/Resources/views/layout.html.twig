@@ -14,11 +14,11 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     Hello {{ app.user.username }}
                 {% else %}
-                    <a href="#">
+                    <a href="{{ path('forum_connection') }}">
                         Connectez-vous
                     </a>
                     ou 
-                    <a href="#">
+                    <a href="{{ path('forum_create_account') }}">
                         Créer un compte
                     </a>
                     | 

@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Unit extends AbstractUnit
 {
     /**
+     * points
+     * @ORM\Column(name="points", type="integer")
+     * 
+     * @var int
+     * @access private
+     */
+    private $points;
+
+    /**
      * @var boolean $canModifyNumber
      *
      * @ORM\Column(name="canModifyNumber", type="boolean")
@@ -68,6 +77,29 @@ class Unit extends AbstractUnit
     {
         $this->unitHasUnitGroupList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->childrenList = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set points
+     *
+     * @param integer $points
+     * @return UnitStuff
+     */
+    public function setPoints($points)
+    {
+        $this->points = $points;
+    
+        return $this;
+    }
+
+    /**
+     * Get points
+     *
+     * @return integer 
+     */
+    public function getPoints()
+    {
+        return $this->points;
     }
 
     /**

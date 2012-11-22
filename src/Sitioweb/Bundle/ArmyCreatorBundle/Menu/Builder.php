@@ -84,9 +84,11 @@ class Builder extends ContainerAware
         $user = $this->container->get('security.context')->getToken()->getUser();
         $armyGroupList = $user->getArmyGroupList();
 
-        if ($armyGroupList->isEmpty()) {
-            $menu->addChild('No group');
-        } else {
+        $menu->addChild('All armies', array(
+            'route' => 'army_list'
+        ));
+
+        if (!$armyGroupList->isEmpty()) {
             foreach ($armyGroupList as $armyGroup) {
                 $menu->addChild($armyGroup->getName(), array(
                     'route' => 'army_group_list',

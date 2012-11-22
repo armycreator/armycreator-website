@@ -17,9 +17,6 @@ framework:
     session:         ~
 
 services: 
-    phpbb_fos_user_manager:
-        class: Sitioweb\Service\PhpbbFosUserService\UserManager
-        arguments: ["@security.encoder_factory", "@fos_user.util.username_canonicalizer", "@fos_user.util.email_canonicalizer","@fos_user.entity_manager",%fos_user.model.user.class%]
     user_service:
         class: Sitioweb\Bundle\ArmyCreatorBundle\UserService
         tags:

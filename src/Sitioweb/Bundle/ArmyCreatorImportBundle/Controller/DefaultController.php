@@ -87,6 +87,19 @@ class DefaultController extends Controller
                 ");
                 $query->execute();
                 break;
+            case 'SitiowebArmyCreatorBundle:Unit' :
+                $query = $this->em->createQuery("
+                    DELETE
+                    FROM " . $entityClass .  " e
+                    WHERE e.parent IS NOT NULL
+                ");
+                $query->execute();
+
+                $query2 = $this->em->createQuery("
+                    DELETE
+                    FROM  " . $entityClass);
+                $query2->execute();
+                break;
             default:
                 $query = $this->em->createQuery("DELETE FROM " . $entityClass);
                 $query->execute();
@@ -148,8 +161,8 @@ class DefaultController extends Controller
 
             $this->em->persist($breed);
             $this->em->getClassMetaData(get_class($breed))->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
-            $this->em->flush();
         }
+        $this->em->flush();
         
         $this->get('session')->setFlash('notice', 'Breed imported');
         return $this->redirect($this->generateUrl('import_index'));
@@ -266,6 +279,7 @@ class DefaultController extends Controller
             $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit();
             $entity->setImportedId((int) $row['id']);
             $entity->setName(utf8_encode($row['nom']));
+            $entity->setPoints((int) $row['pts_unite']);
 
             $breed = $this->em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($row['race_id']);
             $entity->setBreed($breed);
@@ -284,8 +298,8 @@ class DefaultController extends Controller
 
             $this->em->persist($entity);
             //$this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
-            $this->em->flush();
         }
+        $this->em->flush();
         
         $this->get('session')->setFlash('notice', $entityClass . ' imported : ' . $start);
 
@@ -343,8 +357,8 @@ class DefaultController extends Controller
 
             $this->em->persist($entity);
             //$this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
-            $this->em->flush();
         }
+        $this->em->flush();
         
         $this->get('session')->setFlash('notice', $entityClass . ' imported : ' . $start);
 
@@ -620,7 +634,7 @@ class DefaultController extends Controller
         }
 
         // inserting
-        $limit = 300;
+        $limit = 500;
         $importList = $this->emImport->query("
             SELECT *
             FROM wac_user_preferences
@@ -746,7 +760,29 @@ class DefaultController extends Controller
         }
         $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
 
+        $query = $this->em->getConnection()->executeUpdate("
+             INSERT INTO armycreator.Army (
+                id, breed_id, user_id, `status`, name, slug, description, wantedPoints, 
+                    points, isShared, createDate, updateDate, armyGroup_id
+                     )
+             SELECT wa.id, wa.race_id, u.id, IF(wa.type_armee = 'T','finish','draft'), wa.nom, CONCAT('army-', wa.id), wa.description,
+                wa.nbPointsSouhaites, wa.nbPoints, wa.isShared, null, null, wa.groupe_id
+                FROM wkarmycr_copy.armee wa
+                JOIN armycreator.Users u ON u.forumId = wa.joueur_id
+                ");
+
+        /*
+        $armyList = $this->em->getRepository('SitiowebArmyCreatorBundle:Army')->findAll();
+        foreach ($armyList as $army) {
+            $army->setSlug(null);
+        }
+        $this->em->flush();
+        */
+
+        return $this->redirect($this->generateUrl('import_index'));
+
         // inserting
+        /*
         $limit = 5000;
         $importList = $this->emImport->query("
             SELECT *
@@ -793,25 +829,6 @@ class DefaultController extends Controller
             }
             $cpt++;
 
-            /*
-            $armyName = (!empty($row['nom']) ? utf8_encode($row['nom']) : 'Sans nom');
-            $query = "INSERT INTO Army
-                (breed_id, user_id, status, name, slug, description, wantedPoints, points, isShared, armyGroup_id)
-                VALUES (
-                '" . $row['race_id'] . "',
-                '" . $user->getId() . "',
-                '" . ($row['type_armee'] == 'T' ? 'finish' : 'draft') . "',
-                '" . addslashes($armyName) . "',
-                '" . addslashes(\Gedmo\Sluggable\Util\Urlizer::urlize($armyName)) . "',
-                '" . addslashes(utf8_encode($row['description'])) . "',
-                '" . (int) $row['nbPointsSouhaites'] . "',
-                '" . (int) $row['nbPoints'] . "',
-                '" . (int) $row['isShared'] . "',
-                " . ($row['groupe_id'] ? (int) $row['groupe_id'] : 'NULL') . "
-                )
-            ";
-            $this->em->getConnection()->executeUpdate($query);
-            */
         }
         $this->em->flush();
         
@@ -821,6 +838,7 @@ class DefaultController extends Controller
         } else {
             return $this->redirect($this->generateUrl('import_index'));
         }
+            */
     }
 
     /**
@@ -839,6 +857,18 @@ class DefaultController extends Controller
             $this->clearEntityList($entityClass);
         }
 
+        $query = $this->em->getConnection()->executeUpdate("
+            INSERT INTO UserHasUnit (user_id, unit_id, number)
+            SELECT u.id as user_id, au.id as unit_id, wcu.nb
+            FROM wkarmycr_copy.wac_collection_unite wcu
+            JOIN armycreator.Users u ON u.forumId = wcu.id_joueur
+            JOIN armycreator.AbstractUnit au 
+                ON au.discriminator = 'unit'
+                    AND au.importedId = wcu.id_unite
+        ");
+        return $this->redirect($this->generateUrl('import_index'));
+
+/*
         // inserting
         $limit = 5000;
         $importList = $this->emImport->query("
@@ -875,12 +905,12 @@ class DefaultController extends Controller
         } else {
             return $this->redirect($this->generateUrl('import_index'));
         }
+        */
     }
 
     /**
      * importSquadAction
      * @Route("/squad/{start}", name="import_squad", defaults={"start" = 0})
-     * @Route("/squad/{start}", name="import_squad_line", defaults={"start" = 0})
      *
      * @access public
      * @return void
@@ -894,13 +924,54 @@ class DefaultController extends Controller
         $this->configure();
         $entityClass = 'SitiowebArmyCreatorBundle:Squad';
         if ($start == 0 && $minId == 0) {
-            $this->clearEntityList('SitiowebArmyCreatorBundle:SquadLine');
+            //$this->clearEntityList('SitiowebArmyCreatorBundle:SquadLine');
             $this->clearEntityList($entityClass);
         }
-        $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
-        $this->em->getClassMetaData('SitiowebArmyCreatorBundle:SquadLine')->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+
+        $query = $this->em->getConnection()->executeUpdate("
+             INSERT INTO armycreator.Squad 
+              (id, army_id, name, position, updateDate, unitType_id, unitGroup_id)
+
+              SELECT e.id, e.armee_id, e.nomPerso, e.position, FROM_UNIXTIME(e.lastUpdate),
+              ut.id as unitType_id, au.id
+              FROM wkarmycr_copy.escouade e
+              JOIN wkarmycr_copy.unite wu ON wu.id = e.unite_id
+              JOIN wkarmycr_copy.armee wa ON wa.id = e.armee_id
+
+              LEFT JOIN armycreator.UnitType ut
+              ON ut.importedId = IFNULL(e.type_unite, wu.type_unite_id)
+              AND ut.breed_id = wa.race_id
+
+              LEFT JOIN armycreator.AbstractUnit au
+              ON au.discriminator = 'group'
+              AND au.importedId = e.from_regroupement_id
+
+              WHERE e.parent_id IS NULL
+                ");
+
+            /*>
+              SELECT e.id, e.armee_id, e.nomPerso, e.position, FROM_UNIXTIME(e.lastUpdate), 
+              ut.id as unitType_id, au.id
+              FROM wkarmycr_copy.escouade e
+              JOIN wkarmycr_copy.armee wa ON wa.id = e.armee_id
+              LEFT JOIN armycreator.UnitType ut
+                ON ut.importedId = e.type_unite
+                AND ut.breed_id = wa.race_id
+                AND e.parent_id IS NULL
+                            
+              LEFT JOIN armycreator.AbstractUnit au
+                ON au.discriminator = 'group'
+                AND au.importedId = e.from_regroupement_id
+              
+              WHERE parent_id IS NULL
+              */
+
+        return $this->redirect($this->generateUrl('import_index'));
 
         // inserting
+        /*
+        $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+        $this->em->getClassMetaData('SitiowebArmyCreatorBundle:SquadLine')->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
         $limit = 5000;
 
         $tmpQuery = $this->em->createQuery("
@@ -958,7 +1029,10 @@ class DefaultController extends Controller
                 $entity->setArmy($army);
                 
                 if ((int) $row['type_unite'] > 0) {
-                    $unitType = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitType')->findOneByImportedId((int) $row['type_unite']);
+                    $unitType = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitType')->findOneBy(array(
+                        'importedId' => (int) $row['type_unite'],
+                        'breed' => $unit->getBreed()
+                    ));
                 }  else {
                     $unitType = $unit->getUnitType();
                 }
@@ -1005,6 +1079,41 @@ class DefaultController extends Controller
         } else {
             return $this->redirect($this->generateUrl('import_index'));
         }
+        */
+    }
+
+    /**
+     * importSquadAction
+     * @Route("/squad_line/{start}", name="import_squad_line", defaults={"start" = 0})
+     *
+     * @access public
+     * @return void
+     */
+    public function importSquadLineAction ($start)
+    {
+        ini_set('memory_limit', '1024M');
+        $minId = 0;
+        
+        // conf
+        $this->configure();
+        $entityClass = 'SitiowebArmyCreatorBundle:SquadLine';
+        if ($start == 0 && $minId == 0) {
+            $this->clearEntityList($entityClass);
+        }
+
+        $query = $this->em->getConnection()->executeUpdate("
+              INSERT INTO armycreator.SquadLine 
+               (id, unit_id, squad_id, number, position, updateDate)
+
+               SELECT e.id, au.id as unit_id, IFNULL(e.parent_id, e.id) as squad_id, e.nb_unite, e.position, FROM_UNIXTIME(e.lastUpdate)
+               FROM wkarmycr_copy.escouade e
+                
+                LEFT JOIN armycreator.AbstractUnit au
+                    ON au.discriminator = 'unit'
+                        AND au.importedId = e.unite_id
+                ");
+
+        return $this->redirect($this->generateUrl('import_index'));
     }
 
     /**
@@ -1022,15 +1131,13 @@ class DefaultController extends Controller
         $this->configure();
         $entityClass = 'SitiowebArmyCreatorBundle:SquadLineStuff';
         if ($start == 0) {
-            $this->clearEntityList($entityClass);
+            //$this->clearEntityList($entityClass);
         }
-        $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
 
         // inserting
-        $limit = 100;
-        $importList = $this->emImport->query("
+        $this->em->getConnection()->executeUpdate("
             INSERT INTO armycreator.SquadLineStuff (number, unitStuff_id, squadLine_id)
-            SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id -- , ehe.*
+            SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id 
             FROM wkarmycr_copy.`escouade_has_equipement` ehe
             JOIN wkarmycr_copy.escouade e ON ehe.escouade_id = e.id
             JOIN wkarmycr_copy.unite u ON u.id = e.unite_id
@@ -1049,17 +1156,11 @@ class DefaultController extends Controller
                 AND us.unit_id = au.id
 
             WHERE ehe.equipement_id > 0
-
-            LIMIT " . (int) $start . ", " . $limit . "
         ");
         
         $this->get('session')->setFlash('notice', $entityClass . ' imported : ' . $start);
 
-        if ($continue) {
-            return $this->redirect($continue);
-        } else {
-            return $this->redirect($this->generateUrl('import_index'));
-        }
+        return $this->redirect($this->generateUrl('import_index'));
     }
 
     /**
@@ -1077,15 +1178,13 @@ class DefaultController extends Controller
         $this->configure();
         $entityClass = 'SitiowebArmyCreatorBundle:SquadLineStuff';
         if ($start == 0) {
-            $this->clearEntityList($entityClass);
+            //$this->clearEntityList($entityClass);
         }
-        $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
 
         // inserting
-        $limit = 100;
-        $importList = $this->emImport->query("
+        $this->em->getConnection()->executeUpdate("
             INSERT INTO armycreator.SquadLineStuff (number, unitStuff_id, squadLine_id)
-            SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id -- , ehe.*
+            SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id 
             FROM wkarmycr_copy.`escouade_has_equipement` ehe
             JOIN wkarmycr_copy.escouade e ON ehe.escouade_id = e.id
             JOIN wkarmycr_copy.unite u ON u.id = e.unite_id
@@ -1104,16 +1203,10 @@ class DefaultController extends Controller
                 AND us.unit_id = au.id
 
             WHERE ehe.arme_id > 0
-
-            LIMIT " . (int) $start . ", " . $limit . "
         ");
         
         $this->get('session')->setFlash('notice', $entityClass . ' imported : ' . $start);
 
-        if ($continue) {
-            return $this->redirect($continue);
-        } else {
-            return $this->redirect($this->generateUrl('import_index'));
-        }
+        return $this->redirect($this->generateUrl('import_index'));
     }
 }

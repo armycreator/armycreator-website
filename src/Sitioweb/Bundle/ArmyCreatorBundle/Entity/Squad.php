@@ -317,4 +317,14 @@ class Squad
     {
         return $this->unitGroup;
     }
+    
+    public function getPoints()
+    {
+        $points = 0;
+        $squadLineList = $this->getSquadLineList();
+        foreach ($squadLineList as $squadLine) {
+            $points += $squadLine->getPoints();
+        }
+        return $points;
+    }
 }

@@ -13,6 +13,9 @@
 
     <tbody>
         {% for import in importList %}
+            {% if import.name == "SitiowebArmyCreatorBundle:User" %}
+                <tr><td colspan="4" style="text-align:center; color:red; border:1px solid red ">maintenant c'est sensible</td></tr>
+            {% endif %}
             <tr>
                 <td>{{ import.name }}
                 <td>{{ import.count }}

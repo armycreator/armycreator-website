@@ -284,4 +284,21 @@ class SquadLine
     {
         return $this->updateDate;
     }
+
+    /**
+     * getPoints
+     *
+     * @access public
+     * @return int
+     */
+    public function getPoints()
+    {
+        $points = 0;
+        $unit = $this->getUnit();
+        if ($unit instanceof Unit) {
+            $points = $this->getNumber() * $unit->getPoints();
+        }
+
+        return $points;
+    }
 }

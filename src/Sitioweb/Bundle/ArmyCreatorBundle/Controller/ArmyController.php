@@ -34,13 +34,17 @@ class ArmyController extends Controller
         if ($groupId > 0) {
             $group = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')->find((int) $groupId);
             $deleteForm = $this->createDeleteForm($id);
+            $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findBy(array(
+                'user' => $this->getUser(),
+                'armyGroup' => $group
+            ));
         } else {
             $group = null;
             $deleteForm = null;
+            $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findByUser($this->getUser());
         }
 
         // getting armyList
-        $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findByUser($this->getUser());
 
         return array(
             'group' => $group,

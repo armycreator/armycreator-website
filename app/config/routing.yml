@@ -8,6 +8,12 @@ SitiowebArmyCreatorImportBundle:
     type:     annotation
     prefix:   /import
 
+forum_connection:
+    pattern: /forum/ucp.php?mode=login
+
+forum_create_account:
+    pattern: /forum/ucp.php?mode=register
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

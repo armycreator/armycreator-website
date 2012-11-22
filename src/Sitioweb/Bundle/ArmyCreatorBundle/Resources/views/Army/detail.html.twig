@@ -34,11 +34,47 @@
 
 <section>
     {% for unitType in unitTypeList %}
-        <div>
+        <section>
             <h3>{{ unitType.name }}</h3>
-            {% for squad in army.squadList %}
-            {% endfor %}
-        </div>
+            <ul>
+                {% for squad in army.squadList %}
+                    {% if squad.unitType == unitType %}
+                        <li>
+                            <div>
+                                {{ squad.name|default('Squad ' ~ loop.index) }}
+                            </div>
+                            <div>
+                                {{ squad.points }} pts
+                            </div>
+
+                            <div>
+                                {% for squadLine in squad.squadLineList %}
+                                    <div>
+                                        {{ squadLine.number }} {{ squadLine.unit.name }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <footer>
+                                <a href="#">
+                                    Edit
+                                </a>
+
+                                <a href="#">
+                                    Delete
+                                </a>
+                            </footer>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <li>
+                    <a href="#">
+                        Ajouter
+                    </a>
+                </li>
+            </ul>
+        </section>
     {% endfor %}
 </section>
 {% endblock %}

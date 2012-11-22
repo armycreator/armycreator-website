@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\User
  *
- * @ORM\Table(name="Users")
+ * @ORM\Table(name="Users", indexes={@ORM\Index(name="forum_id_idx", columns={"forumId"})})
  * @ORM\Entity
  */
 class User extends BaseUser

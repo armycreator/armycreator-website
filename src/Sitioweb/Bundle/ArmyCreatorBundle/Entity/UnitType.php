@@ -243,7 +243,7 @@ class UnitType
      * Add squadList
      *
      * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squadList
-     * @return SquadType
+     * @return UnitType
      */
     public function addSquadList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squadList)
     {
