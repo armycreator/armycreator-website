@@ -51,6 +51,16 @@ class AbstractUnit
     private $importedId;
 
     /**
+     * squadLineList
+     * 
+     * @var array<SquadLine>
+     * @access private
+     *
+	 * @ORM\OneToMany(targetEntity="SquadLine", mappedBy="unit")
+     */
+    private $squadLineList;
+
+    /**
      * unitType
      * 
      * @var UnitType
@@ -80,6 +90,7 @@ class AbstractUnit
     public function __construct()
     {
         $this->unitStuffList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->squadLineList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -219,4 +230,38 @@ class AbstractUnit
     {
         return $this->importedId;
     }
+
+    /**
+     * Add squadLineList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList
+     * @return Unit
+     */
+    public function addSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
+    {
+        $this->squadLineList[] = $squadLineList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove squadLineList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList
+     */
+    public function removeSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
+    {
+        $this->squadLineList->removeElement($squadLineList);
+    }
+
+    /**
+     * Get squadLineList
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSquadLineList()
+    {
+        return $this->squadLineList;
+    }
+
 }

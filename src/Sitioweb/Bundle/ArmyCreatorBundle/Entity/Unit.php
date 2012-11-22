@@ -46,15 +46,15 @@ class Unit extends AbstractUnit
 	 */
 	private $unitHasUnitGroupList;
 
-    /**
-     * squadLineList
-     * 
-     * @var array<SquadLine>
-     * @access private
-     *
-	 * @ORM\OneToMany(targetEntity="SquadLine", mappedBy="unit")
-     */
-    private $squadLineList;
+	/**
+	 * userHasUnitList
+	 *
+	 * @var array<UserHasUnit>
+	 * @access private
+	 *
+	 * @ORM\OneToMany(targetEntity="UserHasUnit", mappedBy="unit")
+	 */
+	private $userHasUnitList;
 
 
 
@@ -68,7 +68,6 @@ class Unit extends AbstractUnit
     {
         $this->unitHasUnitGroupList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->childrenList = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->squadLineList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -207,35 +206,35 @@ class Unit extends AbstractUnit
     }
 
     /**
-     * Add squadLineList
+     * Add userHasUnitList
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit $userHasUnitList
      * @return Unit
      */
-    public function addSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
+    public function addUserHasUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit $userHasUnitList)
     {
-        $this->squadLineList[] = $squadLineList;
+        $this->userHasUnitList[] = $userHasUnitList;
     
         return $this;
     }
 
     /**
-     * Remove squadLineList
+     * Remove userHasUnitList
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit $userHasUnitList
      */
-    public function removeSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
+    public function removeUserHasUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit $userHasUnitList)
     {
-        $this->squadLineList->removeElement($squadLineList);
+        $this->userHasUnitList->removeElement($userHasUnitList);
     }
 
     /**
-     * Get squadLineList
+     * Get userHasUnitList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getSquadLineList()
+    public function getUserHasUnitList()
     {
-        return $this->squadLineList;
+        return $this->userHasUnitList;
     }
 }

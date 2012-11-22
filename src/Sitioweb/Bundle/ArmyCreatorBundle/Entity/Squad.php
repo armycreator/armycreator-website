@@ -24,7 +24,7 @@ class Squad
     /**
      * @var string $name
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
@@ -38,14 +38,14 @@ class Squad
     /**
      * @var \DateTime $createDate
      *
-     * @ORM\Column(name="createDate", type="datetime")
+     * @ORM\Column(name="createDate", type="datetime", nullable=true)
      */
     private $createDate;
 
     /**
      * @var \DateTime $updateDate
      *
-     * @ORM\Column(name="updateDate", type="datetime")
+     * @ORM\Column(name="updateDate", type="datetime", nullable=true)
      */
     private $updateDate;
 
@@ -60,14 +60,24 @@ class Squad
     private $army;
 
     /**
-     * squadType
+     * unitType
      * 
-     * @var SquadType
+     * @var UnitType
      * @access private
      *
-	 * @ORM\ManyToOne(targetEntity="SquadType", inversedBy="squadList")
+	 * @ORM\ManyToOne(targetEntity="UnitType", inversedBy="squadList")
      */
-    private $squadType;
+    private $unitType;
+
+    /**
+     * unitGroup
+     * 
+     * @var UnitGroup
+     * @access private
+     *
+	 * @ORM\ManyToOne(targetEntity="UnitGroup", inversedBy="squadList")
+     */
+    private $unitGroup;
 
     /**
      * squadLineList
@@ -88,6 +98,20 @@ class Squad
     public function __construct()
     {
         $this->squadLineList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->position = 0;
+    }
+
+    /**
+     * setId
+     *
+     * @param int $id
+     * @access public
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
     /**
@@ -216,26 +240,26 @@ class Squad
     }
 
     /**
-     * Set squadType
+     * Set unitType
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadType $squadType
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType $unitType
      * @return Squad
      */
-    public function setSquadType(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadType $squadType = null)
+    public function setUnitType(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType $unitType = null)
     {
-        $this->squadType = $squadType;
+        $this->unitType = $unitType;
     
         return $this;
     }
 
     /**
-     * Get squadType
+     * Get unitType
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadType 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType 
      */
-    public function getSquadType()
+    public function getUnitType()
     {
-        return $this->squadType;
+        return $this->unitType;
     }
 
     /**
@@ -269,5 +293,28 @@ class Squad
     public function getSquadLineList()
     {
         return $this->squadLineList;
+    }
+
+    /**
+     * Set unitGroup
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup $unitGroup
+     * @return Squad
+     */
+    public function setUnitGroup(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup $unitGroup = null)
+    {
+        $this->unitGroup = $unitGroup;
+    
+        return $this;
+    }
+
+    /**
+     * Get unitGroup
+     *
+     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup 
+     */
+    public function getUnitGroup()
+    {
+        return $this->unitGroup;
     }
 }

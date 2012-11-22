@@ -48,6 +48,18 @@ class SquadLineStuff
      */
     private $squadLine;
 
+    /**
+     * setId
+     *
+     * @param int $id
+     * @access public
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
 
     /**
      * Get id

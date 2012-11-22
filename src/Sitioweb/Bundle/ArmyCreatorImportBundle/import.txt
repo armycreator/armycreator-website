@@ -11,17 +11,15 @@ phpbb_users
 wac_user_preferences 
 wac_armee_groupe 
 armee 
-
-TODO 
-SquadType ( ~ UnitType ?)
-
-escouade 
-escouade_has_equipement 
-
 wac_collection_race 
 wac_collection_unite 
 
+TODO 
+escouade 
+escouade_has_equipement 
+
 MAYBE
+SquadType ( ~ UnitType ?)
 combat 
 equipe 
 invite 
@@ -33,3 +31,20 @@ WONT'T BE DONE
 wac_logError => logs
 wac_memory_log => logs
 wac_config => in a yaml file
+
+===== Import Escouade =====
+08:28    0
+08:48    70000
+09:08    150000
+09:28    220000
+09:53    310000
+10:08    360000
+10:35    450000
+
+14:23?  0
+14:28   20000
+14:49   96000
+14:56   122500
+15:04   150000
+15:11   180000
+15:46   316000

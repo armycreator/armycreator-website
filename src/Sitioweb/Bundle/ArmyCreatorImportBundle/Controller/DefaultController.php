@@ -30,8 +30,13 @@ class DefaultController extends Controller
             'import_unit_stuff' => 'SitiowebArmyCreatorBundle:UnitStuff',
             'import_user' => 'SitiowebArmyCreatorBundle:User',
             'import_user_preference' => 'SitiowebArmyCreatorBundle:UserPreference',
+            'import_user_has_unit' => 'SitiowebArmyCreatorBundle:UserHasUnit',
             'import_army_group' => 'SitiowebArmyCreatorBundle:ArmyGroup',
             'import_army' => 'SitiowebArmyCreatorBundle:Army',
+            'import_squad' => 'SitiowebArmyCreatorBundle:Squad',
+            'import_squad_line' => 'SitiowebArmyCreatorBundle:SquadLine',
+            'import_squad_line_equipement' => 'SitiowebArmyCreatorBundle:SquadLineStuff',
+            'import_squad_line_weapon' => 'SitiowebArmyCreatorBundle:SquadLineStuff',
         );
 
         $em = $this->get('doctrine')->getEntityManager();
@@ -74,8 +79,19 @@ class DefaultController extends Controller
     private function clearEntityList($entityClass)
     {
         // delete
-        $query = $this->em->createQuery("DELETE FROM " . $entityClass);
-        $query->execute();
+        switch ($entityClass) {
+            case 'SitiowebArmyCreatorBundle:CollectionBreed' :
+                $query = $this->em->query("
+                    DELETE
+                    FROM CollectionBreed
+                ");
+                $query->execute();
+                break;
+            default:
+                $query = $this->em->createQuery("DELETE FROM " . $entityClass);
+                $query->execute();
+                break;
+        }
 
 
         /*
@@ -522,7 +538,7 @@ class DefaultController extends Controller
         $importList = $this->emImport->query("
             SELECT *
             FROM phpbb_users
-            WHERE user_id >= 53 
+            WHERE user_id >= 53 OR user_id = 2 
             ORDER BY user_id
             LIMIT " . (int) $start . ", " . $limit . "
         ");
@@ -534,7 +550,14 @@ class DefaultController extends Controller
         }
 
         while ($row = $importList->fetch()) {
-            $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\User();
+            if ($row['user_id'] == 2) {
+                $entity = $this->em->getRepository('SitiowebArmyCreatorBundle:User')->findOneByForumId((int) $row['user_id']);
+                if (!$entity) {
+                    $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\User();
+                }
+            } else {
+                $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\User();
+            }
             //$entity->setImportedId((int) $row['id']);
             $entity->setForumId($row['user_id']);
             $username = utf8_decode(mb_convert_encoding ( $row['username'] , 'utf-8' , 'iso-8859-1'));
@@ -550,6 +573,20 @@ class DefaultController extends Controller
             //$entity->setLastLogin($lastLogin);
             $entity->setEnabled(true);
             $entity->setLocked(false);
+
+            // breed collection
+            $collectionList = $this->emImport->query("
+                SELECT *
+                FROM wac_collection_race
+                WHERE id_joueur = '" . (int) $row['user_id'] . "'
+            ");
+
+            if ($collectionList->rowCount() >= 0) {
+                while($row = $collectionList->fetch()) {
+                    $tmpBreed = $this->em->getRepository('SitiowebArmyCreatorBundle:Breed')->find((int) $row['id_race']);
+                    $entity->addCollectionList($tmpBreed);
+                }
+            }
 
             $this->em->persist($entity);
             //$this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
@@ -779,6 +816,300 @@ class DefaultController extends Controller
         $this->em->flush();
         
         $this->get('session')->setFlash('notice', $entityClass . ' imported');
+        if ($continue) {
+            return $this->redirect($continue);
+        } else {
+            return $this->redirect($this->generateUrl('import_index'));
+        }
+    }
+
+    /**
+     * importUserHasUnitAction
+     * @Route("/user_has_unit/{start}", name="import_user_has_unit", defaults={"start" = 0})
+     *
+     * @access public
+     * @return void
+     */
+    public function importUserHasUnitAction ($start)
+    {
+        // conf
+        $this->configure();
+        $entityClass = 'SitiowebArmyCreatorBundle:UserHasUnit';
+        if ($start == 0) {
+            $this->clearEntityList($entityClass);
+        }
+
+        // inserting
+        $limit = 5000;
+        $importList = $this->emImport->query("
+            SELECT *
+            FROM wac_collection_unite
+            ORDER BY id
+            LIMIT " . (int) $start . ", " . $limit . "
+        ");
+
+        if ($importList->rowCount() >= $limit) {
+            $continue = $this->generateUrl('import_user_has_unit', array('start' => (int) $start + $limit));
+        } else {
+            $continue = null;
+        }
+
+        while ($row = $importList->fetch()) {
+            $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit();
+            $user = $this->em->getRepository('SitiowebArmyCreatorBundle:User')->findOneByForumId($row['id_joueur']);
+            $entity->setUser($user);
+
+            $unit = $this->em->getRepository('SitiowebArmyCreatorBundle:Unit')->findOneByImportedId($row['id_unite']);
+            $entity->setUnit($unit);
+
+            $entity->setNumber((int) $row['nb']);
+
+            $this->em->persist($entity);
+        }
+        //$this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+        $this->em->flush();
+        
+        $this->get('session')->setFlash('notice', $entityClass . ' imported');
+        if ($continue) {
+            return $this->redirect($continue);
+        } else {
+            return $this->redirect($this->generateUrl('import_index'));
+        }
+    }
+
+    /**
+     * importSquadAction
+     * @Route("/squad/{start}", name="import_squad", defaults={"start" = 0})
+     * @Route("/squad/{start}", name="import_squad_line", defaults={"start" = 0})
+     *
+     * @access public
+     * @return void
+     */
+    public function importSquadAction ($start)
+    {
+        ini_set('memory_limit', '1024M');
+        $minId = 0;
+        
+        // conf
+        $this->configure();
+        $entityClass = 'SitiowebArmyCreatorBundle:Squad';
+        if ($start == 0 && $minId == 0) {
+            $this->clearEntityList('SitiowebArmyCreatorBundle:SquadLine');
+            $this->clearEntityList($entityClass);
+        }
+        $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+        $this->em->getClassMetaData('SitiowebArmyCreatorBundle:SquadLine')->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+
+        // inserting
+        $limit = 5000;
+
+        $tmpQuery = $this->em->createQuery("
+            SELECT MAX(army.id)
+            FROM SitiowebArmyCreatorBundle:Army army
+        ");
+        $maxId = (int) $tmpQuery->getSingleScalarResult();
+
+        $importList = $this->emImport->query("
+            SELECT *
+            FROM escouade
+            WHERE armee_id <= " . $maxId . "
+            ORDER BY id ASC
+            LIMIT " . (int) $start . ", " . $limit . "
+        ");
+
+        if ($importList->rowCount() >= $limit) {
+            $continue = $this->generateUrl('import_squad', array('start' => (int) $start + $limit));
+        } else {
+            $continue = null;
+        }
+
+        $cpt = 0;
+        $prevIdParent = null;
+        while ($row = $importList->fetch()) {
+            $entity = null;
+            $squadLine = null;
+            $army = null;
+
+            // cas break passage id parent > 0
+            if (!$prevIdParent && $row['parent_id'] > 0) {
+                //$this->em->flush();
+            }
+
+            $unit = $this->em->getRepository('SitiowebArmyCreatorBundle:Unit')->findOneByImportedId((int) $row['unite_id']);
+
+            // ---- SQUAD
+            if (!$row['parent_id']) {
+                $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad();
+                $entity->setId((int) $row['id']);
+
+                $entity->setName($row['nomPerso']);
+
+                $entity->setPosition((int) $row['position']);
+
+                if ($row['lastUpdate'] > 0) {
+                    $updateDate = new \DateTime();
+                    $updateDate->setTimestamp((int) $row['lastUpdate']);
+                    $entity->setUpdateDate($updateDate);
+                }
+
+                $army = $this->em->getRepository('SitiowebArmyCreatorBundle:Army')->find($row['armee_id']);
+                
+                $this->em->persist($army);
+                $entity->setArmy($army);
+                
+                if ((int) $row['type_unite'] > 0) {
+                    $unitType = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitType')->findOneByImportedId((int) $row['type_unite']);
+                }  else {
+                    $unitType = $unit->getUnitType();
+                }
+                $entity->setUnitType($unitType);
+
+                if ($row['from_regroupement_id'] > 0) {
+                    $unitGroup = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitGroup')->findOneByImportedId((int) $row['from_regroupement_id']);
+                    $entity->setUnitGroup($unitGroup);
+
+                }
+                $this->em->persist($entity);
+            }
+
+            // ---- SQUAD LINE
+            $squadLine = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine();
+            $squadLine->setId((int) $row['id']);
+            
+            $squadLine->setPosition((int) $row['position']);
+            $squadLine->setNumber((int) $row['nb_unite']);
+            $squadLine->setUnit($unit);
+            if ($row['parent_id'] > 0) {
+                $squad = $this->em->getRepository('SitiowebArmyCreatorBundle:Squad')->find($row['parent_id']);
+                $squadLine->setSquad($squad);
+            } else {
+                $squadLine->setSquad($entity);
+            }
+
+            $prevIdParent = $row['parent_id'];
+
+            $this->em->persist($squadLine);
+            if ($cpt >= 500) {
+                $cpt = 0;
+                set_time_limit(30);
+                $this->em->flush();
+                $this->em->clear();
+            }
+            $cpt++;
+        }
+        $this->em->flush();
+        
+        $this->get('session')->setFlash('notice', $entityClass . ' imported');
+        if ($continue) {
+            return $this->redirect($continue);
+        } else {
+            return $this->redirect($this->generateUrl('import_index'));
+        }
+    }
+
+    /**
+     * 
+     * @Route("/squad_line_equipement/{start}", name="import_squad_line_equipement", defaults={"start" = 0})
+     *
+     * @access public
+     * @return void
+     */
+    public function importSquadLineEquipementAction ($start)
+    {
+        // conf
+        ini_set('memory_limit', '1024M');
+        set_time_limit(300);
+        $this->configure();
+        $entityClass = 'SitiowebArmyCreatorBundle:SquadLineStuff';
+        if ($start == 0) {
+            $this->clearEntityList($entityClass);
+        }
+        $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+
+        // inserting
+        $limit = 100;
+        $importList = $this->emImport->query("
+            INSERT INTO armycreator.SquadLineStuff (number, unitStuff_id, squadLine_id)
+            SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id -- , ehe.*
+            FROM wkarmycr_copy.`escouade_has_equipement` ehe
+            JOIN wkarmycr_copy.escouade e ON ehe.escouade_id = e.id
+            JOIN wkarmycr_copy.unite u ON u.id = e.unite_id
+
+            JOIN armycreator.AbstractUnit au 
+                ON au.discriminator = 'unit'
+                AND au.importedId = u.id
+                        
+            JOIN armycreator.Stuff stuff 
+                ON stuff.breed_id = u.race_id
+                AND stuff.importedId = equipement_id
+                AND stuff.discriminator  = 'equipement'
+                                        
+            JOIN armycreator.UnitStuff us
+                ON us.stuff_id = stuff.id
+                AND us.unit_id = au.id
+
+            WHERE ehe.equipement_id > 0
+
+            LIMIT " . (int) $start . ", " . $limit . "
+        ");
+        
+        $this->get('session')->setFlash('notice', $entityClass . ' imported : ' . $start);
+
+        if ($continue) {
+            return $this->redirect($continue);
+        } else {
+            return $this->redirect($this->generateUrl('import_index'));
+        }
+    }
+
+    /**
+     * 
+     * @Route("/squad_line_weapon/{start}", name="import_squad_line_weapon", defaults={"start" = 0})
+     *
+     * @access public
+     * @return void
+     */
+    public function importSquadLineWeaponAction ($start)
+    {
+        // conf
+        ini_set('memory_limit', '1024M');
+        set_time_limit(300);
+        $this->configure();
+        $entityClass = 'SitiowebArmyCreatorBundle:SquadLineStuff';
+        if ($start == 0) {
+            $this->clearEntityList($entityClass);
+        }
+        $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+
+        // inserting
+        $limit = 100;
+        $importList = $this->emImport->query("
+            INSERT INTO armycreator.SquadLineStuff (number, unitStuff_id, squadLine_id)
+            SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id -- , ehe.*
+            FROM wkarmycr_copy.`escouade_has_equipement` ehe
+            JOIN wkarmycr_copy.escouade e ON ehe.escouade_id = e.id
+            JOIN wkarmycr_copy.unite u ON u.id = e.unite_id
+
+            JOIN armycreator.AbstractUnit au 
+                ON au.discriminator = 'unit'
+                AND au.importedId = u.id
+                        
+            JOIN armycreator.Stuff stuff 
+                ON stuff.breed_id = u.race_id
+                AND stuff.importedId = arme_id
+                AND stuff.discriminator  = 'weapon'
+                                        
+            JOIN armycreator.UnitStuff us
+                ON us.stuff_id = stuff.id
+                AND us.unit_id = au.id
+
+            WHERE ehe.arme_id > 0
+
+            LIMIT " . (int) $start . ", " . $limit . "
+        ");
+        
+        $this->get('session')->setFlash('notice', $entityClass . ' imported : ' . $start);
+
         if ($continue) {
             return $this->redirect($continue);
         } else {

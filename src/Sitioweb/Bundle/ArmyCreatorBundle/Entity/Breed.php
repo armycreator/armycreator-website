@@ -122,6 +122,15 @@ class Breed
      */
     private $armyList;
 
+    /**
+     * userList
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="collectionList")
+     * 
+     * @var mixed
+     * @access private
+     */
+    private $userList;
+
 
     /**
      * __construct
@@ -439,5 +448,38 @@ class Breed
     public function getUserPreferenceList()
     {
         return $this->userPreferenceList;
+    }
+
+    /**
+     * Add userList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $userList
+     * @return Breed
+     */
+    public function addUserList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $user)
+    {
+        $this->userList[] = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Remove userList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $userList
+     */
+    public function removeUserList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $userList)
+    {
+        $this->userList->removeElement($userList);
+    }
+
+    /**
+     * Get userList
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUserList()
+    {
+        return $this->userList;
     }
 }

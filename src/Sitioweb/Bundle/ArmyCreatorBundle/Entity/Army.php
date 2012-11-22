@@ -473,4 +473,9 @@ class Army
     {
         return $this->user;
     }
+
+    public function __toString()
+    {
+        return $this->getId() . '|' . $this->getName();
+    }
 }

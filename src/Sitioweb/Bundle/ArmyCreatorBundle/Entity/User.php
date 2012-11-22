@@ -66,6 +66,22 @@ class User extends BaseUser
     private $preferences;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Breed", inversedBy="userList")
+     * @ORM\JoinTable(name="CollectionBreed")
+     **/
+    private $collectionList;
+
+	/**
+	 * userHasUnitList
+	 *
+	 * @var array<UserHasUnit>
+	 * @access private
+	 *
+	 * @ORM\OneToMany(targetEntity="UserHasUnit", mappedBy="user")
+	 */
+	private $userHasUnitList;
+
+    /**
      * __construct
      *
      * @access public
@@ -76,6 +92,7 @@ class User extends BaseUser
         parent::__construct();
         $this->armyList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->armyGroupList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->collectionList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -197,5 +214,73 @@ class User extends BaseUser
     public function getPreferences()
     {
         return $this->preferences;
+    }
+
+    /**
+     * Add collectionList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breed
+     * @return User
+     */
+    public function addCollectionList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breed)
+    {
+        $breed->addUserList($this);
+        $this->collectionList[] = $breed;
+    
+        return $this;
+    }
+
+    /**
+     * Remove collectionList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breed
+     */
+    public function removeCollectionList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breed)
+    {
+        $breed->removeUserList($this);
+        $this->collectionList->removeElement($breed);
+    }
+
+    /**
+     * Get collectionList
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCollectionList()
+    {
+        return $this->collectionList;
+    }
+
+    /**
+     * Add userHasUnitList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit $userHasUnitList
+     * @return User
+     */
+    public function addUserHasUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit $userHasUnitList)
+    {
+        $this->userHasUnitList[] = $userHasUnitList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove userHasUnitList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit $userHasUnitList
+     */
+    public function removeUserHasUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit $userHasUnitList)
+    {
+        $this->userHasUnitList->removeElement($userHasUnitList);
+    }
+
+    /**
+     * Get userHasUnitList
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUserHasUnitList()
+    {
+        return $this->userHasUnitList;
     }
 }

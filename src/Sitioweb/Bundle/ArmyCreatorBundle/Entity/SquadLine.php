@@ -66,6 +66,20 @@ class SquadLine
     private $squadLineStuffList;
 
     /**
+     * @var \DateTime $createDate
+     *
+     * @ORM\Column(name="createDate", type="datetime", nullable=true)
+     */
+    private $createDate;
+
+    /**
+     * @var \DateTime $updateDate
+     *
+     * @ORM\Column(name="updateDate", type="datetime", nullable=true)
+     */
+    private $updateDate;
+
+    /**
      * __construct
      *
      * @access public
@@ -74,6 +88,20 @@ class SquadLine
     public function __construct()
     {
         $this->squadLineStuffList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->position = 0;
+    }
+
+    /**
+     * setId
+     *
+     * @param int $id
+     * @access public
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
     /**
@@ -209,5 +237,51 @@ class SquadLine
     public function getSquadLineStuffList()
     {
         return $this->squadLineStuffList;
+    }
+
+    /**
+     * Set createDate
+     *
+     * @param \DateTime $createDate
+     * @return Squad
+     */
+    public function setCreateDate($createDate)
+    {
+        $this->createDate = $createDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get createDate
+     *
+     * @return \DateTime 
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    /**
+     * Set updateDate
+     *
+     * @param \DateTime $updateDate
+     * @return Squad
+     */
+    public function setUpdateDate($updateDate)
+    {
+        $this->updateDate = $updateDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get updateDate
+     *
+     * @return \DateTime 
+     */
+    public function getUpdateDate()
+    {
+        return $this->updateDate;
     }
 }

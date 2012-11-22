@@ -57,6 +57,16 @@ class UnitType
 	private $unitList;
 
     /**
+     * squadList
+     * 
+     * @var array<Squad>
+     * @access private
+     *
+	 * @ORM\OneToMany(targetEntity="Squad", mappedBy="unitType")
+     */
+    private $squadList;
+
+    /**
      * breed
      * 
      * @var Breed
@@ -77,6 +87,7 @@ class UnitType
     public function __construct()
     {
         $this->unitList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->squadList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -226,5 +237,38 @@ class UnitType
     public function getBreed()
     {
         return $this->breed;
+    }
+
+    /**
+     * Add squadList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squadList
+     * @return SquadType
+     */
+    public function addSquadList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squadList)
+    {
+        $this->squadList[] = $squadList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove squadList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squadList
+     */
+    public function removeSquadList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squadList)
+    {
+        $this->squadList->removeElement($squadList);
+    }
+
+    /**
+     * Get squadList
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSquadList()
+    {
+        return $this->squadList;
     }
 }
