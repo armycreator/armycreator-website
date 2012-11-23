@@ -50,7 +50,7 @@ class Army
     /**
      * @var string $description
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -115,6 +115,7 @@ class Army
      * @access private
      *
 	 * @ORM\ManyToOne(targetEntity="Breed", inversedBy="armyList")
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private $breed;
 
@@ -148,6 +149,7 @@ class Army
     public function __construct()
     {
         $this->squadList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->points = 0;
     }
 
     /**

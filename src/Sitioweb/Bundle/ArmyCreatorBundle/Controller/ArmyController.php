@@ -3,10 +3,14 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
 
 /**
  * ArmyController
@@ -93,5 +97,52 @@ class ArmyController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Displays a form to create a new Army entity.
+     *
+     * @Route("/action/new", name="army_new")
+     * @Template()
+     */
+    public function newAction()
+    {
+        $entity = new Army();
+        $form   = $this->createForm(new ArmyType($this->getUser()), $entity);
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
+    /**
+     * Creates a new Army entity.
+     *
+     * @Route("/action/create", name="army_create")
+     * @Method("post")
+     * @Template("SitiowebArmyCreatorBundle:Army:new.html.twig")
+     */
+    public function createAction()
+    {
+        $entity  = new Army();
+        $request = $this->getRequest();
+        $form    = $this->createForm(new ArmyType($this->getUser()), $entity);
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity->setUser($this->getUser());
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getSlug())));
+        }
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
 }
 

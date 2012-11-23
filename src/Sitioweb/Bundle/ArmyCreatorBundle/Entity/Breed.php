@@ -31,34 +31,34 @@ class Breed
     private $name;
 
 
-	/**
-	 * newVersion
-	 * 
-	 * @var mixed
-	 * @access private
-	 *
-	 * @ORM\OneToOne(targetEntity="Breed")
-	 */
-	private $newVersion;
+    /**
+     * newVersion
+     * 
+     * @var mixed
+     * @access private
+     *
+     * @ORM\OneToOne(targetEntity="Breed")
+     */
+    private $newVersion;
 
-	/**
-	 * available
-	 * 
-	 * @var mixed
-	 * @access private
-	 *
+    /**
+     * available
+     * 
+     * @var mixed
+     * @access private
+     *
      * @ORM\Column(type="boolean", nullable=true)
-	 * @Assert\Choice(choices = {0,1})
-	 */
-	private $available;
+     * @Assert\Choice(choices = {0,1})
+     */
+    private $available;
 
     /**
      * game
      * 
      * @var mixed
      * @access private
-	 *
-	 * @ORM\ManyToOne(targetEntity="Game", inversedBy="breedList")
+     *
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="breedList")
      */
     private $game;
 
@@ -67,50 +67,50 @@ class Breed
      * 
      * @var mixed
      * @access private
-	 *
-	 * @ORM\ManyToOne(targetEntity="BreedGroup", inversedBy="breedList")
+     *
+     * @ORM\ManyToOne(targetEntity="BreedGroup", inversedBy="breedList")
      */
     private $breedGroup;
 
-	/**
-	 * unitList
-	 * 
-	 * @var array
-	 * @access private
-	 *
-	 * @ORM\OneToMany(targetEntity="AbstractUnit", mappedBy="breed")
-	 */
-	private $unitList;
+    /**
+     * unitList
+     * 
+     * @var array
+     * @access private
+     *
+     * @ORM\OneToMany(targetEntity="AbstractUnit", mappedBy="breed")
+     */
+    private $unitList;
 
-	/**
-	 * unitTypeList
-	 * 
-	 * @var array
-	 * @access private
-	 *
-	 * @ORM\OneToMany(targetEntity="UnitType", mappedBy="breed")
-	 */
-	private $unitTypeList;
+    /**
+     * unitTypeList
+     * 
+     * @var array
+     * @access private
+     *
+     * @ORM\OneToMany(targetEntity="UnitType", mappedBy="breed")
+     */
+    private $unitTypeList;
 
-	/**
-	 * userPreferenceList
-	 * 
-	 * @var array
-	 * @access private
-	 *
-	 * @ORM\OneToMany(targetEntity="UserPreference", mappedBy="breed")
-	 */
-	private $userPreferenceList;
+    /**
+     * userPreferenceList
+     * 
+     * @var array
+     * @access private
+     *
+     * @ORM\OneToMany(targetEntity="UserPreference", mappedBy="breed")
+     */
+    private $userPreferenceList;
 
-	/**
-	 * stuffList
-	 * 
-	 * @var array
-	 * @access private
-	 *
-	 * @ORM\OneToMany(targetEntity="Stuff", mappedBy="breed")
-	 */
-	private $stuffList;
+    /**
+     * stuffList
+     * 
+     * @var array
+     * @access private
+     *
+     * @ORM\OneToMany(targetEntity="Stuff", mappedBy="breed")
+     */
+    private $stuffList;
 
     /**
      * armyList
@@ -118,7 +118,7 @@ class Breed
      * @var array<Army>
      * @access private
      *
-	 * @ORM\OneToMany(targetEntity="Army", mappedBy="breed")
+     * @ORM\OneToMany(targetEntity="Army", mappedBy="breed")
      */
     private $armyList;
 
@@ -280,10 +280,10 @@ class Breed
         return $this->available;
     }
 
-	public function __toString()
-	{
-		return $this->getName();
-	}
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
     /**
      * Add unitList
@@ -294,7 +294,7 @@ class Breed
     public function addUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unitList)
     {
         $this->unitList[] = $unitList;
-    
+
         return $this;
     }
 

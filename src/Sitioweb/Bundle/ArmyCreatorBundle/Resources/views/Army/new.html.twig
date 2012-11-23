@@ -1,0 +1,21 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block h1 %}Army creation{% endblock %}
+
+{% block content %}
+<form action="{{ path('army_create') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('army_list') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
+
