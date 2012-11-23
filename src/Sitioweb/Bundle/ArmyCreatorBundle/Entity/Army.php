@@ -96,8 +96,17 @@ class Army
      * @access private
      *
 	 * @ORM\OneToMany(targetEntity="Squad", mappedBy="army")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     private $squadList;
+
+    /**
+     * squadListByType
+     * 
+     * @var array
+     * @access private
+     */
+    private $squadListByType = null;
 
     /**
      * breed
@@ -406,6 +415,40 @@ class Army
     }
 
     /**
+     * getSquadListByType
+     *
+     * @access public
+     * @return array
+     */
+    public function getSquadListByType()
+    {
+        if (is_null($this->squadListByType)) {
+            $squadList = $this->getSquadList();
+
+            $unitTypeList = $this->getBreed()->getUnitTypeList();
+            foreach ($unitTypeList as $unitType) {
+                $tmpArray = array();
+                $points = 0;
+
+                foreach ($squadList as $squad) {
+                    if ($squad->getUnitType() == $unitType) {
+                        $tmpArray[] = $squad;
+                        $points += $squad->getPoints();
+                    }
+                }
+
+                $this->squadListByType[] = array(
+                    'unitType' => $unitType,
+                    'squadList' => $tmpArray,
+                    'points' => $points
+                );
+            }
+        }
+
+        return $this->squadListByType;
+    }
+
+    /**
      * Set breed
      *
      * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breed
@@ -474,6 +517,12 @@ class Army
         return $this->user;
     }
 
+    /**
+     * __toString
+     *
+     * @access public
+     * @return string
+     */
     public function __toString()
     {
         return $this->getId() . '|' . $this->getName();

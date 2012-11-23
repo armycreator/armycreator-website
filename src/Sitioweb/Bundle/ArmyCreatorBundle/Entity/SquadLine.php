@@ -298,6 +298,11 @@ class SquadLine
         if ($unit instanceof Unit) {
             $points = $this->getNumber() * $unit->getPoints();
         }
+        $squadLineStuffList = $this->getSquadLineStuffList();
+        foreach ($squadLineStuffList as $squadLineStuff) {
+            $points += $squadLineStuff->getNumber() * $squadLineStuff->getUnitStuff()->getPoints();
+        }
+        
 
         return $points;
     }

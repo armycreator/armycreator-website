@@ -86,6 +86,7 @@ class Squad
      * @access private
      *
 	 * @ORM\OneToMany(targetEntity="SquadLine", mappedBy="squad")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     private $squadLineList;
 

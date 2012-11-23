@@ -1,6 +1,11 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block title %}My army detail{% endblock %}
+{% block title %}
+    {{ army.name }} - 
+    {{ army.user.username }} -
+    {{ army.breed.name }} -
+    {{ army.breed.game.name }}
+{% endblock %}
 
 {% block h1Container %}
 {% endblock %}
@@ -32,17 +37,32 @@
     </div>
 </header>
 
-<section>
-    {% for unitType in unitTypeList %}
-        <section>
-            <h3>{{ unitType.name }}</h3>
+<section id="armyDetail">
+    {# ===== Unit Type length ===== #}
+    <div>
+        {% for tmp in army.squadListByType %}
+            <div>
+                <a href="#unitType{{ tmp.unitType.id }}">
+                    {{ tmp.squadList|length }} {{ tmp.unitType.name }}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    {# ===== Squad List ===== #}
+    {% for tmp in army.squadListByType %}
+        <section class="squadList" id="unitType{{ tmp.unitType.id }}">
+            <h3>
+                <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
+                {{ tmp.unitType.name }}
+                <span>{{ tmp.points }} pts</span>
+            </h3>
             <ul>
-                {% for squad in army.squadList %}
-                    {% if squad.unitType == unitType %}
-                        <li>
-                            <div>
+                {% for squad in tmp.squadList %}
+                        <li class="squad">
+                            <h4>
                                 {{ squad.name|default('Squad ' ~ loop.index) }}
-                            </div>
+                            </h4>
                             <div>
                                 {{ squad.points }} pts
                             </div>
@@ -50,7 +70,17 @@
                             <div>
                                 {% for squadLine in squad.squadLineList %}
                                     <div>
-                                        {{ squadLine.number }} {{ squadLine.unit.name }}
+                                        <h5>{{ squadLine.number }} {{ squadLine.unit.name }}</h5>
+                                        {% if not(squadLine.squadLineStuffList.empty) %}
+                                            <ul>
+                                                {% for squadLineStuffList in squadLine.squadLineStuffList %}
+                                                    <li>
+                                                        {{ squadLineStuffList.number }}
+                                                        {{ squadLineStuffList.unitStuff.stuff.name }}
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
                                     </div>
                                 {% endfor %}
                             </div>
@@ -65,7 +95,6 @@
                                 </a>
                             </footer>
                         </li>
-                    {% endif %}
                 {% endfor %}
 
                 <li>

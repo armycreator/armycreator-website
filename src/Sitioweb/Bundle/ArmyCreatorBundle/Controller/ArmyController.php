@@ -72,7 +72,7 @@ class ArmyController extends Controller
 
         // get unit type list
         $unitTypeList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitType')->findByBreed($army->getBreed());
-        
+
         return array(
             'army' => $army,
             'unitTypeList' => $unitTypeList

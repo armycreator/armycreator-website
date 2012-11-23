@@ -3,6 +3,7 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType
@@ -38,6 +39,17 @@ class UnitType
     private $name;
 
     /**
+     * slug
+     * 
+     * @var string
+     * @access private
+     *
+     * @Gedmo\Slug(fields={"name"}, unique=false, updatable=true)
+     * @ORM\Column(length=255)
+     */
+    private $slug;
+
+    /**
      * position
      * 
      * @ORM\Column(type="integer")
@@ -45,6 +57,15 @@ class UnitType
      * @access private
      */
     private $position;
+
+    /**
+     * color
+     * @ORM\Column(type="string", length=10, nullable=true)
+     * 
+     * @var string
+     * @access private
+     */
+    private $color;
 
 	/**
 	 * unitList
@@ -180,6 +201,54 @@ class UnitType
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * setSlug
+     *
+     * @param string $slug
+     * @access public
+     * @return $this
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * getSlug
+     *
+     * @access public
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * setColor
+     *
+     * @param string $color
+     * @access public
+     * @return $this
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+        return $this;
+    }
+
+    /**
+     * getColor
+     *
+     * @access public
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 
     /**
