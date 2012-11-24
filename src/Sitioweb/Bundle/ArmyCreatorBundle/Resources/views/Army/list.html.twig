@@ -17,7 +17,7 @@
         {% if group %}
             <a href="{{ path('army_group_edit', {'id' : group.id} ) }}">Update group name</a>
             <form action="{{ path('army_group_delete', { 'id': group.id }) }}" method="post">
-                {{ form_widget(deleteForm.createView) }}
+                {{ form_widget(deleteGroupForm.createView) }}
                 <button type="submit">Delete group</button>
             </form>
         {% endif %}
@@ -51,7 +51,13 @@
                     </td>
                     <td>{{ army.status }}
                     <td>{{ army.createDate|date() }}
-                    <td>del
+                    <td>
+                        <form action="{{ path('army_delete', { 'id': army.id }) }}" method="post">
+                            {% set deleteArmyForm = deleteArmyListForm[army.id] %}
+                            {{ form_widget(deleteArmyForm.createView) }}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

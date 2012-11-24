@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -37,23 +38,29 @@ class ArmyController extends Controller
     {
         if ($groupId > 0) {
             $group = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')->find((int) $groupId);
-            $deleteForm = $this->createDeleteForm($id);
+            $deleteGroupForm = $this->createDeleteForm($group->getId());
+            
             $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findBy(array(
                 'user' => $this->getUser(),
                 'armyGroup' => $group
             ));
         } else {
             $group = null;
-            $deleteForm = null;
+            $deleteGroupForm = null;
             $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findByUser($this->getUser());
         }
 
         // getting armyList
+        $deleteArmyList = array();
+        foreach ($armyList as $army) {
+            $deleteArmyListForm[$army->getId()] = $this->createDeleteForm($army->getId());
+        }
 
         return array(
             'group' => $group,
             'armyList' => $armyList,
-            'deleteForm' => $deleteForm
+            'deleteArmyListForm' => $deleteArmyListForm,
+            'deleteGroupForm' => $deleteGroupForm
         );
     }
 
@@ -142,6 +149,32 @@ class ArmyController extends Controller
             'entity' => $entity,
             'form'   => $form->createView(),
         );
+    }
+
+    /**
+     * Deletes a Army entity.
+     *
+     * @Route("/{id}/delete", name="army_delete")
+     * @Method("POST")
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('SitiowebArmyCreatorBundle:Army')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Army entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('army_list'));
     }
 
 }
