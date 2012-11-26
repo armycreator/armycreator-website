@@ -1,9 +1,118 @@
-html { font-family: Verdana, arial, helvetica, sans-serif }
+/* ------------------------------------------------------ */
+/*			- LESS functions - 					 	      */
+/* ------------------------------------------------------ */
+.simple-linear-gradient(@direction, @top, @bottom) {
+	background: @bottom;
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d,endColorstr=%d)", @top, @bottom));
+	background: -webkit-linear-gradient( @direction, @top, @bottom );
+	background:    -moz-linear-gradient( @direction, @top, @bottom );
+	background:     -ms-linear-gradient( @direction, @top, @bottom );
+	background:      -o-linear-gradient( @direction, @top, @bottom );
+	background:         linear-gradient( @direction, @top, @bottom );
+}
 
-#websiteHeader { background: #BFF }
-#websiteNav { background: #DFF }
-#websiteContent {}
-#websiteFooter { background: #BFF }
+.border-radius(@px){
+	border-radius:@arguments;
+	-moz-border-radius:@arguments;
+	-webkit-border-radius:@arguments;
+}
+
+.box-shadow (@params) {
+	-webkit-box-shadow: @params; 
+	   -moz-box-shadow: @params; 
+	        box-shadow: @params;
+}
+
+
+.radial-gradient(@posX:center, @posy:center, @angle:45deg, @shape:circle, @SiZe:closest-side, @from:white, @to:black){
+	background-image: -moz-radial-gradient(@posX @posy @angle, @shape @SiZe, @from, @to);
+	background-image: -webkit-radial-gradient(@posX @posy @angle, @shape @SiZe, @from, @to);
+	background-image: -ms-radial-gradient(@posX @posy @angle, @shape @SiZe, @from, @to);
+	background-image: -o-radial-gradient(@posX @posy @angle, @shape @SiZe, @from, @to);
+}
+
+.transformRotate(@deg) {
+	-webkit-transform: rotate(@deg);
+	    -ms-transform: rotate(@deg);
+	     -o-transform: rotate(@deg);
+	        transform: rotate(@deg);
+}
+
+/* ------------------------------------------------------ */
+/*			- Parameters -   					 	      */
+/* ------------------------------------------------------ */
+@globalWidth: 1010px;
+@globalBackgroudColor: #1a1a1a;
+@globalBackgroudImage: '/images/background.jpg';
+@globalTopBackgroudImage: '/images/top-background.jpg';
+@globalColor: #70695f;
+@globalLinkColor: #fff;
+@globalLinkHoverColor: #70695f;
+@globalButtonColor: #585a4c;
+
+.globalWidth { width: @globalWidth; margin: 0 auto; }
+.globalBackground { background: url(@globalBackgroudImage) top center no-repeat @globalBackgroudColor }
+.globalTopBackground { background: url(@globalTopBackgroudImage) top center no-repeat }
+
+/* ------------------------------------------------------ */
+/*			- CSS -          					 	      */
+/* ------------------------------------------------------ */
+
+
+html { font-family: Verdana, arial, helvetica, sans-serif }
+body {
+    .globalBackground; color: @globalColor; 
+    font-family: arial, Verdana, "Century Gothic", helvetica, sans-serif;
+}
+a {
+    color: @globalLinkColor; text-decoration: none;
+    &:hover { color: @globalLinkHoverColor }
+}
+
+#websiteHeader {
+    .globalWidth;
+    .globalTopBackground;
+    .box-shadow(0 0 15px #000);
+    position: relative; height: 146px;
+    .headerBar {
+        height: 25px; line-height: 25px; padding: 0 10px;
+        .box-shadow(0 2px 3px rgba(0,0,0,0.46));
+
+        background: #3c3529;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d,endColorstr=%d)", #000, #3c3529));
+        background: -webkit-linear-gradient( top, rgba(0, 0, 0, 0.54) 10%, rgba(23,26,20,0.54) 18%, rgba(44,45,38,0.54) 73%, rgba(60,53,41,0.54) 97%, rgba(13,9,5,0.75));
+        background:    -moz-linear-gradient( top, rgba(0, 0, 0, 0.54) 10%, rgba(23,26,20,0.54) 18%, rgba(44,45,38,0.54) 73%, rgba(60,53,41,0.54) 97%, rgba(13,9,5,0.75));
+        background:     -ms-linear-gradient( top, rgba(0, 0, 0, 0.54) 10%, rgba(23,26,20,0.54) 18%, rgba(44,45,38,0.54) 73%, rgba(60,53,41,0.54) 97%, rgba(13,9,5,0.75));
+        background:      -o-linear-gradient( top, rgba(0, 0, 0, 0.54) 10%, rgba(23,26,20,0.54) 18%, rgba(44,45,38,0.54) 73%, rgba(60,53,41,0.54) 97%, rgba(13,9,5,0.75));
+        background:         linear-gradient( top, rgba(0, 0, 0, 0.54) 10%, rgba(23,26,20,0.54) 18%, rgba(44,45,38,0.54) 73%, rgba(60,53,41,0.54) 97%, rgba(13,9,5,0.75));
+    }
+    .logo {
+        background: url('/images/logo.png') top center no-repeat;
+        width: 160px; height: 72px; position: absolute; top: 50px; left: 50%; margin-left: -80px;
+    }
+}
+
+#websiteNav {
+    /*.globalWidth;*/
+    /*position: absolute; bottom: 0; left: 0;*/
+    margin-top: 80px; overflow: auto; font-size: 1.1em;
+    ul {
+        overflow: auto; list-style-type: none; padding: 0; 
+        li { float: left; line-height: 41px;
+            a { padding: 0 15px; font-weight: bold; border-left: 1px solid #595e45; border-right: 1px solid #20231d; }
+            &:first-child a { border-left-color: transparent }
+            &:last-child a { border-right-color: transparent }
+        }
+    }
+}
+
+#websiteContent {
+    .globalWidth;
+    background: url(/images/content-background.png) repeat;
+    /* 17,16,11,0.27 080808  (ou 0c0c09 si fond pas par dessus) */
+}
+
+#websiteFooter { .globalWidth }
 
 #armyDetail {
     .squadList {
@@ -19,13 +128,10 @@ html { font-family: Verdana, arial, helvetica, sans-serif }
         }
         
         h3 { border : 1px solid #bff; position: relative; overflow: hidden }
-        .stick {
+       .stick {
            position: absolute; top: 6px; right:-12px; width: 50px; height: 10px;
            border: 1px solid #888;
-               -webkit-transform: rotate(45deg);
-                  -moz-transform: rotate(45deg);
-                    -o-transform: rotate(45deg);
-                       transform: rotate(45deg);
+           .transformRotate(45deg);
         }
     }
 }

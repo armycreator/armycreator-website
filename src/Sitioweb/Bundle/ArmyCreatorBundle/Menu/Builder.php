@@ -31,18 +31,32 @@ class Builder extends ContainerAware
         $menu->addChild('Forum', array('uri' => '/forum/index.php'));
         if ($isAuth) {
             $menu->addChild('My army list', array('route' => 'army_list'));
-            $menu->addChild('My collection', array('route' => ''));
+            $menu->addChild('My games', array('route' => 'homepage'));
         }
-        $menu->addChild('Public army lists', array('route' => ''));
-        $menu->addChild('Tools', array('route' => ''));
-        $menu->addChild('Make a donation', array('uri' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG'));
 
-        /*
-        $menu->addChild('About Me', array(
-                    'route' => 'admin_breed',
-                    'routeParameters' => array('id' => 42)
-                    ));
-        */
+        return $menu;
+    }
+
+    /**
+     * secondMainMenu
+     *
+     * @param FactoryInterface $factory
+     * @param array $options
+     * @access public
+     * @return void
+     */
+    public function secondMainMenu(FactoryInterface $factory, array $options)
+    {
+        $isAuth = $this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY');
+
+        $menu = $factory->createItem('root');
+
+        if ($isAuth) {
+            $menu->addChild('My collection', array('route' => 'army_list'));
+        }
+        $menu->addChild('Public lists', array('route' => 'homepage'));
+        $menu->addChild('Tools', array('route' => 'homepage'));
+        $menu->addChild('Donation', array('uri' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG'));
 
         return $menu;
     }

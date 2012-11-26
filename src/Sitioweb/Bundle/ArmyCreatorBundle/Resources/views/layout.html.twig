@@ -9,36 +9,45 @@
                 <a href="{{ path('homepage') }}" title="Army Creator">
                     Picto accueil
                 </a>
+                |
                 Bienvenue sur Army Creator
 
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    Hello {{ app.user.username }}
-                {% else %}
-                    <a href="{{ path('forum_connection') }}">
-                        Connectez-vous
-                    </a>
-                    ou 
-                    <a href="{{ path('forum_create_account') }}">
-                        Créer un compte
-                    </a>
+                <span class="right">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        Hello {{ app.user.username }}
+                    {% else %}
+                        <a href="{{ path('forum_connection') }}">
+                            Connectez-vous
+                        </a>
+                        ou 
+                        <a href="{{ path('forum_create_account') }}">
+                            Créer un compte
+                        </a>
+                    {% endif %}
                     | 
-                {% endif %}
-                <a href="#">
-                    Aide
-                </a>
+                    <a href="#">
+                        Aide
+                    </a>
+                </span>
             </div>
 		{% endblock %}
 
 		{% block websiteHeader %}
 			<div class="logo"></div>
 		{% endblock %}
-	</header>
 
-	{% block websiteNav %}
-        <nav id="websiteNav">
-            {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:mainMenu') }}
-        </nav>
-	{% endblock %}
+        {% block websiteNav %}
+            <nav id="websiteNav">
+                <div class="left">
+                    {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:mainMenu') }}
+                </div>
+
+                <div class="right">
+                    {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:secondMainMenu') }}
+                </div>
+            </nav>
+        {% endblock %}
+	</header>
 
 	<div id="websiteContent">
 		{# <h1><span>{{ block('title') }}</span> {% block h1 %}{% endblock %}</h1> #}
