@@ -53,6 +53,15 @@ class Breed
     private $available;
 
     /**
+     * image
+     * 
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     * @access private
+     */
+    private $image;
+
+    /**
      * game
      * 
      * @var mixed
@@ -190,6 +199,28 @@ class Breed
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Breed
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**

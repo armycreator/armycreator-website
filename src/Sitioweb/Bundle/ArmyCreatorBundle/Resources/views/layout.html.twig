@@ -49,24 +49,29 @@
         {% endblock %}
 	</header>
 
-	<div id="websiteContent">
-		{# <h1><span>{{ block('title') }}</span> {% block h1 %}{% endblock %}</h1> #}
-        {% block h1Container %}
-            <h1>{% block h1 %}{{ block('title') }}{% endblock %}</h1>
-        {% endblock %}
-		
+	<div id="websiteContentContainer">
+        <div id="websiteContent">
+            {% block breadcrumb %}
+            {% endblock %}
 
-        {% block flashes %}
-            {% for key, message in app.session.getFlashes() %}
-                <div class="{{ key }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endblock %}
+            {# <h1><span>{{ block('title') }}</span> {% block h1 %}{% endblock %}</h1> #}
+            {% block h1Container %}
+                <h1>{% block h1 %}{{ block('title') }}{% endblock %}</h1>
+            {% endblock %}
+            
 
-		{% block content %}
-		{% endblock %}
-	</div>
+            {% block flashes %}
+                {% for key, message in app.session.getFlashes() %}
+                    <div class="{{ key }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endblock %}
+
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
 
 	<footer id="websiteFooter">
 		{% block websiteFooter %}

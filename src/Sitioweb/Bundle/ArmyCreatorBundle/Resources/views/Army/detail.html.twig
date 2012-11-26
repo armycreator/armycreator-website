@@ -10,15 +10,40 @@
 {% block h1Container %}
 {% endblock %}
 
+{% block breadcrumb %}
+    <section id="breadcrumb">
+        <ul class="inline">
+            <li class="first">
+                <a href="{{ path('homepage') }}">Accueil</a>
+            </li>
+            <li>
+                <a href="{{ path('army_list') }}">My army list</a>
+            </li>
+            <li class="last">
+                <a href="{{ path('army_detail', { 'slug' : army.slug } ) }}">{{ army.name }}</a>
+            </li>
+        </ul>
+    </section>
+{% endblock %}
+
 {% block content %}
 <header>
-    <div>
-        Breed logo
-    </div>
+    <figure class="breed">
+        {{ breedImage(army.breed)|raw }}
 
-    <div>
-        {{ army.name }}
-        {{ army.breed.name }}
+        <figcaption>
+            {{ army.breed.name }}
+        </figcaption>
+    </figure>
+
+    <div class="armyDescription">
+        <h1 class="name">
+            {{ army.name }}
+        </h1>
+        <div class="description">
+            <span>Description :</span>
+            {{ army.description }}
+        </div>
         {{ army.wantedPoints }}
 
 
@@ -39,7 +64,7 @@
 
 <section id="armyDetail">
     {# ===== Unit Type length ===== #}
-    <div>
+    <div class="unitTypeList">
         {% for tmp in army.squadListByType %}
             <div>
                 <a href="#unitType{{ tmp.unitType.id }}">
@@ -52,24 +77,25 @@
     {# ===== Squad List ===== #}
     {% for tmp in army.squadListByType %}
         <section class="squadList" id="unitType{{ tmp.unitType.id }}">
-            <h3>
+            <h3 class="unitType">
                 <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
                 {{ tmp.unitType.name }}
                 <span>{{ tmp.points }} pts</span>
             </h3>
-            <ul>
+            <ul class="inline">
                 {% for squad in tmp.squadList %}
                         <li class="squad">
-                            <h4>
+                            <h4 class="squadName">
+                                <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
                                 {{ squad.name|default('Squad ' ~ loop.index) }}
+                                <span>
+                                    {{ squad.points }} pts
+                                </span>
                             </h4>
-                            <div>
-                                {{ squad.points }} pts
-                            </div>
 
                             <div>
                                 {% for squadLine in squad.squadLineList %}
-                                    <div>
+                                    <div class="squadLine">
                                         <h5>{{ squadLine.number }} {{ squadLine.unit.name }}</h5>
                                         {% if not(squadLine.squadLineStuffList.empty) %}
                                             <ul>

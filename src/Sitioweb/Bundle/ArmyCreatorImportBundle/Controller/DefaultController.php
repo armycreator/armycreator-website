@@ -152,6 +152,7 @@ class DefaultController extends Controller
             $breed = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed();
             $breed->setId((int) $row['id']);
             $breed->setName(utf8_encode($row['nom']));
+            $breed->setImage(utf8_encode($row['imageName']));
             if ($row['new_version_id'] > 0) {
                 $nv = $this->em->getRepository('SitiowebArmyCreatorBundle:Breed')->find((int) $row['new_version_id']);
                 $breed->setNewVersion($nv);

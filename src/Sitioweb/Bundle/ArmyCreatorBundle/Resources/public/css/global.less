@@ -10,6 +10,15 @@
 	background:      -o-linear-gradient( @direction, @top, @bottom );
 	background:         linear-gradient( @direction, @top, @bottom );
 }
+.triple-linear-gradient(@direction, @color1:#ccc, @stop1:0, @color2:#ddd, @stop2:50%, @color3:#ccc, @stop3:100%) { 
+    background :@color2;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d,endColorstr=%d)", @color1, @color3)); 
+	background: -webkit-linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3);
+    background:    -moz-linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3);
+    background:     -ms-linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3);
+    background:      -o-linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3);
+    background:         linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3); 
+}
 
 .border-radius(@px){
 	border-radius:@arguments;
@@ -45,14 +54,25 @@
 @globalBackgroudColor: #1a1a1a;
 @globalBackgroudImage: '/images/background.jpg';
 @globalTopBackgroudImage: '/images/top-background.jpg';
-@globalColor: #70695f;
+@globalColor: #fff;
 @globalLinkColor: #fff;
 @globalLinkHoverColor: #70695f;
 @globalButtonColor: #585a4c;
+@contentFullBackgroundColor: #151514;
+@squadBackgroundColor: #2e2f2a;
+@squadNameBackgroundColor: #242c2b;
+@unitTypeBackgroundColor: #20211d;
+@unitTypeForegroundColor: #70695f;
 
 .globalWidth { width: @globalWidth; margin: 0 auto; }
 .globalBackground { background: url(@globalBackgroudImage) top center no-repeat @globalBackgroudColor }
 .globalTopBackground { background: url(@globalTopBackgroudImage) top center no-repeat }
+
+@font-face {
+    font-family: Din Bold;
+    src: url(/fonts/din-bold.otf);
+    src: local(':)'), url(/fonts/din-bold.ttf) format('truetype');
+}
 
 /* ------------------------------------------------------ */
 /*			- CSS -          					 	      */
@@ -68,6 +88,21 @@ a {
     color: @globalLinkColor; text-decoration: none;
     &:hover { color: @globalLinkHoverColor }
 }
+ul.inline {
+    overflow: auto; list-style-type: none; padding: 0;
+    > li { float: left; }
+}
+
+.breedImage {
+    display: inline-block; padding: 3px;
+    .triple-linear-gradient(top, #858e79, 24%, #000, 76%, #434442);
+    .border-radius(10px);
+    /*8.box-shadow(0 5 10px #000);*/
+    img {
+        display: block;
+        .border-radius(7px);
+    }
+}
 
 #websiteHeader {
     .globalWidth;
@@ -75,7 +110,8 @@ a {
     .box-shadow(0 0 15px #000);
     position: relative; height: 146px;
     .headerBar {
-        height: 25px; line-height: 25px; padding: 0 10px;
+        color: #70695f; height: 25px; line-height: 25px; padding: 0 10px;
+        a { color: #fff }
         .box-shadow(0 2px 3px rgba(0,0,0,0.46));
 
         background: #3c3529;
@@ -95,40 +131,80 @@ a {
 #websiteNav {
     /*.globalWidth;*/
     /*position: absolute; bottom: 0; left: 0;*/
-    margin-top: 80px; overflow: auto; font-size: 1.1em;
+    margin-top: 80px; overflow: auto;
     ul {
         overflow: auto; list-style-type: none; padding: 0; 
-        li { float: left; line-height: 41px;
-            a { padding: 0 15px; font-weight: bold; border-left: 1px solid #595e45; border-right: 1px solid #20231d; }
+        li {
+            float: left; line-height: 41px;
+            a { padding: 0 15px; border-left: 1px solid #595e45; border-right: 1px solid #20231d; font-family: Din Bold; font-size: 1.1em }
             &:first-child a { border-left-color: transparent }
             &:last-child a { border-right-color: transparent }
         }
     }
+    a { color: #fff }
 }
 
-#websiteContent {
+#websiteContentContainer {
     .globalWidth;
+    overflow: auto;
     background: url(/images/content-background.png) repeat;
-    /* 17,16,11,0.27 080808  (ou 0c0c09 si fond pas par dessus) */
+    #websiteContent {
+        margin: 30px 15px;
+        #breadcrumb {
+            .border-radius(2px); .box-shadow(0 2px 4px #000); display: inline-block;
+            ul {
+                li {
+                    height: 25px; line-height: 25px; padding: 0 8px;
+                    .simple-linear-gradient(bottom, #3e3830, #1d1b1a);
+                    &.last {
+                        .simple-linear-gradient(bottom, #4a483a, #282b24);
+                    }
+                }
+            }
+        }
+        
+        > header {
+            overflow: auto; margin-top: 20px;
+            .breed { float: left; margin: 0 20px 0 0; }
+            .breed, .armyDescription .name, .armyDescription .description span {
+                text-shadow: 1px 1px 3px #000; font-style: italic; font-weight: 700; font-size: 1.1em;
+            }
+            .armyDescription {
+                float: left;
+                .name { font-size: 2em; margin:0 }
+            }
+        }
+    }
 }
 
 #websiteFooter { .globalWidth }
 
 #armyDetail {
+    background: @contentFullBackgroundColor;
+    margin-top: 20px;
+    .unitTypeList {
+        padding: 10px 0;
+        > div { display: inline-block; margin-right: 1em }
+    }
+
     .squadList {
-        overflow: auto;
-        > ul {
-            list-style-type: none;
-            > li {
-                float: left; width: 240px; /*height: 135px;*/ overflow: hidden;
-                border: 1px solid #BFF; margin: 0 5px 5px 0;
-                h5 { margin-bottom: 0.5em  }
-                // &:hover { height: auto }
+        .squad {
+            float: left; width: 240px; /*height: 135px;*/ overflow: hidden; margin: 0 8px 8px 0;
+            h5 { margin-bottom: 0.5em  }
+            // &:hover { height: auto }
+            .squadName {
+                background: @squadNameBackgroundColor;
+                position: relative; height: 28px; line-height: 28px; margin-bottom: 2px; padding: 0 8px;
+            }
+
+            .squadLine {
+                background: @squadBackgroundColor;
+                margin-bottom: 2px; padding: 5px 8px;
             }
         }
         
-        h3 { border : 1px solid #bff; position: relative; overflow: hidden }
-       .stick {
+        .unitType { background: @unitTypeBackgroundColor; color: @unitTypeForegroundColor; position: relative; overflow: hidden }
+        .stick {
            position: absolute; top: 6px; right:-12px; width: 50px; height: 10px;
            border: 1px solid #888;
            .transformRotate(45deg);
