@@ -25,17 +25,22 @@ class BreedImage extends \Twig_Extension
      * getBreedImage
      *
      * @param Breed $breed
+     * @param int $width
+     * @param int $height
      * @access public
      * @return string
      */
-    public function getBreedImage(Breed $breed)
+    public function getBreedImage(Breed $breed, $width = null, $height = null)
     {
         $breedImage = $breed->getImage();
         
         $str = '<div class="breedImage">
                     <img src="/images/breed/' . (empty($breedImage) ? 'null.jpg' : $breedImage) .'"
                         title="' . htmlspecialchars($breed->getName()) . '"
-                        alt="' . htmlspecialchars($breed->getName()) . '" />
+                        alt="' . htmlspecialchars($breed->getName()) . '"
+                        ' . (!empty($width) ? 'width="' . $width . '"' : '') . '
+                        ' . (!empty($height) ? 'height="' . $height . '"' : '') . '
+                        />
                 </div>';
 
         return $str;

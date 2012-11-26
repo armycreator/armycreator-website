@@ -19,6 +19,15 @@
     background:      -o-linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3);
     background:         linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3); 
 }
+.four-linear-gradient(@direction, @color1:#ccc, @stop1:0, @color2:#ddd, @stop2:50%, @color3:#ccc, @stop3:100%, @color4:#ccc, @stop4:100%) { 
+    background :@color2;
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d,endColorstr=%d)", @color1, @color4)); 
+	background: -webkit-linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3, @color4 @stop4);
+    background:    -moz-linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3, @color4 @stop4);
+    background:     -ms-linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3, @color4 @stop4);
+    background:      -o-linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3, @color4 @stop4);
+    background:         linear-gradient(@direction, @color1 @stop1, @color2 @stop2, @color3 @stop3, @color4 @stop4); 
+}
 
 .border-radius(@px){
 	border-radius:@arguments;
@@ -65,6 +74,8 @@
 @squadNameBackgroundColor: #242c2b;
 @unitTypeBackgroundColor: #20211d;
 @unitTypeForegroundColor: #70695f;
+@armyDescPointBorder: @contentFullBackgroundColor;
+@armyDescPointBackground: @squadBackgroundColor;
 
 .globalWidth { width: @globalWidth; margin: 0 auto; }
 .minGlobalWidth { width: @minGlobalWidth; margin: 0 auto; }
@@ -103,11 +114,17 @@ ul.inline {
     display: inline-block; padding: 3px;
     .triple-linear-gradient(top, #858e79, 24%, #000, 76%, #434442);
     .border-radius(10px);
-    /*8.box-shadow(0 5 10px #000);*/
+    .box-shadow(0 5 10px #000);
     img {
         display: block;
         .border-radius(7px);
     }
+}
+
+table.squadType {
+    width: 100%; background: @contentFullBackgroundColor;
+    th { background: @squadNameBackgroundColor }
+    td { background: @squadBackgroundColor; text-align: center; }
 }
 
 #websiteHeader {
@@ -149,6 +166,12 @@ ul.inline {
     }
     a { color: #fff }
 }
+/*
+#websiteNavBackground {
+    position: absolute; top: 105px; left: 0; height: 41px; width: 100%;
+    .triple-linear-gradient(bottom, #10120d, 0%, #252921, 32%, #40473b, 50%, #000000);
+}
+*/
 
 #websiteContentContainer {
     .minGlobalWidth;
@@ -171,6 +194,7 @@ ul.inline {
         
         > header {
             overflow: auto; margin-top: 20px;
+            .action { float: right }
             .breed { float: left; margin: 0 20px 0 0; }
             .breed, .armyDescription .name, .armyDescription .description span {
                 text-shadow: 1px 1px 3px #000; font-style: italic; font-weight: 700; font-size: 1.1em;
@@ -178,6 +202,13 @@ ul.inline {
             .armyDescription {
                 float: left;
                 .name { font-size: 2em; margin:0 }
+                .pointBarContainer {
+                    line-height: 2em;
+                    .pointBar {
+                        width: 400px; height: 2em; float: left; margin-right: 1em; border: 1px solid @armyDescPointBorder;
+                        > div { height: 100%; background: @armyDescPointBackground; border-right: 1px solid @armyDescPointBorder; }
+                    }
+                }
             }
         }
     }

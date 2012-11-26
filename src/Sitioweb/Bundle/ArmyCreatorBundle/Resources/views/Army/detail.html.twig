@@ -28,6 +28,18 @@
 
 {% block content %}
 <header>
+    <aside class="action">
+        <a href="#">
+            Print list
+        </a>
+        <a href="#">
+            Share list
+        </a>
+        <a href="#">
+            Delete list
+        </a>
+    </aside>
+
     <figure class="breed">
         {{ breedImage(army.breed)|raw }}
 
@@ -38,27 +50,23 @@
 
     <div class="armyDescription">
         <h1 class="name">
-            {{ army.name }}
+            {{ army.name }} | 
+            {{ army.breed.name }}
         </h1>
+
+        {% if army.wantedPoints > 0 %}
+            <div class="pointBarContainer">
+                <div class="pointBar">
+                    <div style="width:{{ 100 * army.points /  army.wantedPoints }}%"></div>
+                </div>
+                <strong>{{ army.points}} pts</strong> / {{ army.wantedPoints }} pts
+            </div>
+        {% endif %}
+
         <div class="description">
             <span>Description :</span>
             {{ army.description }}
         </div>
-        {{ army.wantedPoints }}
-
-
-        {{ army.points }}
-        {{ army.wantedPoints }}
-
-        <a href="#">
-            Print list
-        </a>
-        <a href="#">
-            Share list
-        </a>
-        <a href="#">
-            Delete list
-        </a>
     </div>
 </header>
 

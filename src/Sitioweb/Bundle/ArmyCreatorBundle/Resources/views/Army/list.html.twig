@@ -27,9 +27,10 @@
         Create a new army
     </a>
 
-    <table>
+    <table class="squadType">
         <thead>
             <tr>
+                <th>
                 <th>Breed
                 <th>Points
                 <th>Name
@@ -42,7 +43,13 @@
         <tbody>
             {% for army in armyList %}
                 <tr>
-                    <td>{{ army.breed.name }}
+                    <td>
+                        {{ breedImage(army.breed, 40)|raw }}
+                    </td>
+
+                    <td>
+                        {{ army.breed.name }}
+                    </td>
                     <td>{{ army.points }}
                     <td>
                         <a href="{{ path('army_detail', {'slug' : army.slug} ) }}">
