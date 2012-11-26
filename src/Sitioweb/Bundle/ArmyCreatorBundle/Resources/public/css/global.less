@@ -50,7 +50,9 @@
 /* ------------------------------------------------------ */
 /*			- Parameters -   					 	      */
 /* ------------------------------------------------------ */
-@globalWidth: 1010px;
+@minGlobalWidth: 1010px;
+@switchToGlobalWidth: 1280px; // = @minGlobalWidth / @globalWidth
+@globalWidth: 80%;
 @globalBackgroudColor: #1a1a1a;
 @globalBackgroudImage: '/images/background.jpg';
 @globalTopBackgroudImage: '/images/top-background.jpg';
@@ -65,6 +67,7 @@
 @unitTypeForegroundColor: #70695f;
 
 .globalWidth { width: @globalWidth; margin: 0 auto; }
+.minGlobalWidth { width: @minGlobalWidth; margin: 0 auto; }
 .globalBackground { background: url(@globalBackgroudImage) top center no-repeat @globalBackgroudColor }
 .globalTopBackground { background: url(@globalTopBackgroudImage) top center no-repeat }
 
@@ -88,6 +91,9 @@ a {
     color: @globalLinkColor; text-decoration: none;
     &:hover { color: @globalLinkHoverColor }
 }
+.row.gut > * + * {
+    border-color: transparent;
+}
 ul.inline {
     overflow: auto; list-style-type: none; padding: 0;
     > li { float: left; }
@@ -105,7 +111,7 @@ ul.inline {
 }
 
 #websiteHeader {
-    .globalWidth;
+    .minGlobalWidth;
     .globalTopBackground;
     .box-shadow(0 0 15px #000);
     position: relative; height: 146px;
@@ -129,7 +135,7 @@ ul.inline {
 }
 
 #websiteNav {
-    /*.globalWidth;*/
+    .minGlobalWidth;
     /*position: absolute; bottom: 0; left: 0;*/
     margin-top: 80px; overflow: auto;
     ul {
@@ -145,7 +151,7 @@ ul.inline {
 }
 
 #websiteContentContainer {
-    .globalWidth;
+    .minGlobalWidth;
     overflow: auto;
     background: url(/images/content-background.png) repeat;
     #websiteContent {
@@ -177,33 +183,43 @@ ul.inline {
     }
 }
 
-#websiteFooter { .globalWidth }
+@media (min-width: @switchToGlobalWidth) {
+    #websiteContentContainer {
+        .globalWidth;
+    }
+}
+
+#websiteFooter { .minGlobalWidth }
 
 #armyDetail {
     background: @contentFullBackgroundColor;
     margin-top: 20px;
-    .unitTypeList {
+    .unitTypeTopList {
         padding: 10px 0;
         > div { display: inline-block; margin-right: 1em }
     }
 
-    .squadList {
-        .squad {
-            float: left; width: 240px; /*height: 135px;*/ overflow: hidden; margin: 0 8px 8px 0;
-            h5 { margin-bottom: 0.5em  }
-            // &:hover { height: auto }
-            .squadName {
-                background: @squadNameBackgroundColor;
-                position: relative; height: 28px; line-height: 28px; margin-bottom: 2px; padding: 0 8px;
-            }
+    .unitTypeList {
+        margin-bottom: 1.5em; 
+        .unitType {
+            display: table-cell; width: 120px;  background: @unitTypeBackgroundColor; color: @unitTypeForegroundColor; position: relative; overflow: hidden; vertical-align: top;
+        }
+        .squadList {
+            .squad {
+                float: left; width: 240px; /*height: 135px;*/ overflow: hidden; margin: 0 0.8em 0.8em 0;
+                h5 { margin-bottom: 0.5em  }
+                // &:hover { height: auto }
+                .squadName {
+                    background: @squadNameBackgroundColor;
+                    position: relative; height: 28px; line-height: 28px; margin-bottom: 2px; padding: 0 0.8em;
+                }
 
-            .squadLine {
-                background: @squadBackgroundColor;
-                margin-bottom: 2px; padding: 5px 8px;
+                .squadLine {
+                    background: @squadBackgroundColor;
+                    margin-bottom: 2px; padding: 5px 8px;
+                }
             }
         }
-        
-        .unitType { background: @unitTypeBackgroundColor; color: @unitTypeForegroundColor; position: relative; overflow: hidden }
         .stick {
            position: absolute; top: 6px; right:-12px; width: 50px; height: 10px;
            border: 1px solid #888;

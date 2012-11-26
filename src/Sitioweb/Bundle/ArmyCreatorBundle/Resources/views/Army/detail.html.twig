@@ -64,7 +64,7 @@
 
 <section id="armyDetail">
     {# ===== Unit Type length ===== #}
-    <div class="unitTypeList">
+    <div class="unitTypeTopList">
         {% for tmp in army.squadListByType %}
             <div>
                 <a href="#unitType{{ tmp.unitType.id }}">
@@ -76,13 +76,13 @@
 
     {# ===== Squad List ===== #}
     {% for tmp in army.squadListByType %}
-        <section class="squadList" id="unitType{{ tmp.unitType.id }}">
-            <h3 class="unitType">
+        <section class="unitTypeList row gut" id="unitType{{ tmp.unitType.id }}">
+            <h3 class="unitType col">
                 <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
                 {{ tmp.unitType.name }}
-                <span>{{ tmp.points }} pts</span>
+                <div>{{ tmp.points }} pts</div>
             </h3>
-            <ul class="inline">
+            <ul class="inline squadList col">
                 {% for squad in tmp.squadList %}
                         <li class="squad">
                             <h4 class="squadName">
