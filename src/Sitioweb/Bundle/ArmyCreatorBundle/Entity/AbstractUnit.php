@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class AbstractUnit
 {
+
     /**
      * @var integer $id
      *
@@ -262,6 +263,17 @@ class AbstractUnit
     public function getSquadLineList()
     {
         return $this->squadLineList;
+    }
+
+    /**
+     * getGroupType
+     *
+     * @access public
+     * @return string
+     */
+    public function getGroupType()
+    {
+        return static::GROUP_TYPE;
     }
 
 }

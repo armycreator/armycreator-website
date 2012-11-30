@@ -66,7 +66,7 @@
 @globalBackgroudImage: '/images/background.jpg';
 @globalTopBackgroudImage: '/images/top-background.jpg';
 @globalColor: #fff;
-@globalLinkColor: #fff;
+@globalLinkColor: #eb9e34;
 @globalLinkHoverColor: #70695f;
 @globalButtonColor: #585a4c;
 @contentFullBackgroundColor: #151514;
@@ -86,6 +86,17 @@
     font-family: Din Bold;
     src: url(/fonts/din-bold.otf);
     src: local(':)'), url(/fonts/din-bold.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'dinregular';
+    src: url('/fonts/din-regular-webfont.eot');
+    src: url('/fonts/din-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/din-regular-webfont.woff') format('woff'),
+         url('/fonts/din-regular-webfont.ttf') format('truetype'),
+         url('/fonts/din-regular-webfont.svg#dinregular') format('svg');
+     font-weight: normal;
+     font-style: normal;
+
 }
 
 /* ------------------------------------------------------ */
@@ -159,7 +170,7 @@ table.squadType {
         overflow: auto; list-style-type: none; padding: 0; 
         li {
             float: left; line-height: 41px;
-            a { padding: 0 15px; border-left: 1px solid #595e45; border-right: 1px solid #20231d; font-family: Din Bold; font-size: 1.1em }
+            a { padding: 0 15px; border-left: 1px solid #595e45; border-right: 1px solid #20231d; font-family: dinregular; font-size: 1.1em }
             &:first-child a { border-left-color: transparent }
             &:last-child a { border-right-color: transparent }
         }

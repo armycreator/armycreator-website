@@ -1,0 +1,37 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block h1 %}Squad add{% endblock %}
+
+{% block content %}
+    <nav>
+        <div>
+            Squad choice
+        </div>
+        <div>
+            Squad Stuff
+        </div>
+    <nav>
+
+    {% for unitType in breed.unitTypeList %}
+        <div>
+            <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug}) }}" title="{{ unitType.name }}">
+                {{ unitType.name }}
+            </a>
+        </div>
+    {% endfor %}
+
+    <ul>
+        {% for unit in currentUnitType.visibleUnitList %}
+            <li>
+                <a href="#" title="{{ unit.name }}">
+                    {{ unit.name }}
+                    {% if unit.groupType == 'unit' %}
+                        {{ unit.points }}
+                    {% endif %}
+                 </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    Name this squad : ...
+{% endblock %}

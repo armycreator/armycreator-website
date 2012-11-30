@@ -73,9 +73,18 @@ class UnitType
 	 * @var array<Unit>
 	 * @access private
 	 *
-	 * @ORM\OneToMany(targetEntity="Unit", mappedBy="unitType")
+	 * @ORM\OneToMany(targetEntity="AbstractUnit", mappedBy="unitType")
+     * @ORM\OrderBy({"name" = "ASC"})
 	 */
 	private $unitList;
+
+    /**
+     * visibleUnitList
+     * 
+     * @var array
+     * @access private
+     */
+    private $visibleUnitList = null;
 
     /**
      * squadList
@@ -282,6 +291,26 @@ class UnitType
     public function getUnitList()
     {
         return $this->unitList;
+    }
+
+    /**
+     * getVisibleUnitList
+     *
+     * @access public
+     * @return array
+     */
+    public function getVisibleUnitList()
+    {
+        if ($this->visibleUnitList === null) {
+            $this->visibleUnitList = array();
+            $tmpUnitList = $this->getUnitList();
+            foreach ($tmpUnitList as $unit) {
+                if (!($unit instanceof Unit) || $unit->getViewInList()) {
+                    $this->visibleUnitList[] = $unit;
+                }
+            }
+        }
+        return $this->visibleUnitList;
     }
 
     /**

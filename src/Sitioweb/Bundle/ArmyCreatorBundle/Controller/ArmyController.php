@@ -2,13 +2,14 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use JMS\SecurityExtraBundle\Annotation\Secure;
+use JMS\SecurityExtraBundle\Annotation as Security;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
@@ -18,6 +19,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
  * 
  * @uses BaseController
  * @Route("/army")
+ * @Security\PreAuthorize("isFullyAuthenticated()")
  *
  * @author Julien Deniau <julien@sitioweb.fr> 
  */
@@ -32,7 +34,6 @@ class ArmyController extends Controller
      * @Route("/group/{groupId}", requirements={"groupId" = "\d+"}, name="army_group_list")
      * @Route("/", name="army_list", defaults={"groupId" = null})
      * @Template()
-     * @Secure(roles="IS_AUTHENTICATED_FULLY")
      */
     public function listAction($groupId)
     {
@@ -72,6 +73,7 @@ class ArmyController extends Controller
      *
      * @Route("/{slug}", name="army_detail")
      * @Template()
+     * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      */
     public function detailAction($slug)
     {
@@ -79,6 +81,11 @@ class ArmyController extends Controller
         $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($slug);
         if ($army === null) {
             throw new NotFoundHttpException('Army not found');
+        }
+
+        // security
+        if ($this->getUser() != $army->getUser() && !$army->getIsShared()) {
+            throw new AccessDeniedException();
         }
 
         // get unit type list
@@ -138,6 +145,7 @@ class ArmyController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
             $entity->setUser($this->getUser());
             $em->persist($entity);
             $em->flush();

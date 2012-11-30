@@ -24,7 +24,7 @@ class ArmyType extends AbstractType
             ->add('status')
             ->add('name')
             ->add('description')
-            ->add('wantedPoints')
+            ->add('wantedPoints', null, array('required' => false))
             ->add('isShared', null, array('required' => false))
             ->add('breed', null, array(
                 'required' => true,

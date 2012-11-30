@@ -9,6 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army
  *
  * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Sitioweb\Bundle\ArmyCreatorBundle\Entity\Repository\Army")
  */
 class Army
@@ -149,7 +150,8 @@ class Army
     public function __construct()
     {
         $this->squadList = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->points = 0;
+        $this->setPoints(0);
+        $this->setWantedPoints(0);
     }
 
     /**
@@ -517,6 +519,39 @@ class Army
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * prePersist
+     *
+     * @access public
+     * @return void
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        if ($this->getPoints() === null) {
+            $this->setPoints(0);
+        }
+
+        if ($this->getWantedPoints() === null) {
+            $this->setWantedPoints(0);
+        }
+
+        $this->setCreateDate(new \DateTime());
+    }
+
+    /**
+     * preUpdate
+     *
+     * @access public
+     * @return void
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setUpdateDate(new \DateTime());
     }
 
     /**

@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UnitGroup extends AbstractUnit
 {
+    CONST GROUP_TYPE = 'unitGroup';
 
 	/**
 	 * unitHasUnitGroupList

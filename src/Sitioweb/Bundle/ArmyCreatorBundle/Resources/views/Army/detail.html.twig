@@ -132,7 +132,7 @@
                 {% endfor %}
 
                 <li>
-                    <a href="#">
+                    <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug}) }}">
                         Ajouter
                     </a>
                 </li>

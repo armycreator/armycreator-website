@@ -767,7 +767,7 @@ class DefaultController extends Controller
                     points, isShared, createDate, updateDate, armyGroup_id
                      )
              SELECT wa.id, wa.race_id, u.id, IF(wa.type_armee = 'T','finish','draft'), wa.nom, CONCAT('army-', wa.id), wa.description,
-                wa.nbPointsSouhaites, wa.nbPoints, wa.isShared, null, null, wa.groupe_id
+                wa.nbPointsSouhaites, wa.nbPoints, IF(wa.isShared='1',1,0), null, null, wa.groupe_id
                 FROM wkarmycr_copy.armee wa
                 JOIN armycreator.Users u ON u.forumId = wa.joueur_id
                 ");

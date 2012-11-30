@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Unit extends AbstractUnit
 {
+    CONST GROUP_TYPE = 'unit';
+
     /**
      * points
      * @ORM\Column(name="points", type="integer")
