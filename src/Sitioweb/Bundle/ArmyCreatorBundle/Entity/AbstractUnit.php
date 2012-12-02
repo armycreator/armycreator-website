@@ -3,6 +3,7 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit
@@ -31,6 +32,17 @@ class AbstractUnit
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * slug
+     * 
+     * @var string
+     * @access private
+     *
+     * @Gedmo\Slug(fields={"name"}, unique=false)
+     * @ORM\Column(length=255, unique=false, nullable=true)
+     */
+    private $slug;
 
     /**
      * breed
@@ -71,16 +83,6 @@ class AbstractUnit
      */
     private $unitType;
 
-	/**
-	 * unitStuffList
-	 * 
-	 * @var array<UnitStuff>
-	 * @access private
-	 *
-	 * @ORM\OneToMany(targetEntity="UnitStuff", mappedBy="unit")
-	 */
-	private $unitStuffList;
-
 
     /**
      * __construct
@@ -90,7 +92,6 @@ class AbstractUnit
      */
     public function __construct()
     {
-        $this->unitStuffList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->squadLineList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -126,6 +127,30 @@ class AbstractUnit
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * setSlug
+     *
+     * @param string $slug
+     * @access public
+     * @return $this
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * getSlug
+     *
+     * @access public
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -174,39 +199,6 @@ class AbstractUnit
     public function getUnitType()
     {
         return $this->unitType;
-    }
-
-    /**
-     * Add unitStuffList
-     *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList
-     * @return AbstractUnit
-     */
-    public function addUnitStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList)
-    {
-        $this->unitStuffList[] = $unitStuffList;
-    
-        return $this;
-    }
-
-    /**
-     * Remove unitStuffList
-     *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList
-     */
-    public function removeUnitStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList)
-    {
-        $this->unitStuffList->removeElement($unitStuffList);
-    }
-
-    /**
-     * Get unitStuffList
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getUnitStuffList()
-    {
-        return $this->unitStuffList;
     }
 
     /**

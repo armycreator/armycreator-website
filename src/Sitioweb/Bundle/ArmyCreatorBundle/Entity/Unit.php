@@ -67,6 +67,16 @@ class Unit extends AbstractUnit
 	 */
 	private $userHasUnitList;
 
+	/**
+	 * unitStuffList
+	 * 
+	 * @var array<UnitStuff>
+	 * @access private
+	 *
+	 * @ORM\OneToMany(targetEntity="UnitStuff", mappedBy="unit")
+	 */
+	private $unitStuffList;
+
 
 
     /**
@@ -79,6 +89,7 @@ class Unit extends AbstractUnit
     {
         $this->unitHasUnitGroupList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->childrenList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->unitStuffList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -271,4 +282,38 @@ class Unit extends AbstractUnit
     {
         return $this->userHasUnitList;
     }
+
+    /**
+     * Add unitStuffList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList
+     * @return AbstractUnit
+     */
+    public function addUnitStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList)
+    {
+        $this->unitStuffList[] = $unitStuffList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove unitStuffList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList
+     */
+    public function removeUnitStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList)
+    {
+        $this->unitStuffList->removeElement($unitStuffList);
+    }
+
+    /**
+     * Get unitStuffList
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUnitStuffList()
+    {
+        return $this->unitStuffList;
+    }
+
 }

@@ -1,0 +1,37 @@
+#armyDetail {
+    background: @contentFullBackgroundColor;
+    margin-top: 20px;
+    .unitTypeTopList {
+        padding: 10px 0;
+        > div { display: inline-block; margin-right: 1em }
+    }
+
+    .unitTypeList {
+        margin-bottom: 1.5em; 
+        .unitType {
+            display: table-cell; width: 120px;  background: @unitTypeBackgroundColor; color: @unitTypeForegroundColor; position: relative; overflow: hidden; vertical-align: top;
+        }
+        .squadList {
+            .squad {
+                float: left; width: 240px; /*height: 135px;*/ overflow: hidden; margin: 0 0.8em 0.8em 0;
+                h5 { margin-bottom: 0.5em  }
+                // &:hover { height: auto }
+                .squadName {
+                    background: @squadNameBackgroundColor;
+                    position: relative; height: 28px; line-height: 28px; margin-bottom: 2px; padding: 0 0.8em;
+                }
+
+                .squadLine {
+                    background: @squadBackgroundColor;
+                    margin-bottom: 2px; padding: 5px 8px;
+                }
+            }
+        }
+        .stick {
+           position: absolute; top: 6px; right:-12px; width: 50px; height: 10px;
+           border: 1px solid #888;
+           .transformRotate(45deg);
+        }
+    }
+
+}

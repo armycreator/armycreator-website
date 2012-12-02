@@ -1,0 +1,46 @@
+#websiteHeader {
+    .minGlobalWidth;
+    .globalTopBackground;
+    .box-shadow(0 0 15px #000);
+    position: relative; height: 146px;
+    .headerBar {
+        color: #70695f; height: 25px; line-height: 25px; padding: 0 10px;
+        a { color: #fff }
+        .box-shadow(0 2px 3px rgba(0,0,0,0.46));
+
+        background: #3c3529;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d,endColorstr=%d)", #000, #3c3529));
+        background: -webkit-linear-gradient( top, rgba(0, 0, 0, 0.54) 10%, rgba(23,26,20,0.54) 18%, rgba(44,45,38,0.54) 73%, rgba(60,53,41,0.54) 97%, rgba(13,9,5,0.75));
+        background:    -moz-linear-gradient( top, rgba(0, 0, 0, 0.54) 10%, rgba(23,26,20,0.54) 18%, rgba(44,45,38,0.54) 73%, rgba(60,53,41,0.54) 97%, rgba(13,9,5,0.75));
+        background:     -ms-linear-gradient( top, rgba(0, 0, 0, 0.54) 10%, rgba(23,26,20,0.54) 18%, rgba(44,45,38,0.54) 73%, rgba(60,53,41,0.54) 97%, rgba(13,9,5,0.75));
+        background:      -o-linear-gradient( top, rgba(0, 0, 0, 0.54) 10%, rgba(23,26,20,0.54) 18%, rgba(44,45,38,0.54) 73%, rgba(60,53,41,0.54) 97%, rgba(13,9,5,0.75));
+        background:         linear-gradient( top, rgba(0, 0, 0, 0.54) 10%, rgba(23,26,20,0.54) 18%, rgba(44,45,38,0.54) 73%, rgba(60,53,41,0.54) 97%, rgba(13,9,5,0.75));
+    }
+    .logo {
+        background: url('/images/logo.png') top center no-repeat;
+        width: 160px; height: 72px; position: absolute; top: 50px; left: 50%; margin-left: -80px;
+    }
+}
+
+#websiteNav {
+    .minGlobalWidth;
+    /*position: absolute; bottom: 0; left: 0;*/
+    margin-top: 80px; overflow: auto;
+    ul {
+        overflow: auto; list-style-type: none; padding: 0; 
+        li {
+            float: left; line-height: 41px;
+            a { padding: 0 15px; border-left: 1px solid #595e45; border-right: 1px solid #20231d; font-family: dinregular; font-size: 1.1em }
+            &:first-child a { border-left-color: transparent }
+            &:last-child a { border-right-color: transparent }
+        }
+    }
+    a { color: #fff }
+}
+/*
+#websiteNavBackground {
+    position: absolute; top: 105px; left: 0; height: 41px; width: 100%;
+    .triple-linear-gradient(bottom, #10120d, 0%, #252921, 32%, #40473b, 50%, #000000);
+}
+*/
+

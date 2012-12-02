@@ -51,7 +51,7 @@
 	</header>
 
 	<div id="websiteContentContainer">
-        <div id="websiteContent">
+        <div id="websiteContent" class="{{ app.request.attributes.get('_route') }}">
             {% block breadcrumb %}
             {% endblock %}
 
@@ -90,7 +90,8 @@
 {% block stylesheets %}
 	{% stylesheets 
 		'%kernel.root_dir%/../vendor/raphaelgoetter/knacss/css/knacss.css'
-		'@SitiowebArmyCreatorBundle/Resources/public/css/*' 
+		'@SitiowebArmyCreatorBundle/Resources/public/css/*.css' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/global.less' 
 		filter='less' output='css/global.css' %}
 		 <link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}

@@ -1,0 +1,46 @@
+/* ------------------------------------------------------ */
+/*			- Imports - 	    				 	      */
+/* ------------------------------------------------------ */
+@import "variables";
+@import "mixins";
+
+@import "font";
+@import "button";
+@import "header";
+@import "content";
+@import "footer";
+
+@import "breed";
+
+@import "armyList";
+@import "armyDetail";
+
+
+/* ------------------------------------------------------ */
+/*			- CSS -          					 	      */
+/* ------------------------------------------------------ */
+
+
+html { font-family: Verdana, arial, helvetica, sans-serif }
+body {
+    .globalBackground; color: @globalColor; 
+    font-family: arial, Verdana, "Century Gothic", helvetica, sans-serif;
+}
+a {
+    color: @globalLinkColor; text-decoration: none;
+    &:hover { color: @globalLinkHoverColor }
+}
+.row.gut > * + * {
+    border-color: transparent;
+}
+ul.inline, .ulInline {
+    overflow: auto; list-style-type: none; padding: 0;
+    > li { float: left; }
+}
+
+table.squadType {
+    width: 100%; background: @contentFullBackgroundColor;
+    th { background: @squadNameBackgroundColor }
+    td { background: @squadBackgroundColor; text-align: center; }
+}
+

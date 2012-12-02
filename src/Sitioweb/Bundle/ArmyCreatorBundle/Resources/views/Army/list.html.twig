@@ -3,7 +3,9 @@
 {% block title %}My army list{% endblock %}
 
 {% block content %}
-    {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:armyListMenu') }}
+    <nav class="armyListMenu">
+        {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:armyListMenu') }}
+    </nav>
 
     <div>
         <h2>
@@ -57,12 +59,16 @@
                         </a>
                     </td>
                     <td>{{ army.status }}
-                    <td>{{ army.createDate|date() }}
+                    <td>
+                        {% if army.createDate %}
+                            {{ army.createDate|date() }}
+                        {% endif %}
+                    </td>
                     <td>
                         <form action="{{ path('army_delete', { 'id': army.id }) }}" method="post">
                             {% set deleteArmyForm = deleteArmyListForm[army.id] %}
                             {{ form_widget(deleteArmyForm.createView) }}
-                            <button type="submit">Delete</button>
+                            <button class="acButton" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
