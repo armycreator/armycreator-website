@@ -96,7 +96,7 @@ class Army
      * @var array<Squad>
      * @access private
      *
-	 * @ORM\OneToMany(targetEntity="Squad", mappedBy="army")
+	 * @ORM\OneToMany(targetEntity="Squad", mappedBy="army", cascade={"remove"})
      * @ORM\OrderBy({"position" = "ASC"})
      */
     private $squadList;

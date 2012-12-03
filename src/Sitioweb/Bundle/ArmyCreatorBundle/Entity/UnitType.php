@@ -70,7 +70,7 @@ class UnitType
 	/**
 	 * unitList
 	 * 
-	 * @var array<Unit>
+	 * @var array<AbstractUnit>
 	 * @access private
 	 *
 	 * @ORM\OneToMany(targetEntity="AbstractUnit", mappedBy="unitType")
@@ -78,13 +78,13 @@ class UnitType
 	 */
 	private $unitList;
 
-    /**
-     * visibleUnitList
-     * 
-     * @var array
-     * @access private
-     */
-    private $visibleUnitList = null;
+	/**
+	 * unitGroupList
+	 * 
+	 * @var array<UnitGroup>
+	 * @access private
+	 */
+	private $unitGroupList = null;
 
     /**
      * squadList
@@ -294,23 +294,22 @@ class UnitType
     }
 
     /**
-     * getVisibleUnitList
+     * Get unitGroupList
      *
-     * @access public
-     * @return array
+     * @return Doctrine\Common\Collections\Collection 
      */
-    public function getVisibleUnitList()
+    public function getUnitGroupList()
     {
-        if ($this->visibleUnitList === null) {
-            $this->visibleUnitList = array();
-            $tmpUnitList = $this->getUnitList();
-            foreach ($tmpUnitList as $unit) {
-                if (!($unit instanceof Unit) || $unit->getViewInList()) {
-                    $this->visibleUnitList[] = $unit;
+        if ($this->unitGroupList === null) {
+            $this->unitGroupList = array();
+            $unitList = $this->getUnitList();
+            foreach ($unitList as $unit) {
+                if ($unit instanceof UnitGroup) {
+                    $this->unitGroupList[] = $unit;
                 }
             }
         }
-        return $this->visibleUnitList;
+        return $this->unitGroupList;
     }
 
     /**

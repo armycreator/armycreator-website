@@ -8,35 +8,28 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SquadType extends AbstractType
 {
-    private $unitList;
 
-    public function setUnitList($unitList)
+    public function __construct()
     {
-        $this->unitList = $unitList;
-        return $this;
-    }
-
-    public function __construct($unitList)
-    {
-        $this->setUnitList($unitList);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        ladybug_dump($this->unitList);
+        $squad = $options['data'];
+
+        $builder->add('name');
         
-        foreach ($this->unitList as $unit) {
+        $squadLineList = $squad->getSquadLineList();
+        foreach ($squadLineList as $squadLine) {
             $builder->add('squadLineList', 'collection', array('type' => new SquadLineType()));
         }
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        /*
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad'
         ));
-        */
     }
 
     public function getName()

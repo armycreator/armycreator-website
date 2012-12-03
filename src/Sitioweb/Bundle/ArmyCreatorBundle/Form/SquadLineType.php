@@ -10,18 +10,14 @@ class SquadLineType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
-                ->add('number', 'integer')
-        ;
+        $builder->add('number', 'integer');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        /*
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine'
         ));
-        */
     }
 
     public function getName()

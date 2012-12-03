@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine
  *
  * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity
  */
 class SquadLine
@@ -38,10 +39,10 @@ class SquadLine
     /**
      * unit
      * 
-     * @var AbstractUnit
+     * @var Unit
      * @access private
      *
-	 * @ORM\ManyToOne(targetEntity="AbstractUnit", inversedBy="squadLineList")
+	 * @ORM\ManyToOne(targetEntity="Unit", inversedBy="squadLineList")
      */
     private $unit;
 
@@ -163,10 +164,10 @@ class SquadLine
     /**
      * Set unit
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unit
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $unit
      * @return SquadLine
      */
-    public function setUnit(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unit = null)
+    public function setUnit(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $unit = null)
     {
         $this->unit = $unit;
     
@@ -176,7 +177,7 @@ class SquadLine
     /**
      * Get unit
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit 
      */
     public function getUnit()
     {
@@ -306,4 +307,50 @@ class SquadLine
 
         return $points;
     }
+
+    /**
+     * prePersist
+     *
+     * @access public
+     * @return void
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setCreateDate(new \DateTime());
+    }
+
+    /**
+     * preUpdate
+     *
+     * @access public
+     * @return void
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setUpdateDate(new \DateTime());
+    }
+
+    /**
+     * convertUnitHasUnitGroup
+     *
+     * @param UnitHasUnitGroup $unitHasUnitGroup
+     * @access public
+     * @return $this
+     */
+    public function convertUnitHasUnitGroup(UnitHasUnitGroup $unitHasUnitGroup)
+    {
+        $this->setNumber($unitHasUnitGroup->getUnitNumber());
+        if ($unitHasUnitGroup->getMainUnit()) {
+            $this->setPosition(1);
+        } else {
+            $this->setPosition(2);
+        }
+        $this->setUnit($unitHasUnitGroup->getUnit());
+
+        return $this;
+    }
+
 }

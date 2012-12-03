@@ -65,7 +65,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <form action="{{ path('army_delete', { 'id': army.id }) }}" method="post">
+                        <form action="{{ path('army_delete', { 'slug': army.slug }) }}" method="post">
                             {% set deleteArmyForm = deleteArmyListForm[army.id] %}
                             {{ form_widget(deleteArmyForm.createView) }}
                             <button class="acButton" type="submit">Delete</button>

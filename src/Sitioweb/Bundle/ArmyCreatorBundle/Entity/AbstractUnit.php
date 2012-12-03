@@ -45,12 +45,21 @@ class AbstractUnit
     private $slug;
 
     /**
+     * points
+     * @ORM\Column(name="points", type="integer")
+     * 
+     * @var int
+     * @access private
+     */
+    private $points;
+
+    /**
      * breed
      * 
      * @var Breed
      * @access private
 	 *
-	 * @ORM\ManyToOne(targetEntity="Breed", inversedBy="unitList")
+	 * @ORM\ManyToOne(targetEntity="Breed", inversedBy="unitGroupList")
      */
     private $breed;
 
@@ -64,14 +73,14 @@ class AbstractUnit
     private $importedId;
 
     /**
-     * squadLineList
+     * importedType
      * 
-     * @var array<SquadLine>
+     * @ORM\Column(type="string", length=255)
+     * @var mixed
      * @access private
-     *
-	 * @ORM\OneToMany(targetEntity="SquadLine", mappedBy="unit")
      */
-    private $squadLineList;
+    private $importedType;
+
 
     /**
      * unitType
@@ -92,7 +101,6 @@ class AbstractUnit
      */
     public function __construct()
     {
-        $this->squadLineList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -154,30 +162,6 @@ class AbstractUnit
     }
 
     /**
-     * setBreed
-     *
-     * @param Breed $breed
-     * @access public
-     * @return AbstractUnit
-     */
-    public function setBreed($breed)
-    {
-        $this->breed = $breed;
-        return $this;
-    }
-
-    /**
-     * getBreed
-     *
-     * @access public
-     * @return Breed
-     */
-    public function getBreed()
-    {
-        return $this->breed;
-    }
-
-    /**
      * setUnitType
      *
      * @param UnitType $unitType
@@ -225,39 +209,6 @@ class AbstractUnit
     }
 
     /**
-     * Add squadLineList
-     *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList
-     * @return Unit
-     */
-    public function addSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
-    {
-        $this->squadLineList[] = $squadLineList;
-    
-        return $this;
-    }
-
-    /**
-     * Remove squadLineList
-     *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList
-     */
-    public function removeSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
-    {
-        $this->squadLineList->removeElement($squadLineList);
-    }
-
-    /**
-     * Get squadLineList
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getSquadLineList()
-    {
-        return $this->squadLineList;
-    }
-
-    /**
      * getGroupType
      *
      * @access public
@@ -268,4 +219,74 @@ class AbstractUnit
         return static::GROUP_TYPE;
     }
 
+    /**
+     * Set points
+     *
+     * @param integer $points
+     * @return UnitStuff
+     */
+    public function setPoints($points)
+    {
+        $this->points = $points;
+    
+        return $this;
+    }
+
+    /**
+     * Get points
+     *
+     * @return integer 
+     */
+    public function getPoints()
+    {
+        return $this->points;
+    }
+
+    /**
+     * setBreed
+     *
+     * @param Breed $breed
+     * @access public
+     * @return AbstractUnit
+     */
+    public function setBreed($breed)
+    {
+        $this->breed = $breed;
+        return $this;
+    }
+
+    /**
+     * getBreed
+     *
+     * @access public
+     * @return Breed
+     */
+    public function getBreed()
+    {
+        return $this->breed;
+    }
+
+
+    /**
+     * Set imported type
+     *
+     * @param string $importedType
+     * @return UnitType
+     */
+    public function setImportedType($importedType)
+    {
+        $this->importedType = $importedType;
+    
+        return $this;
+    }
+
+    /**
+     * Get imported type
+     *
+     * @return string
+     */
+    public function getImportedType()
+    {
+        return $this->importedType;
+    }
 }

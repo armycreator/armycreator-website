@@ -25,6 +25,7 @@ class DefaultController extends Controller
             'import_unit_group' => 'SitiowebArmyCreatorBundle:UnitGroup',
             'import_unit' => 'SitiowebArmyCreatorBundle:Unit',
             'import_unit_has_unit_group' => 'SitiowebArmyCreatorBundle:UnitHasUnitGroup',
+            'import_unit_has_unit' => 'SitiowebArmyCreatorBundle:UnitHasUnitGroup',
             'import_equipement' => 'SitiowebArmyCreatorBundle:Equipement',
             'import_weapon' => 'SitiowebArmyCreatorBundle:Weapon',
             'import_unit_stuff' => 'SitiowebArmyCreatorBundle:UnitStuff',
@@ -226,7 +227,32 @@ class DefaultController extends Controller
         while ($row = $importList->fetch()) {
             $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup();
             $entity->setImportedId((int) $row['id']);
+            $entity->setImportedType('unit_group');
             $entity->setName(utf8_encode($row['nom']));
+            $entity->setPoints(0);
+
+            $breed = $this->em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($row['race_id']);
+            $entity->setBreed($breed);
+
+            $unitType = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitType')->findOneBy(array('breed' => $breed, 'importedId' => $row['type_unite_id']));
+            $entity->setUnitType($unitType);
+
+            $this->em->persist($entity);
+            //$this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+        }
+        $this->em->flush();
+
+
+        // inserting
+        $importList = $this->emImport->query("SELECT * FROM unite WHERE viewInList = '1' ORDER BY id");
+        //$breedList = $this->em->getRepository('SitiowebArmyCreatorBundle:Breed')->findAll();
+
+        while ($row = $importList->fetch()) {
+            $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup();
+            $entity->setImportedId((int) $row['id']);
+            $entity->setImportedType('unit');
+            $entity->setName(utf8_encode($row['nom']));
+            $entity->setPoints(0);
 
             $breed = $this->em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($row['race_id']);
             $entity->setBreed($breed);
@@ -279,16 +305,16 @@ class DefaultController extends Controller
             
             $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit();
             $entity->setImportedId((int) $row['id']);
+            $entity->setImportedType('unit');
             $entity->setName(utf8_encode($row['nom']));
             $entity->setPoints((int) $row['pts_unite']);
 
-            $breed = $this->em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($row['race_id']);
-            $entity->setBreed($breed);
+           $breed = $this->em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($row['race_id']);
+           $entity->setBreed($breed);
 
             $unitType = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitType')->findOneBy(array('breed' => $breed, 'importedId' => $row['type_unite_id']));
             $entity->setUnitType($unitType);
 
-            $entity->setViewInList((int) $row['viewInList']);
             $entity->setCanModifyNumber((int) $row['canModifyNumber']);
 
             if ($row['parent_id']) {
@@ -349,7 +375,10 @@ class DefaultController extends Controller
             //$entity->setName(utf8_encode($row['nom']));
             $unit = $this->em->getRepository('SitiowebArmyCreatorBundle:Unit')->findOneByImportedId($row['unite_id']);
             $entity->setUnit($unit);
-            $group = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitGroup')->findOneByImportedId($row['regroupement_id']);
+            $group = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitGroup')->findOneBy(array(
+                'importedId' => $row['regroupement_id'],
+                'importedType' => 'unit_group',
+            ));
             $entity->setGroup($group);
 
             $entity->setCanChooseNumber((int) $row['canChooseNumber']);
@@ -369,6 +398,71 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('import_index'));
         }
     }
+
+    /**
+     * 
+     * @Route("/unit_has_unit/{start}", name="import_unit_has_unit", defaults={"start" = 0})
+     *
+     * @access public
+     * @return void
+     */
+    public function importUnitHasUnitAction ($start)
+    {
+        // conf
+        $this->configure();
+        $entityClass = 'SitiowebArmyCreatorBundle:UnitHasUnitGroup';
+
+        // inserting
+        $limit = 300;
+        $importList = $this->emImport->query("
+            SELECT *
+            FROM unite
+            WHERE viewInList = '1'
+            ORDER BY id
+            LIMIT " . (int) $start . ", " . $limit . "
+        ");
+
+        if ($importList->rowCount() >= $limit) {
+            $continue = $this->generateUrl('import_unit_has_unit', array('start' => (int) $start + $limit));
+        } else {
+            $continue = null;
+        }
+        //$breedList = $this->em->getRepository('SitiowebArmyCreatorBundle:Breed')->findAll();
+
+        while ($row = $importList->fetch()) {
+            
+            $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup();
+            $entity->setImportedId(0);
+            //$entity->setName(utf8_encode($row['nom']));
+            $unit = $this->em->getRepository('SitiowebArmyCreatorBundle:Unit')->findOneByImportedId($row['id']);
+            $entity->setUnit($unit);
+            $group = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitGroup')->findOneBy(array(
+                'importedId' => $row['id'],
+                'importedType' => 'unit'
+            ));
+            $entity->setGroup($group);
+
+            $entity->setCanChooseNumber(true);
+            $entity->setMainUnit(true);
+            $entity->setUnitNumber(1);
+
+            $this->em->persist($entity);
+            //$this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
+        }
+
+        $this->em->flush();
+
+
+        
+        $this->get('session')->setFlash('notice', $entityClass . ' imported : ' . $start);
+
+        if ($continue) {
+            return $this->redirect($continue);
+        } else {
+            return $this->redirect($this->generateUrl('import_index'));
+        }
+    }
+        
 
     /**
      * 
@@ -509,10 +603,11 @@ class DefaultController extends Controller
 
                 $entity->setUnit($unit);
 
+                $tmpBreed = $unit->getBreed();
                 if ($row['equipement_id'] > 0) {
-                    $stuff = $this->em->getRepository('SitiowebArmyCreatorBundle:Equipement')->findOneBy(array('importedId' => $row['equipement_id'], 'breed' => $unit->getBreed()));
+                    $stuff = $this->em->getRepository('SitiowebArmyCreatorBundle:Equipement')->findOneBy(array('importedId' => $row['equipement_id'], 'breed' => $tmpBreed));
                 } else {
-                    $stuff = $this->em->getRepository('SitiowebArmyCreatorBundle:Weapon')->findOneBy(array('importedId' => $row['arme_id'], 'breed' => $unit->getBreed()));
+                    $stuff = $this->em->getRepository('SitiowebArmyCreatorBundle:Weapon')->findOneBy(array('importedId' => $row['arme_id'], 'breed' => $tmpBreed));
                 }
                 $entity->setStuff($stuff);
 
@@ -940,12 +1035,13 @@ class DefaultController extends Controller
               JOIN wkarmycr_copy.armee wa ON wa.id = e.armee_id
 
               LEFT JOIN armycreator.UnitType ut
-              ON ut.importedId = IFNULL(e.type_unite, wu.type_unite_id)
-              AND ut.breed_id = wa.race_id
+                  ON ut.importedId = IFNULL(e.type_unite, wu.type_unite_id)
+                  AND ut.breed_id = wa.race_id
 
               LEFT JOIN armycreator.AbstractUnit au
-              ON au.discriminator = 'group'
-              AND au.importedId = e.from_regroupement_id
+                  ON au.discriminator = 'group'
+                  AND au.importedType = 'unit_group'
+                  AND au.importedId = e.from_regroupement_id
 
               WHERE e.parent_id IS NULL
                 ");

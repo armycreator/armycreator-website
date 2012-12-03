@@ -51,7 +51,7 @@ class UnitStuff
      * @var Unit
      * @access private
 	 *
-	 * @ORM\ManyToOne(targetEntity="AbstractUnit", inversedBy="unitStuffList")
+	 * @ORM\ManyToOne(targetEntity="Unit", inversedBy="unitStuffList")
      */
     private $unit;
 

@@ -82,14 +82,14 @@ class Breed
     private $breedGroup;
 
     /**
-     * unitList
+     * unitGroupList
      * 
      * @var array
      * @access private
      *
-     * @ORM\OneToMany(targetEntity="AbstractUnit", mappedBy="breed")
+     * @ORM\OneToMany(targetEntity="UnitGroup", mappedBy="breed")
      */
-    private $unitList;
+    private $unitGroupList;
 
     /**
      * unitTypeList
@@ -149,7 +149,7 @@ class Breed
      */
     public function __construct()
     {
-        $this->unitList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->unitGroupList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->unitTypeList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->stuffList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->userPreferenceList = new \Doctrine\Common\Collections\ArrayCollection();
@@ -317,36 +317,36 @@ class Breed
     }
 
     /**
-     * Add unitList
+     * Add unitGroupList
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unitList
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup $unitGroupList
      * @return Breed
      */
-    public function addUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unitList)
+    public function addUnitGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup $unitGroupList)
     {
-        $this->unitList[] = $unitList;
+        $this->unitGroupList[] = $unitGroupList;
 
         return $this;
     }
 
     /**
-     * Remove unitList
+     * Remove unitGroupList
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unitList
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup $unitGroupList
      */
-    public function removeUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unitList)
+    public function removeUnitGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup $unitGroupList)
     {
-        $this->unitList->removeElement($unitList);
+        $this->unitGroupList->removeElement($unitGroupList);
     }
 
     /**
-     * Get unitList
+     * Get unitGroupList
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getUnitList()
+    public function getUnitGroupList()
     {
-        return $this->unitList;
+        return $this->unitGroupList;
     }
 
     /**

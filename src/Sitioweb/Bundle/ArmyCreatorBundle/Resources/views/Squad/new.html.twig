@@ -24,13 +24,10 @@
         {% endfor %}
 
         <ul>
-            {% for unit in currentUnitType.visibleUnitList %}
+            {% for unitGroup in currentUnitType.unitGroupList %}
                 <li>
-                    <a href="{{ path('selected_unit_squad_new', {'armySlug' : army.slug, 'id' : unit.id}) }}" title="{{ unit.name }}">
-                        {{ unit.name }}
-                        {% if unit.groupType == 'unit' %}
-                            {{ unit.points }}
-                        {% endif %}
+                    <a href="{{ path('squad_line_new', {'armySlug' : army.slug, 'unitGroupId' : unitGroup.id}) }}" title="{{ unitGroup.name }}">
+                        {{ unitGroup.name }}
                      </a>
                 </li>
             {% endfor %}

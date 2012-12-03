@@ -35,9 +35,13 @@
         <a href="#">
             Share list
         </a>
-        <a href="#">
-            Delete list
+        <a href="{{ path('army_edit', { 'slug' : army.slug }) }}">
+            Edit list
         </a>
+        <form action="{{ path('army_delete', { 'slug': army.slug }) }}" method="post">
+            {{ form_widget(deleteForm) }}
+            <button type="submit">Delete army</button>
+        </form>
     </aside>
 
     <figure class="breed">
@@ -120,7 +124,7 @@
                             </div>
 
                             <footer>
-                                <a href="#">
+                                <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}">
                                     Edit
                                 </a>
 

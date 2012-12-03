@@ -2,9 +2,11 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use JMS\SecurityExtraBundle\Annotation as Security;
 
@@ -18,6 +20,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
  * 
  * @uses Controller
  *
+ * @Route("/army/{armySlug}/squad")
  * @Security\PreAuthorize("isFullyAuthenticated()")
  */
 class SquadController extends Controller
@@ -25,7 +28,7 @@ class SquadController extends Controller
     /**
      * Displays a form to create a new Squad entity.
      *
-     * @Route("/army/{armySlug}/squad/new/{unitTypeSlug}", name="squad_new")
+     * @Route("/new/{unitTypeSlug}", name="squad_new")
      * @Template()
      */
     public function newAction($armySlug, $unitTypeSlug)
@@ -63,64 +66,186 @@ class SquadController extends Controller
     }
 
     /**
-     * selectedUnitNewAction
+     * createAction
      *
-     * @Route("/army/{armySlug}/squad/new/unit/{id}", requirements={"id" = "\d+"}, name="selected_unit_squad_new")
+     * @param mixed $armySlug
+     * @access public
+     * @return void
+     *
+     * @Route("/create/{unitGroupId}", requirements={"id" = "\d+"}, name="squad_create")
+     * @Method("post")
      * @Template()
      */
-    public function selectedUnitNewAction($armySlug, $id)
+    public function createAction($armySlug, $unitGroupId)
+    {
+        $request = $this->getRequest();
+
+        // getting army
+        $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($armySlug);
+        if ($army === null) {
+            throw new NotFoundHttpException('Army not found');
+        }
+        
+        // getting unit group
+        $unitGroup = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitGroup')->find($unitGroupId);
+        if ($unitGroup === null) {
+            throw new NotFoundHttpException('Unit group not found');
+        }
+       
+        $entity  = new Squad();
+        $entity->convertUnitGroup($unitGroup);
+        
+
+        $form    = $this->createForm(new SquadType(), $entity);
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $entity->preUpdate();
+
+            if (!$entity->getSquadLineList()->isEmpty()) {
+                $entity->setArmy($army);
+                $em->persist($entity);
+            }
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('army_detail', array('slug' => $army->getSlug())));
+        }
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
+    /**
+     * editAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/edit/{id}", name="squad_edit")
+     * @Template()
+     */
+    public function editAction($armySlug, $id)
     {
         // getting army
         $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($armySlug);
         if ($army === null) {
             throw new NotFoundHttpException('Army not found');
         }
-
-        $unit = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:AbstractUnit')->find($id);
-        if ($unit === null) {
-            throw new NotFoundHttpException('Unit not found');
-        }
         
-        // getting breed
-        $breed = $army->getBreed();
+        $em = $this->getDoctrine()->getManager();
 
-        // TODO : C'est en fait probablement plutot un "Form\AbstractUnitType" qu'il faudrait faire, avec une collection de Unit, qui a une collection de UnitStuff. Quoi que du coup ce n'est pas les valeurs que l'on souhaite modifier non plus... Je pense finalement que l'on risque de le faire a la mano... Sinon, il faudrait peut-etre que Squad et AbstractUnit implemente la meme interface, cela permettrait de creer le formulaire avec un objet et de le binder avec un autre pour la creation, mais ca fait decouler plein d'interfaces derriere...
-        if ($unit->getGroupType() == 'unit') {
-            $unitList = array(
-                array(
-                    'unit' => $unit,
-                    'number' => 1
-                )
-            );
-        } else {
-            $unitHasUnitGroupList = $unit->getUnitHasUnitGroupList();
-            foreach ($unitHasUnitGroupList as $unitHasUnitGroup) {
-                $unitList[] = array(
-                    'unit' => $unitHasUnitGroup->getUnit(),
-                    'number' => $unitHasUnitGroup->getUnitNumber()
-                );
-            }
-        }
-        ladybug_dump($unitList);
-        
+        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Squad')->find($id);
 
-        $squad = new Squad();
-        /*
-        foreach ($unitList as $tmpUnit) {
-            $squadLine = new SquadLine();
-            $squadLine->setUnit($tmpUnit->getUnit());
-            $squadLine->setNumber($tmpUnit->getUnitNumber());
-            $squad->addSquadLineList($squadLine);
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Squad entity.');
         }
-        */
-        $form = $this->createForm(new SquadType($unitList), array('squadLineList' => $unitList));
-        
+
+        $entity->addEmptySquadLine();
+        $editForm = $this->createForm(new SquadType(), $entity);
+        $deleteForm = $this->createDeleteForm($entity->getId());
+
         return array(
-            'army' => $army,
-            'breed' => $breed,
-            'currentUnitType' => $unit->getUnitType(),
-            'form' => $form->createView(),
+            'army'        => $army,
+            'entity'      => $entity,
+            'currentUnitType' => $entity->getUnitType(),
+            'form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         );
     }
+
+    /**
+     * Edits an existing Squad entity.
+     *
+     * @Route("/{id}/update", name="squad_update")
+     * @Method("POST")
+     * @Template("SitiowebArmyCreatorBundle:Squad:edit.html.twig")
+     */
+    public function updateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Squad')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Squad entity.');
+        }
+
+        $entity->addEmptySquadLine();
+        $editForm = $this->createForm(new SquadType(), $entity);
+        $editForm->bind($request);
+        $deleteForm = $this->createDeleteForm($entity->getId());
+
+        if ($editForm->isValid()) {
+            $entity->preUpdate();
+            if ($entity->getSquadLineList()->isEmpty()) {
+                $em->remove($entity);
+            } else {
+                $em->persist($entity);
+            }
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getArmy()->getSlug())));
+        }
+        
+
+        return array(
+            'army'      => $entity->getArmy(),
+            'entity'      => $entity,
+            'currentUnitType' => $entity->getUnitType(),
+            'form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        );
+    }
+
+    /**
+     * Deletes a Squad entity.
+     *
+     * @Route("/{id}/delete", name="squad_delete")
+     * @Method("POST")
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('SitiowebArmyCreatorBundle:Squad')->find($id);
+            $army = $entity->getArmy();
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Squad entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+        }
+
+        if (isset($army)) {
+            return $this->redirect($this->generateUrl('army_detail', array('slug' => $army->getSlug())));
+        } else {
+            return $this->redirect($this->generateUrl('army_list'));
+        }
+    }
+
+    /**
+     * createDeleteForm
+     *
+     * @param int $id
+     * @access private
+     * @return void
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
+    }
+
 }
 

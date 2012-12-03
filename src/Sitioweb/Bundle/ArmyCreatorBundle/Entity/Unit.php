@@ -15,27 +15,11 @@ class Unit extends AbstractUnit
     CONST GROUP_TYPE = 'unit';
 
     /**
-     * points
-     * @ORM\Column(name="points", type="integer")
-     * 
-     * @var int
-     * @access private
-     */
-    private $points;
-
-    /**
      * @var boolean $canModifyNumber
      *
      * @ORM\Column(name="canModifyNumber", type="boolean")
      */
     private $canModifyNumber;
-
-    /**
-     * @var boolean $viewInList
-     *
-     * @ORM\Column(name="viewInList", type="boolean")
-     */
-    private $viewInList;
 
     /**
      * @ORM\OneToMany(targetEntity="Unit", mappedBy="parent")
@@ -77,6 +61,15 @@ class Unit extends AbstractUnit
 	 */
 	private $unitStuffList;
 
+    /**
+     * squadLineList
+     * 
+     * @var array<SquadLine>
+     * @access private
+     *
+	 * @ORM\OneToMany(targetEntity="SquadLine", mappedBy="unit")
+     */
+    private $squadLineList;
 
 
     /**
@@ -90,29 +83,7 @@ class Unit extends AbstractUnit
         $this->unitHasUnitGroupList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->childrenList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->unitStuffList = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set points
-     *
-     * @param integer $points
-     * @return UnitStuff
-     */
-    public function setPoints($points)
-    {
-        $this->points = $points;
-    
-        return $this;
-    }
-
-    /**
-     * Get points
-     *
-     * @return integer 
-     */
-    public function getPoints()
-    {
-        return $this->points;
+        $this->squadLineList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -136,29 +107,6 @@ class Unit extends AbstractUnit
     public function getCanModifyNumber()
     {
         return $this->canModifyNumber;
-    }
-
-    /**
-     * Set viewInList
-     *
-     * @param boolean $viewInList
-     * @return Unit
-     */
-    public function setViewInList($viewInList)
-    {
-        $this->viewInList = $viewInList;
-    
-        return $this;
-    }
-
-    /**
-     * Get viewInList
-     *
-     * @return boolean 
-     */
-    public function getViewInList()
-    {
-        return $this->viewInList;
     }
 
     /**
@@ -314,6 +262,39 @@ class Unit extends AbstractUnit
     public function getUnitStuffList()
     {
         return $this->unitStuffList;
+    }
+
+    /**
+     * Add squadLineList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList
+     * @return Unit
+     */
+    public function addSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
+    {
+        $this->squadLineList[] = $squadLineList;
+    
+        return $this;
+    }
+
+    /**
+     * Remove squadLineList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList
+     */
+    public function removeSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
+    {
+        $this->squadLineList->removeElement($squadLineList);
+    }
+
+    /**
+     * Get squadLineList
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSquadLineList()
+    {
+        return $this->squadLineList;
     }
 
 }

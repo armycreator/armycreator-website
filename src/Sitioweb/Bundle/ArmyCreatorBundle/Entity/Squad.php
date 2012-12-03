@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad
  *
  * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity
  */
 class Squad
@@ -85,7 +86,7 @@ class Squad
      * @var array<SquadLine>
      * @access private
      *
-	 * @ORM\OneToMany(targetEntity="SquadLine", mappedBy="squad")
+	 * @ORM\OneToMany(targetEntity="SquadLine", mappedBy="squad", cascade={"all"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
      */
     private $squadLineList;
@@ -327,5 +328,96 @@ class Squad
             $points += $squadLine->getPoints();
         }
         return $points;
+    }
+
+    /**
+     * prePersist
+     *
+     * @access public
+     * @return void
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setCreateDate(new \DateTime());
+    }
+
+    /**
+     * preUpdate
+     *
+     * @access public
+     * @return void
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $squadLineList = $this->getSquadLineList();
+
+        foreach ($squadLineList as $squadLine) {
+            
+            if ($squadLine->getNumber() <= 0) {
+                $this->removeSquadLineList($squadLine);
+            }
+        }
+
+        $this->setUpdateDate(new \DateTime());
+    }
+
+    /**
+     * convertUnitGroup
+     *
+     * @param UnitGroup $unitGroup
+     * @access public
+     * @return $this
+     */
+    public function convertUnitGroup(UnitGroup $unitGroup)
+    {
+        $this->setName($unitGroup->getName());
+        $this->setUnitType($unitGroup->getUnitType());
+        $this->setUnitGroup($unitGroup);
+
+        $unitHasUnitGroupList = $unitGroup->getUnitHasUnitGroupList();
+        foreach ($unitHasUnitGroupList as $unitHasUnitGroup) {
+            $squadLine = new SquadLine();
+            $squadLine->convertUnitHasUnitGroup($unitHasUnitGroup);
+            $squadLine->setSquad($this);
+
+            $this->addSquadLineList($squadLine);
+        }
+        
+        return $this;
+    }
+
+    /**
+     * addEmptySquadLine
+     *
+     * @access public
+     * @return void
+     */
+    public function addEmptySquadLine()
+    {
+        $unitHasUnitGroupList = $this->getUnitGroup()->getUnitHasUnitGroupList();
+        $squadLineList = $this->getSquadLineList();
+
+        foreach ($unitHasUnitGroupList as $unitHasUnitGroup) {
+            $contains = false;
+            foreach ($squadLineList as $squadLine) {
+                if ($squadLine->getUnit() === $unitHasUnitGroup->getUnit()) {
+                    $contains = true;
+                    break;
+                }
+            }
+
+            if ($contains === false) {
+                $squadLine = new SquadLine();
+                $squadLine->convertUnitHasUnitGroup($unitHasUnitGroup);
+                $squadLine->setSquad($this);
+
+                $this->addSquadLineList($squadLine);
+            }
+        }
+
+        return $this;
     }
 }

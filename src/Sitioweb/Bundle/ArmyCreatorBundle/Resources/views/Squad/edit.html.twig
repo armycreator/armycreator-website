@@ -1,0 +1,27 @@
+{% extends 'SitiowebArmyCreatorBundle:Squad:new.html.twig' %}
+
+{% block title %}Squad edit{% endblock %}
+
+{% block squadAddContent %}
+    <form action="{{ path('squad_update', {'armySlug' : army.slug, 'id' : entity.id}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name) }}
+
+        <ul>
+            {% for squadLine in form.squadLineList %}
+                <li>
+                    {{ squadLine.vars.value.unit.name }}
+                    {{ form_row(squadLine.number) }}
+                    {{ form_rest(squadLine) }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        {{ form_rest(form) }}
+        <p>
+            <button type="submit">Edit</button>
+        </p>
+    </form>
+
+{% endblock %}
