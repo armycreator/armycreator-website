@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -22,6 +23,8 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
  *
  * @Route("/army/{armySlug}/squad")
  * @Security\PreAuthorize("isFullyAuthenticated()")
+ * @Breadcrumb("Home", route="homepage")
+ * @Breadcrumb("My army list", route="army_list")
  */
 class SquadController extends Controller
 {
@@ -52,6 +55,10 @@ class SquadController extends Controller
         if ($unitType === null) {
             throw new NotFoundHttpException('Unit type not found');
         }
+
+        // breadcrumb
+        $this->setArmyBreadCrumb($army);
+        $this->get("apy_breadcrumb_trail")->add('New ' . $unitType->getName());
 
         // security
         if ($this->getUser() != $army->getUser()) {
@@ -143,6 +150,10 @@ class SquadController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Squad entity.');
         }
+
+        // breadcrumb
+        $this->setArmyBreadCrumb($army);
+        $this->get("apy_breadcrumb_trail")->add('Edit ' . $entity->getName());
 
         $entity->addEmptySquadLine();
         $editForm = $this->createForm(new SquadType(), $entity);
@@ -247,5 +258,23 @@ class SquadController extends Controller
         ;
     }
 
+    /**
+     * setArmyBreadCrumb
+     *
+     * @access public
+     * @return void
+     */
+    public function setArmyBreadCrumb($army)
+    {
+        // Breadcrumb
+        if ($army->getArmyGroup() !== null) {
+            $this->get("apy_breadcrumb_trail")->add(
+                $army->getArmyGroup()->getName(),
+                'army_group_list',
+                array('groupId' =>  $army->getArmyGroup()->getId())
+            );
+        }
+        $this->get("apy_breadcrumb_trail")->add($army->getName(), 'army_detail', array('slug' =>  $army->getSlug()));
+    }
 }
 

@@ -24,6 +24,7 @@
 		"jms/debugging-bundle": "dev-master",
 		"raulfraile/LadybugBundle": "dev-master",
 		"raphaelgoetter/knacss": "master",
+        "apy/breadcrumbtrail-bundle":"dev-master",
 
         "elnur/blowfish-password-encoder-bundle": "dev-master",
         "knplabs/knp-menu-bundle":"dev-master",

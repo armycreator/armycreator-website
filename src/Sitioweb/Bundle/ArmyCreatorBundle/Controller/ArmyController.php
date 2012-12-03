@@ -2,13 +2,14 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation as Security;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyType;
@@ -20,9 +21,12 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
  * @uses BaseController
  * @Route("/army")
  * @Security\PreAuthorize("isFullyAuthenticated()")
+ * @Breadcrumb("Home", route="homepage")
+ * @Breadcrumb("My army list", route="army_list")
  *
  * @author Julien Deniau <julien@sitioweb.fr> 
  */
+
 class ArmyController extends Controller
 {
     /**
@@ -45,6 +49,13 @@ class ArmyController extends Controller
                 'user' => $this->getUser(),
                 'armyGroup' => $group
             ));
+
+            // Breadcrumb
+            $this->get("apy_breadcrumb_trail")->add(
+                $group->getName(),
+                'army_group_list',
+                array('groupId' =>  $group->getId())
+            );
         } else {
             $group = null;
             $deleteGroupForm = null;
@@ -52,7 +63,7 @@ class ArmyController extends Controller
         }
 
         // getting armyList
-        $deleteArmyList = array();
+        $deleteArmyListForm = array();
         foreach ($armyList as $army) {
             $deleteArmyListForm[$army->getId()] = $this->createDeleteForm($army->getId());
         }
@@ -85,8 +96,18 @@ class ArmyController extends Controller
 
         // security
         if ($this->getUser() != $army->getUser() && !$army->getIsShared()) {
-            throw new AccessDeniedException();
+            throw new AccessDeniedException('Army not shared');
         }
+        
+        // Breadcrumb
+        if ($army->getArmyGroup() !== null) {
+            $this->get("apy_breadcrumb_trail")->add(
+                $army->getArmyGroup()->getName(),
+                'army_group_list',
+                array('groupId' =>  $army->getArmyGroup()->getId())
+            );
+        }
+        $this->get("apy_breadcrumb_trail")->add($army->getName(), 'army_detail', array('slug' =>  $army->getSlug()));
 
         // get unit type list
         $unitTypeList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitType')->findByBreed($army->getBreed());
@@ -94,9 +115,15 @@ class ArmyController extends Controller
         // delete form
         $deleteForm = $this->createDeleteForm($army->getId());
 
+        $squadList = $army->getSquadList();
+        foreach ($squadList as $squad) {
+            $deleteSquadListForm[$squad->getId()] = $this->createDeleteForm($squad->getId());
+        }
+
         return array(
             'army' => $army,
             'unitTypeList' => $unitTypeList,
+            'deleteSquadListForm' => $deleteSquadListForm,
             'deleteForm' => $deleteForm->createView()
         );
     }
@@ -121,6 +148,7 @@ class ArmyController extends Controller
      *
      * @Route("/action/new", name="army_new")
      * @Template()
+     * @Breadcrumb("New")
      */
     public function newAction()
     {
@@ -139,6 +167,7 @@ class ArmyController extends Controller
      * @Route("/action/create", name="army_create")
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Army:new.html.twig")
+     * @Breadcrumb("New")
      */
     public function createAction()
     {
@@ -171,6 +200,7 @@ class ArmyController extends Controller
      *
      * @Route("/{slug}/edit", name="army_edit")
      * @Template()
+     * @Breadcrumb("Edit")
      */
     public function editAction($slug)
     {
@@ -198,6 +228,7 @@ class ArmyController extends Controller
      * @Route("/{slug}/update", name="army_update")
      * @Method("POST")
      * @Template("SitiowebArmyCreatorBundle:Army:edit.html.twig")
+     * @Breadcrumb("Edit")
      */
     public function updateAction(Request $request, $slug)
     {
@@ -232,6 +263,7 @@ class ArmyController extends Controller
      *
      * @Route("/{slug}/delete", name="army_delete")
      * @Method("POST")
+     * @Breadcrumb("Delete")
      */
     public function deleteAction(Request $request, $slug)
     {

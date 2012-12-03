@@ -43,7 +43,7 @@ class Army
      * @var string
      * @access private
      *
-     * @Gedmo\Slug(fields={"name"}, unique=true)
+     * @Gedmo\Slug(fields={"name"}, unique=true, updatable=false)
      * @ORM\Column(length=255, unique=true)
      */
     private $slug;

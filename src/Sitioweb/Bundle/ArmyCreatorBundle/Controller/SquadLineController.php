@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -19,6 +20,8 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
  *
  * @Route("/army/{armySlug}/squadLine")
  * @Security\PreAuthorize("isFullyAuthenticated()")
+ * @Breadcrumb("Home", route="homepage")
+ * @Breadcrumb("My army list", route="army_list")
  */
 class SquadLineController extends Controller
 {
@@ -40,10 +43,16 @@ class SquadLineController extends Controller
         if ($unitGroup === null) {
             throw new NotFoundHttpException('Unit group not found');
         }
-        
-        // getting breed
-        $breed = $army->getBreed();
 
+        // breadcrumb
+        $this->setArmyBreadCrumb($army);
+        $this->get("apy_breadcrumb_trail")->add('New ' . $unitGroup->getUnitType()->getName(), 'squad_new', array(
+            'armySlug' => $army->getSlug(),
+            'unitTypeSlug' => $unitGroup->getUnitType()->getSlug()
+        ));
+        $this->get("apy_breadcrumb_trail")->add('New ' . $unitGroup->getName());
+        
+        // squad
         $squad = new Squad();
         $squad->convertUnitGroup($unitGroup);
 
@@ -51,10 +60,29 @@ class SquadLineController extends Controller
         
         return array(
             'army' => $army,
-            'breed' => $breed,
+            'breed' => $army->getBreed(),
             'currentUnitType' => $unitGroup->getUnitType(),
             'form' => $form->createView(),
         );
+    }
+
+    /**
+     * setArmyBreadCrumb
+     *
+     * @access public
+     * @return void
+     */
+    public function setArmyBreadCrumb($army)
+    {
+        // Breadcrumb
+        if ($army->getArmyGroup() !== null) {
+            $this->get("apy_breadcrumb_trail")->add(
+                $army->getArmyGroup()->getName(),
+                'army_group_list',
+                array('groupId' =>  $army->getArmyGroup()->getId())
+            );
+        }
+        $this->get("apy_breadcrumb_trail")->add($army->getName(), 'army_detail', array('slug' =>  $army->getSlug()));
     }
 }
 

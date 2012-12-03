@@ -10,22 +10,6 @@
 {% block h1Container %}
 {% endblock %}
 
-{% block breadcrumb %}
-    <section id="breadcrumb">
-        <ul class="inline">
-            <li class="first">
-                <a href="{{ path('homepage') }}">Accueil</a>
-            </li>
-            <li>
-                <a href="{{ path('army_list') }}">My army list</a>
-            </li>
-            <li class="last">
-                <a href="{{ path('army_detail', { 'slug' : army.slug } ) }}">{{ army.name }}</a>
-            </li>
-        </ul>
-    </section>
-{% endblock %}
-
 {% block content %}
 <header>
     <aside class="action">
@@ -128,9 +112,11 @@
                                     Edit
                                 </a>
 
-                                <a href="#">
-                                    Delete
-                                </a>
+                                <form action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}" method="post">
+                                    {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
+                                    {{ form_widget(deleteSquadForm.createView) }}
+                                    <button class="acButton" type="submit">Delete</button>
+                                </form>
                             </footer>
                         </li>
                 {% endfor %}
