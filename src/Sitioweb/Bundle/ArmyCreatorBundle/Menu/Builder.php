@@ -30,8 +30,8 @@ class Builder extends ContainerAware
         $menu->addChild('Home', array('route' => 'homepage'));
         $menu->addChild('Forum', array('uri' => '/forum/index.php'));
         if ($isAuth) {
-            $menu->addChild('My army list', array('route' => 'army_list'));
-            $menu->addChild('My games', array('route' => 'homepage'));
+            $menu->addChild('My army list', array('route' => ''));
+            $menu->addChild('My games', array('route' => ''));
         }
 
         return $menu;
@@ -52,10 +52,10 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
 
         if ($isAuth) {
-            $menu->addChild('My collection', array('route' => 'army_list'));
+            $menu->addChild('My collection', array('route' => ''));
         }
-        $menu->addChild('Public lists', array('route' => 'homepage'));
-        $menu->addChild('Tools', array('route' => 'homepage'));
+        $menu->addChild('Public lists', array('route' => ''));
+        $menu->addChild('Tools', array('route' => ''));
         $menu->addChild('Donation', array('uri' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG'));
 
         return $menu;

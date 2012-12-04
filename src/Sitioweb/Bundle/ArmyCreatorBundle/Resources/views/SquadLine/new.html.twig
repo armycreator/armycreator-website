@@ -4,12 +4,17 @@
     <form action="{{ path('squad_create', {'armySlug' : army.slug, 'unitGroupId' : app.request.get('unitGroupId')}) }}" method="post" {{ form_enctype(form) }}>
         {{ form_row(form.name) }}
 
-        <ul>
+        <ul class="inline unitList">
             {% for squadLine in form.squadLineList %}
-                <li>
-                    {{ squadLine.vars.value.unit.name }}
-                    {{ form_row(squadLine.number) }}
-                    {{ form_rest(squadLine) }}
+                <li class="unit">
+                    <div class="unitName">
+                        <h4>{{ squadLine.vars.value.unit.name }}</h4>
+                        {{ form_row(squadLine.number) }}
+                    </div>
+
+                    <div class="stuffList">
+                        {{ form_rest(squadLine) }}
+                    </div>
                 </li>
             {% endfor %}
         </ul>

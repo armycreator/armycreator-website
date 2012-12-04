@@ -116,6 +116,7 @@ class ArmyController extends Controller
         $deleteForm = $this->createDeleteForm($army->getId());
 
         $squadList = $army->getSquadList();
+        $deleteSquadListForm = array();
         foreach ($squadList as $squad) {
             $deleteSquadListForm[$squad->getId()] = $this->createDeleteForm($squad->getId());
         }

@@ -68,7 +68,9 @@
                         <form action="{{ path('army_delete', { 'slug': army.slug }) }}" method="post">
                             {% set deleteArmyForm = deleteArmyListForm[army.id] %}
                             {{ form_widget(deleteArmyForm.createView) }}
-                            <button class="acButton" type="submit">Delete</button>
+                            <button class="acButton" type="submit" onclick="return confirm('Delete this army ?');">
+                                <span>Delete</span>
+                            </button>
                         </form>
                     </td>
                 </tr>

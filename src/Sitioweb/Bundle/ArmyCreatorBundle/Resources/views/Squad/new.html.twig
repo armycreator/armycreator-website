@@ -11,28 +11,28 @@
             <div>
                 Squad Stuff
             </div>
-        <nav>
+        </nav>
     {% endblock %}
 
-    {% block squadAddContent %}
-        {% for unitType in breed.unitTypeList %}
-            <div>
-                <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug}) }}" title="{{ unitType.name }}">
-                    {{ unitType.name }}
-                </a>
-            </div>
-        {% endfor %}
-
-        <ul>
-            {% for unitGroup in currentUnitType.unitGroupList %}
-                <li>
-                    <a href="{{ path('squad_line_new', {'armySlug' : army.slug, 'unitGroupId' : unitGroup.id}) }}" title="{{ unitGroup.name }}">
-                        {{ unitGroup.name }}
-                     </a>
-                </li>
+    <section class="squadAddContent">
+        {% block squadAddContent %}
+            {% for unitType in breed.unitTypeList %}
+                <div>
+                    <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug}) }}" title="{{ unitType.name }}">
+                        {{ unitType.name }}
+                    </a>
+                </div>
             {% endfor %}
-        </ul>
 
-        Name this squad : ...
-    {% endblock %}
+            <ul>
+                {% for unitGroup in currentUnitType.unitGroupList %}
+                    <li>
+                        <a href="{{ path('squad_line_new', {'armySlug' : army.slug, 'unitGroupId' : unitGroup.id}) }}" title="{{ unitGroup.name }}">
+                            {{ unitGroup.name }}
+                         </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endblock %}
+    </section>
 {% endblock %}
