@@ -365,25 +365,28 @@ class Squad
     }
 
     /**
-     * convertUnitGroup
+     * mapUnitGroup
      *
      * @param UnitGroup $unitGroup
+     * @param boolean $cascade (default:false)
      * @access public
      * @return $this
      */
-    public function convertUnitGroup(UnitGroup $unitGroup)
+    public function mapUnitGroup(UnitGroup $unitGroup, $cascade = false)
     {
         $this->setName($unitGroup->getName());
         $this->setUnitType($unitGroup->getUnitType());
         $this->setUnitGroup($unitGroup);
 
-        $unitHasUnitGroupList = $unitGroup->getUnitHasUnitGroupList();
-        foreach ($unitHasUnitGroupList as $unitHasUnitGroup) {
-            $squadLine = new SquadLine();
-            $squadLine->convertUnitHasUnitGroup($unitHasUnitGroup);
-            $squadLine->setSquad($this);
+        if ($cascade === true) {
+            $unitHasUnitGroupList = $unitGroup->getUnitHasUnitGroupList();
+            foreach ($unitHasUnitGroupList as $unitHasUnitGroup) {
+                $squadLine = new SquadLine();
+                $squadLine->mapUnitHasUnitGroup($unitHasUnitGroup, $cascade);
+                $squadLine->setSquad($this);
 
-            $this->addSquadLineList($squadLine);
+                $this->addSquadLineList($squadLine);
+            }
         }
         
         return $this;

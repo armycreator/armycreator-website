@@ -30,7 +30,7 @@ class Builder extends ContainerAware
         $menu->addChild('Home', array('route' => 'homepage'));
         $menu->addChild('Forum', array('uri' => '/forum/index.php'));
         if ($isAuth) {
-            $menu->addChild('My army list', array('route' => ''));
+            $menu->addChild('My army list', array('route' => 'army_list'));
             $menu->addChild('My games', array('route' => ''));
         }
 

@@ -54,7 +54,14 @@ class SquadLineController extends Controller
         
         // squad
         $squad = new Squad();
-        $squad->convertUnitGroup($unitGroup);
+        $squad->mapUnitGroup($unitGroup, true);
+        $squadLineList = $squad->getSquadLineList()->toArray();
+        foreach ($squadLineList as $squadLine) {
+        ladybug_dump($squadLine->getSquadLineStuffList()->toArray());
+        }
+
+        
+        
 
         $form = $this->createForm(new SquadType(), $squad);
         

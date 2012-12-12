@@ -334,13 +334,14 @@ class SquadLine
     }
 
     /**
-     * convertUnitHasUnitGroup
+     * mapUnitHasUnitGroup
      *
      * @param UnitHasUnitGroup $unitHasUnitGroup
+     * @param boolean $cascade (default:false)
      * @access public
      * @return $this
      */
-    public function convertUnitHasUnitGroup(UnitHasUnitGroup $unitHasUnitGroup)
+    public function mapUnitHasUnitGroup(UnitHasUnitGroup $unitHasUnitGroup, $cascade = false)
     {
         $this->setNumber($unitHasUnitGroup->getUnitNumber());
         if ($unitHasUnitGroup->getMainUnit()) {
@@ -349,6 +350,17 @@ class SquadLine
             $this->setPosition(2);
         }
         $this->setUnit($unitHasUnitGroup->getUnit());
+
+        if ($cascade === true) {
+            $unitStuffList = $unitHasUnitGroup->getUnit()->getUnitStuffList();
+            foreach ($unitStuffList as $unitStuff) {
+                $squadLineStuff = new SquadLineStuff();
+                $squadLineStuff->setSquadLine($this);
+                $squadLineStuff->mapUnitStuff($unitStuff);
+
+                $this->addSquadLineStuffList($squadLineStuff);
+            }
+        }
 
         return $this;
     }

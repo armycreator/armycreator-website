@@ -29,6 +29,13 @@ class SquadLineStuff
     private $number;
 
     /**
+     * @var boolean $asManyAsUnit
+     *
+     * @ORM\Column(name="asManyAsUnit", type="boolean")
+     */
+    private $asManyAsUnit;
+
+    /**
      * unitStuff
      * 
      * @var UnitStuff
@@ -95,6 +102,29 @@ class SquadLineStuff
     }
 
     /**
+     * Set asManyAsUnit
+     *
+     * @param boolean $asManyAsUnit
+     * @return UnitStuff
+     */
+    public function setAsManyAsUnit($asManyAsUnit)
+    {
+        $this->asManyAsUnit = $asManyAsUnit;
+    
+        return $this;
+    }
+
+    /**
+     * Get asManyAsUnit
+     *
+     * @return boolean 
+     */
+    public function getAsManyAsUnit()
+    {
+        return $this->asManyAsUnit;
+    }
+
+    /**
      * Set unitStuff
      *
      * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuff
@@ -138,5 +168,21 @@ class SquadLineStuff
     public function getSquadLine()
     {
         return $this->squadLine;
+    }
+
+    /**
+     * mapUnitStuff
+     *
+     * @param UnitStuff $unitStuff
+     * @access public
+     * @return $this
+     */
+    public function mapUnitStuff(UnitStuff $unitStuff) {
+        $this->setUnitStuff($unitStuff);
+
+        $this->setAsManyAsUnit($unitStuff->getAuto());
+
+        $this->setNumber($this->getSquadLine()->getNumber());
+        return $this;
     }
 }
