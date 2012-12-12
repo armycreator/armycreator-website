@@ -62,7 +62,7 @@ class SquadLine
      * @var array<SquadLineStuff>
      * @access private
      *
-	 * @ORM\OneToMany(targetEntity="SquadLineStuff", mappedBy="squadLine")
+	 * @ORM\OneToMany(targetEntity="SquadLineStuff", mappedBy="squadLine", cascade={"all"}, orphanRemoval=true)
      */
     private $squadLineStuffList;
 
@@ -330,6 +330,15 @@ class SquadLine
      */
     public function preUpdate()
     {
+        $squadLineStuffList = $this->getSquadLineStuffList();
+
+        foreach ($squadLineStuffList as $squadLineStuff) {
+            $squadLineStuff->preUpdate();
+            if ($squadLineStuff->getNumber() <= 0) {
+                $this->removeSquadLineStuffList($squadLineStuff);
+            }
+        }
+
         $this->setUpdateDate(new \DateTime());
     }
 

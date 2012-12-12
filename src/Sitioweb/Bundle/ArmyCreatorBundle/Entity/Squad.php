@@ -414,7 +414,7 @@ class Squad
 
             if ($contains === false) {
                 $squadLine = new SquadLine();
-                $squadLine->convertUnitHasUnitGroup($unitHasUnitGroup);
+                $squadLine->mapUnitHasUnitGroup($unitHasUnitGroup, true);
                 $squadLine->setSquad($this);
 
                 $this->addSquadLineList($squadLine);

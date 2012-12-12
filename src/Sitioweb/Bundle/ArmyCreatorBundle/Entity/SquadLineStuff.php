@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLineStuff
  *
  * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity
  */
 class SquadLineStuff
@@ -168,6 +169,21 @@ class SquadLineStuff
     public function getSquadLine()
     {
         return $this->squadLine;
+    }
+
+    /**
+     * preUpdate
+     *
+     * @access public
+     * @return void
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        if ($this->getAsManyAsUnit()) {
+            $this->setNumber($this->getSquadLine()->getNumber());
+        }
     }
 
     /**

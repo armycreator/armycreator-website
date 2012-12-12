@@ -11,7 +11,7 @@ class SquadLineStuffType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('number', 'integer');
-        $builder->add('auto', 'checkbox', array('label' => 'As many as unit'));
+        $builder->add('asManyAsUnit', 'checkbox', array('required' => false, 'label' => 'As many as unit'));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

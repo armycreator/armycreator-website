@@ -100,7 +100,7 @@ class SquadController extends Controller
         }
        
         $entity  = new Squad();
-        $entity->convertUnitGroup($unitGroup);
+        $entity->mapUnitGroup($unitGroup, true);
         
 
         $form    = $this->createForm(new SquadType(), $entity);
