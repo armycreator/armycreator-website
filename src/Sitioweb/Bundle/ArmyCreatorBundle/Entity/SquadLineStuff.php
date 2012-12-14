@@ -56,6 +56,12 @@ class SquadLineStuff
      */
     private $squadLine;
 
+
+    public function __construct()
+    {
+        $this->number = 0;
+    }
+
     /**
      * setId
      *
@@ -177,7 +183,6 @@ class SquadLineStuff
      * @access public
      * @return void
      * @ORM\PrePersist
-     * @ORM\PreUpdate
      */
     public function preUpdate()
     {
@@ -198,7 +203,9 @@ class SquadLineStuff
 
         $this->setAsManyAsUnit($unitStuff->getAuto());
 
-        $this->setNumber($this->getSquadLine()->getNumber());
+        if ($this->getAsManyAsUnit()) {
+            $this->setNumber($this->getSquadLine()->getNumber());
+        }
         return $this;
     }
 }

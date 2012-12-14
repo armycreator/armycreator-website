@@ -555,6 +555,24 @@ class Army
     }
 
     /**
+     * generatePoints
+     *
+     * @access public
+     * @return void
+     */
+    public function generatePoints()
+    {
+        $squadList = $this->getSquadList();
+
+        $points = 0;
+        foreach ($squadList as $squad) {
+            $points += $squad->getPoints();
+        }
+        $this->setPoints($points);
+        return $points;
+    }
+
+    /**
      * __toString
      *
      * @access public

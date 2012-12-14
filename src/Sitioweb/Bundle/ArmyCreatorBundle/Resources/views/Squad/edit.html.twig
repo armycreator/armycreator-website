@@ -4,21 +4,51 @@
 
 {% block squadAddContent %}
     <form action="{{ path('squad_update', {'armySlug' : army.slug, 'id' : entity.id}) }}" method="post" {{ form_enctype(form) }}>
-        {{ form_errors(form) }}
+        {% block squadLineList %}
 
-        {{ form_row(form.name) }}
+            {{ form_row(form.name) }}
+            
+            {% if form.squadLineList %}
+                <section class="unitList">
+                    {% for squadLine in form.squadLineList %}
+                        <div class="unit">
+                            <div class="unitName">
+                                <h4>
+                                    <aside class="number">
+                                        {{ form_widget(squadLine.number) }}
+                                    </aside>
+                                    {{ squadLine.vars.value.unit.name }}
+                                    <span>({{ squadLine.vars.value.unit.points }} pts)</span>
+                                </h4>
+                            </div>
 
-        <ul>
-            {% for squadLine in form.squadLineList %}
-                <li>
-                    {{ squadLine.vars.value.unit.name }}
-                    {{ form_row(squadLine.number) }}
-                    {{ form_rest(squadLine) }}
-                </li>
-            {% endfor %}
-        </ul>
+                            <div class="stuffList">
+                                {% for squadLineStuff in squadLine.squadLineStuffList %}
+                                    <div class="stuffListItem row">
+                                        <div class="stuffName">
+                                            {{ squadLineStuff.vars.value.unitStuff.stuff.name }}
+                                            <span>({{ squadLineStuff.vars.value.unitStuff.points }} pts)</span>
+                                        </div>
+                                        <aside class="number">
+                                            {{ form_widget(squadLineStuff.number) }}
+                                        </aside>
+                                        <aside class="asManyAsUnit">
+                                            {{ form_widget(squadLineStuff.asManyAsUnit) }}
+                                        </aside>
+
+                                        {{ form_rest(squadLineStuff) }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            {{ form_rest(squadLine) }}
+                        </div>
+                    {% endfor %}
+                </section>
+            {% endif %}
+        {% endblock %}
 
         {{ form_rest(form) }}
+
         <p>
             <button type="submit">Edit</button>
             <a href="{{ path('army_detail', {'slug' : army.slug}) }}">Back to army</a>

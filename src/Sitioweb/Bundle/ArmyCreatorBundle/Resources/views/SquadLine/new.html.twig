@@ -1,39 +1,14 @@
-{% extends 'SitiowebArmyCreatorBundle:Squad:new.html.twig' %}
+{% extends 'SitiowebArmyCreatorBundle:Squad:edit.html.twig' %}
+
+{% block title %}Squad line edit{% endblock %}
 
 {% block squadAddContent %}
     <form action="{{ path('squad_create', {'armySlug' : army.slug, 'unitGroupId' : app.request.get('unitGroupId')}) }}" method="post" {{ form_enctype(form) }}>
-        {{ form_row(form.name) }}
 
-        {% if form.squadLineList %}
-            <ul class="inline unitList">
-                {% for squadLine in form.squadLineList %}
-                    <li class="unit">
-                        <div class="unitName">
-                            <h4>{{ squadLine.vars.value.unit.name }}</h4>
-                            {{ form_row(squadLine.number) }}
-                        </div>
-
-                        <div class="stuffList">
-                            {% for squadLineStuff in squadLine.squadLineStuffList %}
-                                <div class="stuffListItem">
-                                    <h5>
-                                        {{ squadLineStuff.vars.value.unitStuff.stuff.name }}
-                                        <span>({{ squadLineStuff.vars.value.unitStuff.points }} pts)</span>
-                                    </h5>
-                                    {{ form_row(squadLineStuff.number) }}
-                                    {{ form_row(squadLineStuff.asManyAsUnit) }}
-
-                                    {{ form_rest(squadLineStuff) }}
-                                </div>
-                            {% endfor %}
-                        </div>
-                        {{ form_rest(squadLine) }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+        {{ block('squadLineList') }}
 
         {{ form_rest(form) }}
+
         <p>
             <button type="submit">Create</button>
         </p>

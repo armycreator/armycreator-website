@@ -124,6 +124,9 @@ class SquadLine
     public function setNumber($number)
     {
         $this->number = $number;
+
+        $squadLineStuffList = $this->getSquadLineStuffList();
+        $this->preUpdate();
     
         return $this;
     }
@@ -331,11 +334,11 @@ class SquadLine
     public function preUpdate()
     {
         $squadLineStuffList = $this->getSquadLineStuffList();
-
         foreach ($squadLineStuffList as $squadLineStuff) {
-            $squadLineStuff->preUpdate();
             if ($squadLineStuff->getNumber() <= 0) {
                 $this->removeSquadLineStuffList($squadLineStuff);
+            } else {
+                $squadLineStuff->preUpdate();
             }
         }
 
@@ -363,6 +366,40 @@ class SquadLine
         if ($cascade === true) {
             $unitStuffList = $unitHasUnitGroup->getUnit()->getUnitStuffList();
             foreach ($unitStuffList as $unitStuff) {
+                $squadLineStuff = new SquadLineStuff();
+                $squadLineStuff->setSquadLine($this);
+                $squadLineStuff->mapUnitStuff($unitStuff);
+
+                $this->addSquadLineStuffList($squadLineStuff);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * addEmptySquadLineStuff
+     *
+     * @access public
+     * @return void
+     */
+    public function addEmptySquadLineStuff()
+    {
+        
+        $unit = $this->getUnit();
+        $unitStuffList = $unit->getUnitStuffList();
+        $squadLineStuffList = $this->getSquadLineStuffList();
+
+        foreach ($unitStuffList as $unitStuff) {
+            $contains = false;
+            foreach ($squadLineStuffList as $squadLineStuff) {
+                if ($squadLineStuff->getUnitStuff() === $unitStuff) {
+                    $contains = true;
+                    break;
+                }
+            }
+
+            if ($contains === false) {
                 $squadLineStuff = new SquadLineStuff();
                 $squadLineStuff->setSquadLine($this);
                 $squadLineStuff->mapUnitStuff($unitStuff);

@@ -358,6 +358,8 @@ class Squad
             
             if ($squadLine->getNumber() <= 0) {
                 $this->removeSquadLineList($squadLine);
+            } else {
+                $squadLine->preUpdate();
             }
         }
 
@@ -408,6 +410,7 @@ class Squad
             foreach ($squadLineList as $squadLine) {
                 if ($squadLine->getUnit() === $unitHasUnitGroup->getUnit()) {
                     $contains = true;
+                    $squadLine->addEmptySquadLineStuff();
                     break;
                 }
             }
@@ -419,6 +422,7 @@ class Squad
 
                 $this->addSquadLineList($squadLine);
             }
+
         }
 
         return $this;

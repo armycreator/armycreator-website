@@ -112,6 +112,10 @@ class ArmyController extends Controller
         // get unit type list
         $unitTypeList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitType')->findByBreed($army->getBreed());
 
+        // update army points
+        $army->generatePoints();
+        $this->get('doctrine')->getManager()->flush();
+
         // delete form
         $deleteForm = $this->createDeleteForm($army->getId());
 

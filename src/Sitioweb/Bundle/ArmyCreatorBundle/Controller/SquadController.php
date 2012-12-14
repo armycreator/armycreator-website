@@ -81,7 +81,7 @@ class SquadController extends Controller
      *
      * @Route("/create/{unitGroupId}", requirements={"id" = "\d+"}, name="squad_create")
      * @Method("post")
-     * @Template()
+     * @Template("SitiowebArmyCreatorBundle:SquadLine:new.html.twig")
      */
     public function createAction($armySlug, $unitGroupId)
     {
@@ -122,7 +122,10 @@ class SquadController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'army' => $army,
+            'breed' => $army->getBreed(),
+            'currentUnitType' => $unitGroup->getUnitType(),
+            'form' => $form->createView(),
         );
     }
 

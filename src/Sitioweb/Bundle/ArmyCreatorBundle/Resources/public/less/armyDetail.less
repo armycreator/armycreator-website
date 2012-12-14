@@ -36,19 +36,56 @@
 
 .squadAddContent {
     background: @contentFullBackgroundColor;
-    .unitList .unit {
-        float: left; verflow: hidden; margin: 0 0.8em 0.8em 0;
-        h5 { margin-bottom: 0.5em  }
-        // &:hover { height: auto }
-        .unitName {
-            background: @squadNameBackgroundColor;
-            position: relative; overflow: hidden; line-height: 28px; margin-bottom: 2px; padding: 0 0.8em;
-            span { color: @unitTypeForegroundColor; }
+    .unitList {
+        display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; justify-content: stretch;
+        overflow: auto;
+        .unit {
+            width: 24%; float: left;
+            margin: 0 1% 0.8em 0;
+            h5 { margin-bottom: 0.5em  }
+            &:nth-child(4n) { width: 25%; margin-right: 0 }
+            &:nth-child(4n+1) { clear: both }
+            // &:hover { height: auto }
+            .unitName {
+                background: @squadNameBackgroundColor;
+                position: relative; overflow: hidden; line-height: 28px; margin-bottom: 2px; padding: .4em .8em;
+                span { color: @unitTypeForegroundColor; }
+                .number {
+                    float: right;
+                }
+            }
+
+            .stuffList {
+                background: @squadBackgroundColor;
+                margin-bottom: 2px; padding: 5px 8px;
+                .stuffListItem {
+                    table-layout: auto;
+                    > * { padding: .2em }
+                }
+                .stuffName { width: 100% }
+            }
+
+            .number {
+                input { width: 3.5em }
+            }
         }
 
-        .stuffList {
-            background: @squadBackgroundColor;
-            margin-bottom: 2px; padding: 5px 8px;
-        }
     }
 }
+
+@media (min-width: @maxPhoneWidth) and (max-width: @maxTabletWidth) {
+    .squadAddContent .unitList .unit {
+        width: 49%; margin-right: 2%;
+       &:nth-child(2n) { margin-right: 0 }
+       &:nth-child(2n+1) { clear: both }
+    }
+}
+
+
+@media (max-width: @maxPhoneWidth) {
+    .squadAddContent .unitList .unit {
+        width: 100%; margin-right: 0;
+    }
+}
+
+
