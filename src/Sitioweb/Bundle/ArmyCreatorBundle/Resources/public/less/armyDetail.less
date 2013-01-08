@@ -11,19 +11,26 @@
         .unitType {
             display: table-cell; width: 120px;  background: @unitTypeBackgroundColor; color: @unitTypeForegroundColor; position: relative; overflow: hidden; vertical-align: top;
         }
-        .squadList .squad {
-            float: left; width: 240px; overflow: hidden; margin: 0 0.8em 0.8em 0;
-            h5 { margin-bottom: 0.5em  }
-            // &:hover { height: auto }
-            .squadName {
-                background: @squadNameBackgroundColor;
-                position: relative; overflow: hidden; line-height: 28px; margin-bottom: 2px; padding: 0 0.8em;
-                span { color: @unitTypeForegroundColor; }
-            }
+        .squadListContainer {
+            padding: 0
+        }
+        .squadList {
+            display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; justify-content: stretch;
+            overflow: auto;
+            .squad {
+                width: 240px; overflow: hidden; margin: 0 0.8em 0.8em 0;
+                h5 { margin-bottom: 0.5em  }
+                // &:hover { height: auto }
+                .squadName {
+                    background: @squadNameBackgroundColor;
+                    position: relative; overflow: hidden; line-height: 28px; margin-bottom: 2px; padding: 0 0.8em;
+                    span { color: @unitTypeForegroundColor; }
+                }
 
-            .squadLine {
-                background: @squadBackgroundColor;
-                margin-bottom: 2px; padding: 5px 8px;
+                .squadLine {
+                    background: @squadBackgroundColor;
+                    margin-bottom: 2px; padding: 5px 8px;
+                }
             }
         }
         .stick {

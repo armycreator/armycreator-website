@@ -12,14 +12,14 @@
         "doctrine/doctrine-bundle": "1.0.*",
         "stof/doctrine-extensions-bundle": "dev-master",
         "twig/extensions": "1.0.*",
+        "symfony/assetic-bundle": "2.1.*",
+        "symfony/swiftmailer-bundle": "2.1.*",
         "symfony/monolog-bundle": "2.1.*",
         "sensio/distribution-bundle": "2.1.*",
         "sensio/framework-extra-bundle": "2.1.*",
         "sensio/generator-bundle": "2.1.*",
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
-        "symfony/assetic-bundle": "2.1.*",
-        "symfony/swiftmailer-bundle": "2.1.*",
 
 		"jms/debugging-bundle": "dev-master",
 		"raulfraile/LadybugBundle": "dev-master",
@@ -28,8 +28,11 @@
 
         "elnur/blowfish-password-encoder-bundle": "dev-master",
         "knplabs/knp-menu-bundle":"dev-master",
-		"friendsofsymfony/user-bundle": "*"
+		"friendsofsymfony/user-bundle": "*",
+
+        "aristath/elusive-iconfont" : "dev-master"
     },
+
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
@@ -59,6 +62,18 @@
 				"name": "raphaelgoetter/knacss",
 				"source": {
 					"url": "https://github.com/raphaelgoetter/KNACSS.git",
+					"type": "git",
+					"reference": "master"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
+				"version": "master",
+				"name": "aristath/elusive-iconfont",
+				"source": {
+					"url": "https://github.com/aristath/elusive-iconfont.git",
 					"type": "git",
 					"reference": "master"
 				}
