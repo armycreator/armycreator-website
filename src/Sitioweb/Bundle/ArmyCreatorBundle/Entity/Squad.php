@@ -402,7 +402,11 @@ class Squad
      */
     public function addEmptySquadLine()
     {
-        $unitHasUnitGroupList = $this->getUnitGroup()->getUnitHasUnitGroupList();
+        if ($this->getUnitGroup()) {
+            $unitHasUnitGroupList = $this->getUnitGroup()->getUnitHasUnitGroupList();
+        } else {
+            $unitHasUnitGroupList = array();
+        }
         $squadLineList = $this->getSquadLineList();
 
         foreach ($unitHasUnitGroupList as $unitHasUnitGroup) {

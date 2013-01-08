@@ -13,21 +13,14 @@
 {% block content %}
 <header>
     <aside class="action">
-        <a href="#">
-            Print list
+        <a href="javascript:window.print();" class="acButton" accesskey="p" title="{{ 'army.detail.print'|trans }}">
+            <i class="icon-print"></i>
+            {{ 'army.detail.print'|trans }}
         </a>
-        <a href="#">
-            Share list
+        <a href="#" class="acButton">
+            <i class="icon-share"></i>
+            {{ 'army.detail.share'|trans }}
         </a>
-        <a href="{{ path('army_edit', { 'slug' : army.slug }) }}">
-            Edit list
-        </a>
-        {% if deleteForm is defined %}
-            <form action="{{ path('army_delete', { 'slug': army.slug }) }}" method="post">
-                {{ form_widget(deleteForm) }}
-                <button type="submit">Delete army</button>
-            </form>
-        {% endif %}
     </aside>
 
     <figure class="breed">
@@ -42,6 +35,24 @@
         <h1 class="name">
             {{ army.name }} | 
             {{ army.breed.name }}
+
+            <a href="{{ path('army_edit', { 'slug' : army.slug }) }}" class="acButton acButtonSmall">
+                <i class="icon-pencil"></i>
+            </a>
+
+            {% if deleteForm is defined %}
+                <form
+                    action="{{ path('army_delete', { 'slug': army.slug }) }}"
+                    method="post"
+                    class="inbl"
+                    onsubmit="javascript:return confirm('{% trans %}army.detail.delete{% endtrans %}');"
+                >
+                    {{ form_widget(deleteForm) }}
+                    <button type="submit" class="acButton acButtonSmall">
+                        <i class="icon-remove"></i>
+                    </button>
+                </form>
+            {% endif %}
         </h1>
 
         {% if army.wantedPoints > 0 %}
@@ -53,10 +64,12 @@
             </div>
         {% endif %}
 
-        <div class="description">
-            <span>Description :</span>
-            {{ army.description }}
-        </div>
+        {% if army.description %}
+            <div class="description">
+                <span>Description :</span>
+                {{ army.description }}
+            </div>
+        {% endif %}
     </div>
 </header>
 
@@ -85,27 +98,34 @@
                     <section class="squadList">
                         {% for squad in tmp.squadList %}
                                 <div class="squad">
-                                    <h4 class="squadName">
-                                        <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
-                                        {{ squad.name|default('Squad ' ~ loop.index) }}
-                                        <span>
-                                            {{ squad.points }} pts
-                                        </span>
+                                    <div class="squadName">
+                                        <h4>
+                                            <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
+                                            {{ squad.name|default('Squad ' ~ loop.index) }}
+                                            <span>
+                                                {{ squad.points }} pts
+                                            </span>
+                                        </h4>
 
-                                        <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
-                                            <i class="icon-pencil"></i>
-                                            {{ 'army.detail.squad.edit'|trans }}
-                                        </a>
+                                        <aside class="actions">
+                                            <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
+                                                <i class="icon-pencil"></i>
+                                            </a>
 
-                                        <form action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}" method="post">
-                                            {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
-                                            {{ form_widget(deleteSquadForm.createView) }}
-                                            <button class="acButton" type="submit">
-                                                <i class="icon-remove"></i>
-                                                {{ 'army.detail.squad.delete'|trans }}
-                                            </button>
-                                        </form>
-                                    </h4>
+                                            <form
+                                                action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}"
+                                                method="post"
+                                                class="inbl"
+                                                onsubmit="javascript:return confirm('{% trans %}army.detail.squad.delete{% endtrans %}');"
+                                            >
+                                                {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
+                                                {{ form_widget(deleteSquadForm.createView) }}
+                                                <button class="acButton" type="submit">
+                                                    <i class="icon-remove"></i>
+                                                </button>
+                                            </form>
+                                        </aside>
+                                    </div>
 
                                     <div>
                                         {% for squadLine in squad.squadLineList %}
@@ -129,6 +149,7 @@
 
                         <div>
                             <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug}) }}" class="acButton">
+                                <i class="icon-plus"></i>
                                 {{ 'army.detail.squad.add'|trans }}
                             </a>
                         </div>

@@ -13,6 +13,7 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
     || !in_array(@$_SERVER['REMOTE_ADDR'], array(
         '127.0.0.1',
         '109.190.123.28',
+        '81.185.30.31',
         '::1',
     ))
 ) {

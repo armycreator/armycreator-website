@@ -8,7 +8,7 @@
 		{% block websiteHeaderBar %}
 			<div class="headerBar">
                 <a href="{{ path('homepage') }}" title="Army Creator">
-                    Picto accueil
+                    <i class="icon-home"></i>
                 </a>
                 |
                 Bienvenue sur Army Creator
@@ -27,7 +27,7 @@
                     {% endif %}
                     | 
                     <a href="#">
-                        Aide
+                        <i class="icon-question-sign"></i>
                     </a>
                 </span>
             </div>
@@ -99,4 +99,11 @@
 		filter='less,cssrewrite' output='css/global.css' %}
 		 <link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
+
+	{% stylesheets 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/print.less' 
+		filter='less,cssrewrite' output='css/print.css' %}
+		 <link rel="stylesheet" href="{{ asset_url }}" media="print" />
+     {% endstylesheets %}
+
 {% endblock %}

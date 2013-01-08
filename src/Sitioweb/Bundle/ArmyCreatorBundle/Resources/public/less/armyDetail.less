@@ -16,14 +16,15 @@
         }
         .squadList {
             display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; justify-content: stretch;
-            overflow: auto;
             .squad {
                 width: 240px; overflow: hidden; margin: 0 0.8em 0.8em 0;
                 h5 { margin-bottom: 0.5em  }
                 // &:hover { height: auto }
                 .squadName {
                     background: @squadNameBackgroundColor;
-                    position: relative; overflow: hidden; line-height: 28px; margin-bottom: 2px; padding: 0 0.8em;
+                    position: relative; overflow: hidden;
+                    h4 { line-height: 28px; margin-bottom: 2px; padding: 0 0.8em; }
+                    .actions { padding: 0 .8em .5em; text-align: right; }
                     span { color: @unitTypeForegroundColor; }
                 }
 

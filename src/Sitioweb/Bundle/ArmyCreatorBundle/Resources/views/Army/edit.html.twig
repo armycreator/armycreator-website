@@ -1,19 +1,21 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block title %}Army edit{% endblock %}
+{% block title %}
+    {% trans %}army.edit.title{% endtrans %}
+{% endblock %}
 
 {% block content %}
 <form action="{{ path('army_update', { 'slug': entity.slug }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}
     <p>
-        <button type="submit">Edit</button>
+        <button type="submit">{{ 'army.edit.edit'|trans }}</button>
     </p>
 </form>
 
 <ul class="record_actions">
     <li>
         <a href="{{ path('army_detail', {'slug' : entity.slug }) }}">
-            Back to the list
+            {{ 'army.edit.back_to_army_list'|trans }}
         </a>
     </li>
     <li>

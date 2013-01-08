@@ -82,7 +82,7 @@ class ArmyController extends Controller
      * @access public
      * @return void
      *
-     * @Route("/{slug}", name="army_detail")
+     * @Route("/{slug}/", name="army_detail")
      * @Template()
      * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      */
