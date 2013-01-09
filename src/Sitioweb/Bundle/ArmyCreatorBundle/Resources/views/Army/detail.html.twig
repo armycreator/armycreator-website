@@ -73,90 +73,98 @@
     </div>
 </header>
 
-<section id="armyDetail">
+<section id="armyDetailContainer">
     {% block armyDetail %}
-        {# ===== Unit Type length ===== #}
-        <div class="unitTypeTopList">
-            {% for tmp in army.squadListByType %}
-                <div>
-                    <a href="#unitType{{ tmp.unitType.id }}">
-                        {{ tmp.squadList|length }} {{ tmp.unitType.name }}
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+        <div id="armyDetail">
+            {# ===== Unit Type length ===== #}
+            <div class="unitTypeTopList">
+                {% for tmp in army.squadListByType %}
+                    <div>
+                        <a href="#unitType{{ tmp.unitType.id }}">
+                            {{ tmp.squadList|length }} {{ tmp.unitType.name }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
 
-        {# ===== Squad List ===== #}
-        {% for tmp in army.squadListByType %}
-            <section class="unitTypeList row gut" id="unitType{{ tmp.unitType.id }}">
-                <h3 class="unitType col">
-                    <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
-                    {{ tmp.unitType.name }}
-                    <div>{{ tmp.points }} pts</div>
-                </h3>
-                <div class="col squadListContainer">
-                    <section class="squadList">
-                        {% for squad in tmp.squadList %}
-                                <div class="squad">
-                                    <div class="squadName">
-                                        <h4>
-                                            <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
-                                            {{ squad.name|default('Squad ' ~ loop.index) }}
-                                            <span>
-                                                {{ squad.points }} pts
-                                            </span>
-                                        </h4>
+            {# ===== Squad List ===== #}
+            {% for tmp in army.squadListByType %}
+                <section class="unitTypeList row gut" id="unitType{{ tmp.unitType.id }}">
+                    <h3 class="unitType col">
+                        <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
+                        {{ tmp.unitType.name }}
+                        <div>{{ tmp.points }} pts</div>
+                    </h3>
+                    <div class="col squadListContainer">
+                        <section class="squadList">
+                            {% for squad in tmp.squadList %}
+                                    <div class="squad">
+                                        <div class="squadName">
+                                            <h4>
+                                                <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
+                                                {{ squad.name|default('Squad ' ~ loop.index) }}
+                                                <span>
+                                                    {{ squad.points }} pts
+                                                </span>
+                                            </h4>
+                                        </div>
+
+                                        <div>
+                                            {% for squadLine in squad.squadLineList %}
+                                                <div class="squadLine">
+                                                    <h5>{{ squadLine.number }} {{ squadLine.unit.name }}</h5>
+                                                    {% if not(squadLine.squadLineStuffList.empty) %}
+                                                        <ul>
+                                                            {% for squadLineStuffList in squadLine.squadLineStuffList %}
+                                                                <li>
+                                                                    {{ squadLineStuffList.number }}
+                                                                    {{ squadLineStuffList.unitStuff.stuff.name }}
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    {% endif %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
 
                                         <aside class="actions">
-                                            <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
-                                                <i class="icon-pencil"></i>
+                                            <a href="javascript:;" class="acButton">
+                                                <i class="icon-move"></i>
                                             </a>
 
-                                            <form
-                                                action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}"
-                                                method="post"
-                                                class="inbl"
-                                                onsubmit="javascript:return confirm('{% trans %}army.detail.squad.delete{% endtrans %}');"
-                                            >
-                                                {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
-                                                {{ form_widget(deleteSquadForm.createView) }}
-                                                <button class="acButton" type="submit">
-                                                    <i class="icon-remove"></i>
-                                                </button>
-                                            </form>
+                                            <div class="right">
+                                                <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
+                                                    <i class="icon-pencil"></i>
+                                                </a>
+
+                                                <form
+                                                    action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}"
+                                                    method="post"
+                                                    class="inbl"
+                                                    onsubmit="javascript:return confirm('{% trans %}army.detail.squad.delete{% endtrans %}');"
+                                                >
+                                                    {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
+                                                    {{ form_widget(deleteSquadForm.createView) }}
+                                                    <button class="acButton" type="submit">
+                                                        <i class="icon-remove"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </aside>
                                     </div>
+                            {% endfor %}
 
-                                    <div>
-                                        {% for squadLine in squad.squadLineList %}
-                                            <div class="squadLine">
-                                                <h5>{{ squadLine.number }} {{ squadLine.unit.name }}</h5>
-                                                {% if not(squadLine.squadLineStuffList.empty) %}
-                                                    <ul>
-                                                        {% for squadLineStuffList in squadLine.squadLineStuffList %}
-                                                            <li>
-                                                                {{ squadLineStuffList.number }}
-                                                                {{ squadLineStuffList.unitStuff.stuff.name }}
-                                                            </li>
-                                                        {% endfor %}
-                                                    </ul>
-                                                {% endif %}
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                        {% endfor %}
-
-                        <div>
-                            <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug}) }}" class="acButton">
-                                <i class="icon-plus"></i>
-                                {{ 'army.detail.squad.add'|trans }}
-                            </a>
-                        </div>
-                    </section>
-                </div>
-            </section>
-        {% endfor %}
+                            <div>
+                                <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug}) }}" class="acButton">
+                                    <i class="icon-plus"></i>
+                                    {{ 'army.detail.squad.add'|trans }}
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
     {% endblock %}
 </section>
 {% endblock %}

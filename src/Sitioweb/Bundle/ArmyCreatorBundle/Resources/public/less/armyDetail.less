@@ -1,6 +1,9 @@
-#armyDetail {
+#armyDetailContainer {
     background: @contentFullBackgroundColor;
     margin-top: 20px;
+}
+
+#armyDetail {
     .unitTypeTopList {
         padding: 10px 0;
         > div { display: inline-block; margin-right: 1em }
@@ -18,18 +21,19 @@
             display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; justify-content: stretch;
             .squad {
                 width: 240px; overflow: hidden; margin: 0 0.8em 0.8em 0;
+                background : @squadBackgroundColor;
                 h5 { margin-bottom: 0.5em  }
                 // &:hover { height: auto }
                 .squadName {
                     background: @squadNameBackgroundColor;
-                    position: relative; overflow: hidden;
-                    h4 { line-height: 28px; margin-bottom: 2px; padding: 0 0.8em; }
+                    position: relative; overflow: hidden; margin-bottom: 2px;
+                    h4 { line-height: 28px; padding: 0 0.8em; }
                     .actions { padding: 0 .8em .5em; text-align: right; }
                     span { color: @unitTypeForegroundColor; }
                 }
 
                 .squadLine {
-                    background: @squadBackgroundColor;
+                    background: @squadLineBackgroundColor;
                     margin-bottom: 2px; padding: 5px 8px;
                 }
             }
@@ -64,7 +68,7 @@
             }
 
             .stuffList {
-                background: @squadBackgroundColor;
+                background: @squadLineBackgroundColor;
                 margin-bottom: 2px; padding: 5px 8px;
                 .stuffListItem {
                     table-layout: auto;
