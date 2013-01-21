@@ -7,9 +7,7 @@
         {% block squadAddNav %}
             <header class="unitType">
                 <div class="unitTypeStick stickLeft" style="background-color:{{ currentUnitType.color|default("#ccc") }}"></div>
-                {% trans with { '%unitTypeName%' : currentUnitType.name } %}
-                    squad.new.unit.type.%unitTypeName%
-                {% endtrans %}
+                {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
 
                 {#
                 <div class="otherType">
@@ -52,14 +50,8 @@
                              </h5>
 
                              <aside>
-                                 {{ 'squad.edit.min_points'|trans }} :
-                                 {{ unitGroup.points }},
-                                 {% if unitGroup.unitHasUnitGroupList|length <= 1 %}
-                                     {{ 'squad.edit.unit_number_unique'|trans }}
-                                 {% else %}
-                                     {{ 'squad.edit.possible_unit_number'|trans }} :
-                                     {{ unitGroup.unitHasUnitGroupList|length }}
-                                 {% endif %}
+                                 {{ 'squad.edit.min_points_%unitGroupPoints%'|trans({ '%unitGroupPoints%' : unitGroup.points }) }},
+                                 {% transchoice unitGroup.unitHasUnitGroupList|length with { '%count%' : unitGroup.unitHasUnitGroupList|length } %}[0,1]squad.edit.unit_number_unique|]1,Inf]squad.edit.possible_unit_number_%count%{% endtranschoice %}
                              </aside>
                         </li>
                     {% endfor %}

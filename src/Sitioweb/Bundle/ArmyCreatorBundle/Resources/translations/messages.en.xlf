@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>breed.list.new</source>
+        <target>New Breed</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>army.detail.print</source>
+        <target>Print</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>army.detail.share</source>
+        <target>Share</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>army.detail.delete</source>
+        <target>Delete army</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>army.detail.squad.delete</source>
+        <target>Delete squad</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>army.detail.squad.add</source>
+        <target>Add squad</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>army.list.title</source>
+        <target>Army list</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>army.list.no_group</source>
+        <target>No group</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>army.list.group.edit</source>
+        <target>Edit group</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>army.list.group.delete</source>
+        <target>Delete group</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>army.list.new</source>
+        <target>New army</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>army.list.breed</source>
+        <target>Breed</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>army.list.points</source>
+        <target>points</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>army.list.name</source>
+        <target>name</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>army.list.status</source>
+        <target>status</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>army.list.created_date</source>
+        <target>created date</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>army.list.updated_date</source>
+        <target>updated date</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>army.list.actions</source>
+        <target>actions</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>army.list.edit</source>
+        <target>edit</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>army.list.delete</source>
+        <target>delete</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>army.edit.title</source>
+        <target>edit army</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>army.edit.edit</source>
+        <target>edit</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>army.edit.back_to_army_list</source>
+        <target>back to army list</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>squad.new.unit.type.%unitTypeName%</source>
+        <target>new %unitTypeName%</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>squad.edit.squad_choice</source>
+        <target>squad choice</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>squad.edit.squad_stuff</source>
+        <target>squad stuff</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>squad.edit.min_points_%unitGroupPoints%</source>
+        <target>%unitGroupPoints% pts. min.</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>[0,1]squad.edit.unit_number_unique|]1,Inf]squad.edit.possible_unit_number_%count%</source>
+        <target>one unit|%count% units</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
