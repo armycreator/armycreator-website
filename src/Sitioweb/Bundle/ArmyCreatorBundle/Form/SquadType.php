@@ -11,7 +11,7 @@ class SquadType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name');
+        $builder->add('name', null, array('attr' => array('size' => 50)));
         
         $builder->add('squadLineList', 'collection', array('type' => new SquadLineType()));
     }

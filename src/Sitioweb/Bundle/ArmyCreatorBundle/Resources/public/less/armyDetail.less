@@ -64,6 +64,16 @@
             h5 { margin-bottom: 0.5em  }
             &:nth-child(4n) { width: 25%; margin-right: 0 }
             &:nth-child(4n+1) { clear: both }
+            &:only-child { width: 100% }
+            &:first-child:nth-last-child(2),
+            &:first-child:nth-last-child(2) ~ .unit {
+                width: 49%;
+            }
+            &:first-child:nth-last-child(3),
+            &:first-child:nth-last-child(3) ~ .unit {
+                width: 32%;
+            }
+            //&:first-child:nth-last-child(1)
             // &:hover { height: auto }
             .unitName {
                 background: @squadNameBackgroundColor;
@@ -76,9 +86,13 @@
 
             .stuffList {
                 background: @squadLineBackgroundColor;
-                margin-bottom: 2px; padding: 5px 8px;
+                margin-bottom: 2px;
+                padding: 5px 0;
                 .stuffListItem {
-                    table-layout: auto;
+                    table-layout: auto; padding: 0 8px;
+                    &:nth-child(2n) {
+                        background: lighten(@squadLineBackgroundColor, 2%);
+                    }
                     > * { padding: .2em }
                 }
                 .stuffName { width: 100% }

@@ -30,7 +30,12 @@
                 
                 <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
                     <div class="arrow"></div>
-                    {{ 'squad.edit.squad_choice'|trans }}
+                    <a
+                        href="{{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug }) }}"
+                        title="{{ 'squad.edit.squad_choice'|trans }}"
+                    >
+                        {{ 'squad.edit.squad_choice'|trans }}
+                    </a>
                 </div>
                 <div{% if app.request.attributes.get('_route') != 'squad_new' %} class="current"{% endif %}>
                     {{ 'squad.edit.squad_stuff'|trans }}
@@ -57,6 +62,13 @@
                     {% endfor %}
                 </ul>
             {% endblock %}
+
+            <p class="txtright">
+                <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">Back to army</a>
+
+                {% block squadAddButtonList %}
+                {% endblock %}
+            </p>
         </section>
     </div>
 {% endblock %}

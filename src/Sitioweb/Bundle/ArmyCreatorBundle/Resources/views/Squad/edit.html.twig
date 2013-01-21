@@ -6,7 +6,9 @@
     <form action="{{ path('squad_update', {'armySlug' : army.slug, 'id' : entity.id}) }}" method="post" {{ form_enctype(form) }}>
         {% block squadLineList %}
 
-            {{ form_row(form.name) }}
+            <div class="row gut txtcenter unitName">
+                {{ form_row(form.name) }}
+            </div>
             
             {% if form.squadLineList %}
                 <section class="unitList">
@@ -49,10 +51,10 @@
 
         {{ form_rest(form) }}
 
-        <p>
-            <button type="submit">Edit</button>
-            <a href="{{ path('army_detail', {'slug' : army.slug}) }}">Back to army</a>
-        </p>
     </form>
 
+{% endblock %}
+
+{% block squadAddButtonList %}
+    <input type="submit" class="acButton acButtonHuge" value="Edit" />
 {% endblock %}
