@@ -3,7 +3,7 @@
     margin-top: 20px;
 }
 
-#armyDetail {
+#armyDetailContainer {
     .unitTypeTopList {
         padding: 10px 0;
         > div { display: inline-block; margin-right: 1em }
@@ -12,36 +12,43 @@
     .unitTypeList {
         margin-bottom: 1.5em; 
         .unitType {
-            display: table-cell; width: 120px;  background: @unitTypeBackgroundColor; color: @unitTypeForegroundColor; position: relative; overflow: hidden; vertical-align: top;
+            display: table-cell; width: 120px; vertical-align: top;
         }
-        .squadListContainer {
-            padding: 0
-        }
-        .squadList {
-            display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; justify-content: stretch;
-            .squad {
-                width: 240px; overflow: hidden; margin: 0 0.8em 0.8em 0;
-                background : @squadBackgroundColor;
-                h5 { margin-bottom: 0.5em  }
-                // &:hover { height: auto }
-                .squadName {
-                    background: @squadNameBackgroundColor;
-                    position: relative; overflow: hidden; margin-bottom: 2px;
-                    h4 { line-height: 28px; padding: 0 0.8em; }
-                    .actions { padding: 0 .8em .5em; text-align: right; }
-                    span { color: @unitTypeForegroundColor; }
-                }
-
-                .squadLine {
-                    background: @squadLineBackgroundColor;
-                    margin-bottom: 2px; padding: 5px 8px;
-                }
-            }
-        }
-        .stick {
+    }
+    .unitType {
+        background: @unitTypeBackgroundColor; color: @unitTypeForegroundColor; position: relative; overflow: hidden;
+        .unitTypeStick {
            position: absolute; top: 6px; right:-12px; width: 50px; height: 10px;
            border: 1px solid #888;
            .transformRotate(45deg);
+           &.stickLeft {
+               left:-12px;
+               .transformRotate(-45deg);
+           }
+        }
+    }
+    .squadListContainer {
+        padding: 0
+    }
+    .squadList {
+        display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; justify-content: stretch;
+        .squad {
+            width: 240px; overflow: hidden; margin: 0 0.8em 0.8em 0;
+            background : @squadBackgroundColor;
+            h5 { margin-bottom: 0.5em  }
+            // &:hover { height: auto }
+            .squadName {
+                background: @squadNameBackgroundColor;
+                position: relative; overflow: hidden; margin-bottom: 2px;
+                h4 { line-height: 28px; padding: 0 0.8em; }
+                .actions { padding: 0 .8em .5em; text-align: right; }
+                span { color: @unitTypeForegroundColor; }
+            }
+
+            .squadLine {
+                background: @squadLineBackgroundColor;
+                margin-bottom: 2px; padding: 5px 8px;
+            }
         }
     }
 }

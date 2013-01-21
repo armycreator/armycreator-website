@@ -91,7 +91,7 @@
             {% for tmp in army.squadListByType %}
                 <section class="unitTypeList row gut" id="unitType{{ tmp.unitType.id }}">
                     <h3 class="unitType col">
-                        <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
+                        <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
                         {{ tmp.unitType.name }}
                         <div>{{ tmp.points }} pts</div>
                     </h3>
@@ -101,7 +101,7 @@
                                     <div class="squad">
                                         <div class="squadName">
                                             <h4>
-                                                <div class="stick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
+                                                <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
                                                 {{ squad.name|default('Squad ' ~ loop.index) }}
                                                 <span>
                                                     {{ squad.points }} pts

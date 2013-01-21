@@ -112,4 +112,16 @@ class UnitGroup extends AbstractUnit
     {
         return $this->squadList;
     }
+
+    public function getPoints()
+    {
+        $points = 0;
+
+        $unitHasUnitGroupList = $this->getUnitHasUnitGroupList();
+        foreach ($unitHasUnitGroupList as $unitHasUnitGroup) {
+            $points += $unitHasUnitGroup->getUnit()->getPoints() * $unitHasUnitGroup->getUnitNumber();
+        }
+
+        return $points;
+    }
 }

@@ -5,11 +5,36 @@
 {% block armyDetail %}
     <div id="squadDetail">
         {% block squadAddNav %}
+            <header class="unitType">
+                <div class="unitTypeStick stickLeft" style="background-color:{{ currentUnitType.color|default("#ccc") }}"></div>
+                {% trans with { '%unitTypeName%' : currentUnitType.name } %}
+                    squad.new.unit.type.%unitTypeName%
+                {% endtrans %}
+
+                {#
+                <div class="otherType">
+                    <i class="icon-th-list"></i>
+                    <ul>
+                        {% for unitType in breed.unitTypeList %}
+                            <li>
+                                <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug}) }}" title="{{ unitType.name }}">
+                                    {{ unitType.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                #}
+
+            </header>
+
             <nav class="squadNav row gut txtcenter">
-                <div>
+                
+                <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
+                    <div class="arrow"></div>
                     {{ 'squad.edit.squad_choice'|trans }}
                 </div>
-                <div>
+                <div{% if app.request.attributes.get('_route') != 'squad_new' %} class="current"{% endif %}>
                     {{ 'squad.edit.squad_stuff'|trans }}
                 </div>
             </nav>
@@ -17,17 +42,6 @@
 
         <section class="squadAddContent">
             {% block squadAddContent %}
-                <div class="row gut txtcenter">
-                    {% for unitType in breed.unitTypeList %}
-                        <div>
-                            <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug}) }}" title="{{ unitType.name }}">
-                                {{ unitType.name }}
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
-
-
                 <ul class="inline unitGroupList">
                     {% for unitGroup in currentUnitType.unitGroupList %}
                         <li>
@@ -36,6 +50,17 @@
                                     {{ unitGroup.name }}
                                  </a>
                              </h5>
+
+                             <aside>
+                                 {{ 'squad.edit.min_points'|trans }} :
+                                 {{ unitGroup.points }},
+                                 {% if unitGroup.unitHasUnitGroupList|length <= 1 %}
+                                     {{ 'squad.edit.unit_number_unique'|trans }}
+                                 {% else %}
+                                     {{ 'squad.edit.possible_unit_number'|trans }} :
+                                     {{ unitGroup.unitHasUnitGroupList|length }}
+                                 {% endif %}
+                             </aside>
                         </li>
                     {% endfor %}
                 </ul>

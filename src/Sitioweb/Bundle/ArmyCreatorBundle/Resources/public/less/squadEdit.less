@@ -1,5 +1,37 @@
 #squadDetail {
+    header {
+        text-align: center; padding: 1em
+    }
+    nav {
+        background: @squadLineBackgroundColor;
+        div {
+            position: relative;
+            &.current {
+                background: @contentFullBackgroundColor;
+                .arrow {
+                    background: @contentFullBackgroundColor;
+                }
+            }
+            .arrow {
+                background: @squadLineBackgroundColor;
+                height: 35px;
+                position: absolute;
+                right: -17px;
+                top: 7px;
+                width: 35px;
+                .transformRotate(45deg);
+            }
+        }
+    }
     .unitGroupList {
-        li { margin: 1em 2em }
+        li {
+            margin: .5em; padding: 1em; background: @squadLineBackgroundColor
+        }
+    }
+    .otherType {
+        position: absolute; right: 14px; top: 14px;
+        ul {
+            display: none;
+        }
     }
 }
