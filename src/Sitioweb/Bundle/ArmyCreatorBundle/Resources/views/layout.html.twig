@@ -85,7 +85,16 @@
 {% endblock %}
 
 {% block javascripts %}
-	{% javascripts '@SitiowebArmyCreatorBundle/Resources/public/js/*' %}
+	{% javascripts '@SitiowebExternalJsBundle/Resources/public/js/*.js'
+        output='js/external.js'
+    %}
+		 <script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+
+	{% javascripts '@SitiowebArmyCreatorBundle/Resources/public/js/*.js'
+        output='js/global.js'
+    %}
 		 <script src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock %}

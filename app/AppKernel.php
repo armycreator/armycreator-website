@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new APY\BreadcrumbTrailBundle\APYBreadcrumbTrailBundle(),
             new Sitioweb\Bundle\ArmyCreatorBundle\SitiowebArmyCreatorBundle(),
             new Sitioweb\Bundle\ArmyCreatorImportBundle\SitiowebArmyCreatorImportBundle(),
+            new Sitioweb\Bundle\ExternalJsBundle\SitiowebExternalJsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -8,28 +8,18 @@
             <header class="unitType">
                 <div class="unitTypeStick stickLeft" style="background-color:{{ currentUnitType.color|default("#ccc") }}"></div>
                 {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
-
-                {#
-                <div class="otherType">
-                    <i class="icon-th-list"></i>
-                    <ul>
-                        {% for unitType in breed.unitTypeList %}
-                            <li>
-                                <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug}) }}" title="{{ unitType.name }}">
-                                    {{ unitType.name }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                #}
-
             </header>
 
             <nav class="squadNav row gut txtcenter">
-                
+                <div>
+                    <a href="javascript:;" title="{{ 'squad.edit.unit_type_change'|trans }}" id="otherTypeToggle">
+                        <i class="icon-th-list"></i>
+                        {{ 'squad.edit.unit_type_change'|trans }}
+                    </a>
+                </div>
+
                 <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
-                    <div class="arrow"></div>
+                    <div class="arrow arrowUnitType"></div>
                     <a
                         href="{{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug }) }}"
                         title="{{ 'squad.edit.squad_choice'|trans }}"
@@ -38,9 +28,19 @@
                     </a>
                 </div>
                 <div{% if app.request.attributes.get('_route') != 'squad_new' %} class="current"{% endif %}>
+                    <div class="arrow"></div>
                     {{ 'squad.edit.squad_stuff'|trans }}
                 </div>
             </nav>
+
+            <div class="unitType otherType row txtcenter">
+                {% for unitType in breed.unitTypeList %}
+                    <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug}) }}" title="{{ unitType.name }}">
+                        {{ unitType.name }}
+                    </a>
+                {% endfor %}
+            </div>
+
         {% endblock %}
 
         <section class="squadAddContent">

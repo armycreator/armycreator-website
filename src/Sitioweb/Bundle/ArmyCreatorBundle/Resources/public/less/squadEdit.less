@@ -9,15 +9,18 @@
             &.current {
                 background: @contentFullBackgroundColor;
                 .arrow {
-                    background: @contentFullBackgroundColor;
+                    background: @squadLineBackgroundColor;
                 }
                 a { color: @globalColor }
             }
             .arrow {
-                background: @squadLineBackgroundColor;
+                background: @contentFullBackgroundColor;
+                &.arrowUnitType {
+                    background: @squadLineBackgroundColor;
+                }
                 height: 35px;
                 position: absolute;
-                right: -17px;
+                left: -30px;
                 top: 7px;
                 width: 35px;
                 .transformRotate(45deg);
@@ -30,10 +33,7 @@
         }
     }
     .otherType {
-        position: absolute; right: 14px; top: 14px;
-        ul {
-            display: none;
-        }
+        display: none;
     }
 
     .unitName {
