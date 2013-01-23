@@ -32,7 +32,11 @@
                                             <span>({{ squadLineStuff.vars.value.unitStuff.points }} pts)</span>
                                         </div>
                                         <aside class="number">
-                                            {{ form_widget(squadLineStuff.number) }}
+                                            {{ form_widget(
+                                                squadLineStuff.number,
+                                                { 'read_only' : squadLineStuff.asManyAsUnit.vars.data }
+                                                
+                                            ) }}
                                         </aside>
                                         <aside class="asManyAsUnit">
                                             {{ form_widget(squadLineStuff.asManyAsUnit) }}
@@ -47,14 +51,17 @@
                     {% endfor %}
                 </section>
             {% endif %}
+
+            <p class="txtright">
+                <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">Back to army</a>
+                {% block squadAddButtonList %}
+                    <input type="submit" class="acButton acButtonHuge" value="Edit" />
+                {% endblock %}
+            </p>
         {% endblock %}
 
         {{ form_rest(form) }}
-
     </form>
 
 {% endblock %}
 
-{% block squadAddButtonList %}
-    <input type="submit" class="acButton acButtonHuge" value="Edit" />
-{% endblock %}

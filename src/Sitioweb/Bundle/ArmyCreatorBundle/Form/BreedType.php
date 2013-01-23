@@ -28,6 +28,6 @@ class BreedType extends AbstractType
 
     public function getName()
     {
-        return 'sitioweb_bundle_armycreatorbundle_breedtype';
+        return 'ac_breedtype';
     }
 }

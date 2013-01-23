@@ -25,6 +25,6 @@ class GameType extends AbstractType
 
     public function getName()
     {
-        return 'sitioweb_bundle_armycreatorbundle_gametype';
+        return 'ac_gametype';
     }
 }

@@ -26,7 +26,7 @@ class SquadType extends AbstractType
 
     public function getName()
     {
-        return 'sitioweb_bundle_armycreatorbundle_squadtype';
+        return 'ac_squadtype';
     }
 }
 

@@ -60,7 +60,7 @@ class ArmyType extends AbstractType
 
     public function getName()
     {
-        return 'sitioweb_bundle_armycreatorbundle_armytype';
+        return 'ac_armytype';
     }
 }
 

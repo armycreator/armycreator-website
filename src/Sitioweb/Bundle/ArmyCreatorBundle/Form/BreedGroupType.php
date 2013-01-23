@@ -25,6 +25,6 @@ class BreedGroupType extends AbstractType
 
     public function getName()
     {
-        return 'sitioweb_bundle_armycreatorbundle_breedgrouptype';
+        return 'ac_breedgrouptype';
     }
 }

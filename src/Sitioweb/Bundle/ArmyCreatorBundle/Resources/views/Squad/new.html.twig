@@ -61,14 +61,11 @@
                         </li>
                     {% endfor %}
                 </ul>
+
+                <p class="txtright">
+                    <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">Back to army</a>
+                </p>
             {% endblock %}
-
-            <p class="txtright">
-                <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">Back to army</a>
-
-                {% block squadAddButtonList %}
-                {% endblock %}
-            </p>
         </section>
     </div>
 {% endblock %}

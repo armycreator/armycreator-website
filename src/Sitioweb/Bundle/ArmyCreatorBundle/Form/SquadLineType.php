@@ -50,7 +50,7 @@ class SquadLineType extends AbstractType
 
     public function getName()
     {
-        return 'sitioweb_bundle_armycreatorbundle_squadlinetype';
+        return 'ac_squadlinetype';
     }
 }
 

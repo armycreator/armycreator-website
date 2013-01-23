@@ -10,7 +10,13 @@ class SquadLineStuffType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('number', 'integer', array('attr' => array('size' => 4)));
+        $builder->add(
+            'number',
+            'integer',
+            array(
+                'attr' => array('size' => 4)
+            )
+        );
         $builder->add(
             'asManyAsUnit',
             'checkbox',
@@ -31,7 +37,7 @@ class SquadLineStuffType extends AbstractType
 
     public function getName()
     {
-        return 'sitioweb_bundle_armycreatorbundle_squadlinestufftype';
+        return 'ac_squadlinestufftype';
     }
 }
 

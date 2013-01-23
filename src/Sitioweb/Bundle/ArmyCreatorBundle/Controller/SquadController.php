@@ -163,6 +163,7 @@ class SquadController extends Controller
         $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
+            'breed'        => $army->getBreed(),
             'army'        => $army,
             'entity'      => $entity,
             'currentUnitType' => $entity->getUnitType(),

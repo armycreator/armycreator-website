@@ -24,6 +24,6 @@ class ArmyGroupType extends AbstractType
 
     public function getName()
     {
-        return 'sitioweb_bundle_armycreatorbundle_armygrouptype';
+        return 'ac_armygrouptype';
     }
 }
