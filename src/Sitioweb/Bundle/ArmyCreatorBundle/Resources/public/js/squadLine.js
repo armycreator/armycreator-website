@@ -2,6 +2,10 @@ $(document).on('click', '#otherTypeToggle', function() {
     $('.otherType').toggle('fast');
 });
 
+$(document).on('click', '#otherBreedToggle', function() {
+    $('.otherBreed').toggle('fast');
+});
+
 $('.asManyAsUnit').on('change', 'input[type="checkbox"]', function () {
     if ($(this).is(':checked')) {
         var unitNumber = $(this).closest('.unit').find('.unitName .number input').val();
@@ -19,13 +23,22 @@ $('.squad_line_new').ready(function(){
         }
     });
 });
+
 $('.unit .unitName .number').on('change', 'input', function() {
+    // opacity if < 0
     var stuffList = $(this).closest('.unit').find('.stuffList');
-    if ($(this).val() > 0) {
+    var newNb = $(this).val();
+    if (newNb > 0) {
         stuffList.fadeTo('slow', '1');
-        stuffList;
     } else {
         stuffList.fadeTo('slow', '.2');
     }
+
+    // value if "as many" selected
+    stuffList.find('.asManyAsUnit input:checked').each(function () {
+        $(this).closest('.stuffListItem').find('.number input').val(newNb);
+    });
+        
+
     return false;
 });

@@ -12,6 +12,12 @@
 
             <nav class="squadNav row gut txtcenter">
                 <div>
+                    <a href="javascript:;" title="{{ 'squad.edit.breed_change'|trans }}" id="otherBreedToggle">
+                        {{ 'squad.edit.breed_change'|trans }}
+                    </a>
+                </div>
+
+                <div>
                     <a href="javascript:;" title="{{ 'squad.edit.unit_type_change'|trans }}" id="otherTypeToggle">
                         <i class="icon-th-list"></i>
                         {{ 'squad.edit.unit_type_change'|trans }}
@@ -33,6 +39,26 @@
                 </div>
             </nav>
 
+            {# Other breed list #}
+            <div class="otherBreed">
+                <ul>
+                    {% for tmpBreed in army.breed.game.breedList %}
+                        <li>
+                            <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breed' : tmpBreed.id}) }}" title="{{ tmpBreed.name }}">
+                                <figure class="breed">
+                                    {{ breedImage(tmpBreed)|raw }}
+
+                                    <figcaption>
+                                        {{ tmpBreed.name }}
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {# Other type list #}
             <div class="unitType otherType row txtcenter">
                 {% for unitType in breed.unitTypeList %}
                     <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug}) }}" title="{{ unitType.name }}">

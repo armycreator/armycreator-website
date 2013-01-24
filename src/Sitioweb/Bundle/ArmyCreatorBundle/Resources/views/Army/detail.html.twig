@@ -23,7 +23,7 @@
         </a>
     </aside>
 
-    <figure class="breed">
+    <figure class="breed txtcenter">
         {{ breedImage(army.breed)|raw }}
 
         <figcaption>
@@ -58,7 +58,7 @@
         {% if army.wantedPoints > 0 %}
             <div class="pointBarContainer">
                 <div class="pointBar">
-                    <div style="width:{{ 100 * army.points /  army.wantedPoints }}%"></div>
+                    <div style="width:{% if army.points > army.wantedPoints %}100{% else %}{{ 100 * army.points /  army.wantedPoints }}{% endif %}%"></div>
                 </div>
                 <strong>{{ army.points}} pts</strong> / {{ army.wantedPoints }} pts
             </div>

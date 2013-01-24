@@ -57,7 +57,7 @@ class SquadLineController extends Controller
         $squad->mapUnitGroup($unitGroup, true);
 
         $form = $this->createForm(new SquadType(), $squad);
-        
+
         return array(
             'army' => $army,
             'breed' => $army->getBreed(),

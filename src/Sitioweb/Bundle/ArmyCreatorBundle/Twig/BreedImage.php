@@ -34,12 +34,15 @@ class BreedImage extends \Twig_Extension
     {
         $breedImage = $breed->getImage();
         
-        $str = '<div class="breedImage">
+        $str = '<div
+                    class="breedImage"';
+        if (!empty($width)) {
+            $str .= 'style="width:' . (int) $width . 'px' . (!empty($height) ? ';height:' . $height . 'px' : '') . '"';
+        }
+        $str .= ' >
                     <img src="/images/breed/' . (empty($breedImage) ? 'null.jpg' : $breedImage) .'"
                         title="' . htmlspecialchars($breed->getName()) . '"
                         alt="' . htmlspecialchars($breed->getName()) . '"
-                        ' . (!empty($width) ? 'width="' . $width . '"' : '') . '
-                        ' . (!empty($height) ? 'height="' . $height . '"' : '') . '
                         />
                 </div>';
 

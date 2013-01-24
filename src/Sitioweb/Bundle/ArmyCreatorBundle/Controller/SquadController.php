@@ -36,17 +36,24 @@ class SquadController extends Controller
      */
     public function newAction($armySlug, $unitTypeSlug)
     {
+        $em = $this->get('doctrine')->getManager();
+
         // getting army
-        $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($armySlug);
+        $army = $em->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($armySlug);
         if ($army === null) {
             throw new NotFoundHttpException('Army not found');
         }
         
         // getting breed
-        $breed = $army->getBreed();
+        $breedId = (int) $this->get('request')->query->get('breed');
+        if ($breedId) {
+            $breed = $em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($breedId);
+        } else {
+            $breed = $army->getBreed();
+        }
 
         // getting unitType
-        $unitType = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitType')->findOneBy(
+        $unitType = $em->getRepository('SitiowebArmyCreatorBundle:UnitType')->findOneBy(
             array(
                 'breed' => $breed,
                 'slug' => $unitTypeSlug
