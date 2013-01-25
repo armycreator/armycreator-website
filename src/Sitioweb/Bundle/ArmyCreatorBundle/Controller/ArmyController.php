@@ -99,16 +99,6 @@ class ArmyController extends Controller
             throw new AccessDeniedException('Army not shared');
         }
         
-        // Breadcrumb
-        if ($army->getArmyGroup() !== null) {
-            $this->get("apy_breadcrumb_trail")->add(
-                $army->getArmyGroup()->getName(),
-                'army_group_list',
-                array('groupId' =>  $army->getArmyGroup()->getId())
-            );
-        }
-        $this->get("apy_breadcrumb_trail")->add($army->getName(), 'army_detail', array('slug' =>  $army->getSlug()));
-
         // get unit type list
         $unitTypeList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitType')->findByBreed($army->getBreed());
 
@@ -124,6 +114,16 @@ class ArmyController extends Controller
         foreach ($squadList as $squad) {
             $deleteSquadListForm[$squad->getId()] = $this->createDeleteForm($squad->getId());
         }
+
+        // Breadcrumb
+        if ($army->getArmyGroup() !== null) {
+            $this->get("apy_breadcrumb_trail")->add(
+                $army->getArmyGroup()->getName(),
+                'army_group_list',
+                array('groupId' =>  $army->getArmyGroup()->getId())
+            );
+        }
+        $this->get("apy_breadcrumb_trail")->add($army->getName(), 'army_detail', array('slug' =>  $army->getSlug()));
 
         return array(
             'army' => $army,
@@ -205,7 +205,6 @@ class ArmyController extends Controller
      *
      * @Route("/{slug}/edit", name="army_edit")
      * @Template()
-     * @Breadcrumb("Edit")
      */
     public function editAction($slug)
     {
@@ -219,6 +218,17 @@ class ArmyController extends Controller
 
         $editForm = $this->createForm(new ArmyType($this->getUser()), $entity);
         $deleteForm = $this->createDeleteForm($entity->getId());
+
+        // Breadcrumb
+        if ($entity->getArmyGroup() !== null) {
+            $this->get("apy_breadcrumb_trail")->add(
+                $entity->getArmyGroup()->getName(),
+                'army_group_list',
+                array('groupId' =>  $entity->getArmyGroup()->getId())
+            );
+        }
+        $this->get("apy_breadcrumb_trail")->add($entity->getName(), 'army_detail', array('slug' =>  $entity->getSlug()));
+        $this->get("apy_breadcrumb_trail")->add('edit');
 
         return array(
             'entity'      => $entity,

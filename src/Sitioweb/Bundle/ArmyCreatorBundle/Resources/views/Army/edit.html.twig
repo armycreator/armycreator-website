@@ -8,20 +8,20 @@
 <form action="{{ path('army_update', { 'slug': entity.slug }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}
     <p>
-        <button type="submit">{{ 'army.edit.edit'|trans }}</button>
+        <button type="submit" class="acButton">{{ 'army.edit.edit'|trans }}</button>
     </p>
 </form>
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('army_detail', {'slug' : entity.slug }) }}">
+        <a href="{{ path('army_detail', {'slug' : entity.slug }) }}" class="acButton">
             {{ 'army.edit.back_to_army_list'|trans }}
         </a>
     </li>
     <li>
         <form action="{{ path('army_delete', { 'slug': entity.slug }) }}" method="post">
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button type="submit" class="acButton">Delete</button>
         </form>
     </li>
 </ul>

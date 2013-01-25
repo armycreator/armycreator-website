@@ -27,7 +27,7 @@
                 <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
                     <div class="arrow arrowUnitType"></div>
                     <a
-                        href="{{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug }) }}"
+                        href="{{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : breed.slug }) }}"
                         title="{{ 'squad.edit.squad_choice'|trans }}"
                     >
                         {{ 'squad.edit.squad_choice'|trans }}
@@ -44,7 +44,7 @@
                 <ul>
                     {% for tmpBreed in army.breed.game.breedList %}
                         <li>
-                            <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breed' : tmpBreed.id}) }}" title="{{ tmpBreed.name }}">
+                            <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : tmpBreed.slug}) }}" title="{{ tmpBreed.name }}">
                                 <figure class="breed">
                                     {{ breedImage(tmpBreed)|raw }}
 
@@ -61,7 +61,7 @@
             {# Other type list #}
             <div class="unitType otherType row txtcenter">
                 {% for unitType in breed.unitTypeList %}
-                    <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug}) }}" title="{{ unitType.name }}">
+                    <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug, 'breedSlug' : unitType.breed.slug}) }}" title="{{ unitType.name }}">
                         {{ unitType.name }}
                     </a>
                 {% endfor %}

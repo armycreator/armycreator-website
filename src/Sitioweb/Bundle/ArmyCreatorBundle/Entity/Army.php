@@ -429,7 +429,16 @@ class Army
         if (is_null($this->squadListByType)) {
             $squadList = $this->getSquadList();
 
-            $unitTypeList = $this->getBreed()->getUnitTypeList();
+            $unitTypeList = $this->getBreed()->getUnitTypeList()->toArray();
+
+            foreach ($squadList as $squad) {
+                $tmpUnitType = $squad->getUnitType();
+                
+                if (!in_array($tmpUnitType, $unitTypeList)) {
+                    $unitTypeList[] = $tmpUnitType;
+                }
+            }
+
             foreach ($unitTypeList as $unitType) {
                 $tmpArray = array();
                 $points = 0;

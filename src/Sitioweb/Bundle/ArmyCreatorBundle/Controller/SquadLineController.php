@@ -48,6 +48,7 @@ class SquadLineController extends Controller
         $this->setArmyBreadCrumb($army);
         $this->get("apy_breadcrumb_trail")->add('New ' . $unitGroup->getUnitType()->getName(), 'squad_new', array(
             'armySlug' => $army->getSlug(),
+            'breedSlug' => $unitGroup->getBreed()->getSlug(),
             'unitTypeSlug' => $unitGroup->getUnitType()->getSlug()
         ));
         $this->get("apy_breadcrumb_trail")->add('New ' . $unitGroup->getName());

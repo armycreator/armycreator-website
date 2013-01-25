@@ -31,10 +31,10 @@ class SquadController extends Controller
     /**
      * Displays a form to create a new Squad entity.
      *
-     * @Route("/new/{unitTypeSlug}", name="squad_new")
+     * @Route("/new/{breedSlug}/{unitTypeSlug}", name="squad_new")
      * @Template()
      */
-    public function newAction($armySlug, $unitTypeSlug)
+    public function newAction($armySlug, $breedSlug, $unitTypeSlug)
     {
         $em = $this->get('doctrine')->getManager();
 
@@ -45,11 +45,10 @@ class SquadController extends Controller
         }
         
         // getting breed
-        $breedId = (int) $this->get('request')->query->get('breed');
-        if ($breedId) {
-            $breed = $em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($breedId);
-        } else {
-            $breed = $army->getBreed();
+        $breed = $em->getRepository('SitiowebArmyCreatorBundle:Breed')
+                    ->findOneBySlug($breedSlug);
+        if ($army === null) {
+            throw new NotFoundHttpException('Army not found');
         }
 
         // getting unitType

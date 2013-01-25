@@ -3,6 +3,7 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -30,6 +31,16 @@ class Breed
      */
     private $name;
 
+    /**
+     * slug
+     * 
+     * @var string
+     * @access private
+     *
+     * @Gedmo\Slug(fields={"name"}, unique=true, updatable=false)
+     * @ORM\Column(length=255, unique=true)
+     */
+    private $slug;
 
     /**
      * newVersion
@@ -199,6 +210,30 @@ class Breed
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * setSlug
+     *
+     * @param string $slug
+     * @access public
+     * @return $this
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * getSlug
+     *
+     * @access public
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

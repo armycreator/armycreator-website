@@ -82,6 +82,9 @@
                     <div>
                         <a href="#unitType{{ tmp.unitType.id }}">
                             {{ tmp.squadList|length }} {{ tmp.unitType.name }}
+                            {% if tmp.unitType.breed != army.breed %}
+                                ({{ tmp.unitType.breed.name }})
+                            {% endif %}
                         </a>
                     </div>
                 {% endfor %}
@@ -93,6 +96,9 @@
                     <h3 class="unitType col">
                         <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
                         {{ tmp.unitType.name }}
+                        {% if tmp.unitType.breed != army.breed %}
+                            ({{ tmp.unitType.breed.name }})
+                        {% endif %}
                         <div>{{ tmp.points }} pts</div>
                     </h3>
                     <div class="col squadListContainer">
@@ -155,7 +161,13 @@
                             {% endfor %}
 
                             <div>
-                                <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug}) }}" class="acButton">
+                                <a
+                                    href="{{
+                                        path('squad_new',
+                                        {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug, 'breedSlug' : tmp.unitType.breed.slug})
+                                    }}"
+                                    class="acButton"
+                                >
                                     <i class="icon-plus"></i>
                                     {{ 'army.detail.squad.add'|trans }}
                                 </a>
