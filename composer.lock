@@ -1,5 +1,5 @@
 {
-    "hash": "9a02ba036aabc0e0ef05c5256e0a60ba",
+    "hash": "396592f2daf9814e7f1d9f848668b46b",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
@@ -992,18 +992,6 @@
                 "log",
                 "logging"
             ]
-        },
-        {
-            "name": "raphaelgoetter/knacss",
-            "version": "master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/raphaelgoetter/KNACSS.git",
-                "reference": "master"
-            },
-            "type": "library",
-            "installation-source": "source",
-            "time": "2012-12-06 09:13:02"
         },
         {
             "name": "raulfraile/ladybug",
