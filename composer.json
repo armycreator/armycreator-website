@@ -23,7 +23,6 @@
 
 		"jms/debugging-bundle": "dev-master",
 		"raulfraile/LadybugBundle": "dev-master",
-		"raphaelgoetter/knacss": "master",
         "apy/breadcrumbtrail-bundle":"dev-master",
 
         "elnur/blowfish-password-encoder-bundle": "dev-master",
@@ -55,18 +54,6 @@
         "symfony-web-dir": "web"
     },
 	"repositories": [
-		{
-			"type": "package",
-			"package": {
-				"version": "master",
-				"name": "raphaelgoetter/knacss",
-				"source": {
-					"url": "https://github.com/raphaelgoetter/KNACSS.git",
-					"type": "git",
-					"reference": "master"
-				}
-			}
-		},
 		{
 			"type": "package",
 			"package": {

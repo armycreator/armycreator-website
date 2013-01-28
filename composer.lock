@@ -8,12 +8,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/Abhoryo/APYBreadcrumbTrailBundle.git",
-                "reference": "50a14f7e2c78f0545b7e5c39b13aec2eb547103b"
+                "reference": "54b1c92980f94fce1c617a85917ae9324596fe16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/Abhoryo/APYBreadcrumbTrailBundle/archive/50a14f7e2c78f0545b7e5c39b13aec2eb547103b.zip",
-                "reference": "50a14f7e2c78f0545b7e5c39b13aec2eb547103b",
+                "url": "https://github.com/Abhoryo/APYBreadcrumbTrailBundle/archive/54b1c92980f94fce1c617a85917ae9324596fe16.zip",
+                "reference": "54b1c92980f94fce1c617a85917ae9324596fe16",
                 "shasum": ""
             },
             "require": {
@@ -23,7 +23,7 @@
             "suggest": {
                 "ext-intl": "*"
             },
-            "time": "2013-01-20 18:18:45",
+            "time": "2013-01-25 14:01:51",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -348,12 +348,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle",
-                "reference": "d38767912f3a1a9b02292604cd51f1f70c518d46"
+                "reference": "1a6ca83046d01e09d2bd524a50fe29a88e5ed49a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle/archive/d38767912f3a1a9b02292604cd51f1f70c518d46.zip",
-                "reference": "d38767912f3a1a9b02292604cd51f1f70c518d46",
+                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle/archive/1a6ca83046d01e09d2bd524a50fe29a88e5ed49a.zip",
+                "reference": "1a6ca83046d01e09d2bd524a50fe29a88e5ed49a",
                 "shasum": ""
             },
             "require": {
@@ -374,7 +374,7 @@
                 "doctrine/doctrine-bundle": "*",
                 "doctrine/mongodb-odm-bundle": "*"
             },
-            "time": "2013-01-20 18:12:14",
+            "time": "2013-01-25 16:25:45",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -418,12 +418,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/l3pp4rd/DoctrineExtensions.git",
-                "reference": "baa42fda5607978d70040b9f38b6b3a13823c903"
+                "reference": "93349ad3ab200c7aa69237355c4ee811d359d160"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/l3pp4rd/DoctrineExtensions/archive/baa42fda5607978d70040b9f38b6b3a13823c903.zip",
-                "reference": "baa42fda5607978d70040b9f38b6b3a13823c903",
+                "url": "https://github.com/l3pp4rd/DoctrineExtensions/archive/93349ad3ab200c7aa69237355c4ee811d359d160.zip",
+                "reference": "93349ad3ab200c7aa69237355c4ee811d359d160",
                 "shasum": ""
             },
             "require": {
@@ -443,7 +443,7 @@
                 "doctrine/mongodb": ">=1.0.0",
                 "doctrine/mongodb-odm": ">=1.0.0-BETA7"
             },
-            "time": "2013-01-18 18:21:44",
+            "time": "2013-01-24 18:57:40",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1011,12 +1011,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/raulfraile/Ladybug",
-                "reference": "05d916c7ad4cce1a6679170c1b4b904c45dca23b"
+                "reference": "bcd0821d3f91f0dc4bb025eb1d6c4e26aadd8887"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/raulfraile/Ladybug/archive/05d916c7ad4cce1a6679170c1b4b904c45dca23b.zip",
-                "reference": "05d916c7ad4cce1a6679170c1b4b904c45dca23b",
+                "url": "https://github.com/raulfraile/Ladybug/archive/bcd0821d3f91f0dc4bb025eb1d6c4e26aadd8887.zip",
+                "reference": "bcd0821d3f91f0dc4bb025eb1d6c4e26aadd8887",
                 "shasum": ""
             },
             "require": {
@@ -1024,7 +1024,7 @@
                 "symfony/serializer": ">=2.0.4",
                 "symfony/yaml": ">=2.0.4"
             },
-            "time": "2012-11-17 09:12:48",
+            "time": "2013-01-22 08:48:38",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1032,6 +1032,7 @@
                     "Ladybug": "lib/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1057,12 +1058,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/raulfraile/LadybugBundle",
-                "reference": "6c35039c7ed207aca80e8bc5cfe589013a5c69a5"
+                "reference": "60c62e7dcee195b919ee5fa2fcf4cd928e8cda50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/raulfraile/LadybugBundle/archive/6c35039c7ed207aca80e8bc5cfe589013a5c69a5.zip",
-                "reference": "6c35039c7ed207aca80e8bc5cfe589013a5c69a5",
+                "url": "https://github.com/raulfraile/LadybugBundle/archive/60c62e7dcee195b919ee5fa2fcf4cd928e8cda50.zip",
+                "reference": "60c62e7dcee195b919ee5fa2fcf4cd928e8cda50",
                 "shasum": ""
             },
             "require": {
@@ -1073,7 +1074,7 @@
             "replace": {
                 "raulfraile/ladybugbundle": "dev-master"
             },
-            "time": "2012-12-04 15:29:44",
+            "time": "2013-01-22 07:28:09",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1364,12 +1365,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle",
-                "reference": "128d3aa1ea65f0615339f20f15f154bd2e7224bb"
+                "reference": "f65ce4736fa79c60fdfc9805abb38aaaef728e95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/AsseticBundle/archive/128d3aa1ea65f0615339f20f15f154bd2e7224bb.zip",
-                "reference": "128d3aa1ea65f0615339f20f15f154bd2e7224bb",
+                "url": "https://github.com/symfony/AsseticBundle/archive/f65ce4736fa79c60fdfc9805abb38aaaef728e95.zip",
+                "reference": "f65ce4736fa79c60fdfc9805abb38aaaef728e95",
                 "shasum": ""
             },
             "require": {
@@ -1389,7 +1390,7 @@
             "suggest": {
                 "symfony/twig-bundle": ">=2.1.0,<2.3-dev"
             },
-            "time": "2013-01-19 21:58:23",
+            "time": "2013-01-26 01:02:24",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1428,26 +1429,26 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/MonologBundle",
-                "reference": "v2.2.0-BETA1"
+                "reference": "253fcda1128a0301aa68d040302cade65095f2c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/MonologBundle/archive/v2.2.0-BETA1.zip",
-                "reference": "v2.2.0-BETA1",
+                "url": "https://github.com/symfony/MonologBundle/archive/253fcda1128a0301aa68d040302cade65095f2c6.zip",
+                "reference": "253fcda1128a0301aa68d040302cade65095f2c6",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/monolog-bridge": ">=2.1.0,<2.3-dev",
                 "symfony/dependency-injection": ">=2.1.0,<2.3-dev",
                 "symfony/config": ">=2.1.0,<2.3-dev",
-                "monolog/monolog": ">=1.0,<1.3-dev"
+                "monolog/monolog": ">=1.0,<1.3-dev",
+                "symfony/monolog-bridge": "2.1.*"
             },
             "require-dev": {
                 "symfony/yaml": ">=2.1.0,<2.3-dev",
                 "symfony/config": ">=2.1.0,<2.3-dev"
             },
-            "time": "2013-01-07 10:57:41",
+            "time": "2013-01-28 10:06:42",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1543,12 +1544,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony/symfony.git",
-                "reference": "fada75c42051fde399a4aee30fb0eef757b8992a"
+                "reference": "6f7194802359559a6b37e1d2fe940ac902cf26cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/symfony/archive/fada75c42051fde399a4aee30fb0eef757b8992a.zip",
-                "reference": "fada75c42051fde399a4aee30fb0eef757b8992a",
+                "url": "https://github.com/symfony/symfony/archive/6f7194802359559a6b37e1d2fe940ac902cf26cf.zip",
+                "reference": "6f7194802359559a6b37e1d2fe940ac902cf26cf",
                 "shasum": ""
             },
             "require": {
@@ -1597,7 +1598,7 @@
                 "propel/propel1": "dev-master",
                 "monolog/monolog": ">=1.0,<1.3-dev"
             },
-            "time": "2013-01-20 08:33:14",
+            "time": "2013-01-27 16:12:43",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1680,18 +1681,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Twig.git",
-                "reference": "93c6a8dedc46c73ccdd61342de3d5e761e4412f6"
+                "reference": "eaadcca54b888db779a355e449a16dd8c7760e11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/archive/93c6a8dedc46c73ccdd61342de3d5e761e4412f6.zip",
-                "reference": "93c6a8dedc46c73ccdd61342de3d5e761e4412f6",
+                "url": "https://github.com/fabpot/Twig/archive/eaadcca54b888db779a355e449a16dd8c7760e11.zip",
+                "reference": "eaadcca54b888db779a355e449a16dd8c7760e11",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2013-01-18 09:58:04",
+            "time": "2013-01-27 16:32:04",
             "type": "library",
             "extra": {
                 "branch-alias": {

@@ -101,7 +101,12 @@
 
 {% block stylesheets %}
 	{% stylesheets 
-		'%kernel.root_dir%/../vendor/raphaelgoetter/knacss/css/knacss.css'
+        '@SitiowebExternalJsBundle/Resources/public/css/*.css'
+		filter='cssrewrite' output='css/knacss.css' %}
+		 <link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+
+	{% stylesheets 
 		'@SitiowebArmyCreatorBundle/Resources/public/css/*.css' 
 		'../vendor/aristath/elusive-iconfont/less/elusive-webfont.less' 
 		'@SitiowebArmyCreatorBundle/Resources/public/less/global.less' 
