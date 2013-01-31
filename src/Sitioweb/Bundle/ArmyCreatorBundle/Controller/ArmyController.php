@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation as Security;
@@ -82,8 +83,8 @@ class ArmyController extends Controller
      * @access public
      * @return void
      *
+     * @Route("/{slug}.pdf", name="army_detail_pdf")
      * @Route("/{slug}/", name="army_detail")
-     * @Template()
      * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      */
     public function detailAction($slug)
@@ -125,12 +126,35 @@ class ArmyController extends Controller
         }
         $this->get("apy_breadcrumb_trail")->add($army->getName(), 'army_detail', array('slug' =>  $army->getSlug()));
 
-        return array(
-            'army' => $army,
-            'unitTypeList' => $unitTypeList,
-            'deleteSquadListForm' => $deleteSquadListForm,
-            'deleteForm' => $deleteForm->createView()
+
+        $html = $this->renderView(
+            'SitiowebArmyCreatorBundle:Army:detail.html.twig',
+            array(
+                'army' => $army,
+                'unitTypeList' => $unitTypeList,
+                'deleteSquadListForm' => $deleteSquadListForm,
+                'deleteForm' => $deleteForm->createView()
+            )
         );
+
+        // rendering
+        if ($this->get('request')->get('_route') == 'army_detail_pdf') {
+            $filename = 'ArmyCreator-' . $slug . '.pdf';
+            $mpdf=new \mPDF();
+            $mpdf->WriteHTML($html);
+            $mpdf->Output($filename, 'I');
+
+            return new Response(
+                null,
+                200,
+                array(
+                    'Content-Type'          => 'application/pdf',
+                    'Content-Disposition'   => 'attachment; filename="' . $filename . '"'
+                )
+            );
+        } else {
+            return new Response($html);
+        }
     }
 
     /**
