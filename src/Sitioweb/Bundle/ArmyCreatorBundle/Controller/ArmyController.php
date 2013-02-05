@@ -83,11 +83,75 @@ class ArmyController extends Controller
      * @access public
      * @return void
      *
-     * @Route("/{slug}.pdf", name="army_detail_pdf")
      * @Route("/{slug}/", name="army_detail")
      * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
+     * @Template()
      */
     public function detailAction($slug)
+    {
+        return $this->getDetailParams($slug);
+    }
+
+    /**
+     * detailBbcodeAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/{slug}/bbcode", name="army_detail_bbcode")
+     * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
+     * @Template()
+     */
+    public function detailBbcodeAction($slug)
+    {
+        $return = $this->getDetailParams($slug);
+        $this->get("apy_breadcrumb_trail")->add($this->get('translator')->trans('army.detail.bbcode'));
+
+        return $return;
+    }
+
+    /**
+     * detailPdfAction render a PDF
+     *
+     * @param string $slug
+     * @access public
+     * @return void
+     *
+     * @Route("/{slug}.pdf", name="army_detail_pdf")
+     * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
+     */
+    public function detailPdfAction($slug)
+    {
+        $params = $this->getDetailParams($slug);
+        $html = $this->renderView(
+            'SitiowebArmyCreatorBundle:Army:detail.html.twig',
+            $params
+        );
+
+        // rendering
+        $filename = 'ArmyCreator-' . $slug . '.pdf';
+        $mpdf=new \mPDF();
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($filename, 'I');
+
+        return new Response(
+            null,
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="' . $filename . '"'
+            )
+        );
+    }
+
+    /**
+     * getDetailParams
+     *
+     * @param string $slug army slug
+     * @access private
+     * @return void
+     */
+    private function getDetailParams($slug)
     {
         // getting army
         $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($slug);
@@ -126,35 +190,12 @@ class ArmyController extends Controller
         }
         $this->get("apy_breadcrumb_trail")->add($army->getName(), 'army_detail', array('slug' =>  $army->getSlug()));
 
-
-        $html = $this->renderView(
-            'SitiowebArmyCreatorBundle:Army:detail.html.twig',
-            array(
+        return array(
                 'army' => $army,
                 'unitTypeList' => $unitTypeList,
                 'deleteSquadListForm' => $deleteSquadListForm,
                 'deleteForm' => $deleteForm->createView()
-            )
         );
-
-        // rendering
-        if ($this->get('request')->get('_route') == 'army_detail_pdf') {
-            $filename = 'ArmyCreator-' . $slug . '.pdf';
-            $mpdf=new \mPDF();
-            $mpdf->WriteHTML($html);
-            $mpdf->Output($filename, 'I');
-
-            return new Response(
-                null,
-                200,
-                array(
-                    'Content-Type'          => 'application/pdf',
-                    'Content-Disposition'   => 'attachment; filename="' . $filename . '"'
-                )
-            );
-        } else {
-            return new Response($html);
-        }
     }
 
     /**

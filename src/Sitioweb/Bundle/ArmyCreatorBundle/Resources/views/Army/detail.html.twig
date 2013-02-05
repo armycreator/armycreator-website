@@ -17,6 +17,14 @@
             <i class="icon-print"></i>
             {{ 'army.detail.print'|trans }}
         </a>
+        <a href="{{ path('army_detail_pdf', { 'slug' : army.slug } ) }}" class="acButton" accesskey="f" title="{{ 'army.detail.pdf'|trans }}">
+            <i class="icon-file"></i>
+            {{ 'army.detail.pdf'|trans }}
+        </a>
+        <a href="{{ path('army_detail_bbcode', { 'slug' : army.slug } ) }}" class="acButton" accesskey="b" title="{{ 'army.detail.bb_code'|trans }}">
+            <i class="icon-comment"></i>
+            {{ 'army.detail.bb_code'|trans }}
+        </a>
         <a href="#" class="acButton">
             <i class="icon-share"></i>
             {{ 'army.detail.share'|trans }}
@@ -108,7 +116,7 @@
                                         <div class="squadName">
                                             <h4>
                                                 <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
-                                                {{ squad.name|default('Squad ' ~ loop.index) }}
+                                                {{ squad.name|default(squad.unitType.name ~ ' #' ~ loop.index) }}
                                                 <span>
                                                     {{ squad.points }} pts
                                                 </span>

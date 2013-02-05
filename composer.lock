@@ -1,5 +1,5 @@
 {
-    "hash": "b662db1cd5a8c0e0e365e867af6d32b7",
+    "hash": "2a07f0c54eacbb4feeba6289917f02a0",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
@@ -58,7 +58,7 @@
             },
             "type": "library",
             "installation-source": "source",
-            "time": "2013-01-04 08:47:45"
+            "time": "2013-01-31 16:42:40"
         },
         {
             "name": "doctrine/common",
@@ -302,20 +302,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/elnur/ElnurBlowfishPasswordEncoderBundle",
-                "reference": "d69fda50f8536705efd898fde9cb533bc760c231"
+                "reference": "0.4.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/elnur/ElnurBlowfishPasswordEncoderBundle/archive/d69fda50f8536705efd898fde9cb533bc760c231.zip",
-                "reference": "d69fda50f8536705efd898fde9cb533bc760c231",
+                "url": "https://api.github.com/repos/elnur/ElnurBlowfishPasswordEncoderBundle/zipball/0.4.0",
+                "reference": "0.4.0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
                 "symfony/framework-bundle": ">=2.0,<2.3",
-                "symfony/security-bundle": ">=2.0,<2.3"
+                "symfony/security-bundle": ">=2.0,<2.3",
+                "ircmaxell/password-compat": "1.0.*"
             },
-            "time": "2012-11-03 21:19:30",
+            "time": "2013-02-04 19:53:41",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -323,6 +324,7 @@
                     "Elnur\\BlowfishPasswordEncoderBundle": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -348,12 +350,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle",
-                "reference": "1a6ca83046d01e09d2bd524a50fe29a88e5ed49a"
+                "reference": "df0cab6237206a53030b6970a5b5580d4b8fa483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle/archive/1a6ca83046d01e09d2bd524a50fe29a88e5ed49a.zip",
-                "reference": "1a6ca83046d01e09d2bd524a50fe29a88e5ed49a",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/df0cab6237206a53030b6970a5b5580d4b8fa483",
+                "reference": "df0cab6237206a53030b6970a5b5580d4b8fa483",
                 "shasum": ""
             },
             "require": {
@@ -374,7 +376,7 @@
                 "doctrine/doctrine-bundle": "*",
                 "doctrine/mongodb-odm-bundle": "*"
             },
-            "time": "2013-01-25 16:25:45",
+            "time": "2013-01-31 20:47:01",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -418,12 +420,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/l3pp4rd/DoctrineExtensions.git",
-                "reference": "b7299a90214255a0b0029b7e5fe6e62a929f3e69"
+                "reference": "d94ce3ae790c6e07d1f366924de2a59205055557"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/b7299a90214255a0b0029b7e5fe6e62a929f3e69",
-                "reference": "b7299a90214255a0b0029b7e5fe6e62a929f3e69",
+                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/d94ce3ae790c6e07d1f366924de2a59205055557",
+                "reference": "d94ce3ae790c6e07d1f366924de2a59205055557",
                 "shasum": ""
             },
             "require": {
@@ -443,7 +445,7 @@
                 "doctrine/mongodb": ">=1.0.0",
                 "doctrine/mongodb-odm": ">=1.0.0-BETA7"
             },
-            "time": "2013-01-31 12:40:49",
+            "time": "2013-02-04 20:27:16",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -480,6 +482,46 @@
                 "nestedset",
                 "sortable",
                 "timestampable"
+            ]
+        },
+        {
+            "name": "ircmaxell/password-compat",
+            "version": "1.0.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ircmaxell/password_compat.git",
+                "reference": "v1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/v1.0.0",
+                "reference": "v1.0.0",
+                "shasum": ""
+            },
+            "time": "2013-01-14 16:49:31",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "files": [
+                    "lib/password.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anthony Ferrara",
+                    "email": "ircmaxell@php.net",
+                    "homepage": "http://blog.ircmaxell.com"
+                }
+            ],
+            "description": "A compatibility library for the proposed simplified password hashing algorithm: https://wiki.php.net/rfc/password_hash",
+            "homepage": "https://github.com/ircmaxell/password_compat",
+            "keywords": [
+                "password",
+                "hashing"
             ]
         },
         {
@@ -565,51 +607,6 @@
             "description": "Toolset for generating PHP code",
             "keywords": [
                 "code generation"
-            ]
-        },
-        {
-            "name": "jms/debugging-bundle",
-            "version": "dev-master",
-            "target-dir": "JMS/DebuggingBundle",
-            "source": {
-                "type": "git",
-                "url": "git://github.com/schmittjoh/JMSDebuggingBundle.git",
-                "reference": "06db389dee9882b5e0cfb9a13438930d8481d959"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/schmittjoh/JMSDebuggingBundle/archive/06db389dee9882b5e0cfb9a13438930d8481d959.zip",
-                "reference": "06db389dee9882b5e0cfb9a13438930d8481d959",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "symfony/framework-bundle": ">=2.0,<2.3-dev"
-            },
-            "time": "2013-01-21 11:18:22",
-            "type": "symfony-bundle",
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "JMS\\DebuggingBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache2"
-            ],
-            "authors": [
-                {
-                    "name": "Johannes M. Schmitt",
-                    "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
-                    "role": "Developer of wrapped JMSSerializerBundle"
-                }
-            ],
-            "description": "This bundle provides advanced debugging tools (for your Symfony2 project).",
-            "homepage": "http://jmsyst.com/bundles/JMSDebuggingBundle",
-            "keywords": [
-                "debugging"
             ]
         },
         {
@@ -871,12 +868,12 @@
             "source": {
                 "type": "git",
                 "url": "http://github.com/kriswallsmith/assetic.git",
-                "reference": "5591252faa1c7f3299660daebffd63dee2746b7e"
+                "reference": "faf3b245977d8bc06c9da4710dbcad37756993a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/kriswallsmith/assetic/archive/5591252faa1c7f3299660daebffd63dee2746b7e.zip",
-                "reference": "5591252faa1c7f3299660daebffd63dee2746b7e",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/faf3b245977d8bc06c9da4710dbcad37756993a9",
+                "reference": "faf3b245977d8bc06c9da4710dbcad37756993a9",
                 "shasum": ""
             },
             "require": {
@@ -901,7 +898,7 @@
                 "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
                 "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin"
             },
-            "time": "2013-01-12 22:20:24",
+            "time": "2013-01-31 17:45:10",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1037,121 +1034,24 @@
             ]
         },
         {
-            "name": "raulfraile/ladybug",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/raulfraile/Ladybug",
-                "reference": "90958be3ecd36a858124cae9a4809316e1ed185c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/raulfraile/Ladybug/archive/90958be3ecd36a858124cae9a4809316e1ed185c.zip",
-                "reference": "90958be3ecd36a858124cae9a4809316e1ed185c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "symfony/serializer": ">=2.0.4",
-                "symfony/yaml": ">=2.0.4"
-            },
-            "time": "2013-01-30 06:50:02",
-            "type": "library",
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "Ladybug": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Raul Fraile",
-                    "email": "raulfraile@gmail.com",
-                    "homepage": "http://www.raulfrailebeneyto.com/"
-                }
-            ],
-            "description": "Simple and Extensible PHP Dumper",
-            "homepage": "https://github.com/raulfraile/Ladybug",
-            "keywords": [
-                "tree",
-                "dump",
-                "ladybug"
-            ]
-        },
-        {
-            "name": "raulfraile/ladybug-bundle",
-            "version": "dev-master",
-            "target-dir": "RaulFraile/Bundle/LadybugBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/raulfraile/LadybugBundle",
-                "reference": "60c62e7dcee195b919ee5fa2fcf4cd928e8cda50"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/raulfraile/LadybugBundle/archive/60c62e7dcee195b919ee5fa2fcf4cd928e8cda50.zip",
-                "reference": "60c62e7dcee195b919ee5fa2fcf4cd928e8cda50",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "symfony/framework-bundle": ">=2.0.0",
-                "raulfraile/ladybug": ">=0.5"
-            },
-            "replace": {
-                "raulfraile/ladybugbundle": "dev-master"
-            },
-            "time": "2013-01-22 07:28:09",
-            "type": "symfony-bundle",
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "RaulFraile\\Bundle\\LadybugBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Raul Fraile",
-                    "email": "raulfraile@gmail.com",
-                    "homepage": "http://www.raulfrailebeneyto.com/"
-                }
-            ],
-            "description": "Symfony2 bundle for Ladybug library (Simple and Extensible PHP Dumper)",
-            "homepage": "https://github.com/raulfraile/LadybugBundle",
-            "keywords": [
-                "tree",
-                "twig",
-                "dump",
-                "ladybug"
-            ]
-        },
-        {
             "name": "sensio/distribution-bundle",
             "version": "2.1.x-dev",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensio/SensioDistributionBundle",
-                "reference": "66545ed7d60342dd1ffdcebd72fe43b11941fef9"
+                "reference": "615f76309dae8c45c72b69578b034713c09767d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensio/SensioDistributionBundle/zipball/66545ed7d60342dd1ffdcebd72fe43b11941fef9",
-                "reference": "66545ed7d60342dd1ffdcebd72fe43b11941fef9",
+                "url": "https://api.github.com/repos/sensio/SensioDistributionBundle/zipball/615f76309dae8c45c72b69578b034713c09767d1",
+                "reference": "615f76309dae8c45c72b69578b034713c09767d1",
                 "shasum": ""
             },
             "require": {
                 "symfony/framework-bundle": "2.1.*"
             },
-            "time": "2013-01-31 08:08:03",
+            "time": "2013-02-04 19:54:42",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1396,12 +1296,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle",
-                "reference": "f65ce4736fa79c60fdfc9805abb38aaaef728e95"
+                "reference": "e2984f645ad9b5fb3b6d398d0c65e59c745a110c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/AsseticBundle/archive/f65ce4736fa79c60fdfc9805abb38aaaef728e95.zip",
-                "reference": "f65ce4736fa79c60fdfc9805abb38aaaef728e95",
+                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/e2984f645ad9b5fb3b6d398d0c65e59c745a110c",
+                "reference": "e2984f645ad9b5fb3b6d398d0c65e59c745a110c",
                 "shasum": ""
             },
             "require": {
@@ -1421,7 +1321,7 @@
             "suggest": {
                 "symfony/twig-bundle": ">=2.1.0,<2.3-dev"
             },
-            "time": "2013-01-26 01:02:24",
+            "time": "2013-01-31 17:56:17",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1575,12 +1475,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony/symfony.git",
-                "reference": "8c804c79aaaeaba4f0570ee56608a2577c08656c"
+                "reference": "3e2ff71b7c24c0d1bfff02f94dc846f58fd9e97a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/8c804c79aaaeaba4f0570ee56608a2577c08656c",
-                "reference": "8c804c79aaaeaba4f0570ee56608a2577c08656c",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/3e2ff71b7c24c0d1bfff02f94dc846f58fd9e97a",
+                "reference": "3e2ff71b7c24c0d1bfff02f94dc846f58fd9e97a",
                 "shasum": ""
             },
             "require": {
@@ -1629,7 +1529,7 @@
                 "propel/propel1": "dev-master",
                 "monolog/monolog": ">=1.0,<1.3-dev"
             },
-            "time": "2013-01-31 07:57:23",
+            "time": "2013-02-04 18:15:54",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1712,18 +1612,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Twig.git",
-                "reference": "81af6a1fd175f99a229de902380e506d9ac9968d"
+                "reference": "c6445fb5cd6823f7bd65108a717064957b6eafd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/81af6a1fd175f99a229de902380e506d9ac9968d",
-                "reference": "81af6a1fd175f99a229de902380e506d9ac9968d",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/c6445fb5cd6823f7bd65108a717064957b6eafd5",
+                "reference": "c6445fb5cd6823f7bd65108a717064957b6eafd5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2013-01-31 10:19:12",
+            "time": "2013-02-01 09:44:45",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1764,11 +1664,11 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "stof/doctrine-extensions-bundle": 20,
-        "jms/debugging-bundle": 20,
-        "raulfraile/ladybugbundle": 20,
         "apy/breadcrumbtrail-bundle": 20,
         "elnur/blowfish-password-encoder-bundle": 20,
         "knplabs/knp-menu-bundle": 20,
-        "aristath/elusive-iconfont": 20
+        "aristath/elusive-iconfont": 20,
+        "jms/debugging-bundle": 20,
+        "raulfraile/ladybugbundle": 20
     }
 }
