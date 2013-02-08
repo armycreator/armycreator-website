@@ -1,154 +1,59 @@
 {% extends 'SitiowebArmyCreatorBundle:Army:detail.html.twig' %}
 
+{% block title %}
+    {{ "army.bbcode.title"|trans }} - 
+    {{ parent() }}
+{% endblock %}
+
 {% block armyDetail %}
-        <textarea cols="150" rows="30">{{- "" -}}
-            {# === army name === #}
-            {{- "[b][u]" ~ army.name ~ " (" ~ army.breed.name ~ ") : " ~ army.points ~  "army.bb_code.points"|trans ~ "[/u][/b]" -}}
+<textarea cols="150" rows="30">{{- "" -}}
+    {# === army name === #}
+    {{- "[b][u]" ~ army.name ~ " (" ~ army.breed.name ~ ") : " ~ army.points ~ " " ~ "army.bb_code.points"|trans ~ "[/u][/b]" -}}
 
-            {# === squad type list === #}{{- "" -}}
-            {% for tmp in army.squadListByType %}{{- "" -}}
-                {% if tmp.squadList %}
-                    {{- "\n\n" -}}
-                    {# === squad type name === #}
-                    {{- "[b][color=blue]" -}}
-                        {{- tmp.unitType.name -}}
-                        {% if tmp.unitType.breed != army.breed %}
-                            {{- " (" ~ tmp.unitType.breed.name ~ ")" -}}
-                        {% endif %}
-                    {{- "[/color][/b]" -}}
+    {# === squad type list === #}{{- "" -}}
+    {% for tmp in army.squadListByType %}{{- "" -}}
+        {% if tmp.squadList %}
+            {{- "\n\n" -}}
+            {# === squad type name === #}
+            {{- "[b][color=" ~ preferences.colorSquadType ~ "]" -}}
+                {{- tmp.unitType.name -}}
+                {% if tmp.unitType.breed != army.breed %}
+                    {{- " (" ~ tmp.unitType.breed.name ~ ")" -}}
+                {% endif %}
+            {{- "[/color][/b]" -}}
 
-                    {# === squad list === #}
-                    {{- "\n[list]" -}}
-                    {% for squad in tmp.squadList %}{{- "" -}}
-                        {# === squad name === #}
-                        {{- "\n\t[*][color=red]" ~ squad.name|default(squad.unitType.name ~ ' #' ~ loop.index) ~ "[/color] (" ~ squad.points ~ "pts)" -}}
+            {# === squad list === #}
+            {{- "\n[list]" -}}
+            {% for squad in tmp.squadList %}{{- "" -}}
+                {# === squad name === #}
+                {{- "\n\t[*][color=" ~ preferences.colorSquad ~ "]" ~
+                        squad.name|default(squad.unitType.name ~ ' #' ~ loop.index) ~
+                        "[/color] (" ~ squad.points ~ "pts)" -}}
 
-                        {# === squad line list === #}
-                        {{- "\n\t[list]" -}}
-                        {% for squadLine in squad.squadLineList %}{{- "" -}}
-                            {# === unit name/number === #}
-                            {{- "\n\t\t[*][color=#00a650]" ~ squadLine.number ~ " " ~ squadLine.unit.name ~ "[/color]" -}}
+                {# === squad line list === #}
+                {{- "\n\t[list]" -}}
+                {% for squadLine in squad.squadLineList %}{{- "" -}}
+                    {# === unit name/number === #}
+                    {{- "\n\t\t[*][color=" ~ preferences.colorSquadDetail ~ "]" ~ squadLine.number ~ " " ~ squadLine.unit.name ~ "[/color]" -}}
 
-                            {# === unit stuff list === #}{{- "" -}}
-                            {% if squadLine.squadLineStuffList %}
-                                {{- "\n\t\t[list]" -}}
-                                    {{- "\n\t\t\t[*]" -}}
-                                    {% for squadLineStuffList in squadLine.squadLineStuffList %}{{- "" -}}
-                                        {% if not loop.first %}
-                                            {{- "\n\t\t\t[*]" -}}
-                                        {% endif %}
-                                        {{- squadLineStuffList.number ~ " " ~ squadLineStuffList.unitStuff.stuff.name -}}
-                                    {% endfor %}
-                                {{- "\n\t\t[/list]" -}}
-                            {% endif %}
-                        {% endfor %}
-                        {{- "\n\t[/list]" -}}
-                    {% endfor %}
-                    {{- "\n[/list]" -}}
-                {% endif %}{{- "" -}}
-            {% endfor %}{{- "" -}}
-        </textarea>
-
-        {# ===== Unit Type length ===== #}
-        <div class="unitTypeTopList">
-            {% for tmp in army.squadListByType %}
-                <div>
-                    <a href="#unitType{{ tmp.unitType.id }}">
-                        {{ tmp.squadList|length }} {{ tmp.unitType.name }}
-                        {% if tmp.unitType.breed != army.breed %}
-                            ({{ tmp.unitType.breed.name }})
-                        {% endif %}
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
-
-        {# ===== Squad List ===== #}
-        {% for tmp in army.squadListByType %}
-            <section class="unitTypeList row gut" id="unitType{{ tmp.unitType.id }}">
-                <h3 class="unitType col">
-                    <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
-                    {{ tmp.unitType.name }}
-                    {% if tmp.unitType.breed != army.breed %}
-                        ({{ tmp.unitType.breed.name }})
+                    {# === unit stuff list === #}{{- "" -}}
+                    {% if not(squadLine.squadLineStuffList.empty) %}
+                        {{- "\n\t\t[list]" -}}
+                            {{- "\n\t\t\t[*] " -}}
+                            {% for squadLineStuffList in squadLine.squadLineStuffList %}{{- "" -}}
+                                {% if not loop.first %}
+                                    {{- preferences.separator -}}
+                                {% endif %}
+                                {{- squadLineStuffList.number ~ " " ~ squadLineStuffList.unitStuff.stuff.name -}}
+                            {% endfor %}
+                        {{- "\n\t\t[/list]" -}}
                     {% endif %}
-                    <div>{{ tmp.points }} pts</div>
-                </h3>
-                <div class="col squadListContainer">
-                    <section class="squadList">
-                        {% for squad in tmp.squadList %}
-                                <div class="squad">
-                                    <div class="squadName">
-                                        <h4>
-                                            <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
-                                            {{ squad.name|default('Squad ' ~ loop.index) }}
-                                            <span>
-                                                {{ squad.points }} pts
-                                            </span>
-                                        </h4>
-                                    </div>
-
-                                    <div>
-                                        {% for squadLine in squad.squadLineList %}
-                                            <div class="squadLine">
-                                                <h5>{{ squadLine.number }} {{ squadLine.unit.name }}</h5>
-                                                {% if not(squadLine.squadLineStuffList.empty) %}
-                                                    <ul>
-                                                        {% for squadLineStuffList in squadLine.squadLineStuffList %}
-                                                            <li>
-                                                                {{ squadLineStuffList.number }}
-                                                                {{ squadLineStuffList.unitStuff.stuff.name }}
-                                                            </li>
-                                                        {% endfor %}
-                                                    </ul>
-                                                {% endif %}
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-
-                                    <aside class="actions">
-                                        <a href="javascript:;" class="acButton">
-                                            <i class="icon-move"></i>
-                                        </a>
-
-                                        <div class="right">
-                                            <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
-                                                <i class="icon-pencil"></i>
-                                            </a>
-
-                                            <form
-                                                action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}"
-                                                method="post"
-                                                class="inbl"
-                                                onsubmit="javascript:return confirm('{% trans %}army.detail.squad.delete{% endtrans %}');"
-                                            >
-                                                {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
-                                                {{ form_widget(deleteSquadForm.createView) }}
-                                                <button class="acButton" type="submit">
-                                                    <i class="icon-remove"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </aside>
-                                </div>
-                        {% endfor %}
-
-                        <div>
-                            <a
-                                href="{{
-                                    path('squad_new',
-                                    {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug, 'breedSlug' : tmp.unitType.breed.slug})
-                                }}"
-                                class="acButton"
-                            >
-                                <i class="icon-plus"></i>
-                                {{ 'army.detail.squad.add'|trans }}
-                            </a>
-                        </div>
-                    </section>
-                </div>
-            </section>
-        {% endfor %}
-    </div>
+                {% endfor %}
+                {{- "\n\t[/list]" -}}
+            {% endfor %}
+            {{- "\n[/list]" -}}
+        {% endif %}{{- "" -}}
+    {% endfor %}{{- "" -}}
+</textarea>
 {% endblock %}
 

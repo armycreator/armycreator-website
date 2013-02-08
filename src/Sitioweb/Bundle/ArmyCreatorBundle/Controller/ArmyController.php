@@ -104,10 +104,18 @@ class ArmyController extends Controller
      */
     public function detailBbcodeAction($slug)
     {
+        // get detail parameters
         $return = $this->getDetailParams($slug);
+
+        // get user preferences
+        $userPreferences = $this->getUser()->getPreferences();
+
+        // breadcrumb
         $this->get("apy_breadcrumb_trail")->add($this->get('translator')->trans('army.detail.bbcode'));
 
-        return $return;
+         return $return + array(
+            'preferences' => $userPreferences
+        );
     }
 
     /**
