@@ -244,6 +244,27 @@ class SquadLine
     }
 
     /**
+     * getNoDefaultSquadLineStuffList
+     *
+     * @access public
+     * @return array
+     */
+    public function getNoDefaultSquadLineStuffList()
+    {
+        $squadLineStuffList = $this->getSquadLineStuffList();
+        $list = array();
+
+        foreach ($squadLineStuffList as $squadLineStuff) {
+            $unitStuff = $squadLineStuff->getUnitStuff();
+            if (!$unitStuff->getAuto() || $unitStuff->getPoints() > 0) {
+                $list[] = $squadLineStuff;
+            }
+        }
+        
+        return $list;
+    }
+
+    /**
      * Set createDate
      *
      * @param \DateTime $createDate

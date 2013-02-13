@@ -28,7 +28,10 @@
                 {# === squad name === #}
                 {{- "\n\t[*][color=" ~ preferences.colorSquad ~ "]" ~
                         squad.name|default(squad.unitType.name ~ ' #' ~ loop.index) ~
-                        "[/color] (" ~ squad.points ~ "pts)" -}}
+                        "[/color]" -}}
+                {% if preferences.showUnitPoints %}
+                    {{-" (" ~ squad.points ~ "pts)" -}}
+                {% endif %}{{- "" -}}
 
                 {# === squad line list === #}
                 {{- "\n\t[list]" -}}
@@ -37,14 +40,20 @@
                     {{- "\n\t\t[*][color=" ~ preferences.colorSquadDetail ~ "]" ~ squadLine.number ~ " " ~ squadLine.unit.name ~ "[/color]" -}}
 
                     {# === unit stuff list === #}{{- "" -}}
-                    {% if not(squadLine.squadLineStuffList.empty) %}
+                    {% if preferences.showDefaultStuff %}{{- "" -}}
+                        {% set squadLineStuffList = squadLine.squadLineStuffList %}{{- "" -}}
+                    {% else %}{{- "" -}}
+                        {% set squadLineStuffList = squadLine.noDefaultSquadLineStuffList %}{{- "" -}}
+                    {% endif %}{{- "" -}}
+
+                    {% if not(squadLineStuffList is empty) %}
                         {{- "\n\t\t[list]" -}}
                             {{- "\n\t\t\t[*] " -}}
-                            {% for squadLineStuffList in squadLine.squadLineStuffList %}{{- "" -}}
+                            {% for squadLineStuff in squadLineStuffList %}{{- "" -}}
                                 {% if not loop.first %}
                                     {{- preferences.separator -}}
                                 {% endif %}
-                                {{- squadLineStuffList.number ~ " " ~ squadLineStuffList.unitStuff.stuff.name -}}
+                                {{- squadLineStuff.number ~ " " ~ squadLineStuff.unitStuff.stuff.name -}}
                             {% endfor %}
                         {{- "\n\t\t[/list]" -}}
                     {% endif %}
