@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation as Security;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyBbcodePreferencesType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
 
 /**
@@ -110,11 +111,28 @@ class ArmyController extends Controller
         // get user preferences
         $userPreferences = $this->getUser()->getPreferences();
 
+        $request = $this->getRequest();
+        $form = $this->createForm(new ArmyBbcodePreferencesType(), $userPreferences);
+
+        // the user submitted the form
+        if ($request->getMethod() === 'POST') {
+            $form->bind($request);
+            if (!$form->isValid()) {
+                $userPreferences = $this->getUser()->getPreferences();
+            } elseif ($request->request->get('saveAsDefault') == 1) {
+                // updating user general preferences
+                $em = $this->get('doctrine')->getManager();
+                $em->persist($userPreferences);
+                $em->flush();
+            }
+        }
+
         // breadcrumb
         $this->get("apy_breadcrumb_trail")->add($this->get('translator')->trans('army.detail.bbcode'));
 
          return $return + array(
-            'preferences' => $userPreferences
+            'preferences' => $userPreferences,
+            'form' => $form->createView()
         );
     }
 

@@ -6,6 +6,14 @@
 {% endblock %}
 
 {% block armyDetail %}
+<form action="{{ path('army_detail_bbcode', { 'slug': army.slug }) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit" class="acButton">{{ 'army.bbcode.apply'|trans }}</button>
+        <button type="submit" class="acButton" name="saveAsDefault" value="1">{{ 'army.bbcode.apply_and_save'|trans }}</button>
+    </p>
+</form>
+
 <textarea cols="150" rows="30">{{- "" -}}
     {# === army name === #}
     {{- "[b][u]" ~ army.name ~ " (" ~ army.breed.name ~ ") : " ~ army.points ~ " " ~ "army.bb_code.points"|trans ~ "[/u][/b]" -}}
