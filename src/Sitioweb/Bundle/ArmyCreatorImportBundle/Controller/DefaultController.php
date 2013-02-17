@@ -55,6 +55,12 @@ class DefaultController extends Controller
         return array('importList' => $numberedImportList);
     }
 
+    private function getDbName()
+    {
+        return $this->container->getParameter('database_name');
+
+    }
+
     /**
      * configure
      *
@@ -857,14 +863,14 @@ class DefaultController extends Controller
         $this->em->getClassMetaData($entityClass)->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
 
         $query = $this->em->getConnection()->executeUpdate("
-             INSERT INTO armycreator.Army (
+             INSERT INTO " . $this->getDbName() . ".Army (
                 id, breed_id, user_id, `status`, name, slug, description, wantedPoints, 
                     points, isShared, createDate, updateDate, armyGroup_id
                      )
              SELECT wa.id, wa.race_id, u.id, IF(wa.type_armee = 'T','finish','draft'), wa.nom, CONCAT('army-', wa.id), wa.description,
                 wa.nbPointsSouhaites, wa.nbPoints, IF(wa.isShared='1',1,0), null, null, wa.groupe_id
                 FROM wkarmycr_copy.armee wa
-                JOIN armycreator.Users u ON u.forumId = wa.joueur_id
+                JOIN " . $this->getDbName() . ".Users u ON u.forumId = wa.joueur_id
                 ");
 
         /*
@@ -957,8 +963,8 @@ class DefaultController extends Controller
             INSERT INTO UserHasUnit (user_id, unit_id, number)
             SELECT u.id as user_id, au.id as unit_id, wcu.nb
             FROM wkarmycr_copy.wac_collection_unite wcu
-            JOIN armycreator.Users u ON u.forumId = wcu.id_joueur
-            JOIN armycreator.AbstractUnit au 
+            JOIN " . $this->getDbName() . ".Users u ON u.forumId = wcu.id_joueur
+            JOIN " . $this->getDbName() . ".AbstractUnit au 
                 ON au.discriminator = 'unit'
                     AND au.importedId = wcu.id_unite
         ");
@@ -1025,7 +1031,7 @@ class DefaultController extends Controller
         }
 
         $query = $this->em->getConnection()->executeUpdate("
-             INSERT INTO armycreator.Squad 
+             INSERT INTO " . $this->getDbName() . ".Squad 
               (id, army_id, name, position, updateDate, unitType_id, unitGroup_id)
 
               SELECT e.id, e.armee_id, e.nomPerso, e.position, FROM_UNIXTIME(e.lastUpdate),
@@ -1034,11 +1040,11 @@ class DefaultController extends Controller
               JOIN wkarmycr_copy.unite wu ON wu.id = e.unite_id
               JOIN wkarmycr_copy.armee wa ON wa.id = e.armee_id
 
-              LEFT JOIN armycreator.UnitType ut
+              LEFT JOIN " . $this->getDbName() . ".UnitType ut
                   ON ut.importedId = IFNULL(e.type_unite, wu.type_unite_id)
                   AND ut.breed_id = wa.race_id
 
-              LEFT JOIN armycreator.AbstractUnit au
+              LEFT JOIN " . $this->getDbName() . ".AbstractUnit au
                   ON au.discriminator = 'group'
                   AND au.importedType = 'unit_group'
                   AND au.importedId = e.from_regroupement_id
@@ -1199,13 +1205,13 @@ class DefaultController extends Controller
         }
 
         $query = $this->em->getConnection()->executeUpdate("
-              INSERT INTO armycreator.SquadLine 
+              INSERT INTO " . $this->getDbName() . ".SquadLine 
                (id, unit_id, squad_id, number, position, updateDate)
 
                SELECT e.id, au.id as unit_id, IFNULL(e.parent_id, e.id) as squad_id, e.nb_unite, e.position, FROM_UNIXTIME(e.lastUpdate)
                FROM wkarmycr_copy.escouade e
                 
-                LEFT JOIN armycreator.AbstractUnit au
+                LEFT JOIN " . $this->getDbName() . ".AbstractUnit au
                     ON au.discriminator = 'unit'
                         AND au.importedId = e.unite_id
                 ");
@@ -1233,22 +1239,22 @@ class DefaultController extends Controller
 
         // inserting
         $this->em->getConnection()->executeUpdate("
-            INSERT INTO armycreator.SquadLineStuff (number, unitStuff_id, squadLine_id)
+            INSERT INTO " . $this->getDbName() . ".SquadLineStuff (number, unitStuff_id, squadLine_id)
             SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id 
             FROM wkarmycr_copy.`escouade_has_equipement` ehe
             JOIN wkarmycr_copy.escouade e ON ehe.escouade_id = e.id
             JOIN wkarmycr_copy.unite u ON u.id = e.unite_id
 
-            JOIN armycreator.AbstractUnit au 
+            JOIN " . $this->getDbName() . ".AbstractUnit au 
                 ON au.discriminator = 'unit'
                 AND au.importedId = u.id
                         
-            JOIN armycreator.Stuff stuff 
+            JOIN " . $this->getDbName() . ".Stuff stuff 
                 ON stuff.breed_id = u.race_id
                 AND stuff.importedId = equipement_id
                 AND stuff.discriminator  = 'equipement'
                                         
-            JOIN armycreator.UnitStuff us
+            JOIN " . $this->getDbName() . ".UnitStuff us
                 ON us.stuff_id = stuff.id
                 AND us.unit_id = au.id
 
@@ -1280,22 +1286,22 @@ class DefaultController extends Controller
 
         // inserting
         $this->em->getConnection()->executeUpdate("
-            INSERT INTO armycreator.SquadLineStuff (number, unitStuff_id, squadLine_id)
+            INSERT INTO " . $this->getDbName() . ".SquadLineStuff (number, unitStuff_id, squadLine_id)
             SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id 
             FROM wkarmycr_copy.`escouade_has_equipement` ehe
             JOIN wkarmycr_copy.escouade e ON ehe.escouade_id = e.id
             JOIN wkarmycr_copy.unite u ON u.id = e.unite_id
 
-            JOIN armycreator.AbstractUnit au 
+            JOIN " . $this->getDbName() . ".AbstractUnit au 
                 ON au.discriminator = 'unit'
                 AND au.importedId = u.id
                         
-            JOIN armycreator.Stuff stuff 
+            JOIN " . $this->getDbName() . ".Stuff stuff 
                 ON stuff.breed_id = u.race_id
                 AND stuff.importedId = arme_id
                 AND stuff.discriminator  = 'weapon'
                                         
-            JOIN armycreator.UnitStuff us
+            JOIN " . $this->getDbName() . ".UnitStuff us
                 ON us.stuff_id = stuff.id
                 AND us.unit_id = au.id
 
