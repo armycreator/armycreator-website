@@ -41,4 +41,24 @@ class DefaultController extends Controller
     public function authenticatedIndex() {
         return $this->render('SitiowebArmyCreatorBundle:Default:authenticatedIndex.html.twig', array());
     }
+
+    /**
+     * getHeader
+     *
+     * @access public
+     * @return string
+     */
+    public function getHeader() {
+        return $this->get('templating')->render('SitiowebArmyCreatorBundle::header.html.twig', array());
+    }
+
+    /**
+     * getFooter
+     *
+     * @access public
+     * @return string
+     */
+    public function getFooter() {
+        return $this->get('templating')->render('SitiowebArmyCreatorBundle::footer.html.twig', array());
+    }
 }

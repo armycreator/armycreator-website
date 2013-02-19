@@ -4,51 +4,7 @@
 
 {% block body %}
     {# <div id="websiteNavBackground"></div> #}
-	<header id="websiteHeader">
-		{% block websiteHeaderBar %}
-			<div class="headerBar">
-                <a href="{{ path('homepage') }}" title="Army Creator">
-                    <i class="icon-home"></i>
-                </a>
-                |
-                Bienvenue sur Army Creator
-
-                <span class="right">
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        Hello {{ app.user.username }}
-                    {% else %}
-                        <a href="{{ path('forum_connection') }}">
-                            Connectez-vous
-                        </a>
-                        ou 
-                        <a href="{{ path('forum_create_account') }}">
-                            Créer un compte
-                        </a>
-                    {% endif %}
-                    | 
-                    <a href="#">
-                        <i class="icon-question-sign"></i>
-                    </a>
-                </span>
-            </div>
-		{% endblock %}
-
-		{% block websiteHeader %}
-			<div class="logo"></div>
-		{% endblock %}
-
-        {% block websiteNav %}
-            <nav id="websiteNav">
-                <div class="left">
-                    {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:mainMenu') }}
-                </div>
-
-                <div class="right">
-                    {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:secondMainMenu') }}
-                </div>
-            </nav>
-        {% endblock %}
-	</header>
+    {% include "SitiowebArmyCreatorBundle::header.html.twig" %}
 
 	<div id="websiteContentContainer">
         <div id="websiteContent" class="{{ app.request.attributes.get('_route') }}">
@@ -78,9 +34,7 @@
     </div>
 
 	<footer id="websiteFooter">
-		{% block websiteFooter %}
-			Website Footer
-		{% endblock %}
+        {% include "SitiowebArmyCreatorBundle::footer.html.twig" %}
 	</footer>
 {% endblock %}
 

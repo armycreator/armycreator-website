@@ -28,6 +28,23 @@
 
 
 <ul>
-    <li>Modifier les couleurs des "UnitType"
+    <li>
+        Forum
+        <ul>
+            <li>Copier les fichiers du forum de beta
+            <li>chmod 777 sur le dossier de cache
+            <li>Copier la base de donnée du forum de prod
+            <li>UPDATE `phpbb_config` SET config_value = 'armycreator.net' WHERE config_name = 'server_name'
+            <li>UPDATE `phpbb_config` SET config_value = '1' WHERE config_name = 'default_style'
+            <li>UPDATE `phpbb_config` SET config_value = 'armycreator.net' WHERE config_name = 'cookie_domain'
+            <li>UPDATE `phpbb_config` SET config_value = 'forum_ac441h' WHERE config_name = 'cookie_name'
+            <li>UPDATE `phpbb_users` SET user_style = '1'
+            <li>Supprimer le dossier de cache
+            <li>Si connexion impossible : supprimer les cookies du domaine
+            <li>BO  / Styles : tout désactiver / désinstaller sauf prosilver. Installer les templates/theme/styles armycreator.
+            <li>BO  / Styles : Créer un nouveau style : "armycreator" de "prosilver". Style par défaut : "oui"
+            <li>BO  / Styles / armycreator : "Informations" : template/theme : "armycreator"
+        </ul>
+    <li>Modifier les couleurs des "UnitType" (QG, Elite, etc.)
 </ul>
 {% endblock %}

@@ -28,16 +28,23 @@ class UserService
      */
     public function getUser ($container)
     {
-        global $db, $template, $config, $auth, $phpEx, $phpbb_root_path, $cache;
+        global $db, $template, $config, $auth, $phpEx, $phpbb_root_path, $cache, $user;
         if (!defined('IN_PHPBB')) {
             define('IN_PHPBB', true);
         }
-        //define('PHPBB_ROOT_PATH', 'forum');
-        $phpbb_root_path = 'forum/';
-        $phpEx = 'php';
-        require_once($container->get('kernel')->getRootDir() . '/../web/forum/common.php');
+
+        if (!$user) {
+            //define('PHPBB_ROOT_PATH', $container->getParameter('kernel.root_dir') . '/../web/forum/');
+            $phpbb_root_path = 'forum/';
+            $phpEx = 'php';
+            require_once($container->get('kernel')->getRootDir() . '/../web/forum/common.php');
+        }
+
         if (!empty($user)) {
-            $user->session_begin();
+            // session not already started
+            if (empty($user->session_id)) {
+                $user->session_begin();
+            }
             $auth->acl($user->data);
             //$user->setup();
 
