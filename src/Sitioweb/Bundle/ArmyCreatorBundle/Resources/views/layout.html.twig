@@ -21,10 +21,12 @@
             
 
             {% block flashes %}
-                {% for key, message in app.session.getFlashes() %}
-                    <div class="{{ key }}">
-                        {{ message }}
-                    </div>
+                {% for key, messageList in app.session.flashbag.all %}
+                    {% for message in messageList %}
+                        <div class="{{ key }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                 {% endfor %}
             {% endblock %}
 
