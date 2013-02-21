@@ -1,16 +1,18 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
 {% block title %}
-    Hello {{ app.user.username }} !
+    {% trans with { "%username%": app.user.username } %}home.hello.%username%{% endtrans %}
 {% endblock %}
 
 {% block content %}
-    </p>
-        Welcome to Army Creator. Here what can we do for you :
+    <p>
+        {% trans %}
+            home.welcome_text
+        {% endtrans %}
         <ul>
-            <li> bla
-            <li> bli 
-            <li> blou
+            <li>{{ "home.things_to_do.1"|trans }}
+            <li>{{ "home.things_to_do.2"|trans }}
+            <li>{{ "home.things_to_do.3"|trans }}
         </ul>
     </p>
 

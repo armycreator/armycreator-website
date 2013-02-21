@@ -14,41 +14,41 @@
             {% if group %}
                 {{ group.name }}
             {% else %}
-                {{ 'army.list.no_group'|trans }}
+                {{ "army.list.no_group"|trans }}
             {% endif %}
         </h2>
 
         {% if group %}
             <a href="{{ path('army_group_edit', {'id' : group.id} ) }}" class="acButton">
                 <i class="icon-pencil"></i>
-                {{ 'army.list.group.edit'|trans }}
+                {{ "army.list.group.edit"|trans }}
             </a>
             <form action="{{ path('army_group_delete', { 'id': group.id }) }}" method="post">
                 {{ form_widget(deleteGroupForm.createView) }}
                 <button type="submit" class="acButton">
                     <i class="icon-remove"></i>
-                    {{ 'army.list.group.delete'|trans }}
+                    {{ "army.list.group.delete"|trans }}
                 </button>
             </form>
         {% endif %}
     </div>
 
-    <a href="{{ path('army_new') }}" class="acButton">
+    <a href="{{ path('army_new') }}" class="acButton" title="{{ "army.list.new"|trans }}">
         <i class="icon-plus"></i>
-        {{ 'army.list.new'|trans }}
+        {{ "army.list.new"|trans }}
     </a>
 
     <table class="squadType">
         <thead>
             <tr>
                 <th>
-                <th>{{ 'army.list.breed'|trans }}
-                <th>{{ 'army.list.points'|trans }}
-                <th>{{ 'army.list.name'|trans }}
-                <th>{{ 'army.list.status'|trans }}
-                <th>{{ 'army.list.created_date'|trans }}
-                <th>{{ 'army.list.updated_date'|trans }}
-                <th>{{ 'army.list.actions'|trans }}
+                <th>{{ "army.list.breed"|trans }}
+                <th>{{ "army.list.points"|trans }}
+                <th>{{ "army.list.name"|trans }}
+                <th>{{ "army.list.status"|trans }}
+                <th>{{ "army.list.created_date"|trans }}
+                <th>{{ "army.list.updated_date"|trans }}
+                <th>{{ "army.list.actions"|trans }}
             </tr>
         </thead>
 
@@ -82,15 +82,15 @@
                     <td>
                         <a href="{{ path('army_edit', {'slug' : army.slug}) }}" class="acButton">
                             <i class="icon-pencil"></i>
-                            {{ 'army.list.edit'|trans }}
+                            {{ "army.list.edit"|trans }}
                         </a>
 
                         <form action="{{ path('army_delete', { 'slug': army.slug }) }}" method="post" class="inbl">
                             {% set deleteArmyForm = deleteArmyListForm[army.id] %}
                             {{ form_widget(deleteArmyForm.createView) }}
-                            <button class="acButton" type="submit" onclick="return confirm('Delete this army ?');">
+                            <button class="acButton" type="submit" onclick="return confirm('{{ "army.list.delete_confirm"|trans }}');">
                                 <i class="icon-remove"></i>
-                                {{ 'army.list.delete'|trans }}
+                                {{ "army.list.delete"|trans }}
                             </button>
                         </form>
                     </td>

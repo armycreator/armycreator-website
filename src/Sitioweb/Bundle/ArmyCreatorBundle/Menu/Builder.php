@@ -27,11 +27,11 @@ class Builder extends ContainerAware
 
         $menu = $factory->createItem('root');
 
-        $menu->addChild('Home', array('route' => 'homepage'));
-        $menu->addChild('Forum', array('uri' => '/forum/index.php'));
+        $menu->addChild('main_menu.home', array('route' => 'homepage'));
+        $menu->addChild('main_menu.forum', array('uri' => '/forum/index.php'));
         if ($isAuth) {
-            $menu->addChild('My army list', array('route' => 'army_list'));
-            $menu->addChild('My games', array('route' => ''));
+            $menu->addChild('main_menu.my_army_list', array('route' => 'army_list'));
+            $menu->addChild('main_menu.my_games', array('route' => ''));
         }
 
         return $menu;
@@ -52,11 +52,11 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
 
         if ($isAuth) {
-            $menu->addChild('My collection', array('route' => ''));
+            $menu->addChild('main_menu.my_collection', array('route' => ''));
         }
-        $menu->addChild('Public lists', array('route' => ''));
-        $menu->addChild('Tools', array('route' => ''));
-        $menu->addChild('Donation', array('uri' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG'));
+        $menu->addChild('main_menu.public_lists', array('route' => ''));
+        $menu->addChild('main_menu.tools', array('route' => ''));
+        $menu->addChild('main_menu.donation', array('uri' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG'));
 
         return $menu;
     }
@@ -73,12 +73,12 @@ class Builder extends ContainerAware
     {
         $menu = $factory->createItem('root');
 
-        $menu->addChild('My army list', array('route' => 'army_list'));
-        $menu->addChild('My last army', array('route' => ''));
-        $menu->addChild('Create a new army', array('route' => ''));
-        $menu->addChild('My collection', array('route' => ''));
-        $menu->addChild('Forum', array('uri' => '/forum/index.php'));
-        $menu->addChild('Make a donation', array('uri' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG'));
+        $menu->addChild('homepage_menu.my_army_list', array('route' => 'army_list'));
+        $menu->addChild('homepage_menu.last_army', array('route' => ''));
+        $menu->addChild('homepage_menu.create_army', array('route' => ''));
+        $menu->addChild('homepage_menu.my_collection', array('route' => ''));
+        $menu->addChild('homepage_menu.forum', array('uri' => '/forum/index.php'));
+        $menu->addChild('homepage_menu.donation', array('uri' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG'));
 
         return $menu;
     }
@@ -98,7 +98,7 @@ class Builder extends ContainerAware
         $user = $this->container->get('security.context')->getToken()->getUser();
         $armyGroupList = $user->getArmyGroupList();
 
-        $menu->addChild('All armies', array(
+        $menu->addChild('army_list.group_list.all_armies', array(
             'route' => 'army_list'
         ));
 

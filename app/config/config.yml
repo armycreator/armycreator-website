@@ -86,7 +86,7 @@ doctrine:
                 connection: import
 
 stof_doctrine_extensions:
-    default_locale: en_US
+    default_locale: %locale%
     orm:
         default:
             sluggable: true
@@ -108,3 +108,8 @@ fos_user:
 
 elnur_blowfish_password_encoder:
     cost: 15
+
+knp_menu:
+    twig:
+        template: armycreator_menu.html.twig
+

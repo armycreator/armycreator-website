@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  * 
  * @uses Controller
  * @Route("/")
- * @Breadcrumb("Home", route="homepage")
+ * @Breadcrumb("breadcrumb.home", route="homepage")
  *
  * @author Julien DENIAU <julien.deniau@gmail.com> 
  */

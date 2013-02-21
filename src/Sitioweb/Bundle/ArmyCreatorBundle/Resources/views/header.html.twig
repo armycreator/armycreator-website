@@ -5,18 +5,23 @@
                 <i class="icon-home"></i>
             </a>
             |
-            Bienvenue sur Army Creator
+            {{ "header.welcome"|trans }}
 
             <span class="right">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    Hello {{ app.user.username }}
-                {% else %}
-                    <a href="{{ path('forum_connection') }}">
-                        Connectez-vous
+                    {% trans with { "%username%": app.user.username } %}header.hello.%username%{% endtrans %}
+                    |
+                    <a href="/forum/ucp.php?mode=logout" title="{{ "header.logout"|trans }}">
+                        {{ "header.logout"|trans }}
+                        <i class="icon-off"></i>
                     </a>
-                    ou 
-                    <a href="{{ path('forum_create_account') }}">
-                        Créer un compte
+                {% else %}
+                    <a href="/forum/ucp.php?mode=login" title="{{ "header.login"|trans }}">
+                        {{ "header.login"|trans }}
+                    </a>
+                    |
+                    <a href="/forum/ucp.php?mode=register" title="{{ "header.sign_up"|trans }}">
+                        {{ "header.sign_up"|trans }}
                     </a>
                 {% endif %}
                 | 
