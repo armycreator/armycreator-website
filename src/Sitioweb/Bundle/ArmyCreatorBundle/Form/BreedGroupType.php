@@ -19,7 +19,8 @@ class BreedGroupType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup',
+            'translation_domain' => 'forms'
         ));
     }
 

@@ -14,7 +14,7 @@ class SquadLineStuffType extends AbstractType
             'number',
             'integer',
             array(
-                'attr' => array('size' => 4)
+                'attr' => array('size' => 4, 'title' => 'Number')
             )
         );
         $builder->add(
@@ -31,7 +31,8 @@ class SquadLineStuffType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLineStuff'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLineStuff',
+            'translation_domain' => 'forms'
         ));
     }
 

@@ -18,20 +18,19 @@ class ArmyBbcodePreferencesType extends AbstractType
             ->add(
                 'showDefaultStuff',
                 null,
-                array('required' => false, 'label' => 'ac_armybbcode.form.show_default_stuff')
+                array('required' => false)
             )
             //->add('showStuffDescription')
             ->add(
                 'showUnitPoints',
                 null,
-                array('required' => false, 'label' => 'ac_armybbcode.form.show_unit_points')
+                array('required' => false)
             )
             //->add('showStuffPoints')
             ->add(
                 'separator',
                 'choice',
                 array(
-                    'label' => 'ac_armybbcode.form.separator',
                     'choices' => array(
                         '[*]' => 'ac_armybbcode.form.carriage_return',
                         ' / ' => 'ac_armybbcode.form.slash',
@@ -55,7 +54,8 @@ class ArmyBbcodePreferencesType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference',
+            'translation_domain' => 'forms'
         ));
     }
 

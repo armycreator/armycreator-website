@@ -89,7 +89,9 @@
                 </ul>
 
                 <p class="txtright">
-                    <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">Back to army</a>
+                    <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">
+                        {{ "squad.new.back_to_list"|trans }}
+                    </a>
                 </p>
             {% endblock %}
         </section>

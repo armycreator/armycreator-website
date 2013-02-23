@@ -19,7 +19,8 @@ class GameType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game',
+            'translation_domain' => 'forms'
         ));
     }
 

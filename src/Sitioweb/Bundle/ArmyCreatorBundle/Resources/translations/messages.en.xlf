@@ -51,156 +51,266 @@
         <target>points</target>
       </trans-unit>
       <trans-unit id="13">
+        <source>army.new.title</source>
+        <target>__army.new.title</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>army.new.create</source>
+        <target>__army.new.create</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>army.new.back_to_list</source>
+        <target>__army.new.back_to_list</target>
+      </trans-unit>
+      <trans-unit id="16">
         <source>army.list.title</source>
         <target>Army list</target>
       </trans-unit>
-      <trans-unit id="14">
+      <trans-unit id="17">
         <source>army.list.no_group</source>
         <target>No group</target>
       </trans-unit>
-      <trans-unit id="15">
+      <trans-unit id="18">
         <source>army.list.group.edit</source>
         <target>Edit group</target>
       </trans-unit>
-      <trans-unit id="16">
+      <trans-unit id="19">
         <source>army.list.group.delete</source>
         <target>Delete group</target>
       </trans-unit>
-      <trans-unit id="17">
+      <trans-unit id="20">
         <source>army.list.new</source>
         <target>New army</target>
       </trans-unit>
-      <trans-unit id="18">
+      <trans-unit id="21">
         <source>army.list.breed</source>
         <target>Breed</target>
       </trans-unit>
-      <trans-unit id="19">
+      <trans-unit id="22">
         <source>army.list.points</source>
         <target>points</target>
       </trans-unit>
-      <trans-unit id="20">
+      <trans-unit id="23">
         <source>army.list.name</source>
         <target>name</target>
       </trans-unit>
-      <trans-unit id="21">
+      <trans-unit id="24">
         <source>army.list.status</source>
         <target>status</target>
       </trans-unit>
-      <trans-unit id="22">
+      <trans-unit id="25">
         <source>army.list.created_date</source>
         <target>created date</target>
       </trans-unit>
-      <trans-unit id="23">
+      <trans-unit id="26">
         <source>army.list.updated_date</source>
         <target>updated date</target>
       </trans-unit>
-      <trans-unit id="24">
+      <trans-unit id="27">
         <source>army.list.actions</source>
         <target>actions</target>
       </trans-unit>
-      <trans-unit id="25">
+      <trans-unit id="28">
         <source>army.list.edit</source>
         <target>edit</target>
       </trans-unit>
-      <trans-unit id="26">
+      <trans-unit id="29">
+        <source>army.list.delete_confirm</source>
+        <target>__army.list.delete_confirm</target>
+      </trans-unit>
+      <trans-unit id="30">
         <source>army.list.delete</source>
         <target>delete</target>
       </trans-unit>
-      <trans-unit id="27">
+      <trans-unit id="31">
         <source>army.edit.title</source>
         <target>edit army</target>
       </trans-unit>
-      <trans-unit id="28">
+      <trans-unit id="32">
         <source>army.edit.edit</source>
         <target>edit</target>
       </trans-unit>
-      <trans-unit id="29">
+      <trans-unit id="33">
         <source>army.edit.back_to_army_list</source>
         <target>back to army list</target>
       </trans-unit>
-      <trans-unit id="30">
+      <trans-unit id="34">
+        <source>home.hello.%username%</source>
+        <target>__home.hello.%username%</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>            home.welcome_text
+        </source>
+        <target>__            home.welcome_text
+        </target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>home.things_to_do.1</source>
+        <target>__home.things_to_do.1</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>home.things_to_do.2</source>
+        <target>__home.things_to_do.2</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>home.things_to_do.3</source>
+        <target>__home.things_to_do.3</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>army_group.edit.title</source>
+        <target>__army_group.edit.title</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>army_group.edit.edit</source>
+        <target>__army_group.edit.edit</target>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>army_group.edit.back_to_list</source>
+        <target>__army_group.edit.back_to_list</target>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>army_group.edit.delete</source>
+        <target>__army_group.edit.delete</target>
+      </trans-unit>
+      <trans-unit id="43">
         <source>squad.new.unit.type.%unitTypeName%</source>
         <target>new %unitTypeName%</target>
       </trans-unit>
-      <trans-unit id="31">
+      <trans-unit id="44">
         <source>squad.edit.breed_change</source>
         <target>other breed</target>
       </trans-unit>
-      <trans-unit id="32">
+      <trans-unit id="45">
         <source>squad.edit.unit_type_change</source>
         <target>change unit type</target>
       </trans-unit>
-      <trans-unit id="33">
+      <trans-unit id="46">
         <source>squad.edit.squad_choice</source>
         <target>squad choice</target>
       </trans-unit>
-      <trans-unit id="34">
+      <trans-unit id="47">
         <source>squad.edit.squad_stuff</source>
         <target>squad stuff</target>
       </trans-unit>
-      <trans-unit id="35">
+      <trans-unit id="48">
         <source>squad.edit.min_points_%unitGroupPoints%</source>
         <target>%unitGroupPoints% pts. min.</target>
       </trans-unit>
-      <trans-unit id="36">
+      <trans-unit id="49">
         <source>[0,1]squad.edit.unit_number_unique|]1,Inf]squad.edit.possible_unit_number_%count%</source>
         <target>one unit|%count% units</target>
       </trans-unit>
-      <trans-unit id="37">
+      <trans-unit id="50">
+        <source>header.welcome</source>
+        <target>__header.welcome</target>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>header.hello.%username%</source>
+        <target>__header.hello.%username%</target>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>header.logout</source>
+        <target>__header.logout</target>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>header.login</source>
+        <target>__header.login</target>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>header.sign_up</source>
+        <target>__header.sign_up</target>
+      </trans-unit>
+      <trans-unit id="55">
         <source>main_menu.home</source>
         <target>home</target>
       </trans-unit>
-      <trans-unit id="38">
+      <trans-unit id="56">
         <source>main_menu.forum</source>
         <target>forum</target>
       </trans-unit>
-      <trans-unit id="39">
+      <trans-unit id="57">
         <source>main_menu.my_army_list</source>
         <target>my army list</target>
       </trans-unit>
-      <trans-unit id="40">
+      <trans-unit id="58">
         <source>main_menu.my_games</source>
         <target>my games</target>
       </trans-unit>
-      <trans-unit id="41">
+      <trans-unit id="59">
         <source>main_menu.my_collection</source>
         <target>collection</target>
       </trans-unit>
-      <trans-unit id="42">
+      <trans-unit id="60">
         <source>main_menu.public_lists</source>
         <target>public lists</target>
       </trans-unit>
-      <trans-unit id="43">
+      <trans-unit id="61">
         <source>main_menu.tools</source>
         <target>tools</target>
       </trans-unit>
-      <trans-unit id="44">
+      <trans-unit id="62">
         <source>main_menu.donation</source>
         <target>donation</target>
       </trans-unit>
-      <trans-unit id="45">
+      <trans-unit id="63">
         <source>homepage_menu.last_army</source>
         <target>my last army</target>
       </trans-unit>
-      <trans-unit id="46">
+      <trans-unit id="64">
         <source>homepage_menu.create_army</source>
         <target>create an army</target>
       </trans-unit>
-      <trans-unit id="47">
+      <trans-unit id="65">
         <source>homepage_menu.my_collection</source>
         <target>my collection</target>
       </trans-unit>
-      <trans-unit id="48">
+      <trans-unit id="66">
         <source>homepage_menu.forum</source>
         <target>forum</target>
       </trans-unit>
-      <trans-unit id="49">
+      <trans-unit id="67">
         <source>homepage_menu.donation</source>
         <target>make a donation</target>
       </trans-unit>
-      <trans-unit id="50">
+      <trans-unit id="68">
         <source>homepage_menu.my_army_list</source>
         <target>my army list</target>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>breadcrumb.home</source>
+        <target>__breadcrumb.home</target>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>home.welcome_text</source>
+        <target>__home.welcome_text</target>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>army_list.group_list.all_armies</source>
+        <target>__army_list.group_list.all_armies</target>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>breadcrumb.army_list</source>
+        <target>__breadcrumb.army_list</target>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>army_group.edit.name_label</source>
+        <target>__army_group.edit.name_label</target>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>breadcrumb.bbcode</source>
+        <target>__breadcrumb.bbcode</target>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>breadcrumb.army_new</source>
+        <target>__breadcrumb.army_new</target>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>breadcrumb.army_edit</source>
+        <target>__breadcrumb.army_edit</target>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>breadcrumb.army_delete</source>
+        <target>__breadcrumb.army_delete</target>
       </trans-unit>
     </body>
   </file>

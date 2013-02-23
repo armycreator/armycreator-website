@@ -23,8 +23,8 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
  *
  * @Route("/army/{armySlug}/squad")
  * @Security\PreAuthorize("isFullyAuthenticated()")
- * @Breadcrumb("Home", route="homepage")
- * @Breadcrumb("My army list", route="army_list")
+ * @Breadcrumb("breadcrumb.home", route="homepage")
+ * @Breadcrumb("breadcrumb.army_list", route="army_list")
  */
 class SquadController extends Controller
 {
@@ -64,7 +64,9 @@ class SquadController extends Controller
 
         // breadcrumb
         $this->setArmyBreadCrumb($army);
-        $this->get("apy_breadcrumb_trail")->add('New ' . $unitType->getName());
+        $tmp = $this->get('translator')
+                    ->trans('breadcrumb.squad_new.%unit_type%', array('unit_type' => $unitType->getName()));
+        $this->get("apy_breadcrumb_trail")->add($tmp);
 
         // security
         if ($this->getUser() != $army->getUser()) {
@@ -162,7 +164,9 @@ class SquadController extends Controller
 
         // breadcrumb
         $this->setArmyBreadCrumb($army);
-        $this->get("apy_breadcrumb_trail")->add('Edit ' . $entity->getName());
+        $tmp = $this->get('translator')
+                    ->trans('breadcrumb.squad_edit.%squad_name%', array('squad_name' => $entity->getName()));
+        $this->get("apy_breadcrumb_trail")->add($tmp);
 
         $entity->addEmptySquadLine();
         $editForm = $this->createForm(new SquadType(), $entity);

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Wantedpoints</source>
+        <target>Nb de points souhaités</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Isshared</source>
+        <target>Partagée</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Breed</source>
+        <target>Race</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Armygroup</source>
+        <target>Groupe d'armée</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Showdefaultstuff</source>
+        <target>Afficher les équipements par défaut</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Showunitpoints</source>
+        <target>Afficher les points des unités</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Separator</source>
+        <target>Séparateur</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>ac_armybbcode.form.carriage_return</source>
+        <target>Retour chariot</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>ac_armybbcode.form.slash</source>
+        <target>Slash</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>ac_armybbcode.form.comma</source>
+        <target>Virgule</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Colorsquadtype</source>
+        <target>Couleur des types d'unités</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Colorsquad</source>
+        <target>Couleur des escouades</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Colorsquaddetail</source>
+        <target>Couleur du détail des escouades</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>As many as unit</source>
+        <target>Autant que d'unité</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>Number</source>
+        <target>Nombre</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source></source>
+        <target></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

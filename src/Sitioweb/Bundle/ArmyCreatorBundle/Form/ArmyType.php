@@ -54,7 +54,8 @@ class ArmyType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army',
+            'translation_domain' => 'forms'
         ));
     }
 

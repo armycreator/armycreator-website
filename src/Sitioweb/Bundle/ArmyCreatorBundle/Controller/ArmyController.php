@@ -23,8 +23,8 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
  * @uses BaseController
  * @Route("/army")
  * @Security\PreAuthorize("isFullyAuthenticated()")
- * @Breadcrumb("Home", route="homepage")
- * @Breadcrumb("My army list", route="army_list")
+ * @Breadcrumb("breadcrumb.home", route="homepage")
+ * @Breadcrumb("breadcrumb.army_list", route="army_list")
  *
  * @author Julien Deniau <julien@sitioweb.fr> 
  */
@@ -128,7 +128,7 @@ class ArmyController extends Controller
         }
 
         // breadcrumb
-        $this->get("apy_breadcrumb_trail")->add($this->get('translator')->trans('army.detail.bbcode'));
+        $this->get("apy_breadcrumb_trail")->add($this->get('translator')->trans('breadcrumb.bbcode'));
 
          return $return + array(
             'preferences' => $userPreferences,
@@ -244,7 +244,7 @@ class ArmyController extends Controller
      *
      * @Route("/action/new", name="army_new")
      * @Template()
-     * @Breadcrumb("New")
+     * @Breadcrumb("breadcrumb.army_new")
      */
     public function newAction()
     {
@@ -263,7 +263,7 @@ class ArmyController extends Controller
      * @Route("/action/create", name="army_create")
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Army:new.html.twig")
-     * @Breadcrumb("New")
+     * @Breadcrumb("breadcrumb.army_new")
      */
     public function createAction()
     {
@@ -319,7 +319,7 @@ class ArmyController extends Controller
             );
         }
         $this->get("apy_breadcrumb_trail")->add($entity->getName(), 'army_detail', array('slug' =>  $entity->getSlug()));
-        $this->get("apy_breadcrumb_trail")->add('edit');
+        $this->get("apy_breadcrumb_trail")->add($this->get('translator')->trans('breadcrumb.army_edit'));
 
         return array(
             'entity'      => $entity,
@@ -334,7 +334,7 @@ class ArmyController extends Controller
      * @Route("/{slug}/update", name="army_update")
      * @Method("POST")
      * @Template("SitiowebArmyCreatorBundle:Army:edit.html.twig")
-     * @Breadcrumb("Edit")
+     * @Breadcrumb("breadcrumb.army_edit")
      */
     public function updateAction(Request $request, $slug)
     {
@@ -369,7 +369,7 @@ class ArmyController extends Controller
      *
      * @Route("/{slug}/delete", name="army_delete")
      * @Method("POST")
-     * @Breadcrumb("Delete")
+     * @Breadcrumb("breadcrumb.army_delete")
      */
     public function deleteAction(Request $request, $slug)
     {

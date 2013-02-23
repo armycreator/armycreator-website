@@ -18,7 +18,8 @@ class ArmyGroupType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\ArmyGroup'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\ArmyGroup',
+            'translation_domain' => 'forms'
         ));
     }
 

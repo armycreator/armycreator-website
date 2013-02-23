@@ -68,7 +68,10 @@
                 <div class="pointBar">
                     <div style="width:{% if army.points > army.wantedPoints %}100{% else %}{{ 100 * army.points /  army.wantedPoints }}{% endif %}%"></div>
                 </div>
-                <strong>{{ army.points}} pts</strong> / {{ army.wantedPoints }} pts
+                <strong>
+                    {% trans with { "%pts%": army.points } %}army.detail.pts.%pts%{% endtrans %}
+                </strong>
+                / {% trans with { "%pts%": army.wantedPoints } %}army.detail.wanted_pts.%pts%{% endtrans %}
             </div>
         {% endif %}
 
@@ -107,7 +110,9 @@
                         {% if tmp.unitType.breed != army.breed %}
                             ({{ tmp.unitType.breed.name }})
                         {% endif %}
-                        <div>{{ tmp.points }} pts</div>
+                        <div>
+                           {% trans with { "%pts%":tmp.points } %}army.detail.pts.%pts%{% endtrans %}
+                        </div>
                     </h3>
                     <div class="col squadListContainer">
                         <section class="squadList">
@@ -118,7 +123,7 @@
                                                 <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
                                                 {{ squad.name|default(squad.unitType.name ~ ' #' ~ loop.index) }}
                                                 <span>
-                                                    {{ squad.points }} pts
+                                                    {% trans with { "%pts%": squad.points } %}army.detail.pts.%pts%{% endtrans %}
                                                 </span>
                                             </h4>
                                         </div>

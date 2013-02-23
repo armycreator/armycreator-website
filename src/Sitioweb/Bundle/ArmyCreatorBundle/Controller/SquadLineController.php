@@ -20,8 +20,8 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
  *
  * @Route("/army/{armySlug}/squadLine")
  * @Security\PreAuthorize("isFullyAuthenticated()")
- * @Breadcrumb("Home", route="homepage")
- * @Breadcrumb("My army list", route="army_list")
+ * @Breadcrumb("breadcrumb.home", route="homepage")
+ * @Breadcrumb("breadcrumb.army_list", route="army_list")
  */
 class SquadLineController extends Controller
 {
@@ -46,12 +46,17 @@ class SquadLineController extends Controller
 
         // breadcrumb
         $this->setArmyBreadCrumb($army);
-        $this->get("apy_breadcrumb_trail")->add('New ' . $unitGroup->getUnitType()->getName(), 'squad_new', array(
+        $urlParams = array(
             'armySlug' => $army->getSlug(),
             'breedSlug' => $unitGroup->getBreed()->getSlug(),
             'unitTypeSlug' => $unitGroup->getUnitType()->getSlug()
-        ));
-        $this->get("apy_breadcrumb_trail")->add('New ' . $unitGroup->getName());
+        );
+        $this->get("apy_breadcrumb_trail")->add(
+            $unitGroup->getUnitType()->getName(),
+            'squad_new',
+            $urlParams
+        );
+        $this->get("apy_breadcrumb_trail")->add($unitGroup->getName());
         
         // squad
         $squad = new Squad();

@@ -20,6 +20,7 @@ class SquadType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad',
+            'translation_domain' => 'forms',
             'cascade_validation' => true
         ));
     }

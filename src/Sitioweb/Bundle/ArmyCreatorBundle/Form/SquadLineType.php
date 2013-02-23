@@ -35,15 +35,24 @@ class SquadLineType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('number', 'integer', array('attr' => array('size' => 4)));
+        $builder->add(
+            'number',
+            'integer',
+            array('attr' => array('size' => 4, 'title' => 'Number'))
+        );
         
-        $builder->add('squadLineStuffList', 'collection', array('type' => new SquadLineStuffType()));
+        $builder->add(
+            'squadLineStuffList',
+            'collection',
+            array('type' => new SquadLineStuffType())
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine',
+            'translation_domain' => 'forms',
             'cascade_validation' => true
         ));
     }
