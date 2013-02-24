@@ -1,6 +1,6 @@
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-9402091-2']);
-_gaq.push(['_setDomainName', 'w40karmycreator.com']);
+_gaq.push(['_setDomainName', 'armycreator.net']);
 _gaq.push(['_setAllowLinker', true]);
 _gaq.push(['_trackPageview']);
 
