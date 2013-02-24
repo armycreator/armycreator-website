@@ -75,8 +75,8 @@
         <target>Nombre</target>
       </trans-unit>
       <trans-unit id="19">
-        <source></source>
-        <target></target>
+        <source>Unittype</source>
+        <target>Type d'unité</target>
       </trans-unit>
     </body>
   </file>

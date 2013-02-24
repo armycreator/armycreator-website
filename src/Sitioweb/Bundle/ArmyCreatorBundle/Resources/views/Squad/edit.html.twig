@@ -1,13 +1,20 @@
 {% extends 'SitiowebArmyCreatorBundle:Squad:new.html.twig' %}
 
-{% block title %}Squad edit{% endblock %}
+{% block title %}
+    {% trans %}squad.edit.title{% endtrans %}
+{% endblock %}
+
+{% block squadAddNavTitle %}
+    {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.edit.unit.type.%unitTypeName%{% endtrans %}
+{% endblock %}
 
 {% block squadAddContent %}
     <form action="{{ path('squad_update', {'armySlug' : army.slug, 'id' : entity.id}) }}" method="post" {{ form_enctype(form) }}>
         {% block squadLineList %}
 
-            <div class="row gut txtcenter unitName">
+            <div class="row gut unitName">
                 {{ form_row(form.name) }}
+                {{ form_row(form.unitType) }}
             </div>
             
             {% if form.squadLineList %}

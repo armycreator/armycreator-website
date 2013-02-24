@@ -79,6 +79,40 @@ class ArmyController extends Controller
     }
 
     /**
+     * detailPdfAction render a PDF
+     *
+     * @param string $slug
+     * @access public
+     * @return void
+     *
+     * @Route("/{slug}.pdf", name="army_detail_pdf")
+     * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
+     */
+    public function detailPdfAction($slug)
+    {
+        $params = $this->getDetailParams($slug);
+        $html = $this->renderView(
+            'SitiowebArmyCreatorBundle:Army:detail.html.twig',
+            $params
+        );
+
+        // rendering
+        $filename = 'ArmyCreator-' . $slug . '.pdf';
+        $mpdf=new \mPDF();
+        $mpdf->WriteHTML($html);
+        $mpdf->Output($filename, 'I');
+
+        return new Response(
+            null,
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="' . $filename . '"'
+            )
+        );
+    }
+
+    /**
      * detailAction
      *
      * @access public
@@ -133,40 +167,6 @@ class ArmyController extends Controller
          return $return + array(
             'preferences' => $userPreferences,
             'form' => $form->createView()
-        );
-    }
-
-    /**
-     * detailPdfAction render a PDF
-     *
-     * @param string $slug
-     * @access public
-     * @return void
-     *
-     * @Route("/{slug}.pdf", name="army_detail_pdf")
-     * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
-     */
-    public function detailPdfAction($slug)
-    {
-        $params = $this->getDetailParams($slug);
-        $html = $this->renderView(
-            'SitiowebArmyCreatorBundle:Army:detail.html.twig',
-            $params
-        );
-
-        // rendering
-        $filename = 'ArmyCreator-' . $slug . '.pdf';
-        $mpdf=new \mPDF();
-        $mpdf->WriteHTML($html);
-        $mpdf->Output($filename, 'I');
-
-        return new Response(
-            null,
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="' . $filename . '"'
-            )
         );
     }
 

@@ -111,7 +111,7 @@ class SquadController extends Controller
         $entity->mapUnitGroup($unitGroup, true);
         
 
-        $form    = $this->createForm(new SquadType(), $entity);
+        $form    = $this->createForm(new SquadType($unitGroup->getUnitType()->getBreed()), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -169,7 +169,7 @@ class SquadController extends Controller
         $this->get("apy_breadcrumb_trail")->add($tmp);
 
         $entity->addEmptySquadLine();
-        $editForm = $this->createForm(new SquadType(), $entity);
+        $editForm = $this->createForm(new SquadType($entity->getUnitType()->getBreed()), $entity);
         $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
@@ -200,7 +200,7 @@ class SquadController extends Controller
         }
 
         $entity->addEmptySquadLine();
-        $editForm = $this->createForm(new SquadType(), $entity);
+        $editForm = $this->createForm(new SquadType($entity->getUnitType()->getBreed()), $entity);
         $editForm->bind($request);
         $deleteForm = $this->createDeleteForm($entity->getId());
 

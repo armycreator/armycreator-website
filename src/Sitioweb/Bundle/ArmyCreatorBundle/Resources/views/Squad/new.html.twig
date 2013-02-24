@@ -1,13 +1,17 @@
 {% extends 'SitiowebArmyCreatorBundle:Army:detail.html.twig' %}
 
-{% block title %}New {{ currentUnitType.name }} squad{% endblock %}
+{% block title %}
+    {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
+{% endblock %}
 
 {% block armyDetail %}
     <div id="squadDetail">
         {% block squadAddNav %}
             <header class="unitType">
                 <div class="unitTypeStick stickLeft" style="background-color:{{ currentUnitType.color|default("#ccc") }}"></div>
-                {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
+                {% block squadAddNavTitle %}
+                    {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
+                {% endblock %}
             </header>
 
             <nav class="squadNav row gut txtcenter">
