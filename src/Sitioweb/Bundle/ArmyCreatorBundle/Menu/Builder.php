@@ -103,6 +103,11 @@ class Builder extends ContainerAware
         ));
 
         if (!$armyGroupList->isEmpty()) {
+            $menu->addChild('army_list.group_list.no_group', array(
+                'route' => 'army_group_list',
+                'routeParameters' => array('groupId' => 0)
+            ));
+
             foreach ($armyGroupList as $armyGroup) {
                 $menu->addChild($armyGroup->getName(), array(
                     'route' => 'army_group_list',

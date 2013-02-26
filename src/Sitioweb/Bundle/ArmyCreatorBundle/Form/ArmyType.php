@@ -21,26 +21,42 @@ class ArmyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('status')
-            ->add('name')
+            ->add(
+                'status',
+                'choice',
+                array(
+                    'choices' => array('draft' => 'Draft', 'finish' => 'Finish'),
+                    'required' => true,
+                    'expanded' => true,
+                )
+            )
+            ->add('name', null, array('required' => false))
             ->add('description')
             ->add('wantedPoints', null, array('required' => false))
             ->add('isShared', null, array('required' => false))
-            ->add('breed', null, array(
-                'required' => true,
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('b')
-                            ->add('orderBy', 'b.name ASC');
-                }
-            ))
-            ->add('armyGroup', null, array(
-                'property' => 'name',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('a')
-                            ->add('where', 'a.user = :user')
-                            ->setParameter('user', $this->user);
-                }
-            ));
+            ->add(
+                'breed',
+                null,
+                array(
+                    'required' => true,
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('b')
+                                ->add('orderBy', 'b.name ASC');
+                    }
+                )
+            )
+            ->add(
+                'armyGroup',
+                null,
+                array(
+                    'property' => 'name',
+                    'query_builder' => function(EntityRepository $er) {
+                        return $er->createQueryBuilder('a')
+                                ->add('where', 'a.user = :user')
+                                ->setParameter('user', $this->user);
+                    }
+                )
+            );
 
         ;
     }

@@ -43,25 +43,43 @@ class ArmyController extends Controller
      */
     public function listAction($groupId)
     {
-        if ($groupId > 0) {
+        if (isset($groupId)) {
             $group = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')->find((int) $groupId);
-            $deleteGroupForm = $this->createDeleteForm($group->getId());
             
-            $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findBy(array(
-                'user' => $this->getUser(),
-                'armyGroup' => $group
-            ));
-
-            // Breadcrumb
-            $this->get("apy_breadcrumb_trail")->add(
-                $group->getName(),
-                'army_group_list',
-                array('groupId' =>  $group->getId())
+            $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findBy(
+                array(
+                    'user' => $this->getUser(),
+                    'armyGroup' => $group
+                ),
+                array('updateDate' => 'DESC', 'id' => 'DESC')
             );
+
+            // no group wanted
+            if ($group) {
+                $deleteGroupForm = $this->createDeleteForm($group->getId());
+
+                // Breadcrumb
+                $this->get("apy_breadcrumb_trail")->add(
+                    $group->getName(),
+                    'army_group_list',
+                    array('groupId' =>  $group->getId())
+                );
+            } else {
+                $deleteGroupForm = null;
+                // Breadcrumb
+                $this->get("apy_breadcrumb_trail")->add(
+                    $this->get('translator')->trans('army.list.no_group'),
+                    'army_group_list',
+                    array('groupId' =>  0)
+                );
+            }
         } else {
             $group = null;
             $deleteGroupForm = null;
-            $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findByUser($this->getUser());
+            $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findBy(
+                array('user' => $this->getUser()),
+                array('updateDate' => 'DESC', 'id' => 'DESC')
+            );
         }
 
         // getting armyList
@@ -72,6 +90,7 @@ class ArmyController extends Controller
 
         return array(
             'group' => $group,
+            'groupId' => $groupId,
             'armyList' => $armyList,
             'deleteArmyListForm' => $deleteArmyListForm,
             'deleteGroupForm' => $deleteGroupForm
@@ -249,6 +268,7 @@ class ArmyController extends Controller
     public function newAction()
     {
         $entity = new Army();
+        $entity->setStatus('draft');
         $form   = $this->createForm(new ArmyType($this->getUser()), $entity);
 
         return array(

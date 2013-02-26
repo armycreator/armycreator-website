@@ -561,6 +561,10 @@ class Army
     public function preUpdate()
     {
         $this->setUpdateDate(new \DateTime());
+        $name = $this->getName();
+        if (empty($name)) {
+            $this->setName('[no name]');
+        }
     }
 
     /**

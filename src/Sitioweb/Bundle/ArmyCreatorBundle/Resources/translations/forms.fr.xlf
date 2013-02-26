@@ -78,6 +78,14 @@
         <source>Unittype</source>
         <target>Type d'unité</target>
       </trans-unit>
+      <trans-unit id="20">
+        <source>Draft</source>
+        <target>Brouillon</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>Finish</source>
+        <target>Terminé</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

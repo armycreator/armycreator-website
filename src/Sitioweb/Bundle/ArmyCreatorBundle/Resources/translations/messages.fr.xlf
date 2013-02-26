@@ -364,6 +364,10 @@
         <source>breadcrumb.squad_edit.%squad_name%</source>
         <target>Editer %squad_name%</target>
       </trans-unit>
+      <trans-unit id="91">
+        <source>army_list.group_list.no_group</source>
+        <target>aucun groupe</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

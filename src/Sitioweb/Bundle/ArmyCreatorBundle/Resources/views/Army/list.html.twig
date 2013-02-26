@@ -13,9 +13,12 @@
         <h2>
             {% if group %}
                 {{ group.name }}
-            {% else %}
+            {% elseif groupId is sameas("0") %}
                 {{ "army.list.no_group"|trans }}
+            {% else %}
+                {{ "army_list.group_list.all_armies"|trans }}
             {% endif %}
+            ({{ armyList|length }})
         </h2>
 
         {% if group %}
