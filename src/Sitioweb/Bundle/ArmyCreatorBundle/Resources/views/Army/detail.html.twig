@@ -105,7 +105,9 @@
             {% for tmp in army.squadListByType %}
                 <section class="unitTypeList row gut" id="unitType{{ tmp.unitType.id }}">
                     <h3 class="unitType col">
-                        <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
+                        <div class="unitTypeStickContainer">
+                            <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
+                        </div>
                         {{ tmp.unitType.name }}
                         {% if tmp.unitType.breed != army.breed %}
                             ({{ tmp.unitType.breed.name }})

@@ -8,7 +8,9 @@
     <div id="squadDetail">
         {% block squadAddNav %}
             <header class="unitType">
-                <div class="unitTypeStick stickLeft" style="background-color:{{ currentUnitType.color|default("#ccc") }}"></div>
+                <div class="unitTypeStickContainer">
+                    <div class="unitTypeStick stickLeft" style="background-color:{{ currentUnitType.color|default("#ccc") }}"></div>
+                </div>
                 {% block squadAddNavTitle %}
                     {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
                 {% endblock %}

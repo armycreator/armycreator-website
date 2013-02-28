@@ -41,6 +41,3 @@ class SquadLineStuffType extends AbstractType
         return 'ac_squadlinestufftype';
     }
 }
-
-
-

@@ -83,4 +83,3 @@ class SquadType extends AbstractType
         return 'ac_squadtype';
     }
 }
-

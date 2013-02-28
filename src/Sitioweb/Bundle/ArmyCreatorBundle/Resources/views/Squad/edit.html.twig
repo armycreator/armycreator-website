@@ -35,23 +35,31 @@
 
                             <div class="stuffList">
                                 {% for squadLineStuff in squadLine.squadLineStuffList %}
-                                    <div class="stuffListItem row">
+                                    <div class="stuffListItem line">
+                                        <aside class="asManyAsUnit left">
+                                            {{ form_widget(squadLineStuff.asManyAsUnit) }}
+                                            <a href="javascript:;" class="inversed toggleAmau" title="{% trans from "forms" %}As many as unit{% endtrans %}">
+                                                <i class="icon-paper-clip"></i>
+                                            </a>
+                                        </aside>
+
+                                        <aside class="number left">
+                                            {{ form_widget(
+                                                squadLineStuff.number,
+                                                { 'read_only' : squadLineStuff.asManyAsUnit.vars.data }
+                                                
+                                            ) }}
+                                            <a href="javascript:;" class="inversed toZero" title="{% trans from "forms" %}As many as unit{% endtrans %}">
+                                                <i class="icon-remove"></i>
+                                            </a>
+                                        </aside>
+
                                         <div class="stuffName">
                                             {{ squadLineStuff.vars.value.unitStuff.stuff.name }}
                                             <span>
                                                ({% trans with { "%pts%": squadLineStuff.vars.value.unitStuff.points } %}squad.edit.pts.%pts%{% endtrans %})
                                            </span>
                                         </div>
-                                        <aside class="number">
-                                            {{ form_widget(
-                                                squadLineStuff.number,
-                                                { 'read_only' : squadLineStuff.asManyAsUnit.vars.data }
-                                                
-                                            ) }}
-                                        </aside>
-                                        <aside class="asManyAsUnit">
-                                            {{ form_widget(squadLineStuff.asManyAsUnit) }}
-                                        </aside>
 
                                         {{ form_rest(squadLineStuff) }}
                                     </div>
