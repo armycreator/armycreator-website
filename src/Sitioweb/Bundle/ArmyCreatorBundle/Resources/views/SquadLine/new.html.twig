@@ -4,6 +4,7 @@
 
 {% block squadAddContent %}
     <form action="{{ path('squad_create', {'armySlug' : army.slug, 'unitGroupId' : app.request.get('unitGroupId')}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_errors(form) }}
 
         {{ block('squadLineList') }}
 

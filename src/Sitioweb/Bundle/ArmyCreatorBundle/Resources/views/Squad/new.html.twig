@@ -31,7 +31,9 @@
                 </div>
 
                 <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
-                    <div class="arrow arrowUnitType"></div>
+                    <div class="arrowContainer">
+                        <div class="arrow arrowUnitType"></div>
+                    </div>
                     <a
                         href="{{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : breed.slug }) }}"
                         title="{{ 'squad.edit.squad_choice'|trans }}"
@@ -40,7 +42,9 @@
                     </a>
                 </div>
                 <div{% if app.request.attributes.get('_route') != 'squad_new' %} class="current"{% endif %}>
-                    <div class="arrow"></div>
+                    <div class="arrowContainer">
+                        <div class="arrow"></div>
+                    </div>
                     {{ 'squad.edit.squad_stuff'|trans }}
                 </div>
             </nav>

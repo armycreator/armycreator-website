@@ -5,25 +5,27 @@
     nav {
         background: @squadLineBackgroundColor;
         div {
-            position: relative;
             &.current {
                 background: @contentFullBackgroundColor;
-                .arrow {
+                .arrowContainer .arrow {
                     background: @squadLineBackgroundColor;
                 }
                 a { color: @globalColor }
             }
-            .arrow {
-                background: @contentFullBackgroundColor;
-                &.arrowUnitType {
-                    background: @squadLineBackgroundColor;
+            .arrowContainer {
+                position: relative;
+                .arrow {
+                    background: @contentFullBackgroundColor;
+                    &.arrowUnitType {
+                        background: @squadLineBackgroundColor;
+                    }
+                    height: 35px;
+                    position: absolute;
+                    left: -44px;
+                    top: -7px;
+                    width: 35px;
+                    .transformRotate(45deg);
                 }
-                height: 35px;
-                position: absolute;
-                left: -30px;
-                top: 7px;
-                width: 35px;
-                .transformRotate(45deg);
             }
         }
     }

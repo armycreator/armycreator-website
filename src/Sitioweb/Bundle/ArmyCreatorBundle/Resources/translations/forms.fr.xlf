@@ -90,6 +90,10 @@
         <source>Showstuffpoints</source>
         <target>Afficher les points des équipements</target>
       </trans-unit>
+      <trans-unit id="23">
+        <source>toZero</source>
+        <target>Passer à zéro</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -7,7 +7,7 @@ $(document).on('click', '#otherBreedToggle', function() {
 });
 
 $(document).ready(function() {
-    if ($('#websiteContent.squad_edit').length > 0) {
+    if ($('#websiteContent').attr('class').match(/^squad_/)) {
         $('.asManyAsUnit')
             .on('change', 'input[type="checkbox"]', function () {
                 if ($(this).is(':checked')) {

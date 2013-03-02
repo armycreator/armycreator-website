@@ -1,4 +1,5 @@
 {% extends 'SitiowebArmyCreatorBundle:Squad:new.html.twig' %}
+{% form_theme form "::form_theme.html.twig" %}
 
 {% block title %}
     {% trans %}squad.edit.title{% endtrans %}
@@ -10,6 +11,7 @@
 
 {% block squadAddContent %}
     <form action="{{ path('squad_update', {'armySlug' : army.slug, 'id' : entity.id}) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_errors(form) }}
         {% block squadLineList %}
 
             <div class="row gut unitName">
@@ -22,45 +24,49 @@
                     {% for squadLine in form.squadLineList %}
                         <div class="unit">
                             <div class="unitName">
-                                <h4>
-                                    <aside class="number">
+                                <h4 class="line">
+                                    <aside class="soft right">
+                                        {% trans with { "%pts%": squadLine.vars.value.unit.points } %}squad.edit.pts.%pts%{% endtrans %}
+                                    </aside>
+                                    <aside class="number right">
                                         {{ form_widget(squadLine.number) }}
                                     </aside>
                                     {{ squadLine.vars.value.unit.name }}
-                                    <span>
-                                        ({% trans with { "%pts%": squadLine.vars.value.unit.points } %}squad.edit.pts.%pts%{% endtrans %})
-                                    </span>
                                 </h4>
+                                {{ form_errors(squadLine.number) }}
                             </div>
 
-                            <div class="stuffList">
+                            <div class="stuffList txtright">
                                 {% for squadLineStuff in squadLine.squadLineStuffList %}
                                     <div class="stuffListItem line">
-                                        <aside class="asManyAsUnit left">
+                                        <aside class="soft right">
+                                           {% trans with { "%pts%": squadLineStuff.vars.value.unitStuff.points } %}squad.edit.pts.%pts%{% endtrans %}
+                                       </aside>
+
+                                        <aside class="asManyAsUnit right">
                                             {{ form_widget(squadLineStuff.asManyAsUnit) }}
                                             <a href="javascript:;" class="inversed toggleAmau" title="{% trans from "forms" %}As many as unit{% endtrans %}">
                                                 <i class="icon-paper-clip"></i>
                                             </a>
                                         </aside>
 
-                                        <aside class="number left">
+                                        <aside class="number right">
                                             {{ form_widget(
                                                 squadLineStuff.number,
                                                 { 'read_only' : squadLineStuff.asManyAsUnit.vars.data }
                                                 
                                             ) }}
-                                            <a href="javascript:;" class="inversed toZero" title="{% trans from "forms" %}As many as unit{% endtrans %}">
+                                            <a href="javascript:;" class="inversed toZero" title="{% trans from "forms" %}toZero{% endtrans %}">
                                                 <i class="icon-remove"></i>
                                             </a>
                                         </aside>
 
                                         <div class="stuffName">
                                             {{ squadLineStuff.vars.value.unitStuff.stuff.name }}
-                                            <span>
-                                               ({% trans with { "%pts%": squadLineStuff.vars.value.unitStuff.points } %}squad.edit.pts.%pts%{% endtrans %})
-                                           </span>
                                         </div>
 
+                                        {{ form_errors(squadLineStuff.asManyAsUnit) }}
+                                        {{ form_errors(squadLineStuff.number) }}
                                         {{ form_rest(squadLineStuff) }}
                                     </div>
                                 {% endfor %}
