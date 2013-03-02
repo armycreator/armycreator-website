@@ -52,7 +52,7 @@
       </trans-unit>
       <trans-unit id="13">
         <source>army.bbcode.apply_and_save</source>
-        <target>Applique + enregistrer</target>
+        <target>Appliquer + enregistrer</target>
       </trans-unit>
       <trans-unit id="14">
         <source>army.bb_code.points</source>

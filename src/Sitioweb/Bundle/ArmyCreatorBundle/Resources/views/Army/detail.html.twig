@@ -101,6 +101,14 @@
                 {% endfor %}
             </div>
 
+            <form action="{{ path('army_detail', { 'slug': army.slug }) }}" method="post" {{ form_enctype(form) }}>
+                {{ form_widget(form) }}
+                <p>
+                    <button type="submit" class="acButton">{{ 'army.bbcode.apply'|trans }}</button>
+                    <button type="submit" class="acButton" name="saveAsDefault" value="1">{{ 'army.bbcode.apply_and_save'|trans }}</button>
+                </p>
+            </form>
+
             {# ===== Squad List ===== #}
             {% for tmp in army.squadListByType %}
                 <section class="unitTypeList row gut" id="unitType{{ tmp.unitType.id }}">
@@ -133,13 +141,33 @@
                                         <div>
                                             {% for squadLine in squad.squadLineList %}
                                                 <div class="squadLine">
-                                                    <h5>{{ squadLine.number }} {{ squadLine.unit.name }}</h5>
+                                                    <h5>
+                                                        {{ squadLine.number }} {{ squadLine.unit.name }}
+
+                                                        {% if preferences.showUnitPoints %}
+                                                            <span class="soft">
+                                                                {% trans with { "%pts%": squadLine.unit.points * squadLine.number } %}army.detail.pts.%pts%{% endtrans %}
+                                                            </span>
+                                                        {% endif %}
+                                                    </h5>
                                                     {% if not(squadLine.squadLineStuffList.empty) %}
-                                                        <ul>
-                                                            {% for squadLineStuffList in squadLine.squadLineStuffList %}
+                                                        <ul class="stuffList">
+                                                            {% if preferences.showDefaultStuff %}{{- "" -}}
+                                                                {% set squadLineStuffList = squadLine.squadLineStuffList %}
+                                                            {% else %}{{- "" -}}
+                                                                {% set squadLineStuffList = squadLine.noDefaultSquadLineStuffList %}
+                                                            {% endif %}{{- "" -}}
+
+                                                            {% for squadLineStuff in squadLineStuffList %}
                                                                 <li>
-                                                                    {{ squadLineStuffList.number }}
-                                                                    {{ squadLineStuffList.unitStuff.stuff.name }}
+                                                                    {{ squadLineStuff.number }}
+                                                                    {{ squadLineStuff.unitStuff.stuff.name }}
+
+                                                                    {% if squadLineStuff.unitStuff.points > 0 and preferences.showStuffPoints %}
+                                                                        <span class="soft">
+                                                                            {% trans with { "%pts%": squadLineStuff.unitStuff.points * squadLineStuff.number } %}army.detail.pts.%pts%{% endtrans %}
+                                                                        </span>
+                                                                    {% endif %}
                                                                 </li>
                                                             {% endfor %}
                                                         </ul>

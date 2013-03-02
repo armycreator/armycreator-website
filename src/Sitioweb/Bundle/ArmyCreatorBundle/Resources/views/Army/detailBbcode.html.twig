@@ -14,7 +14,7 @@
     </p>
 </form>
 
-<textarea cols="150" rows="30">{{- "" -}}
+<textarea id="army_bbcode_textarea" cols="150" rows="30">{{- "" -}}
     {# === army name === #}
     {{- "[b][u]" ~ army.name ~ " (" ~ army.breed.name ~ ") : " ~ army.points ~ " " ~ "army.bb_code.points"|trans ~ "[/u][/b]" -}}
 
@@ -72,5 +72,15 @@
         {% endif %}{{- "" -}}
     {% endfor %}{{- "" -}}
 </textarea>
+
+<p class="txtright">
+    <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">
+        {{ "army.bbcode.back_to_army"|trans }}
+    </a>
+
+    <a id="selectBbcode" class="acButton acButtonHuge" href="javascript:;">
+        {{ "army.bbcode.select_all"|trans }}
+    </a>
+</p>
 {% endblock %}
 

@@ -48,7 +48,10 @@
 	{% endjavascripts %}
 
 
-	{% javascripts '@SitiowebArmyCreatorBundle/Resources/public/js/*.js'
+	{% javascripts
+        '@SitiowebArmyCreatorBundle/Resources/public/js/squadLine.js'
+        '@SitiowebArmyCreatorBundle/Resources/public/js/bbcode.js'
+        '@SitiowebArmyCreatorBundle/Resources/public/js/googleAnalytics.js'
         output='js/global.js'
     %}
 		 <script src="{{ asset_url }}"></script>

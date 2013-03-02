@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation as Security;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyPreferencesType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyBbcodePreferencesType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
 
@@ -143,7 +144,45 @@ class ArmyController extends Controller
      */
     public function detailAction($slug)
     {
-        return $this->getDetailParams($slug);
+        // ge detail params
+        $detailParams = $this->getDetailParams($slug);
+        
+        // get user preferences
+        $userPreferences = $this->getUser()->getPreferences();
+        $form = $this->createForm(new ArmyPreferencesType(), $userPreferences);
+
+        $userPreferencesParams = $this->getUserPreferencesParams($form, $userPreferences);
+
+        return $detailParams + $userPreferencesParams;
+    }
+
+    /**
+     * getUserPreferencesParams
+     *
+     * @access private
+     * @return void
+     */
+    private function getUserPreferencesParams($form, &$userPreferences)
+    {
+        // the user submitted the form
+        $request = $this->getRequest();
+        if ($request->getMethod() === 'POST') {
+            $form->bind($request);
+            if (!$form->isValid()) {
+                $userPreferences = $this->getUser()->getPreferences();
+            } elseif ($request->request->get('saveAsDefault') == 1) {
+                // updating user general preferences
+                $em = $this->get('doctrine')->getManager();
+                $em->persist($userPreferences);
+                $em->flush();
+            }
+        }
+
+        return array(
+            'preferences' => $userPreferences,
+            'form' => $form->createView()
+        );
+
     }
 
     /**
@@ -159,34 +198,18 @@ class ArmyController extends Controller
     public function detailBbcodeAction($slug)
     {
         // get detail parameters
-        $return = $this->getDetailParams($slug);
+        $detailParams = $this->getDetailParams($slug);
 
         // get user preferences
         $userPreferences = $this->getUser()->getPreferences();
-
-        $request = $this->getRequest();
         $form = $this->createForm(new ArmyBbcodePreferencesType(), $userPreferences);
 
-        // the user submitted the form
-        if ($request->getMethod() === 'POST') {
-            $form->bind($request);
-            if (!$form->isValid()) {
-                $userPreferences = $this->getUser()->getPreferences();
-            } elseif ($request->request->get('saveAsDefault') == 1) {
-                // updating user general preferences
-                $em = $this->get('doctrine')->getManager();
-                $em->persist($userPreferences);
-                $em->flush();
-            }
-        }
+        $userPreferencesParams = $this->getUserPreferencesParams($form, $userPreferences);
 
         // breadcrumb
         $this->get("apy_breadcrumb_trail")->add($this->get('translator')->trans('breadcrumb.bbcode'));
 
-         return $return + array(
-            'preferences' => $userPreferences,
-            'form' => $form->createView()
-        );
+        return $detailParams + $userPreferencesParams;
     }
 
     /**
