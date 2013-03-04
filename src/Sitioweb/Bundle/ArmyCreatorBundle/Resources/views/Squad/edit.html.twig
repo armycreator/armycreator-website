@@ -1,4 +1,4 @@
-{% extends 'SitiowebArmyCreatorBundle:Squad:new.html.twig' %}
+{% extends 'SitiowebArmyCreatorBundle:SquadLine:new.html.twig' %}
 {% form_theme form "::form_theme.html.twig" %}
 
 {% block title %}
@@ -6,89 +6,22 @@
 {% endblock %}
 
 {% block squadAddNavTitle %}
-    {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.edit.unit.type.%unitTypeName%{% endtrans %}
+    {% trans with { '%unitTypeName%' : entity.name } %}squad.edit.unit.type.%unitTypeName%{% endtrans %}
+{% endblock %}
+
+{% block squadAddNavSecondLine %}
 {% endblock %}
 
 {% block squadAddContent %}
     <form action="{{ path('squad_update', {'armySlug' : army.slug, 'id' : entity.id}) }}" method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
-        {% block squadLineList %}
 
-            <div class="row gut unitName">
-                {{ form_row(form.name) }}
-                {{ form_row(form.unitType) }}
-            </div>
-            
-            {% if form.squadLineList %}
-                <section class="unitList">
-                    {% for squadLine in form.squadLineList %}
-                        <div class="unit">
-                            <div class="unitName">
-                                <h4 class="line">
-                                    <aside class="soft right">
-                                        {% trans with { "%pts%": squadLine.vars.value.unit.points } %}squad.edit.pts.%pts%{% endtrans %}
-                                    </aside>
-                                    <aside class="number right">
-                                        {{ form_widget(squadLine.number) }}
-                                    </aside>
-                                    {{ squadLine.vars.value.unit.name }}
-                                </h4>
-                                {{ form_errors(squadLine.number) }}
-                            </div>
-
-                            <div class="stuffList txtright">
-                                {% for squadLineStuff in squadLine.squadLineStuffList %}
-                                    <div class="stuffListItem line">
-                                        <aside class="soft right">
-                                           {% trans with { "%pts%": squadLineStuff.vars.value.unitStuff.points } %}squad.edit.pts.%pts%{% endtrans %}
-                                       </aside>
-
-                                        <aside class="asManyAsUnit right">
-                                            {{ form_widget(squadLineStuff.asManyAsUnit) }}
-                                            <a href="javascript:;" class="inversed toggleAmau" title="{% trans from "forms" %}As many as unit{% endtrans %}">
-                                                <i class="icon-paper-clip"></i>
-                                            </a>
-                                        </aside>
-
-                                        <aside class="number right">
-                                            {{ form_widget(
-                                                squadLineStuff.number,
-                                                { 'read_only' : squadLineStuff.asManyAsUnit.vars.data }
-                                                
-                                            ) }}
-                                            <a href="javascript:;" class="inversed toZero" title="{% trans from "forms" %}toZero{% endtrans %}">
-                                                <i class="icon-remove"></i>
-                                            </a>
-                                        </aside>
-
-                                        <div class="stuffName">
-                                            {{ squadLineStuff.vars.value.unitStuff.stuff.name }}
-                                        </div>
-
-                                        {{ form_errors(squadLineStuff.asManyAsUnit) }}
-                                        {{ form_errors(squadLineStuff.number) }}
-                                        {{ form_rest(squadLineStuff) }}
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            {{ form_rest(squadLine) }}
-                        </div>
-                    {% endfor %}
-                </section>
-            {% endif %}
-
-            <p class="txtright">
-                <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">
-                    {{ "squad.edit.back_to_army"|trans }}
-                </a>
-                {% block squadAddButtonList %}
-                    <input type="submit" class="acButton acButtonHuge" value="{{ "squad.edit.edit"|trans }}" />
-                {% endblock %}
-            </p>
-        {% endblock %}
+        {{ block('squadLineList') }}
 
         {{ form_rest(form) }}
     </form>
-
 {% endblock %}
 
+{% block squadAddButtonList %}
+    <input type="submit" class="acButton acButtonHuge" value="{{ "squad.edit.edit"|trans }}" />
+{% endblock %}

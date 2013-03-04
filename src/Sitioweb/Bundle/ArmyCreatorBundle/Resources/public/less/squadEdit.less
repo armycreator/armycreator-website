@@ -51,3 +51,60 @@
         color: @globalLinkColor;
     }
 }
+
+.squadAddContent {
+    background: @contentFullBackgroundColor;
+    .unitList {
+        .displayFlex;
+        overflow: auto;
+        .unit {
+            width: 24%; float: left;
+            margin: 0 1% 0.8em 0;
+            h5 { margin-bottom: 0.5em  }
+            &:nth-child(4n) { width: 25%; margin-right: 0 }
+            &:nth-child(4n+1) { clear: both }
+            &:only-child { width: 100% }
+            &:first-child:nth-last-child(2),
+            &:first-child:nth-last-child(2) ~ .unit {
+                width: 49%;
+            }
+            &:first-child:nth-last-child(3),
+            &:first-child:nth-last-child(3) ~ .unit {
+                width: 32%;
+            }
+            //&:first-child:nth-last-child(1)
+            // &:hover { height: auto }
+            .unitName {
+                background: @squadNameBackgroundColor;
+                position: relative; overflow: hidden; line-height: 28px; margin-bottom: 2px; padding: .4em .8em;
+                span { color: @unitTypeForegroundColor; }
+            }
+
+            .stuffList {
+                background: @squadLineBackgroundColor;
+                margin-bottom: 2px;
+                padding: 5px 0;
+                .stuffListItem {
+                    table-layout: auto; padding: 4px 8px;
+                    &:nth-child(2n) {
+                        background: lighten(@squadLineBackgroundColor, 2%);
+                    }
+                }
+                .stuffName { width: 100% }
+            }
+
+            .number {
+                input { width: 3.5em }
+            }
+        }
+
+    }
+
+    .squadTotalContainer {
+        background: @squadNameBackgroundColor;
+        text-align: center;
+        margin: 0 1em;
+        padding: .5em 0;
+    }
+}
+

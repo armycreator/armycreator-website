@@ -362,11 +362,23 @@
       </trans-unit>
       <trans-unit id="90">
         <source>breadcrumb.squad_edit.%squad_name%</source>
-        <target>Editer %squad_name%</target>
+        <target>Editer squad_name</target>
       </trans-unit>
       <trans-unit id="91">
         <source>army_list.group_list.no_group</source>
         <target>aucun groupe</target>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>squad.edit.unit.type.%unitTypeName%</source>
+        <target>éditer %unitTypeName%</target>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>squad.total_points</source>
+        <target>nb points de l'escouade</target>
+      </trans-unit>
+      <trans-unit id="94">
+        <source>squad.edit.title</source>
+        <target>éditer une escouade</target>
       </trans-unit>
     </body>
   </file>

@@ -65,5 +65,23 @@ $(document).ready(function() {
 
                 return false;
             });
+
+        $('.unit .unitName .number, .unit .stuffListItem .number')
+            .on('change', 'input[data-points]', function() {
+                    calculateTotalPoints();
+            });
+
+
+        calculateTotalPoints = function() {
+            var total = 0;
+            $('#websiteContent input[data-points]').each(function() {
+                var nb = parseInt($(this).val());
+
+                if (nb > 0) {
+                    total += nb * parseInt($(this).attr('data-points'));
+                }
+            });
+            $('#squadTotal').text(total);
+        }
     }
 });

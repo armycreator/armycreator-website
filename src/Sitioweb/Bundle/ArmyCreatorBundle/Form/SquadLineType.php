@@ -11,20 +11,6 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 class SquadLineType extends AbstractType
 {
 
-    private $squadLine;
-
-    /**
-     * setSquadLine
-     *
-     * @param SquadLine $squadLine
-     * @access public
-     * @return void
-     */
-    public function setSquadLine(SquadLine $squadLine)
-    {
-        $this->squadLine = $squadLine;
-    }
-
     /**
      * buildForm
      *
