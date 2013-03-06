@@ -5,11 +5,27 @@
 {% endblock %}
 
 {% block content %}
+    {% set count = armyList|length %}
+
     <nav class="armyListMenu">
         {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:armyListMenu') }}
     </nav>
 
     <div>
+        {% if group %}
+            <a href="{{ path('army_group_edit', {'id' : group.id} ) }}" class="acButton right ml1">
+                <i class="icon-pencil"></i>
+                {{ "army.list.group.edit"|trans }}
+            </a>
+            <form action="{{ path('army_group_delete', { 'id': group.id }) }}" method="post" class="right">
+                {{ form_widget(deleteGroupForm.createView) }}
+                <button type="submit" class="acButton normalWrap">
+                    <i class="icon-remove"></i>
+                    {{ "army.list.group.delete"|trans }}
+                </button>
+            </form>
+        {% endif %}
+
         <h2>
             {% if group %}
                 {{ group.name }}
@@ -18,30 +34,15 @@
             {% else %}
                 {{ "army_list.group_list.all_armies"|trans }}
             {% endif %}
-            ({{ armyList|length }})
+            <span class="soft small">
+                {% transchoice count %}{0} army_list.group.army_number.zero|{1} army_list.group.army_number.one|]1,Inf] army_list.group.army_number.%count%{% endtranschoice %}
+            </span>
         </h2>
-
-        {% if group %}
-            <a href="{{ path('army_group_edit', {'id' : group.id} ) }}" class="acButton">
-                <i class="icon-pencil"></i>
-                {{ "army.list.group.edit"|trans }}
-            </a>
-            <form action="{{ path('army_group_delete', { 'id': group.id }) }}" method="post">
-                {{ form_widget(deleteGroupForm.createView) }}
-                <button type="submit" class="acButton">
-                    <i class="icon-remove"></i>
-                    {{ "army.list.group.delete"|trans }}
-                </button>
-            </form>
-        {% endif %}
     </div>
 
-    <a href="{{ path('army_new') }}" class="acButton" title="{{ "army.list.new"|trans }}">
-        <i class="icon-plus"></i>
-        {{ "army.list.new"|trans }}
-    </a>
+    {{ block("createButton") }}
 
-    <table class="squadType">
+    <table class="squadType mt1">
         <thead>
             <tr>
                 <th>
@@ -101,4 +102,16 @@
             {% endfor %}
         </tbody>
     </table>
+
+    {% if count > 10 %}
+        {{ block("createButton") }}
+    {% endif %}
+
+{% endblock %}
+
+{% block createButton %}
+    <a href="{{ path('army_new') }}" class="acButton acButtonBig mt2" title="{{ "army.list.new"|trans }}">
+        <i class="icon-plus"></i>
+        {{ "army.list.new"|trans }}
+    </a>
 {% endblock %}

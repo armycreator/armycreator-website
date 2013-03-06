@@ -28,6 +28,7 @@
         "mpdf/mpdf" : "5.6.*",
 		"friendsofsymfony/user-bundle": "2.0.*",
 
+        "knacss/knaless" : "dev-master",
         "aristath/elusive-iconfont" : "dev-master"
     },
 
@@ -69,7 +70,18 @@
 					"reference": "master"
 				}
 			}
-		}	
+		},
+        {
+            "type": "package",
+            "package" : {
+                "name": "knacss/knaless",
+                "version": "dev-master",
+                "dist": {
+                    "url": "http://knacss.com/css/knacss.less",
+                    "type": "file"
+                }
+            }
+        }
 	]
 }
 
