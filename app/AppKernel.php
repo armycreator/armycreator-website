@@ -24,6 +24,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new APY\BreadcrumbTrailBundle\APYBreadcrumbTrailBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
+
             new Sitioweb\Bundle\ArmyCreatorBundle\SitiowebArmyCreatorBundle(),
             new Sitioweb\Bundle\ArmyCreatorImportBundle\SitiowebArmyCreatorImportBundle(),
             new Sitioweb\Bundle\ExternalJsBundle\SitiowebExternalJsBundle(),

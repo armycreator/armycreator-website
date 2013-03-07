@@ -75,12 +75,12 @@
                     <td>{{ army.status }}
                     <td>
                         {% if army.createDate %}
-                            {{ army.createDate|date() }}
+                            {{ army.createDate|format_datetime }}
                         {% endif %}
                     </td>
                     <td>
                         {% if army.updateDate %}
-                            {{ army.updateDate|date() }}
+                            {{ army.updateDate|format_datetime }}
                         {% endif %}
                     </td>
                     <td>
