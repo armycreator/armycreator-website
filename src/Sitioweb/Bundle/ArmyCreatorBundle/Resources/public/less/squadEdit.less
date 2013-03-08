@@ -1,16 +1,55 @@
+@import "variables";
+@import "mixins";
+
 #squadDetail {
     header {
-        text-align: center; padding: 1em
+        text-align: center; padding: 10px
     }
     nav {
         background: @squadLineBackgroundColor;
+        // display: table; table-layout: fixed; width: 100%;
+        height: 40px; line-height: 40px;
         div {
+            //display: table-cell; vertical-align: middle;
+            display: inline-block; float: left; width: 25%;
             &.current {
                 background: @contentFullBackgroundColor;
+                position: relative;
                 .arrowContainer .arrow {
                     background: @squadLineBackgroundColor;
                 }
                 a { color: @globalColor }
+
+                &:before {
+                    left: 0;
+                    border: solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    pointer-events: none;
+                    border-color: rgba(0, 0, 0, 0);
+                    border-left-color: @squadLineBackgroundColor;
+                    border-width: 20px;
+                    top: 0;
+                }
+
+                &:after {
+                    left: 100%;
+                    border: solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    pointer-events: none;
+                    border-color: rgba(0, 0, 0, 0);
+                    border-left-color: @contentFullBackgroundColor;
+                    border-width: 21px;
+                    top: 0;
+                }
+                &:last-child:after {
+                    border: none;
+                }
             }
             .arrowContainer {
                 position: relative;
@@ -43,7 +82,7 @@
     }
 
     .unitName {
-        margin: auto; width: auto;
+        margin: 10px auto; width: auto;
         input, select { margin-left: 1em }
     }
 

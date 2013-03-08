@@ -61,14 +61,26 @@
 {% block stylesheets %}
 	{% stylesheets 
 		'../vendor/knacss/knaless/knacss.less' 
-		filter='less,cssrewrite' output='css/knacss.css' %}
+		'../vendor/aristath/elusive-iconfont/less/elusive-webfont.less' 
+		filter='less,cssrewrite' output='css/external.css' %}
 		 <link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
 
 	{% stylesheets 
 		'@SitiowebArmyCreatorBundle/Resources/public/css/*.css' 
-		'../vendor/aristath/elusive-iconfont/less/elusive-webfont.less' 
-		'@SitiowebArmyCreatorBundle/Resources/public/less/global.less' 
+
+		'@SitiowebArmyCreatorBundle/Resources/public/less/override.less' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/font.less' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/button.less' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/form.less' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/header.less' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/content.less' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/footer.less' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/breed.less' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/armyList.less' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/armyDetail.less' 
+		'@SitiowebArmyCreatorBundle/Resources/public/less/squadEdit.less' 
+
 		filter='less,cssrewrite' output='css/global.css' %}
 		 <link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}

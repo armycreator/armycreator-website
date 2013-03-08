@@ -1,3 +1,6 @@
+@import "variables";
+@import "mixins";
+
 #websiteContentContainer {
     .minGlobalWidth;
     overflow: auto;
@@ -11,8 +14,12 @@
                 li {
                     height: 25px; line-height: 25px; padding: 0 8px;
                     .simple-linear-gradient(bottom, #3e3830, #1d1b1a);
-                    &.last {
+                    &.current {
                         .simple-linear-gradient(bottom, #4a483a, #282b24);
+                    }
+                    a {
+                        color: @inversedLinkColor;
+                        &:hover { color: @inversedLinkHoverColor }
                     }
                 }
             }

@@ -1,6 +1,8 @@
 /* ------------------------------------------------------ */
-/*			- Override -          					 	      */
+/*			- Override -          					 	  */
 /* ------------------------------------------------------ */
+@import "variables";
+@import "mixins";
 
 
 html { font-family: @globalFontFamily }
@@ -23,9 +25,8 @@ input[readonly] {
 .row.gut > * + * {
     border-color: transparent;
 }
-ul.inline, .ulInline {
-    overflow: auto; list-style-type: none; padding: 0;margin: 0;
-    > li { float: left; }
+ul.inline {
+    .ulInline
 }
 
 table.squadType {
