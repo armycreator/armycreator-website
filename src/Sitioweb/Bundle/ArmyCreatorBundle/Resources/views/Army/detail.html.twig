@@ -111,8 +111,8 @@
 
             {# ===== Squad List ===== #}
             {% for tmp in army.squadListByType %}
-                <section class="unitTypeList row gut" id="unitType{{ tmp.unitType.id }}">
-                    <h3 class="unitType col">
+                <section class="unitTypeList row" id="unitType{{ tmp.unitType.id }}">
+                    <h3 class="unitType mr1 pa1">
                         <div class="unitTypeStickContainer">
                             <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
                         </div>
@@ -124,7 +124,7 @@
                            {% trans with { "%pts%":tmp.points } %}army.detail.pts.%pts%{% endtrans %}
                         </div>
                     </h3>
-                    <div class="col squadListContainer">
+                    <div class="squadListContainer">
                         <section class="squadList">
                             {% for squad in tmp.squadList %}
                                     <div class="squad">
