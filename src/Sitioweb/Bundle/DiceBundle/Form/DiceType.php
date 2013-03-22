@@ -21,8 +21,7 @@ class DiceType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\DiceBundle\Model\DiceLaunch',
-             'translation_domain' => 'forms'
+            'data_class' => 'Sitioweb\Bundle\DiceBundle\Model\DiceLaunch'
         ));
     }
 

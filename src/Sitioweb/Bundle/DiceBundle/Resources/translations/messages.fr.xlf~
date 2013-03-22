@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="c691f278b22504f3a3a3c09427065d94" resname="toolbox.weapon.title">
+        <source>toolbox.weapon.title</source>
+        <target>Probabilité de blesser au tir</target>
+      </trans-unit>
+      <trans-unit id="cee5104a45a49b1e1a41e4f5ce8f16da" resname="toolbox.dice.submit">
+        <source>toolbox.dice.submit</source>
+        <target>Calculer</target>
+      </trans-unit>
+      <trans-unit id="93f9831f90c0497c6a94baf15030b280" resname="toolbox.dice.title">
+        <source>toolbox.dice.title</source>
+        <target>Lanceur de dés</target>
+      </trans-unit>
+      <trans-unit id="c3af489a745079a561b335003f09dd14" resname="toolbox.dice.results">
+        <source>toolbox.dice.results</source>
+        <target>Résultat des dés</target>
+      </trans-unit>
+      <trans-unit id="96c529573c869b49727637719b0df86e" resname="toolbox.dice.superior">
+        <source>toolbox.dice.superior</source>
+        <target>Cumul des dés</target>
+      </trans-unit>
+      <trans-unit id="e2a8f8247355074df602fd5a2a68ba8f" resname="toolbox.infight.title">
+        <source>toolbox.infight.title</source>
+        <target>Nombre de dés</target>
+      </trans-unit>
+      <trans-unit id="64085c41d6729688d2a810277ed969a3" resname="Dicenumber">
+        <source>Dicenumber</source>
+        <target>Nombre de dés</target>
+      </trans-unit>
+      <trans-unit id="3e497906c10fbbee5ba9c410ac52df1b" resname="Wantedscore">
+        <source>Wantedscore</source>
+        <target>Score minimum souhaité</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

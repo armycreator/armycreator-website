@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{{ path('toolbox_weapon_statistic') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('toolbox_weapon_statistic') }}" method="post" {{ form_enctype(form) }} class="toolbox mb2">
         {{ form_widget(form) }}
 
-        <input type="submit" class="acButton" value="{{ "toolbox.dice.submit"|trans }}" />
+        {{ form_rest(form) }}
+        <input type="submit" class="acButton acButtonBig right mt1" value="{{ "toolbox.dice.submit"|trans }}" />
+        <div class="clear"></div>
     </form>
 
 

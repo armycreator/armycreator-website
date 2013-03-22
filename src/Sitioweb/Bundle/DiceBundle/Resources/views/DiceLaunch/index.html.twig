@@ -5,14 +5,16 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{{ path('toolbox_dice') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('toolbox_dice') }}" method="post" {{ form_enctype(form) }} class="toolbox mb2">
         {{ form_widget(form) }}
 
-        <input type="submit" class="acButton" value="{{ "toolbox.dice.submit"|trans }}" />
+        {{ form_rest(form) }}
+        <input type="submit" class="acButton acButtonBig right mt1" value="{{ "toolbox.dice.submit"|trans }}" />
+        <div class="clear"></div>
     </form>
 
     {% if not(resultList is empty) %}
-        <table>
+        <table class="squadType">
             <tr>
                 <th></th>
                 {% for i in 1..6 %}
@@ -30,7 +32,7 @@
     {% endif %}
 
     {% if not(supList is empty) %}
-        <table>
+        <table class="squadType">
             <tr>
                 <th></th>
                 {% for i in 1..6 %}

@@ -14,7 +14,7 @@ class ShotFiredType extends AbstractType
         $builder
             ->add('unitNumber', 'integer')
             ->add('shotsByUnit', 'integer')
-            ->add('weaponSkill', 'integer')
+            ->add('ballisticSkill', 'integer')
             ->add('weaponStrength', 'integer')
             ->add('toughness', 'integer')
             ->add('save', 'integer')
