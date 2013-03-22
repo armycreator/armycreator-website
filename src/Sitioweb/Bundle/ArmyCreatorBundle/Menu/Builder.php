@@ -55,7 +55,7 @@ class Builder extends ContainerAware
             $menu->addChild('main_menu.my_collection', array('route' => ''));
         }
         $menu->addChild('main_menu.public_lists', array('route' => ''));
-        $menu->addChild('main_menu.tools', array('route' => ''));
+        $menu->addChild('main_menu.tools', array('route' => 'toolbox_dice'));
         $menu->addChild('main_menu.donation', array('uri' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG'));
 
         return $menu;

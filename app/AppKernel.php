@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Sitioweb\Bundle\ArmyCreatorBundle\SitiowebArmyCreatorBundle(),
             new Sitioweb\Bundle\ArmyCreatorImportBundle\SitiowebArmyCreatorImportBundle(),
             new Sitioweb\Bundle\ExternalJsBundle\SitiowebExternalJsBundle(),
+            new Sitioweb\Bundle\DiceBundle\SitiowebDiceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

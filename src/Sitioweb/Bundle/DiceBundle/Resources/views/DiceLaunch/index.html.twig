@@ -1,0 +1,49 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ "toolbox.dice.title"|trans }}
+{% endblock %}
+
+{% block content %}
+    <form action="{{ path('toolbox_dice') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+
+        <input type="submit" class="acButton" value="{{ "toolbox.dice.submit"|trans }}" />
+    </form>
+
+    {% if not(resultList is empty) %}
+        <table>
+            <tr>
+                <th></th>
+                {% for i in 1..6 %}
+                    <th>{{ i }}
+                {% endfor %}
+            </tr>
+
+            <tr>
+                <td>{{ "toolbox.dice.results"|trans }}
+                {% for key,value in resultList %}
+                    <td class="{{ dices.wantedScore <= key ? "success" : "error" }}">{{ value }}
+                {% endfor %}
+            </tr>
+        </table>
+    {% endif %}
+
+    {% if not(supList is empty) %}
+        <table>
+            <tr>
+                <th></th>
+                {% for i in 1..6 %}
+                    <th>{{ i }}
+                {% endfor %}
+            </tr>
+
+            <tr>
+                <td>{{ "toolbox.dice.superior"|trans }}
+                {% for key,value in supList %}
+                    <td class="{{ dices.wantedScore == key ? "success" : "" }}">{{ value }}
+                {% endfor %}
+            </tr>
+        </table>
+    {% endif %}
+{% endblock %}

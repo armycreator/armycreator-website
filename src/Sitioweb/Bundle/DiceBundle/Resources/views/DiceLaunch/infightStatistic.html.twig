@@ -1,0 +1,17 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ "toolbox.infight.title"|trans }}
+{% endblock %}
+
+{% block content %}
+    <form action="{{ path('toolbox_infight_statistic') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+
+        <input type="submit" class="acButton" value="{{ "toolbox.dice.submit"|trans }}" />
+    </form>
+
+
+    {{ infight.stats }}
+{% endblock %}
+

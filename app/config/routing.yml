@@ -1,3 +1,8 @@
+sitioweb_dice:
+    resource: "@SitiowebDiceBundle/Controller/"
+    type:     annotation
+    prefix:   /toolbox
+
 SitiowebArmyCreatorBundle:
     resource: "@SitiowebArmyCreatorBundle/Controller/"
     type:     annotation

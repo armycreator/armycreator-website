@@ -8,8 +8,22 @@
 
 #armyDetailContainer {
     .unitTypeTopList {
-        padding: 10px 0;
-        > div { display: inline-block; margin-right: 1em }
+        background: @unitTypeBackgroundColor;
+        > div {
+            display: inline-block;
+            margin: 2px 1px;
+            background: @squadLineBackgroundColor;
+            a {
+                display: inline-block;
+                padding: .5em 1em;
+            }
+            &:hover, &:active, &.current {
+                background: @armyGroupCurrentItemBackground;
+                a {
+                    color: @armyGroupCurrentItemForeground;
+                }
+            }
+        }
     }
 
     .unitTypeList {
@@ -56,6 +70,11 @@
                 margin-bottom: 2px; padding: 5px 8px;
             }
         }
+    }
+    
+    #armyDetailPreferenceForm {
+        margin: 1em 0;
+        padding: 1em;
     }
 }
 

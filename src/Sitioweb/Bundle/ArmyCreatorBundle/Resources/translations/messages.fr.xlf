@@ -393,6 +393,10 @@
         <source>army_list.group_list.no_group</source>
         <target>aucun groupe</target>
       </trans-unit>
+      <trans-unit id="98">
+        <source>army.detail.preferences</source>
+        <target>préférences</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

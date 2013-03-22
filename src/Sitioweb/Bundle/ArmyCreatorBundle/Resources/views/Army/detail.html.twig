@@ -101,9 +101,42 @@
                 {% endfor %}
             </div>
 
-            <form action="{{ path('army_detail', { 'slug': army.slug }) }}" method="post" {{ form_enctype(form) }}>
+            <form
+                id="armyDetailPreferenceForm"
+                action="{{ path('army_detail', { 'slug': army.slug }) }}"
+                method="post"
+                {{ form_enctype(form) }}
+            >
+                <h4>{{ "army.detail.preferences"|trans }}</h4>
+                <div class="line">
+                    <aside class="right ml1">
+                        {{ form_widget(form.showDefaultStuff) }}
+                    </aside>
+                    <div class="right">
+                        {{ form_label(form.showDefaultStuff) }}
+                    </div>
+                </div>
+                <div class="line">
+                    <aside class="right ml1">
+                        {{ form_widget(form.showUnitPoints) }}
+                    </aside>
+                    <div class="right">
+                        {{ form_errors(form.showUnitPoints) }}
+                        {{ form_label(form.showUnitPoints) }}
+                    </div>
+                </div>
+                <div class="line">
+                    <aside class="right ml1">
+                        {{ form_errors(form.showStuffPoints) }}
+                        {{ form_widget(form.showStuffPoints) }}
+                    </aside>
+                    <div class="right">
+                        {{ form_errors(form.showStuffPoints) }}
+                        {{ form_label(form.showStuffPoints) }}
+                    </div>
+                </div>
                 {{ form_widget(form) }}
-                <p>
+                <p class="txtright">
                     <button type="submit" class="acButton">{{ 'army.bbcode.apply'|trans }}</button>
                     <button type="submit" class="acButton" name="saveAsDefault" value="1">{{ 'army.bbcode.apply_and_save'|trans }}</button>
                 </p>
@@ -209,7 +242,7 @@
                                         path('squad_new',
                                         {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug, 'breedSlug' : tmp.unitType.breed.slug})
                                     }}"
-                                    class="acButton"
+                                    class="acButton acButtonBig"
                                 >
                                     <i class="icon-plus"></i>
                                     {{ 'army.detail.squad.add'|trans }}

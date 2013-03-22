@@ -38,3 +38,16 @@ table.squadType {
 .normalWrap {
     white-space: normal
 }
+
+form {
+    background: @formBackground;
+    //margin-bottom: 1em;
+
+    > .line {
+        background: @formLineBackground;
+        padding: 4px 8px;
+        &:nth-child(2n) {
+            background: @formLineBackgroundOdd;
+        }
+    }
+}
