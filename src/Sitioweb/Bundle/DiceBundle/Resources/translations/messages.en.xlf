@@ -34,6 +34,66 @@
         <source>Wantedscore</source>
         <target>Minimum wanted</target>
       </trans-unit>
+      <trans-unit id="11e1b9b93f826b9806a62dce108a4e06" resname="dice.menu.launcher">
+        <source>dice.menu.launcher</source>
+        <target>Dice launcher</target>
+      </trans-unit>
+      <trans-unit id="71f9bc86675e5d6593546d40d710c9a2" resname="dice.menu.weapon_statistic">
+        <source>dice.menu.weapon_statistic</source>
+        <target>Weapon statistics</target>
+      </trans-unit>
+      <trans-unit id="4587dadfab4a9a4b3bd272a92d0c4503" resname="dice.menu.infight_statistic">
+        <source>dice.menu.infight_statistic</source>
+        <target>Infight statistics</target>
+      </trans-unit>
+      <trans-unit id="8905926bef7d6e530904c211923a4962" resname="Unitnumber">
+        <source>Unitnumber</source>
+        <target>Unit number</target>
+      </trans-unit>
+      <trans-unit id="dfc75b42646eb3e7497e7effa2eef80a" resname="Shotsbyunit">
+        <source>Shotsbyunit</source>
+        <target>Shots by unit</target>
+      </trans-unit>
+      <trans-unit id="35a5fbc75cacf7b464dd21b509dd4cff" resname="Ballisticskill">
+        <source>Ballisticskill</source>
+        <target>Ballistic Skill</target>
+      </trans-unit>
+      <trans-unit id="c1902d6b1aac8a5a3c38a1f01f303bd6" resname="Weaponstrength">
+        <source>Weaponstrength</source>
+        <target>Weapon Strength</target>
+      </trans-unit>
+      <trans-unit id="0f709fd0403c86c14c5d5a881269d530" resname="Toughness">
+        <source>Toughness</source>
+        <target>Toughness</target>
+      </trans-unit>
+      <trans-unit id="c9cc8cce247e49bae79f15173ce97354" resname="Save">
+        <source>Save</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id="f5d93dafc90cab8d225530dbb9f0f60a" resname="Secondsave">
+        <source>Secondsave</source>
+        <target>Second Save</target>
+      </trans-unit>
+      <trans-unit id="736c97ee1b2e41bd5ba926d1f729732a" resname="Hitbyunit">
+        <source>Hitbyunit</source>
+        <target>Hit by unit</target>
+      </trans-unit>
+      <trans-unit id="39a939584d06ad4b3266b469ba764bb7" resname="Supplementaryhit">
+        <source>Supplementaryhit</source>
+        <target>One supplementary hit</target>
+      </trans-unit>
+      <trans-unit id="cdbe373bfe1f799839392927b710c61e" resname="Weaponskill">
+        <source>Weaponskill</source>
+        <target>Weapon skill</target>
+      </trans-unit>
+      <trans-unit id="a8c699d7699fb600ceea05874a89b1a2" resname="Opponentweaponskill">
+        <source>Opponentweaponskill</source>
+        <target>Opponent weapon skill</target>
+      </trans-unit>
+      <trans-unit id="5a455a612047a34ede7a6c564fa67c0a" resname="Strength">
+        <source>Strength</source>
+        <target>Strength</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

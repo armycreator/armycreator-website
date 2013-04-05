@@ -26,7 +26,6 @@ class ShotFiredType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\DiceBundle\Model\ShotFired',
-             'translation_domain' => 'forms'
         ));
     }
 

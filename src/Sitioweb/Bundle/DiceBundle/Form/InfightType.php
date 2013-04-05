@@ -14,7 +14,7 @@ class InfightType extends AbstractType
         $builder
             ->add('unitNumber', 'integer')
             ->add('hitByUnit', 'integer')
-            ->add('supplementaryHit', 'checkbox')
+            ->add('supplementaryHit', 'checkbox', array('required' => false))
             ->add('weaponSkill', 'integer')
             ->add('opponentWeaponSkill', 'integer')
             ->add('strength', 'integer')
@@ -28,7 +28,6 @@ class InfightType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\DiceBundle\Model\Infight',
-             'translation_domain' => 'forms'
         ));
     }
 

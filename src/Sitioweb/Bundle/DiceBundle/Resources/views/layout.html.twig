@@ -1,0 +1,23 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block content %}
+    {% block menu %}
+        <nav class="subMenu">
+            {{ knp_menu_render('SitiowebDiceBundle:Builder:mainMenu') }}
+        </nav>
+    {% endblock %}
+
+    {% block diceContent %}
+    {% endblock %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+	{% stylesheets 
+		'@SitiowebDiceBundle/Resources/public/less/dice.less' 
+		filter='less,cssrewrite' output='css/dice.css' %}
+		 <link rel="stylesheet" href="{{ asset_url }}" />
+     {% endstylesheets %}
+
+{% endblock %}

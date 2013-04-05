@@ -1,10 +1,10 @@
-{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+{% extends 'SitiowebDiceBundle::layout.html.twig' %}
 
 {% block title %}
     {{ "toolbox.dice.title"|trans }}
 {% endblock %}
 
-{% block content %}
+{% block diceContent %}
     <form action="{{ path('toolbox_dice') }}" method="post" {{ form_enctype(form) }} class="toolbox mb2">
         {{ form_widget(form) }}
 
