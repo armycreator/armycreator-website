@@ -16,6 +16,7 @@ $(document).ready(function() {
                 } else {
                     $(this).closest('.stuffListItem').find('.number input').removeAttr('readonly');
                 }
+                calculateTotalPoints();
             })
             .on('click', '.toggleAmau', function() {
                 $(this).prev().trigger('click');
@@ -34,6 +35,7 @@ $(document).ready(function() {
             .on('click', '.toZero', function () {
                 $(this).closest('.stuffListItem').find('.toggleAmau.highlight').trigger('click');
                 $(this).prev().val(0);
+                calculateTotalPoints();
             });
 
 
