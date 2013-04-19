@@ -110,7 +110,8 @@ class ArmyController extends Controller
      */
     public function detailPdfAction($slug)
     {
-        $params = $this->getDetailParams($slug);
+        $params = $this->getDetailParams($slug) +
+                    array('preferences' => $this->getUser()->getPreferences());
         $html = $this->renderView(
             'SitiowebArmyCreatorBundle:Army:detail.html.twig',
             $params
@@ -118,7 +119,8 @@ class ArmyController extends Controller
 
         // rendering
         $filename = 'ArmyCreator-' . $slug . '.pdf';
-        $mpdf=new \mPDF();
+        $mpdf = new \mPDF();
+        $mpdf->WriteHTML(file_get_contents('css/print.css'), 1);
         $mpdf->WriteHTML($html);
         $mpdf->Output($filename, 'I');
 

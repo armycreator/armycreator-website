@@ -101,46 +101,35 @@
                 {% endfor %}
             </div>
 
-            <form
-                id="armyDetailPreferenceForm"
-                action="{{ path('army_detail', { 'slug': army.slug }) }}"
-                method="post"
-                {{ form_enctype(form) }}
-            >
-                <h4>{{ "army.detail.preferences"|trans }}</h4>
-                <div class="line">
-                    <aside class="right ml1">
-                        {{ form_widget(form.showDefaultStuff) }}
-                    </aside>
-                    <div class="right">
-                        {{ form_label(form.showDefaultStuff) }}
-                    </div>
-                </div>
-                <div class="line">
-                    <aside class="right ml1">
-                        {{ form_widget(form.showUnitPoints) }}
-                    </aside>
-                    <div class="right">
-                        {{ form_errors(form.showUnitPoints) }}
-                        {{ form_label(form.showUnitPoints) }}
-                    </div>
-                </div>
-                <div class="line">
-                    <aside class="right ml1">
-                        {{ form_errors(form.showStuffPoints) }}
-                        {{ form_widget(form.showStuffPoints) }}
-                    </aside>
-                    <div class="right">
-                        {{ form_errors(form.showStuffPoints) }}
-                        {{ form_label(form.showStuffPoints) }}
-                    </div>
-                </div>
-                {{ form_widget(form) }}
-                <p class="txtright">
-                    <button type="submit" class="acButton">{{ 'army.bbcode.apply'|trans }}</button>
-                    <button type="submit" class="acButton" name="saveAsDefault" value="1">{{ 'army.bbcode.apply_and_save'|trans }}</button>
-                </p>
-            </form>
+            {% if form is defined %}
+                <form
+                    id="armyDetailPreferenceForm"
+                    action="{{ path('army_detail', { 'slug': army.slug }) }}"
+                    method="post"
+                    {{ form_enctype(form) }}
+                >
+                    <h4>{{ "army.detail.preferences"|trans }}</h4>
+                    {% for key, child in form.children %}
+                        {% if key|slice(0,1) != "_" %}
+                            <div class="line">
+                                <aside class="right ml1">
+                                    {{ form_widget(child) }}
+                                </aside>
+                                <div class="right">
+                                    {{ form_errors(child) }}
+                                    {{ form_label(child) }}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    {{ form_widget(form) }}
+                    <p class="txtright">
+                        <button type="submit" class="acButton">{{ 'army.bbcode.apply'|trans }}</button>
+                        <button type="submit" class="acButton" name="saveAsDefault" value="1">{{ 'army.bbcode.apply_and_save'|trans }}</button>
+                    </p>
+                </form>
+            {% endif %}
 
             {# ===== Squad List ===== #}
             {% for tmp in army.squadListByType %}

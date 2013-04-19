@@ -5,19 +5,14 @@
 {% endblock %}
 
 {% block content %}
-<form action="{{ path('army_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('army_create') }}" method="post" {{ form_enctype(form) }} class="opaque">
     {{ form_widget(form) }}
-    <p>
-        <button type="submit">{{ "army.new.create"|trans }}</button>
-    </p>
-</form>
-
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('army_list') }}">
+    <p class="txtright">
+        <a href="{{ path('army_list') }}" class="acButton">
             {{ "army.new.back_to_list"|trans }}
         </a>
-    </li>
-</ul>
+        <button type="submit" class="acButton acButtonBig">{{ "army.new.create"|trans }}</button>
+    </p>
+</form>
 {% endblock %}
 

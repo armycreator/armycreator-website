@@ -6,9 +6,30 @@
 {% endblock %}
 
 {% block armyDetail %}
-<form action="{{ path('army_detail_bbcode', { 'slug': army.slug }) }}" method="post" {{ form_enctype(form) }}>
+<form
+    action="{{ path('army_detail_bbcode', { 'slug': army.slug }) }}"
+    method="post"
+    {{ form_enctype(form) }}
+    id="armyDetailPreferenceForm"
+    class="right"
+>
+    <h4>{{ "army.detail.preferences"|trans }}</h4>
+    {% for key, child in form.children %}
+        {% if key|slice(0,1) != "_" %}
+            <div class="line">
+                <aside class="right ml1">
+                    {{ form_widget(child) }}
+                </aside>
+                <div>
+                    {{ form_errors(child) }}
+                    {{ form_label(child) }}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
     {{ form_widget(form) }}
-    <p>
+    <p class="txtright">
         <button type="submit" class="acButton">{{ 'army.bbcode.apply'|trans }}</button>
         <button type="submit" class="acButton" name="saveAsDefault" value="1">{{ 'army.bbcode.apply_and_save'|trans }}</button>
     </p>

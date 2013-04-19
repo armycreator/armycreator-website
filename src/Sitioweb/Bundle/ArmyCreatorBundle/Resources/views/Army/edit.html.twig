@@ -5,25 +5,26 @@
 {% endblock %}
 
 {% block content %}
-<form action="{{ path('army_update', { 'slug': entity.slug }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form action="{{ path('army_update', { 'slug': entity.slug }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
     {{ form_widget(edit_form) }}
-    <p>
-        <button type="submit" class="acButton">{{ "army.edit.edit"|trans }}</button>
-    </p>
+    <div class="txtright">
+        <button type="submit" class="acButton acButtonBig">{{ "army.edit.edit"|trans }}</button>
+    </div>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('army_detail', {'slug' : entity.slug }) }}" class="acButton">
-            {{ "army.edit.back_to_army_list"|trans }}
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('army_delete', { 'slug': entity.slug }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit" class="acButton">{{ "army.edit.delete"|trans }}</button>
-        </form>
-    </li>
+<div class="txtright">
+    <a href="{{ path('army_detail', {'slug' : entity.slug }) }}" class="acButton">
+        {{ "army.edit.back_to_army_list"|trans }}
+    </a>
+    <form
+        action="{{ path('army_delete', { 'slug': entity.slug }) }}"
+        method="post"
+        class="inbl"
+        onsubmit="javascript:return confirm('{% trans %}army.detail.delete{% endtrans %}');"
+    >
+        {{ form_widget(delete_form) }}
+        <button type="submit" class="acButton">{{ "army.edit.delete"|trans }}</button>
+    </form>
 </ul>
 {% endblock %}
 

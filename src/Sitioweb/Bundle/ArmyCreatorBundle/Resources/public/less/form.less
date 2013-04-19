@@ -5,13 +5,30 @@
     color: @errorColor;
 }
 
-form.toolbox {
+form.toolbox, form.opaque {
+    background: @formBackground;
     padding: 1em;
     > div > div {
         text-align: right;
+        overflow: auto;
         > * {
             line-height: 2em;
             margin-left: 1em;
         }
+
+        background: @formLineBackground;
+        &:hover {
+            background: lighten(@formLineBackground, 10%);
+        }
+        padding: 4px 8px;
+        &:nth-child(2n) {
+            background: @formLineBackgroundOdd;
+            &:hover {
+                background: lighten(@formLineBackgroundOdd, 10%);
+            }
+        }
+
+        > div { float: right; margin-left: 1em }
+        > label { display: block; float: left }
     }
 }
