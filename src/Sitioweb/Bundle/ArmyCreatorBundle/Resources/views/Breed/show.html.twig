@@ -7,18 +7,34 @@
     <tbody>
         <tr>
             <th>Id</th>
-            <td>{{ entity.id }}</td>
+            <td>{{ breed.id }}</td>
         </tr>
         <tr>
             <th>Name</th>
-            <td>{{ entity.name }}</td>
+            <td>{{ breed.name }}</td>
         </tr>
         <tr>
             <th>Available</th>
-            <td>{{ entity.available }}</td>
+            <td>{{ breed.available }}</td>
         </tr>
     </tbody>
 </table>
+
+<nav class="subMenu">
+    <ul>
+        {% for unitType in breed.unitTypeList %}
+            <li>
+                <a href="#">{{ unitType.name }}</a>
+            </li>
+        {% endfor %}
+        <li>
+            <a href="#">
+                <i class="icon-plus"></i>
+                {{ "breed.unit_type.add" }}
+            </a>
+        </li>
+    </ul>
+</nav>
 
 <ul class="record_actions">
     <li>
@@ -27,15 +43,9 @@
         </a>
     </li>
     <li>
-        <a href="{{ path('admin_breed_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('admin_breed_edit', { 'id': breed.id }) }}">
             Edit
         </a>
-    </li>
-    <li>
-        <form action="{{ path('admin_breed_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
-        </form>
     </li>
 </ul>
 {% endblock %}

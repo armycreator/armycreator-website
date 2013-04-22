@@ -26,7 +26,7 @@ class BreedController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SitiowebArmyCreatorBundle:Breed')->findAll();
+        $entities = $em->getRepository('SitiowebArmyCreatorBundle:Breed')->findBy(array(), array('name' => 'ASC'));
 
         return array(
             'entities' => $entities,
@@ -49,11 +49,8 @@ class BreedController extends Controller
             throw $this->createNotFoundException('Unable to find Breed entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'breed'      => $entity,
         );
     }
 
@@ -119,12 +116,10 @@ class BreedController extends Controller
         }
 
         $editForm = $this->createForm(new BreedType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
@@ -146,7 +141,6 @@ class BreedController extends Controller
         }
 
         $editForm   = $this->createForm(new BreedType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
 
@@ -162,43 +156,7 @@ class BreedController extends Controller
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
-    /**
-     * Deletes a Breed entity.
-     *
-     * @Route("/{id}/delete", name="admin_breed_delete")
-     * @Method("post")
-     */
-    public function deleteAction($id)
-    {
-        $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
-
-        $form->bindRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Breed entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl('admin_breed'));
-    }
-
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
-    }
 }

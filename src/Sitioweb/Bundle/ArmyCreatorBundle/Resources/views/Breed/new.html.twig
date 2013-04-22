@@ -3,18 +3,16 @@
 {% block h1 %}Breed creation{% endblock %}
 
 {% block content %}
-<form action="{{ path('admin_breed_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('admin_breed_create') }}" method="post" {{ form_enctype(form) }} class="opaque">
     {{ form_widget(form) }}
-    <p>
-        <button type="submit">Create</button>
-    </p>
+    <div class="txtright">
+        <button type="submit" class="acButton acButtonBig">Create</button>
+    </div>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_breed') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+<div class="txtright">
+    <a href="{{ path('admin_breed') }}" class="acButton">
+        Back to the list
+    </a>
+</div>
 {% endblock %}
