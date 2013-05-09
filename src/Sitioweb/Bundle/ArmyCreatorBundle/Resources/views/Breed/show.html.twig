@@ -1,6 +1,8 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block h1 %}Breed{% endblock %}
+{% block title %}
+    {{ breed.name }}
+{% endblock %}
 
 {% block content %}
 <table class="record_properties">
@@ -22,30 +24,48 @@
 
 <nav class="subMenu">
     <ul>
+            <li {% if not(currentUnitType) %} class="current"{% endif %}>
+                <a href="{{ path("admin_breed_show", { "game": breed.game.code, "breed": breed.slug }) }}">
+                    {{ "breed.unit_type.all"|trans }}
+                </a>
+            </li>
         {% for unitType in breed.unitTypeList %}
-            <li>
-                <a href="#">{{ unitType.name }}</a>
+            <li {% if currentUnitType == unitType.id %} class="current"{% endif %}>
+                <a href="{{ path("admin_breed_show", { "game": breed.game.code, "breed": breed.slug, "unitType": unitType.id }) }}">
+                    {{ unitType.name }}
+                </a>
             </li>
         {% endfor %}
         <li>
             <a href="#">
                 <i class="icon-plus"></i>
-                {{ "breed.unit_type.add" }}
+                {{ "breed.unit_type.add"|trans }}
             </a>
         </li>
     </ul>
 </nav>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_breed') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('admin_breed_edit', { 'id': breed.id }) }}">
-            Edit
-        </a>
-    </li>
-</ul>
+<table class="squadType mt1">
+    <thead>
+    </thead>
+
+    <tbody>
+        {% for unitGroup in unitGroupList %}
+            <tr>
+                <td>{{ unitGroup.id }}
+                <td>{{ unitGroup.unitType.name }}
+                <td>{{ unitGroup.name }}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="txtright">
+    <a href="{{ path('admin_breed', { "game": breed.game.code  }) }}" class="acButton">
+        {{ "breed.detail.back_to_list"|trans }}
+    </a>
+    <a href="{{ path('admin_breed_edit', { "breed": breed.slug, "id": breed.id }) }}" class="acButton">
+        {{ "breed.detail.edit"|trans }}
+    </a>
+</div>
 {% endblock %}

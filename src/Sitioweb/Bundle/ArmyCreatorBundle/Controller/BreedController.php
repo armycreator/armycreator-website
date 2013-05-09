@@ -15,7 +15,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedType;
 /**
  * Breed controller.
  *
- * @Route("/admin/breed")
+ * @Route("/admin")
  */
 class BreedController extends Controller
 {
@@ -36,8 +36,18 @@ class BreedController extends Controller
             throw $this->createNotFoundException('Unable to find Breed entity.');
         }
 
+        $unitType = $this->get('request')->query->get('unitType');
+        if ($unitType) {
+            $unitGroupList = $em->getRepository('SitiowebArmyCreatorBundle:UnitGroup')
+                                ->findBy(array('unitType' => $unitType)); 
+        } else {
+            $unitGroupList = $breed->getUnitGroupList(); 
+        }
+
         return array(
-            'breed'      => $breed,
+            'breed' => $breed,
+            'currentUnitType' => $unitType,
+            'unitGroupList' => $unitGroupList,
         );
     }
 
