@@ -15,11 +15,21 @@
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td><a href="{{ path('admin_game_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.code }}</td>
-            <td>{{ entity.name }}</td>
+            <td>{{ entity.id }}</td>
             <td>
-                <a class="acButton" href="{{ path('admin_game_edit', { 'id': entity.id }) }}">edit</a>
+                <a href="{{ path('admin_game_show', { 'code': entity.code }) }}">
+                    {{ entity.code }}
+                </a>
+            </td>
+            <td>
+                <a href="{{ path('admin_game_show', { 'code': entity.code }) }}">
+                    {{ entity.name }}
+                </a>
+            </td>
+            <td>
+                <a class="acButton" href="{{ path('admin_game_edit', { 'code': entity.code }) }}">
+                    {{ "game.list.edit"|trans }}
+                </a>
             </td>
         </tr>
     {% endfor %}
@@ -28,7 +38,7 @@
 
 <div class="txtright">
     <a href="{{ path('admin_game_new') }}" class="acButton acButtonBig">
-        Create a new entry
+        {{ "game.list.new"|trans }}
     </a>
 </div>
 {% endblock %}

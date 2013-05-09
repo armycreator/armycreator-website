@@ -1,28 +1,29 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
 {% block title %}
-    {% trans %}army_group.edit.title{% endtrans %}
+    {{ "army_group.edit.title"|trans }}
 {% endblock %}
 
 {% block content %}
-<form action="{{ path('army_group_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form action="{{ path('army_group_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
     {{ form_widget(edit_form) }}
-    <p>
-        <button type="submit">{{ "army_group.edit.edit"|trans }}</button>
-    </p>
+    <div class="txtright">
+        <button type="submit" class="acButton acButtonBig">{{ "army_group.edit.edit"|trans }}</button>
+    </div>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('army_group_list', {'groupId' : entity.id }) }}">
-            {{ "army_group.edit.back_to_list"|trans }}
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('army_group_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit">{{ "army_group.edit.delete"|trans }}</button>
-        </form>
-    </li>
+<div class="txtright">
+    <a href="{{ path('army_group_list', {'groupId' : entity.id }) }}" class="acButton">
+        {{ "army_group.edit.back_to_list"|trans }}
+    </a>
+    <form
+        action="{{ path('army_group_delete', { 'id': entity.id }) }}"
+        method="post"
+        class="inbl"
+        onsubmit="javascript:return confirm('{% trans %}army_group.edit.delete{% endtrans %}');"
+    >
+        {{ form_widget(delete_form) }}
+        <button type="submit" class="acButton">{{ "army_group.edit.delete"|trans }}</button>
+    </form>
 </ul>
 {% endblock %}

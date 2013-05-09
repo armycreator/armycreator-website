@@ -112,7 +112,7 @@ class SquadController extends Controller
         
 
         $form    = $this->createForm(new SquadType($unitGroup->getUnitType()->getBreed()), $entity);
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

@@ -12,7 +12,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\GameType;
 /**
  * Game controller.
  *
- * @Route("/admin/game")
+ * @Route("/admin")
  */
 class GameController extends Controller
 {
@@ -36,20 +36,20 @@ class GameController extends Controller
     /**
      * Finds and displays a Game entity.
      *
-     * @Route("/{id}/show", name="admin_game_show")
+     * @Route("/{code}/show", name="admin_game_show")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($code)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->find($id);
+        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->findOneByCode($code);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Game entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
             'entity'      => $entity,
@@ -86,7 +86,7 @@ class GameController extends Controller
         $entity  = new Game();
         $request = $this->getRequest();
         $form    = $this->createForm(new GameType(), $entity);
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -105,21 +105,21 @@ class GameController extends Controller
     /**
      * Displays a form to edit an existing Game entity.
      *
-     * @Route("/{id}/edit", name="admin_game_edit")
+     * @Route("/{code}/edit", name="admin_game_edit")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction($code)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->find($id);
+        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->findOneByCode($code);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Game entity.');
         }
 
         $editForm = $this->createForm(new GameType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
             'entity'      => $entity,
@@ -131,15 +131,16 @@ class GameController extends Controller
     /**
      * Edits an existing Game entity.
      *
-     * @Route("/{id}/update", name="admin_game_update")
+     * @Route("/{code}/update", name="admin_game_update")
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Game:edit.html.twig")
      */
-    public function updateAction($id)
+    public function updateAction($code)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->find($id);
+        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->findOneByCode($code);
+        $id = $entity->getId();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Game entity.');
@@ -150,7 +151,7 @@ class GameController extends Controller
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -169,19 +170,21 @@ class GameController extends Controller
     /**
      * Deletes a Game entity.
      *
-     * @Route("/{id}/delete", name="admin_game_delete")
+     * @Route("/{code}/delete", name="admin_game_delete")
      * @Method("post")
      */
-    public function deleteAction($id)
+    public function deleteAction($code)
     {
+        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->findOneByCode($code);
+        $id = $entity->getId();
+
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Game entity.');

@@ -86,7 +86,7 @@ class BreedGroupController extends Controller
         $entity  = new BreedGroup();
         $request = $this->getRequest();
         $form    = $this->createForm(new BreedGroupType(), $entity);
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -150,7 +150,7 @@ class BreedGroupController extends Controller
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -177,7 +177,7 @@ class BreedGroupController extends Controller
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

@@ -27,12 +27,12 @@
         </a>
     </li>
     <li>
-        <a href="{{ path('admin_game_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('admin_game_edit', { 'code': entity.code }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('admin_game_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('admin_game_delete', { 'code': entity.code }) }}" method="post">
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>
         </form>

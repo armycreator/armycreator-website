@@ -2,11 +2,14 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedType;
 
 /**
@@ -16,57 +19,44 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedType;
  */
 class BreedController extends Controller
 {
-    /**
-     * Lists all Breed entities.
-     *
-     * @Route("/", name="admin_breed")
-     * @Template()
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('SitiowebArmyCreatorBundle:Breed')->findBy(array(), array('name' => 'ASC'));
-
-        return array(
-            'entities' => $entities,
-        );
-    }
 
     /**
      * Finds and displays a Breed entity.
      *
-     * @Route("/{id}/show", name="admin_breed_show")
+     * @Route("/{game}/{breed}/show", name="admin_breed_show")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
-    public function showAction($id)
+    public function showAction(Game $game, Breed $breed)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($id);
-
-        if (!$entity) {
+        if (!$breed) {
             throw $this->createNotFoundException('Unable to find Breed entity.');
         }
 
         return array(
-            'breed'      => $entity,
+            'breed'      => $breed,
         );
     }
 
     /**
      * Displays a form to create a new Breed entity.
      *
-     * @Route("/new", name="admin_breed_new")
+     * @Route("/{game}/new", name="admin_breed_new")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @Template()
      */
-    public function newAction()
+    public function newAction(Game $game)
     {
         $entity = new Breed();
+        $entity->setGame($game);
         $form   = $this->createForm(new BreedType(), $entity);
 
         return array(
             'entity' => $entity,
+            'game' => $game,
             'form'   => $form->createView(),
         );
     }
@@ -83,7 +73,7 @@ class BreedController extends Controller
         $entity  = new Breed();
         $request = $this->getRequest();
         $form    = $this->createForm(new BreedType(), $entity);
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -95,6 +85,7 @@ class BreedController extends Controller
 
         return array(
             'entity' => $entity,
+            'game' => $entity->getGame(),
             'form'   => $form->createView(),
         );
     }
@@ -102,23 +93,22 @@ class BreedController extends Controller
     /**
      * Displays a form to edit an existing Breed entity.
      *
-     * @Route("/{id}/edit", name="admin_breed_edit")
+     * @Route("/{breed}/edit", name="admin_breed_edit")
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
-    public function editAction($id)
+    public function editAction(Breed $breed)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($id);
-
-        if (!$entity) {
+        if (!$breed) {
             throw $this->createNotFoundException('Unable to find Breed entity.');
         }
 
-        $editForm = $this->createForm(new BreedType(), $entity);
+        $editForm = $this->createForm(new BreedType(), $breed);
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $breed,
             'edit_form'   => $editForm->createView(),
         );
     }
@@ -144,7 +134,7 @@ class BreedController extends Controller
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -159,4 +149,25 @@ class BreedController extends Controller
         );
     }
 
+    /**
+     * Lists all Breed entities.
+     *
+     * @Route("/{game}", name="admin_breed")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
+     * @Template()
+     */
+    public function indexAction(Game $game)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('SitiowebArmyCreatorBundle:Breed')
+            ->findBy(
+                array('game' => $game), array('name' => 'ASC')
+            );
+
+        return array(
+            'game' => $game,
+            'entities' => $entities,
+        );
+    }
 }
