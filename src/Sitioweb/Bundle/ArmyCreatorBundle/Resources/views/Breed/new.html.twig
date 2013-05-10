@@ -3,7 +3,7 @@
 {% block h1 %}Breed creation{% endblock %}
 
 {% block content %}
-<form action="{{ path('admin_breed_create') }}" method="post" {{ form_enctype(form) }} class="opaque">
+<form action="{{ path("admin_breed_create") }}" method="post" {{ form_enctype(form) }} class="opaque">
     {{ form_widget(form) }}
     <div class="txtright">
         <button type="submit" class="acButton acButtonBig">Create</button>

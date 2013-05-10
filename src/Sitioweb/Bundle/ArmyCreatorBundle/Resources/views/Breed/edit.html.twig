@@ -3,7 +3,7 @@
 {% block h1 %}Breed edit{% endblock %}
 
 {% block content %}
-<form action="{{ path('admin_breed_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
+<form action="{{ path('admin_breed_update', { "breed": entity.slug }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
     {{ form_widget(edit_form) }}
     <div class="txtright">
         <button type="submit" class="acButton acButtonBig">Create</button>

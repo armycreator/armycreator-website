@@ -22,16 +22,12 @@
     </tbody>
 </table>
 
+
 <nav class="subMenu">
     <ul>
-            <li {% if not(currentUnitType) %} class="current"{% endif %}>
-                <a href="{{ path("admin_breed_show", { "game": breed.game.code, "breed": breed.slug }) }}">
-                    {{ "breed.unit_type.all"|trans }}
-                </a>
-            </li>
         {% for unitType in breed.unitTypeList %}
-            <li {% if currentUnitType == unitType.id %} class="current"{% endif %}>
-                <a href="{{ path("admin_breed_show", { "game": breed.game.code, "breed": breed.slug, "unitType": unitType.id }) }}">
+            <li>
+                <a href="#ut-{{ unitType.slug }}">
                     {{ unitType.name }}
                 </a>
             </li>
@@ -45,20 +41,40 @@
     </ul>
 </nav>
 
-<table class="squadType mt1">
-    <thead>
-    </thead>
+{% for unitType in breed.unitTypeList %}
+    <section class="unitTypeList row" id="ut-{{ unitType.slug }}">
+        <h3 class="unitType mr1 pa1">
+            {{ unitType.name }}
+        </h3>
 
-    <tbody>
-        {% for unitGroup in unitGroupList %}
-            <tr>
-                <td>{{ unitGroup.id }}
-                <td>{{ unitGroup.unitType.name }}
-                <td>{{ unitGroup.name }}
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <div class="squadListContainer">
+            <div class="squadList">
+                {% for unitGroup in unitType.unitGroupList %}
+                    <div class="squad">
+                        <div class="squadName">
+                            <h4>{{ unitGroup.name }}</h4>
+                        </div>
+                        <div>
+                            {% for unitHasUnitGroup in unitGroup.unitHasUnitGroupList %}
+                                <div class="squadLine">
+                                    <h5>
+                                        {% if unitHasUnitGroup.mainUnit %}
+                                            <span class="icon-star soft"></span>
+                                        {% endif %}
+                                        {{ unitHasUnitGroup.unit.name }}
+                                        <span class="soft">
+                                            {{ unitHasUnitGroup.unitNumber }}
+                                        </span>
+                                    </h5>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endfor %}
 
 <div class="txtright">
     <a href="{{ path('admin_breed', { "game": breed.game.code  }) }}" class="acButton">

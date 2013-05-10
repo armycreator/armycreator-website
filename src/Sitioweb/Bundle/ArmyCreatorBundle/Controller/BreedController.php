@@ -37,17 +37,9 @@ class BreedController extends Controller
         }
 
         $unitType = $this->get('request')->query->get('unitType');
-        if ($unitType) {
-            $unitGroupList = $em->getRepository('SitiowebArmyCreatorBundle:UnitGroup')
-                                ->findBy(array('unitType' => $unitType)); 
-        } else {
-            $unitGroupList = $breed->getUnitGroupList(); 
-        }
 
         return array(
             'breed' => $breed,
-            'currentUnitType' => $unitType,
-            'unitGroupList' => $unitGroupList,
         );
     }
 
@@ -74,7 +66,7 @@ class BreedController extends Controller
     /**
      * Creates a new Breed entity.
      *
-     * @Route("/create", name="admin_breed_create")
+     * @Route("/breed/create", name="admin_breed_create")
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Breed:new.html.twig")
      */
@@ -103,7 +95,7 @@ class BreedController extends Controller
     /**
      * Displays a form to edit an existing Breed entity.
      *
-     * @Route("/{breed}/edit", name="admin_breed_edit")
+     * @Route("/breed/{breed}/edit", name="admin_breed_edit")
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
@@ -126,35 +118,34 @@ class BreedController extends Controller
     /**
      * Edits an existing Breed entity.
      *
-     * @Route("/{id}/update", name="admin_breed_update")
+     * @Route("/breed/{breed}/update", name="admin_breed_update")
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Breed:edit.html.twig")
      */
-    public function updateAction($id)
+    public function updateAction(Breed $breed)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Breed')->find($id);
-
-        if (!$entity) {
+        if (!$breed) {
             throw $this->createNotFoundException('Unable to find Breed entity.');
         }
 
-        $editForm   = $this->createForm(new BreedType(), $entity);
+        $editForm   = $this->createForm(new BreedType(), $breed);
 
         $request = $this->getRequest();
 
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
+            $em->persist($breed);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_breed_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_breed', array('game' => $breed->getGame()->getCode())));
         }
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $breed,
             'edit_form'   => $editForm->createView(),
         );
     }

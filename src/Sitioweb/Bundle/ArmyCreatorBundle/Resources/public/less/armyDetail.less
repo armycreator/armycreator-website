@@ -23,31 +23,32 @@
             }
         }
     }
+}
 
-    .unitTypeList {
-        margin-bottom: 1.5em; 
-        .unitType {
-            display: table-cell; width: 120px; vertical-align: top;
-        }
-    }
+.unitTypeList {
+    margin-bottom: 1.5em; 
     .unitType {
-        background: @unitTypeBackgroundColor; color: @unitTypeForegroundColor; overflow: hidden;
-        .unitTypeStickContainer {
-            position: relative;
-        }
-        .unitTypeStick {
-           position: absolute; top: -6px; right:-24px; width: 50px; height: 10px;
-           border: 1px solid #888;
-           .transformRotate(45deg);
-           &.stickLeft {
-               left:-24px;
-               .transformRotate(-45deg);
-           }
-        }
+        display: table-cell; width: 120px; vertical-align: top;
     }
-    .squadListContainer {
-        padding: 0
+}
+.unitType {
+    background: @unitTypeBackgroundColor; color: @unitTypeForegroundColor; overflow: hidden;
+    .unitTypeStickContainer {
+        position: relative;
     }
+    .unitTypeStick {
+       position: absolute; top: -6px; right:-24px; width: 50px; height: 10px;
+       border: 1px solid #888;
+       .transformRotate(45deg);
+       &.stickLeft {
+           left:-24px;
+           .transformRotate(-45deg);
+       }
+    }
+}
+
+.squadListContainer {
+    padding: 0;
     .squadList {
         .displayFlex;
         .squad {
@@ -69,14 +70,14 @@
             }
         }
     }
+} 
     
-    #armyDetailPreferenceForm {
-        margin: 1em 0;
-        padding: 1em;
-    }
-    #army_bbcode_textarea {
-        margin: 1em;
-    }
+#armyDetailPreferenceForm {
+    margin: 1em 0;
+    padding: 1em;
+}
+#army_bbcode_textarea {
+    margin: 1em;
 }
 
 @media (min-width: @maxPhoneWidth) and (max-width: @maxTabletWidth) {

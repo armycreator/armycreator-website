@@ -34,30 +34,6 @@ class GameController extends Controller
     }
 
     /**
-     * Finds and displays a Game entity.
-     *
-     * @Route("/{code}/show", name="admin_game_show")
-     * @Template()
-     */
-    public function showAction($code)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->findOneByCode($code);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Game entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($entity->getId());
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
      * Displays a form to create a new Game entity.
      *
      * @Route("/new", name="admin_game_new")

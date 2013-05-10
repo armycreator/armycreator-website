@@ -9,6 +9,7 @@
             <th>Id</th>
             <th>Code</th>
             <th>Name</th>
+            <th>Army Number</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -17,13 +18,14 @@
         <tr>
             <td>{{ entity.id }}</td>
             <td>
-                <a href="{{ path('admin_game_show', { 'code': entity.code }) }}">
-                    {{ entity.code }}
-                </a>
+                {{ entity.code }}
             </td>
             <td>
-                <a href="{{ path('admin_game_show', { 'code': entity.code }) }}">
-                    {{ entity.name }}
+                {{ entity.name }}
+            </td>
+            <td>
+                <a href="{{ path("admin_breed", { "game": entity.code }) }}">
+                    {{ entity.breedList.count() }}
                 </a>
             </td>
             <td>

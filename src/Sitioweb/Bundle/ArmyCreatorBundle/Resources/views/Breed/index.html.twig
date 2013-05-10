@@ -16,12 +16,16 @@
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td><a href="{{ path('admin_breed_show', { 'game': entity.game.code, 'breed': entity.slug }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.name }}</td>
+            <td>{{ entity.id }}</td>
+            <td>
+                <a href="{{ path('admin_breed_show', { "game": entity.game.code, "breed": entity.slug }) }}">
+                    {{ entity.name }}
+                </a>
+            </td>
             <td>{{ entity.available ? "Yes" : "No" }}</td>
             <td>{{ entity.newVersion }}</td>
             <td>
-                <a href="{{ path('admin_breed_edit', { 'breed': entity.slug }) }}" class="acButton">edit</a>
+                <a href="{{ path("admin_breed_edit", { "breed": entity.slug }) }}" class="acButton">edit</a>
             </td>
         </tr>
     {% endfor %}
