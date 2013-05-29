@@ -84,6 +84,40 @@ class Builder extends ContainerAware
     }
 
     /**
+     * breedShowMenu
+     *
+     * @param FactoryInterface $factory
+     * @param array $options
+     * @access public
+     * @return void
+     */
+    public function breedShowMenu(FactoryInterface $factory, array $options)
+    {
+        $breed = $this->container->get('request')->get('breed');
+        $game = $breed->getGame();
+        $routeParameters = ['breed' => $breed->getSlug(), 'game' => $game->getCode()];
+
+        $menu = $factory->createItem('root');
+
+        $menu->addChild(
+            'breed_show.menu.unit_list',
+            array(
+                'route' => 'admin_breed_show',
+                'routeParameters' => $routeParameters
+            )
+        );
+        $menu->addChild(
+            'breed_show.menu.stuff',
+            array(
+                'route' => 'admin_breed_show',
+                'routeParameters' => $routeParameters
+            )
+        );
+
+        return $menu;
+    }
+
+    /**
      * armyListMenu
      *
      * @param FactoryInterface $factory

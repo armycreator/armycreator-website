@@ -21,12 +21,12 @@
                 {{ entity.code }}
             </td>
             <td>
-                {{ entity.name }}
+                <a href="{{ path("admin_breed", { "game": entity.code }) }}">
+                    {{ entity.name }}
+                </a>
             </td>
             <td>
-                <a href="{{ path("admin_breed", { "game": entity.code }) }}">
-                    {{ entity.breedList.count() }}
-                </a>
+                {{ entity.breedList.count() }}
             </td>
             <td>
                 <a class="acButton" href="{{ path('admin_game_edit', { 'code': entity.code }) }}">

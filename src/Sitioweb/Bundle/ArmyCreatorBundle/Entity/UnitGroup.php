@@ -43,6 +43,7 @@ class UnitGroup extends AbstractUnit
      */
     public function __construct()
     {
+        parent::__construct();
         $this->unitHasUnitGroupList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->squadList = new \Doctrine\Common\Collections\ArrayCollection();
     }

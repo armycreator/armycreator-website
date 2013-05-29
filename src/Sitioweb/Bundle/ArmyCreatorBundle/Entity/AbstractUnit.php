@@ -66,7 +66,7 @@ class AbstractUnit
     /**
      * importedId
      * 
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var mixed
      * @access private
      */
@@ -75,7 +75,7 @@ class AbstractUnit
     /**
      * importedType
      * 
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var mixed
      * @access private
      */
@@ -101,6 +101,7 @@ class AbstractUnit
      */
     public function __construct()
     {
+        $this->points = 0;
     }
 
 

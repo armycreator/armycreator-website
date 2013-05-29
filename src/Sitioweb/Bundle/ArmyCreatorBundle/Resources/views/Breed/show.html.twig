@@ -7,6 +7,10 @@
 {% endblock %}
 
 {% block content %}
+{% set breed = app.request.get("breed") %}
+{% set game = breed.game %}
+{% set params = {"game": game.code, "breed": breed.slug} %}
+
 <table class="record_properties">
     <tbody>
         <tr>
@@ -26,22 +30,15 @@
 
 
 <nav class="subMenu">
-    <ul>
-        {% for unitType in breed.unitTypeList %}
-            <li>
-                <a href="#ut-{{ unitType.slug }}">
-                    {{ unitType.name }}
-                </a>
-            </li>
-        {% endfor %}
-        <li>
-            <a href="{{ path("unittype_new", { "game": breed.game.code, "breed": breed.slug }) }}">
-                <i class="icon-plus"></i>
-                {{ "breed.unit_type.add"|trans }}
-            </a>
-        </li>
-    </ul>
+    {{ knp_menu_render("SitiowebArmyCreatorBundle:Builder:breedShowMenu", {"breed": breed}) }}
 </nav>
+
+<div>
+    <a href="{{ path("unittype_new", params) }}" class="acButton acButtonBig">
+        <i class="icon-plus"></i>
+        {{ "breed.unit_type.add"|trans }}
+    </a>
+</div>
 
 {% for unitType in breed.unitTypeList %}
     <section class="unitTypeList row" id="ut-{{ unitType.slug }}">
@@ -58,7 +55,12 @@
                 {% for unitGroup in unitType.unitGroupList %}
                     <div class="squad">
                         <div class="squadName">
-                            <h4>{{ unitGroup.name }}</h4>
+                            <h4>
+                                {{ unitGroup.name }}
+                                <a href="{{ path("unitgroup_edit", params + { "unitGroup": unitGroup.slug}) }}">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                            </h4>
                         </div>
                         <div>
                             {% for unitHasUnitGroup in unitGroup.unitHasUnitGroupList %}
@@ -77,6 +79,12 @@
                         </div>
                     </div>
                 {% endfor %}
+                <div class="squad">
+                    <a href="{{ path("unitgroup_new", { "breed": breed.slug, "game": breed.game.code, "unitTypeSlug": unitType.slug}) }}">
+                        <i class="icon-plus"></i>
+                        {{ "breed.show.unitgroup.new"|trans }}
+                    </a>
+                </div>
             </div>
         </div>
     </section>
