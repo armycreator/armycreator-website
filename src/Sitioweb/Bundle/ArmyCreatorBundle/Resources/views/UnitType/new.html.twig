@@ -1,9 +1,13 @@
-{% extends '::base.html.twig' %}
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block body -%}
+{% block content %}
     <h1>UnitType creation</h1>
 
-    <form action="{{ path('unittype_create') }}" method="post" {{ form_enctype(form) }}>
+    <form
+        action="{{ path("unittype_create", {"game": breed.game.code, "breed": breed.slug}) }}"
+        method="post" {{ form_enctype(form) }}
+        class="opaque"
+    >
         {{ form_widget(form) }}
         <p>
             <button type="submit">Create</button>
@@ -12,7 +16,7 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('unittype') }}">
+        <a href="{{ path("admin_breed_show", {"game": breed.game.code, "breed": breed.slug}) }}">
             Back to the list
         </a>
     </li>

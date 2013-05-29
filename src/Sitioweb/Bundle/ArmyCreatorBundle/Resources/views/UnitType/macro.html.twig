@@ -1,0 +1,5 @@
+{% macro stick(color) %}
+    <div class="unitTypeStickContainer">
+        <div class="unitTypeStick" style="background-color:{{ color|default("#ccc") }}"></div>
+    </div>
+{% endmacro %}

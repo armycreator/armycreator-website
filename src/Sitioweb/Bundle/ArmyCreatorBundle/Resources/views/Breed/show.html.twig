@@ -1,5 +1,7 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
+{% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
+
 {% block title %}
     {{ breed.name }}
 {% endblock %}
@@ -33,7 +35,7 @@
             </li>
         {% endfor %}
         <li>
-            <a href="#">
+            <a href="{{ path("unittype_new", { "game": breed.game.code, "breed": breed.slug }) }}">
                 <i class="icon-plus"></i>
                 {{ "breed.unit_type.add"|trans }}
             </a>
@@ -44,7 +46,11 @@
 {% for unitType in breed.unitTypeList %}
     <section class="unitTypeList row" id="ut-{{ unitType.slug }}">
         <h3 class="unitType mr1 pa1">
+            {{ unitTypeMacro.stick(unitType.color) }}
             {{ unitType.name }}
+            <a href="{{ path("unittype_edit", {"game": breed.game.code, "breed": breed.slug, "id": unitType.id}) }}">
+                <i class="icon-pencil"></i>
+            </a>
         </h3>
 
         <div class="squadListContainer">

@@ -7,7 +7,7 @@
 {% block content %}
     <h1>UnitType edit</h1>
 
-    <form action="{{ path('unittype_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <form action="{{ path("unittype_update", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
         <input type="hidden" name="_method" value="PUT" />
         {{ form_widget(edit_form) }}
         <p>
@@ -17,12 +17,12 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('unittype') }}">
+        <a href="{{ path("admin_breed_show", {"breed": breed.slug, "game": breed.game.code }) }}">
             Back to the list
         </a>
     </li>
     <li>
-        <form action="{{ path('unittype_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path("unittype_delete", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
             <button type="submit">Delete</button>

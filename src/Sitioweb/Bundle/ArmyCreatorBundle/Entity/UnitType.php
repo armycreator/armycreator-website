@@ -25,7 +25,7 @@ class UnitType
     /**
      * importedId
      * 
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var mixed
      * @access private
      */
@@ -116,6 +116,7 @@ class UnitType
      */
     public function __construct()
     {
+        $this->position = 0;
         $this->unitList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->squadList = new \Doctrine\Common\Collections\ArrayCollection();
     }

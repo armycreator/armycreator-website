@@ -1,5 +1,7 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
+{% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
+
 {% block title %}
     {{ army.name }} - 
     {{ army.user.username }} -
@@ -135,9 +137,7 @@
             {% for tmp in army.squadListByType %}
                 <section class="unitTypeList row" id="ut-{{ tmp.unitType.slug }}{% if tmp.unitType.breed != army.breed %}-{{ tmp.unitType.breed.slug }}{% endif %}">
                     <h3 class="unitType mr1 pa1">
-                        <div class="unitTypeStickContainer">
-                            <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
-                        </div>
+                        {{ unitTypeMacro.stick(tmp.unitType.color) }}
                         {{ tmp.unitType.name }}
                         {% if tmp.unitType.breed != army.breed %}
                             ({{ tmp.unitType.breed.name }})

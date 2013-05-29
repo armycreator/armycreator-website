@@ -2,18 +2,24 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitTypeType;
 
 /**
  * UnitType controller.
  *
- * @Route("/admin/unittype")
+ * @Route("/admin/{game}/{breed}/unittype")
+ * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
+ * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
  */
 class UnitTypeController extends Controller
 {
@@ -24,22 +30,31 @@ class UnitTypeController extends Controller
      * @Method("POST")
      * @Template("SitiowebArmyCreatorBundle:UnitType:new.html.twig")
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, Breed $breed)
     {
         $entity  = new UnitType();
         $form = $this->createForm(new UnitTypeType(), $entity);
         $form->bind($request);
+        $entity->setBreed($breed);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('unittype_show', array('id' => $entity->getId())));
+            $url = $this->generateUrl(
+                'admin_breed_show',
+                array(
+                    'breed' => $breed->getSlug(),
+                    'game' => $breed->getGame()->getCode()
+                )
+            );
+            return $this->redirect($url);
         }
 
         return array(
             'entity' => $entity,
+            'breed' => $breed,
             'form'   => $form->createView(),
         );
     }
@@ -51,12 +66,13 @@ class UnitTypeController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
+    public function newAction(Breed $breed)
     {
         $entity = new UnitType();
         $form   = $this->createForm(new UnitTypeType(), $entity);
 
         return array(
+            'breed' => $breed,
             'entity' => $entity,
             'form'   => $form->createView(),
         );
@@ -94,7 +110,7 @@ class UnitTypeController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction($id, Breed $breed)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -108,6 +124,7 @@ class UnitTypeController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
+            'breed'       => $breed,
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -118,10 +135,10 @@ class UnitTypeController extends Controller
      * Edits an existing UnitType entity.
      *
      * @Route("/{id}", name="unittype_update")
-     * @Method("PUT")
+     * @Method("POST")
      * @Template("SitiowebArmyCreatorBundle:UnitType:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, $id, Breed $breed)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -139,7 +156,14 @@ class UnitTypeController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('unittype_edit', array('id' => $id)));
+            $url = $this->generateUrl(
+                'admin_breed_show',
+                array(
+                    'breed' => $breed->getSlug(),
+                    'game' => $breed->getGame()->getCode()
+                )
+            );
+            return $this->redirect($url);
         }
 
         return array(

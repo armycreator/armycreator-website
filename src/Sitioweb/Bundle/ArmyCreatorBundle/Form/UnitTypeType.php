@@ -11,12 +11,9 @@ class UnitTypeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('importedId')
             ->add('name')
-            ->add('slug')
-            ->add('position')
             ->add('color')
-            ->add('breed')
+            ->add('position')
         ;
     }
 
