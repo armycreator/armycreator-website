@@ -116,7 +116,7 @@ class UnitGroup extends AbstractUnit
 
     public function getPoints()
     {
-        $points = 0;
+        $points = parent::getPoints();
 
         $unitHasUnitGroupList = $this->getUnitHasUnitGroupList();
         foreach ($unitHasUnitGroupList as $unitHasUnitGroup) {
@@ -124,5 +124,23 @@ class UnitGroup extends AbstractUnit
         }
 
         return $points;
+    }
+
+    /**
+     * createFromUnit
+     *
+     * @param Unit $unit
+     * @static
+     * @access public
+     * @return UnitGroup
+     */
+    public static function createFromUnit(Unit $unit)
+    {
+        $unitGroup = new UnitGroup();
+        $unitGroup->setName($unit->getName())
+            ->setBreed($unit->getBreed())
+            ->setUnitType($unit->getUnitType());
+
+        return $unitGroup;
     }
 }

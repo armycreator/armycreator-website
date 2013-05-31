@@ -44,7 +44,7 @@ class UnitType
      * @var string
      * @access private
      *
-     * @Gedmo\Slug(fields={"name"}, unique=false, updatable=true)
+     * @Gedmo\Slug(fields={"name"}, unique_base="breed", unique=true, updatable=true)
      * @ORM\Column(length=255)
      */
     private $slug;

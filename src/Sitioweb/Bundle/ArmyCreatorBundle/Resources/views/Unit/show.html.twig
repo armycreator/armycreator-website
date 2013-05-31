@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Unit</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ entity.slug }}</td>
+            </tr>
+            <tr>
+                <th>Points</th>
+                <td>{{ entity.points }}</td>
+            </tr>
+            <tr>
+                <th>Importedid</th>
+                <td>{{ entity.importedId }}</td>
+            </tr>
+            <tr>
+                <th>Importedtype</th>
+                <td>{{ entity.importedType }}</td>
+            </tr>
+            <tr>
+                <th>Canmodifynumber</th>
+                <td>{{ entity.canModifyNumber }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('unit') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('unit_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('unit_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

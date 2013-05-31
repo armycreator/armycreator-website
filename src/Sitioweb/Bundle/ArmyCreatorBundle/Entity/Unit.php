@@ -80,6 +80,7 @@ class Unit extends AbstractUnit
      */
     public function __construct()
     {
+        parent::__construct();
         $this->unitHasUnitGroupList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->childrenList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->unitStuffList = new \Doctrine\Common\Collections\ArrayCollection();

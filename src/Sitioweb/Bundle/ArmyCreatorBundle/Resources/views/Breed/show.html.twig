@@ -57,9 +57,11 @@
                         <div class="squadName">
                             <h4>
                                 {{ unitGroup.name }}
+                                {#
                                 <a href="{{ path("unitgroup_edit", params + { "unitGroup": unitGroup.slug}) }}">
                                     <i class="icon-pencil"></i>
                                 </a>
+#}
                             </h4>
                         </div>
                         <div>
@@ -69,10 +71,14 @@
                                         {% if unitHasUnitGroup.mainUnit %}
                                             <span class="icon-star soft"></span>
                                         {% endif %}
+                                        {{ unitHasUnitGroup.unitNumber }}
                                         {{ unitHasUnitGroup.unit.name }}
                                         <span class="soft">
-                                            {{ unitHasUnitGroup.unitNumber }}
+                                            {% trans with { "%pts%":unitHasUnitGroup.unit.points } %}breed.show.pts.%pts%{% endtrans %}
                                         </span>
+                                        <a href="{{ path("unit_edit", params + { "unit": unitHasUnitGroup.unit.slug}) }}">
+                                            <i class="icon-pencil"></i>
+                                        </a>
                                     </h5>
                                 </div>
                             {% endfor %}
@@ -80,9 +86,9 @@
                     </div>
                 {% endfor %}
                 <div class="squad">
-                    <a href="{{ path("unitgroup_new", { "breed": breed.slug, "game": breed.game.code, "unitTypeSlug": unitType.slug}) }}">
+                    <a href="{{ path("unit_new", { "breed": breed.slug, "game": breed.game.code, "unitTypeSlug": unitType.slug}) }}">
                         <i class="icon-plus"></i>
-                        {{ "breed.show.unitgroup.new"|trans }}
+                        {{ "breed.show.unit.new"|trans }}
                     </a>
                 </div>
             </div>

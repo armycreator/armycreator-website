@@ -51,7 +51,7 @@ class UnitHasUnitGroup
     /**
      * importedId
      * 
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var mixed
      * @access private
      */
@@ -74,6 +74,20 @@ class UnitHasUnitGroup
      * @access private
      */
     private $canChooseNumber;
+
+    /**
+     * __construct
+     *
+     * @access public
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->setMainUnit(false)
+            ->setCanChooseNumber(true)
+            ->setUnitNumber(1);
+
+    }
 
 
     /**

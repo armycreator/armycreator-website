@@ -24,7 +24,6 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitGroupType;
  */
 class UnitGroupController extends Controller
 {
-
     /**
      * Creates a new UnitGroup entity.
      *
@@ -153,8 +152,8 @@ class UnitGroupController extends Controller
     /**
      * Deletes a UnitGroup entity.
      *
-     * @Route("/{id}", name="unitgroup_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="unitgroup_delete")
+     * @Method("POST")
      */
     public function deleteAction(Request $request, Breed $breed, $id)
     {
