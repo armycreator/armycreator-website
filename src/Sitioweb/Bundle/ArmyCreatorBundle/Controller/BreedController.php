@@ -19,7 +19,6 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedType;
  */
 class BreedController extends Controller
 {
-
     /**
      * Finds and displays a Breed entity.
      *
@@ -30,16 +29,44 @@ class BreedController extends Controller
      */
     public function showAction(Game $game, Breed $breed)
     {
-        $em = $this->getDoctrine()->getManager();
+        $url = $this->generateUrl(
+                'admin_breed_unitgroup',
+                array(
+                    'breed' => $breed->getSlug(),
+                    'game' => $breed->getGame()->getCode()
+                    )
+                );
+        return $this->redirect($url);
+    }
 
-        if (!$breed) {
-            throw $this->createNotFoundException('Unable to find Breed entity.');
-        }
+    /**
+     * Finds and displays a Breed entity.
+     *
+     * @Route("/{game}/{breed}/unitGroup", name="admin_breed_unitgroup")
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
+     * @Template()
+     */
+    public function unitGroupAction(Breed $breed)
+    {
+        return array('breed' => $breed);
+    }
 
-        $unitType = $this->get('request')->query->get('unitType');
+    /**
+     * Finds and displays a Breed entity.
+     *
+     * @Route("/{game}/{breed}/unit", name="admin_breed_unit")
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
+     * @Template()
+     */
+    public function unitAction(Breed $breed)
+    {
+        $unitList = $this->get('doctrine')
+                        ->getRepository('SitiowebArmyCreatorBundle:Unit')
+                        ->findBy(['breed' => $breed]);
 
         return array(
             'breed' => $breed,
+            'unitList' => $unitList,
         );
     }
 

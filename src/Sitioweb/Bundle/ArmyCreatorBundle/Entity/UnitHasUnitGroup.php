@@ -131,6 +131,7 @@ class UnitHasUnitGroup
      */
     public function setUnit(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $unit = null)
     {
+        $unit->addUnitHasUnitGroupList($this);
         $this->unit = $unit;
     
         return $this;
@@ -154,6 +155,7 @@ class UnitHasUnitGroup
      */
     public function setGroup(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup $group = null)
     {
+        $group->addUnitHasUnitGroupList($this);
         $this->group = $group;
     
         return $this;

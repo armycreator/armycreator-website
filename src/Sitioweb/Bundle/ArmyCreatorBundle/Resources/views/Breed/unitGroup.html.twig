@@ -1,51 +1,18 @@
-{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+{% extends 'SitiowebArmyCreatorBundle:Breed:layout.html.twig' %}
 
 {% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
 
-{% block title %}
-    {{ breed.name }}
-{% endblock %}
-
-{% block content %}
+{% block breedContent %}
 {% set breed = app.request.get("breed") %}
 {% set game = breed.game %}
 {% set params = {"game": game.code, "breed": breed.slug} %}
-
-<table class="record_properties">
-    <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ breed.id }}</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <td>{{ breed.name }}</td>
-        </tr>
-        <tr>
-            <th>Available</th>
-            <td>{{ breed.available }}</td>
-        </tr>
-    </tbody>
-</table>
-
-
-<nav class="subMenu">
-    {{ knp_menu_render("SitiowebArmyCreatorBundle:Builder:breedShowMenu", {"breed": breed}) }}
-</nav>
-
-<div>
-    <a href="{{ path("unittype_new", params) }}" class="acButton acButtonBig">
-        <i class="icon-plus"></i>
-        {{ "breed.unit_type.add"|trans }}
-    </a>
-</div>
 
 {% for unitType in breed.unitTypeList %}
     <section class="unitTypeList row" id="ut-{{ unitType.slug }}">
         <h3 class="unitType mr1 pa1">
             {{ unitTypeMacro.stick(unitType.color) }}
             {{ unitType.name }}
-            <a href="{{ path("unittype_edit", {"game": breed.game.code, "breed": breed.slug, "id": unitType.id}) }}">
+            <a href="{{ path("unittype_edit", {"game": breed.game.code, "breed": breed.slug, "id": unitType.id}) }}" class="acButton acButtonSmall">
                 <i class="icon-pencil"></i>
             </a>
         </h3>
@@ -57,11 +24,9 @@
                         <div class="squadName">
                             <h4>
                                 {{ unitGroup.name }}
-                                {#
-                                <a href="{{ path("unitgroup_edit", params + { "unitGroup": unitGroup.slug}) }}">
+                                <a href="{{ path("unitgroup_edit", params + { "unitGroup": unitGroup.slug}) }}" class="acButton acButtonSmall">
                                     <i class="icon-pencil"></i>
                                 </a>
-#}
                             </h4>
                         </div>
                         <div>
@@ -76,17 +41,22 @@
                                         <span class="soft">
                                             {% trans with { "%pts%":unitHasUnitGroup.unit.points } %}breed.show.pts.%pts%{% endtrans %}
                                         </span>
-                                        <a href="{{ path("unit_edit", params + { "unit": unitHasUnitGroup.unit.slug}) }}">
+                                        <a href="{{ path("unit_edit", params + { "unit": unitHasUnitGroup.unit.slug}) }}" class="acButton acButtonSmall">
                                             <i class="icon-pencil"></i>
                                         </a>
                                     </h5>
                                 </div>
                             {% endfor %}
+                                <div class="squadLine">
+                                    <a href="{{ path("unit_new", params + {"unitTypeSlug": unitType.slug, "group": unitGroup.slug}) }}" class="acButton">
+                                        <i class="icon-plus"></i>
+                                    </a>
+                                </div>
                         </div>
                     </div>
                 {% endfor %}
                 <div class="squad">
-                    <a href="{{ path("unit_new", { "breed": breed.slug, "game": breed.game.code, "unitTypeSlug": unitType.slug}) }}">
+                    <a href="{{ path("unit_new", { "breed": breed.slug, "game": breed.game.code, "unitTypeSlug": unitType.slug}) }}" class="acButton">
                         <i class="icon-plus"></i>
                         {{ "breed.show.unit.new"|trans }}
                     </a>
@@ -95,13 +65,4 @@
         </div>
     </section>
 {% endfor %}
-
-<div class="txtright">
-    <a href="{{ path('admin_breed', { "game": breed.game.code  }) }}" class="acButton">
-        {{ "breed.detail.back_to_list"|trans }}
-    </a>
-    <a href="{{ path('admin_breed_edit', { "breed": breed.slug, "id": breed.id }) }}" class="acButton">
-        {{ "breed.detail.edit"|trans }}
-    </a>
-</div>
 {% endblock %}

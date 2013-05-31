@@ -6,9 +6,20 @@
     {% set breed = app.request.get("breed") %}
     {% set game = breed.game %}
     {% set params = {"game": game.code, "breed": breed.slug} %}
+    {% if app.request.get("group") %}
+        {% set params = params + {"group": app.request.get("group")} %}
+    {% endif %}
 
     <form action="{{ path("unit_create", params) }}" method="post" {{ form_enctype(form) }} class="opaque">
-        {{ form_widget(form) }}
+        <div id="unittype">
+            {{ form_row(form.unitType) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.points) }}
+            {{ form_row(form.unitHasUnitGroupList[0].unitNumber) }}
+            {{ form_row(form.unitHasUnitGroupList[0].canChooseNumber) }}
+
+            {{ form_widget(form) }}
+        </div>
         <p>
             <button type="submit">Create</button>
         </p>

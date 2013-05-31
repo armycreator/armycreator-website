@@ -1,0 +1,30 @@
+{% extends 'SitiowebArmyCreatorBundle:Breed:layout.html.twig' %}
+
+{% block breedContent %}
+{% set breed = app.request.get("breed") %}
+{% set game = breed.game %}
+{% set params = {"game": game.code, "breed": breed.slug} %}
+
+<table class="squadType">
+    <tr>
+        <th>{{ "breed.unit_list.unit_type"|trans }}
+        <th>{{ "breed.unit_list.name"|trans }}
+        <th>{{ "breed.unit_list.pts"|trans }}
+        <th>{{ "breed.unit_list.action"|trans }}
+    </tr>
+    {% for unit in unitList %}
+        <tr>
+            <td>{{ unit.unitType.name }}
+            <td>{{ unit.name }}
+            <td>{{ unit.points }}
+
+            <td>
+                <a href="{{ path("unit_edit", params + { "unit": unit.slug}) }}" class="acButton">
+                    <i class="icon-pencil"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+

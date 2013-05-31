@@ -1,0 +1,53 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ breed.name }}
+{% endblock %}
+
+{% block content %}
+{% set breed = app.request.get("breed") %}
+{% set game = breed.game %}
+{% set params = {"game": game.code, "breed": breed.slug} %}
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ breed.id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ breed.name }}</td>
+        </tr>
+        <tr>
+            <th>Available</th>
+            <td>{{ breed.available }}</td>
+        </tr>
+    </tbody>
+</table>
+<a href="{{ path('admin_breed_edit', { "breed": breed.slug, "id": breed.id }) }}" class="acButton">
+    {{ "breed.detail.edit"|trans }}
+</a>
+
+
+<nav class="subMenu">
+    {{ knp_menu_render("SitiowebArmyCreatorBundle:Builder:breedShowMenu", {"breed": breed}) }}
+</nav>
+
+<div>
+    <a href="{{ path("unittype_new", params) }}" class="acButton acButtonBig">
+        <i class="icon-plus"></i>
+        {{ "breed.unit_type.add"|trans }}
+    </a>
+</div>
+
+{% block breedContent %}
+{% endblock %}
+
+<div class="txtright">
+    <a href="{{ path('admin_breed', { "game": breed.game.code  }) }}" class="acButton">
+        {{ "breed.detail.back_to_game"|trans }}
+    </a>
+</div>
+{% endblock %}
+

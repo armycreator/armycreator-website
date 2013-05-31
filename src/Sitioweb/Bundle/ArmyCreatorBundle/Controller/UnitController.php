@@ -28,23 +28,38 @@ class UnitController extends Controller
     /**
      * Creates a new Unit entity.
      *
-     * @Route("/", name="unit_create")
+     * @Route("/create", name="unit_create")
      * @Method("POST")
      * @Template("SitiowebArmyCreatorBundle:Unit:new.html.twig")
      */
     public function createAction(Request $request, Breed $breed)
     {
         $entity  = new Unit();
-        $form = $this->createForm(new UnitType(), $entity);
+        $unitHasUnitGroup = new UnitHasUnitGroup();
+        $unitHasUnitGroup->setUnit($entity);
+
+        $form = $this->createForm(new UnitType($breed), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
-            $unitGroup = UnitGroup::createFromUnit($entity);
-            $unitHasUnitGroup = new UnitHasUnitGroup();
-            $unitHasUnitGroup->setUnit($entity)
-                            ->setGroup($unitGroup);
-
             $em = $this->getDoctrine()->getManager();
+            $entity->setBreed($breed);
+
+            // get group
+            if ($request->get('group')) {
+                $unitGroup = $em->getRepository('SitiowebArmyCreatorBundle:UnitGroup')
+                                ->findOneBySlug($request->get('group'));
+                $mainUnit = false;
+            } 
+
+            if (!$unitGroup) {
+                $unitGroup = UnitGroup::createFromUnit($entity);
+                $mainUnit = true;
+            }
+
+            $unitHasUnitGroup->setGroup($unitGroup)
+                            ->setMainUnit($mainUnit);
+
             $em->persist($entity);
             $em->persist($unitGroup);
             $em->persist($unitHasUnitGroup);
@@ -79,8 +94,11 @@ class UnitController extends Controller
 
         $entity = new Unit();
         $entity->setUnitType($unitType)
-            ->setBreed($breed);
-        $form   = $this->createForm(new UnitType(), $entity);
+                ->setBreed($breed);
+        $unitHasUnitGroup = new UnitHasUnitGroup();
+        $unitHasUnitGroup->setUnit($entity);
+
+        $form = $this->createForm(new UnitType($breed), $entity);
 
         return array(
             'entity' => $entity,
@@ -121,11 +139,11 @@ class UnitController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction(Unit $unit)
+    public function editAction(Unit $unit, Breed $breed)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $editForm = $this->createForm(new UnitType(), $unit);
+        $editForm = $this->createForm(new UnitType($breed), $unit);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -147,10 +165,11 @@ class UnitController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $editForm = $this->createForm(new UnitType(), $entity);
+        $editForm = $this->createForm(new UnitType($breed), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+            $entity->setBreed($breed);
             $em->persist($entity);
             $em->flush();
 

@@ -8,8 +8,15 @@
     {% set params = {"game": game.code, "breed": breed.slug} %}
 
     <form action="{{ path("unit_update", params + { "id": unit.id }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
-        <input type="hidden" name="_method" value="PUT" />
-        {{ form_widget(edit_form) }}
+        <div id="unittype">
+            {{ form_row(edit_form.unitType) }}
+            {{ form_row(edit_form.name) }}
+            {{ form_row(edit_form.points) }}
+            {{ form_row(edit_form.unitHasUnitGroupList[0].unitNumber) }}
+            {{ form_row(edit_form.unitHasUnitGroupList[0].canChooseNumber) }}
+
+            {{ form_widget(edit_form) }}
+        </div>
         <p>
             <button type="submit">Edit</button>
         </p>

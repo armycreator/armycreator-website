@@ -27,18 +27,19 @@ class UnitGroupController extends Controller
     /**
      * Creates a new UnitGroup entity.
      *
-     * @Route("/", name="unitgroup_create")
+     * @Route("/create", name="unitgroup_create")
      * @Method("POST")
      * @Template("SitiowebArmyCreatorBundle:UnitGroup:new.html.twig")
      */
     public function createAction(Request $request, Breed $breed)
     {
         $entity  = new UnitGroup();
-        $form = $this->createForm(new UnitGroupType(), $entity);
+        $form = $this->createForm(new UnitGroupType($breed), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setBreed($breed);
             $em->persist($entity);
             $em->flush();
 
@@ -79,7 +80,7 @@ class UnitGroupController extends Controller
         $entity = new UnitGroup();
         $entity->setUnitType($unitType);
         $entity->setBreed($breed);
-        $form   = $this->createForm(new UnitGroupType(), $entity);
+        $form   = $this->createForm(new UnitGroupType($breed), $entity);
 
         return array(
             'entity' => $entity,
@@ -95,9 +96,9 @@ class UnitGroupController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction(UnitGroup $entity)
+    public function editAction(UnitGroup $entity, Breed $breed)
     {
-        $editForm = $this->createForm(new UnitGroupType(), $entity);
+        $editForm = $this->createForm(new UnitGroupType($breed), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -125,10 +126,11 @@ class UnitGroupController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new UnitGroupType(), $entity);
+        $editForm = $this->createForm(new UnitGroupType($breed), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+            $entity->setBreed($breed);
             $em->persist($entity);
             $em->flush();
 
