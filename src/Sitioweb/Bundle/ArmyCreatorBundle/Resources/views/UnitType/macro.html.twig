@@ -1,5 +1,5 @@
-{% macro stick(color) %}
+{% macro stick(color, stickLeft) %}
     <div class="unitTypeStickContainer">
-        <div class="unitTypeStick" style="background-color:{{ color|default("#ccc") }}"></div>
+        <div class="unitTypeStick {% if stickLeft %} stickLeft{% endif %}" style="background-color:{{ color|default("#ccc") }}"></div>
     </div>
 {% endmacro %}

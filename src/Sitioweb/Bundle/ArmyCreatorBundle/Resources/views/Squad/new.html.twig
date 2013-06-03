@@ -1,5 +1,7 @@
 {% extends 'SitiowebArmyCreatorBundle:Army:detail.html.twig' %}
 
+{% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
+
 {% block title %}
     {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
 {% endblock %}
@@ -41,9 +43,7 @@
 {# squad add navigation #}
 {% block squadAddNav %}
     <header class="unitType">
-        <div class="unitTypeStickContainer">
-            <div class="unitTypeStick stickLeft" style="background-color:{{ currentUnitType.color|default("#ccc") }}"></div>
-        </div>
+        {{ unitTypeMacro.stick(currentUnitType.color, true) }}
         {% block squadAddNavTitle %}
             {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
         {% endblock %}
@@ -99,11 +99,13 @@
     </div>
 
     {# Other type list #}
-    <div class="unitType otherType row txtcenter">
+    <div class="unitType otherType row txtcenter inline inlineBig">
         {% for unitType in breed.unitTypeList %}
-            <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug, 'breedSlug' : unitType.breed.slug}) }}" title="{{ unitType.name }}">
-                {{ unitType.name }}
-            </a>
+            <div>
+                <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug, 'breedSlug' : unitType.breed.slug}) }}" title="{{ unitType.name }}">
+                    {{ unitType.name }}
+                </a>
+            </div>
         {% endfor %}
     </div>
 
