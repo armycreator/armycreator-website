@@ -91,13 +91,20 @@ class UnitGroupController extends Controller
     /**
      * Displays a form to edit an existing UnitGroup entity.
      *
-     * @Route("/{unitGroup}/edit", name="unitgroup_edit")
-     * @ParamConverter("unitGroup", class="SitiowebArmyCreatorBundle:UnitGroup", options={"mapping": {"unitGroup" = "slug"}})
+     * @Route("/{unitGroupSlug}/edit", name="unitgroup_edit")
      * @Method("GET")
      * @Template()
      */
-    public function editAction(UnitGroup $entity, Breed $breed)
+    public function editAction($unitGroupSlug, Breed $breed)
     {
+        $em = $this->get('doctrine')->getManager();
+        $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitGroup')->findOneBy(
+            array(
+                'breed' => $breed,
+                'slug' => $unitGroupSlug
+            )
+        );
+
         $editForm = $this->createForm(new UnitGroupType($breed), $entity);
         $deleteForm = $this->createDeleteForm($id);
 

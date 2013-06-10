@@ -71,6 +71,21 @@ class BreedController extends Controller
     }
 
     /**
+     * unitTypeAction
+     *
+     * @param Breed $breed
+     * @access public
+     * @return void
+     * @Route("/{game}/{breed}/unitType", name="admin_breed_unittype")
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
+     * @Template()
+     */
+    public function unitTypeAction(Breed $breed)
+    {
+        return array('breed' => $breed);
+    }
+
+    /**
      * Displays a form to create a new Breed entity.
      *
      * @Route("/{game}/new", name="admin_breed_new")

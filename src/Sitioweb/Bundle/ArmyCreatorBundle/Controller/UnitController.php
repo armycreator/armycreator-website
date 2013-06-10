@@ -52,17 +52,23 @@ class UnitController extends Controller
                 $mainUnit = false;
             } 
 
-            if (!$unitGroup) {
+            $doNotCreateUnitGroup = $form->get('doNotCreateUnitGroup')->getData();
+            if (!$unitGroup && !$doNotCreateUnitGroup) {
                 $unitGroup = UnitGroup::createFromUnit($entity);
                 $mainUnit = true;
             }
 
-            $unitHasUnitGroup->setGroup($unitGroup)
-                            ->setMainUnit($mainUnit);
+            if (isset($unitGroup)) {
+                $unitHasUnitGroup->setGroup($unitGroup)
+                                ->setMainUnit($mainUnit);
+
+                $em->persist($unitGroup);
+                $em->persist($unitHasUnitGroup);
+            } else {
+                $entity->removeUnitHasUnitGroupList($unitHasUnitGroup);
+            }
 
             $em->persist($entity);
-            $em->persist($unitGroup);
-            $em->persist($unitHasUnitGroup);
             $em->flush();
 
             return $this->redirect($this->getArmyShowUrl($breed));
@@ -81,7 +87,7 @@ class UnitController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function newAction(Breed $breed, $unitTypeSlug)
+    public function newAction(Breed $breed, $unitTypeSlug = null)
     {
         // getting unitType
         $em = $this->get('doctrine')->getManager();
@@ -95,8 +101,10 @@ class UnitController extends Controller
         $entity = new Unit();
         $entity->setUnitType($unitType)
                 ->setBreed($breed);
+        /*
         $unitHasUnitGroup = new UnitHasUnitGroup();
         $unitHasUnitGroup->setUnit($entity);
+        */
 
         $form = $this->createForm(new UnitType($breed), $entity);
 
