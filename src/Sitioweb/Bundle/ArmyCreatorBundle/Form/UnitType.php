@@ -39,6 +39,7 @@ class UnitType extends AbstractType
                 null,
                 array(
                     'property' => 'name', 
+                    'required' => true,
                     'query_builder' => function(EntityRepository $er) {
                         return $er->createQueryBuilder('t')
                                 ->add('where', 't.breed = :breed')
@@ -48,7 +49,17 @@ class UnitType extends AbstractType
             )
             ->add('name')
             ->add('points')
-            ->add('unitHasUnitGroupList', 'collection', array('type' => new UnitHasUnitGroupType()));
+            /*
+            ->add('unitHasUnitGroupList', 'collection', array('type' => new UnitHasUnitGroupType()))
+            */
+            ->add(
+                'doNotCreateUnitGroup',
+                'checkbox',
+                array(
+                    'mapped' => false,
+                    'required' => false,
+                )
+            );
         ;
     }
 

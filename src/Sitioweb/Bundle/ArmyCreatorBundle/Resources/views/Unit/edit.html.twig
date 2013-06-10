@@ -12,8 +12,11 @@
             {{ form_row(edit_form.unitType) }}
             {{ form_row(edit_form.name) }}
             {{ form_row(edit_form.points) }}
+            {{ form_row(edit_form.doNotCreateUnitGroup) }}
+            {#
             {{ form_row(edit_form.unitHasUnitGroupList[0].unitNumber) }}
             {{ form_row(edit_form.unitHasUnitGroupList[0].canChooseNumber) }}
+            #}
 
             {{ form_widget(edit_form) }}
         </div>
@@ -24,7 +27,7 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path("admin_breed_show", params) }}">
+        <a href="{{ path("admin_breed_unit", params) }}">
             Back to the list
         </a>
     </li>

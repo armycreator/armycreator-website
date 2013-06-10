@@ -1,0 +1,24 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block content %}
+    {% set breed = app.request.get("breed") %}
+    {% set game = breed.game %}
+    {% set params = {"game": game.code, "breed": breed.slug} %}
+
+    <h1>UnitHasUnitGroup creation</h1>
+
+    <form action="{{ path('unithasunitgroup_create', params) }}" method="post" {{ form_enctype(form) }} class="opaque">
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">Create</button>
+        </p>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path("admin_breed_unit", params) }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

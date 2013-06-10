@@ -2,14 +2,28 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup;
 
 class UnitHasUnitGroupType extends AbstractType
 {
+    /**
+     * breed
+     * 
+     * @var Breed
+     * @access private
+     */
+    private $breed;
+
+    public function __construct(Breed $breed)
+    {
+        $this->breed = $breed;
+    }
 
     /**
      * buildForm
@@ -21,7 +35,35 @@ class UnitHasUnitGroupType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('unitNumber')
+        $builder->add(
+                    'unit',
+                    null, 
+                    array(
+                        'required' => true,
+                        'property' => 'name',
+                        'query_builder' => function(EntityRepository $er) {
+                            return $er->createQueryBuilder('u')
+                                    ->add('where', 'u.breed = :breed')
+                                    ->add('orderBy', 'u.name ASC')
+                                    ->setParameter('breed', $this->breed);
+                        }
+                    )
+                )
+                ->add(
+                    'group',
+                    null, 
+                    array(
+                        'required' => true,
+                        'property' => 'name',
+                        'query_builder' => function(EntityRepository $er) {
+                            return $er->createQueryBuilder('u')
+                                    ->add('where', 'u.breed = :breed')
+                                    ->add('orderBy', 'u.name ASC')
+                                    ->setParameter('breed', $this->breed);
+                        }
+                    )
+                )
+                ->add('unitNumber')
                 ->add('canChooseNumber', null, array('required' => false));
     }
 

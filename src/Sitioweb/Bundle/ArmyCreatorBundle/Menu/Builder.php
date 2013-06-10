@@ -100,6 +100,13 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
 
         $menu->addChild(
+            'breed_show.menu.unitType_list',
+            array(
+                'route' => 'admin_breed_unittype',
+                'routeParameters' => $routeParameters
+            )
+        );
+        $menu->addChild(
             'breed_show.menu.unit_list',
             array(
                 'route' => 'admin_breed_unit',

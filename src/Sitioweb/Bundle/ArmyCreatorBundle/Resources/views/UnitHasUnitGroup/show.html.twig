@@ -1,0 +1,50 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>UnitHasUnitGroup</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Unitnumber</th>
+                <td>{{ entity.unitNumber }}</td>
+            </tr>
+            <tr>
+                <th>Importedid</th>
+                <td>{{ entity.importedId }}</td>
+            </tr>
+            <tr>
+                <th>Mainunit</th>
+                <td>{{ entity.mainUnit }}</td>
+            </tr>
+            <tr>
+                <th>Canchoosenumber</th>
+                <td>{{ entity.canChooseNumber }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('unithasunitgroup') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('unithasunitgroup_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('unithasunitgroup_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

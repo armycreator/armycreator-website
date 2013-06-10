@@ -43,6 +43,7 @@ class UnitGroupType extends AbstractType
             }
         ));
 
+        $builder->add('points');
         $builder->add('name');
     }
 

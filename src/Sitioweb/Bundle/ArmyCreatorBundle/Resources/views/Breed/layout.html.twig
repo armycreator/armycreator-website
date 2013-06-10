@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <th>Available</th>
-            <td>{{ breed.available }}</td>
+            <td>{{ breed.available ? "1" : "0" }}</td>
         </tr>
     </tbody>
 </table>
@@ -33,13 +33,6 @@
 <nav class="subMenu">
     {{ knp_menu_render("SitiowebArmyCreatorBundle:Builder:breedShowMenu", {"breed": breed}) }}
 </nav>
-
-<div>
-    <a href="{{ path("unittype_new", params) }}" class="acButton acButtonBig">
-        <i class="icon-plus"></i>
-        {{ "breed.unit_type.add"|trans }}
-    </a>
-</div>
 
 {% block breedContent %}
 {% endblock %}
