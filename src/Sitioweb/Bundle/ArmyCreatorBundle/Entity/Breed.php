@@ -109,6 +109,7 @@ class Breed
      * @access private
      *
      * @ORM\OneToMany(targetEntity="UnitType", mappedBy="breed")
+     * @ORM\OrderBy({"position" = "ASC"})
      */
     private $unitTypeList;
 

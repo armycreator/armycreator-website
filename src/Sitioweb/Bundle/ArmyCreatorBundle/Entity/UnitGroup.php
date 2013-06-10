@@ -114,6 +114,7 @@ class UnitGroup extends AbstractUnit
         return $this->squadList;
     }
 
+    /*
     public function getPoints()
     {
         $points = parent::getPoints();
@@ -125,6 +126,7 @@ class UnitGroup extends AbstractUnit
 
         return $points;
     }
+    */
 
     /**
      * createFromUnit
