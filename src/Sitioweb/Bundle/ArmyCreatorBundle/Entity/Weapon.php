@@ -13,52 +13,32 @@ use Doctrine\ORM\Mapping as ORM;
 class Weapon extends Stuff
 {
     /**
-     * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var string $type
      *
-     * @ORM\Column(name="type", type="string", length=50)
+     * @ORM\Column(name="type", type="string", length=50, nullable=true)
      */
     private $type;
 
     /**
      * @var string $range
      *
-     * @ORM\Column(name="range_", type="string", length=50)
+     * @ORM\Column(name="range_", type="string", length=50, nullable=true)
      */
     private $range;
 
     /**
      * @var string $strenght
      *
-     * @ORM\Column(name="strenght", type="string", length=50)
+     * @ORM\Column(name="strenght", type="string", length=50, nullable=true)
      */
     private $strenght;
 
     /**
      * @var string $armorPenetration
      *
-     * @ORM\Column(name="armorPenetration", type="string", length=50)
+     * @ORM\Column(name="armorPenetration", type="string", length=50, nullable=true)
      */
     private $armorPenetration;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set type

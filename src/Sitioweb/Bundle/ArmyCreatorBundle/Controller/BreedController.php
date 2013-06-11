@@ -86,6 +86,30 @@ class BreedController extends Controller
     }
 
     /**
+     * Finds and displays a Breed entity.
+     *
+     * @Route("/{game}/{breed}/stuff", name="admin_breed_stuff")
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
+     * @Template()
+     */
+    public function stuffAction(Breed $breed)
+    {
+        $weaponList = $this->get('doctrine')
+                        ->getRepository('SitiowebArmyCreatorBundle:Weapon')
+                        ->findBy(['breed' => $breed], ['name' => 'asc']);
+
+        $equipementList = $this->get('doctrine')
+                        ->getRepository('SitiowebArmyCreatorBundle:Equipement')
+                        ->findBy(['breed' => $breed], ['name' => 'asc']);
+
+        return array(
+            'breed' => $breed,
+            'weaponList' => $weaponList,
+            'equipementList' => $equipementList,
+        );
+    }
+
+    /**
      * Displays a form to create a new Breed entity.
      *
      * @Route("/{game}/new", name="admin_breed_new")

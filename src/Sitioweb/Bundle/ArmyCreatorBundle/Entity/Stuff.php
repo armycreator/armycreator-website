@@ -33,7 +33,7 @@ class Stuff
 
     /**
      * importedId
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * 
      * @var int
      * @access private

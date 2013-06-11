@@ -1,0 +1,31 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>Weapon edit</h1>
+
+    {% set breed = app.request.get("breed") %}
+    {% set game = breed.game %}
+    {% set params = {"game": game.code, "breed": breed.slug} %}
+
+    <form action="{{ path("weapon_update", params + { "id": weapon.id }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
+        {{ form_widget(edit_form) }}
+        <p>
+            <button type="submit">Edit</button>
+        </p>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path("admin_breed_stuff", params) }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path("weapon_delete", params + { "id": weapon.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

@@ -123,7 +123,7 @@ class Builder extends ContainerAware
         $menu->addChild(
             'breed_show.menu.stuff',
             array(
-                'route' => 'admin_breed_show',
+                'route' => 'admin_breed_stuff',
                 'routeParameters' => $routeParameters
             )
         );
