@@ -30,7 +30,7 @@ class EquipementController extends Controller
      * @Method("POST")
      * @Template("SitiowebArmyCreatorBundle:Equipement:new.html.twig")
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, Breed $breed)
     {
         $entity  = new Equipement();
         $form = $this->createForm(new EquipementType(), $entity);

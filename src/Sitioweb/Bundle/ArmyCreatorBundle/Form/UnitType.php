@@ -60,7 +60,6 @@ class UnitType extends AbstractType
                     'required' => false,
                 )
             );
-        ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

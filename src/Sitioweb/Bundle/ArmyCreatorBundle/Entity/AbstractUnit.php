@@ -88,7 +88,7 @@ class AbstractUnit
      * @var UnitType
      * @access private
 	 *
-	 * @ORM\ManyToOne(targetEntity="UnitType", inversedBy="unitList")
+	 * @ORM\ManyToOne(targetEntity="UnitType", inversedBy="abstractUnitList")
      */
     private $unitType;
 

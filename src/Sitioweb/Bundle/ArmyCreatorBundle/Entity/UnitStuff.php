@@ -85,6 +85,8 @@ class UnitStuff
     public function __construct()
     {
         $this->squadLineStuffList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->points = 0;
+        $this->visible = true;
     }
 
     /**

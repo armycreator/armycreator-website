@@ -10,9 +10,11 @@
         <h2>Weapon List</h2>
 
         {% block weapon_new %}
-            <a href="{{ path("weapon_new", params) }}" title="{{ "breed.weapon_list.new"|trans }}" class="acButton">
-                {{ "breed.weapon_list.new"|trans }}
-            </a>
+            <aside class="txtright">
+                <a href="{{ path("weapon_new", params) }}" title="{{ "breed.weapon_list.new"|trans }}" class="acButton">
+                    {{ "breed.weapon_list.new"|trans }}
+                </a>
+            </aside>
         {% endblock %}
 
         {% for weapon in weaponList %}
@@ -40,16 +42,20 @@
             </div>
         {% endfor %}
 
-        {{ block("weapon_new") }}
+        {% if weaponList %}
+            {{ block("weapon_new") }}
+        {% endif %}
     </div>
 
     <div class="stuffList">
         <h2>Equipement List</h2>
 
         {% block equipement_new %}
-            <a href="{{ path("equipement_new", params) }}" title="{{ "breed.equipement_list.new"|trans }}" class="acButton">
-                {{ "breed.equipement_list.new"|trans }}
-            </a>
+            <aside class="txtright">
+                <a href="{{ path("equipement_new", params) }}" title="{{ "breed.equipement_list.new"|trans }}" class="acButton">
+                    {{ "breed.equipement_list.new"|trans }}
+                </a>
+            </aside>
         {% endblock %}
 
         {% for equipement in equipementList %}
@@ -65,7 +71,10 @@
                 </div>
             </div>
         {% endfor %}
-        {{ block("equipement_new") }}
+
+        {% if equipementList %}
+            {{ block("equipement_new") }}
+        {% endif %}
     </div>
 </div>
 {% endblock %}

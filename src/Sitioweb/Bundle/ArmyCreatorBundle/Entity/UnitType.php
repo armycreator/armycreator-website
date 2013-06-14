@@ -68,7 +68,7 @@ class UnitType
     private $color;
 
 	/**
-	 * unitList
+	 * abstractUnitList
 	 * 
 	 * @var array<AbstractUnit>
 	 * @access private
@@ -76,7 +76,15 @@ class UnitType
 	 * @ORM\OneToMany(targetEntity="AbstractUnit", mappedBy="unitType")
      * @ORM\OrderBy({"name" = "ASC"})
 	 */
-	private $unitList;
+	private $abstractUnitList;
+
+	/**
+	 * unitList
+	 * 
+	 * @var array<Unit>
+	 * @access private
+	 */
+	private $unitList = null;
 
 	/**
 	 * unitGroupList
@@ -117,7 +125,7 @@ class UnitType
     public function __construct()
     {
         $this->position = 0;
-        $this->unitList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->abstractUnitList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->squadList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -262,26 +270,26 @@ class UnitType
     }
 
     /**
-     * Add unitList
+     * Add abstractUnitList
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $unitList
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $abstractUnitList
      * @return UnitType
      */
-    public function addUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $unitList)
+    public function addUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $abstractUnitList)
     {
-        $this->unitList[] = $unitList;
+        $this->abstractUnitList[] = $abstractUnitList;
     
         return $this;
     }
 
     /**
-     * Remove unitList
+     * Remove abstractUnitList
      *
-     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $unitList
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $abstractUnitList
      */
-    public function removeUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $unitList)
+    public function removeUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $abstractUnitList)
     {
-        $this->unitList->removeElement($unitList);
+        $this->abstractUnitList->removeElement($abstractUnitList);
     }
 
     /**
@@ -289,9 +297,9 @@ class UnitType
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getUnitList()
+    public function getAbstractUnitList()
     {
-        return $this->unitList;
+        return $this->abstractUnitList;
     }
 
     /**
@@ -303,7 +311,7 @@ class UnitType
     {
         if ($this->unitGroupList === null) {
             $this->unitGroupList = array();
-            $unitList = $this->getUnitList();
+            $unitList = $this->getAbstractUnitList();
             foreach ($unitList as $unit) {
                 if ($unit instanceof UnitGroup) {
                     $this->unitGroupList[] = $unit;
@@ -311,6 +319,25 @@ class UnitType
             }
         }
         return $this->unitGroupList;
+    }
+
+    /**
+     * Get unitList
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUnitList()
+    {
+        if ($this->unitList === null) {
+            $this->unitList = array();
+            $unitList = $this->getAbstractUnitList();
+            foreach ($unitList as $unit) {
+                if ($unit instanceof Unit) {
+                    $this->unitList[] = $unit;
+                }
+            }
+        }
+        return $this->unitList;
     }
 
     /**

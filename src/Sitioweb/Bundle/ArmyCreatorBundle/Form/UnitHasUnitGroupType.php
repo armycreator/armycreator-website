@@ -8,7 +8,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup;
 
 class UnitHasUnitGroupType extends AbstractType
 {

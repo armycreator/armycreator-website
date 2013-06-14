@@ -1,34 +1,62 @@
 {% extends 'SitiowebArmyCreatorBundle:Breed:layout.html.twig' %}
 
+{% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
+
 {% block breedContent %}
 {% set breed = app.request.get("breed") %}
 {% set game = breed.game %}
 {% set params = {"game": game.code, "breed": breed.slug} %}
 
-<table class="squadType">
-    <tr>
-        <th>{{ "breed.unit_list.unit_type"|trans }}
-        <th>{{ "breed.unit_list.name"|trans }}
-        <th>{{ "breed.unit_list.pts"|trans }}
-        <th>{{ "breed.unit_list.action"|trans }}
-    </tr>
-    {% for unit in unitList %}
-        <tr>
-            <td>{{ unit.unitType.name }}
-            <td>{{ unit.name }}
-            <td>{{ unit.points }}
+{% for unitType in breed.unitTypeList %}
+    <section class="unitTypeList row" id="ut-{{ unitType.slug }}">
+        <h3 class="unitType mr1 pa1">
+            {{ unitTypeMacro.stick(unitType.color) }}
+            {{ unitType.name }}
+        </h3>
 
-            <td>
-                <a href="{{ path("unit_edit", params + { "unit": unit.slug}) }}" class="acButton">
-                    <i class="icon-pencil"></i>
-                </a>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
-
-<a href="{{ path("unit_new", params) }}" title="{{ "breed.unit_list.new"|trans }}" class="acButton">
-    {{ "breed.unit_list.new"|trans }}
-</a>
+        <div class="squadListContainer">
+            <div class="squadList">
+                {% for unit in unitType.unitList %}
+                    <div class="squad">
+                        <div class="squadName">
+                            <h4>
+                                {{ unit.name }}
+                                <span class="soft">
+                                    {% trans with { "%pts%":unit.points } %}breed.show.pts.%pts%{% endtrans %}
+                                </span>
+                                <a href="{{ path("unit_edit", params + { "unit": unit.slug}) }}" class="acButton acButtonSmall">
+                                    <i class="icon-pencil"></i>
+                                </a>
+                            </h4>
+                        </div>
+                        <div>
+                            {% for unitStuff in unit.unitStuffList %}
+                                <div class="squadLine">
+                                        {{ unitStuff.stuff.name }}
+                                        <span class="soft">
+                                            {% trans with { "%pts%":unitStuff.points } %}breed.show.pts.%pts%{% endtrans %}
+                                        </span>
+                                        <a href="{{ path("unitstuff_edit", params + { "id": unitStuff.id}) }}" class="acButton acButtonSmall">
+                                            <i class="icon-pencil"></i>
+                                        </a>
+                                </div>
+                            {% endfor %}
+                            <div class="squadLine">
+                                <a href="{{ path("unitstuff_new", params + {"unit": unit.slug}) }}" class="acButton">
+                                    <i class="icon-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="squad">
+                    <a href="{{ path("unit_new", params) }}" title="{{ "breed.unit_list.new"|trans }}" class="acButton">
+                        <i class="icon-plus"></i>
+                        {{ "breed.unit_list.new"|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endfor %}
 {% endblock %}
-
