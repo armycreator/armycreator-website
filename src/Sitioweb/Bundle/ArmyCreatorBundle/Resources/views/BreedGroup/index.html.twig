@@ -1,6 +1,6 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block title %}BreedGroup list{% endblock %}
+{% block h1 %}{{ "breed_group.list.title"|trans }}{% endblock %}
 
 {% block content %}
 <table class="records_list">
@@ -34,7 +34,7 @@
 <ul>
     <li>
         <a href="{{ path('breedgroup_new') }}">
-            Create a new entry
+            {{ "breed_group.list.new"|trans }}
         </a>
     </li>
 </ul>

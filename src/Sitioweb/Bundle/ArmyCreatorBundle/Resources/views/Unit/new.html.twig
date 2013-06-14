@@ -24,14 +24,14 @@
             {{ form_widget(form) }}
         </div>
         <p>
-            <button type="submit">Create</button>
+            <button type="submit">{{ "button.create"|trans }}</button>
         </p>
     </form>
 
         <ul class="record_actions">
     <li>
         <a href="{{ path("admin_breed_unit", params) }}">
-            Back to the list
+            {{ "breed.back_to_breed"|trans }}
         </a>
     </li>
 </ul>

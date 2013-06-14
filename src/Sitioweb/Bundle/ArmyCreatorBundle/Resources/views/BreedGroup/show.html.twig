@@ -19,7 +19,7 @@
 <ul class="record_actions">
     <li>
         <a href="{{ path('breedgroup') }}">
-            Back to the list
+            {{ "default.back_to_list"|trans }}
         </a>
     </li>
     <li>
@@ -30,7 +30,7 @@
     <li>
         <form action="{{ path('breedgroup_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button type="submit">{{ "button.delete"|trans }}</button>
         </form>
     </li>
 </ul>

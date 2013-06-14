@@ -15,7 +15,7 @@
 
 <div class="txtright">
     <a href="{{ path('admin_game') }}" class="acButton">
-        Back to the list
+        {{ "default.back_to_list"|trans }}
     </a>
     <form
         action="{{ path('admin_game_delete', { 'code': entity.code }) }}"
@@ -24,7 +24,7 @@
         onsubmit="javascript:return confirm('{% trans %}game.detail.delete{% endtrans %}');"
     >
         {{ form_widget(delete_form) }}
-        <button type="submit" class="acButton">Delete</button>
+        <button type="submit" class="acButton">{{ "button.delete"|trans }}</button>
     </form>
 </div>
 {% endblock %}

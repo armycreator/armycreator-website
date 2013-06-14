@@ -17,15 +17,15 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path("admin_breed_show", {"breed": breed.slug, "game": breed.game.code }) }}">
-            Back to the list
+        <a href="{{ path("admin_breed_unit", {"breed": breed.slug, "game": breed.game.code }) }}">
+            {{ "breed.back_to_breed"|trans }}
         </a>
     </li>
     <li>
         <form action="{{ path("unittype_delete", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button type="submit">{{ "button.delete"|trans }}</button>
         </form>
     </li>
 </ul>

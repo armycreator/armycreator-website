@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="75a96dee556a22059abd7a28251d0ad8" resname="As many as unit">
+        <source>As many as unit</source>
+        <target>__As many as unit</target>
+      </trans-unit>
+      <trans-unit id="dbec20a8cbcc8cd9de0d058e0fec736e" resname="toZero">
+        <source>toZero</source>
+        <target>__toZero</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

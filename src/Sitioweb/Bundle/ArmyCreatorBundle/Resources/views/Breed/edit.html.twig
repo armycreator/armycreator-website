@@ -1,18 +1,18 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block h1 %}Breed edit{% endblock %}
+{% block h1 %}{{ "breed.edit.title"|trans }}{% endblock %}
 
 {% block content %}
 <form action="{{ path('admin_breed_update', { "breed": entity.slug }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
     {{ form_widget(edit_form) }}
     <div class="txtright">
-        <button type="submit" class="acButton acButtonBig">Create</button>
+        <button type="submit" class="acButton acButtonBig">{{ "button.create"|trans }}</button>
     </div>
 </form>
 
 <div class="txtright">
     <a href="{{ path('admin_breed', { "game": entity.game.code }) }}" class="acButton">
-        Back to the list
+        {{ "breed.back_to_breed"|trans }}
     </a>
 </div>
 {% endblock %}
