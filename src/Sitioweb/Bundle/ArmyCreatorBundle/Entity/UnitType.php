@@ -73,7 +73,7 @@ class UnitType
 	 * @var array<AbstractUnit>
 	 * @access private
 	 *
-	 * @ORM\OneToMany(targetEntity="AbstractUnit", mappedBy="unitType")
+	 * @ORM\OneToMany(targetEntity="AbstractUnit", mappedBy="unitType", fetch="EXTRA_LAZY")
      * @ORM\OrderBy({"name" = "ASC"})
 	 */
 	private $abstractUnitList;

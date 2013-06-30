@@ -135,111 +135,113 @@
 
             {# ===== Squad List ===== #}
             {% for tmp in army.squadListByType %}
-                <section class="unitTypeList row" id="ut-{{ tmp.unitType.slug }}{% if tmp.unitType.breed != army.breed %}-{{ tmp.unitType.breed.slug }}{% endif %}">
-                    <h3 class="unitType mr1 pa1">
-                        {{ unitTypeMacro.stick(tmp.unitType.color) }}
-                        {{ tmp.unitType.name }}
-                        {% if tmp.unitType.breed != army.breed %}
-                            ({{ tmp.unitType.breed.name }})
-                        {% endif %}
-                        <div>
-                           {% trans with { "%pts%":tmp.points } %}army.detail.pts.%pts%{% endtrans %}
-                        </div>
-                    </h3>
-                    <div class="squadListContainer">
-                        <section class="squadList">
-                            {% for squad in tmp.squadList %}
-                                    <div class="squad">
-                                        <div class="squadName">
-                                            <h4>
-                                                <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
-                                                {{ squad.name|default(squad.unitType.name ~ ' #' ~ loop.index) }}
-                                                <span>
-                                                    {% trans with { "%pts%": squad.points } %}army.detail.pts.%pts%{% endtrans %}
-                                                </span>
-                                            </h4>
-                                        </div>
+                {% if tmp.unitType.abstractUnitList.count() %}
+                    <section class="unitTypeList row" id="ut-{{ tmp.unitType.slug }}{% if tmp.unitType.breed != army.breed %}-{{ tmp.unitType.breed.slug }}{% endif %}">
+                        <h3 class="unitType mr1 pa1">
+                            {{ unitTypeMacro.stick(tmp.unitType.color) }}
+                            {{ tmp.unitType.name }}
+                            {% if tmp.unitType.breed != army.breed %}
+                                ({{ tmp.unitType.breed.name }})
+                            {% endif %}
+                            <div>
+                               {% trans with { "%pts%":tmp.points } %}army.detail.pts.%pts%{% endtrans %}
+                            </div>
+                        </h3>
+                        <div class="squadListContainer">
+                            <section class="squadList">
+                                {% for squad in tmp.squadList %}
+                                        <div class="squad">
+                                            <div class="squadName">
+                                                <h4>
+                                                    <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
+                                                    {{ squad.name|default(squad.unitType.name ~ ' #' ~ loop.index) }}
+                                                    <span>
+                                                        {% trans with { "%pts%": squad.points } %}army.detail.pts.%pts%{% endtrans %}
+                                                    </span>
+                                                </h4>
+                                            </div>
 
-                                        <div>
-                                            {% for squadLine in squad.squadLineList %}
-                                                <div class="squadLine">
-                                                    <h5>
-                                                        {{ squadLine.number }} {{ squadLine.unit.name }}
+                                            <div>
+                                                {% for squadLine in squad.squadLineList %}
+                                                    <div class="squadLine">
+                                                        <h5>
+                                                            {{ squadLine.number }} {{ squadLine.unit.name }}
 
-                                                        {% if preferences.showUnitPoints %}
-                                                            <span class="soft">
-                                                                {% trans with { "%pts%": squadLine.unit.points * squadLine.number } %}army.detail.pts.%pts%{% endtrans %}
-                                                            </span>
+                                                            {% if preferences.showUnitPoints %}
+                                                                <span class="soft">
+                                                                    {% trans with { "%pts%": squadLine.unit.points * squadLine.number } %}army.detail.pts.%pts%{% endtrans %}
+                                                                </span>
+                                                            {% endif %}
+                                                        </h5>
+                                                        {% if not(squadLine.squadLineStuffList.empty) %}
+                                                            <ul class="stuffList">
+                                                                {% if preferences.showDefaultStuff %}{{- "" -}}
+                                                                    {% set squadLineStuffList = squadLine.squadLineStuffList %}
+                                                                {% else %}{{- "" -}}
+                                                                    {% set squadLineStuffList = squadLine.noDefaultSquadLineStuffList %}
+                                                                {% endif %}{{- "" -}}
+
+                                                                {% for squadLineStuff in squadLineStuffList %}
+                                                                    <li>
+                                                                        {{ squadLineStuff.number }}
+                                                                        {{ squadLineStuff.unitStuff.stuff.name }}
+
+                                                                        {% if squadLineStuff.unitStuff.points > 0 and preferences.showStuffPoints %}
+                                                                            <span class="soft">
+                                                                                {% trans with { "%pts%": squadLineStuff.unitStuff.points * squadLineStuff.number } %}army.detail.pts.%pts%{% endtrans %}
+                                                                            </span>
+                                                                        {% endif %}
+                                                                    </li>
+                                                                {% endfor %}
+                                                            </ul>
                                                         {% endif %}
-                                                    </h5>
-                                                    {% if not(squadLine.squadLineStuffList.empty) %}
-                                                        <ul class="stuffList">
-                                                            {% if preferences.showDefaultStuff %}{{- "" -}}
-                                                                {% set squadLineStuffList = squadLine.squadLineStuffList %}
-                                                            {% else %}{{- "" -}}
-                                                                {% set squadLineStuffList = squadLine.noDefaultSquadLineStuffList %}
-                                                            {% endif %}{{- "" -}}
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
 
-                                                            {% for squadLineStuff in squadLineStuffList %}
-                                                                <li>
-                                                                    {{ squadLineStuff.number }}
-                                                                    {{ squadLineStuff.unitStuff.stuff.name }}
-
-                                                                    {% if squadLineStuff.unitStuff.points > 0 and preferences.showStuffPoints %}
-                                                                        <span class="soft">
-                                                                            {% trans with { "%pts%": squadLineStuff.unitStuff.points * squadLineStuff.number } %}army.detail.pts.%pts%{% endtrans %}
-                                                                        </span>
-                                                                    {% endif %}
-                                                                </li>
-                                                            {% endfor %}
-                                                        </ul>
-                                                    {% endif %}
-                                                </div>
-                                            {% endfor %}
-                                        </div>
-
-                                        <aside class="actions">
-                                            <a href="javascript:;" class="acButton">
-                                                <i class="icon-move"></i>
-                                            </a>
-
-                                            <div class="right">
-                                                <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
-                                                    <i class="icon-pencil"></i>
+                                            <aside class="actions">
+                                                <a href="javascript:;" class="acButton">
+                                                    <i class="icon-move"></i>
                                                 </a>
 
-                                                <form
-                                                    action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}"
-                                                    method="post"
-                                                    class="inbl"
-                                                    onsubmit="javascript:return confirm('{% trans %}army.detail.squad.delete{% endtrans %}');"
-                                                >
-                                                    {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
-                                                    {{ form_widget(deleteSquadForm.createView) }}
-                                                    <button class="acButton" type="submit">
-                                                        <i class="icon-remove"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </aside>
-                                    </div>
-                            {% endfor %}
+                                                <div class="right">
+                                                    <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
+                                                        <i class="icon-pencil"></i>
+                                                    </a>
 
-                            <div>
-                                <a
-                                    href="{{
-                                        path('squad_new',
-                                        {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug, 'breedSlug' : tmp.unitType.breed.slug})
-                                    }}"
-                                    class="acButton acButtonBig"
-                                >
-                                    <i class="icon-plus"></i>
-                                    {{ 'army.detail.squad.add'|trans }}
-                                </a>
-                            </div>
-                        </section>
-                    </div>
-                </section>
+                                                    <form
+                                                        action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}"
+                                                        method="post"
+                                                        class="inbl"
+                                                        onsubmit="javascript:return confirm('{% trans %}army.detail.squad.delete{% endtrans %}');"
+                                                    >
+                                                        {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
+                                                        {{ form_widget(deleteSquadForm.createView) }}
+                                                        <button class="acButton" type="submit">
+                                                            <i class="icon-remove"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </aside>
+                                        </div>
+                                {% endfor %}
+
+                                <div>
+                                    <a
+                                        href="{{
+                                            path('squad_new',
+                                            {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug, 'breedSlug' : tmp.unitType.breed.slug})
+                                        }}"
+                                        class="acButton acButtonBig"
+                                    >
+                                        <i class="icon-plus"></i>
+                                        {{ 'army.detail.squad.add'|trans }}
+                                    </a>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                {% endif %}
             {% endfor %}
         </div>
     {% endblock %}
