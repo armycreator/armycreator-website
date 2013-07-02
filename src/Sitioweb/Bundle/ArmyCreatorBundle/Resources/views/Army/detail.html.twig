@@ -149,6 +149,7 @@
                         </h3>
                         <div class="squadListContainer">
                             <section class="squadList">
+                                {# Display squad list #}
                                 {% for squad in tmp.squadList %}
                                         <div class="squad">
                                             <div class="squadName">
@@ -162,9 +163,15 @@
                                             </div>
 
                                             <div>
+                                                {# Display squad line list #}
                                                 {% for squadLine in squad.squadLineList %}
                                                     <div class="squadLine">
                                                         <h5>
+                                                            {% set unitNumber = app.user.getUnitNumber(squadLine.unit) %}
+                                                            {% if  not(unitNumber is null) and unitNumber < army.getUnitNumber(squadLine.unit) %}
+                                                                <i class="icon-warning-sign soft" title="{{ "army.detail.missing_units"|trans }}"></i>
+                                                            {% endif %}
+
                                                             {{ squadLine.number }} {{ squadLine.unit.name }}
 
                                                             {% if preferences.showUnitPoints %}

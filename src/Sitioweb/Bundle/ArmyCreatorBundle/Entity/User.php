@@ -283,4 +283,28 @@ class User extends BaseUser
     {
         return $this->userHasUnitList;
     }
+
+    /**
+     * getUserHasUnitNumber
+     *
+     * @param Unit $unit
+     * @access public
+     * @return int
+     */
+    public function getUnitNumber(Unit $unit)
+    {
+        if (!$this->getCollectionList()->contains($unit->getBreed())) {
+            return null;
+        }
+
+        $userHasUnitList = $this->getUserHasUnitList();
+
+        foreach ($userHasUnitList as $userHasUnit) {
+            if ($unit->getId() == $userHasUnit->getUnit()->getId()) {
+                return $userHasUnit->getNumber();
+            }
+        }
+
+        return 0;
+    }
 }

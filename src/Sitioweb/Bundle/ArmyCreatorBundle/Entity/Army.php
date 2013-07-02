@@ -140,6 +140,14 @@ class Army
      */
     private $user;
 
+    /**
+     * wantedUnitList
+     * 
+     * @var array
+     * @access private
+     */
+    private $wantedUnitList;
+
 
     /**
      * __construct
@@ -583,6 +591,26 @@ class Army
         }
         $this->setPoints($points);
         return $points;
+    }
+
+    public function getUnitNumber(Unit $unit)
+    {
+        $key = $unit->getId();
+        if (!isset($this->wantedUnitList)) {
+            $squadList = $this->getSquadList();
+            foreach ($squadList as $squad) {
+                $squadLineList = $squad->getSquadLineList();
+                foreach ($squadLineList as $squadLine) {
+                    $key = $squadLine->getUnit()->getId();
+                    if (!isset($this->wantedUnitList[$key])) {
+                        $this->wantedUnitList[$key] = 0;
+                    }
+                    $this->wantedUnitList[$key] += $squadLine->getNumber();
+                }
+            }
+        }
+
+        return $this->wantedUnitList[$key];
     }
 
     /**
