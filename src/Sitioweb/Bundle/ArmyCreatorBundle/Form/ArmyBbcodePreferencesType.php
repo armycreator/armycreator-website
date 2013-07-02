@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
 
@@ -31,10 +32,13 @@ class ArmyBbcodePreferencesType extends AbstractType
                 'separator',
                 'choice',
                 array(
-                    'choices' => array(
-                        '[*]' => 'ac_armybbcode.form.carriage_return',
-                        ' / ' => 'ac_armybbcode.form.slash',
-                        ', ' =>  'ac_armybbcode.form.comma'
+                    'choice_list' => new ChoiceList(
+                        array('[*]', ' / ', ', '),
+                        array(
+                            'ac_armybbcode.form.carriage_return',
+                            'ac_armybbcode.form.slash',
+                            'ac_armybbcode.form.comma'
+                        )
                     ),
                     'expanded' => true
                 )
@@ -64,4 +68,3 @@ class ArmyBbcodePreferencesType extends AbstractType
         return 'ac_armybbcode';
     }
 }
-
