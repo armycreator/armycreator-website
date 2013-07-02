@@ -223,8 +223,11 @@ class ArmyController extends Controller
      */
     private function getDetailParams($slug)
     {
+        $em = $this->get('doctrine')->getManager();
+
         // getting army
-        $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($slug);
+        $army = $em->getRepository('SitiowebArmyCreatorBundle:Army')
+                    ->findOneBySlug($slug);
         if ($army === null) {
             throw new NotFoundHttpException('Army not found');
         }
@@ -235,11 +238,12 @@ class ArmyController extends Controller
         }
         
         // get unit type list
-        $unitTypeList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitType')->findByBreed($army->getBreed());
+        $unitTypeList = $em->getRepository('SitiowebArmyCreatorBundle:UnitType')
+                            ->findByBreed($army->getBreed());
 
         // update army points
         $army->generatePoints();
-        $this->get('doctrine')->getManager()->flush();
+        $em->flush();
 
         // delete form
         $deleteForm = $this->createDeleteForm($army->getId());
