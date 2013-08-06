@@ -36,7 +36,7 @@
     },
 
     "require-dev": {
-		"raulfraile/ladybug-bundle": "dev-master@dev"
+		"raulfraile/ladybug-bundle": "0.61.*"
     },
 
     "scripts": {
