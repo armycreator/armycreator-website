@@ -1,0 +1,19 @@
+{% extends "SitiowebArmyCreatorBundle::layout.html.twig" %}
+
+{% block content %}
+{#
+    {% for unit in unitList %}
+        <div>
+            {{ unit.name }}
+            {{ app.user.getUnitNumber(unit) }}
+        </div>
+    {% endfor %}
+
+#}
+    {{ form_start(form) }}
+    {% for line in form.userHasUnitList %}
+        {{ line.vars.value.unit.name }}
+        {{ form_widget(line) }}
+    {% endfor %}
+    {{ form_end(form) }}
+{% endblock %}

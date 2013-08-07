@@ -1,0 +1,37 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block content %}
+    {% for game in gameList %}
+        <h2>
+            {{ game.name }}
+        </h2>
+
+        <ul class="inline inlineBig collection">
+            {% for breed in game.availableBreedList %}
+                {% set contained = app.user.collectionList.contains(breed) %}
+ 
+                <li class="w20">
+                    <figure class="breed left mr1">
+                        {{ breedImage(breed)|raw }}
+                    </figure>
+
+                    {% if contained %}
+                        <a href="{{ path("user_collection_edit", { "breed": breed.slug }) }}">
+                            {{ breed.name }}
+                        </a>
+                    {% else %}
+                        {{ breed.name }}
+                        <a href="{{ path("user_collection_contains", { "breed": breed.slug }) }}">
+                            {{ "user.collection.contains"|trans }}
+                        </a>
+                        {#
+                        <a href="{{ path("admin_breed_edit", { "breed": breed.slug }) }}" class="acButton">
+                            {{ "button.edit"|trans }}
+                        </a>
+#}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}

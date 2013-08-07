@@ -307,4 +307,40 @@ class User extends BaseUser
 
         return 0;
     }
+
+    /**
+     * addEmptyUserHasUnitLine
+     *
+     * @param Breed $breed
+     * @access public
+     * @return void
+     */
+    public function getBreedUserHasUnitList(Breed $breed)
+    {
+        $unitList = $breed->getUnitList();
+        $userHasUnitList = $this->getUserHasUnitList();
+
+        $list = [];
+        foreach ($unitList as $unit) {
+            $found = false;
+            foreach ($userHasUnitList as $userHasUnit) {
+                if ($userHasUnit->getUnit()->getId() == $unit->getId()) {
+                    $list[] = $userHasUnit;
+                    $found = true;
+                    break;
+                }
+            }
+
+            if (!$found) {
+                $uhu = new UserHasUnit();
+                $uhu->setNumber(0)
+                    ->setUnit($unit)
+                    ->setUser($this);
+
+                $list[] = $uhu;
+            }
+        }
+
+        return $list;
+    }
 }

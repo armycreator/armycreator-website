@@ -549,4 +549,19 @@ class Breed
     {
         return $this->userList;
     }
+
+    public function getUnitList()
+    {
+        $unitGroupList = $this->getUnitGroupList();
+        $unitList = [];
+        foreach ($unitGroupList as $unitGroup) {
+            $unitHasUnitGroupList = $unitGroup->getUnitHasUnitGroupList();
+            foreach ($unitHasUnitGroupList as $unitHasUnitGroup) {
+                $unit = $unitHasUnitGroup->getUnit();
+                $unitList[$unit->getId()] = $unit;
+            }
+        }
+        
+        return $unitList;
+    }
 }

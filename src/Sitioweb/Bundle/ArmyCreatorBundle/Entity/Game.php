@@ -47,6 +47,14 @@ class Game
 	 */
 	private $breedList;
 
+    /**
+     * availableBreedList
+     * 
+     * @var array
+     * @access private
+     */
+    private $availableBreedList;
+
 	/**
 	 * breedGroupList
 	 * 
@@ -180,6 +188,33 @@ class Game
         return $this->breedList;
     }
 
+    /**
+     * getAvailableBreedList
+     *
+     * @access public
+     * @return void
+     */
+    public function getAvailableBreedList()
+    {
+        if (!isset($this->availableBreedList)) {
+            $this->availableBreedList = array();
+            $breedList = $this->getBreedList();
+            foreach ($breedList as $breed) {
+                if ($breed->getAvailable()) {
+                    $this->availableBreedList[] = $breed;
+                }
+            }
+        }
+
+        return $this->availableBreedList;
+    }
+
+    /**
+     * __toString
+     *
+     * @access public
+     * @return string
+     */
 	public function __toString()
 	{
 		return $this->getName();
