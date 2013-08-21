@@ -19,7 +19,7 @@ class CollectionType extends AbstractType
                     'type' => new UserHasUnitType()
                 )
             )
-            ->add('submit', 'submit');
+            ->add('submit', 'submit', ['attr' => ['class' => 'acButton acButtonBig right']]);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

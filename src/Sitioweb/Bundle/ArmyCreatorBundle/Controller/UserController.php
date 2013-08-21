@@ -102,4 +102,25 @@ class UserController extends Controller
 
         return $this->redirect($url);
     }
+
+    /**
+     * collectionRemoveAction
+     *
+     * @access public
+     * @return void
+     *
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
+     * @Route("/collection/{breed}/remove", name="user_collection_remove")
+     */
+    public function collectionRemoveAction(Breed $breed)
+    {
+        $user = $this->getUser();
+        $user->removeCollectionList($breed);
+        $this->get('doctrine')->getManager()->flush();
+
+        $url = $this->get('router')
+                ->generate('user_collection');
+
+        return $this->redirect($url);
+    }
 }

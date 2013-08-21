@@ -10,7 +10,7 @@
             {% for breed in game.availableBreedList %}
                 {% set contained = app.user.collectionList.contains(breed) %}
  
-                <li class="w20">
+                <li class="w20{{ contained ? "" : " not-contained" }}">
                     <figure class="breed left mr1">
                         {{ breedImage(breed)|raw }}
                     </figure>
@@ -18,6 +18,13 @@
                     {% if contained %}
                         <a href="{{ path("user_collection_edit", { "breed": breed.slug }) }}">
                             {{ breed.name }}
+                        </a>
+                        <a
+                            href="{{ path("user_collection_remove", { "breed": breed.slug }) }}"
+                            class="acButton"
+                            title="{{ "user.collection.remove"|trans }}"
+                        >
+                            <i class="icon-remove"></i>
                         </a>
                     {% else %}
                         {{ breed.name }}
@@ -34,4 +41,14 @@
             {% endfor %}
         </ul>
     {% endfor %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+	{% stylesheets 
+		"@SitiowebArmyCreatorBundle/Resources/public/less/collection.less"
+		filter="less,cssrewrite" output="css/collection.css" %}
+		 <link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
 {% endblock %}

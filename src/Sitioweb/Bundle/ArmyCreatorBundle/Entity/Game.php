@@ -204,6 +204,13 @@ class Game
                     $this->availableBreedList[] = $breed;
                 }
             }
+
+            usort(
+                $this->availableBreedList,
+                function($a, $b) {
+                    return strnatcasecmp($a->getName(), $b->getName());
+                }
+            );
         }
 
         return $this->availableBreedList;
