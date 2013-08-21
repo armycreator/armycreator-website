@@ -138,12 +138,6 @@
         <source>home.hello.%username%</source>
         <target>Hello %username%</target>
       </trans-unit>
-      <trans-unit id="f82c12e465a65c93d13f6d414f36a4bf" resname="            home.welcome_text&#10;        ">
-        <source>            home.welcome_text
-        </source>
-        <target>__            home.welcome_text
-        </target>
-      </trans-unit>
       <trans-unit id="ed25f05a9f217fd73ac3f44d597f9c9b" resname="home.things_to_do.1">
         <source>home.things_to_do.1</source>
         <target>__home.things_to_do.1</target>
@@ -251,6 +245,10 @@
       <trans-unit id="f54ceecbedfd0ef0078ff5568a87cf37" resname="main_menu.donation">
         <source>main_menu.donation</source>
         <target>donation</target>
+      </trans-unit>
+      <trans-unit id="8ca69c9fbe9814812068bf236b6ff275" resname="main_menu.admin">
+        <source>main_menu.admin</source>
+        <target>administration</target>
       </trans-unit>
       <trans-unit id="472627d8198c9956da64b300baa24043" resname="homepage_menu.last_army">
         <source>homepage_menu.last_army</source>
@@ -499,6 +497,18 @@
       <trans-unit id="125b0151b3065d29355e571a4104032d" resname="default.new.title">
         <source>default.new.title</source>
         <target>New</target>
+      </trans-unit>
+      <trans-unit id="0459291a41fcc0c4ed63b18128d22b08" resname="user.collection.remove">
+        <source>user.collection.remove</source>
+        <target>Remove from my collection</target>
+      </trans-unit>
+      <trans-unit id="9f26b6fcaaae05de10053e9c609bf608" resname="user.collection.contains">
+        <source>user.collection.contains</source>
+        <target>I have units of this breed</target>
+      </trans-unit>
+      <trans-unit id="671af989a3eee9fb56c263a010a3bdc3" resname="army.detail.missing_units">
+        <source>army.detail.missing_units</source>
+        <target>You do not own as many units</target>
       </trans-unit>
     </body>
   </file>

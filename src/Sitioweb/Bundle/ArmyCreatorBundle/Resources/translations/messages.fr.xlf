@@ -167,12 +167,6 @@
         <source>home.hello.%username%</source>
         <target>Bonjour %username%</target>
       </trans-unit>
-      <trans-unit id="f82c12e465a65c93d13f6d414f36a4bf" resname="            home.welcome_text&#10;        ">
-        <source>            home.welcome_text
-        </source>
-        <target>__            home.welcome_text
-        </target>
-      </trans-unit>
       <trans-unit id="ed25f05a9f217fd73ac3f44d597f9c9b" resname="home.things_to_do.1">
         <source>home.things_to_do.1</source>
         <target>__home.things_to_do.1</target>
@@ -325,29 +319,33 @@
         <source>main_menu.donation</source>
         <target>faire un don</target>
       </trans-unit>
+      <trans-unit id="8ca69c9fbe9814812068bf236b6ff275" resname="main_menu.admin">
+        <source>main_menu.admin</source>
+        <target>administration</target>
+      </trans-unit>
       <trans-unit id="472627d8198c9956da64b300baa24043" resname="homepage_menu.last_army">
         <source>homepage_menu.last_army</source>
-        <target>__homepage_menu.last_army</target>
+        <target>Ma derniere armee</target>
       </trans-unit>
       <trans-unit id="a63a61c94459aebb13c470fce37f2ab7" resname="homepage_menu.create_army">
         <source>homepage_menu.create_army</source>
-        <target>__homepage_menu.create_army</target>
+        <target>Creer une nouvelle liste</target>
       </trans-unit>
       <trans-unit id="59695c131ee88f73b9b40051952c9b85" resname="homepage_menu.my_collection">
         <source>homepage_menu.my_collection</source>
-        <target>__homepage_menu.my_collection</target>
+        <target>Ma collection</target>
       </trans-unit>
       <trans-unit id="8dc5ec953e7cd5444a66b859f77e8e11" resname="homepage_menu.forum">
         <source>homepage_menu.forum</source>
-        <target>__homepage_menu.forum</target>
+        <target>Forum</target>
       </trans-unit>
       <trans-unit id="b2f1b446f382f36a377872d83bcbda1a" resname="homepage_menu.donation">
         <source>homepage_menu.donation</source>
-        <target>__homepage_menu.donation</target>
+        <target>Faire un don</target>
       </trans-unit>
       <trans-unit id="0367dabf4e93efd51285449b3a047886" resname="homepage_menu.my_army_list">
         <source>homepage_menu.my_army_list</source>
-        <target>__homepage_menu.my_army_list</target>
+        <target>Ma liste d'armee</target>
       </trans-unit>
       <trans-unit id="44b12990c840b8e1bf82adb9bac80d32" resname="breadcrumb.home">
         <source>breadcrumb.home</source>
@@ -512,6 +510,18 @@
       <trans-unit id="125b0151b3065d29355e571a4104032d" resname="default.new.title">
         <source>default.new.title</source>
         <target>Nouveau</target>
+      </trans-unit>
+      <trans-unit id="0459291a41fcc0c4ed63b18128d22b08" resname="user.collection.remove">
+        <source>user.collection.remove</source>
+        <target>Supprimer de ma collection</target>
+      </trans-unit>
+      <trans-unit id="9f26b6fcaaae05de10053e9c609bf608" resname="user.collection.contains">
+        <source>user.collection.contains</source>
+        <target>Je possede cette race</target>
+      </trans-unit>
+      <trans-unit id="671af989a3eee9fb56c263a010a3bdc3" resname="army.detail.missing_units">
+        <source>army.detail.missing_units</source>
+        <target>Vous ne possedez pas autant d'unite</target>
       </trans-unit>
     </body>
   </file>
