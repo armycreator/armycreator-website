@@ -9,10 +9,20 @@
         {{ form_widget(form) }}
 
         {{ form_rest(form) }}
+
+        <div>
+            <div>
+                <span class="right">
+                    {{ shots.stats }}
+                </span>
+                <span class="left">
+                    {{ "toolbox.dice.results"|trans }}
+                </span>
+            </div>
+        </div>
+
         <input type="submit" class="acButton acButtonBig right mt1" value="{{ "toolbox.dice.submit"|trans }}" />
         <div class="clear"></div>
     </form>
 
-
-    {{ shots.stats }}
 {% endblock %}
