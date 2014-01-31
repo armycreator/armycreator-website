@@ -523,6 +523,24 @@
         <source>army.detail.missing_units</source>
         <target>Vous ne possedez pas autant d'unite</target>
       </trans-unit>
+      <trans-unit id="dc4c8f1a3743e2085dd451e90ab7443b" resname="footer.warning">
+        <source>footer.warning</source>
+        <target>Avertissement</target>
+      </trans-unit>
+      <trans-unit id="b82e2e87364a93578d1d505cfea70d4f" resname="footer.detail">
+        <source>footer.detail</source>
+        <target>Army Creator ne permet pas de creer une liste d'armee sans posseder le codex correspondant !
+        Ce site n'est pas officiel ni en aucun cas autorise ou approuve par Games Workshop.
+        Warhammer, Warhammer 40.000, le logo Games Workshop, Games Workshop, Space Marines, Blood Angel, Dark Angel, Eldars, Eldars Noirs, Marines du chaos, Demons du chaos, Orks, Guarde Imperiale, Ordo Malleus, Ordo Hereticus, Necrons, Tau, Tyrannides, Codex, ainsi que tous les noms d'unites d'armes et d'equipements sont des marques de Games Workshop Limited, utilisees sans autorisation et sans volonte de prejudice ou comme opposition a leur copyright.</target>
+      </trans-unit>
+      <trans-unit id="97890a23c497063c4d25584d52d522f1" resname="footer.design">
+        <source>footer.design</source>
+        <target>Design par:</target>
+      </trans-unit>
+      <trans-unit id="1d52984a245686c6a1abd995c5a1cfb6" resname="footer.made_by">
+        <source>footer.made_by</source>
+        <target>Cree et developpe par:</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

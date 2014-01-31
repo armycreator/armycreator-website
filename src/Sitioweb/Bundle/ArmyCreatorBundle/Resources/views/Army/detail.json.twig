@@ -1,0 +1,46 @@
+{# === army name === #}
+{
+    "army": {{ army|json_encode }},
+    "squadListByType": [
+        {# === squad type list === #}
+        {% for tmp in army.squadListByType %}
+            {% if tmp.squadList %}
+                {
+                    "type": "{{- tmp.unitType.name -}}{% if tmp.unitType.breed != army.breed %}{{- " (" ~ tmp.unitType.breed.name ~ ")" -}}{% endif %}",
+                    "squadList": [
+                        {# === squad list === #}
+                        {% for squad in tmp.squadList %}
+                            {
+                                "name": "{{ squad.name|default(squad.unitType.name ~ ' #' ~ loop.index) ~ " (" ~ squad.points ~ "pts)" -}}",
+                                "squadLineList": [
+                                    {# === squad line list === #}
+                                    {% for squadLine in squad.squadLineList %}
+                                        {
+                                            {# === unit name/number === #}
+                                            "name": "{{- squadLine.unit.name -}}",
+                                            "number": {{- squadLine.number -}},
+
+                                            {# === unit stuff list === #}
+                                            {% set squadLineStuffList = squadLine.squadLineStuffList %}
+
+                                            {% if not(squadLineStuffList is empty) %}
+                                                "squadLineStuffList": [
+                                                    {% for squadLineStuff in squadLineStuffList %}{{- "" -}}
+                                                        {
+                                                            "name": "{{ squadLineStuff.unitStuff.stuff.name }}",
+                                                            "number": {{ squadLineStuff.number }}
+                                                        }{{ loop.last ? "" : "," }}
+                                                    {% endfor %}
+                                                ]
+                                            {% endif %}
+                                        }{{ loop.last ? "" : "," }}
+                                    {% endfor %}
+                                ]
+                            }{{ loop.last ? "" : "," }}
+                        {% endfor %}
+                    ]
+                }{{ loop.last ? "" : "," }}
+            {% endif %}
+        {% endfor %}
+    ]
+}

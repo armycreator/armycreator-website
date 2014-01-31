@@ -77,7 +77,7 @@ class Builder extends ContainerAware
         $menu->addChild('homepage_menu.my_army_list', array('route' => 'army_list'));
         $menu->addChild('homepage_menu.last_army', array('route' => ''));
         $menu->addChild('homepage_menu.create_army', array('route' => ''));
-        $menu->addChild('homepage_menu.my_collection', array('route' => ''));
+        $menu->addChild('homepage_menu.my_collection', array('route' => 'user_collection'));
         $menu->addChild('homepage_menu.forum', array('uri' => '/forum/index.php'));
         $menu->addChild('homepage_menu.donation', array('uri' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG'));
 
