@@ -29,14 +29,13 @@
         "knplabs/knp-menu":"2.0.*@dev",
         "knplabs/knp-menu-bundle":"2.0.*@dev",
         "mpdf/mpdf" : "5.6.*",
-		"friendsofsymfony/user-bundle": "2.*@dev",
+        "friendsofsymfony/user-bundle": "2.*@dev",
 
-        "knacss/knaless" : "dev-master",
         "aristath/elusive-iconfont" : "dev-master"
     },
 
     "require-dev": {
-		"raulfraile/ladybug-bundle": "0.61.*"
+        "raulfraile/ladybug-bundle": "@stable"
     },
 
     "scripts": {
@@ -45,13 +44,13 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
-        ],
-        "post-update-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
-        ]
+            ],
+            "post-update-cmd": [
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+                ]
     },
     "config": {
         "bin-dir": "bin"
@@ -60,30 +59,18 @@
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"
     },
-	"repositories": [
-		{
-			"type": "package",
-			"package": {
-				"version": "master",
-				"name": "aristath/elusive-iconfont",
-				"source": {
-					"url": "https://github.com/aristath/elusive-iconfont.git",
-					"type": "git",
-					"reference": "master"
-				}
-			}
-		},
+    "repositories": [
         {
             "type": "package",
-            "package" : {
-                "name": "knacss/knaless",
-                "version": "dev-master",
-                "dist": {
-                    "url": "http://knacss.com/css/knacss.less",
-                    "type": "file"
+            "package": {
+                "version": "master",
+                "name": "aristath/elusive-iconfont",
+                "source": {
+                    "url": "https://github.com/aristath/elusive-iconfont.git",
+                    "type": "git",
+                    "reference": "master"
                 }
             }
         }
-	]
+    ]
 }
-
