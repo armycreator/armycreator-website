@@ -1,6 +1,12 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
+{% for fb in app.session.flashBag %}
+    {% for message in fb %}
+        <div style="text-align:center; color:orange; border:1px solid orange">{{ message }}</div>
+    {% endfor %}
+{% endfor %}
+
 <table>
     <thead>
         <tr>
@@ -41,6 +47,7 @@
             <li>UPDATE `phpbb_users` SET user_style = '1'
             <li>Supprimer le dossier de cache
             <li>Si connexion impossible : supprimer les cookies du domaine
+            <li>Bug taille: <blockquote>document.getElementById('content').style.height = 'auto';document.getElementById('tabs').style.height = 'auto';document.getElementById('page-body').style.height = 'auto';</blockquote>
             <li>BO  / Styles : tout désactiver / désinstaller sauf prosilver. Installer les templates/theme/styles armycreator.
             <li>BO  / Styles : Créer un nouveau style : "armycreator" de "prosilver". Style par défaut : "oui"
             <li>BO  / Styles / armycreator : "Informations" : template/theme : "armycreator"

@@ -2,7 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,7 +15,7 @@ class User extends BaseUser
 {
     /**
      * id
-     * 
+     *
      * @var integer
      * @access protected
      *
@@ -27,7 +27,7 @@ class User extends BaseUser
 
     /**
      * forumId
-     * 
+     *
      * @var mixed
      * @access protected
      *
@@ -37,7 +37,7 @@ class User extends BaseUser
 
     /**
      * armyList
-     * 
+     *
      * @var array<Army>
      * @access private
      *
@@ -47,7 +47,7 @@ class User extends BaseUser
 
     /**
      * armyGroupList
-     * 
+     *
      * @var array<Army>
      * @access private
      *
@@ -57,7 +57,7 @@ class User extends BaseUser
 
     /**
      * preferences
-     * 
+     *
      * @var UserPreference
      * @access private
      *
@@ -104,7 +104,7 @@ class User extends BaseUser
     {
         return $this->forumId;
     }
-    
+
     /**
      * Sets the value of forumId
      *
@@ -126,7 +126,7 @@ class User extends BaseUser
     public function addArmyList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army $armyList)
     {
         $this->armyList[] = $armyList;
-    
+
         return $this;
     }
 
@@ -143,7 +143,7 @@ class User extends BaseUser
     /**
      * Get armyList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getArmyList()
     {
@@ -159,7 +159,7 @@ class User extends BaseUser
     public function addArmyGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\ArmyGroup $armyGroupList)
     {
         $this->armyGroupList[] = $armyGroupList;
-    
+
         return $this;
     }
 
@@ -176,7 +176,7 @@ class User extends BaseUser
     /**
      * Get armyGroupList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getArmyGroupList()
     {
@@ -186,7 +186,7 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -202,14 +202,14 @@ class User extends BaseUser
     public function setPreferences(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference $preferences = null)
     {
         $this->preferences = $preferences;
-    
+
         return $this;
     }
 
     /**
      * Get preferences
      *
-     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference 
+     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference
      */
     public function getPreferences()
     {
@@ -226,7 +226,7 @@ class User extends BaseUser
     {
         $breed->addUserList($this);
         $this->collectionList[] = $breed;
-    
+
         return $this;
     }
 
@@ -244,7 +244,7 @@ class User extends BaseUser
     /**
      * Get collectionList
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCollectionList()
     {
@@ -260,7 +260,7 @@ class User extends BaseUser
     public function addUserHasUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit $userHasUnitList)
     {
         $this->userHasUnitList[] = $userHasUnitList;
-    
+
         return $this;
     }
 
@@ -277,7 +277,7 @@ class User extends BaseUser
     /**
      * Get userHasUnitList
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUserHasUnitList()
     {

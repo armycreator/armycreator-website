@@ -30,7 +30,7 @@ class UnitHasUnitGroup
 
     /**
      * unit
-     * 
+     *
      * @var Unit
      * @access private
 	 *
@@ -40,7 +40,7 @@ class UnitHasUnitGroup
 
     /**
      * group
-     * 
+     *
      * @var UnitGroup
      * @access private
 	 *
@@ -50,7 +50,7 @@ class UnitHasUnitGroup
 
     /**
      * importedId
-     * 
+     *
      * @ORM\Column(type="integer", nullable=true)
      * @var mixed
      * @access private
@@ -59,7 +59,7 @@ class UnitHasUnitGroup
 
     /**
      * mainUnit
-     * 
+     *
      * @ORM\Column(type="boolean")
      * @var boolean
      * @access private
@@ -68,7 +68,7 @@ class UnitHasUnitGroup
 
     /**
      * canChooseNumber
-     * 
+     *
      * @ORM\Column(type="boolean")
      * @var boolean
      * @access private
@@ -93,7 +93,7 @@ class UnitHasUnitGroup
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -109,14 +109,14 @@ class UnitHasUnitGroup
     public function setUnitNumber($unitNumber)
     {
         $this->unitNumber = $unitNumber;
-    
+
         return $this;
     }
 
     /**
      * Get unitNumber
      *
-     * @return integer 
+     * @return integer
      */
     public function getUnitNumber()
     {
@@ -131,16 +131,19 @@ class UnitHasUnitGroup
      */
     public function setUnit(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $unit = null)
     {
+        if (!$unit){
+        ld(debug_backtrace(false));
+        }
         $unit->addUnitHasUnitGroupList($this);
         $this->unit = $unit;
-    
+
         return $this;
     }
 
     /**
      * Get unit
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit
      */
     public function getUnit()
     {
@@ -157,14 +160,14 @@ class UnitHasUnitGroup
     {
         $group->addUnitHasUnitGroupList($this);
         $this->group = $group;
-    
+
         return $this;
     }
 
     /**
      * Get group
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup
      */
     public function getGroup()
     {
@@ -180,14 +183,14 @@ class UnitHasUnitGroup
     public function setImportedId($importedId)
     {
         $this->importedId = $importedId;
-    
+
         return $this;
     }
 
     /**
      * Get importedId
      *
-     * @return integer 
+     * @return integer
      */
     public function getImportedId()
     {
@@ -203,14 +206,14 @@ class UnitHasUnitGroup
     public function setMainUnit($mainUnit)
     {
         $this->mainUnit = $mainUnit;
-    
+
         return $this;
     }
 
     /**
      * Get mainUnit
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getMainUnit()
     {
@@ -226,14 +229,14 @@ class UnitHasUnitGroup
     public function setCanChooseNumber($canChooseNumber)
     {
         $this->canChooseNumber = $canChooseNumber;
-    
+
         return $this;
     }
 
     /**
      * Get canChooseNumber
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getCanChooseNumber()
     {
