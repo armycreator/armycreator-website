@@ -1,0 +1,134 @@
+breed.list.new: 'Nouvelle liste'
+army.detail.print: Imprimer
+army.detail.pdf: PDF
+army.detail.bb_code: BBCode
+army.detail.share: Partager
+army.detail.delete: Supprimer
+army.detail.pts.%pts%: '%pts% pts'
+army.detail.wanted_pts.%pts%: '%pts% pts'
+army.bbcode.apply: Appliquer
+army.bbcode.apply_and_save: 'Appliquer + enregistrer'
+army.detail.squad.delete: Supprimer
+army.detail.squad.add: 'Ajouter une escouade'
+army.bbcode.title: BBCode
+army.bb_code.points: points
+army.bbcode.back_to_army: 'Retour à l''armée'
+army.bbcode.select_all: 'Tout sélectionner'
+army.new.title: 'Nouvelle armée'
+army.new.create: Créer
+army.new.back_to_list: 'Retour aux listes'
+army.list.title: 'Listes d''armée'
+army.list.group.edit: 'Editer le groupe'
+army.list.group.delete: 'Supprimer le groupe'
+army.list.no_group: 'Aucun groupe'
+army_list.group_list.all_armies: 'toutes mes listes'
+'{0} army_list.group.army_number.zero|{1} army_list.group.army_number.one|]1,Inf] army_list.group.army_number.%count%': "{0} aucune armée|{1} une armée|]1,Inf] %count% armées\n                "
+army.list.new: 'Nouvelle liste'
+army.list.breed: Race
+army.list.points: Points
+army.list.name: Nom
+army.list.status: Statut
+army.list.created_date: Création
+army.list.updated_date: 'Mise à jour'
+army.list.actions: Actions
+army.list.edit: Editer
+army.list.delete_confirm: 'Confirmez-vous la suppression ?'
+army.list.delete: Supprimer
+army.edit.title: Editer
+army.edit.edit: Editer
+army.edit.back_to_army_list: 'Retour aux listes'
+army.edit.delete: Supprimer
+home.hello.%username%: 'Bonjour %username%'
+home.things_to_do.1: __home.things_to_do.1
+home.things_to_do.2: __home.things_to_do.2
+home.things_to_do.3: __home.things_to_do.3
+army_group.new.title: 'Nouveau groupe d''armée'
+army_group.new.create: Créer
+army_group.new.back_to_list: 'Retour aux listes'
+army_group.edit.title: 'Editer un groupe'
+army_group.edit.edit: Editer
+army_group.edit.back_to_list: 'Retour aux listes'
+army_group.edit.delete: Supprimer
+squad.new.unit.type.%unitTypeName%: 'Ajouter %unitTypeName%'
+squad.edit.min_points_%unitGroupPoints%: '%unitGroupPoints% pts mini'
+'[0,1]squad.edit.unit_number_unique|]1,Inf]squad.edit.possible_unit_number_%count%': 'une unité|%count% unités possibles'
+squad.new.back_to_list: 'Retour à l''armée'
+squad.edit.breed_change: 'Changer de race'
+squad.edit.unit_type_change: 'Changer de type d''unité'
+squad.edit.squad_choice: 'Choix de l''escouade'
+squad.edit.squad_stuff: 'Choix des équipements'
+squad.edit.title: 'éditer une escouade'
+squad.edit.unit.type.%unitTypeName%: 'éditer %unitTypeName%'
+squad.edit.edit: Editer
+squad_line.new.create: Créer
+squad.edit.pts.%pts%: '%pts% pts'
+squad.edit.back_to_army: 'Retour à l''armée'
+squad.total_points: 'nb points de l''escouade'
+header.welcome: 'Bienvenue sur ArmyCreator'
+header.hello.%username%: 'Bonjour %username%'
+header.logout: 'Se déconnecter'
+header.login: Connexion
+header.sign_up: Inscription
+main_menu.home: Accueil
+main_menu.forum: forum
+main_menu.my_army_list: 'liste d''armées'
+main_menu.my_games: 'mes parties'
+main_menu.my_collection: 'ma collection'
+main_menu.public_lists: 'listes publiques'
+main_menu.tools: outils
+main_menu.donation: 'faire un don'
+main_menu.admin: administration
+homepage_menu.last_army: 'Ma derniere armee'
+homepage_menu.create_army: 'Creer une nouvelle liste'
+homepage_menu.my_collection: 'Ma collection'
+homepage_menu.forum: Forum
+homepage_menu.donation: 'Faire un don'
+homepage_menu.my_army_list: 'Ma liste d''armee'
+breadcrumb.home: Accueil
+home.welcome_text: __home.welcome_text
+breadcrumb.army_list: 'Listes d''armées'
+army_group.edit.name_label: Nom
+breadcrumb.bbcode: BBCode
+breadcrumb.army_new: 'Nouvelle armée'
+breadcrumb.army_edit: 'Editer une armée'
+breadcrumb.army_delete: 'Supprimer une armée'
+breadcrumb.squad_new.%unit_type%: 'nouveau unit_type'
+breadcrumb.squad_edit.%squad_name%: 'Editer squad_name'
+army_list.group_list.no_group: 'aucun groupe'
+army.detail.preferences: préférences
+unit_type.edit.title: 'Éditer un titre'
+breed.show.pts.%pts%: '%pts% pts'
+breed.show.unitgroup.new: 'Nouveau group'
+breed.unittype.new: 'Nouveau type'
+breed.weapon_list.type: Type
+breed.weapon_list.range: Portée
+breed.weapon_list.strenght: Force
+breed.weapon_list.armorPenetration: 'Pénétration d''armure'
+breed.weapon_list.new: 'Nouvelle arme'
+breed.equipement_list.new: 'Nouvel équipement'
+breed.detail.edit: 'Éditer la race'
+breed.detail.back_to_game: 'Retour à la race'
+breed.unit_list.new: 'Nouvelle unité'
+game.list.edit: 'Éditer un jeu'
+game.list.new: 'Ajouter un jeu'
+game.edit.title: 'Édition d''un jeu'
+game.detail.delete: Supprimer
+button.create: Créer
+breed.back_to_breed: 'Retourner à la race'
+button.delete: Supprimen
+breed.list.title: 'Liste de races'
+button.edit: Éditer
+button.new_entry: 'Nouvelle entrée'
+breed.new.title: 'Nouvelle race'
+breed.edit.title: 'Éditer la race'
+default.back_to_list: 'Retourner à la liste'
+breed_group.list.title: 'Tous les groupements de races'
+breed_group.list.new: 'Nouveau groupement de races'
+default.new.title: Nouveau
+user.collection.remove: 'Supprimer de ma collection'
+user.collection.contains: 'Je possede cette race'
+army.detail.missing_units: 'Vous ne possedez pas autant d''unite'
+footer.warning: Avertissement
+footer.detail: "Army Creator ne permet pas de creer une liste d'armee sans posseder le codex correspondant !\n        Ce site n'est pas officiel ni en aucun cas autorise ou approuve par Games Workshop.\n        Warhammer, Warhammer 40.000, le logo Games Workshop, Games Workshop, Space Marines, Blood Angel, Dark Angel, Eldars, Eldars Noirs, Marines du chaos, Demons du chaos, Orks, Guarde Imperiale, Ordo Malleus, Ordo Hereticus, Necrons, Tau, Tyrannides, Codex, ainsi que tous les noms d'unites d'armes et d'equipements sont des marques de Games Workshop Limited, utilisees sans autorisation et sans volonte de prejudice ou comme opposition a leur copyright."
+footer.design: 'Design par:'
+footer.made_by: 'Cree et developpe par:'

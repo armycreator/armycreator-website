@@ -1,0 +1,131 @@
+breed.list.new: 'New Breed'
+army.detail.print: Print
+army.detail.pdf: pdf
+army.detail.bb_code: BBCode
+army.detail.share: Share
+army.detail.delete: 'Delete army'
+army.detail.squad.delete: 'Delete squad'
+army.detail.squad.add: 'Add squad'
+army.bbcode.title: BBCode
+army.bbcode.apply: apply
+army.bbcode.apply_and_save: 'save and apply'
+army.bb_code.points: points
+army.new.title: 'New army'
+army.new.create: 'Create army'
+army.new.back_to_list: 'Back to list'
+army.list.title: 'Army list'
+army.list.no_group: 'No group'
+army.list.group.edit: 'Edit group'
+army.list.group.delete: 'Delete group'
+army.list.new: 'New army'
+army.list.breed: Breed
+army.list.points: points
+army.list.name: name
+army.list.status: status
+army.list.created_date: 'created date'
+army.list.updated_date: 'updated date'
+army.list.actions: actions
+army.list.edit: edit
+army.list.delete_confirm: 'Are you sure you want to delete this army ?'
+army.list.delete: delete
+army.edit.title: 'edit army'
+army.edit.edit: edit
+army.edit.back_to_army_list: 'back to army list'
+home.hello.%username%: 'Hello %username%'
+home.things_to_do.1: __home.things_to_do.1
+home.things_to_do.2: __home.things_to_do.2
+home.things_to_do.3: __home.things_to_do.3
+army_group.edit.title: 'Edit army group'
+army_group.edit.edit: Edit
+army_group.edit.back_to_list: 'Back to army list'
+army_group.edit.delete: 'Delete army group'
+squad.new.unit.type.%unitTypeName%: 'new %unitTypeName%'
+squad.edit.breed_change: 'other breed'
+squad.edit.unit_type_change: 'change unit type'
+squad.edit.squad_choice: 'squad choice'
+squad.edit.squad_stuff: 'squad stuff'
+squad.edit.min_points_%unitGroupPoints%: '%unitGroupPoints% pts. min.'
+'[0,1]squad.edit.unit_number_unique|]1,Inf]squad.edit.possible_unit_number_%count%': 'one unit|%count% units'
+header.welcome: 'Welcome on ArmyCreator'
+header.hello.%username%: 'Hello %username%'
+header.logout: Logout
+header.login: Login
+header.sign_up: 'Sign up'
+main_menu.home: home
+main_menu.forum: forum
+main_menu.my_army_list: 'my army list'
+main_menu.my_games: 'my games'
+main_menu.my_collection: collection
+main_menu.public_lists: 'public lists'
+main_menu.tools: tools
+main_menu.donation: donation
+main_menu.admin: administration
+homepage_menu.last_army: 'my last army'
+homepage_menu.create_army: 'create an army'
+homepage_menu.my_collection: 'my collection'
+homepage_menu.forum: forum
+homepage_menu.donation: 'make a donation'
+homepage_menu.my_army_list: 'my army list'
+breadcrumb.home: Home
+home.welcome_text: __home.welcome_text
+army_list.group_list.all_armies: 'All armies'
+breadcrumb.army_list: 'Army list'
+army_group.edit.name_label: Name
+breadcrumb.bbcode: BbCode
+breadcrumb.army_new: 'New army'
+breadcrumb.army_edit: 'Edit army'
+breadcrumb.army_delete: 'Delete army'
+unit_type.edit.title: 'Edit unit type'
+breed.show.pts.%pts%: '%pts% pts'
+breed.show.unitgroup.new: 'New unit group'
+breed.unittype.new: 'New unit type'
+breed.weapon_list.type: Type
+breed.weapon_list.range: Range
+breed.weapon_list.strenght: Strenght
+breed.weapon_list.armorPenetration: 'Armor Penetration'
+breed.weapon_list.new: 'New weapon'
+breed.equipement_list.new: 'New equipement'
+breed.detail.edit: 'Edit breed'
+breed.detail.back_to_game: 'Back to game'
+breed.unit_list.new: 'New unit'
+game.list.edit: 'Edit game'
+game.list.new: 'New game'
+game.edit.title: 'Edit game'
+game.detail.delete: 'Delete gam'
+army.detail.pts.%pts%: '%pts% pts'
+army.detail.wanted_pts.%pts%: '%pts% wanted pts'
+army.detail.preferences: Preferences
+army.bbcode.back_to_army: 'Back to army'
+army.bbcode.select_all: 'Select all'
+'{0} army_list.group.army_number.zero|{1} army_list.group.army_number.one|]1,Inf] army_list.group.army_number.%count%': '{0} No army|{1} One army|]1,Inf] %count% armies'
+army.edit.delete: 'Delete army'
+army_group.new.title: 'New army group'
+army_group.new.create: 'Create army group'
+army_group.new.back_to_list: 'Back to list'
+squad.new.back_to_list: 'Back to list'
+squad.edit.title: 'Edit squad'
+squad.edit.unit.type.%unitTypeName%: 'Edit %unitTypeName%'
+squad.edit.edit: Edit
+squad_line.new.create: Create
+squad.edit.pts.%pts%: '%pts% pts'
+squad.edit.back_to_army: 'Back to army'
+squad.total_points: 'Total points'
+button.create: Create
+breed.back_to_breed: 'Back to breed'
+button.delete: Delete
+breed.list.title: 'All breed'
+button.edit: Edit
+button.new_entry: 'New entry'
+breed.new.title: 'New breed'
+breed.edit.title: 'Edit breed'
+default.back_to_list: 'Back to list'
+breed_group.list.title: 'All breed groups'
+breed_group.list.new: 'New breed group'
+default.new.title: New
+user.collection.remove: 'Remove from my collection'
+user.collection.contains: 'I have units of this breed'
+army.detail.missing_units: 'You do not own as many units'
+footer.warning: Warning
+footer.detail: __footer.detail
+footer.design: 'Design by:'
+footer.made_by: 'Created and developed by:'
