@@ -20,14 +20,14 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
 
 /**
  * ArmyController
- * 
+ *
  * @uses BaseController
  * @Route("/army")
  * @Security\PreAuthorize("isFullyAuthenticated()")
  * @Breadcrumb("breadcrumb.home", route="homepage")
  * @Breadcrumb("breadcrumb.army_list", route="army_list")
  *
- * @author Julien Deniau <julien@sitioweb.fr> 
+ * @author Julien Deniau <julien@sitioweb.fr>
  */
 
 class ArmyController extends Controller
@@ -46,7 +46,7 @@ class ArmyController extends Controller
     {
         if (isset($groupId)) {
             $group = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')->find((int) $groupId);
-            
+
             $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findBy(
                 array(
                     'user' => $this->getUser(),
@@ -148,7 +148,7 @@ class ArmyController extends Controller
     {
         // ge detail params
         $detailParams = $this->getDetailParams($slug);
-        
+
         // get user preferences
         $userPreferences = $this->getUser()->getPreferences();
         $form = $this->createForm(new ArmyPreferencesType(), $userPreferences);
@@ -236,7 +236,7 @@ class ArmyController extends Controller
         if ($this->getUser() != $army->getUser() && !$army->getIsShared()) {
             throw new AccessDeniedException('Army not shared');
         }
-        
+
         // get unit type list
         $unitTypeList = $em->getRepository('SitiowebArmyCreatorBundle:UnitType')
                             ->findByBreed($army->getBreed());
@@ -323,7 +323,7 @@ class ArmyController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            
+
             $entity->setUser($this->getUser());
             $em->persist($entity);
             $em->flush();

@@ -12,7 +12,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\GameType;
 /**
  * Game controller.
  *
- * @Route("/admin")
+ * @Route("/admin/game")
  */
 class GameController extends Controller
 {
@@ -69,7 +69,7 @@ class GameController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_game_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_breed', array('game' => $entity->getCode())));
         }
 
         return array(

@@ -15,7 +15,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedType;
 /**
  * Breed controller.
  *
- * @Route("/admin")
+ * @Route("/admin/breed")
  */
 class BreedController extends Controller
 {
@@ -62,7 +62,7 @@ class BreedController extends Controller
     {
         $unitList = $this->get('doctrine')
                         ->getRepository('SitiowebArmyCreatorBundle:Unit')
-                        ->findBy(['breed' => $breed]);
+                        ->findBy(['breed' => $breed], ['name' => 'asc']);
 
         return array(
             'breed' => $breed,

@@ -12,14 +12,16 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
 
 class ArmyBbcodePreferencesType extends AbstractType
 {
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add(
                 'showDefaultStuff',
                 null,
-                array('required' => false)
+                array(
+                    'required' => false
+                )
             )
             //->add('showStuffDescription')
             ->add(

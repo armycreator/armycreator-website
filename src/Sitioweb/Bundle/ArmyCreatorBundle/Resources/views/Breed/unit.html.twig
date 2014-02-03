@@ -52,7 +52,7 @@
                     </div>
                 {% endfor %}
                 <div class="squad">
-                    <a href="{{ path("unit_new", params) }}" title="{{ "breed.unit_list.new"|trans }}" class="acButton">
+                    <a href="{{ path("unit_new", params + {"unitTypeSlug":unitType.slug}) }}" title="{{ "breed.unit_list.new"|trans }}" class="acButton">
                         <i class="icon-plus"></i>
                         {{ "breed.unit_list.new"|trans }}
                     </a>

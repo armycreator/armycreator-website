@@ -3,21 +3,22 @@ toZero: 'Passer à zéro'
 Status: Status
 Name: Nom
 Description: Description
-Wantedpoints: 'Nb de points souhaités'
-Isshared: Partagée
+Wanted points: 'Nb de points souhaités'
+Is shared: Partagée
 Breed: Race
 Armygroup: 'Groupe d''armée'
-Showdefaultstuff: 'Afficher les équipements par défaut'
-Showunitpoints: 'Afficher les points des unités'
+Show default stuff: 'Afficher les équipements par défaut'
+Show unit points: 'Afficher les points des unités'
 Separator: Séparateur
 ac_armybbcode.form.carriage_return: 'Retour chariot'
 ac_armybbcode.form.slash: Slash
 ac_armybbcode.form.comma: Virgule
-Colorsquadtype: 'Couleur des types d''unités'
-Colorsquad: 'Couleur des escouades'
-Colorsquaddetail: 'Couleur du détail des escouades'
+Color squad type: 'Couleur des types d''unités'
+Color squad: 'Couleur des escouades'
+Color squad detail: 'Couleur du détail des escouades'
 Number: Nombre
-Unittype: 'Type d''unité'
+Unit type: 'Type d''unité'
 Draft: Brouillon
 Finish: Terminé
-Showstuffpoints: 'Afficher les points des équipements'
+Show stuff points: 'Afficher les points des équipements'
+Submit: Valider

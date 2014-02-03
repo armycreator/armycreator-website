@@ -25,15 +25,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $this->get('session')->getFlashBag()->add('notice', 'cleared');
-
         $importList = array(
+            'import_game' => 'SitiowebArmyCreatorBundle:Game',
             'import_breed' => 'SitiowebArmyCreatorBundle:Breed',
             'import_unit_type' => 'SitiowebArmyCreatorBundle:UnitType',
             'import_unit_group' => 'SitiowebArmyCreatorBundle:UnitGroup',
             'import_unit' => 'SitiowebArmyCreatorBundle:Unit',
             'import_unit_has_unit_group' => 'SitiowebArmyCreatorBundle:UnitHasUnitGroup',
             'import_unit_has_unit' => 'SitiowebArmyCreatorBundle:UnitHasUnitGroup',
+            'link_missing_unit' => 'SitiowebArmyCreatorBundle:UnitHasUnitGroup',
             'import_equipement' => 'SitiowebArmyCreatorBundle:Equipement',
             'import_weapon' => 'SitiowebArmyCreatorBundle:Weapon',
             'import_unit_stuff' => 'SitiowebArmyCreatorBundle:UnitStuff',
@@ -144,6 +144,25 @@ class DefaultController extends Controller
         $this->configure();
         $this->clearEntityList($entityClass);
         $this->get('session')->getFlashBag()->add('notice', $entityClass . ' cleared');
+        return $this->redirect($this->generateUrl('import_index'));
+    }
+
+    /**
+     * importGame
+     * @Route("/game", name="import_game")
+     *
+     * @access public
+     * @return void
+     */
+    public function importGame()
+    {
+        $this->configure();
+        if (!$this->w40k) {
+            $this->w40k = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game();
+            $this->w40k->setName('Warhammer 40.000');
+            $this->w40k->setCode('W40K');
+        }
+
         return $this->redirect($this->generateUrl('import_index'));
     }
 
@@ -480,6 +499,53 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('import_index'));
         }
     }
+
+
+    /**
+     * linkMissingUnits
+     *
+     * @access public
+     * @return void
+     * @Route("link_missing_unit", name="link_missing_unit")
+     */
+    public function linkMissingUnits()
+    {
+        $this->configure();
+        $entityClass = 'SitiowebArmyCreatorBundle:UnitHasUnitGroup';
+
+        $importList = $this->em->getConnection()->query("
+            SELECT unit.id AS id, oldunit.parent_id AS parent_id
+            FROM  " . $this->getDbName() . ".`AbstractUnit` unit
+            JOIN wkarmycr_copy.unite oldunit ON oldunit.id = unit.importedId
+            LEFT JOIN  " . $this->getDbName() . ".`UnitHasUnitGroup` uhug ON unit.id = uhug.unit_id
+            WHERE  `discriminator` =  'unit'
+            AND uhug.id IS NULL
+            AND oldunit.parent_id IS NOT NULL
+            ORDER BY unit.breed_id DESC
+        ");
+
+        while ($row = $importList->fetch()) {
+            $unit = $this->em->getRepository('SitiowebArmyCreatorBundle:Unit')->find($row['id']);
+            $parentUnit = $this->em->getRepository('SitiowebArmyCreatorBundle:Unit')->findOneByImportedId($row['parent_id']);
+            $unitHasGroupList = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitHasUnitGroup')
+                                ->findBy(array(
+                                    'unit' => $parentUnit
+                                ));
+
+            foreach ($unitHasGroupList as $unitHasGroup) {
+                $entity = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup();
+                $entity->setUnit($unit)
+                    ->setGroup($unitHasGroup->getGroup());
+                $this->em->persist($entity);
+            }
+        }
+        $this->em->flush();
+
+        $this->get('session')->getFlashBag()->add('notice', $entityClass . ' imported missing');
+
+        return $this->redirect($this->generateUrl('import_index'));
+    }
+
 
 
     /**

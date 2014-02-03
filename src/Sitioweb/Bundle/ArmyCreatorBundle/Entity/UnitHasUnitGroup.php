@@ -131,9 +131,6 @@ class UnitHasUnitGroup
      */
     public function setUnit(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $unit = null)
     {
-        if (!$unit){
-        ld(debug_backtrace(false));
-        }
         $unit->addUnitHasUnitGroupList($this);
         $this->unit = $unit;
 
