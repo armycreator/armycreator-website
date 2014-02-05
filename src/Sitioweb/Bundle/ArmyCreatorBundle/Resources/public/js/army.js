@@ -1,2 +1,5 @@
-$('.army_detail').on('click', '#toggleStuff', function() {
+$(function() {
+    $('div[data-draggable="true"]').draggable({
+        revert: "invalid"
+    });
 });

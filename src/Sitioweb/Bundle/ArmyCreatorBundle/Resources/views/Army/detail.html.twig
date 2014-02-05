@@ -155,7 +155,7 @@
                             <section class="squadList">
                                 {# Display squad list #}
                                 {% for squad in tmp.squadList %}
-                                        <div class="squad">
+                                        <div class="squad" data-draggable="true">
                                             <div class="squadName">
                                                 <h4>
                                                     <div class="unitTypeStick" style="background-color:{{ tmp.unitType.color|default("#ccc") }}"></div>
@@ -212,7 +212,7 @@
 
                                             {% if not(externalUser) %}
                                                 <aside class="actions">
-                                                    <a href="javascript:;" class="acButton">
+                                                    <a href="javascript:;" class="acButton moveButton">
                                                         <i class="el-icon-move"></i>
                                                     </a>
 
@@ -263,3 +263,17 @@
 </section>
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+            '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.core.js'
+            '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.widget.js'
+            '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.mouse.js'
+            '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.draggable.js'
+            '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.droppable.js'
+            '@SitiowebArmyCreatorBundle/Resources/public/js/army.js'
+            output='js/army-detail.js'
+        %}
+             <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -43,12 +43,13 @@ class ArmyController extends Controller
      * @Route("/", name="army_list", defaults={"groupId" = null})
      * @Template()
      */
-    public function listAction($groupId)
+    public function listAction($groupId, Request $request)
     {
+        $entityManager = $this->get('doctrine')->getManager();
         if (isset($groupId)) {
-            $group = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')->find((int) $groupId);
+            $group = $entityManager->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')->find((int) $groupId);
 
-            $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findBy(
+            $armyList = $entityManager->getRepository('SitiowebArmyCreatorBundle:Army')->findBy(
                 array(
                     'user' => $this->getUser(),
                     'armyGroup' => $group
@@ -78,10 +79,12 @@ class ArmyController extends Controller
         } else {
             $group = null;
             $deleteGroupForm = null;
-            $armyList = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findBy(
-                array('user' => $this->getUser()),
-                array('updateDate' => 'DESC', 'id' => 'DESC')
-            );
+            $armyList = $entityManager->getRepository('SitiowebArmyCreatorBundle:Army')
+                ->findBy(
+                    array('user' => $this->getUser()),
+                    array('updateDate' => 'DESC', 'id' => 'DESC'),
+                    $request->query->has('all') ? null : 10
+                );
         }
 
         // getting armyList

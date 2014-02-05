@@ -21,6 +21,7 @@ army.list.title: 'Listes d''armée'
 army.list.group.edit: 'Editer le groupe'
 army.list.group.delete: 'Supprimer le groupe'
 army.list.no_group: 'Aucun groupe'
+army_list.group_list.last_armies: 'Dernieres listes'
 army_list.group_list.all_armies: 'toutes mes listes'
 '{0} army_list.group.army_number.zero|{1} army_list.group.army_number.one|]1,Inf] army_list.group.army_number.%count%': "{0} aucune armée|{1} une armée|]1,Inf] %count% armées\n                "
 army.list.new: 'Nouvelle liste'

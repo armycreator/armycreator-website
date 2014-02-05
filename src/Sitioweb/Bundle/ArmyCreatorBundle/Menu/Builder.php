@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * Builder
- * 
+ *
  * @uses ContainerAware
  */
 class Builder extends ContainerAware
@@ -48,11 +48,15 @@ class Builder extends ContainerAware
      */
     public function secondMainMenu(FactoryInterface $factory, array $options)
     {
-        $isAuth = $this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY');
+        $security = $this->container->get('security.context');
+        $isAuth = $security->isGranted('IS_AUTHENTICATED_FULLY');
 
         $menu = $factory->createItem('root');
 
-        $menu->addChild('main_menu.admin', array('route' => 'admin_game'));
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $menu->addChild('main_menu.admin', array('route' => 'admin_game'));
+        }
+
         if ($isAuth) {
             $menu->addChild('main_menu.my_collection', array('route' => 'user_collection'));
         }
@@ -147,8 +151,13 @@ class Builder extends ContainerAware
         $user = $this->container->get('security.context')->getToken()->getUser();
         $armyGroupList = $user->getArmyGroupList();
 
+        $menu->addChild('army_list.group_list.last_armies', array(
+            'route' => 'army_list',
+        ));
+
         $menu->addChild('army_list.group_list.all_armies', array(
-            'route' => 'army_list'
+            'route' => 'army_list',
+            'routeParameters' => ['all' => true]
         ));
 
         if (!$armyGroupList->isEmpty()) {

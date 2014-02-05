@@ -69,6 +69,7 @@ homepage_menu.my_army_list: 'my army list'
 breadcrumb.home: Home
 home.welcome_text: __home.welcome_text
 army_list.group_list.all_armies: 'All armies'
+army_list.group_list.last_armies: 'Last armies'
 breadcrumb.army_list: 'Army list'
 army_group.edit.name_label: Name
 breadcrumb.bbcode: BbCode

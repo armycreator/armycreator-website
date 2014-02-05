@@ -6,8 +6,10 @@ use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use JMS\SecurityExtraBundle\Annotation as Security;
 
@@ -180,8 +182,39 @@ class SquadController extends Controller
             'currentUnitType' => $entity->getUnitType(),
             'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'externalUser' => false
         );
     }
+
+    /* public moveAction() {{{ */
+    /**
+     * moveAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/move/{squadId}/{unitTypeId}", name="squad_move")
+     * @ParamConverter(
+     *     "squad",
+     *     class="SitiowebArmyCreatorBundle:Squad",
+     *     options={ "id" = "squadId" }
+     * )
+     * @ParamConverter(
+     *     "unitType",
+     *     class="SitiowebArmyCreatorBundle:UnitType",
+     *     options={ "id" = "unitTypeId" }
+     * )
+     */
+    public function moveAction(Squad $squad, UnitType $unitType)
+    {
+        $squad->setUnitType($unitType);
+        $this->get('doctrine')
+            ->getManager()
+            ->flush();
+
+        return new Response('1');
+    }
+
 
     /**
      * Edits an existing Squad entity.
