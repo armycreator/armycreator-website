@@ -17,6 +17,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyPreferencesType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyBbcodePreferencesType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference;
 
 /**
  * ArmyController
@@ -150,7 +151,7 @@ class ArmyController extends Controller
         $detailParams = $this->getDetailParams($slug);
 
         // get user preferences
-        $userPreferences = $this->getUser()->getPreferences();
+        $userPreferences = $this->getUser() ? $this->getUser()->getPreferences() : new UserPreference;
         $form = $this->createForm(new ArmyPreferencesType(), $userPreferences);
 
         $userPreferencesParams = $this->getUserPreferencesParams($form, $userPreferences);
@@ -235,6 +236,10 @@ class ArmyController extends Controller
         // security
         if ($this->getUser() != $army->getUser() && !$army->getIsShared()) {
             throw new AccessDeniedException('Army not shared');
+        } elseif ($this->getUser() != $army->getUser()) {
+            $externalUser = true;
+        } else {
+            $externalUser = false;
         }
 
         // get unit type list
@@ -266,6 +271,7 @@ class ArmyController extends Controller
 
         return array(
                 'army' => $army,
+                'externalUser' => $externalUser,
                 'unitTypeList' => $unitTypeList,
                 'deleteSquadListForm' => $deleteSquadListForm,
                 'deleteForm' => $deleteForm->createView()

@@ -3,7 +3,7 @@
 {% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
 
 {% block title %}
-    {{ army.name }} - 
+    {{ army.name }} -
     {{ army.user.username }} -
     {{ army.breed.name }} -
     {{ army.breed.game.name }}
@@ -27,10 +27,12 @@
             <i class="icon-comment"></i>
             {{ 'army.detail.bb_code'|trans }}
         </a>
-        <a href="#" class="acButton">
-            <i class="icon-share"></i>
-            {{ 'army.detail.share'|trans }}
-        </a>
+        {% if not(externalUser) %}
+            <a href="#" class="acButton">
+                <i class="icon-share"></i>
+                {{ 'army.detail.share'|trans }}
+            </a>
+        {% endif %}
     </aside>
 
     <figure class="breed txtcenter">
@@ -43,7 +45,7 @@
 
     <div class="armyDescription">
         <h1 class="name">
-            {{ army.name }} | 
+            {{ army.name }} |
             {{ army.breed.name }}
 
             <a href="{{ path('army_edit', { 'slug' : army.slug }) }}" class="acButton acButtonSmall">
@@ -128,7 +130,9 @@
                     {{ form_widget(form) }}
                     <p class="txtright">
                         <button type="submit" class="acButton">{{ 'army.bbcode.apply'|trans }}</button>
-                        <button type="submit" class="acButton" name="saveAsDefault" value="1">{{ 'army.bbcode.apply_and_save'|trans }}</button>
+                        {% if not(externalUser) %}
+                            <button type="submit" class="acButton" name="saveAsDefault" value="1">{{ 'army.bbcode.apply_and_save'|trans }}</button>
+                        {% endif %}
                     </p>
                 </form>
             {% endif %}
@@ -167,7 +171,7 @@
                                                 {% for squadLine in squad.squadLineList %}
                                                     <div class="squadLine">
                                                         <h5>
-                                                            {% set unitNumber = app.user.getUnitNumber(squadLine.unit) %}
+                                                            {% set unitNumber = externalUser ? null : app.user.getUnitNumber(squadLine.unit) %}
                                                             {% if  not(unitNumber is null) and unitNumber < army.getUnitNumber(squadLine.unit) %}
                                                                 <i class="icon-warning-sign soft" title="{{ "army.detail.missing_units"|trans }}"></i>
                                                             {% endif %}
@@ -206,45 +210,49 @@
                                                 {% endfor %}
                                             </div>
 
-                                            <aside class="actions">
-                                                <a href="javascript:;" class="acButton">
-                                                    <i class="icon-move"></i>
-                                                </a>
-
-                                                <div class="right">
-                                                    <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
-                                                        <i class="icon-pencil"></i>
+                                            {% if not(externalUser) %}
+                                                <aside class="actions">
+                                                    <a href="javascript:;" class="acButton">
+                                                        <i class="icon-move"></i>
                                                     </a>
 
-                                                    <form
-                                                        action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}"
-                                                        method="post"
-                                                        class="inbl"
-                                                        onsubmit="javascript:return confirm('{% trans %}army.detail.squad.delete{% endtrans %}');"
-                                                    >
-                                                        {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
-                                                        {{ form_widget(deleteSquadForm.createView) }}
-                                                        <button class="acButton" type="submit">
-                                                            <i class="icon-remove"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </aside>
+                                                    <div class="right">
+                                                        <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
+                                                            <i class="icon-pencil"></i>
+                                                        </a>
+
+                                                        <form
+                                                            action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}"
+                                                            method="post"
+                                                            class="inbl"
+                                                            onsubmit="javascript:return confirm('{% trans %}army.detail.squad.delete{% endtrans %}');"
+                                                        >
+                                                            {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
+                                                            {{ form_widget(deleteSquadForm.createView) }}
+                                                            <button class="acButton" type="submit">
+                                                                <i class="icon-remove"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </aside>
+                                            {% endif %}
                                         </div>
                                 {% endfor %}
 
-                                <div>
-                                    <a
-                                        href="{{
-                                            path('squad_new',
-                                            {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug, 'breedSlug' : tmp.unitType.breed.slug})
-                                        }}"
-                                        class="acButton acButtonBig"
-                                    >
-                                        <i class="icon-plus"></i>
-                                        {{ 'army.detail.squad.add'|trans }}
-                                    </a>
-                                </div>
+                                {% if not(externalUser) %}
+                                    <div>
+                                        <a
+                                            href="{{
+                                                path('squad_new',
+                                                {'armySlug' : army.slug, 'unitTypeSlug' : tmp.unitType.slug, 'breedSlug' : tmp.unitType.breed.slug})
+                                            }}"
+                                            class="acButton acButtonBig"
+                                        >
+                                            <i class="icon-plus"></i>
+                                            {{ 'army.detail.squad.add'|trans }}
+                                        </a>
+                                    </div>
+                                {% endif %}
                             </section>
                         </div>
                     </section>
