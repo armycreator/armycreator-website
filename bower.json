@@ -1,0 +1,8 @@
+{
+  "name": "ArmyCreator",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "~1.10.0",
+    "elusive-iconfont": "2.0"
+  }
+}
