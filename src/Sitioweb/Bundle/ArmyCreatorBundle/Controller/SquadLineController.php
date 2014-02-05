@@ -15,7 +15,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 
 /**
  * SquadController
- * 
+ *
  * @uses Controller
  *
  * @Route("/army/{armySlug}/squadLine")
@@ -57,7 +57,7 @@ class SquadLineController extends Controller
             $urlParams
         );
         $this->get("apy_breadcrumb_trail")->add($unitGroup->getName());
-        
+
         // squad
         $squad = new Squad();
         $squad->mapUnitGroup($unitGroup, true);
@@ -69,6 +69,7 @@ class SquadLineController extends Controller
             'breed' => $army->getBreed(),
             'currentUnitType' => $unitGroup->getUnitType(),
             'form' => $form->createView(),
+            'externalUser' => false,
         );
     }
 

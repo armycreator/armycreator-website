@@ -16,20 +16,20 @@
 <header>
     <aside class="action">
         <a href="javascript:window.print();" class="acButton" accesskey="p" title="{{ 'army.detail.print'|trans }}">
-            <i class="icon-print"></i>
+            <i class="el-icon-print"></i>
             {{ 'army.detail.print'|trans }}
         </a>
         <a href="{{ path('army_detail_pdf', { 'slug' : army.slug } ) }}" class="acButton" accesskey="f" title="{{ 'army.detail.pdf'|trans }}">
-            <i class="icon-file"></i>
+            <i class="el-icon-file"></i>
             {{ 'army.detail.pdf'|trans }}
         </a>
         <a href="{{ path('army_detail_bbcode', { 'slug' : army.slug } ) }}" class="acButton" accesskey="b" title="{{ 'army.detail.bb_code'|trans }}">
-            <i class="icon-comment"></i>
+            <i class="el-icon-comment"></i>
             {{ 'army.detail.bb_code'|trans }}
         </a>
         {% if not(externalUser) %}
             <a href="#" class="acButton">
-                <i class="icon-share"></i>
+                <i class="el-icon-share"></i>
                 {{ 'army.detail.share'|trans }}
             </a>
         {% endif %}
@@ -49,7 +49,7 @@
             {{ army.breed.name }}
 
             <a href="{{ path('army_edit', { 'slug' : army.slug }) }}" class="acButton acButtonSmall">
-                <i class="icon-pencil"></i>
+                <i class="el-icon-pencil"></i>
             </a>
 
             {% if deleteForm is defined %}
@@ -61,7 +61,7 @@
                 >
                     {{ form_widget(deleteForm) }}
                     <button type="submit" class="acButton acButtonSmall">
-                        <i class="icon-remove"></i>
+                        <i class="el-icon-remove"></i>
                     </button>
                 </form>
             {% endif %}
@@ -173,7 +173,7 @@
                                                         <h5>
                                                             {% set unitNumber = externalUser ? null : app.user.getUnitNumber(squadLine.unit) %}
                                                             {% if  not(unitNumber is null) and unitNumber < army.getUnitNumber(squadLine.unit) %}
-                                                                <i class="icon-warning-sign soft" title="{{ "army.detail.missing_units"|trans }}"></i>
+                                                                <i class="el-icon-warning-sign soft" title="{{ "army.detail.missing_units"|trans }}"></i>
                                                             {% endif %}
 
                                                             {{ squadLine.number }} {{ squadLine.unit.name }}
@@ -213,12 +213,12 @@
                                             {% if not(externalUser) %}
                                                 <aside class="actions">
                                                     <a href="javascript:;" class="acButton">
-                                                        <i class="icon-move"></i>
+                                                        <i class="el-icon-move"></i>
                                                     </a>
 
                                                     <div class="right">
                                                         <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
-                                                            <i class="icon-pencil"></i>
+                                                            <i class="el-icon-pencil"></i>
                                                         </a>
 
                                                         <form
@@ -230,7 +230,7 @@
                                                             {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
                                                             {{ form_widget(deleteSquadForm.createView) }}
                                                             <button class="acButton" type="submit">
-                                                                <i class="icon-remove"></i>
+                                                                <i class="el-icon-remove"></i>
                                                             </button>
                                                         </form>
                                                     </div>
@@ -248,7 +248,7 @@
                                             }}"
                                             class="acButton acButtonBig"
                                         >
-                                            <i class="icon-plus"></i>
+                                            <i class="el-icon-plus"></i>
                                             {{ 'army.detail.squad.add'|trans }}
                                         </a>
                                     </div>

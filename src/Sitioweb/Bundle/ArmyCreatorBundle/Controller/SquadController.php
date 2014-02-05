@@ -18,7 +18,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 
 /**
  * SquadController
- * 
+ *
  * @uses Controller
  *
  * @Route("/army/{armySlug}/squad")
@@ -43,7 +43,7 @@ class SquadController extends Controller
         if ($army === null) {
             throw new NotFoundHttpException('Army not found');
         }
-        
+
         // getting breed
         $breed = $em->getRepository('SitiowebArmyCreatorBundle:Breed')
                     ->findOneBySlug($breedSlug);
@@ -77,6 +77,7 @@ class SquadController extends Controller
             'army' => $army,
             'breed' => $breed,
             'currentUnitType' => $unitType,
+            'externalUser' => false
         );
     }
 
@@ -100,16 +101,16 @@ class SquadController extends Controller
         if ($army === null) {
             throw new NotFoundHttpException('Army not found');
         }
-        
+
         // getting unit group
         $unitGroup = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitGroup')->find($unitGroupId);
         if ($unitGroup === null) {
             throw new NotFoundHttpException('Unit group not found');
         }
-       
+
         $entity  = new Squad();
         $entity->mapUnitGroup($unitGroup, true);
-        
+
 
         $form    = $this->createForm(new SquadType($unitGroup->getUnitType()->getBreed()), $entity);
         $form->bind($request);
@@ -153,7 +154,7 @@ class SquadController extends Controller
         if ($army === null) {
             throw new NotFoundHttpException('Army not found');
         }
-        
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitiowebArmyCreatorBundle:Squad')->find($id);
@@ -215,7 +216,7 @@ class SquadController extends Controller
 
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getArmy()->getSlug())));
         }
-        
+
 
         return array(
             'army'      => $entity->getArmy(),

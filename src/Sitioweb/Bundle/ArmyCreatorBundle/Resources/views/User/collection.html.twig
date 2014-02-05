@@ -9,7 +9,7 @@
         <ul class="inline inlineBig collection">
             {% for breed in game.availableBreedList %}
                 {% set contained = app.user.collectionList.contains(breed) %}
- 
+
                 <li class="w20{{ contained ? "" : " not-contained" }}">
                     <figure class="breed left mr1">
                         {{ breedImage(breed)|raw }}
@@ -24,7 +24,7 @@
                             class="acButton"
                             title="{{ "user.collection.remove"|trans }}"
                         >
-                            <i class="icon-remove"></i>
+                            <i class="el-icon-remove"></i>
                         </a>
                     {% else %}
                         {{ breed.name }}
@@ -46,7 +46,7 @@
 {% block stylesheets %}
     {{ parent() }}
 
-	{% stylesheets 
+	{% stylesheets
 		"@SitiowebArmyCreatorBundle/Resources/public/less/collection.less"
 		filter="less,cssrewrite" output="css/collection.css" %}
 		 <link rel="stylesheet" href="{{ asset_url }}" />

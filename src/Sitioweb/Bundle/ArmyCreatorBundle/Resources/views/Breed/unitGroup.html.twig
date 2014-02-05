@@ -25,7 +25,7 @@
                                     {% trans with { "%pts%":unitGroup.points } %}breed.show.pts.%pts%{% endtrans %}
                                 </span>
                                 <a href="{{ path("unitgroup_edit", params + { "unitGroupSlug": unitGroup.slug}) }}" class="acButton acButtonSmall">
-                                    <i class="icon-pencil"></i>
+                                    <i class="el-icon-pencil"></i>
                                 </a>
                             </h4>
                         </div>
@@ -34,7 +34,7 @@
                                 <div class="squadLine">
                                     <h5>
                                         {% if unitHasUnitGroup.mainUnit %}
-                                            <span class="icon-star soft"></span>
+                                            <span class="el-icon-star soft"></span>
                                         {% endif %}
                                         {{ unitHasUnitGroup.unitNumber }}
                                         {{ unitHasUnitGroup.unit.name }}
@@ -42,14 +42,14 @@
                                             {% trans with { "%pts%":unitHasUnitGroup.unit.points } %}breed.show.pts.%pts%{% endtrans %}
                                         </span>
                                         <a href="{{ path("unithasunitgroup_edit", params + { "id": unitHasUnitGroup.id}) }}" class="acButton acButtonSmall">
-                                            <i class="icon-pencil"></i>
+                                            <i class="el-icon-pencil"></i>
                                         </a>
                                     </h5>
                                 </div>
                             {% endfor %}
                             <div class="squadLine">
                                 <a href="{{ path("unithasunitgroup_new", params + {"group": unitGroup.slug}) }}" class="acButton">
-                                    <i class="icon-plus"></i>
+                                    <i class="el-icon-plus"></i>
                                 </a>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                 {% endfor %}
                 <div class="squad">
                     <a href="{{ path("unitgroup_new", { "breed": breed.slug, "game": breed.game.code, "unitTypeSlug": unitType.slug}) }}" class="acButton">
-                        <i class="icon-plus"></i>
+                        <i class="el-icon-plus"></i>
                         {{ "breed.show.unitgroup.new"|trans }}
                     </a>
                 </div>

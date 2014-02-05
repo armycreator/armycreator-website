@@ -39,7 +39,8 @@
 {% endblock %}
 
 {% block javascripts %}
-	{% javascripts '@SitiowebExternalJsBundle/Resources/public/js/*.js'
+{% javascripts
+        '@SitiowebExternalJsBundle/Resources/public/jquery/jquery.min.js'
         output='js/external.js'
     %}
 		 <script src="{{ asset_url }}"></script>
@@ -59,7 +60,7 @@
 {% block stylesheets %}
 	{% stylesheets
 		'@SitiowebArmyCreatorBundle/Resources/public/less/knacss.less'
-		'../vendor/aristath/elusive-iconfont/less/elusive-webfont.less'
+        'bundles/sitiowebexternaljs/elusive-iconfont/less/elusive-webfont.less'
 		filter='less,cssrewrite' output='css/external.css' %}
 		 <link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}

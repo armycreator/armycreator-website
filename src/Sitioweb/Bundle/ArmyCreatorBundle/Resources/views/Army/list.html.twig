@@ -14,13 +14,13 @@
     <div>
         {% if group %}
             <a href="{{ path('army_group_edit', {'id' : group.id} ) }}" class="acButton right ml1">
-                <i class="icon-pencil"></i>
+                <i class="el-icon-pencil"></i>
                 {{ "army.list.group.edit"|trans }}
             </a>
             <form action="{{ path('army_group_delete', { 'id': group.id }) }}" method="post" class="right">
                 {{ form_widget(deleteGroupForm.createView) }}
                 <button type="submit" class="acButton normalWrap">
-                    <i class="icon-remove"></i>
+                    <i class="el-icon-remove"></i>
                     {{ "army.list.group.delete"|trans }}
                 </button>
             </form>
@@ -85,7 +85,7 @@
                     </td>
                     <td>
                         <a href="{{ path('army_edit', {'slug' : army.slug}) }}" class="acButton">
-                            <i class="icon-pencil"></i>
+                            <i class="el-icon-pencil"></i>
                             {{ "army.list.edit"|trans }}
                         </a>
 
@@ -93,7 +93,7 @@
                             {% set deleteArmyForm = deleteArmyListForm[army.id] %}
                             {{ form_widget(deleteArmyForm.createView) }}
                             <button class="acButton" type="submit" onclick="return confirm('{{ "army.list.delete_confirm"|trans }}');">
-                                <i class="icon-remove"></i>
+                                <i class="el-icon-remove"></i>
                                 {{ "army.list.delete"|trans }}
                             </button>
                         </form>
@@ -111,7 +111,7 @@
 
 {% block createButton %}
     <a href="{{ path('army_new') }}" class="acButton acButtonBig mt2" title="{{ "army.list.new"|trans }}">
-        <i class="icon-plus"></i>
+        <i class="el-icon-plus"></i>
         {{ "army.list.new"|trans }}
     </a>
 {% endblock %}

@@ -2,7 +2,7 @@
     {% block websiteHeaderBar %}
         <div class="headerBar">
             <a href="{{ path('homepage') }}" title="Army Creator">
-                <i class="icon-home"></i>
+                <i class="el-icon-home"></i>
             </a>
             |
             {{ "header.welcome"|trans }}
@@ -13,7 +13,7 @@
                     |
                     <a href="/forum/ucp.php?mode=logout" title="{{ "header.logout"|trans }}">
                         {{ "header.logout"|trans }}
-                        <i class="icon-off"></i>
+                        <i class="el-icon-off"></i>
                     </a>
                 {% else %}
                     <a href="/forum/ucp.php?mode=login" title="{{ "header.login"|trans }}">
@@ -24,9 +24,9 @@
                         {{ "header.sign_up"|trans }}
                     </a>
                 {% endif %}
-                | 
+                |
                 <a href="#">
-                    <i class="icon-question-sign"></i>
+                    <i class="el-icon-question-sign"></i>
                 </a>
             </span>
         </div>

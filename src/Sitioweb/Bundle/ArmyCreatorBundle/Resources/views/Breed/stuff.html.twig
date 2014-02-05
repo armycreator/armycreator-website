@@ -22,21 +22,21 @@
                 <h4>
                     {{ weapon.name }}
                     <a href="{{ path("weapon_edit", params + { "id": weapon.id}) }}">
-                        <i class="icon-pencil"></i>
+                        <i class="el-icon-pencil"></i>
                     </a>
                 </h4>
                 <div>
-                    {{ "breed.weapon_list.type"|trans }}: 
+                    {{ "breed.weapon_list.type"|trans }}:
                     {{ weapon.type }}
                 </div>
                 <div>
-                    {{ "breed.weapon_list.range"|trans }}: 
+                    {{ "breed.weapon_list.range"|trans }}:
                     {{ weapon.range }}
                     |
-                    {{ "breed.weapon_list.strenght"|trans }}: 
+                    {{ "breed.weapon_list.strenght"|trans }}:
                     {{ weapon.strenght }}
                     |
-                    {{ "breed.weapon_list.armorPenetration"|trans }}: 
+                    {{ "breed.weapon_list.armorPenetration"|trans }}:
                     {{ weapon.armorPenetration }}
                 </div>
             </div>
@@ -63,7 +63,7 @@
                 <h4>
                     {{ equipement.name }}
                     <a href="{{ path("equipement_edit", params + { "id": equipement.id}) }}">
-                        <i class="icon-pencil"></i>
+                        <i class="el-icon-pencil"></i>
                     </a>
                 </h4>
                 <div>
