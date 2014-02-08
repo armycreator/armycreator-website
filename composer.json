@@ -25,7 +25,6 @@
 
         "apy/breadcrumbtrail-bundle":"dev-master",
 
-        "kriswallsmith/assetic":"1.1.*@dev",
         "knplabs/knp-menu":"2.0.*@dev",
         "knplabs/knp-menu-bundle":"2.0.*@dev",
         "mpdf/mpdf" : "5.6.*",
