@@ -1,7 +1,7 @@
 {% extends 'SitiowebArmyCreatorBundle:Army:detail.html.twig' %}
 
 {% block title %}
-    {{ "army.bbcode.title"|trans }} - 
+    {{ "army.bbcode.title"|trans }} -
     {{ parent() }}
 {% endblock %}
 
@@ -105,3 +105,7 @@
 </p>
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+     <script src="/bundles/sitiowebexternaljs/jscolor/jscolor.js"></script>
+{% endblock %}

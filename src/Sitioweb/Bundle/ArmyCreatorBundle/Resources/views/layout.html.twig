@@ -46,8 +46,6 @@
     %}
 		 <script src="{{ asset_url }}"></script>
 	{% endjavascripts %}
-     <script src="/bundles/sitiowebexternaljs/jscolor/jscolor.js"></script>
-
 
 	{% javascripts
         'js/fos_js_routes.js'
@@ -61,12 +59,14 @@
 {% endblock %}
 
 {% block stylesheets %}
+{#'bundles/sitiowebexternaljs/elusive-iconfont/css/elusive-webfont.css' #}
 	{% stylesheets
 		'@SitiowebArmyCreatorBundle/Resources/public/less/knacss.less'
-        'web/bundles/sitiowebexternaljs/elusive-iconfont/css/elusive-webfont.css'
 		filter='cssrewrite' output='css/external.css' %}
 		 <link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
+
+    <link rel="stylesheet" href="/bundles/sitiowebexternaljs/elusive-iconfont/css/elusive-webfont.css" />
 
 	{% stylesheets
 		'@SitiowebArmyCreatorBundle/Resources/public/less/override.less'
