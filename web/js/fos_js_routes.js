@@ -1,0 +1,1 @@
+fos.Router.setData({"base_url":"","routes":{"squad_move":{"tokens":[["variable","\/","[^\/]++","unitTypeSlug"],["variable","\/","[^\/]++","breedSlug"],["variable","\/","[^\/]++","squadId"],["text","\/squad\/move"],["variable","\/","[^\/]++","armySlug"],["text","\/army"]],"defaults":[],"requirements":[],"hosttokens":[]}},"prefix":"","host":"localhost","scheme":"http"});
