@@ -846,9 +846,9 @@ class DefaultController extends Controller
             $entity->setShowUnitPoints((int) $row['showUnitePoints']);
             $entity->setShowStuffPoints((int) $row['showEquipementPoints']);
             $entity->setSeparator(utf8_encode($row['separateur']));
-            $entity->setColorSquadType($row['colorTypeEscouade']);
-            $entity->setColorSquad($row['colorEscouade']);
-            $entity->setColorSquadDetail($row['colorDetailEscouade']);
+            $entity->setColorSquadType($this->colorHex($row['colorTypeEscouade']));
+            $entity->setColorSquad($this->colorHex($row['colorEscouade']));
+            $entity->setColorSquadDetail($this->colorHex($row['colorDetailEscouade']));
             $entity->setShowNbIfAlone((int) $row['showAloneBeforeUnite']);
             $entity->setShowUnitCarac((int) $row['showCaracUnite']);
             $entity->setShowPersonnalName((int) $row['showNomPerso']);
@@ -866,6 +866,42 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('import_index'));
         }
     }
+
+    /**
+     * colorHex
+     *
+     * @param mixed $color
+     * @access private
+     * @return void
+     */
+    private function colorHex($color)
+    {
+        if (substr($color, 0, 1) == '#') {
+            return $color;
+        }
+
+        switch ($color) {
+            case 'blue':
+                return '#0000FF';
+            case 'red':
+                return '#ff0000';
+            case 'orange':
+                return '#ffa500';
+            case 'green':
+                return '#00ff00';
+            case 'black':
+                return '#000000';
+            case 'purple':
+                return '#800080';
+            case 'darkgreen':
+                return '#006400';
+            case   'brown':
+                return '#a52a2a';
+            default:
+                return '#000000';
+        }
+    }
+
 
     /**
      * importArmyGroupAction

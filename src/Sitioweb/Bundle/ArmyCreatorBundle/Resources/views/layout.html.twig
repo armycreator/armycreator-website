@@ -41,13 +41,16 @@
 {% block javascripts %}
 {% javascripts
         '@SitiowebExternalJsBundle/Resources/public/jquery/jquery.min.js'
+        '%kernel.root_dir%/../vendor/friendsofsymfony/jsrouting-bundle/FOS/JsRoutingBundle/Resources/public/js/router.js'
         output='js/external.js'
     %}
 		 <script src="{{ asset_url }}"></script>
 	{% endjavascripts %}
+     <script src="/bundles/sitiowebexternaljs/jscolor/jscolor.js"></script>
 
 
 	{% javascripts
+        'js/fos_js_routes.js'
         '@SitiowebArmyCreatorBundle/Resources/public/js/squadLine.js'
         '@SitiowebArmyCreatorBundle/Resources/public/js/bbcode.js'
         '@SitiowebArmyCreatorBundle/Resources/public/js/googleAnalytics.js'

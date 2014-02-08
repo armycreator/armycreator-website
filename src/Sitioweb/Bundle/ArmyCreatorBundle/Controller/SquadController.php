@@ -11,8 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation as Security;
 
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
@@ -186,31 +188,81 @@ class SquadController extends Controller
         );
     }
 
-    /* public moveAction() {{{ */
     /**
      * moveAction
      *
      * @access public
      * @return void
      *
-     * @Route("/move/{squadId}/{unitTypeId}", name="squad_move")
+     * @Route(
+     *  "/move/{squadId}/{breedSlug}/{unitTypeSlug}",
+     *  name="squad_move",
+     *  options={"expose": true}
+     * )
      * @ParamConverter(
      *     "squad",
      *     class="SitiowebArmyCreatorBundle:Squad",
      *     options={ "id" = "squadId" }
      * )
      * @ParamConverter(
-     *     "unitType",
-     *     class="SitiowebArmyCreatorBundle:UnitType",
-     *     options={ "id" = "unitTypeId" }
+     *     "breed",
+     *     class="SitiowebArmyCreatorBundle:Breed",
+     *     options={ "mapping": { "breedSlug": "slug" } }
      * )
      */
-    public function moveAction(Squad $squad, UnitType $unitType)
+    public function moveAction(Squad $squad, Breed $breed, $unitTypeSlug)
     {
-        $squad->setUnitType($unitType);
-        $this->get('doctrine')
-            ->getManager()
-            ->flush();
+        $army = $squad->getArmy();
+        if ($this->getUser() != $army->getUser()) {
+            throw new AccessDeniedException();
+        }
+
+         $em = $this->get('doctrine')->getManager();
+        // get unittype
+        $unitType = $em
+            ->getRepository('SitiowebArmyCreatorBundle:UnitType')
+            ->findOneBy(
+                [
+                    'breed' => $breed,
+                    'slug' => $unitTypeSlug
+                ]
+            );
+
+        if (!$unitType) {
+            return $this->createNotFoundException('UnitType not found');
+        }
+
+         $squadList = $em
+             ->getRepository('SitiowebArmyCreatorBundle:Squad')
+             ->findBy(
+                 [
+                     'army' => $army,
+                    'unitType' => $unitType
+                ],
+                [
+                    'position' => 'ASC'
+                ]
+             );
+
+        $position = (int) $this->get('request')->query->get('position');
+
+         $cpt = $position == 0 ? 1 : 0;
+
+         foreach ($squadList as $tmpSquad) {
+             if ($tmpSquad != $squad) {
+                 $tmpSquad->setPosition($cpt);
+                 $cpt++;
+             }
+
+             if ($cpt == $position) {
+                 $cpt++;
+             }
+         }
+
+        $squad->setUnitType($unitType)
+             ->setPosition($position);
+
+        $em->flush();
 
         return new Response('1');
     }

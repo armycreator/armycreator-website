@@ -115,7 +115,7 @@ class ArmyController extends Controller
     public function detailPdfAction($slug)
     {
         $params = $this->getDetailParams($slug) +
-                    array('preferences' => $this->getUser()->getPreferences());
+                    array('preferences' => $this->getUserPreference());
         $html = $this->renderView(
             'SitiowebArmyCreatorBundle:Army:detail.html.twig',
             $params
@@ -154,7 +154,7 @@ class ArmyController extends Controller
         $detailParams = $this->getDetailParams($slug);
 
         // get user preferences
-        $userPreferences = $this->getUser() ? $this->getUser()->getPreferences() : new UserPreference;
+        $userPreferences = $this->getUserPreference();
         $form = $this->createForm(new ArmyPreferencesType(), $userPreferences);
 
         $userPreferencesParams = $this->getUserPreferencesParams($form, $userPreferences);
@@ -175,7 +175,7 @@ class ArmyController extends Controller
         if ($request->getMethod() === 'POST') {
             $form->bind($request);
             if (!$form->isValid()) {
-                $userPreferences = $this->getUser()->getPreferences();
+                $userPreferences = $this->getUserPreference();
             } elseif ($request->request->get('saveAsDefault') == 1) {
                 // updating user general preferences
                 $em = $this->get('doctrine')->getManager();
@@ -207,7 +207,7 @@ class ArmyController extends Controller
         $detailParams = $this->getDetailParams($slug);
 
         // get user preferences
-        $userPreferences = $this->getUser()->getPreferences();
+        $userPreferences = $this->getUserPreference();
         $form = $this->createForm(new ArmyBbcodePreferencesType(), $userPreferences);
 
         $userPreferencesParams = $this->getUserPreferencesParams($form, $userPreferences);
@@ -449,5 +449,25 @@ class ArmyController extends Controller
         return $this->redirect($this->generateUrl('army_list'));
     }
 
+    /**
+     * getUserPreference
+     *
+     * @access private
+     * @return UserPreference
+     */
+    private function getUserPreference()
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            return new UserPreference;
+        }
+
+        $pref = $user->getPreferences();
+        if ($pref) {
+            return $pref;
+        } else {
+            return new UserPreference;
+        }
+    }
 }
 

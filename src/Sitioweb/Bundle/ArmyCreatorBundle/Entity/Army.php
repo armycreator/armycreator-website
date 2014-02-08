@@ -39,7 +39,7 @@ class Army
 
     /**
      * slug
-     * 
+     *
      * @var string
      * @access private
      *
@@ -92,7 +92,7 @@ class Army
 
     /**
      * squadList
-     * 
+     *
      * @var array<Squad>
      * @access private
      *
@@ -103,7 +103,7 @@ class Army
 
     /**
      * squadListByType
-     * 
+     *
      * @var array
      * @access private
      */
@@ -111,7 +111,7 @@ class Army
 
     /**
      * breed
-     * 
+     *
      * @var Breed
      * @access private
      *
@@ -122,7 +122,7 @@ class Army
 
     /**
      * armyGroup
-     * 
+     *
      * @var ArmyGroup
      * @access private
      *
@@ -132,7 +132,7 @@ class Army
 
     /**
      * user
-     * 
+     *
      * @var User
      * @access private
      *
@@ -142,7 +142,7 @@ class Army
 
     /**
      * wantedUnitList
-     * 
+     *
      * @var array
      * @access private
      */
@@ -178,7 +178,7 @@ class Army
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -194,14 +194,14 @@ class Army
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return string 
+     * @return string
      */
     public function getStatus()
     {
@@ -217,14 +217,14 @@ class Army
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -264,14 +264,14 @@ class Army
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -287,14 +287,14 @@ class Army
     public function setWantedPoints($wantedPoints)
     {
         $this->wantedPoints = $wantedPoints;
-    
+
         return $this;
     }
 
     /**
      * Get wantedPoints
      *
-     * @return integer 
+     * @return integer
      */
     public function getWantedPoints()
     {
@@ -310,14 +310,14 @@ class Army
     public function setPoints($points)
     {
         $this->points = $points;
-    
+
         return $this;
     }
 
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {
@@ -333,14 +333,14 @@ class Army
     public function setIsShared($isShared)
     {
         $this->isShared = $isShared;
-    
+
         return $this;
     }
 
     /**
      * Get isShared
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsShared()
     {
@@ -356,14 +356,14 @@ class Army
     public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
-    
+
         return $this;
     }
 
     /**
      * Get createDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreateDate()
     {
@@ -379,14 +379,14 @@ class Army
     public function setUpdateDate($updateDate)
     {
         $this->updateDate = $updateDate;
-    
+
         return $this;
     }
 
     /**
      * Get updateDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdateDate()
     {
@@ -402,7 +402,7 @@ class Army
     public function addSquadList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squadList)
     {
         $this->squadList[] = $squadList;
-    
+
         return $this;
     }
 
@@ -419,7 +419,7 @@ class Army
     /**
      * Get squadList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSquadList()
     {
@@ -441,7 +441,8 @@ class Army
 
             foreach ($squadList as $squad) {
                 $tmpUnitType = $squad->getUnitType();
-                
+
+                // add external breed unit types
                 if (!in_array($tmpUnitType, $unitTypeList)) {
                     $unitTypeList[] = $tmpUnitType;
                 }
@@ -478,14 +479,14 @@ class Army
     public function setBreed(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breed = null)
     {
         $this->breed = $breed;
-    
+
         return $this;
     }
 
     /**
      * Get breed
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed
      */
     public function getBreed()
     {
@@ -501,14 +502,14 @@ class Army
     public function setArmyGroup(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\ArmyGroup $armyGroup = null)
     {
         $this->armyGroup = $armyGroup;
-    
+
         return $this;
     }
 
     /**
      * Get armyGroup
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\ArmyGroup 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\ArmyGroup
      */
     public function getArmyGroup()
     {
@@ -524,14 +525,14 @@ class Army
     public function setUser(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\User 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\User
      */
     public function getUser()
     {

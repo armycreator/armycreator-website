@@ -100,7 +100,7 @@ class UserPreference
 
     /**
      * user
-     * 
+     *
      * @var User
      * @access private
      *
@@ -111,7 +111,7 @@ class UserPreference
 
     /**
      * preferedBreed
-     * 
+     *
      * @var Breed
      * @access private
 	 *
@@ -119,11 +119,31 @@ class UserPreference
      */
     private $breed;
 
+    /**
+     * __construct
+     *
+     * @access public
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->showDefaultStuff = true;
+        $this->showStuffDescription = false;
+        $this->showUnitPoints = true;
+        $this->showStuffPoints = true;
+        $this->separator = ', ';
+        $this->colorSquadType = '#0000ff';
+        $this->colorSquad = '#ff0000';
+        $this->colorSquadDetail = '#00a650';
+        $this->showNbIfAlone = true;
+        $this->showUnitCarac = true;
+        $this->showPersonnalName = true;
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -139,14 +159,14 @@ class UserPreference
     public function setShowDefaultStuff($showDefaultStuff)
     {
         $this->showDefaultStuff = $showDefaultStuff;
-    
+
         return $this;
     }
 
     /**
      * Get showDefaultStuff
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getShowDefaultStuff()
     {
@@ -162,14 +182,14 @@ class UserPreference
     public function setShowStuffDescription($showStuffDescription)
     {
         $this->showStuffDescription = $showStuffDescription;
-    
+
         return $this;
     }
 
     /**
      * Get showStuffDescription
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getShowStuffDescription()
     {
@@ -185,14 +205,14 @@ class UserPreference
     public function setShowUnitPoints($showUnitPoints)
     {
         $this->showUnitPoints = $showUnitPoints;
-    
+
         return $this;
     }
 
     /**
      * Get showUnitPoints
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getShowUnitPoints()
     {
@@ -208,14 +228,14 @@ class UserPreference
     public function setShowStuffPoints($showStuffPoints)
     {
         $this->showStuffPoints = $showStuffPoints;
-    
+
         return $this;
     }
 
     /**
      * Get showStuffPoints
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getShowStuffPoints()
     {
@@ -231,14 +251,14 @@ class UserPreference
     public function setSeparator($separator)
     {
         $this->separator = $separator;
-    
+
         return $this;
     }
 
     /**
      * Get separator
      *
-     * @return string 
+     * @return string
      */
     public function getSeparator()
     {
@@ -254,14 +274,14 @@ class UserPreference
     public function setColorSquadType($colorSquadType)
     {
         $this->colorSquadType = $colorSquadType;
-    
+
         return $this;
     }
 
     /**
      * Get colorSquadType
      *
-     * @return string 
+     * @return string
      */
     public function getColorSquadType()
     {
@@ -277,14 +297,14 @@ class UserPreference
     public function setColorSquad($colorSquad)
     {
         $this->colorSquad = $colorSquad;
-    
+
         return $this;
     }
 
     /**
      * Get colorSquad
      *
-     * @return string 
+     * @return string
      */
     public function getColorSquad()
     {
@@ -300,14 +320,14 @@ class UserPreference
     public function setColorSquadDetail($colorSquadDetail)
     {
         $this->colorSquadDetail = $colorSquadDetail;
-    
+
         return $this;
     }
 
     /**
      * Get colorSquadDetail
      *
-     * @return string 
+     * @return string
      */
     public function getColorSquadDetail()
     {
@@ -323,14 +343,14 @@ class UserPreference
     public function setShowNbIfAlone($showNbIfAlone)
     {
         $this->showNbIfAlone = $showNbIfAlone;
-    
+
         return $this;
     }
 
     /**
      * Get showNbIfAlone
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getShowNbIfAlone()
     {
@@ -346,14 +366,14 @@ class UserPreference
     public function setShowUnitCarac($showUnitCarac)
     {
         $this->showUnitCarac = $showUnitCarac;
-    
+
         return $this;
     }
 
     /**
      * Get showUnitCarac
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getShowUnitCarac()
     {
@@ -369,14 +389,14 @@ class UserPreference
     public function setShowPersonnalName($showPersonnalName)
     {
         $this->showPersonnalName = $showPersonnalName;
-    
+
         return $this;
     }
 
     /**
      * Get showPersonnalName
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getShowPersonnalName()
     {
@@ -392,14 +412,14 @@ class UserPreference
     public function setUser(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\User 
+     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\User
      */
     public function getUser()
     {
@@ -415,14 +435,14 @@ class UserPreference
     public function setBreed(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breed = null)
     {
         $this->breed = $breed;
-    
+
         return $this;
     }
 
     /**
      * Get breed
      *
-     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed 
+     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed
      */
     public function getBreed()
     {

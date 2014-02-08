@@ -45,9 +45,15 @@ class ArmyBbcodePreferencesType extends AbstractType
                     'expanded' => true
                 )
             )
-            ->add('colorSquadType')
-            ->add('colorSquad')
-            ->add('colorSquadDetail')
+            ->add(
+                'colorSquadType',
+                'text',
+                [
+                    'attr' => [ 'class' => 'color']
+                ]
+            )
+            ->add('colorSquad', 'text', [ 'attr' => [ 'class' => 'color'] ])
+            ->add('colorSquadDetail', 'text', [ 'attr' => [ 'class' => 'color'] ])
             //->add('showNbIfAlone')
             //->add('showUnitCarac')
             //->add('showPersonnalName')

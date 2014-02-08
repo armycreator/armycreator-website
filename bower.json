@@ -4,6 +4,7 @@
   "dependencies": {
     "jquery": "~1.10.0",
     "jquery-ui": "~1.10.0",
-    "elusive-iconfont": "2.0"
+    "elusive-iconfont": "2.0",
+    "jscolor": "http://jscolor.com/release/jscolor-1.4.2.zip"
   }
 }

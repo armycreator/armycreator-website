@@ -24,7 +24,7 @@ class UnitType
 
     /**
      * importedId
-     * 
+     *
      * @ORM\Column(type="integer", nullable=true)
      * @var mixed
      * @access private
@@ -40,7 +40,7 @@ class UnitType
 
     /**
      * slug
-     * 
+     *
      * @var string
      * @access private
      *
@@ -51,7 +51,7 @@ class UnitType
 
     /**
      * position
-     * 
+     *
      * @ORM\Column(type="integer")
      * @var int
      * @access private
@@ -61,7 +61,7 @@ class UnitType
     /**
      * color
      * @ORM\Column(type="string", length=10, nullable=true)
-     * 
+     *
      * @var string
      * @access private
      */
@@ -69,7 +69,7 @@ class UnitType
 
 	/**
 	 * abstractUnitList
-	 * 
+	 *
 	 * @var array<AbstractUnit>
 	 * @access private
 	 *
@@ -80,7 +80,7 @@ class UnitType
 
 	/**
 	 * unitList
-	 * 
+	 *
 	 * @var array<Unit>
 	 * @access private
 	 */
@@ -88,7 +88,7 @@ class UnitType
 
 	/**
 	 * unitGroupList
-	 * 
+	 *
 	 * @var array<UnitGroup>
 	 * @access private
 	 */
@@ -96,7 +96,7 @@ class UnitType
 
     /**
      * squadList
-     * 
+     *
      * @var array<Squad>
      * @access private
      *
@@ -106,7 +106,7 @@ class UnitType
 
     /**
      * breed
-     * 
+     *
      * @var Breed
      * @access private
 	 *
@@ -138,14 +138,14 @@ class UnitType
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -161,14 +161,14 @@ class UnitType
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
     /**
      * Get position
      *
-     * @return integer 
+     * @return integer
      */
     public function getPosition()
     {
@@ -184,14 +184,14 @@ class UnitType
     public function setImportedId($importedId)
     {
         $this->importedId = $importedId;
-    
+
         return $this;
     }
 
     /**
      * Get imported id
      *
-     * @return integer 
+     * @return integer
      */
     public function getImportedId()
     {
@@ -207,14 +207,14 @@ class UnitType
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -278,7 +278,7 @@ class UnitType
     public function addUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $abstractUnitList)
     {
         $this->abstractUnitList[] = $abstractUnitList;
-    
+
         return $this;
     }
 
@@ -295,7 +295,7 @@ class UnitType
     /**
      * Get unitList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getAbstractUnitList()
     {
@@ -305,7 +305,7 @@ class UnitType
     /**
      * Get unitGroupList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUnitGroupList()
     {
@@ -324,7 +324,7 @@ class UnitType
     /**
      * Get unitList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUnitList()
     {
@@ -373,7 +373,7 @@ class UnitType
     public function addSquadList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squadList)
     {
         $this->squadList[] = $squadList;
-    
+
         return $this;
     }
 
@@ -390,7 +390,7 @@ class UnitType
     /**
      * Get squadList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSquadList()
     {
