@@ -39,9 +39,9 @@
 {% endblock %}
 
 {% block javascripts %}
-{% javascripts
+    {% javascripts
         '@SitiowebExternalJsBundle/Resources/public/jquery/jquery.min.js'
-        '%kernel.root_dir%/../vendor/friendsofsymfony/jsrouting-bundle/FOS/JsRoutingBundle/Resources/public/js/router.js'
+        '@SitiowebExternalJsBundle/Resources/public/elusive-iconfont/less/elusive-webfont.less'
         output='js/external.js'
     %}
 		 <script src="{{ asset_url }}"></script>
@@ -59,7 +59,6 @@
 {% endblock %}
 
 {% block stylesheets %}
-{#'bundles/sitiowebexternaljs/elusive-iconfont/css/elusive-webfont.css' #}
 	{% stylesheets
 		'@SitiowebArmyCreatorBundle/Resources/public/less/knacss.less'
 		filter='cssrewrite' output='css/external.css' %}

@@ -28,10 +28,31 @@
             {{ 'army.detail.bb_code'|trans }}
         </a>
         {% if not(externalUser) %}
-            <a href="#" class="acButton">
+            <a href="#" class="acButton share-tooltip" title="{{ 'army.detail.share'|trans }}">
                 <i class="el-icon-share"></i>
                 {{ 'army.detail.share'|trans }}
             </a>
+
+            <div class="share-tooltip-content">
+                <div>
+                    <input type="checkbox"
+                        id="army-share-checkbox"
+                        value="1"
+                        {{ army.isShared ? "checked='checked'" : "" }}
+                    />
+                    <label for="army-share-checkbox">
+                        {{ "army.detail.authorize_share"|trans }}
+                    </label>
+                </div>
+
+                <div class='addthis_toolbox addthis_default_style addthis_32x32_style'>
+                    <a class='addthis_button_email'></a>
+                    <a class='addthis_button_facebook'></a>
+                    <a class='addthis_button_twitter'></a>
+                    <a class='addthis_button_google_plusone_share'></a>
+                    <a class='addthis_button_compact'></a><a class='addthis_counter addthis_bubble_style'></a>
+                </div>
+            </div>
         {% endif %}
     </aside>
 
@@ -283,9 +304,24 @@
             '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.widget.js'
             '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.mouse.js'
             '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.sortable.js'
+            '@SitiowebExternalJsBundle/Resources/public/tooltipster/js/jquery.tooltipster.js'
             '@SitiowebArmyCreatorBundle/Resources/public/js/army.js'
             output='js/army-detail.js'
         %}
              <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    <!-- AddThis Button BEGIN -->
+    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=olynk"></script>
+    <!-- AddThis Button END -->
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+	{% stylesheets
+        '@SitiowebExternalJsBundle/Resources/public/tooltipster/css/tooltipster.css'
+		filter='less,cssrewrite' output='css/army.css' %}
+		 <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}

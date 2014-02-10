@@ -3,6 +3,7 @@ army.detail.print: Print
 army.detail.pdf: pdf
 army.detail.bb_code: BBCode
 army.detail.share: Share
+army.detail.authorize_share: This list is visible
 army.detail.delete: 'Delete army'
 army.detail.squad.delete: 'Delete squad'
 army.detail.squad.add: 'Add squad'

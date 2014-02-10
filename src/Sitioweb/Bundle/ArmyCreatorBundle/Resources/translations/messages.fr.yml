@@ -3,6 +3,7 @@ army.detail.print: Imprimer
 army.detail.pdf: PDF
 army.detail.bb_code: BBCode
 army.detail.share: Partager
+army.detail.authorize_share: Cette liste est visible publiquement
 army.detail.delete: Supprimer
 army.detail.pts.%pts%: '%pts% pts'
 army.detail.wanted_pts.%pts%: '%pts% pts'

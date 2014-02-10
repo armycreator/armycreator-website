@@ -38,4 +38,31 @@ $(function() {
 
         }).disableSelection();
     }
+
+    $('.share-tooltip').on('click', function() {
+        $(this).toggleClass('active');
+        $(this).next('.share-tooltip-content').toggleClass('visible');
+        toggleShare();
+    });
+
+    $('#army-share-checkbox').on('change', function() {
+        toggleShare();
+        if ($(this).is(':checked')) {
+            var action = 'share';
+        } else {
+            var action = 'dont-share';
+        }
+
+        $.ajax({
+            url: Routing.generate('army_share', { "action": action });
+        });
+    });
+
+    function toggleShare() {
+        if ($('#army-share-checkbox').is(':checked') && $('.share-tooltip').hasClass('active')) {
+            $('.addthis_toolbox').show();
+        } else {
+            $('.addthis_toolbox').hide();
+        }
+    }
 });
