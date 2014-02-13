@@ -43,6 +43,8 @@ $(function() {
         $(this).toggleClass('active');
         $(this).next('.share-tooltip-content').toggleClass('visible');
         toggleShare();
+
+        return false;
     });
 
     $('#army-share-checkbox').on('change', function() {
@@ -54,7 +56,9 @@ $(function() {
         }
 
         $.ajax({
-            url: Routing.generate('army_share', { "action": action });
+            type: "post",
+            url: Routing.generate('army_toggle_share', { "slug": armycreator.armySlug }),
+            data: { "action": action }
         });
     });
 
@@ -65,4 +69,7 @@ $(function() {
             $('.addthis_toolbox').hide();
         }
     }
+
+    var addthis_config = {"data_track_addressbar":true};
+    $.getScript("//s7.addthis.com/js/300/addthis_widget.js#pubid=olynk");
 });

@@ -28,7 +28,7 @@
             {{ 'army.detail.bb_code'|trans }}
         </a>
         {% if not(externalUser) %}
-            <a href="#" class="acButton share-tooltip" title="{{ 'army.detail.share'|trans }}">
+            <a href="javascript:;" class="acButton share-tooltip" title="{{ 'army.detail.share'|trans }}">
                 <i class="el-icon-share"></i>
                 {{ 'army.detail.share'|trans }}
             </a>
@@ -310,11 +310,6 @@
         %}
              <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    <!-- AddThis Button BEGIN -->
-    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=olynk"></script>
-    <!-- AddThis Button END -->
 {% endblock %}
 
 {% block stylesheets %}

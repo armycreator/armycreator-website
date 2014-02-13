@@ -6,6 +6,7 @@ use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -105,24 +106,24 @@ class ArmyController extends Controller
     /**
      * detailPdfAction render a PDF
      *
-     * @param string $slug
+     * @param Army $army
      * @access public
      * @return void
      *
      * @Route("/{slug}.pdf", name="army_detail_pdf")
      * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
-    public function detailPdfAction($slug)
+    public function detailPdfAction(Army $army)
     {
-        $params = $this->getDetailParams($slug) +
-                    array('preferences' => $this->getUserPreference());
+        $params = $this->getDetailParams($army) + ['preferences' => $this->getUserPreference()];
         $html = $this->renderView(
             'SitiowebArmyCreatorBundle:Army:detail.html.twig',
             $params
         );
 
         // rendering
-        $filename = 'ArmyCreator-' . $slug . '.pdf';
+        $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
         $mpdf = new \mPDF();
         $mpdf->WriteHTML(file_get_contents('css/print.css'), 1);
         $mpdf->WriteHTML($html);
@@ -147,11 +148,12 @@ class ArmyController extends Controller
      * @Route("/{slug}/", name="army_detail")
      * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      * @Template()
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
-    public function detailAction($slug)
+    public function detailAction(Army $army)
     {
         // ge detail params
-        $detailParams = $this->getDetailParams($slug);
+        $detailParams = $this->getDetailParams($army);
 
         // get user preferences
         $userPreferences = $this->getUserPreference();
@@ -200,11 +202,12 @@ class ArmyController extends Controller
      * @Route("/{slug}/bbcode", name="army_detail_bbcode")
      * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      * @Template()
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
-    public function detailBbcodeAction($slug)
+    public function detailBbcodeAction(Army $army)
     {
         // get detail parameters
-        $detailParams = $this->getDetailParams($slug);
+        $detailParams = $this->getDetailParams($army);
 
         // get user preferences
         $userPreferences = $this->getUserPreference();
@@ -225,16 +228,9 @@ class ArmyController extends Controller
      * @access private
      * @return void
      */
-    private function getDetailParams($slug)
+    private function getDetailParams(Army $army)
     {
         $em = $this->get('doctrine')->getManager();
-
-        // getting army
-        $army = $em->getRepository('SitiowebArmyCreatorBundle:Army')
-                    ->findOneBySlug($slug);
-        if ($army === null) {
-            throw new NotFoundHttpException('Army not found');
-        }
 
         // security
         if ($this->getUser() != $army->getUser() && !$army->getIsShared()) {
@@ -386,6 +382,26 @@ class ArmyController extends Controller
         );
     }
 
+    /* public toggleShareAction() {{{ */
+    /**
+     * toggleShareAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/{slug}/toggle_share", name="army_toggle_share",
+     * options={"expose": true})
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
+     */
+    public function toggleShareAction(Army $army)
+    {
+        $army->setIsShared($this->get('request')->request->get('action') == 'share');
+        $this->get('doctrine')->getManager()->flush();
+
+        return new Response('ok');
+    }
+
+
     /**
      * Edits an existing Army entity.
      *
@@ -470,4 +486,3 @@ class ArmyController extends Controller
         }
     }
 }
-
