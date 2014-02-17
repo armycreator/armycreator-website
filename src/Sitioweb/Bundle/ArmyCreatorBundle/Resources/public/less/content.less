@@ -1,31 +1,31 @@
-@import "variables";
 @import "mixins";
+
+#breadcrumb {
+    .border-radius(2px); .box-shadow(0 2px 4px #000); display: inline-block;
+    ul {
+        .ulInline;
+        li {
+            height: 25px; line-height: 25px; padding: 0 8px;
+            .simple-linear-gradient(bottom, #3e3830, #1d1b1a);
+            &.current {
+                .simple-linear-gradient(bottom, #4a483a, #282b24);
+            }
+            a {
+                color: @inversedLinkColor;
+                &:hover { color: @inversedLinkHoverColor }
+            }
+        }
+    }
+}
 
 #websiteContentContainer {
     .minGlobalWidth;
     overflow: auto;
-    background: url(/images/content-background.png) repeat;
+    background: url(@contentBackgroundUrl) repeat;
     padding-bottom: 100px;
     #websiteContent {
         margin: 30px 15px;
-        #breadcrumb {
-            .border-radius(2px); .box-shadow(0 2px 4px #000); display: inline-block;
-            ul {
-                .ulInline;
-                li {
-                    height: 25px; line-height: 25px; padding: 0 8px;
-                    .simple-linear-gradient(bottom, #3e3830, #1d1b1a);
-                    &.current {
-                        .simple-linear-gradient(bottom, #4a483a, #282b24);
-                    }
-                    a {
-                        color: @inversedLinkColor;
-                        &:hover { color: @inversedLinkHoverColor }
-                    }
-                }
-            }
-        }
-        
+
         > header {
             overflow: auto; margin-top: 20px;
             .action { float: right }
@@ -36,15 +36,16 @@
             .armyDescription {
                 float: left;
                 .name { font-size: 2em; margin:0 }
-                .pointBarContainer {
-                    line-height: 2em;
-                    .pointBar {
-                        width: 400px; height: 2em; float: left; margin-right: 1em; border: 1px solid @armyDescPointBorder;
-                        > div { height: 100%; background: @armyDescPointBackground; border-right: 1px solid @armyDescPointBorder; }
-                    }
-                }
             }
         }
+    }
+}
+
+.pointBarContainer {
+    line-height: 2em;
+    .pointBar {
+        width: 400px; height: 2em; float: left; margin-right: 1em; border: 1px solid @armyDescPointBorder;
+        > div { height: 100%; background: @armyDescPointBackground; border-right: 1px solid @armyDescPointBorder; }
     }
 }
 

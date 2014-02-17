@@ -70,6 +70,6 @@ $(function() {
         }
     }
 
-    var addthis_config = {"data_track_addressbar":true};
+    //var addthis_config = {"data_track_addressbar":true};
     $.getScript("//s7.addthis.com/js/300/addthis_widget.js#pubid=olynk");
 });

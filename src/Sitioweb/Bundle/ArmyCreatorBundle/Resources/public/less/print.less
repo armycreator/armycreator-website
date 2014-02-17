@@ -1,22 +1,20 @@
 @import "variables";
+@import "variables-print";
 @import "mixins";
 
 /* ------------------------------------------------------ */
 /*			- Print -    	    				 	      */
 /* ------------------------------------------------------ */
-body { background: none }
-#websiteHeader, #websiteFooter { display:none }
-#websiteContentContainer { width: 100%; background: none }
-#armyDetailContainer {
+body {
     background: none;
-    .squadList .squad, .unitType {
-        background: none;
-    }
-    .squadLine {
-        background: none; color: #000;
-    }
+    color: @globalColor
+}
+a {
+    color: @globalLinkColor;
 }
 
-.army_detail header { color: #000 }
+#websiteHeader, #websiteFooter, #breadcrumb { display:none!important }
+#websiteContentContainer { width: 100%; background: none }
 .acButton { display: none }
 form { display: none }
+

@@ -74,11 +74,11 @@
 		'@SitiowebArmyCreatorBundle/Resources/public/less/button.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/form.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/header.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/content.less'
+		'@SitiowebArmyCreatorBundle/Resources/public/less/content-desktop.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/footer.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/breed.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/menu.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/armyDetail.less'
+		'@SitiowebArmyCreatorBundle/Resources/public/less/armyDetail-desktop.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/squadEdit.less'
 
 		filter='less,cssrewrite' output='css/global.css' %}
@@ -87,8 +87,10 @@
 
 	{% stylesheets
 		'@SitiowebArmyCreatorBundle/Resources/public/less/print.less'
+		'@SitiowebArmyCreatorBundle/Resources/public/less/content-print.less'
+		'@SitiowebArmyCreatorBundle/Resources/public/less/armyDetail-print.less'
 		filter='less,cssrewrite' output='css/print.css' %}
-		 <link rel="stylesheet" href="{{ asset_url }}" media="print" />
+            <link rel="stylesheet" href="{{ asset_url }}" media="print" />
      {% endstylesheets %}
 
 {% endblock %}

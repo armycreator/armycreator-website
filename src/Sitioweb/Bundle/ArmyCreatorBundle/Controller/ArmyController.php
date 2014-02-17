@@ -382,7 +382,6 @@ class ArmyController extends Controller
         );
     }
 
-    /* public toggleShareAction() {{{ */
     /**
      * toggleShareAction
      *

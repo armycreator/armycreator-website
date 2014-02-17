@@ -162,7 +162,7 @@
             {% for tmp in army.squadListByType %}
                 {% if tmp.unitType.abstractUnitList.count() %}
                     <section
-                        class="unitTypeList row"
+                        class="unitTypeList row {% if tmp.squadList is empty %}empty{% endif %}"
                         id="ut-{{ tmp.unitType.slug }}{% if tmp.unitType.breed != army.breed %}-{{ tmp.unitType.breed.slug }}{% endif %}"
                         data-breed="{{ tmp.unitType.breed.slug }}"
                         data-unitType="{{ tmp.unitType.slug }}"
