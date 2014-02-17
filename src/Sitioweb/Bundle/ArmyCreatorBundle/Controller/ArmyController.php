@@ -125,6 +125,7 @@ class ArmyController extends Controller
         // rendering
         $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
         $mpdf = new \mPDF();
+        $mpdf->WriteHTML(file_get_contents('css/global.css'), 1);
         $mpdf->WriteHTML(file_get_contents('css/print.css'), 1);
         $mpdf->WriteHTML($html);
         $mpdf->Output($filename, 'I');
