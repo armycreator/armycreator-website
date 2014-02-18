@@ -13,6 +13,17 @@ SitiowebArmyCreatorImportBundle:
     type:     annotation
     prefix:   /import
 
+donation:
+    path: /cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG
+    host: www.paypal.com
+    schemes: [https]
+
+forum_index:
+    path: /forum/
+
+forum_ucp:
+    path: /forum/ucp.php
+
 #fos_user_security:
 #    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 #

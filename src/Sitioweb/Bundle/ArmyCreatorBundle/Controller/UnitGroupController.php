@@ -162,7 +162,7 @@ class UnitGroupController extends Controller
      * Deletes a UnitGroup entity.
      *
      * @Route("/{id}/delete", name="unitgroup_delete")
-     * @Method("POST")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Breed $breed, $id)
     {

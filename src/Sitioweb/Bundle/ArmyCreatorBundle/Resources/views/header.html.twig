@@ -11,16 +11,16 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {% trans with { "%username%": app.user.username } %}header.hello.%username%{% endtrans %}
                     |
-                    <a href="/forum/ucp.php?mode=logout" title="{{ "header.logout"|trans }}">
+                    <a href="{{ path("forum_ucp", { mode: 'logout' }) }}" title="{{ "header.logout"|trans }}">
                         {{ "header.logout"|trans }}
                         <i class="el-icon-off"></i>
                     </a>
                 {% else %}
-                    <a href="/forum/ucp.php?mode=login" title="{{ "header.login"|trans }}">
+                    <a href="{{ path("forum_ucp", { mode: 'login' }) }}" title="{{ "header.login"|trans }}">
                         {{ "header.login"|trans }}
                     </a>
                     |
-                    <a href="/forum/ucp.php?mode=register" title="{{ "header.sign_up"|trans }}">
+                    <a href="{{ path("forum_ucp", { mode: 'register' }) }}" title="{{ "header.sign_up"|trans }}">
                         {{ "header.sign_up"|trans }}
                     </a>
                 {% endif %}

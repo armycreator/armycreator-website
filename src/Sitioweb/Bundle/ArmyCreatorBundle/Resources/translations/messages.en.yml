@@ -33,9 +33,9 @@ army.edit.title: 'edit army'
 army.edit.edit: edit
 army.edit.back_to_army_list: 'back to army list'
 home.hello.%username%: 'Hello %username%'
-home.things_to_do.1: __home.things_to_do.1
-home.things_to_do.2: __home.things_to_do.2
-home.things_to_do.3: __home.things_to_do.3
+home.things_to_do.1: You can export your lists for community website and forums. You can also print a pretty version of your lists.
+home.things_to_do.2: You car organise your lists as you want and create tabs in order to keep them easily accessible.
+home.things_to_do.3: Yes, it is free but you can also make a donation to help us improve the website.
 army_group.edit.title: 'Edit army group'
 army_group.edit.edit: Edit
 army_group.edit.back_to_list: 'Back to army list'
@@ -68,7 +68,7 @@ homepage_menu.forum: forum
 homepage_menu.donation: 'make a donation'
 homepage_menu.my_army_list: 'my army list'
 breadcrumb.home: Home
-home.welcome_text: __home.welcome_text
+home.welcome_text: ArmyCreator, what can you do for me ?
 army_list.group_list.all_armies: 'All armies'
 army_list.group_list.last_armies: 'Last armies'
 breadcrumb.army_list: 'Army list'

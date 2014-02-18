@@ -9,12 +9,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * DefaultController
- * 
+ *
  * @uses Controller
  * @Route("/")
  * @Breadcrumb("breadcrumb.home", route="homepage")
  *
- * @author Julien DENIAU <julien.deniau@gmail.com> 
+ * @author Julien DENIAU <julien.deniau@gmail.com>
  */
 class DefaultController extends Controller
 {
@@ -39,7 +39,20 @@ class DefaultController extends Controller
      * @return void
      */
     public function authenticatedIndex() {
-        return $this->render('SitiowebArmyCreatorBundle:Default:authenticatedIndex.html.twig', array());
+        $params = [];
+
+        $params['lastArmy'] = $this->container
+            ->get('doctrine')
+            ->getManager()
+            ->getRepository('SitiowebArmyCreatorBundle:Army')
+            ->findOneBy(
+                ['user' => $this->getUser()],
+                ['updateDate' => 'DESC']
+            );
+        return $this->render(
+            'SitiowebArmyCreatorBundle:Default:authenticatedIndex.html.twig',
+            $params
+        );
     }
 
     /**

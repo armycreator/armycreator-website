@@ -5,6 +5,71 @@
 {% endblock %}
 
 {% block content %}
+    <ul class="inline inlineBig">
+        <li>
+            <a href="{{ path("army_list") }}" title="{{ 'homepage_menu.my_army_list'|trans }}">
+                <figure>
+                    <i class="el-icon-list"></i>
+                    <figcaption>
+                        {{ 'homepage_menu.my_army_list'|trans }}
+                    </figcaption>
+                </figure>
+            </a>
+        </li>
+        {% if lastArmy %}
+            <li>
+                <a href="{{ path("army_detail", { "slug": lastArmy.slug}) }}" title="{{ 'homepage_menu.last_army'|trans }}">
+                    <figure>
+                        <i class="el-icon-tasks"></i>
+                        <figcaption>
+                            {{ 'homepage_menu.last_army'|trans }}
+                        </figcaption>
+                    </figure>
+                </a>
+            </li>
+        {% endif  %}
+        <li>
+            <a href="{{ path("army_new") }}" title="{{ 'homepage_menu.create_army'|trans }}">
+                <figure>
+                    <i class="el-icon-plus"></i>
+                    <figcaption>
+                        {{ 'homepage_menu.create_army'|trans }}
+                    </figcaption>
+                </figure>
+            </a>
+        </li>
+        <li>
+            <a href="{{ path("user_collection") }}" title="{{ 'homepage_menu.my_collection'|trans }}">
+                <figure>
+                    <i class="el-icon-hdd"></i>
+                    <figcaption>
+                        {{ 'homepage_menu.my_collection'|trans }}
+                    </figcaption>
+                </figure>
+            </a>
+        </li>
+        <li>
+            <a href="{{ path("forum_index") }}" title="{{ 'homepage_menu.forum'|trans }}">
+                <figure>
+                    <i class="el-icon-group"></i>
+                    <figcaption>
+                        {{ 'homepage_menu.forum'|trans }}
+                    </figcaption>
+                </figure>
+            </a>
+        </li>
+        <li>
+            <a href="{{ path("donation") }}" title="{{ 'homepage_menu.donation'|trans }}" target="_blank">
+                <figure>
+                    <i class="el-icon-eur"></i>
+                    <figcaption>
+                        {{ 'homepage_menu.donation'|trans }}
+                    </figcaption>
+                </figure>
+            </a>
+        </li>
+    </ul>
+
     <p>
         {% trans %}
             home.welcome_text
@@ -15,9 +80,4 @@
             <li>{{ "home.things_to_do.3"|trans }}
         </ul>
     </p>
-
-    {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:homepageMenu') }}
-
-    {{ app.user }}
 {% endblock %}
-
