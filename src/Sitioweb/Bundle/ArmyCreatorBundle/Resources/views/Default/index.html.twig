@@ -1,7 +1,88 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
+{% block title %}
+    {{ "header.welcome"|trans }}
+{% endblock %}
+
 {% block content %}
-    {{ test }}
-    <button class="acButton">test</button>
-    <a href="#" class="acButton">test</a>
+    <ul class="inline inlineBig mb3">
+        <li>
+            <a href="{{ path("forum_ucp", { mode: 'login' }) }}" title="{{ "header.login"|trans }}">
+                <figure>
+                    <i class="el-icon-ok"></i>
+                    <figcaption>
+                        {{ "header.login"|trans }}
+                    </figcaption>
+                </figure>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ path("forum_ucp", { mode: 'register' }) }}" title="{{ "header.sign_up"|trans }}">
+                <figure>
+                    <i class="el-icon-group"></i>
+                    <figcaption>
+                        {{ "header.sign_up"|trans }}
+                    </figcaption>
+                </figure>
+            </a>
+        </li>
+    </ul>
+
+    <h2>
+        {{ "home.welcome_text"|trans }}
+    </h2>
+
+    <div class="grid presentation">
+        <div class="grid3">
+            <div>
+                <img src="/images/homepage/calcul.png" />
+                <div>
+                    {{ "home.things_to_do.calcul"|trans|raw }}
+                </div>
+            </div>
+
+            <div>
+                <img src="/images/homepage/export.png" />
+                <div>
+                    {{ "home.things_to_do.export"|trans|raw }}
+                </div>
+            </div>
+
+            <div>
+                <img src="/images/homepage/army-group-small.png" />
+                <div>
+                    {{ "home.things_to_do.list_groups"|trans|raw }}
+                </div>
+            </div>
+        </div>
+
+        <div class="grid3 mt2">
+            <div>
+                <img src="/images/homepage/squad.png" />
+                <div>
+                    {{ "home.things_to_do.everywhere"|trans|raw }}
+                </div>
+            </div>
+
+            <div>
+                <img src="/images/homepage/print.png" />
+                <div>
+                    {{ "home.things_to_do.pretty_print"|trans|raw }}
+                </div>
+            </div>
+
+            <div>
+                <a href="{{ path("donation") }}" title="{{ 'homepage_menu.donation'|trans }}" target="_blank">
+                    <figure>
+                        <i class="el-icon-eur"></i>
+                    </figure>
+                </a>
+
+                <div>
+                    {{ "home.things_to_do.free"|trans|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

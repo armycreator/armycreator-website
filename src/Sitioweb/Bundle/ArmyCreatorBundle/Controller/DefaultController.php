@@ -28,7 +28,7 @@ class DefaultController extends Controller
         if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->authenticatedIndex();
         } else {
-            return array('test' => 'test');
+            return [];
         }
     }
 
