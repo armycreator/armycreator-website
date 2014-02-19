@@ -273,7 +273,7 @@ class UserPreference
      */
     public function setColorSquadType($colorSquadType)
     {
-        $this->colorSquadType = $colorSquadType;
+        $this->colorSquadType = $this->getColor($colorSquadType);
 
         return $this;
     }
@@ -296,7 +296,7 @@ class UserPreference
      */
     public function setColorSquad($colorSquad)
     {
-        $this->colorSquad = $colorSquad;
+        $this->colorSquad = $this->getColor($colorSquad);
 
         return $this;
     }
@@ -319,7 +319,7 @@ class UserPreference
      */
     public function setColorSquadDetail($colorSquadDetail)
     {
-        $this->colorSquadDetail = $colorSquadDetail;
+        $this->colorSquadDetail = $this->getColor($colorSquadDetail);
 
         return $this;
     }
@@ -447,5 +447,19 @@ class UserPreference
     public function getBreed()
     {
         return $this->breed;
+    }
+
+    /**
+     * getColor
+     *
+     * @access private
+     * @return void
+     */
+    private function getColor($color)
+    {
+        if (strlen($color) === 6 && substr($color, 0, 1) != '#' && preg_match('/[0-9A-Fa-f]{6}/', $color)) {
+            return '#' . $color;
+        }
+        return $color;
     }
 }

@@ -40,10 +40,16 @@ army.edit.title: Editer
 army.edit.edit: Editer
 army.edit.back_to_army_list: 'Retour aux listes'
 army.edit.delete: Supprimer
-home.hello.%username%: 'Bonjour %username%'
-home.things_to_do.1: J'offre la possibilité de faire des exports pour des sites communautaires et forums. Je propose aussi l'impression propre et lisible de votre liste.
-home.things_to_do.2: Je laisse le loisir d'organiser des rubriques et catégories pour que vos listes soit bien rangées et facilement retrouvables dans vos méthodes de classement.
-home.things_to_do.3: Oui je suis gratuit et les dons restent possibles pour m'aider à vous proposer toujours plus de services.
+home:
+    hello.%username%: 'Bonjour %username%'
+    things_to_do:
+        calcul: "ArmyCreator <strong>calcule vos points</strong> en vous proposant <strong>toutes les options</strong> d'armes et d'équipements de vos unités, de chaque codex à jours, et une communauté sur notre forum."
+        export: "J'offre la possibilité de faire des <strong>exports</strong> pour des <strong>sites communautaires et forums</strong>. Je propose aussi <strong>l'impression</strong> propre et lisible de votre liste."
+        list_groups: "Je laisse le loisir d'organiser des rubriques et <strong>catégories</strong> pour que vos listes soit bien rangées et <strong>facilement retrouvables</strong> dans vos méthodes de classement."
+        everywhere: "Une idée de liste au travail, en vacance ou chez un amis ? ArmyCreator est <strong>disponible 24h/24</strong> et de <strong>n'importe où</strong> pour poser à plat vos idées."
+        pretty_print: "<strong>Fini les listes</strong> sur un brouillon <strong>illisible</strong> que votre adversaire ne sait même pas relire ou les documents texte qui polluent votre ordinateur et qu'on perd suite à un crash PC."
+        free: "Oui je suis <strong>gratuit</strong> et les dons restent possibles pour m'aider à vous proposer <strong>toujours plus de services</strong>."
+
 army_group.new.title: 'Nouveau groupe d''armée'
 army_group.new.create: Créer
 army_group.new.back_to_list: 'Retour aux listes'
