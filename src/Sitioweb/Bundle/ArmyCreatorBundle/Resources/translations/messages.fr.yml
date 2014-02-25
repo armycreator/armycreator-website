@@ -123,7 +123,7 @@ game.edit.title: 'Édition d''un jeu'
 game.detail.delete: Supprimer
 button.create: Créer
 breed.back_to_breed: 'Retourner à la race'
-button.delete: Supprimen
+button.delete: Supprimer
 breed.list.title: 'Liste de races'
 button.edit: Éditer
 button.new_entry: 'Nouvelle entrée'

@@ -10,20 +10,24 @@
         <h2>Weapon List</h2>
 
         {% block weapon_new %}
-            <aside class="txtright">
-                <a href="{{ path("weapon_new", params) }}" title="{{ "breed.weapon_list.new"|trans }}" class="acButton">
-                    {{ "breed.weapon_list.new"|trans }}
-                </a>
-            </aside>
+            {% if ac_granted("EDIT", breed) %}
+                <aside class="txtright">
+                    <a href="{{ path("weapon_new", params) }}" title="{{ "breed.weapon_list.new"|trans }}" class="acButton">
+                        {{ "breed.weapon_list.new"|trans }}
+                    </a>
+                </aside>
+            {% endif %}
         {% endblock %}
 
         {% for weapon in weaponList %}
             <div>
                 <h4>
                     {{ weapon.name }}
-                    <a href="{{ path("weapon_edit", params + { "id": weapon.id}) }}">
-                        <i class="el-icon-pencil"></i>
-                    </a>
+                    {% if ac_granted("EDIT", breed) %}
+                        <a href="{{ path("weapon_edit", params + { "id": weapon.id}) }}">
+                            <i class="el-icon-pencil"></i>
+                        </a>
+                    {% endif %}
                 </h4>
                 <div>
                     {{ "breed.weapon_list.type"|trans }}:
@@ -51,20 +55,24 @@
         <h2>Equipement List</h2>
 
         {% block equipement_new %}
-            <aside class="txtright">
-                <a href="{{ path("equipement_new", params) }}" title="{{ "breed.equipement_list.new"|trans }}" class="acButton">
-                    {{ "breed.equipement_list.new"|trans }}
-                </a>
-            </aside>
+            {% if ac_granted("EDIT", breed) %}
+                <aside class="txtright">
+                    <a href="{{ path("equipement_new", params) }}" title="{{ "breed.equipement_list.new"|trans }}" class="acButton">
+                        {{ "breed.equipement_list.new"|trans }}
+                    </a>
+                </aside>
+            {% endif %}
         {% endblock %}
 
         {% for equipement in equipementList %}
             <div>
                 <h4>
                     {{ equipement.name }}
-                    <a href="{{ path("equipement_edit", params + { "id": equipement.id}) }}">
-                        <i class="el-icon-pencil"></i>
-                    </a>
+                    {% if ac_granted("EDIT", breed) %}
+                        <a href="{{ path("equipement_edit", params + { "id": equipement.id}) }}">
+                            <i class="el-icon-pencil"></i>
+                        </a>
+                    {% endif %}
                 </h4>
                 <div>
                     {{ equipement.description }}

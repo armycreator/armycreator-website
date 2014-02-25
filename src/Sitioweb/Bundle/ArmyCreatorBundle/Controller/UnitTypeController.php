@@ -6,8 +6,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
@@ -32,6 +33,10 @@ class UnitTypeController extends Controller
      */
     public function createAction(Request $request, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $entity  = new UnitType();
         $form = $this->createForm(new UnitTypeType(), $entity);
         $form->bind($request);
@@ -68,6 +73,10 @@ class UnitTypeController extends Controller
      */
     public function newAction(Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $entity = new UnitType();
         $form   = $this->createForm(new UnitTypeType(), $entity);
 
@@ -75,31 +84,6 @@ class UnitTypeController extends Controller
             'breed' => $breed,
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Finds and displays a UnitType entity.
-     *
-     * @Route("/{id}", name="unittype_show")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitType')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find UnitType entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
@@ -112,6 +96,9 @@ class UnitTypeController extends Controller
      */
     public function editAction($id, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitType')->find($id);
@@ -140,6 +127,10 @@ class UnitTypeController extends Controller
      */
     public function updateAction(Request $request, $id, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitType')->find($id);
@@ -181,6 +172,10 @@ class UnitTypeController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 

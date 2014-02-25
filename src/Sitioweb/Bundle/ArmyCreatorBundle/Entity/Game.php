@@ -3,11 +3,18 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Oneup\AclBundle\Mapping\Annotation as Acl;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game
  *
  * @ORM\Entity(repositoryClass="GameRepository")
+ * @Acl\DomainObject({
+ *     @Acl\ClassPermission({ "ROLE_ADMIN": MaskBuilder::MASK_OPERATOR }),
+ *     @Acl\ClassPermission({ "ROLE_CONTRIB_ALL": MaskBuilder::MASK_EDIT }),
+ *     @Acl\ClassPermission({ "ROLE_CONTRIB": MaskBuilder::MASK_VIEW })
+ * })
  */
 class Game
 {
@@ -39,7 +46,7 @@ class Game
 
 	/**
 	 * breedList
-	 * 
+	 *
 	 * @var mixed
 	 * @access private
 	 *
@@ -49,7 +56,7 @@ class Game
 
     /**
      * availableBreedList
-     * 
+     *
      * @var array
      * @access private
      */
@@ -57,7 +64,7 @@ class Game
 
 	/**
 	 * breedGroupList
-	 * 
+	 *
 	 * @var mixed
 	 * @access private
 	 *
@@ -69,11 +76,11 @@ class Game
     {
         $this->breedGroupList = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -95,7 +102,7 @@ class Game
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -117,7 +124,7 @@ class Game
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -149,7 +156,7 @@ class Game
     /**
      * Get breedGroupList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getBreedGroupList()
     {
@@ -181,7 +188,7 @@ class Game
     /**
      * Get breedList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getBreedList()
     {

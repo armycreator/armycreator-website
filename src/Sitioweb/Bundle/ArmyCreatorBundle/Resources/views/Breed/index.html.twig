@@ -25,18 +25,22 @@
             <td>{{ entity.available ? "Yes" : "No" }}</td>
             <td>{{ entity.newVersion }}</td>
             <td>
-                <a href="{{ path("admin_breed_edit", { "breed": entity.slug }) }}" class="acButton">
-                    {{ "button.edit"|trans }}
-                </a>
+                {% if ac_granted('EDIT', entity) %}
+                    <a href="{{ path("admin_breed_edit", { "breed": entity.slug }) }}" class="acButton">
+                        {{ "button.edit"|trans }}
+                    </a>
+                {% endif %}
             </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
 
-<div class="txtright">
-    <a href="{{ path('admin_breed_new', { "game": game.code}) }}" class="acButton acButtonBig">
-        {{ "button.new_entry"|trans }}
-    </a>
-</div>
+{% if canEditAll %}
+    <div class="txtright">
+        <a href="{{ path('admin_breed_new', { "game": game.code}) }}" class="acButton acButtonBig">
+            {{ "button.new_entry"|trans }}
+        </a>
+    </div>
+{% endif %}
 {% endblock %}

@@ -2,11 +2,14 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use JMS\SecurityExtraBundle\Annotation\SecureParam;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
@@ -118,6 +121,11 @@ class BreedController extends Controller
      */
     public function newAction(Game $game)
     {
+        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
+        if (!$this->get('security.context')->isGranted('EDIT', $oi)) {
+            throw new AccessDeniedException();
+        }
+
         $entity = new Breed();
         $entity->setGame($game);
         $form   = $this->createForm(new BreedType(), $entity);
@@ -138,6 +146,11 @@ class BreedController extends Controller
      */
     public function createAction()
     {
+        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
+        if (!$this->get('security.context')->isGranted('CREATE', $oi)) {
+            throw new AccessDeniedException();
+        }
+
         $entity  = new Breed();
         $request = $this->getRequest();
         $form    = $this->createForm(new BreedType(), $entity);
@@ -167,11 +180,7 @@ class BreedController extends Controller
      */
     public function editAction(Breed $breed)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        if (!$breed) {
-            throw $this->createNotFoundException('Unable to find Breed entity.');
-        }
+        $this->checkPermission($breed);
 
         $editForm = $this->createForm(new BreedType(), $breed);
 
@@ -191,6 +200,8 @@ class BreedController extends Controller
      */
     public function updateAction(Breed $breed)
     {
+        $this->checkPermission($breed);
+
         $em = $this->getDoctrine()->getManager();
 
         if (!$breed) {
@@ -225,16 +236,49 @@ class BreedController extends Controller
      */
     public function indexAction(Game $game)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('VIEW', $game)) {
+            throw new AccessDeniedException();
+        }
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('SitiowebArmyCreatorBundle:Breed')
-            ->findBy(
-                array('game' => $game), array('name' => 'ASC')
-            );
+            ->findBy(['game' => $game], ['name' => 'ASC']);
+
+        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
+        $canEditAll = $this->get('security.context')->isGranted('CREATE', $oi);
 
         return array(
             'game' => $game,
             'entities' => $entities,
+            'canEditAll' => $canEditAll
         );
     }
+
+    /**
+     * checkPermission
+     *
+     * @param Breed $breed
+     * @param bool $permission
+     * @access private
+     * @return boolean
+     */
+    private function checkPermission(Breed $breed = null, $permission = 'EDIT')
+    {
+        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
+        $canEditAll = $this->get('security.context')->isGranted($permission, $oi);
+
+        if ($canEditAll) {
+            $canEditInstance = true;
+        } elseif($breed) {
+            $oi = ObjectIdentity::fromDomainObject($breed);
+            $canEditInstance = $this->get('security.context')->isGranted($permission, $oi);
+        } else {
+            $canEditInstance = true;
+        }
+
+        if (!$canEditInstance) {
+            throw new AccessDeniedException();
+        }
+    }
+
 }

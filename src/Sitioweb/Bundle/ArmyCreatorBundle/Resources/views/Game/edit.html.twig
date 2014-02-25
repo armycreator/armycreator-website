@@ -17,14 +17,17 @@
     <a href="{{ path('admin_game') }}" class="acButton">
         {{ "default.back_to_list"|trans }}
     </a>
-    <form
-        action="{{ path('admin_game_delete', { 'code': entity.code }) }}"
-        method="post"
-        class="inbl"
-        onsubmit="javascript:return confirm('{% trans %}game.detail.delete{% endtrans %}');"
-    >
-        {{ form_widget(delete_form) }}
-        <button type="submit" class="acButton">{{ "button.delete"|trans }}</button>
-    </form>
+
+    {% if ac_granted("DELETE", entity) %}
+        <form
+            action="{{ path('admin_game_delete', { 'code': entity.code }) }}"
+            method="post"
+            class="inbl"
+            onsubmit="javascript:return confirm('{% trans %}game.detail.delete{% endtrans %}');"
+        >
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="acButton">{{ "button.delete"|trans }}</button>
+        </form>
+    {% endif %}
 </div>
 {% endblock %}

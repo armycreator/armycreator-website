@@ -25,11 +25,13 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new APY\BreadcrumbTrailBundle\APYBreadcrumbTrailBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
+            new Oneup\AclBundle\OneupAclBundle(),
 
             new Sitioweb\Bundle\ArmyCreatorBundle\SitiowebArmyCreatorBundle(),
             new Sitioweb\Bundle\ArmyCreatorImportBundle\SitiowebArmyCreatorImportBundle(),
             new Sitioweb\Bundle\ExternalJsBundle\SitiowebExternalJsBundle(),
             new Sitioweb\Bundle\DiceBundle\SitiowebDiceBundle(),
+            new Sitioweb\Bundle\AclBundle\SitiowebAclBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

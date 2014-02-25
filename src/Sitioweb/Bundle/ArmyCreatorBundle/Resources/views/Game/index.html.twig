@@ -29,18 +29,22 @@
                 {{ entity.breedList.count() }}
             </td>
             <td>
-                <a class="acButton" href="{{ path('admin_game_edit', { 'code': entity.code }) }}">
-                    {{ "game.list.edit"|trans }}
-                </a>
+                {% if ac_granted('EDIT', entity) %}
+                    <a class="acButton" href="{{ path('admin_game_edit', { 'game': entity.code }) }}">
+                        {{ "game.list.edit"|trans }}
+                    </a>
+                {% endif %}
             </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
 
-<div class="txtright">
-    <a href="{{ path('admin_game_new') }}" class="acButton acButtonBig">
-        {{ "game.list.new"|trans }}
-    </a>
-</div>
+{% if canEditAll %}
+    <div class="txtright">
+        <a href="{{ path('admin_game_new') }}" class="acButton acButtonBig">
+            {{ "game.list.new"|trans }}
+        </a>
+    </div>
+{% endif %}
 {% endblock %}

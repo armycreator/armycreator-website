@@ -6,7 +6,7 @@
 <form action="{{ path('admin_breed_update', { "breed": entity.slug }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
     {{ form_widget(edit_form) }}
     <div class="txtright">
-        <button type="submit" class="acButton acButtonBig">{{ "button.create"|trans }}</button>
+        <button type="submit" class="acButton acButtonBig">{{ "button.edit"|trans }}</button>
     </div>
 </form>
 

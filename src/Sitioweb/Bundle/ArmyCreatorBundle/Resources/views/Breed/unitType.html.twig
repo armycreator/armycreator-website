@@ -12,17 +12,21 @@
         <li class="unitType">
             {{ unitTypeMacro.stick(unitType.color) }}
             {{ unitType.name }}
+            {% if ac_granted("EDIT", breed) %}
             <a href="{{ path("unittype_edit", params + { "id": unitType.id}) }}" class="acButton">
                 <i class="el-icon-pencil"></i>
             </a>
+            {% endif %}
         </li>
     {% endfor %}
 
-    <li>
-        <a href="{{ path("unittype_new", params) }}" title="{{ "breed.unittype.new"|trans }}" class="acButton">
-            {{ "breed.unittype.new"|trans }}
-        </a>
-    </li>
+    {% if ac_granted("EDIT", breed) %}
+        <li>
+            <a href="{{ path("unittype_new", params) }}" title="{{ "breed.unittype.new"|trans }}" class="acButton">
+                {{ "breed.unittype.new"|trans }}
+            </a>
+        </li>
+    {% endif %}
 </ul>
 {% endblock %}
 

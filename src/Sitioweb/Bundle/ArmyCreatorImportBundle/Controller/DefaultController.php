@@ -161,6 +161,9 @@ class DefaultController extends Controller
             $this->w40k = new \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game();
             $this->w40k->setName('Warhammer 40.000');
             $this->w40k->setCode('W40K');
+
+            $this->em->persist($this->w40k);
+            $this->em->flush();
         }
 
         return $this->redirect($this->generateUrl('import_index'));

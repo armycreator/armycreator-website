@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
@@ -24,24 +25,6 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffType;
 class UnitStuffController extends Controller
 {
     /**
-     * Lists all UnitStuff entities.
-     *
-     * @Route("/", name="unitstuff")
-     * @Method("GET")
-     * @Template()
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('SitiowebArmyCreatorBundle:UnitStuff')->findAll();
-
-        return array(
-            'entities' => $entities,
-        );
-    }
-
-    /**
      * Creates a new UnitStuff entity.
      *
      * @Route("/", name="unitstuff_create")
@@ -50,6 +33,10 @@ class UnitStuffController extends Controller
      */
     public function createAction(Request $request, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $entity  = new UnitStuff();
         $form = $this->createForm(new UnitStuffType($breed), $entity);
         $form->bind($request);
@@ -77,6 +64,10 @@ class UnitStuffController extends Controller
      */
     public function newAction(Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $entity = new UnitStuff();
         $form   = $this->createForm(new UnitStuffType($breed), $entity);
 
@@ -95,6 +86,10 @@ class UnitStuffController extends Controller
      */
     public function showAction($id)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitStuff')->find($id);
@@ -120,6 +115,10 @@ class UnitStuffController extends Controller
      */
     public function editAction($id, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitStuff')->find($id);
@@ -147,6 +146,10 @@ class UnitStuffController extends Controller
      */
     public function updateAction(Request $request, $id, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitStuff')->find($id);
@@ -181,6 +184,10 @@ class UnitStuffController extends Controller
      */
     public function deleteAction(Request $request, $id, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 

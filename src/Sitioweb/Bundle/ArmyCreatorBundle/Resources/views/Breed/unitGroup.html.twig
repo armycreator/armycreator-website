@@ -24,9 +24,11 @@
                                 <span class="soft">
                                     {% trans with { "%pts%":unitGroup.points } %}breed.show.pts.%pts%{% endtrans %}
                                 </span>
-                                <a href="{{ path("unitgroup_edit", params + { "unitGroupSlug": unitGroup.slug}) }}" class="acButton acButtonSmall">
-                                    <i class="el-icon-pencil"></i>
-                                </a>
+                                {% if ac_granted("EDIT", breed) %}
+                                    <a href="{{ path("unitgroup_edit", params + { "unitGroupSlug": unitGroup.slug}) }}" class="acButton acButtonSmall">
+                                        <i class="el-icon-pencil"></i>
+                                    </a>
+                                {% endif %}
                             </h4>
                         </div>
                         <div>
@@ -41,26 +43,34 @@
                                         <span class="soft">
                                             {% trans with { "%pts%":unitHasUnitGroup.unit.points } %}breed.show.pts.%pts%{% endtrans %}
                                         </span>
-                                        <a href="{{ path("unithasunitgroup_edit", params + { "id": unitHasUnitGroup.id}) }}" class="acButton acButtonSmall">
-                                            <i class="el-icon-pencil"></i>
-                                        </a>
+
+                                        {% if ac_granted("EDIT", breed) %}
+                                            <a href="{{ path("unithasunitgroup_edit", params + { "id": unitHasUnitGroup.id}) }}" class="acButton acButtonSmall">
+                                                <i class="el-icon-pencil"></i>
+                                            </a>
+                                        {% endif %}
                                     </h5>
                                 </div>
                             {% endfor %}
-                            <div class="squadLine">
-                                <a href="{{ path("unithasunitgroup_new", params + {"group": unitGroup.slug}) }}" class="acButton">
-                                    <i class="el-icon-plus"></i>
-                                </a>
-                            </div>
+
+                            {% if ac_granted("EDIT", breed) %}
+                                <div class="squadLine">
+                                    <a href="{{ path("unithasunitgroup_new", params + {"group": unitGroup.slug}) }}" class="acButton">
+                                        <i class="el-icon-plus"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}
-                <div class="squad">
-                    <a href="{{ path("unitgroup_new", { "breed": breed.slug, "game": breed.game.code, "unitTypeSlug": unitType.slug}) }}" class="acButton">
-                        <i class="el-icon-plus"></i>
-                        {{ "breed.show.unitgroup.new"|trans }}
-                    </a>
-                </div>
+                {% if ac_granted("EDIT", breed) %}
+                    <div class="squad">
+                        <a href="{{ path("unitgroup_new", { "breed": breed.slug, "game": breed.game.code, "unitTypeSlug": unitType.slug}) }}" class="acButton">
+                            <i class="el-icon-plus"></i>
+                            {{ "breed.show.unitgroup.new"|trans }}
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </section>

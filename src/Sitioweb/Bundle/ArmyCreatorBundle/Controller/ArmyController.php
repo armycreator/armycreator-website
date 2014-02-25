@@ -25,13 +25,11 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference;
  *
  * @uses BaseController
  * @Route("/army")
- * @Security\PreAuthorize("isFullyAuthenticated()")
  * @Breadcrumb("breadcrumb.home", route="homepage")
  * @Breadcrumb("breadcrumb.army_list", route="army_list")
  *
  * @author Julien Deniau <julien@sitioweb.fr>
  */
-
 class ArmyController extends Controller
 {
     /**
@@ -43,6 +41,7 @@ class ArmyController extends Controller
      * @Route("/group/{groupId}", requirements={"groupId" = "\d+"}, name="army_group_list")
      * @Route("/", name="army_list", defaults={"groupId" = null})
      * @Template()
+     * @Security\PreAuthorize("isFullyAuthenticated()")
      */
     public function listAction($groupId, Request $request)
     {

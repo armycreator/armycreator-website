@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup;
@@ -31,6 +32,10 @@ class UnitHasUnitGroupController extends Controller
      */
     public function createAction(Request $request, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $entity  = new UnitHasUnitGroup();
         $form = $this->createForm(new UnitHasUnitGroupType($breed), $entity);
         $form->bind($request);
@@ -58,6 +63,10 @@ class UnitHasUnitGroupController extends Controller
      */
     public function newAction(Request $request, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $entity = new UnitHasUnitGroup();
         if ($request->query->has('group')) {
             $em = $this->getDoctrine()->getManager();
@@ -87,6 +96,10 @@ class UnitHasUnitGroupController extends Controller
      */
     public function editAction($id, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitHasUnitGroup')->find($id);
@@ -113,6 +126,10 @@ class UnitHasUnitGroupController extends Controller
      */
     public function updateAction(Breed $breed, Request $request, $id)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitHasUnitGroup')->find($id);
@@ -146,6 +163,10 @@ class UnitHasUnitGroupController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 

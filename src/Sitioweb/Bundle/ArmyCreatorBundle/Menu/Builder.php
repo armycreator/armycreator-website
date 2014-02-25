@@ -53,7 +53,7 @@ class Builder extends ContainerAware
 
         $menu = $factory->createItem('root');
 
-        if ($security->isGranted('ROLE_ADMIN')) {
+        if ($security->isGranted('ROLE_CONTRIB')) {
             $menu->addChild('main_menu.admin', array('route' => 'admin_game'));
         }
 

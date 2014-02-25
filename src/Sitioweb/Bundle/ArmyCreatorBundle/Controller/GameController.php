@@ -2,10 +2,15 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use JMS\SecurityExtraBundle\Annotation\SecureParam;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\GameType;
 
@@ -28,8 +33,19 @@ class GameController extends Controller
 
         $entities = $em->getRepository('SitiowebArmyCreatorBundle:Game')->findAll();
 
+        $gameList = [];
+        foreach ($entities as $game) {
+            if ($this->get('oneup_acl.manager')->isGranted('VIEW', $game)) {
+                $gameList[] = $game;
+            }
+        }
+
+        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Game');
+        $canEditAll = $this->get('security.context')->isGranted('EDIT', $oi);
+
         return array(
-            'entities' => $entities,
+            'entities' => $gameList,
+            'canEditAll' => $canEditAll
         );
     }
 
@@ -42,6 +58,11 @@ class GameController extends Controller
     public function newAction()
     {
         $entity = new Game();
+        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Game');
+        if (!$this->get('security.context')->isGranted('CREATE', $oi)) {
+            throw new AccessDeniedException();
+        }
+
         $form   = $this->createForm(new GameType(), $entity);
 
         return array(
@@ -59,6 +80,11 @@ class GameController extends Controller
      */
     public function createAction()
     {
+        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Game');
+        if (!$this->get('security.context')->isGranted('CREATE', $oi)) {
+            throw new AccessDeniedException();
+        }
+
         $entity  = new Game();
         $request = $this->getRequest();
         $form    = $this->createForm(new GameType(), $entity);
@@ -81,24 +107,20 @@ class GameController extends Controller
     /**
      * Displays a form to edit an existing Game entity.
      *
-     * @Route("/{code}/edit", name="admin_game_edit")
+     * @Route("/{game}/edit", name="admin_game_edit")
      * @Template()
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
+     * @SecureParam(name="game", permissions="EDIT")
      */
-    public function editAction($code)
+    public function editAction(Game $game)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->findOneByCode($code);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Game entity.');
-        }
-
-        $editForm = $this->createForm(new GameType(), $entity);
-        $deleteForm = $this->createDeleteForm($entity->getId());
+        $editForm = $this->createForm(new GameType(), $game);
+        $deleteForm = $this->createDeleteForm($game->getId());
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $game,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -110,19 +132,16 @@ class GameController extends Controller
      * @Route("/{code}/update", name="admin_game_update")
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Game:edit.html.twig")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"code" = "code"}})
+     * @SecureParam(name="game", permissions="EDIT")
      */
-    public function updateAction($code)
+    public function updateAction(Game $game)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->findOneByCode($code);
-        $id = $entity->getId();
+        $id = $game->getId();
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Game entity.');
-        }
-
-        $editForm   = $this->createForm(new GameType(), $entity);
+        $editForm   = $this->createForm(new GameType(), $game);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -130,14 +149,16 @@ class GameController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
+            $em->persist($game);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_game_edit', array('id' => $id)));
+            return $this->redirect(
+                $this->generateUrl('admin_game_edit', array('game' => $game->getCode()))
+            );
         }
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $game,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -148,11 +169,15 @@ class GameController extends Controller
      *
      * @Route("/{code}/delete", name="admin_game_delete")
      * @Method("post")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"code" = "code"}})
      */
-    public function deleteAction($code)
+    public function deleteAction(Game $game)
     {
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Game')->findOneByCode($code);
-        $id = $entity->getId();
+        if (!$this->get('oneup_acl.manager')->isGranted('DELETE', $game)) {
+            throw new AccessDeniedException();
+        }
+
+        $id = $game->getId();
 
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
@@ -162,17 +187,20 @@ class GameController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Game entity.');
-            }
-
-            $em->remove($entity);
+            $em->remove($game);
             $em->flush();
         }
 
         return $this->redirect($this->generateUrl('admin_game'));
     }
 
+    /**
+     * createDeleteForm
+     *
+     * @param int $id
+     * @access private
+     * @return Form
+     */
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
@@ -180,4 +208,5 @@ class GameController extends Controller
             ->getForm()
         ;
     }
+
 }

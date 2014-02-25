@@ -5,11 +5,18 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Oneup\AclBundle\Mapping\Annotation as Acl;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed
  *
  * @ORM\Entity
+ * @Acl\DomainObject({
+ *     @Acl\ClassPermission({ "ROLE_ADMIN": MaskBuilder::MASK_OPERATOR }),
+ *     @Acl\ClassPermission({ "ROLE_CONTRIB_ALL": MaskBuilder::MASK_EDIT }),
+ *     @Acl\ClassPermission({ "ROLE_CONTRIB": MaskBuilder::MASK_VIEW })
+ * })
  */
 class Breed
 {
@@ -33,7 +40,7 @@ class Breed
 
     /**
      * slug
-     * 
+     *
      * @var string
      * @access private
      *
@@ -44,7 +51,7 @@ class Breed
 
     /**
      * newVersion
-     * 
+     *
      * @var mixed
      * @access private
      *
@@ -54,7 +61,7 @@ class Breed
 
     /**
      * available
-     * 
+     *
      * @var mixed
      * @access private
      *
@@ -65,7 +72,7 @@ class Breed
 
     /**
      * image
-     * 
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      * @access private
@@ -74,7 +81,7 @@ class Breed
 
     /**
      * game
-     * 
+     *
      * @var mixed
      * @access private
      *
@@ -84,7 +91,7 @@ class Breed
 
     /**
      * breedGroup
-     * 
+     *
      * @var mixed
      * @access private
      *
@@ -94,7 +101,7 @@ class Breed
 
     /**
      * unitGroupList
-     * 
+     *
      * @var array
      * @access private
      *
@@ -104,7 +111,7 @@ class Breed
 
     /**
      * unitTypeList
-     * 
+     *
      * @var array
      * @access private
      *
@@ -115,7 +122,7 @@ class Breed
 
     /**
      * userPreferenceList
-     * 
+     *
      * @var array
      * @access private
      *
@@ -125,7 +132,7 @@ class Breed
 
     /**
      * stuffList
-     * 
+     *
      * @var array
      * @access private
      *
@@ -135,7 +142,7 @@ class Breed
 
     /**
      * armyList
-     * 
+     *
      * @var array<Army>
      * @access private
      *
@@ -146,7 +153,7 @@ class Breed
     /**
      * userList
      * @ORM\ManyToMany(targetEntity="User", mappedBy="collectionList")
-     * 
+     *
      * @var mixed
      * @access private
      */
@@ -171,7 +178,7 @@ class Breed
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -206,7 +213,7 @@ class Breed
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -252,7 +259,7 @@ class Breed
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -274,7 +281,7 @@ class Breed
     /**
      * Get game
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game
      */
     public function getGame()
     {
@@ -296,7 +303,7 @@ class Breed
     /**
      * Get breedGroup
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup
      */
     public function getBreedGroup()
     {
@@ -318,7 +325,7 @@ class Breed
     /**
      * Get newVersion
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed
      */
     public function getNewVersion()
     {
@@ -340,7 +347,7 @@ class Breed
     /**
      * Get available
      *
-     * @return int 
+     * @return int
      */
     public function getAvailable()
     {
@@ -378,7 +385,7 @@ class Breed
     /**
      * Get unitGroupList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUnitGroupList()
     {
@@ -394,7 +401,7 @@ class Breed
     public function addUnitTypeList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType $unitTypeList)
     {
         $this->unitTypeList[] = $unitTypeList;
-    
+
         return $this;
     }
 
@@ -411,7 +418,7 @@ class Breed
     /**
      * Get unitTypeList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUnitTypeList()
     {
@@ -427,7 +434,7 @@ class Breed
     public function addArmyList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army $armyList)
     {
         $this->armyList[] = $armyList;
-    
+
         return $this;
     }
 
@@ -444,7 +451,7 @@ class Breed
     /**
      * Get armyList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getArmyList()
     {
@@ -460,7 +467,7 @@ class Breed
     public function addStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff $stuffList)
     {
         $this->stuffList[] = $stuffList;
-    
+
         return $this;
     }
 
@@ -477,7 +484,7 @@ class Breed
     /**
      * Get stuffList
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getStuffList()
     {
@@ -493,7 +500,7 @@ class Breed
     public function addUserPreferenceList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference $userPreferenceList)
     {
         $this->userPreferenceList[] = $userPreferenceList;
-    
+
         return $this;
     }
 
@@ -510,7 +517,7 @@ class Breed
     /**
      * Get userPreferenceList
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUserPreferenceList()
     {
@@ -526,7 +533,7 @@ class Breed
     public function addUserList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\User $user)
     {
         $this->userList[] = $user;
-    
+
         return $this;
     }
 
@@ -543,7 +550,7 @@ class Breed
     /**
      * Get userList
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUserList()
     {
@@ -561,7 +568,7 @@ class Breed
                 $unitList[$unit->getId()] = $unit;
             }
         }
-        
+
         return $unitList;
     }
 }

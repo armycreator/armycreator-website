@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
@@ -32,6 +33,10 @@ class WeaponController extends Controller
      */
     public function createAction(Request $request, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $entity  = new Weapon();
         $form = $this->createForm(new WeaponType(), $entity);
         $form->bind($request);
@@ -58,8 +63,12 @@ class WeaponController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
+    public function newAction(Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $entity = new Weapon();
         $form   = $this->createForm(new WeaponType(), $entity);
 
@@ -76,8 +85,12 @@ class WeaponController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction($id, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitiowebArmyCreatorBundle:Weapon')->find($id);
@@ -105,6 +118,10 @@ class WeaponController extends Controller
      */
     public function updateAction(Request $request, $id, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitiowebArmyCreatorBundle:Weapon')->find($id);
@@ -139,6 +156,10 @@ class WeaponController extends Controller
      */
     public function deleteAction(Request $request, $id, Breed $breed)
     {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
