@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new APY\BreadcrumbTrailBundle\APYBreadcrumbTrailBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
+            new FM\BbcodeBundle\FMBbcodeBundle(),
             new Oneup\AclBundle\OneupAclBundle(),
 
             new Sitioweb\Bundle\ArmyCreatorBundle\SitiowebArmyCreatorBundle(),

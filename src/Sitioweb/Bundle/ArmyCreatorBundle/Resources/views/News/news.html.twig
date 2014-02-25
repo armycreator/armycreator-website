@@ -1,0 +1,21 @@
+<div class="news">
+    {% for news in newsList %}
+    <article>
+        <h4>{{ news.topic_title }}</h4>
+        <aside>
+            {{ news.topic_first_poster_name }}
+            {{ "on"|trans }}
+            {{ news.topic_time|format_datetime }}
+        </aside>
+
+        <div>
+            {{ news.post_text|bbcode_filter("my_default_filter") }}
+        </div>
+
+        <a href="{{ path("forum_topic", { "f": forumId, "t": news.topic_id}) }}">
+            {{ "news.view_more"|trans }}
+        </a>
+        {{ "news.topic_replies"|trans({ "%reply_number%": news.topic_replies }) }}
+    </article>
+    {% endfor %}
+</div>

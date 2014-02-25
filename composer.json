@@ -31,7 +31,8 @@
         "knplabs/knp-menu-bundle":"2.0.*@dev",
         "mpdf/mpdf" : "5.*",
         "friendsofsymfony/user-bundle": "2.*@dev",
-        "friendsofsymfony/jsrouting-bundle": "@stable"
+        "friendsofsymfony/jsrouting-bundle": "@stable",
+        "helios-ag/fm-bbcode-bundle": "@stable"
     },
 
     "require-dev": {

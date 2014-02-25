@@ -131,3 +131,8 @@ footer.warning: Warning
 footer.detail: __footer.detail
 footer.design: 'Design by:'
 footer.made_by: 'Created and developed by:'
+news:
+    view_more: "View detail"
+    topic_replies: "%reply_number% reply(ies)"
+
+on: 'on'

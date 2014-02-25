@@ -21,6 +21,9 @@ donation:
 forum_index:
     path: /forum/
 
+forum_topic:
+    path: /forum/viewtopic.php
+
 forum_ucp:
     path: /forum/ucp.php
 
