@@ -1,0 +1,14 @@
+parameters:
+#    sitioweb_acl.example.class: Sitioweb\Bundle\AclBundle\Example
+
+services:
+#    sitioweb_acl.example:
+#        class: %sitioweb_acl.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+#
+    armycreator.twig_extension:
+        class: Sitioweb\Bundle\AclBundle\Twig\AclExtension
+        arguments:
+            - @oneup_acl.manager
+        tags:
+            - { name: twig.extension }
