@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8807f438b17992089c117290d9264b7a",
+    "hash": "37e4be8dbdb4b7e3b11eb3278cd774d3",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
@@ -1579,6 +1579,72 @@
             "time": "2013-09-02 12:16:35"
         },
         {
+            "name": "oneup/acl-bundle",
+            "version": "v0.9.0",
+            "target-dir": "Oneup/AclBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/1up-lab/OneupAclBundle.git",
+                "reference": "9395068dc4e610abef6d86f2bf0db92224f8e6cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/1up-lab/OneupAclBundle/zipball/9395068dc4e610abef6d86f2bf0db92224f8e6cb",
+                "reference": "9395068dc4e610abef6d86f2bf0db92224f8e6cb",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.2",
+                "doctrine/dbal": "~2.2",
+                "doctrine/doctrine-bundle": "1.2.*@dev",
+                "symfony/framework-bundle": "2.*",
+                "symfony/security-bundle": "2.*"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.2",
+                "phpunit/phpunit": "3.7.*",
+                "sensio/framework-extra-bundle": "~2.2",
+                "symfony/browser-kit": "2.*",
+                "symfony/finder": ">=2.0.16,<2.4-dev"
+            },
+            "suggest": {
+                "doctrine/orm": "Allows you to remove Acl entries automatically.",
+                "sensio/framework-extra-bundle": "Allows you to use controller annotations."
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Oneup\\AclBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Schmid",
+                    "email": "js@1up.io",
+                    "homepage": "http://1up.io",
+                    "role": "Developer"
+                },
+                {
+                    "name": "David Greminger",
+                    "email": "dg@1up.io",
+                    "homepage": "http://1up.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The missing link between Symfony`s Acl implementation and your application.",
+            "homepage": "http://1up.io",
+            "keywords": [
+                "Symfony2",
+                "acl",
+                "security"
+            ],
+            "time": "2013-08-08 08:56:46"
+        },
+        {
             "name": "phpoption/phpoption",
             "version": "1.4.0",
             "source": {
@@ -2812,6 +2878,7 @@
     "stability-flags": {
         "kriswallsmith/assetic": 20,
         "symfony/assetic-bundle": 20,
+        "oneup/acl-bundle": 0,
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
         "friendsofsymfony/user-bundle": 20,

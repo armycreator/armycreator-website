@@ -23,6 +23,7 @@
         "jms/di-extra-bundle": "1.*",
         "sonata-project/intl-bundle": "2.*",
         "ircmaxell/password-compat": "1.*",
+        "oneup/acl-bundle": "@stable",
 
         "apy/breadcrumbtrail-bundle":"0.*",
 
