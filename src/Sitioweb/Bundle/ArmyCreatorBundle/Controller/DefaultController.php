@@ -72,6 +72,27 @@ class DefaultController extends Controller
      * @return string
      */
     public function getFooter() {
-        return $this->get('templating')->render('SitiowebArmyCreatorBundle::footer.html.twig', array());
+        $am = $this->get('assetic.asset_manager');
+        $names = $am->getNames();
+        $cssList = [];
+        $jsList = [];
+        foreach ($names as $nameTmp) {
+            $name = $am->get($nameTmp)->getTargetPath();
+            if (strpos($name, 'global') !== false) {
+                if (substr($name, 0, 3) === 'js/') {
+                    $jsList[] = $name;
+                } else {
+                    $cssList[] = $name;
+                }
+            }
+        }
+        return $this->get('templating')
+            ->render(
+                'SitiowebArmyCreatorBundle::footer.html.twig',
+                [
+                    'moreCssList' => $cssList,
+                    'moreJsList' => $jsList,
+                ]
+            );
     }
 }

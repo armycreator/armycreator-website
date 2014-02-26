@@ -39,15 +39,8 @@
 {% endblock %}
 
 {% block javascripts %}
-    {% javascripts
-        '@SitiowebExternalJsBundle/Resources/public/jquery/jquery.min.js'
-        '@SitiowebExternalJsBundle/Resources/public/elusive-iconfont/less/elusive-webfont.less'
-        output='js/external.js'
-    %}
-		 <script src="{{ asset_url }}"></script>
-	{% endjavascripts %}
-
 	{% javascripts
+        '@SitiowebExternalJsBundle/Resources/public/jquery/jquery.min.js'
         "@FOSJsRoutingBundle/Resources/public/js/router.js"
         "js/fos_js_routes.js"
         '@SitiowebArmyCreatorBundle/Resources/public/js/squadLine.js'
@@ -60,15 +53,10 @@
 {% endblock %}
 
 {% block stylesheets %}
-	{% stylesheets
-		'@SitiowebArmyCreatorBundle/Resources/public/less/knacss.less'
-		filter='cssrewrite' output='css/external.css' %}
-		 <link rel="stylesheet" href="{{ asset_url }}" />
-	{% endstylesheets %}
-
     <link rel="stylesheet" href="/bundles/sitiowebexternaljs/elusive-iconfont/css/elusive-webfont.css" />
 
 	{% stylesheets
+		'@SitiowebArmyCreatorBundle/Resources/public/less/knacss.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/override.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/font.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/button.less'
