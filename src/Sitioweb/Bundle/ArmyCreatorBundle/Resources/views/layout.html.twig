@@ -8,6 +8,7 @@
 
 	<div id="websiteContentContainer">
         <div id="websiteContent" class="{{ app.request.attributes.get('_route') }}">
+            {% block ad300Content %}{% endblock %}
             <section id="breadcrumb">
                 {% block breadcrumb %}
                     {{ apy_breadcrumb_trail_render() }}

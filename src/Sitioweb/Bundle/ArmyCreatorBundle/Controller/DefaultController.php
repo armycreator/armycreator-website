@@ -62,7 +62,10 @@ class DefaultController extends Controller
      * @return string
      */
     public function getHeader() {
-        return $this->get('templating')->render('SitiowebArmyCreatorBundle::header.html.twig', array());
+        return $this->get('templating')
+            ->render(
+                'SitiowebArmyCreatorBundle::header.html.twig', ['ads' => true]
+            );
     }
 
     /**

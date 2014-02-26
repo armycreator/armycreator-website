@@ -1,10 +1,10 @@
-{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+{% extends 'SitiowebArmyCreatorBundle:Default:index.html.twig' %}
 
 {% block title %}
     {% trans with { "%username%": app.user.username } %}home.hello.%username%{% endtrans %}
 {% endblock %}
 
-{% block content %}
+{% block buttons %}
     <ul class="inline inlineBig">
         <li>
             <a href="{{ path("army_list") }}" title="{{ 'homepage_menu.my_army_list'|trans }}">
@@ -69,41 +69,34 @@
             </a>
         </li>
     </ul>
+{% endblock %}
 
-    <h2>
-        {{ "home.welcome_text"|trans }}
-    </h2>
-
-    <div class="grid presentation">
-        <div class="grid3">
+{% block presentation %}
+    <div class="grid3">
+        <div>
+            <img src="/images/homepage/export.png" />
             <div>
-                <img src="/images/homepage/export.png" />
-                <div>
-                    {{ "home.things_to_do.export"|trans|raw }}
-                </div>
+                {{ "home.things_to_do.export"|trans|raw }}
             </div>
+        </div>
 
+        <div>
+            <img src="/images/homepage/army-group-small.png" />
             <div>
-                <img src="/images/homepage/army-group-small.png" />
-                <div>
-                    {{ "home.things_to_do.list_groups"|trans|raw }}
-                </div>
+                {{ "home.things_to_do.list_groups"|trans|raw }}
             </div>
+        </div>
+
+        <div>
+            <a href="{{ path("donation") }}" title="{{ 'homepage_menu.donation'|trans }}" target="_blank">
+                <figure>
+                    <i class="el-icon-eur"></i>
+                </figure>
+            </a>
 
             <div>
-                <a href="{{ path("donation") }}" title="{{ 'homepage_menu.donation'|trans }}" target="_blank">
-                    <figure>
-                        <i class="el-icon-eur"></i>
-                    </figure>
-                </a>
-
-                <div>
-                    {{ "home.things_to_do.free"|trans|raw }}
-                </div>
+                {{ "home.things_to_do.free"|trans|raw }}
             </div>
         </div>
     </div>
-
-    <div class="clear"></div>
-    {{ render(controller("SitiowebArmyCreatorBundle:News:news")) }}
 {% endblock %}

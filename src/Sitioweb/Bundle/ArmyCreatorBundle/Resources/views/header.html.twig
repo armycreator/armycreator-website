@@ -44,5 +44,17 @@
             </div>
         </nav>
     {% endblock %}
+
+    {% if ads is defined %}
+        <div class="txtcenter">
+            {% include "SitiowebArmyCreatorBundle:Ads:render.html.twig" with
+                {
+                    "slot": 7635175121,
+                    "width": 728,
+                    "height": 90,
+                }
+            %}
+        </div>
+    {% endif %}
 </header>
 
