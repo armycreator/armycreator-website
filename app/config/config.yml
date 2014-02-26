@@ -23,6 +23,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        forum_sid: %forum_sid%
 
 # Assetic Configuration
 assetic:

@@ -11,7 +11,8 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {% trans with { "%username%": app.user.username } %}header.hello.%username%{% endtrans %}
                     |
-                    <a href="{{ path("forum_ucp", { mode: 'logout' }) }}" title="{{ "header.logout"|trans }}">
+                    {% set sid = app.request.cookies.get(forum_sid)%}
+                    <a href="{{ path("forum_ucp", { mode: 'logout', 'sid': sid }) }}" title="{{ "header.logout"|trans }}">
                         {{ "header.logout"|trans }}
                         <i class="el-icon-off"></i>
                     </a>
@@ -24,10 +25,6 @@
                         {{ "header.sign_up"|trans }}
                     </a>
                 {% endif %}
-                |
-                <a href="#">
-                    <i class="el-icon-question-sign"></i>
-                </a>
             </span>
         </div>
     {% endblock %}
