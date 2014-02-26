@@ -50,3 +50,11 @@ forum_ucp:
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
+#
+
+armycreator_redirections:
+    path: /{oldRoute}
+    defaults:
+        _controller: SitiowebArmyCreatorBundle:Redirect:redirect301
+    requirements:
+        oldRoute: ".+"
