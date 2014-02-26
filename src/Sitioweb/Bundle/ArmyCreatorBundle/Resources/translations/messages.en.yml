@@ -133,6 +133,7 @@ footer.design: 'Design by:'
 footer.made_by: 'Created and developed by:'
 news:
     view_more: "View detail"
-    topic_replies: "%reply_number% reply(ies)"
+    last_news: "Last news"
+    topic_replies: "[0,1]%reply_number% reply|[1,Inf]%reply_number% replies"
 
 on: 'on'

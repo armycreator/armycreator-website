@@ -1,0 +1,21 @@
+@import "variables";
+@import "mixins";
+
+.news {
+    margin-top: 40px;
+
+    article {
+        background: @squadBackgroundColor;
+        padding: 20px;
+        margin-bottom: 20px;
+
+        &:nth-child(2n+1) {
+            background: lighten(@squadBackgroundColor, 5%);
+        }
+
+        aside {
+            color: @unitTypeForegroundColor;
+            margin-bottom: 1em;
+        }
+    }
+}

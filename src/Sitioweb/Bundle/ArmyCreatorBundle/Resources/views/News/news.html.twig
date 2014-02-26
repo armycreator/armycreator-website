@@ -1,4 +1,5 @@
 <div class="news">
+    <h3>{{ "news.last_news"|trans }}</h3>
     {% for news in newsList %}
     <article>
         <h4>{{ news.topic_title }}</h4>
@@ -15,7 +16,7 @@
         <a href="{{ path("forum_topic", { "f": forumId, "t": news.topic_id}) }}">
             {{ "news.view_more"|trans }}
         </a>
-        {{ "news.topic_replies"|trans({ "%reply_number%": news.topic_replies }) }}
-    </article>
+        ({{ "news.topic_replies"|transchoice(news.topic_replies, { "%reply_number%": news.topic_replies }) }})
+        </article>
     {% endfor %}
 </div>

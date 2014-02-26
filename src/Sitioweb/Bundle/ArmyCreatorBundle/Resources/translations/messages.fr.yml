@@ -148,6 +148,7 @@ breed_show:
         stuff: "Equipements"
 news:
     view_more: "Voir le détail"
-    topic_replies: "%reply_number% réponse(s)"
+    last_news: "Dernieres actualités"
+    topic_replies: "[0,1]%reply_number% réponse|[1,Inf]%reply_number% réponses"
 
 on: 'le'
