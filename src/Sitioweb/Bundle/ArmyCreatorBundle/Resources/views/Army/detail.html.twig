@@ -313,19 +313,9 @@
             '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.widget.js'
             '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.mouse.js'
             '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.sortable.js'
-            '@SitiowebExternalJsBundle/Resources/public/tooltipster/js/jquery.tooltipster.js'
             '@SitiowebArmyCreatorBundle/Resources/public/js/army.js'
             output='js/army-detail.js'
         %}
              <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-	{% stylesheets
-        '@SitiowebExternalJsBundle/Resources/public/tooltipster/css/tooltipster.css'
-		filter='less,cssrewrite' output='css/army.css' %}
-		 <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
 {% endblock %}
