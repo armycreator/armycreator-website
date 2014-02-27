@@ -62,17 +62,22 @@
 .globalBackground { background: url(@globalBackgroudImage) top center no-repeat @globalBackgroudColor }
 .globalTopBackground { background: url(@globalTopBackgroudImage) top center no-repeat }
 
-.displayFlex {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    justify-content: stretch;
-}
+//.displayFlex {
+//    display: -webkit-flex;
+//    display: flex;
+//    -webkit-flex-wrap: wrap;
+//    flex-wrap: wrap;
+//    justify-content: stretch;
+//}
 
 .soft { color: @unitTypeForegroundColor; }
 
 .ulInline {
     overflow: auto; list-style-type: none; padding: 0;margin: 0;
     > li { float: left; }
+}
+
+.ulInlineBlock() {
+    overflow: auto; list-style-type: none; padding: 0;margin: 0;
+    > li { display: inline-block; vertical-align: top; }
 }

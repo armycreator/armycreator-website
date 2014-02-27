@@ -49,9 +49,12 @@
 .squadListContainer {
     padding: 0;
     .squadList {
-        .displayFlex;
-        .squad {
+        > * {
+            display: inline-block;
+            vertical-align: top;
             width: 240px; overflow: hidden; margin: 0 0.8em 0.8em 0;
+        }
+        .squad {
             background : @squadBackgroundColor;
             h5 { margin-bottom: 0.5em  }
             // &:hover { height: auto }
