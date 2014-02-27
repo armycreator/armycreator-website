@@ -33,7 +33,7 @@ class Builder extends ContainerAware
             $menu->addChild('main_menu.my_army_list', array('route' => 'army_list'));
             //$menu->addChild('main_menu.my_games', array('route' => ''));
         }
-        $menu->addChild('main_menu.public_lists', array('route' => ''));
+        //$menu->addChild('main_menu.public_lists', array('route' => ''));
 
         return $menu;
     }
