@@ -1351,7 +1351,7 @@ class DefaultController extends Controller
         }
 
         // inserting
-        $this->em->getConnection()->executeUpdate("
+        $query = "
             INSERT INTO " . $this->getDbName() . ".SquadLineStuff (number, unitStuff_id, squadLine_id)
             SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id
             FROM wkarmycr_copy.`escouade_has_equipement` ehe
@@ -1372,7 +1372,10 @@ class DefaultController extends Controller
                 AND us.unit_id = au.id
 
             WHERE ehe.equipement_id > 0
-        ");
+        ";
+        var_dump($query);
+        die;
+        $this->em->getConnection()->executeUpdate($query);
 
         $this->get('session')->getFlashBag()->add('notice', $entityClass . ' imported : ' . $start);
 
@@ -1397,7 +1400,7 @@ class DefaultController extends Controller
         }
 
         // inserting
-        $this->em->getConnection()->executeUpdate("
+        $query = "
             INSERT INTO " . $this->getDbName() . ".SquadLineStuff (number, unitStuff_id, squadLine_id)
             SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id
             FROM wkarmycr_copy.`escouade_has_equipement` ehe
@@ -1418,7 +1421,10 @@ class DefaultController extends Controller
                 AND us.unit_id = au.id
 
             WHERE ehe.arme_id > 0
-        ");
+        ";
+        var_dump($query);
+        die;
+        $this->em->getConnection()->executeUpdate($query);
 
         $this->get('session')->getFlashBag()->add('notice', $entityClass . ' imported : ' . $start);
 
