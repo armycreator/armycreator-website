@@ -31,7 +31,7 @@ $(function() {
                                 "breedSlug": breed,
                                 "position": item.prevAll('.squad').length
                             }
-                        ),
+                        )
                     });
                 }
             }
