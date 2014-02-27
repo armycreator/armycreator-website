@@ -8,5 +8,5 @@
     RewriteRule ^forum/(.*)$ forum/$1 [QSA,L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ app_dev.php [QSA,L]
+    RewriteRule ^(.*)$ app.php [QSA,L]
 </IfModule>

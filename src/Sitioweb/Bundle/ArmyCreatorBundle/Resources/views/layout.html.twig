@@ -54,9 +54,12 @@
 {% endblock %}
 
 {% block stylesheets %}
+{#
     <link rel="stylesheet" href="/bundles/sitiowebexternaljs/elusive-iconfont/css/elusive-webfont.css" />
+    #}
 
 	{% stylesheets
+        '@SitiowebExternalJsBundle/Resources/public/elusive-iconfont/less/elusive-webfont.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/knacss.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/override.less'
 		'@SitiowebArmyCreatorBundle/Resources/public/less/font.less'
