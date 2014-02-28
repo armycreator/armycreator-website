@@ -98,6 +98,10 @@
                 </strong>
                 / {% trans with { "%pts%": army.wantedPoints } %}army.detail.wanted_pts.%pts%{% endtrans %}
             </div>
+        {% else %}
+            <strong>
+                {% trans with { "%pts%": army.points } %}army.detail.pts.%pts%{% endtrans %}
+            </strong>
         {% endif %}
 
         {% if army.description %}

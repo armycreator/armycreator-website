@@ -233,7 +233,11 @@ class ArmyController extends Controller
         $em = $this->get('doctrine')->getManager();
 
         // security
-        if ($this->getUser() != $army->getUser() && !$army->getIsShared()) {
+        if (
+            $this->getUser() != $army->getUser() &&
+            !$army->getIsShared() && !$this->get('oneup_acl.manager') &&
+            !$this->get('oneup_acl.manager')->isGranted('ROLE_ADMIN')
+        ) {
             throw new AccessDeniedException('Army not shared');
         } elseif ($this->getUser() != $army->getUser()) {
             $externalUser = true;
