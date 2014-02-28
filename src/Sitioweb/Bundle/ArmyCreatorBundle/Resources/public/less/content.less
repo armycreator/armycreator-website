@@ -1,9 +1,11 @@
 @import "mixins";
 
 #breadcrumb {
-    .border-radius(2px); .box-shadow(0 2px 4px #000); display: inline-block;
+    .border-radius(2px);
+    .box-shadow(0 2px 4px #000);
+    display: inline-block;
     ul {
-        .ulInline;
+        .ulInline();
         li {
             height: 25px; line-height: 25px; padding: 0 8px;
             .simple-linear-gradient(bottom, #3e3830, #1d1b1a);
@@ -18,8 +20,18 @@
     }
 }
 
+#websiteHeader, #websiteNav, #websiteFooter {
+    max-width: @minGlobalWidth;
+    margin-left: auto;
+    margin-right: auto;
+}
 #websiteContentContainer {
-    .minGlobalWidth;
+    max-width: @switchToGlobalWidth;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#websiteContentContainer {
     overflow: auto;
     background: url(@contentBackgroundUrl) repeat;
     padding-bottom: 100px;
@@ -46,18 +58,6 @@
     .pointBar {
         width: 400px; height: 2em; float: left; margin-right: 1em; border: 1px solid @armyDescPointBorder;
         > div { height: 100%; background: @armyDescPointBackground; border-right: 1px solid @armyDescPointBorder; }
-    }
-}
-
-@media (min-width: @switchToGlobalWidth) {
-    #websiteContentContainer {
-        .globalWidth;
-    }
-}
-
-@media (max-width: @minGlobalWidth) {
-    #websiteContentContainer {
-        width: 100%;
     }
 }
 
@@ -95,4 +95,22 @@
 
 .oauto {
     overflow: auto;
+}
+
+.soft { color: @unitTypeForegroundColor; }
+
+.txtleft {
+    text-align: left;
+}
+
+@media (max-width: @maxTabletWidth) {
+    .hide-mobile {
+        display: none!important;
+    }
+}
+
+@media (min-width: (@maxTabletWidth + 1px)) {
+    .only-mobile {
+        display: none!important;
+    }
 }

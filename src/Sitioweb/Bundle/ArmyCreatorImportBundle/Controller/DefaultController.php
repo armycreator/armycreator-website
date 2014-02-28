@@ -519,7 +519,7 @@ class DefaultController extends Controller
         $importList = $this->em->getConnection()->query("
             SELECT unit.id AS id, oldunit.parent_id AS parent_id
             FROM  " . $this->getDbName() . ".`AbstractUnit` unit
-            JOIN wkarmycr_copy.unite oldunit ON oldunit.id = unit.importedId
+            JOIN wkarmycr.unite oldunit ON oldunit.id = unit.importedId
             LEFT JOIN  " . $this->getDbName() . ".`UnitHasUnitGroup` uhug ON unit.id = uhug.unit_id
             WHERE  `discriminator` =  'unit'
             AND uhug.id IS NULL
@@ -528,6 +528,8 @@ class DefaultController extends Controller
         ");
 
         while ($row = $importList->fetch()) {
+            ld($row);
+            /*
             $unit = $this->em->getRepository('SitiowebArmyCreatorBundle:Unit')->find($row['id']);
             $parentUnit = $this->em->getRepository('SitiowebArmyCreatorBundle:Unit')->findOneByImportedId($row['parent_id']);
             $unitHasGroupList = $this->em->getRepository('SitiowebArmyCreatorBundle:UnitHasUnitGroup')
@@ -541,8 +543,9 @@ class DefaultController extends Controller
                     ->setGroup($unitHasGroup->getGroup());
                 $this->em->persist($entity);
             }
+             */
         }
-        $this->em->flush();
+        //$this->em->flush();
 
         $this->get('session')->getFlashBag()->add('notice', $entityClass . ' imported missing');
 
@@ -985,7 +988,7 @@ class DefaultController extends Controller
                      )
              SELECT wa.id, wa.race_id, u.id, IF(wa.type_armee = 'T','finish','draft'), wa.nom, CONCAT('army-', wa.id), wa.description,
                 wa.nbPointsSouhaites, wa.nbPoints, IF(wa.isShared='1',1,0), null, null, wa.groupe_id
-                FROM wkarmycr_copy.armee wa
+                FROM wkarmycr.armee wa
                 JOIN " . $this->getDbName() . ".Users u ON u.forumId = wa.joueur_id
                 ");
 
@@ -1078,7 +1081,7 @@ class DefaultController extends Controller
         $query = $this->em->getConnection()->executeUpdate("
             INSERT INTO UserHasUnit (user_id, unit_id, number)
             SELECT u.id as user_id, au.id as unit_id, wcu.nb
-            FROM wkarmycr_copy.wac_collection_unite wcu
+            FROM wkarmycr.wac_collection_unite wcu
             JOIN " . $this->getDbName() . ".Users u ON u.forumId = wcu.id_joueur
             JOIN " . $this->getDbName() . ".AbstractUnit au
                 ON au.discriminator = 'unit'
@@ -1151,9 +1154,9 @@ class DefaultController extends Controller
 
               SELECT e.id, e.armee_id, e.nomPerso, e.position, FROM_UNIXTIME(e.lastUpdate),
               ut.id as unitType_id, au.id
-              FROM wkarmycr_copy.escouade e
-              JOIN wkarmycr_copy.unite wu ON wu.id = e.unite_id
-              JOIN wkarmycr_copy.armee wa ON wa.id = e.armee_id
+              FROM wkarmycr.escouade e
+              JOIN wkarmycr.unite wu ON wu.id = e.unite_id
+              JOIN wkarmycr.armee wa ON wa.id = e.armee_id
 
               LEFT JOIN " . $this->getDbName() . ".UnitType ut
                   ON ut.importedId = IFNULL(e.type_unite, wu.type_unite_id)
@@ -1170,8 +1173,8 @@ class DefaultController extends Controller
             /*>
               SELECT e.id, e.armee_id, e.nomPerso, e.position, FROM_UNIXTIME(e.lastUpdate),
               ut.id as unitType_id, au.id
-              FROM wkarmycr_copy.escouade e
-              JOIN wkarmycr_copy.armee wa ON wa.id = e.armee_id
+              FROM wkarmycr.escouade e
+              JOIN wkarmycr.armee wa ON wa.id = e.armee_id
               LEFT JOIN armycreator.UnitType ut
                 ON ut.importedId = e.type_unite
                 AND ut.breed_id = wa.race_id
@@ -1323,7 +1326,7 @@ class DefaultController extends Controller
                (id, unit_id, squad_id, number, position, updateDate)
 
                SELECT e.id, au.id as unit_id, IFNULL(e.parent_id, e.id) as squad_id, e.nb_unite, e.position, FROM_UNIXTIME(e.lastUpdate)
-               FROM wkarmycr_copy.escouade e
+               FROM wkarmycr.escouade e
 
                 LEFT JOIN " . $this->getDbName() . ".AbstractUnit au
                     ON au.discriminator = 'unit'
@@ -1354,9 +1357,9 @@ class DefaultController extends Controller
         $query = "
             INSERT INTO " . $this->getDbName() . ".SquadLineStuff (number, unitStuff_id, squadLine_id)
             SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id
-            FROM wkarmycr_copy.`escouade_has_equipement` ehe
-            JOIN wkarmycr_copy.escouade e ON ehe.escouade_id = e.id
-            JOIN wkarmycr_copy.unite u ON u.id = e.unite_id
+            FROM wkarmycr.`escouade_has_equipement` ehe
+            JOIN wkarmycr.escouade e ON ehe.escouade_id = e.id
+            JOIN wkarmycr.unite u ON u.id = e.unite_id
 
             JOIN " . $this->getDbName() . ".AbstractUnit au
                 ON au.discriminator = 'unit'
@@ -1403,9 +1406,9 @@ class DefaultController extends Controller
         $query = "
             INSERT INTO " . $this->getDbName() . ".SquadLineStuff (number, unitStuff_id, squadLine_id)
             SELECT  ehe.nb_unite, us.id as unitStuff_id, ehe.escouade_id as squadLine_id
-            FROM wkarmycr_copy.`escouade_has_equipement` ehe
-            JOIN wkarmycr_copy.escouade e ON ehe.escouade_id = e.id
-            JOIN wkarmycr_copy.unite u ON u.id = e.unite_id
+            FROM wkarmycr.`escouade_has_equipement` ehe
+            JOIN wkarmycr.escouade e ON ehe.escouade_id = e.id
+            JOIN wkarmycr.unite u ON u.id = e.unite_id
 
             JOIN " . $this->getDbName() . ".AbstractUnit au
                 ON au.discriminator = 'unit'
@@ -1429,5 +1432,131 @@ class DefaultController extends Controller
         $this->get('session')->getFlashBag()->add('notice', $entityClass . ' imported : ' . $start);
 
         return $this->redirect($this->generateUrl('import_index'));
+    }
+
+    /**
+     * debugAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/debug", name="debug")
+     */
+    public function debugAction()
+    {
+        set_time_limit(300);
+        $this->configure();
+        $conn = $this->em->getConnection();
+
+        $query = " SELECT us.id as id,
+            unit_id as unit_id,
+            e.id as equipement_id,
+            s.name as stuff_name,
+            GROUP_CONCAT(DISTINCT us.points) as points,
+            GROUP_CONCAT(DISTINCT us.auto) as auto,
+            GROUP_CONCAT(DISTINCT us.visible) as visible,
+            COUNT(*) as nb,
+            u.name as unit_name,
+            b.name as breed_name
+            FROM `UnitStuff` us
+            JOIN Equipement e ON us.stuff_id = e.id
+            JOIN Stuff s ON s.id = e.id
+            JOIN AbstractUnit u ON u.id = us.unit_id
+            JOIN Breed b ON u.breed_id = b.id
+            WHERE b.name = '[HH] Space Marine Crusade Legion Army'
+            GROUP BY unit_id, e.id HAVING nb > 1
+            ORDER BY nb ";
+
+        $stmt = $conn->query($query);
+
+        $easycases = [];
+        $hardcases = [];
+        while($row = $stmt->fetch()) {
+            if (strpos($row['auto'], ',') !== false ||
+                strpos($row['visible'], ',') !== false ||
+                strpos($row['points'], ',') !== false
+            ) {
+                $hardcases[] = $row;
+            } else {
+                $easycases[] = $row;
+            }
+        }
+
+        ld(count($easycases));
+        foreach ($easycases as $case) {
+            //ld($case);
+            $query = "SELECT us.*
+                FROM `UnitStuff` us
+                JOIN `Equipement` e ON e.id = us.stuff_id
+                WHERE `unit_id` = " . $case['unit_id'] . " AND e.`id` = " . $case['equipement_id'];
+
+            $usList = $conn->fetchAll($query);
+
+            $delUsList = [];
+            $goodUs = null;
+            foreach ($usList as $us) {
+                if ($goodUs === null) {
+                    $goodUs = $us;
+                } else {
+                    $delUsList[] = $us;
+                }
+            }
+            ld($goodUs, $delUsList);
+
+            $query = "SELECT *
+                FROM SquadLineStuff
+                WHERE unitStuff_id = " . $goodUs['id'];
+
+            $goodList = $conn->fetchAll($query);
+
+            foreach ($delUsList as $delUs) {
+                $query = "SELECT *
+                    FROM SquadLineStuff
+                    WHERE unitStuff_id = " . $delUs['id'];
+
+                $toMove = $conn->fetchAll($query);
+
+                foreach ($toMove as $tm) {
+                    $inGoodList = false;
+
+                    $query = "SELECT *
+                        FROM SquadLineStuff
+                        WHERE unitStuff_id = " . $goodUs['id'] . "
+                            AND squadLine_id = " . $tm['squadLine_id'];
+
+                    $inGoodList = $conn->query($query)->rowCount();
+
+                    if ($inGoodList) {
+                        $query = "DELETE FROM SquadLineStuff WHERE id = " . $tm['id'];
+                    } else {
+                        $query = "UPDATE SquadLineStuff SET unitStuff_id = " . $goodUs['id'] . " WHERE id = " . $tm['id'];
+                    }
+
+                    $this->debugOrGo($query);
+                }
+                $query = "DELETE FROM UnitStuff WHERE id = " . $delUs['id'];
+                $this->debugOrGo($query);
+            }
+
+        }
+
+        ldd($easycases, $hardcases);
+    }
+
+    private function debugOrGo($query)
+    {
+        $conn = $this->em->getConnection();
+        if (1 == (int) $this->get('request')->query->get('go')) {
+            $conn->executeUpdate($query);
+        } else {
+            echo "<br />";
+            if (strtolower(substr($query, 0, 7)) == 'update') {
+                echo "<span style='color: red;'>";
+            }
+            echo $query . "\n";
+            if (strtolower(substr($query, 0, 7)) == 'update') {
+                echo "</span>";
+            }
+        }
     }
 }

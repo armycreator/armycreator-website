@@ -4,8 +4,10 @@
             <a href="{{ path('homepage') }}" title="Army Creator">
                 <i class="el-icon-home"></i>
             </a>
-            |
-            {{ "header.welcome"|trans }}
+            <span class="hide-mobile">
+                |
+                {{ "header.welcome"|trans }}
+            </span>
 
             <span class="right">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -34,7 +36,7 @@
     {% endblock %}
 
     {% block websiteNav %}
-        <nav id="websiteNav">
+        <nav id="websiteNav" role="navigation" tabindex="0">
             <div class="left">
                 {{ knp_menu_render('SitiowebArmyCreatorBundle:Builder:mainMenu') }}
             </div>

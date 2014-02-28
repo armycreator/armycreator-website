@@ -7,7 +7,8 @@
 
 html { font-family: @globalFontFamily }
 body {
-    .globalBackground; color: @globalColor; 
+    background: url(@globalBackgroudImage) top center no-repeat @globalBackgroudColor;
+    color: @globalColor; 
     font-family: arial, @globalFontFamily;
 }
 a {
@@ -26,13 +27,28 @@ input[readonly] {
     border-color: transparent;
 }
 ul.inline {
-    .ulInline
+    .ulInline()
 }
 
 table.squadType {
     width: 100%; background: @contentFullBackgroundColor;
     th { background: @squadNameBackgroundColor }
-    td { background: @squadBackgroundColor; text-align: center; }
+    td {
+        background: @squadBackgroundColor;
+        text-align: center;
+
+        &.txtleft {
+            text-align: left;
+        }
+
+        > * {
+            vertical-align: middle;
+        }
+    }
+
+    .breedImage {
+        margin-right: .5em;
+    }
 }
 
 .normalWrap {

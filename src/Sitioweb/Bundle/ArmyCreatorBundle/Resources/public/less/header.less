@@ -2,8 +2,7 @@
 @import "mixins";
 
 #websiteHeader {
-    .minGlobalWidth;
-    .globalTopBackground;
+    background: url(@globalTopBackgroudImage) top center no-repeat;
     .box-shadow(0 0 15px #000);
     position: relative; height: 146px;
     .headerBar {
@@ -26,24 +25,69 @@
 }
 
 #websiteNav {
-    .minGlobalWidth;
     /*position: absolute; bottom: 0; left: 0;*/
-    margin-top: 80px; overflow: auto;
+    margin-top: 80px;
+    overflow: auto;
+
     ul {
-        .ulInline;
-        li {
-            float: left; line-height: 41px;
-            a { padding: 0 15px; border-left: 1px solid #595e45; border-right: 1px solid #20231d; font-family: dinregular; font-size: 1.1em }
-            &:first-child a { border-left-color: transparent }
-            &:last-child a { border-right-color: transparent }
+        margin: 0; padding: 0;
+        list-style: none;
+    }
+
+    li {
+        float: left;
+        line-height: 41px;
+
+        &:hover {
+            background: rgba(255, 255, 255, .15);
+        }
+
+        &:first-child a { border-left-color: transparent }
+        &:last-child a { border-right-color: transparent }
+    }
+
+    a {
+        padding: 0 15px;
+        color: #fff;
+        border-left: 1px solid #595e45;
+        border-right: 1px solid #20231d;
+        font-family: dinregular;
+        font-size: 1.1em;
+    }
+
+    &:not(:focus) ul {
+        max-height: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    #websiteNav {
+        z-index: 1;
+        &:before {
+            content: "Menu \25BC";
+            display: block;
+            padding: .6em 15px;
+            font-family: dinregular;
+            font-size: 1.1em
+        }
+
+        ul {
+            max-height: 25em; /* menu masqué */
+            .transition(max-height .4s);
+            overflow: hidden;
+        }
+        .left, .right, li {
+            float: none;
+        }
+        a {
+            display: block;
+            padding: .6em 15px;
+            background: #213233;
+            text-decoration: none;
+
+            &:hover, &:active {
+                background: #274244;
+            }
         }
     }
-    a { color: #fff }
 }
-/*
-#websiteNavBackground {
-    position: absolute; top: 105px; left: 0; height: 41px; width: 100%;
-    .triple-linear-gradient(bottom, #10120d, 0%, #252921, 32%, #40473b, 50%, #000000);
-}
-*/
-

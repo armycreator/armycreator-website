@@ -45,13 +45,12 @@
     <table class="squadType mt1">
         <thead>
             <tr>
-                <th>
                 <th>{{ "army.list.breed"|trans }}
                 <th>{{ "army.list.points"|trans }}
                 <th>{{ "army.list.name"|trans }}
-                <th>{{ "army.list.status"|trans }}
-                <th>{{ "army.list.created_date"|trans }}
-                <th>{{ "army.list.updated_date"|trans }}
+                <th class="hide-mobile">{{ "army.list.status"|trans }}
+                <th class="hide-mobile">{{ "army.list.created_date"|trans }}
+                <th class="hide-mobile">{{ "army.list.updated_date"|trans }}
                 <th>{{ "army.list.actions"|trans }}
             </tr>
         </thead>
@@ -59,11 +58,8 @@
         <tbody>
             {% for army in armyList %}
                 <tr>
-                    <td>
+                    <td class="txtleft">
                         {{ breedImage(army.breed, 40)|raw }}
-                    </td>
-
-                    <td>
                         {{ army.breed.name }}
                     </td>
                     <td>{{ army.points }}
@@ -72,13 +68,13 @@
                             {{ army.name }}
                         </a>
                     </td>
-                    <td>{{ army.status }}
-                    <td>
+                    <td class="hide-mobile">{{ army.status }}
+                    <td class="hide-mobile">
                         {% if army.createDate %}
                             {{ army.createDate|format_datetime }}
                         {% endif %}
                     </td>
-                    <td>
+                    <td class="hide-mobile">
                         {% if army.updateDate %}
                             {{ army.updateDate|format_datetime }}
                         {% endif %}

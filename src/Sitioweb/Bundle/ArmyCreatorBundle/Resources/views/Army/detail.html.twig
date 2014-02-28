@@ -164,8 +164,12 @@
 
 
             {% block ad300 %}
-                <div class="right">
+                <div class="right ad hide-mobile">
                     {{ render(controller("SitiowebArmyCreatorBundle:Ads:render")) }}
+                </div>
+
+                <div class="ad only-mobile">
+                    {{ render(controller("SitiowebArmyCreatorBundle:Ads:render", {"type": "mobile"})) }}
                 </div>
             {% endblock %}
 

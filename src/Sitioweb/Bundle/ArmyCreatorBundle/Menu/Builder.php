@@ -64,6 +64,10 @@ class Builder extends ContainerAware
         $menu->addChild('main_menu.donation', array('route' => 'donation'));
         $menu['main_menu.donation']->setLinkAttribute('target', '_blank');
 
+        foreach ($menu as $item) {
+            $item->setLinkAttribute("onclick", "");
+        }
+
         return $menu;
     }
 

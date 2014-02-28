@@ -27,6 +27,13 @@ class AdsController
 
                 break;
 
+            case 'mobile':
+                $slot = '6540708410';
+                $width = 320;
+                $height = 50;
+
+                break;
+
             default:
                 $slot = '8956457418';
                 $width = 300;
