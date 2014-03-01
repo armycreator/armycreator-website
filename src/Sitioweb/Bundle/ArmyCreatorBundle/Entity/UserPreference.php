@@ -127,7 +127,7 @@ class UserPreference
      */
     public function __construct()
     {
-        $this->showDefaultStuff = true;
+        $this->showDefaultStuff = false;
         $this->showStuffDescription = false;
         $this->showUnitPoints = true;
         $this->showStuffPoints = true;

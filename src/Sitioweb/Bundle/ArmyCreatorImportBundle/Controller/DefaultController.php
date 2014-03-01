@@ -1463,7 +1463,6 @@ class DefaultController extends Controller
             JOIN Stuff s ON s.id = e.id
             JOIN AbstractUnit u ON u.id = us.unit_id
             JOIN Breed b ON u.breed_id = b.id
-            WHERE b.name = '[HH] Space Marine Crusade Legion Army'
             GROUP BY unit_id, e.id HAVING nb > 1
             ORDER BY nb ";
 
@@ -1472,8 +1471,7 @@ class DefaultController extends Controller
         $easycases = [];
         $hardcases = [];
         while($row = $stmt->fetch()) {
-            if (strpos($row['auto'], ',') !== false ||
-                strpos($row['visible'], ',') !== false ||
+            if (
                 strpos($row['points'], ',') !== false
             ) {
                 $hardcases[] = $row;
@@ -1488,7 +1486,8 @@ class DefaultController extends Controller
             $query = "SELECT us.*
                 FROM `UnitStuff` us
                 JOIN `Equipement` e ON e.id = us.stuff_id
-                WHERE `unit_id` = " . $case['unit_id'] . " AND e.`id` = " . $case['equipement_id'];
+                WHERE `unit_id` = " . $case['unit_id'] . " AND e.`id` = " . $case['equipement_id'] .
+                " ORDER BY FIELD(visible, 1, 0)";
 
             $usList = $conn->fetchAll($query);
 
