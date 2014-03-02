@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f9d5674210b66ae50aaad28ca8fdba25",
+    "hash": "18e5bc76cbe722beb5422e35d5bbb761",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
@@ -1346,12 +1346,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "835ee51d911e4d8c9adf129907ebbebfa9a1e906"
+                "reference": "8206c3a9a7567607c34e621ffd8f6f7eb7936525"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/835ee51d911e4d8c9adf129907ebbebfa9a1e906",
-                "reference": "835ee51d911e4d8c9adf129907ebbebfa9a1e906",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/8206c3a9a7567607c34e621ffd8f6f7eb7936525",
+                "reference": "8206c3a9a7567607c34e621ffd8f6f7eb7936525",
                 "shasum": ""
             },
             "require": {
@@ -1388,7 +1388,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -1402,7 +1402,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-02-03 10:44:10"
+            "time": "2014-02-28 13:06:53"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -1459,17 +1459,71 @@
             "time": "2013-12-03 00:27:28"
         },
         {
+            "name": "knplabs/knp-snappy",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/snappy.git",
+                "reference": "1f56b336f8e158b57dcfce007234363cbb54192b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/snappy/zipball/1f56b336f8e158b57dcfce007234363cbb54192b",
+                "reference": "1f56b336f8e158b57dcfce007234363cbb54192b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "google/wkhtmltopdf-amd64": "Provide wkhtmltopdf-amd64 binary, use version `0.11.0-RC1` as dependency",
+                "google/wkhtmltopdf-i386": "Provide wkhtmltopdf-i386 binary, use version `0.11.0-RC1` as dependency",
+                "symfony/process": "Process Component of Symfony2."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Knp\\Snappy": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://github.com/KnpLabs/snappy/contributors"
+                }
+            ],
+            "description": "PHP5 library allowing thumbnail, snapshot or PDF generation from a url or a html page. Wrapper for wkhtmltopdf/wkhtmltoimage.",
+            "homepage": "http://github.com/KnpLabs/snappy",
+            "keywords": [
+                "knp",
+                "knplabs",
+                "pdf",
+                "snapshot",
+                "thumbnail",
+                "wkhtmltopdf"
+            ],
+            "time": "2013-09-06 14:16:50"
+        },
+        {
             "name": "kriswallsmith/assetic",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "d013aae51baf893fe8d38b41f2d24db03e1cfbf7"
+                "reference": "8342a250cd6e8d693332e7899b2e9c62c8187156"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/d013aae51baf893fe8d38b41f2d24db03e1cfbf7",
-                "reference": "d013aae51baf893fe8d38b41f2d24db03e1cfbf7",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/8342a250cd6e8d693332e7899b2e9c62c8187156",
+                "reference": "8342a250cd6e8d693332e7899b2e9c62c8187156",
                 "shasum": ""
             },
             "require": {
@@ -1529,7 +1583,52 @@
                 "compression",
                 "minification"
             ],
-            "time": "2014-02-04 10:36:39"
+            "time": "2014-02-28 18:17:10"
+        },
+        {
+            "name": "kriswallsmith/buzz",
+            "version": "v0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kriswallsmith/Buzz.git",
+                "reference": "8ff1d1910b9e04ac571bcf6d639559e065093136"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/8ff1d1910b9e04ac571bcf6d639559e065093136",
+                "reference": "8ff1d1910b9e04ac571bcf6d639559e065093136",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Buzz": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kris Wallsmith",
+                    "email": "kris.wallsmith@gmail.com",
+                    "homepage": "http://kriswallsmith.net/"
+                }
+            ],
+            "description": "Lightweight HTTP client",
+            "homepage": "https://github.com/kriswallsmith/Buzz",
+            "keywords": [
+                "curl",
+                "http client"
+            ],
+            "time": "2013-01-14 16:07:06"
         },
         {
             "name": "mjohnson/decoda",
@@ -1645,71 +1744,30 @@
             "time": "2013-11-14 19:48:31"
         },
         {
-            "name": "mpdf/mpdf",
-            "version": "v5.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/finwe/mpdf.git",
-                "reference": "ca266f29a20ed00ee351aadee1934ddcfbbe4b53"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/finwe/mpdf/zipball/ca266f29a20ed00ee351aadee1934ddcfbbe4b53",
-                "reference": "ca266f29a20ed00ee351aadee1934ddcfbbe4b53",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=4.3.10"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "mpdf.php",
-                    "classes"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-1.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Ian Back"
-                }
-            ],
-            "description": "A PHP class to generate PDF files from HTML with Unicode/UTF-8 and CJK support",
-            "homepage": "http://www.mpdf1.com/mpdf/index.php",
-            "keywords": [
-                "pdf",
-                "php",
-                "utf-8"
-            ],
-            "time": "2013-09-02 12:16:35"
-        },
-        {
             "name": "oneup/acl-bundle",
-            "version": "v0.9.0",
+            "version": "v0.10.0",
             "target-dir": "Oneup/AclBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/1up-lab/OneupAclBundle.git",
-                "reference": "9395068dc4e610abef6d86f2bf0db92224f8e6cb"
+                "reference": "de85915b49f53d9d6d811acfbd21c548ea761ed0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/1up-lab/OneupAclBundle/zipball/9395068dc4e610abef6d86f2bf0db92224f8e6cb",
-                "reference": "9395068dc4e610abef6d86f2bf0db92224f8e6cb",
+                "url": "https://api.github.com/repos/1up-lab/OneupAclBundle/zipball/de85915b49f53d9d6d811acfbd21c548ea761ed0",
+                "reference": "de85915b49f53d9d6d811acfbd21c548ea761ed0",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.2",
                 "doctrine/dbal": "~2.2",
-                "doctrine/doctrine-bundle": "1.2.*@dev",
-                "symfony/framework-bundle": "2.*",
-                "symfony/security-bundle": "2.*"
+                "doctrine/doctrine-bundle": "~1.2",
+                "symfony/expression-language": "~2.4",
+                "symfony/framework-bundle": ">=2.2",
+                "symfony/security-bundle": ">=2.2"
             },
             "require-dev": {
-                "doctrine/orm": "~2.2",
+                "doctrine/orm": "~2.4",
                 "phpunit/phpunit": "3.7.*",
                 "sensio/framework-extra-bundle": "~2.2",
                 "symfony/browser-kit": "2.*",
@@ -1750,7 +1808,7 @@
                 "acl",
                 "security"
             ],
-            "time": "2013-08-08 08:56:46"
+            "time": "2014-03-01 15:03:52"
         },
         {
             "name": "phpoption/phpoption",
@@ -1979,6 +2037,56 @@
             ],
             "description": "This bundle generates code for you",
             "time": "2013-08-21 18:09:35"
+        },
+        {
+            "name": "siphoc/pdf-bundle",
+            "version": "1.2.3",
+            "target-dir": "Siphoc/PdfBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/siphoc/PdfBundle.git",
+                "reference": "cd6d35568d1be163e77c0bc8ab1029e3a9b8b59f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/siphoc/PdfBundle/zipball/cd6d35568d1be163e77c0bc8ab1029e3a9b8b59f",
+                "reference": "cd6d35568d1be163e77c0bc8ab1029e3a9b8b59f",
+                "shasum": ""
+            },
+            "require": {
+                "knplabs/knp-snappy": "0.1.*",
+                "kriswallsmith/buzz": "0.8",
+                "php": ">=5.3.2",
+                "symfony/http-foundation": ">=2.1",
+                "symfony/http-kernel": ">=2.1",
+                "symfony/templating": ">=2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Siphoc\\PdfBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jelmer Snoeck",
+                    "email": "jelmer@siphoc.com",
+                    "homepage": "http://siphoc.com"
+                }
+            ],
+            "description": "Siphoc PDF Bundle for Symfony2",
+            "homepage": "http://siphoc.github.com",
+            "keywords": [
+                "pdf"
+            ],
+            "time": "2014-02-21 08:25:41"
         },
         {
             "name": "sonata-project/intl-bundle",
