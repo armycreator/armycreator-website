@@ -116,12 +116,16 @@ class ArmyController extends Controller
     public function detailPdfAction(Army $army)
     {
         $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
-        $params = $this->getDetailParams($army) + ['preferences' => $this->getUserPreference()];
+        $params = $this->getDetailParams($army) +
+            [
+                'preferences' => $this->getUserPreference(),
+                'showStuff' => true
+            ];
 
         $pdfGenerator = $this->get('siphoc.pdf.generator');
         $pdfGenerator->setName($filename);
         return $pdfGenerator->displayForView(
-            'SitiowebArmyCreatorBundle:Army:detail.html.twig',
+            'SitiowebArmyCreatorBundle:Army:detailPdf.html.twig',
             $params
         );
     }

@@ -1,0 +1,13 @@
+{% extends 'SitiowebArmyCreatorBundle:Army:detail.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets
+        '@SitiowebArmyCreatorBundle/Resources/public/less/print.less'
+        '@SitiowebArmyCreatorBundle/Resources/public/less/content-print.less'
+        '@SitiowebArmyCreatorBundle/Resources/public/less/armyDetail-print.less'
+        filter='less,cssrewrite' output='css/print.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+     {% endstylesheets %}
+ {% endblock %}
