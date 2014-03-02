@@ -124,8 +124,17 @@ class ArmyController extends Controller
         // rendering
         $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
         $mpdf = new \mPDF();
-        $mpdf->WriteHTML(file_get_contents('css/global.css'), 1);
-        $mpdf->WriteHTML(file_get_contents('css/print.css'), 1);
+
+        $am = $this->get('assetic.asset_manager');
+        $names = $am->getNames();
+        foreach ($names as $nameTmp) {
+            $name = $am->get($nameTmp)->getTargetPath();
+            if ((strpos($name, 'global') !== false || strpos($name, 'print') !== false)
+                && strpos($name, 'css/') !== false) {
+                $mpdf->WriteHTML(file_get_contents($name), 1);
+            }
+        }
+
         $mpdf->WriteHTML($html);
         $mpdf->Output($filename, 'I');
 
