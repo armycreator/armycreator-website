@@ -115,36 +115,14 @@ class ArmyController extends Controller
      */
     public function detailPdfAction(Army $army)
     {
+        $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
         $params = $this->getDetailParams($army) + ['preferences' => $this->getUserPreference()];
-        $html = $this->renderView(
+
+        $pdfGenerator = $this->get('siphoc.pdf.generator');
+        $pdfGenerator->setName($filename);
+        return $pdfGenerator->displayForView(
             'SitiowebArmyCreatorBundle:Army:detail.html.twig',
             $params
-        );
-
-        // rendering
-        $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
-        $mpdf = new \mPDF();
-
-        $am = $this->get('assetic.asset_manager');
-        $names = $am->getNames();
-        foreach ($names as $nameTmp) {
-            $name = $am->get($nameTmp)->getTargetPath();
-            if ((strpos($name, 'global') !== false || strpos($name, 'print') !== false)
-                && strpos($name, 'css/') !== false) {
-                $mpdf->WriteHTML(file_get_contents($name), 1);
-            }
-        }
-
-        $mpdf->WriteHTML($html);
-        $mpdf->Output($filename, 'I');
-
-        return new Response(
-            null,
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="' . $filename . '"'
-            )
         );
     }
 

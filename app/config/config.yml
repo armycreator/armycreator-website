@@ -132,3 +132,11 @@ fm_bbcode:
             strict: false
             filters: [ default, quote, url ]
 
+
+siphoc_pdf:
+    basepath: "%kernel.root_dir%/../web"
+    binary: "/usr/local/bin/wkhtmltopdf"
+    options:
+        'lowquality': false
+        'enable-javascript': true
+        'debug-javascript': true

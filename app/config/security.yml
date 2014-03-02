@@ -31,7 +31,7 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/collection, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin/, role: ROLE_CONTRIB }
-        #- { path: ^/import/, role: ROLE_SUPER_ADMIN }
+        - { path: ^/import/, role: ROLE_SUPER_ADMIN }
 
     firewalls:
         dev:
