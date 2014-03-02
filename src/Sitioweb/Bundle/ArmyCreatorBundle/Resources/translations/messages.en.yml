@@ -7,6 +7,12 @@ army.detail.authorize_share: This list is visible
 army.detail.delete: 'Delete army'
 army.detail.squad.delete: 'Delete squad'
 army.detail.squad.add: 'Add squad'
+army.detail.pts.%pts%: '%pts% pts'
+army.detail.wanted_pts.%pts%: '%pts% wanted pts'
+army.detail.preferences: Preferences
+army.detail.toggle_stuff: "stuff"
+army.detail.show_all_stuff: "Show all stuff"
+army.detail.hide_all_stuff: "Hide all stuff"
 army.bbcode.title: BBCode
 army.bbcode.apply: apply
 army.bbcode.apply_and_save: 'save and apply'
@@ -94,9 +100,6 @@ game.list.edit: 'Edit game'
 game.list.new: 'New game'
 game.edit.title: 'Edit game'
 game.detail.delete: 'Delete gam'
-army.detail.pts.%pts%: '%pts% pts'
-army.detail.wanted_pts.%pts%: '%pts% wanted pts'
-army.detail.preferences: Preferences
 army.bbcode.back_to_army: 'Back to army'
 army.bbcode.select_all: 'Select all'
 '{0} army_list.group.army_number.zero|{1} army_list.group.army_number.one|]1,Inf] army_list.group.army_number.%count%': '{0} No army|{1} One army|]1,Inf] %count% armies'

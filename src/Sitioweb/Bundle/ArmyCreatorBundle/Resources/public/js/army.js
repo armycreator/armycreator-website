@@ -72,4 +72,23 @@ $(function() {
 
     //var addthis_config = {"data_track_addressbar":true};
     $.getScript("//s7.addthis.com/js/300/addthis_widget.js#pubid=olynk");
+
+    $('.squadLine').on('click', '.stuffList-toggle-all', function () {
+        $('.stuffList-toggle').toggle();
+    });
+
+    $('.squadLine').on('click', '.stuffList-toggle-link', function () {
+        $(this).parent().prev('.stuffList-toggle').toggle();
+        $(this).find('.el-icon-caret-up, .el-icon-caret-down').toggle();
+    });
+
+    $('.stuffList-hide-all').on('click', function () {
+        $('.stuffList-toggle, .stuffList-toggle-link .el-icon-caret-up').hide();
+        $('.stuffList-toggle-link .el-icon-caret-down').show();
+    });
+
+    $('.stuffList-show-all').on('click', function () {
+        $('.stuffList-toggle, .stuffList-toggle-link .el-icon-caret-up').show();
+        $('.stuffList-toggle-link .el-icon-caret-down').hide();
+    });
 });

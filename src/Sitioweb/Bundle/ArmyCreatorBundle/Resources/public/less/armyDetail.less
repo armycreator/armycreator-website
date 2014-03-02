@@ -61,7 +61,11 @@
             .squadName {
                 background: @squadNameBackgroundColor;
                 position: relative; overflow: hidden; margin-bottom: 2px;
-                h4 { line-height: 28px; padding: 0 0.8em; }
+                h4 {
+                    line-height: 28px;
+                    padding: 0 0.8em;
+                    color: @darkorange;
+                }
                 .actions { padding: 0 .8em .5em; text-align: right; }
                 span { color: @unitTypeForegroundColor; }
             }
@@ -76,7 +80,15 @@
             background: rgba(255, 255, 255, .3);
         }
     }
-} 
+}
+
+.stuffList {
+    color: #bbb;
+}
+
+.stuffList-toggle {
+    display: none;
+}
     
 #armyDetailPreferenceForm {
     margin: 1em 0;

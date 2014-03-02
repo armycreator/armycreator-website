@@ -173,6 +173,17 @@
                 </div>
             {% endblock %}
 
+            <div class="mb2">
+                <a href="javascript:;" class="acButton stuffList-show-all" title="{{ "army.detail.show_all_stuff"|trans }}">
+                    <i class="el-icon-caret-down"></i>
+                    {{ "army.detail.show_all_stuff"|trans }}
+                </a>
+                <a href="javascript:;" class="acButton stuffList-hide-all" title="{{ "army.detail.hide_all_stuff"|trans }}">
+                    <i class="el-icon-caret-up"></i>
+                    {{ "army.detail.hide_all_stuff"|trans }}
+                </a>
+            </div>
+
             <div class="oauto">
                 {# ===== Squad List ===== #}
                 {% for tmp in army.squadListByType %}
@@ -227,26 +238,36 @@
                                                                 {% endif %}
                                                             </h5>
                                                             {% if not(squadLine.squadLineStuffList.empty) %}
-                                                                <ul class="stuffList">
-                                                                    {% if preferences.showDefaultStuff %}{{- "" -}}
-                                                                        {% set squadLineStuffList = squadLine.squadLineStuffList %}
-                                                                    {% else %}{{- "" -}}
-                                                                        {% set squadLineStuffList = squadLine.noDefaultSquadLineStuffList %}
-                                                                    {% endif %}{{- "" -}}
+                                                                {% if preferences.showDefaultStuff %}{{- "" -}}
+                                                                    {% set squadLineStuffList = squadLine.squadLineStuffList %}
+                                                                {% else %}{{- "" -}}
+                                                                    {% set squadLineStuffList = squadLine.noDefaultSquadLineStuffList %}
+                                                                {% endif %}{{- "" -}}
 
-                                                                    {% for squadLineStuff in squadLineStuffList %}
-                                                                        <li>
-                                                                            {{ squadLineStuff.number }}
-                                                                            {{ squadLineStuff.unitStuff.stuff.name }}
+                                                                {% if squadLineStuffList %}
+                                                                    <ul class="stuffList stuffList-toggle">
+                                                                        {% for squadLineStuff in squadLineStuffList %}
+                                                                            <li>
+                                                                                {{ squadLineStuff.number }}
+                                                                                {{ squadLineStuff.unitStuff.stuff.name }}
 
-                                                                            {% if squadLineStuff.unitStuff.points > 0 and preferences.showStuffPoints %}
-                                                                                <span class="soft">
-                                                                                    {% trans with { "%pts%": squadLineStuff.unitStuff.points * squadLineStuff.number } %}army.detail.pts.%pts%{% endtrans %}
-                                                                                </span>
-                                                                            {% endif %}
-                                                                        </li>
-                                                                    {% endfor %}
-                                                                </ul>
+                                                                                {% if squadLineStuff.unitStuff.points > 0 and preferences.showStuffPoints %}
+                                                                                    <span class="soft">
+                                                                                        {% trans with { "%pts%": squadLineStuff.unitStuff.points * squadLineStuff.number } %}army.detail.pts.%pts%{% endtrans %}
+                                                                                    </span>
+                                                                                {% endif %}
+                                                                            </li>
+                                                                        {% endfor %}
+                                                                    </ul>
+
+                                                                    <div class="txtcenter">
+                                                                        <a href="javascript:;" class="soft small stuffList-toggle-link">
+                                                                            <i class="el-icon-caret-down"></i>
+                                                                            <i class="el-icon-caret-up hidden"></i>
+                                                                            {{ "army.detail.toggle_stuff"|trans }}
+                                                                        </a>
+                                                                    </div>
+                                                                {% endif %}
                                                             {% endif %}
                                                         </div>
                                                     {% endfor %}

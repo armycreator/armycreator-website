@@ -7,10 +7,14 @@ army.detail.authorize_share: Cette liste est visible publiquement
 army.detail.delete: Supprimer
 army.detail.pts.%pts%: '%pts% pts'
 army.detail.wanted_pts.%pts%: '%pts% pts'
-army.bbcode.apply: Appliquer
-army.bbcode.apply_and_save: 'Appliquer + enregistrer'
 army.detail.squad.delete: Supprimer
 army.detail.squad.add: 'Ajouter une escouade'
+army.detail.preferences: préférences
+army.detail.toggle_stuff: "équipements"
+army.detail.show_all_stuff: "Afficher tous les équipements"
+army.detail.hide_all_stuff: "Masquer tous les équipements"
+army.bbcode.apply: Appliquer
+army.bbcode.apply_and_save: 'Appliquer + enregistrer'
 army.bbcode.title: BBCode
 army.bb_code.points: points
 army.bbcode.back_to_army: 'Retour à l''armée'
@@ -103,7 +107,6 @@ breadcrumb.army_delete: 'Supprimer une armée'
 breadcrumb.squad_new.%unit_type%: 'nouveau unit_type'
 breadcrumb.squad_edit.%squad_name%: 'Editer squad_name'
 army_list.group_list.no_group: 'aucun groupe'
-army.detail.preferences: préférences
 unit_type.edit.title: 'Éditer un titre'
 breed.show.pts.%pts%: '%pts% pts'
 breed.show.unitgroup.new: 'Nouveau group'
