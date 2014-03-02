@@ -122,11 +122,15 @@ class ArmyController extends Controller
                 'showStuff' => true
             ];
 
-        $pdfGenerator = $this->get('siphoc.pdf.generator');
-        $pdfGenerator->setName($filename);
-        return $pdfGenerator->displayForView(
-            'SitiowebArmyCreatorBundle:Army:detailPdf.html.twig',
-            $params
+        $html = $this->renderView('SitiowebArmyCreatorBundle:Army:detailPdf.html.twig', $params);
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="' . $filename . '"'
+            )
         );
     }
 

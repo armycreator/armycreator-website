@@ -27,7 +27,7 @@ class AppKernel extends Kernel
             new Sonata\IntlBundle\SonataIntlBundle(),
             new FM\BbcodeBundle\FMBbcodeBundle(),
             new Oneup\AclBundle\OneupAclBundle(),
-            new Siphoc\PdfBundle\SiphocPdfBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
 
             new Sitioweb\Bundle\ArmyCreatorBundle\SitiowebArmyCreatorBundle(),
             new Sitioweb\Bundle\ArmyCreatorImportBundle\SitiowebArmyCreatorImportBundle(),

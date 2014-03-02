@@ -24,7 +24,7 @@
         "sonata-project/intl-bundle": "2.*",
         "ircmaxell/password-compat": "1.*",
         "oneup/acl-bundle": "@stable",
-        "siphoc/pdf-bundle": "1.2.*",
+        "knplabs/knp-snappy-bundle": "1.2.*",
 
         "apy/breadcrumbtrail-bundle":"0.*",
 
