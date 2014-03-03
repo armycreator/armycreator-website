@@ -109,14 +109,13 @@ class ArmyController extends Controller
      * @access public
      * @return void
      *
-     * @Route("/{slug}.pdf", name="army_detail_pdf")
+     * @Route("/{slug}/pdf.pdf", name="army_detail_pdf")
      * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
-    public function detailPdfAction(Army $army)
+    public function detailPdfGenerateAction(Army $army)
     {
-        $pageUrl = $this->generateUrl('army_detail', [ "slug" => $army->getSlug(), 'pdf' => true ], true);
-        $pageUrl = str_replace('http://', 'http://j_deniau:RNskAa3k@', $pageUrl);
+        $pageUrl = $this->generateUrl('army_detail_pdf_template', [ "slug" => $army->getSlug() ], true);
         $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
 
         return new Response(
@@ -124,9 +123,25 @@ class ArmyController extends Controller
             200,
             array(
                 'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="' . $filename . '"'
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
             )
         );
+    }
+
+    /**
+     * detailAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/{slug}/pdf", name="army_detail_pdf_template")
+     * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
+     * @Template()
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
+     */
+    public function detailPdfAction(Army $army)
+    {
+        return $this->detailAction($army) + ['pdf' => true];
     }
 
     /**
@@ -151,9 +166,7 @@ class ArmyController extends Controller
 
         $userPreferencesParams = $this->getUserPreferencesParams($form, $userPreferences);
 
-        return $detailParams +
-            $userPreferencesParams +
-            ['pdf' => $this->getRequest()->query->get('pdf')];
+        return $detailParams + $userPreferencesParams;
     }
 
     /**

@@ -71,7 +71,9 @@ $(function() {
     }
 
     //var addthis_config = {"data_track_addressbar":true};
-    $.getScript("//s7.addthis.com/js/300/addthis_widget.js#pubid=olynk");
+    if ($('.addthis_toolbox').length > 0) {
+        $.getScript("//s7.addthis.com/js/300/addthis_widget.js#pubid=olynk");
+    }
 
     $('.squadLine').on('click', '.stuffList-toggle-all', function () {
         $('.stuffList-toggle').toggle();
