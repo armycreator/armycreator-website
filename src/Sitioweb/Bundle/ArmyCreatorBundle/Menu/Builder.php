@@ -61,7 +61,16 @@ class Builder extends ContainerAware
             $menu->addChild('main_menu.my_collection', array('route' => 'user_collection'));
         }
         $menu->addChild('main_menu.tools', array('route' => 'toolbox_dice'));
-        $menu->addChild('main_menu.donation', array('route' => 'donation'));
+        $menu->addChild(
+            'main_menu.donation',
+            [
+                'route' => 'donation',
+                'routeParameters' => [
+                    'cmd' => '_s-xclick',
+                    'hosted_button_id' => 'L7PK6V4R4LPHG'
+                ]
+            ]
+        );
         $menu['main_menu.donation']->setLinkAttribute('target', '_blank');
 
         foreach ($menu as $item) {

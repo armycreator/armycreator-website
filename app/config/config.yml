@@ -25,6 +25,9 @@ twig:
     strict_variables: %kernel.debug%
     globals:
         forum_sid: %forum_sid%
+        donation_parameters: 
+            cmd: _s-xclick
+            hosted_button_id: L7PK6V4R4LPHG
 
 # Assetic Configuration
 assetic:

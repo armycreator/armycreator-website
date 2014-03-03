@@ -14,7 +14,7 @@ SitiowebArmyCreatorImportBundle:
     prefix:   /import
 
 donation:
-    path: /cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L7PK6V4R4LPHG
+    path: /cgi-bin/webscr
     host: www.paypal.com
     schemes: [https]
 
