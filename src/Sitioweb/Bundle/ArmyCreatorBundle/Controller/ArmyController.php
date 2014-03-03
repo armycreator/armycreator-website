@@ -115,7 +115,7 @@ class ArmyController extends Controller
      */
     public function detailPdfGenerateAction(Army $army)
     {
-        $pageUrl = $this->generateUrl('army_detail_pdf_template', [ "slug" => $army->getSlug() ], true);
+        $pageUrl = $this->generateUrl('army_detail_printable', [ "slug" => $army->getSlug() ], true);
         $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
 
         return new Response(
@@ -129,17 +129,17 @@ class ArmyController extends Controller
     }
 
     /**
-     * detailAction
+     * printableVersionAction
      *
      * @access public
      * @return void
      *
-     * @Route("/{slug}/pdf", name="army_detail_pdf_template")
+     * @Route("/{slug}/print", name="army_detail_printable")
      * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      * @Template()
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
-    public function detailPdfAction(Army $army)
+    public function printableVersionAction(Army $army)
     {
         return $this->detailAction($army) + ['pdf' => true];
     }
