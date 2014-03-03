@@ -115,17 +115,12 @@ class ArmyController extends Controller
      */
     public function detailPdfAction(Army $army)
     {
+        $pageUrl = $this->generateUrl('army_detail', [ "slug" => $army->getSlug(), 'pdf' => true ], true);
+        $pageUrl = str_replace('http://', 'http://j_deniau:RNskAa3k@', $pageUrl);
         $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
-        $params = $this->getDetailParams($army) +
-            [
-                'preferences' => $this->getUserPreference(),
-                'showStuff' => true
-            ];
-
-        $html = $this->renderView('SitiowebArmyCreatorBundle:Army:detailPdf.html.twig', $params);
 
         return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
             200,
             array(
                 'Content-Type'          => 'application/pdf',
@@ -156,7 +151,9 @@ class ArmyController extends Controller
 
         $userPreferencesParams = $this->getUserPreferencesParams($form, $userPreferences);
 
-        return $detailParams + $userPreferencesParams;
+        return $detailParams +
+            $userPreferencesParams +
+            ['pdf' => $this->getRequest()->query->get('pdf')];
     }
 
     /**

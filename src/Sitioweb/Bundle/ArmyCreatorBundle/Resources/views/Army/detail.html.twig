@@ -245,7 +245,7 @@
                                                                 {% endif %}{{- "" -}}
 
                                                                 {% if squadLineStuffList %}
-                                                                    <ul class="stuffList stuffList-toggle{{ showStuff is defined ? ' visible' : '' }}">
+                                                                    <ul class="stuffList stuffList-toggle{{ pdf is defined and pdf ? ' visible' : '' }}">
                                                                         {% for squadLineStuff in squadLineStuffList %}
                                                                             <li>
                                                                                 {{ squadLineStuff.number }}
@@ -260,13 +260,15 @@
                                                                         {% endfor %}
                                                                     </ul>
 
-                                                                    <div class="txtcenter stuffList-toggle-container">
-                                                                        <a href="javascript:;" class="soft small stuffList-toggle-link">
-                                                                            <i class="el-icon-caret-down"></i>
-                                                                            <i class="el-icon-caret-up hidden"></i>
-                                                                            {{ "army.detail.toggle_stuff"|trans }}
-                                                                        </a>
-                                                                    </div>
+                                                                    {% if not(pdf is defined) or not(pdf) %}
+                                                                        <div class="txtcenter stuffList-toggle-container">
+                                                                            <a href="javascript:;" class="soft small stuffList-toggle-link">
+                                                                                <i class="el-icon-caret-down"></i>
+                                                                                <i class="el-icon-caret-up hidden"></i>
+                                                                                {{ "army.detail.toggle_stuff"|trans }}
+                                                                            </a>
+                                                                        </div>
+                                                                    {% endif %}
                                                                 {% endif %}
                                                             {% endif %}
                                                         </div>
