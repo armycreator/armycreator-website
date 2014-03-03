@@ -15,11 +15,6 @@
 {% block content %}
 <header>
     <aside class="action">
-        <a href="{{ path("army_detail_printable", { 'slug': army.slug }) }}" class="acButton" accesskey="p" title="{{ 'army.detail.print'|trans }}">
-            <i class="el-icon-print"></i>
-            {{ 'army.detail.print'|trans }} / PDF
-        </a>
-        {#
         <a href="javascript:window.print();" class="acButton" accesskey="p" title="{{ 'army.detail.print'|trans }}">
             <i class="el-icon-print"></i>
             {{ 'army.detail.print'|trans }}
@@ -28,7 +23,7 @@
             <i class="el-icon-file"></i>
             {{ 'army.detail.pdf'|trans }}
         </a>
-        #}
+
         <a href="{{ path('army_detail_bbcode', { 'slug' : army.slug } ) }}" class="acButton" accesskey="b" title="{{ 'army.detail.bb_code'|trans }}">
             <i class="el-icon-comment"></i>
             {{ 'army.detail.bb_code'|trans }}

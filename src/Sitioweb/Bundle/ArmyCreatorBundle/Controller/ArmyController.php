@@ -109,7 +109,7 @@ class ArmyController extends Controller
      * @access public
      * @return void
      *
-     * @Route("/{slug}/pdf.pdf", name="army_detail_pdf")
+     * @Route("/{slug}.pdf", name="army_detail_pdf")
      * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
@@ -123,7 +123,7 @@ class ArmyController extends Controller
             200,
             array(
                 'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+                'Content-Disposition'   => 'attachment; filename="'. $filename . '.pdf"'
             )
         );
     }
