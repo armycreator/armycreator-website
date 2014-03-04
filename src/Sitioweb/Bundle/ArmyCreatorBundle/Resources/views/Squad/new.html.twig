@@ -1,4 +1,4 @@
-{% extends 'SitiowebArmyCreatorBundle:Army:detail.html.twig' %}
+{% extends 'SitiowebArmyCreatorBundle:Army:layout.html.twig' %}
 
 {% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
 
@@ -6,107 +6,31 @@
     {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
 {% endblock %}
 
-{% block armyDetail %}
-    <div id="squadDetail">
-        {{ block("squadAddNav") }}
-
-        <section class="squadAddContent">
-            {% block squadAddContent %}
-                <ul class="inline unitGroupList">
-                    {% for unitGroup in currentUnitType.unitGroupList %}
-                        <li>
-                            <h5>
-                                <a href="{{ path('squad_line_new', {'armySlug' : army.slug, 'unitGroupId' : unitGroup.id}) }}" title="{{ unitGroup.name }}">
-                                    {{ unitGroup.name }}
-                                 </a>
-                             </h5>
-
-                             <aside>
-                                 {{ 'squad.edit.min_points_%unitGroupPoints%'|trans({ '%unitGroupPoints%' : unitGroup.points }) }},
-                                 {% transchoice unitGroup.unitHasUnitGroupList|length with { '%count%' : unitGroup.unitHasUnitGroupList|length } %}[0,1]squad.edit.unit_number_unique|]1,Inf]squad.edit.possible_unit_number_%count%{% endtranschoice %}
-                             </aside>
-                        </li>
-                    {% endfor %}
-                </ul>
-
-                <p class="txtright">
-                    <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">
-                        {{ "squad.new.back_to_list"|trans }}
-                    </a>
-                </p>
-            {% endblock %}
-        </section>
-    </div>
+{% block squadAddNavTitle %}
+    {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
 {% endblock %}
 
+{% block squadAddContent %}
+    <ul class="inline unitGroupList">
+        {% for unitGroup in currentUnitType.unitGroupList %}
+            <li>
+                <h5>
+                    <a href="{{ path('squad_line_new', {'armySlug' : army.slug, 'unitGroupId' : unitGroup.id}) }}" title="{{ unitGroup.name }}">
+                        {{ unitGroup.name }}
+                     </a>
+                 </h5>
 
-{# squad add navigation #}
-{% block squadAddNav %}
-    <header class="unitType">
-        {{ unitTypeMacro.stick(currentUnitType.color, true) }}
-        {% block squadAddNavTitle %}
-            {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
-        {% endblock %}
-    </header>
-
-    {% block squadAddNavSecondLine %}
-        <nav class="squadNav txtcenter">
-            <div>
-                <a href="javascript:;" title="{{ 'squad.edit.breed_change'|trans }}" id="otherBreedToggle">
-                    {{ 'squad.edit.breed_change'|trans }}
-                </a>
-            </div>
-
-            <div>
-                <a href="javascript:;" title="{{ 'squad.edit.unit_type_change'|trans }}" id="otherTypeToggle">
-                    <i class="el-icon-th-list"></i>
-                    {{ 'squad.edit.unit_type_change'|trans }}
-                </a>
-            </div>
-
-            <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
-                <a
-                    href="{{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : breed.slug }) }}"
-                    title="{{ 'squad.edit.squad_choice'|trans }}"
-                >
-                    {{ 'squad.edit.squad_choice'|trans }}
-                </a>
-            </div>
-
-            <div{% if app.request.attributes.get('_route') != 'squad_new' %} class="current"{% endif %}>
-                {{ 'squad.edit.squad_stuff'|trans }}
-            </div>
-        </nav>
-    {% endblock %}
-
-    {# Other breed list #}
-    <div class="otherBreed">
-        <ul>
-            {% for tmpBreed in army.breed.game.breedList %}
-                <li>
-                    <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : tmpBreed.slug}) }}" title="{{ tmpBreed.name }}">
-                        <figure class="breed">
-                            {{ breedImage(tmpBreed)|raw }}
-
-                            <figcaption>
-                                {{ tmpBreed.name }}
-                            </figcaption>
-                        </figure>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    {# Other type list #}
-    <div class="unitType otherType row txtcenter inline inlineBig">
-        {% for unitType in breed.unitTypeList %}
-            <div>
-                <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug, 'breedSlug' : unitType.breed.slug}) }}" title="{{ unitType.name }}">
-                    {{ unitType.name }}
-                </a>
-            </div>
+                 <aside>
+                     {{ 'squad.edit.min_points_%unitGroupPoints%'|trans({ '%unitGroupPoints%' : unitGroup.points }) }},
+                     {% transchoice unitGroup.unitHasUnitGroupList|length with { '%count%' : unitGroup.unitHasUnitGroupList|length } %}[0,1]squad.edit.unit_number_unique|]1,Inf]squad.edit.possible_unit_number_%count%{% endtranschoice %}
+                 </aside>
+            </li>
         {% endfor %}
-    </div>
+    </ul>
 
+    <p class="txtright">
+        <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">
+            {{ "squad.new.back_to_list"|trans }}
+        </a>
+    </p>
 {% endblock %}

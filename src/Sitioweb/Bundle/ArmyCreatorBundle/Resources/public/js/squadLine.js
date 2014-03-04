@@ -1,11 +1,3 @@
-$(document).on('click', '#otherTypeToggle', function() {
-    $('.otherType').toggle('fast');
-});
-
-$(document).on('click', '#otherBreedToggle', function() {
-    $('.otherBreed').toggle('fast');
-});
-
 $(document).ready(function() {
     if ($('#websiteContent').attr('class').match(/^squad_/)) {
         $('.asManyAsUnit')
@@ -63,7 +55,7 @@ $(document).ready(function() {
                 stuffList.find('.asManyAsUnit input:checked').each(function () {
                     $(this).closest('.stuffListItem').find('.number input').val(newNb);
                 });
-                    
+
 
                 return false;
             });

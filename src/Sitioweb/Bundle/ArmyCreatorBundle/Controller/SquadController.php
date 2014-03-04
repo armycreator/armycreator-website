@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation as Security;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
@@ -33,27 +34,51 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 class SquadController extends Controller
 {
     /**
+     * selectBreedAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/new", name="squad_select_breed")
+     * @Template()
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"armySlug" = "slug"}})
+     */
+    public function selectBreedAction(Army $army)
+    {
+        // breadcrumb
+        $this->setArmyBreadCrumb($army);
+        $tmp = $this->get('translator')
+                    ->trans('breadcrumb.squad_new.select_breed');
+        $this->get("apy_breadcrumb_trail")->add($tmp);
+
+        // security
+        if ($this->getUser() != $army->getUser()) {
+            throw new AccessDeniedException();
+        }
+
+        $em = $this->get('doctrine')->getManager();
+        $breedList = $em->getRepository('SitiowebArmyCreatorBundle:Breed')
+            ->findBy([ 'available' => true, 'game' => $army->getBreed()->getGame() ]);
+
+        return array(
+            'army' => $army,
+            'breedList' => $breedList,
+            'externalUser' => false
+        );
+    }
+
+
+    /**
      * Displays a form to create a new Squad entity.
      *
      * @Route("/new/{breedSlug}/{unitTypeSlug}", name="squad_new")
      * @Template()
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"armySlug" = "slug"}})
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breedSlug" = "slug"}})
      */
-    public function newAction($armySlug, $breedSlug, $unitTypeSlug)
+    public function newAction(Army $army, Breed $breed, $unitTypeSlug)
     {
         $em = $this->get('doctrine')->getManager();
-
-        // getting army
-        $army = $em->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($armySlug);
-        if ($army === null) {
-            throw new NotFoundHttpException('Army not found');
-        }
-
-        // getting breed
-        $breed = $em->getRepository('SitiowebArmyCreatorBundle:Breed')
-                    ->findOneBySlug($breedSlug);
-        if ($army === null) {
-            throw new NotFoundHttpException('Army not found');
-        }
 
         // getting unitType
         $unitType = $em->getRepository('SitiowebArmyCreatorBundle:UnitType')->findOneBy(
@@ -77,9 +102,13 @@ class SquadController extends Controller
             throw new AccessDeniedException();
         }
 
+        $breedList = $em->getRepository('SitiowebArmyCreatorBundle:Breed')
+            ->findBy([ 'available' => true, 'game' => $army->getBreed()->getGame() ]);
+
         return array(
             'army' => $army,
             'breed' => $breed,
+            'breedList' => $breedList,
             'currentUnitType' => $unitType,
             'externalUser' => false
         );

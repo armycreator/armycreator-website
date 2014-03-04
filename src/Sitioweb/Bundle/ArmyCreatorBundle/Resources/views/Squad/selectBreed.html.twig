@@ -1,0 +1,27 @@
+{% extends 'SitiowebArmyCreatorBundle:Squad:layout.html.twig' %}
+
+{% block squadAddNavTitle %}
+{% endblock %}
+
+{% block squadAddContent %}
+    {# Other breed list #}
+    <div class="otherBreed">
+        <ul>
+            {% for tmpBreed in breedList %}
+                <li>
+                {#{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : tmpBreed.slug}) }}#}
+                    <a href="#" title="{{ tmpBreed.name }}">
+                        <figure class="breed">
+                            {{ breedImage(tmpBreed)|raw }}
+
+                            <figcaption>
+                                {{ tmpBreed.name }}
+                            </figcaption>
+                        </figure>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="clear"></div>
+{% endblock %}

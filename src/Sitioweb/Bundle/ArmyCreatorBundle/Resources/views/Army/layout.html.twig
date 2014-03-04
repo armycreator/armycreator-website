@@ -1,0 +1,142 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ army.name }} -
+    {{ army.user.username }} -
+    {{ army.breed.name }} -
+    {{ army.breed.game.name }}
+{% endblock %}
+
+{% block h1Container %}
+{% endblock %}
+
+{% block content %}
+<header>
+    <aside class="action">
+        <a href="javascript:window.print();" class="acButton" accesskey="p" title="{{ 'army.detail.print'|trans }}">
+            <i class="el-icon-print"></i>
+            {{ 'army.detail.print'|trans }}
+        </a>
+        <a href="{{ path('army_detail_pdf', { 'slug' : army.slug } ) }}" class="acButton" accesskey="f" title="{{ 'army.detail.pdf'|trans }}">
+            <i class="el-icon-file"></i>
+            {{ 'army.detail.pdf'|trans }}
+        </a>
+
+        <a href="{{ path('army_detail_bbcode', { 'slug' : army.slug } ) }}" class="acButton" accesskey="b" title="{{ 'army.detail.bb_code'|trans }}">
+            <i class="el-icon-comment"></i>
+            {{ 'army.detail.bb_code'|trans }}
+        </a>
+        {% if not(externalUser) %}
+            <a href="javascript:;" class="acButton share-tooltip" title="{{ 'army.detail.share'|trans }}">
+                <i class="el-icon-share"></i>
+                {{ 'army.detail.share'|trans }}
+            </a>
+
+            <div class="share-tooltip-content">
+                <div>
+                    <input type="checkbox"
+                        id="army-share-checkbox"
+                        value="1"
+                        {{ army.isShared ? "checked='checked'" : "" }}
+                    />
+                    <label for="army-share-checkbox">
+                        {{ "army.detail.authorize_share"|trans }}
+                    </label>
+                </div>
+
+                {% block addthis %}
+                    <div class='addthis_toolbox addthis_default_style addthis_32x32_style'>
+                        <a class='addthis_button_email'></a>
+                        <a class='addthis_button_facebook'></a>
+                        <a class='addthis_button_twitter'></a>
+                        <a class='addthis_button_google_plusone_share'></a>
+                        <a class='addthis_button_compact'></a><a class='addthis_counter addthis_bubble_style'></a>
+                    </div>
+                {% endblock %}
+            </div>
+        {% endif %}
+    </aside>
+
+    <figure class="breed txtcenter">
+        {{ breedImage(army.breed)|raw }}
+
+        <figcaption>
+            {{ army.breed.name }}
+        </figcaption>
+    </figure>
+
+    <div class="armyDescription">
+        <h1 class="name">
+            {{ army.name }} |
+            {{ army.breed.name }}
+
+            <a href="{{ path('army_edit', { 'slug' : army.slug }) }}" class="acButton acButtonSmall">
+                <i class="el-icon-pencil"></i>
+            </a>
+
+            {% if deleteForm is defined %}
+                <form
+                    action="{{ path('army_delete', { 'slug': army.slug }) }}"
+                    method="post"
+                    class="inbl"
+                    onsubmit="javascript:return confirm('{% trans %}army.detail.delete{% endtrans %}');"
+                >
+                    {{ form_widget(deleteForm) }}
+                    <button type="submit" class="acButton acButtonSmall">
+                        <i class="el-icon-remove"></i>
+                    </button>
+                </form>
+            {% endif %}
+        </h1>
+
+        {% if army.wantedPoints > 0 %}
+            <div class="pointBarContainer">
+                <div class="pointBar">
+                    <div style="width:{% if army.points > army.wantedPoints %}100{% else %}{{ 100 * army.points /  army.wantedPoints }}{% endif %}%"></div>
+                </div>
+                <strong>
+                    {% trans with { "%pts%": army.points } %}army.detail.pts.%pts%{% endtrans %}
+                </strong>
+                / {% trans with { "%pts%": army.wantedPoints } %}army.detail.wanted_pts.%pts%{% endtrans %}
+            </div>
+        {% else %}
+            <strong>
+                {% trans with { "%pts%": army.points } %}army.detail.pts.%pts%{% endtrans %}
+            </strong>
+        {% endif %}
+
+        {% if army.description %}
+            <div class="description">
+                <span>Description :</span>
+                {{ army.description }}
+            </div>
+        {% endif %}
+    </div>
+</header>
+
+<section id="armyDetailContainer">
+    {% block armyDetail %}{% endblock %}
+</section>
+{% endblock %}
+
+{% block jsVariables %}
+    <script type="text/javascript">
+        var armycreator = {};
+        armycreator.armySlug = '{{ army.slug }}'
+        armycreator.externalUser = '{{ externalUser }}'
+    </script>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+            '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.core.js'
+            '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.widget.js'
+            '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.mouse.js'
+            '@SitiowebExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.sortable.js'
+            '@SitiowebArmyCreatorBundle/Resources/public/js/army.js'
+            output='js/army-detail.js'
+        %}
+             <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

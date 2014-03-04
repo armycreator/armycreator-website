@@ -51,6 +51,7 @@ class Game
 	 * @access private
 	 *
 	 * @ORM\OneToMany(targetEntity="Breed", mappedBy="game")
+	 * @ORM\OrderBy({ "name": "ASC" })
 	 */
 	private $breedList;
 

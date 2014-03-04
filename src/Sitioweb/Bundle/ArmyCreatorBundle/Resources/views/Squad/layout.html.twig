@@ -1,0 +1,66 @@
+{% extends 'SitiowebArmyCreatorBundle:Army:layout.html.twig' %}
+
+{% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
+
+{% block armyDetail %}
+    <div id="squadDetail">
+        {# squad add navigation #}
+        {% block squadAddNav %}
+            {% block squadAddNavTitle %}
+                <header class="unitType">
+                    {{ unitTypeMacro.stick(currentUnitType.color, true) }}
+                    {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
+                </header>
+            {% endblock %}
+
+            {% block squadAddNavSecondLine %}
+                <nav class="squadNav txtcenter">
+                    <div{% if app.request.attributes.get('_route') == 'squad_select_breed' %} class="current"{% endif %}>
+                        <a href="javascript:;" title="{{ 'squad.edit.breed_change'|trans }}" id="otherBreedToggle">
+                            {{ 'squad.edit.breed_change'|trans }}
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="javascript:;" title="{{ 'squad.edit.unit_type_change'|trans }}" id="otherTypeToggle">
+                            <i class="el-icon-th-list"></i>
+                            {{ 'squad.edit.unit_type_change'|trans }}
+                        </a>
+                    </div>
+
+                    <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
+                        <a
+                            href="#"
+                            title="{{ 'squad.edit.squad_choice'|trans }}"
+                        >
+                        {# {{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : breed.slug }) }}#}
+                            {{ 'squad.edit.squad_choice'|trans }}
+                        </a>
+                    </div>
+
+                    <div{% if app.request.attributes.get('_route') != 'squad_new' %} class="current"{% endif %}>
+                        {{ 'squad.edit.squad_stuff'|trans }}
+                    </div>
+                </nav>
+            {% endblock %}
+
+            {# Other type list #}
+            <div class="unitType otherType row txtcenter inline inlineBig">
+                {#
+                {% for unitType in breed.unitTypeList %}
+                    <div>
+                        <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug, 'breedSlug' : unitType.breed.slug}) }}" title="{{ unitType.name }}">
+                            {{ unitType.name }}
+                        </a>
+                    </div>
+                {% endfor %}
+                #}
+            </div>
+
+        {% endblock %}
+
+        <section class="squadAddContent">
+            {% block squadAddContent %}{% endblock %}
+        </section>
+    </div>
+{% endblock %}
