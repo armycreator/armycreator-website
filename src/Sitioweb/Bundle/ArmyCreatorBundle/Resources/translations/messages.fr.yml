@@ -1,5 +1,5 @@
 breed.list.new: 'Nouvelle liste'
-army_detail:
+army.detail:
     print: Imprimer
     pdf: PDF
     bb_code: BBCode
