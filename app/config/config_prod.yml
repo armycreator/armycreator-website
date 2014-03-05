@@ -21,6 +21,10 @@ monolog:
             type:  stream
             path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
+        sentry:
+            type: raven
+            level: notice
+            dsn: http://62eeb0dc3557448c81be4da5f2d88e06:90ce148b176148bc944a4d5fddc3b5bd@sentry.sitioweb.fr/2
 
 assetic:
     filters:
