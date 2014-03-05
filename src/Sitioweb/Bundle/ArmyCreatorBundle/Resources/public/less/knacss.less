@@ -285,6 +285,7 @@ img.left, img.right {
 .grid4 > * {.grid(4);}
 .grid5 > * {.grid(5);}
 .grid6 > * {.grid(6);}
+.grid12 > * {.grid(12);}
 
 .grid2 > * + *,
 .grid3 > * + *,
@@ -294,7 +295,8 @@ img.left, img.right {
 .grid2-1 > * + *,
 .grid1-2 > * + *,
 .grid3-1 > * + *,
-.grid1-3 > * + * {
+.grid1-3 > * + *,
+.grid1-11 > * + * {
 	margin-left: @gutter;
 }
 .grid2-1 > *,
@@ -309,9 +311,15 @@ img.left, img.right {
 .grid1-3 > * {
 	width: (100%-@gutter) / 4;
 }
+.grid1-11 > * {
+	width: (100%-@gutter) / 12;
+}
 .grid3-1 > :first-child,
 .grid1-3 > * + * {
 	width: (100%-@gutter) * 3 / 4;
+}
+.grid1-11 > * + * {
+	width: (100%-@gutter) * 11 / 12;
 }
 
 /* blocks widths (percentage and pixels) */

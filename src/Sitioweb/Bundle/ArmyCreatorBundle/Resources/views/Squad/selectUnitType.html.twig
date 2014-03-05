@@ -1,6 +1,8 @@
 {% extends 'SitiowebArmyCreatorBundle:Squad:layout.html.twig' %}
 
-{% block squadAddNavTitle %}{% endblock %}
+{% block squadAddNavTitle %}
+    {{ breed.name }} - {{ 'squad.edit.choose_unit_type'|trans }}
+{% endblock %}
 
 {% block squadAddContent %}
     <div class="unitType otherType row txtcenter inline inlineBig">

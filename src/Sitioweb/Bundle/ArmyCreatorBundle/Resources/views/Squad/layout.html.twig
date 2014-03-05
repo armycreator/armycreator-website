@@ -6,12 +6,10 @@
     <div id="squadDetail">
         {# squad add navigation #}
         {% block squadAddNav %}
-            {% block squadAddNavTitle %}
-                <header class="unitType">
-                    {{ unitTypeMacro.stick(currentUnitType.color, true) }}
-                    {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
-                </header>
-            {% endblock %}
+            <header class="unitType">
+                {% block squadAddNavTitle %}
+                {% endblock %}
+            </header>
 
             {% block squadAddNavSecondLine %}
                 <nav class="squadNav txtcenter">
@@ -26,32 +24,33 @@
                     </div>
 
                     <div{% if app.request.attributes.get('_route') == 'squad_select_unitType' %} class="current"{% endif %}>
-                        {#
-                        <a
-                            href="javascript:;"
-                            title="{{ 'squad.edit.unit_type_change'|trans }}"
-                            id="otherTypeToggle"
-                        >
-                            <i class="el-icon-th-list"></i>
+                        {% if breed is defined %}
+                            <a
+                                href="{{ path("squad_select_unitType", { "armySlug": army.slug, "breedSlug": breed.slug }) }}"
+                                title="{{ 'squad.edit.unit_type_change'|trans }}"
+                                id="otherTypeToggle"
+                            >
+                                {{ 'squad.edit.unit_type_change'|trans }}
+                            </a>
+                        {% else %}
                             {{ 'squad.edit.unit_type_change'|trans }}
-                        </a>
-                        #}
-                            {{ 'squad.edit.unit_type_change'|trans }}
+                        {% endif %}
                     </div>
 
                     <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
-                        {#
-                        <a
-                            href="#"
-                            title="{{ 'squad.edit.squad_choice'|trans }}"
-                        >
-                        </a>
-                        #}
-                        {# {{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : breed.slug }) }}#}
-                        {{ 'squad.edit.squad_choice'|trans }}
+                        {% if currentUnitType is defined %}
+                            <a
+                                href="{{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : breed.slug }) }}"
+                                title="{{ 'squad.edit.squad_choice'|trans }}"
+                            >
+                                {{ 'squad.edit.squad_choice'|trans }}
+                            </a>
+                        {% else %}
+                            {{ 'squad.edit.squad_choice'|trans }}
+                        {% endif %}
                     </div>
 
-                    <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
+                    <div{% if app.request.attributes.get('_route') == 'squad_line_new' %} class="current"{% endif %}>
                         {{ 'squad.edit.squad_stuff'|trans }}
                     </div>
                 </nav>

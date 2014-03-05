@@ -1,18 +1,22 @@
 breed.list.new: 'Nouvelle liste'
-army.detail.print: Imprimer
-army.detail.pdf: PDF
-army.detail.bb_code: BBCode
-army.detail.share: Partager
-army.detail.authorize_share: Cette liste est visible publiquement
-army.detail.delete: Supprimer
-army.detail.pts.%pts%: '%pts% pts'
-army.detail.wanted_pts.%pts%: '%pts% pts'
-army.detail.squad.delete: Supprimer
-army.detail.squad.add: 'Ajouter une escouade'
-army.detail.preferences: préférences
-army.detail.toggle_stuff: "équipements"
-army.detail.show_all_stuff: "Afficher tous les équipements"
-army.detail.hide_all_stuff: "Masquer tous les équipements"
+army_detail:
+    print: Imprimer
+    pdf: PDF
+    bb_code: BBCode
+    share: Partager
+    authorize_share: Cette liste est visible publiquement
+    delete: Supprimer
+    pts.%pts%: '%pts% pts'
+    wanted_pts.%pts%: '%pts% pts'
+    squad:
+        delete: Supprimer
+        add: 'Ajouter une escouade'
+        add_ally_fortress: 'Ajouter allié / forteresse'
+    preferences: préférences
+    toggle_stuff: "équipements"
+    show_all_stuff: "Afficher tous les équipements"
+    hide_all_stuff: "Masquer tous les équipements"
+    missing_units: 'Vous ne possédez pas autant d''unite'
 army.bbcode.apply: Appliquer
 army.bbcode.apply_and_save: 'Appliquer + enregistrer'
 army.bbcode.title: BBCode
@@ -50,7 +54,7 @@ home:
         calcul: "ArmyCreator <strong>calcule vos points</strong> en vous proposant <strong>toutes les options</strong> d'armes et d'équipements de vos unités, de chaque codex à jours, et une communauté sur notre forum."
         export: "J'offre la possibilité de faire des <strong>exports</strong> pour des <strong>sites communautaires et forums</strong>. Je propose aussi <strong>l'impression</strong> propre et lisible de votre liste."
         list_groups: "Je laisse le loisir d'organiser des rubriques et <strong>catégories</strong> pour que vos listes soit bien rangées et <strong>facilement retrouvables</strong> dans vos méthodes de classement."
-        everywhere: "Une idée de liste au travail, en vacance ou chez un amis ? ArmyCreator est <strong>disponible 24h/24</strong> et de <strong>n'importe où</strong> pour poser à plat vos idées."
+        everywhere: "Une idée de liste au travail, en vacance ou chez un ami ? ArmyCreator est <strong>disponible 24h/24</strong> et de <strong>n'importe où</strong> pour poser à plat vos idées."
         pretty_print: "<strong>Fini les listes</strong> sur un brouillon <strong>illisible</strong> que votre adversaire ne sait même pas relire ou les documents texte qui polluent votre ordinateur et qu'on perd suite à un crash PC."
         free: "Oui je suis <strong>gratuit</strong> et les dons restent possibles pour m'aider à vous proposer <strong>toujours plus de services</strong>."
 
@@ -61,20 +65,23 @@ army_group.edit.title: 'Editer un groupe'
 army_group.edit.edit: Editer
 army_group.edit.back_to_list: 'Retour aux listes'
 army_group.edit.delete: Supprimer
-squad.new.unit.type.%unitTypeName%: 'Ajouter %unitTypeName%'
-squad.edit.min_points_%unitGroupPoints%: '%unitGroupPoints% pts mini'
-'[0,1]squad.edit.unit_number_unique|]1,Inf]squad.edit.possible_unit_number_%count%': 'une unité|%count% unités possibles'
+squad.new.unit.type.%unitTypeName%.%breedName%: '%breedName% - Ajouter %unitTypeName%'
 squad.new.back_to_list: 'Retour à l''armée'
-squad.edit.breed_change: 'Changer de race'
-squad.edit.unit_type_change: 'Changer de type d''unité'
-squad.edit.squad_choice: 'Choix de l''escouade'
-squad.edit.squad_stuff: 'Choix des équipements'
-squad.edit.title: 'éditer une escouade'
-squad.edit.unit.type.%unitTypeName%: 'éditer %unitTypeName%'
-squad.edit.edit: Editer
+'[0,1]squad.edit.unit_number_unique|]1,Inf]squad.edit.possible_unit_number_%count%': 'une unité|%count% unités possibles'
+squad.edit:
+    min_points_%unitGroupPoints%: '%unitGroupPoints% pts mini'
+    breed_change: 'Changer de race'
+    unit_type_change: 'Changer de type d''unité'
+    squad_choice: 'Choix de l''escouade'
+    squad_stuff: 'Choix des équipements'
+    title: 'éditer une escouade'
+    unit.type.%unitTypeName%: 'éditer %unitTypeName%'
+    edit: Editer
+    pts.%pts%: '%pts% pts'
+    back_to_army: 'Retour à l''armée'
+    choose_breed: 'Sélectionner une race'
+    choose_unit_type: 'Sélectionner un type d''unité'
 squad_line.new.create: Créer
-squad.edit.pts.%pts%: '%pts% pts'
-squad.edit.back_to_army: 'Retour à l''armée'
 squad.total_points: 'nb points de l''escouade'
 header.welcome: 'Bienvenue sur ArmyCreator'
 header.hello.%username%: 'Bonjour %username%'
@@ -83,7 +90,7 @@ header.login: Connexion
 header.sign_up: Inscription
 main_menu.home: Accueil
 main_menu.forum: forum
-main_menu.my_army_list: 'liste d''armées'
+main_menu.my_army_list: 'listes d''armées'
 main_menu.my_games: 'mes parties'
 main_menu.my_collection: 'ma collection'
 main_menu.public_lists: 'listes publiques'
@@ -139,7 +146,6 @@ breed_group.list.new: 'Nouveau groupement de races'
 default.new.title: Nouveau
 user.collection.remove: 'Supprimer de ma collection'
 user.collection.contains: 'Je possède cette race'
-army.detail.missing_units: 'Vous ne possédez pas autant d''unite'
 footer.warning: Avertissement
 footer.detail: "Army Creator ne permet pas de créer une liste d'armée sans posséder le codex correspondant !\nCe site n'est pas officiel ni en aucun cas autorisé ou approuvé par Games Workshop.\nWarhammer, Warhammer 40.000, le logo Games Workshop, Games Workshop, Space Marines, Blood Angel, Dark Angel, Eldars, Eldars Noirs, Marines du chaos, Demons du chaos, Orks, Guarde Imperiale, Ordo Malleus, Ordo Hereticus, Necrons, Tau, Tyrannides, Codex, ainsi que tous les noms d'unités, d'armes et d'équipements sont des marques de Games Workshop Limited, utilisées sans autorisation et sans volonté de préjudice ou comme opposition à leur copyright."
 footer.design: 'Design par:'

@@ -1,18 +1,22 @@
 breed.list.new: 'New Breed'
-army.detail.print: Print
-army.detail.pdf: pdf
-army.detail.bb_code: BBCode
-army.detail.share: Share
-army.detail.authorize_share: This list is visible
-army.detail.delete: 'Delete army'
-army.detail.squad.delete: 'Delete squad'
-army.detail.squad.add: 'Add squad'
-army.detail.pts.%pts%: '%pts% pts'
-army.detail.wanted_pts.%pts%: '%pts% wanted pts'
-army.detail.preferences: Preferences
-army.detail.toggle_stuff: "stuff"
-army.detail.show_all_stuff: "Show all stuff"
-army.detail.hide_all_stuff: "Hide all stuff"
+army.detail:
+    print: Print
+    pdf: pdf
+    bb_code: BBCode
+    share: Share
+    authorize_share: This list is visible
+    delete: 'Delete army'
+    squad:
+        delete: 'Delete squad'
+        add: 'Add squad'
+        add_ally_fortress: 'Add ally / fortress'
+    pts.%pts%: '%pts% pts'
+    wanted_pts.%pts%: '%pts% wanted pts'
+    preferences: Preferences
+    toggle_stuff: "stuff"
+    show_all_stuff: "Show all stuff"
+    hide_all_stuff: "Hide all stuff"
+    missing_units: 'You do not own as many units'
 army.bbcode.title: BBCode
 army.bbcode.apply: apply
 army.bbcode.apply_and_save: 'save and apply'
@@ -46,13 +50,21 @@ army_group.edit.title: 'Edit army group'
 army_group.edit.edit: Edit
 army_group.edit.back_to_list: 'Back to army list'
 army_group.edit.delete: 'Delete army group'
-squad.new.unit.type.%unitTypeName%: 'new %unitTypeName%'
-squad.edit.breed_change: 'other breed'
-squad.edit.unit_type_change: 'change unit type'
-squad.edit.squad_choice: 'squad choice'
-squad.edit.squad_stuff: 'squad stuff'
-squad.edit.min_points_%unitGroupPoints%: '%unitGroupPoints% pts. min.'
+squad.new.unit.type.%unitTypeName%.%breedName%: '%breedName% - new %unitTypeName%'
 '[0,1]squad.edit.unit_number_unique|]1,Inf]squad.edit.possible_unit_number_%count%': 'one unit|%count% units'
+squad.edit:
+    breed_change: 'other breed'
+    unit_type_change: 'change unit type'
+    squad_choice: 'squad choice'
+    squad_stuff: 'squad stuff'
+    min_points_%unitGroupPoints%: '%unitGroupPoints% pts. min.'
+    title: 'Edit squad'
+    unit.type.%unitTypeName%: 'Edit %unitTypeName%'
+    edit: Edit
+    pts.%pts%: '%pts% pts'
+    back_to_army: 'Back to army'
+    choose_breed: 'Select a breed'
+    choose_unit_type: 'Select a unit type'
 header.welcome: 'Welcome on ArmyCreator'
 header.hello.%username%: 'Hello %username%'
 header.logout: Logout
@@ -108,12 +120,7 @@ army_group.new.title: 'New army group'
 army_group.new.create: 'Create army group'
 army_group.new.back_to_list: 'Back to list'
 squad.new.back_to_list: 'Back to list'
-squad.edit.title: 'Edit squad'
-squad.edit.unit.type.%unitTypeName%: 'Edit %unitTypeName%'
-squad.edit.edit: Edit
 squad_line.new.create: Create
-squad.edit.pts.%pts%: '%pts% pts'
-squad.edit.back_to_army: 'Back to army'
 squad.total_points: 'Total points'
 button.create: Create
 breed.back_to_breed: 'Back to breed'
@@ -129,7 +136,6 @@ breed_group.list.new: 'New breed group'
 default.new.title: New
 user.collection.remove: 'Remove from my collection'
 user.collection.contains: 'I have units of this breed'
-army.detail.missing_units: 'You do not own as many units'
 footer.warning: Warning
 footer.detail: __footer.detail
 footer.design: 'Design by:'

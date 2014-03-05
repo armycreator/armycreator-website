@@ -7,8 +7,8 @@
 {% block squadAddContent %}
 
     {% for breedGroup in game.breedGroupList %}
-        <div class="grid1-3">
-            <h3 class="vline-header">
+        <div class="grid1-11">
+            <h3 class="grid-header">
                 {{ breedGroup.name }}
             </h3>
 
@@ -16,7 +16,10 @@
                 <ul class="inline inlineBig">
                     {% for tmpBreed in breedGroup.breedList %}
                         <li>
-                            <a href="#" title="{{ tmpBreed.name }}">
+                            <a
+                                href="{{ path("squad_select_unitType", { "armySlug": army.slug, "breedSlug": tmpBreed.slug }) }}"
+                                title="{{ tmpBreed.name }}"
+                            >
                                 <figure class="breed">
                                     {{ breedImage(tmpBreed)|raw }}
 
@@ -29,6 +32,7 @@
                     {% endfor %}
                 </ul>
             </div>
+            <div class="clear"></div>
         </div>
     {% endfor %}
 

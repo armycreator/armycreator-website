@@ -1,4 +1,4 @@
-{% extends 'SitiowebArmyCreatorBundle:Army:layout.html.twig' %}
+{% extends 'SitiowebArmyCreatorBundle:Squad:layout.html.twig' %}
 
 {% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
 
@@ -7,7 +7,10 @@
 {% endblock %}
 
 {% block squadAddNavTitle %}
-    {% trans with { '%unitTypeName%' : currentUnitType.name } %}squad.new.unit.type.%unitTypeName%{% endtrans %}
+    {{ unitTypeMacro.stick(currentUnitType.color, true) }}
+    {% trans with { '%unitTypeName%' : currentUnitType.name, '%breedName%': breed.name } -%}
+        squad.new.unit.type.%unitTypeName%.%breedName%
+    {%- endtrans %}
 {% endblock %}
 
 {% block squadAddContent %}

@@ -31,7 +31,7 @@ class BreedGroup
 
     /**
      * game
-     * 
+     *
      * @var mixed
      * @access private
 	 *
@@ -41,11 +41,12 @@ class BreedGroup
 
 	/**
 	 * breedList
-	 * 
+	 *
 	 * @var mixed
 	 * @access private
 	 *
 	 * @ORM\OneToMany(targetEntity="Breed", mappedBy="breedGroup")
+     * @ORM\OrderBy({"name" = "ASC"})
 	 */
 	private $breedList;
 
@@ -63,7 +64,7 @@ class BreedGroup
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -85,7 +86,7 @@ class BreedGroup
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -107,13 +108,13 @@ class BreedGroup
     /**
      * Get game
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game
      */
     public function getGame()
     {
         return $this->game;
     }
-    
+
     /**
      * Add breedList
      *
@@ -139,7 +140,7 @@ class BreedGroup
     /**
      * Get breedList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getBreedList()
     {

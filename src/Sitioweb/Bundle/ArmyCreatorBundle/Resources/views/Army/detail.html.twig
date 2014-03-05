@@ -74,6 +74,20 @@
 
         <div class="oauto">
             {# ===== Squad List ===== #}
+            {% block allyFortressButton %}
+                {% if not(externalUser) %}
+                    <div class="mb2">
+                        <a
+                            href="{{ path('squad_select_breed', { 'armySlug' : army.slug }) }}"
+                            class="acButton acButtonBig"
+                        >
+                            <i class="el-icon-plus"></i>
+                            {{ 'army.detail.squad.add_ally_fortress'|trans }}
+                        </a>
+                    </div>
+                {% endif %}
+            {% endblock %}
+
             {% for tmp in army.squadListByType %}
                 {% if tmp.unitType.abstractUnitList.count() %}
                     <section
@@ -211,6 +225,8 @@
                     </section>
                 {% endif %}
             {% endfor %}
+
+            {{ block("allyFortressButton") }}
         </div>
     </div>
 {% endblock %}
