@@ -37,7 +37,7 @@ class SquadController extends Controller
      * selectBreedAction
      *
      * @access public
-     * @return void
+     * @return Response
      *
      * @Route("/new", name="squad_select_breed")
      * @Template()
@@ -56,15 +56,34 @@ class SquadController extends Controller
             throw new AccessDeniedException();
         }
 
-        $em = $this->get('doctrine')->getManager();
-        $breedList = $em->getRepository('SitiowebArmyCreatorBundle:Breed')
-            ->findBy([ 'available' => true, 'game' => $army->getBreed()->getGame() ]);
+        //$em = $this->get('doctrine')->getManager();
+        //$breedList = $em->getRepository('SitiowebArmyCreatorBundle:Breed')
+        //    ->findBy([ 'available' => true, 'game' => $army->getBreed()->getGame() ]);
 
         return array(
             'army' => $army,
-            'breedList' => $breedList,
+            'game' => $army->getBreed()->getGame(),
             'externalUser' => false
         );
+    }
+
+    /**
+     * selectUnitTypeAction
+     *
+     * @param Army $army
+     * @access public
+     * @return Response
+     *
+     * @Route("/new/{breedSlug}", name="squad_select_unitType")
+     * @Template()
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"armySlug" = "slug"}})
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breedSlug" = "slug"}})
+     */
+    public function selectUnitTypeAction(Army $army, Breed $breed)
+    {
+        $params = $this->selectBreedAction($army);
+
+        return $params + ['breed' => $breed];
     }
 
 

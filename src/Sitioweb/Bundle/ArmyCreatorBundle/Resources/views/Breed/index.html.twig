@@ -7,6 +7,7 @@
     <thead>
         <tr>
             <th>Id</th>
+            <th>Group</th>
             <th>Name</th>
             <th>Available</th>
             <th>{{ "breed.list.new"|trans }}</th>
@@ -17,6 +18,7 @@
     {% for entity in entities %}
         <tr>
             <td>{{ entity.id }}</td>
+            <td>{{ entity.breedGroup ? entity.breedGroup.name : '' }}
             <td>
                 <a href="{{ path('admin_breed_show', { "game": entity.game.code, "breed": entity.slug }) }}">
                     {{ entity.name }}

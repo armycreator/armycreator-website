@@ -1,0 +1,15 @@
+{% extends 'SitiowebArmyCreatorBundle:Squad:layout.html.twig' %}
+
+{% block squadAddNavTitle %}{% endblock %}
+
+{% block squadAddContent %}
+    <div class="unitType otherType row txtcenter inline inlineBig">
+        {% for unitType in breed.unitTypeList %}
+            <div>
+                <a href="{{ path('squad_new', {'armySlug' : army.slug, 'unitTypeSlug' : unitType.slug, 'breedSlug' : unitType.breed.slug}) }}" title="{{ unitType.name }}">
+                    {{ unitType.name }}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -16,29 +16,42 @@
             {% block squadAddNavSecondLine %}
                 <nav class="squadNav txtcenter">
                     <div{% if app.request.attributes.get('_route') == 'squad_select_breed' %} class="current"{% endif %}>
-                        <a href="javascript:;" title="{{ 'squad.edit.breed_change'|trans }}" id="otherBreedToggle">
+                        <a
+                            href="{{ path("squad_select_breed", { "armySlug": army.slug }) }}"
+                            title="{{ 'squad.edit.breed_change'|trans }}"
+                            id="otherBreedToggle"
+                        >
                             {{ 'squad.edit.breed_change'|trans }}
                         </a>
                     </div>
 
-                    <div>
-                        <a href="javascript:;" title="{{ 'squad.edit.unit_type_change'|trans }}" id="otherTypeToggle">
+                    <div{% if app.request.attributes.get('_route') == 'squad_select_unitType' %} class="current"{% endif %}>
+                        {#
+                        <a
+                            href="javascript:;"
+                            title="{{ 'squad.edit.unit_type_change'|trans }}"
+                            id="otherTypeToggle"
+                        >
                             <i class="el-icon-th-list"></i>
                             {{ 'squad.edit.unit_type_change'|trans }}
                         </a>
+                        #}
+                            {{ 'squad.edit.unit_type_change'|trans }}
                     </div>
 
                     <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
+                        {#
                         <a
                             href="#"
                             title="{{ 'squad.edit.squad_choice'|trans }}"
                         >
-                        {# {{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : breed.slug }) }}#}
-                            {{ 'squad.edit.squad_choice'|trans }}
                         </a>
+                        #}
+                        {# {{ path('squad_new', { 'armySlug' : army.slug, 'unitTypeSlug' : currentUnitType.slug, 'breedSlug' : breed.slug }) }}#}
+                        {{ 'squad.edit.squad_choice'|trans }}
                     </div>
 
-                    <div{% if app.request.attributes.get('_route') != 'squad_new' %} class="current"{% endif %}>
+                    <div{% if app.request.attributes.get('_route') == 'squad_new' %} class="current"{% endif %}>
                         {{ 'squad.edit.squad_stuff'|trans }}
                     </div>
                 </nav>
