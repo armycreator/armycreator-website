@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "05b637fafc4a6ec8de7e9f252864dca3",
+    "hash": "e64b225810f9a35066efde0e7e1e5a57",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
@@ -732,12 +732,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "815055bcb1936a0bba0af93cf1b44fddf98a64b5"
+                "reference": "7867dfc7aa67969a24fec7f8aa1051eda23098e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/815055bcb1936a0bba0af93cf1b44fddf98a64b5",
-                "reference": "815055bcb1936a0bba0af93cf1b44fddf98a64b5",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/7867dfc7aa67969a24fec7f8aa1051eda23098e9",
+                "reference": "7867dfc7aa67969a24fec7f8aa1051eda23098e9",
                 "shasum": ""
             },
             "require": {
@@ -792,7 +792,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-02-21 12:52:40"
+            "time": "2014-03-04 23:23:39"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1346,12 +1346,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "8206c3a9a7567607c34e621ffd8f6f7eb7936525"
+                "reference": "c730b8a019ca914bd90c0aef80dcf42c4320dcec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/8206c3a9a7567607c34e621ffd8f6f7eb7936525",
-                "reference": "8206c3a9a7567607c34e621ffd8f6f7eb7936525",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/c730b8a019ca914bd90c0aef80dcf42c4320dcec",
+                "reference": "c730b8a019ca914bd90c0aef80dcf42c4320dcec",
                 "shasum": ""
             },
             "require": {
@@ -1402,7 +1402,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-02-28 13:06:53"
+            "time": "2014-03-03 11:05:54"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -1411,12 +1411,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenuBundle.git",
-                "reference": "838c4a0f9b0631b37d699d9a7ebd695707298678"
+                "reference": "e5700ed8cbd5c402d24d6dda118aa23400937288"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/838c4a0f9b0631b37d699d9a7ebd695707298678",
-                "reference": "838c4a0f9b0631b37d699d9a7ebd695707298678",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/e5700ed8cbd5c402d24d6dda118aa23400937288",
+                "reference": "e5700ed8cbd5c402d24d6dda118aa23400937288",
                 "shasum": ""
             },
             "require": {
@@ -1456,7 +1456,7 @@
             "keywords": [
                 "menu"
             ],
-            "time": "2013-12-03 00:27:28"
+            "time": "2014-03-03 22:44:01"
         },
         {
             "name": "knplabs/knp-snappy",
@@ -1902,6 +1902,58 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "raven/raven",
+            "version": "0.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/getsentry/raven-php.git",
+                "reference": "d4b741736125f2b892e07903cd40450b53479290"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/getsentry/raven-php/zipball/d4b741736125f2b892e07903cd40450b53479290",
+                "reference": "d4b741736125f2b892e07903cd40450b53479290",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "bin": [
+                "bin/raven"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Raven_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "David Cramer",
+                    "email": "dcramer@gmail.com"
+                }
+            ],
+            "description": "A PHP client for Sentry (http://getsentry.com)",
+            "homepage": "http://getsentry.com",
+            "keywords": [
+                "log",
+                "logging"
+            ],
+            "time": "2013-12-03 10:27:59"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -3051,6 +3103,7 @@
         "kriswallsmith/assetic": 20,
         "symfony/assetic-bundle": 20,
         "oneup/acl-bundle": 0,
+        "raven/raven": 0,
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
