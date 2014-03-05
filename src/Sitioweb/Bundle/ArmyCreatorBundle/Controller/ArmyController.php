@@ -46,19 +46,27 @@ class ArmyController extends Controller
     public function listAction($groupId, Request $request)
     {
         $entityManager = $this->get('doctrine')->getManager();
+
+        $qb = $entityManager->createQueryBuilder()
+            ->select('a')
+            ->from('SitiowebArmyCreatorBundle:Army', 'a')
+            ->innerJoin('SitiowebArmyCreatorBundle:Breed', 'b', 'WITH', 'a.breed = b')
+            ->where('a.user = :user')
+            ->orderBy('b.name')
+            ->addOrderBy('a.name')
+            ->setParameter('user', $this->getUser());
+
         if (isset($groupId)) {
-            $group = $entityManager->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')->find((int) $groupId);
+            $group = $entityManager->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')
+                ->find((int) $groupId);
 
-            $armyList = $entityManager->getRepository('SitiowebArmyCreatorBundle:Army')->findBy(
-                array(
-                    'user' => $this->getUser(),
-                    'armyGroup' => $group
-                ),
-                array('updateDate' => 'DESC', 'id' => 'DESC')
-            );
-
-            // no group wanted
+            // group wanted
             if ($group) {
+                $armyList = $qb->andWhere('a.armyGroup = :armyGroup')
+                    ->setParameter('armyGroup', $group)
+                    ->getQuery()
+                    ->getResult();
+
                 $deleteGroupForm = $this->createDeleteForm($group->getId());
 
                 // Breadcrumb
@@ -68,6 +76,10 @@ class ArmyController extends Controller
                     array('groupId' =>  $group->getId())
                 );
             } else {
+                $armyList = $qb->andWhere('a.armyGroup IS NULL')
+                    ->getQuery()
+                    ->getResult();
+
                 $deleteGroupForm = null;
                 // Breadcrumb
                 $this->get("apy_breadcrumb_trail")->add(
@@ -79,12 +91,15 @@ class ArmyController extends Controller
         } else {
             $group = null;
             $deleteGroupForm = null;
-            $armyList = $entityManager->getRepository('SitiowebArmyCreatorBundle:Army')
-                ->findBy(
-                    array('user' => $this->getUser()),
-                    array('updateDate' => 'DESC', 'id' => 'DESC'),
-                    $request->query->has('all') ? null : 10
-                );
+
+            if ($request->query->has('all')) {
+            } else {
+                $qb->orderBy('a.updateDate', 'DESC')
+                    ->addOrderBy('a.id', 'DESC')
+                    ->setMaxResults(10);
+            }
+
+            $armyList = $qb->getQuery()->getResult();
         }
 
         // getting armyList
