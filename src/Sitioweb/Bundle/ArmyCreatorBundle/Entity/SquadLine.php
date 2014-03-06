@@ -38,7 +38,7 @@ class SquadLine
 
     /**
      * unit
-     * 
+     *
      * @var Unit
      * @access private
      *
@@ -48,7 +48,7 @@ class SquadLine
 
     /**
      * squad
-     * 
+     *
      * @var Squad
      * @access private
      *
@@ -58,7 +58,7 @@ class SquadLine
 
     /**
      * squadLineStuffList
-     * 
+     *
      * @var array<SquadLineStuff>
      * @access private
      *
@@ -108,7 +108,7 @@ class SquadLine
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -127,14 +127,14 @@ class SquadLine
 
         $squadLineStuffList = $this->getSquadLineStuffList();
         $this->preUpdate();
-    
+
         return $this;
     }
 
     /**
      * Get number
      *
-     * @return integer 
+     * @return integer
      */
     public function getNumber()
     {
@@ -150,14 +150,14 @@ class SquadLine
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
     /**
      * Get position
      *
-     * @return integer 
+     * @return integer
      */
     public function getPosition()
     {
@@ -173,14 +173,14 @@ class SquadLine
     public function setUnit(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $unit = null)
     {
         $this->unit = $unit;
-    
+
         return $this;
     }
 
     /**
      * Get unit
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit
      */
     public function getUnit()
     {
@@ -196,14 +196,14 @@ class SquadLine
     public function setSquad(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squad = null)
     {
         $this->squad = $squad;
-    
+
         return $this;
     }
 
     /**
      * Get squad
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad
      */
     public function getSquad()
     {
@@ -219,7 +219,7 @@ class SquadLine
     public function addSquadLineStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLineStuff $squadLineStuffList)
     {
         $this->squadLineStuffList[] = $squadLineStuffList;
-    
+
         return $this;
     }
 
@@ -236,7 +236,7 @@ class SquadLine
     /**
      * Get squadLineStuffList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSquadLineStuffList()
     {
@@ -260,7 +260,7 @@ class SquadLine
                 $list[] = $squadLineStuff;
             }
         }
-        
+
         return $list;
     }
 
@@ -273,14 +273,14 @@ class SquadLine
     public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
-    
+
         return $this;
     }
 
     /**
      * Get createDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreateDate()
     {
@@ -296,14 +296,14 @@ class SquadLine
     public function setUpdateDate($updateDate)
     {
         $this->updateDate = $updateDate;
-    
+
         return $this;
     }
 
     /**
      * Get updateDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdateDate()
     {
@@ -327,7 +327,7 @@ class SquadLine
         foreach ($squadLineStuffList as $squadLineStuff) {
             $points += $squadLineStuff->getNumber() * $squadLineStuff->getUnitStuff()->getPoints();
         }
-        
+
 
         return $points;
     }
@@ -387,11 +387,13 @@ class SquadLine
         if ($cascade === true) {
             $unitStuffList = $unitHasUnitGroup->getUnit()->getUnitStuffList();
             foreach ($unitStuffList as $unitStuff) {
-                $squadLineStuff = new SquadLineStuff();
-                $squadLineStuff->setSquadLine($this);
-                $squadLineStuff->mapUnitStuff($unitStuff);
+                if ($unitStuff->getVisible()) {
+                    $squadLineStuff = new SquadLineStuff();
+                    $squadLineStuff->setSquadLine($this);
+                    $squadLineStuff->mapUnitStuff($unitStuff);
 
-                $this->addSquadLineStuffList($squadLineStuff);
+                    $this->addSquadLineStuffList($squadLineStuff);
+                }
             }
         }
 
@@ -406,26 +408,28 @@ class SquadLine
      */
     public function addEmptySquadLineStuff()
     {
-        
+
         $unit = $this->getUnit();
         $unitStuffList = $unit->getUnitStuffList();
         $squadLineStuffList = $this->getSquadLineStuffList();
 
         foreach ($unitStuffList as $unitStuff) {
-            $contains = false;
-            foreach ($squadLineStuffList as $squadLineStuff) {
-                if ($squadLineStuff->getUnitStuff() === $unitStuff) {
-                    $contains = true;
-                    break;
+            if ($unitStuff->getVisible()) {
+                $contains = false;
+                foreach ($squadLineStuffList as $squadLineStuff) {
+                    if ($squadLineStuff->getUnitStuff() === $unitStuff) {
+                        $contains = true;
+                        break;
+                    }
                 }
-            }
 
-            if ($contains === false) {
-                $squadLineStuff = new SquadLineStuff();
-                $squadLineStuff->setSquadLine($this);
-                $squadLineStuff->mapUnitStuff($unitStuff);
+                if ($contains === false) {
+                    $squadLineStuff = new SquadLineStuff();
+                    $squadLineStuff->setSquadLine($this);
+                    $squadLineStuff->mapUnitStuff($unitStuff);
 
-                $this->addSquadLineStuffList($squadLineStuff);
+                    $this->addSquadLineStuffList($squadLineStuff);
+                }
             }
         }
 

@@ -198,23 +198,16 @@ class SquadController extends Controller
      *
      * @Route("/edit/{id}", name="squad_edit")
      * @Template()
+     *
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"armySlug" = "slug"}})
+     * @ParamConverter(
+     *     "squad",
+     *     class="SitiowebArmyCreatorBundle:Squad",
+     *     options={ "id" = "id" }
+     * )
      */
-    public function editAction($armySlug, $id)
+    public function editAction(Army $army, Squad $entity)
     {
-        // getting army
-        $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($armySlug);
-        if ($army === null) {
-            throw new NotFoundHttpException('Army not found');
-        }
-
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Squad')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Squad entity.');
-        }
-
         // breadcrumb
         $this->setArmyBreadCrumb($army);
         $tmp = $this->get('translator')
