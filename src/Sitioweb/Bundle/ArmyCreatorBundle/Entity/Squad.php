@@ -52,7 +52,7 @@ class Squad
 
     /**
      * army
-     * 
+     *
      * @var Army
      * @access private
      *
@@ -62,7 +62,7 @@ class Squad
 
     /**
      * unitType
-     * 
+     *
      * @var UnitType
      * @access private
      *
@@ -72,7 +72,7 @@ class Squad
 
     /**
      * unitGroup
-     * 
+     *
      * @var UnitGroup
      * @access private
      *
@@ -82,7 +82,7 @@ class Squad
 
     /**
      * squadLineList
-     * 
+     *
      * @var array<SquadLine>
      * @access private
      *
@@ -119,7 +119,7 @@ class Squad
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -135,14 +135,14 @@ class Squad
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -158,14 +158,14 @@ class Squad
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
     /**
      * Get position
      *
-     * @return integer 
+     * @return integer
      */
     public function getPosition()
     {
@@ -181,14 +181,14 @@ class Squad
     public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
-    
+
         return $this;
     }
 
     /**
      * Get createDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreateDate()
     {
@@ -204,14 +204,14 @@ class Squad
     public function setUpdateDate($updateDate)
     {
         $this->updateDate = $updateDate;
-    
+
         return $this;
     }
 
     /**
      * Get updateDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdateDate()
     {
@@ -227,14 +227,14 @@ class Squad
     public function setArmy(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army $army = null)
     {
         $this->army = $army;
-    
+
         return $this;
     }
 
     /**
      * Get army
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army
      */
     public function getArmy()
     {
@@ -250,14 +250,14 @@ class Squad
     public function setUnitType(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType $unitType = null)
     {
         $this->unitType = $unitType;
-    
+
         return $this;
     }
 
     /**
      * Get unitType
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType
      */
     public function getUnitType()
     {
@@ -273,7 +273,7 @@ class Squad
     public function addSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
     {
         $this->squadLineList[] = $squadLineList;
-    
+
         return $this;
     }
 
@@ -290,7 +290,7 @@ class Squad
     /**
      * Get squadLineList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSquadLineList()
     {
@@ -306,20 +306,20 @@ class Squad
     public function setUnitGroup(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup $unitGroup = null)
     {
         $this->unitGroup = $unitGroup;
-    
+
         return $this;
     }
 
     /**
      * Get unitGroup
      *
-     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup 
+     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup
      */
     public function getUnitGroup()
     {
         return $this->unitGroup;
     }
-    
+
     public function getPoints()
     {
         $points = 0;
@@ -355,7 +355,7 @@ class Squad
         $squadLineList = $this->getSquadLineList();
 
         foreach ($squadLineList as $squadLine) {
-            
+
             if ($squadLine->getNumber() <= 0) {
                 $this->removeSquadLineList($squadLine);
             } else {
@@ -390,7 +390,7 @@ class Squad
                 $this->addSquadLineList($squadLine);
             }
         }
-        
+
         return $this;
     }
 
@@ -400,7 +400,7 @@ class Squad
      * @access public
      * @return void
      */
-    public function addEmptySquadLine()
+    public function addEmptySquadLine($isEdition = false)
     {
         if ($this->getUnitGroup()) {
             $unitHasUnitGroupList = $this->getUnitGroup()->getUnitHasUnitGroupList();
@@ -414,14 +414,14 @@ class Squad
             foreach ($squadLineList as $squadLine) {
                 if ($squadLine->getUnit() === $unitHasUnitGroup->getUnit()) {
                     $contains = true;
-                    $squadLine->addEmptySquadLineStuff();
+                    $squadLine->addEmptySquadLineStuff($isEdition);
                     break;
                 }
             }
 
             if ($contains === false) {
                 $squadLine = new SquadLine();
-                $squadLine->mapUnitHasUnitGroup($unitHasUnitGroup, true);
+                $squadLine->mapUnitHasUnitGroup($unitHasUnitGroup, true, $isEdition);
                 $squadLine->setSquad($this);
 
                 $this->addSquadLineList($squadLine);

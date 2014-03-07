@@ -70,7 +70,7 @@
             <a
                 href="javascript:;"
                 class="acButton moveButton"
-                title="{{ "squad.edit.move_%squad_name%"|trans({ "%squad_name%": squad.name }) }}"
+                title="{{ "squad.edit.%squad_name%.move"|trans({ "%squad_name%": squad.name }) }}"
             >
                 <i class="el-icon-move"></i>
             </a>
@@ -87,7 +87,7 @@
                 <a
                     href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}"
                     class="acButton"
-                    title="{{ "squad.edit.edit_%squad_name%"|trans({ "%squad_name%": squad.name }) }}"
+                    title="{{ "squad.edit.%squad_name%.edit"|trans({ "%squad_name%": squad.name }) }}"
                 >
                     <i class="el-icon-pencil"></i>
                 </a>
@@ -103,7 +103,7 @@
                     <button
                         class="acButton"
                         type="submit"
-                        title="{{ "squad.edit.delete_%squad_name%"|trans({ "%squad_name%": squad.name }) }}"
+                        title="{{ "squad.edit.%squad_name%.delete"|trans({ "%squad_name%": squad.name }) }}"
                     >
                         <i class="el-icon-remove"></i>
                     </button>

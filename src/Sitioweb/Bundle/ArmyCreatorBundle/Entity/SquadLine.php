@@ -374,9 +374,9 @@ class SquadLine
      * @access public
      * @return $this
      */
-    public function mapUnitHasUnitGroup(UnitHasUnitGroup $unitHasUnitGroup, $cascade = false)
+    public function mapUnitHasUnitGroup(UnitHasUnitGroup $unitHasUnitGroup, $cascade = false, $isEdition = false)
     {
-        $this->setNumber($unitHasUnitGroup->getUnitNumber());
+        $this->setNumber($isEdition ? 0 : $unitHasUnitGroup->getUnitNumber());
         if ($unitHasUnitGroup->getMainUnit()) {
             $this->setPosition(1);
         } else {
@@ -406,7 +406,7 @@ class SquadLine
      * @access public
      * @return void
      */
-    public function addEmptySquadLineStuff()
+    public function addEmptySquadLineStuff($isEdition = false)
     {
 
         $unit = $this->getUnit();
@@ -426,7 +426,7 @@ class SquadLine
                 if ($contains === false) {
                     $squadLineStuff = new SquadLineStuff();
                     $squadLineStuff->setSquadLine($this);
-                    $squadLineStuff->mapUnitStuff($unitStuff);
+                    $squadLineStuff->mapUnitStuff($unitStuff, $isEdition);
 
                     $this->addSquadLineStuffList($squadLineStuff);
                 }

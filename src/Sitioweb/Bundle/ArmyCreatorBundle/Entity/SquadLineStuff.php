@@ -38,7 +38,7 @@ class SquadLineStuff
 
     /**
      * unitStuff
-     * 
+     *
      * @var UnitStuff
      * @access private
      *
@@ -48,7 +48,7 @@ class SquadLineStuff
 
     /**
      * squadLine
-     * 
+     *
      * @var SquadLine
      * @access private
      *
@@ -78,7 +78,7 @@ class SquadLineStuff
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -94,14 +94,14 @@ class SquadLineStuff
     public function setNumber($number)
     {
         $this->number = $number;
-    
+
         return $this;
     }
 
     /**
      * Get number
      *
-     * @return integer 
+     * @return integer
      */
     public function getNumber()
     {
@@ -117,14 +117,14 @@ class SquadLineStuff
     public function setAsManyAsUnit($asManyAsUnit)
     {
         $this->asManyAsUnit = $asManyAsUnit;
-    
+
         return $this;
     }
 
     /**
      * Get asManyAsUnit
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getAsManyAsUnit()
     {
@@ -140,14 +140,14 @@ class SquadLineStuff
     public function setUnitStuff(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuff = null)
     {
         $this->unitStuff = $unitStuff;
-    
+
         return $this;
     }
 
     /**
      * Get unitStuff
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff
      */
     public function getUnitStuff()
     {
@@ -163,14 +163,14 @@ class SquadLineStuff
     public function setSquadLine(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLine = null)
     {
         $this->squadLine = $squadLine;
-    
+
         return $this;
     }
 
     /**
      * Get squadLine
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine
      */
     public function getSquadLine()
     {
@@ -198,10 +198,10 @@ class SquadLineStuff
      * @access public
      * @return $this
      */
-    public function mapUnitStuff(UnitStuff $unitStuff) {
+    public function mapUnitStuff(UnitStuff $unitStuff, $isEdition = false) {
         $this->setUnitStuff($unitStuff);
 
-        $this->setAsManyAsUnit($unitStuff->getAuto());
+        $this->setAsManyAsUnit(!$isEdition && $unitStuff->getAuto());
 
         if ($this->getAsManyAsUnit()) {
             $this->setNumber($this->getSquadLine()->getNumber());

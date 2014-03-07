@@ -70,6 +70,9 @@ squad:
     new:
         unit.type.%unitTypeName%.%breedName%: '%breedName% - Ajouter %unitTypeName%'
         back_to_list: 'Retour à l''armée'
+        unit:
+            type:
+                %unitTypeName%: "Nouveau %unitTypeName%"
     edit:
         min_points_%unitGroupPoints%: '%unitGroupPoints% pts mini'
         breed_change: 'Changer de race'
@@ -83,9 +86,10 @@ squad:
         back_to_army: 'Retour à l''armée'
         choose_breed: 'Sélectionner une race'
         choose_unit_type: 'Sélectionner un type d''unité'
-        edit_%squad_name%: 'Editer %squad_name%'
-        move_%squad_name%: 'Déplacer %squad_name%'
-        delete_%squad_name%: 'Supprimer %squad_name%'
+        %squad_name%:
+            edit: 'Editer %squad_name%'
+            move: 'Déplacer %squad_name%'
+            delete: 'Supprimer %squad_name%'
     link:
         title: "Lier une unité à une escouade"
         select_unit: "Sélectionner une unité"

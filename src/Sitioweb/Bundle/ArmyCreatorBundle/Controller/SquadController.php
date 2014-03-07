@@ -248,7 +248,7 @@ class SquadController extends Controller
                     ->trans('breadcrumb.squad_edit.%squad_name%', array('squad_name' => $entity->getName()));
         $this->get("apy_breadcrumb_trail")->add($tmp);
 
-        $entity->addEmptySquadLine();
+        $entity->addEmptySquadLine(true);
         $editForm = $this->createForm(new SquadType($entity->getUnitType()->getBreed()), $entity);
         $deleteForm = $this->createDeleteForm($entity->getId());
 
@@ -359,7 +359,7 @@ class SquadController extends Controller
             throw $this->createNotFoundException('Unable to find Squad entity.');
         }
 
-        $entity->addEmptySquadLine();
+        $entity->addEmptySquadLine(true);
         $editForm = $this->createForm(new SquadType($entity->getUnitType()->getBreed()), $entity);
         $editForm->bind($request);
         $deleteForm = $this->createDeleteForm($entity->getId());
