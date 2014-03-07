@@ -1,0 +1,105 @@
+{% extends 'SitiowebArmyCreatorBundle:Squad:layout.html.twig' %}
+
+{% block title %}
+    {% trans %}squad.link.title{% endtrans %}
+{% endblock %}
+
+{% block squadAddNavTitle %}
+    {% trans %}squad.link.title{% endtrans %}
+{% endblock %}
+
+{% block squadAddNavSecondLine %}{% endblock %}
+
+
+{% block squadAddContent %}
+    <form action="{{ path('squad_link_unit_stuff', {'armySlug' : army.slug, 'id' : squad.id, 'unitId': unit.id }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_errors(form) }}
+
+        {{ block('squadLineList') }}
+
+        {{ form_rest(form) }}
+    </form>
+{% endblock %}
+
+{% block squadAddButtonList %}
+    <input type="submit" class="acButton acButtonHuge" value="{{ "squad_line.new.create"|trans }}" />
+{% endblock %}
+
+{% block squadLineList %}
+    <div class="row gut unitName">
+        {# {{ form_row(form.name) }} #}
+        {# {{ form_row(form.unitType) }} #}
+    </div>
+
+    <section class="unitList">
+        <div class="unit">
+            <div class="unitName">
+                <h4 class="line">
+                    {% set unitPoints = form.vars.value.unit.points %}
+                    <aside class="soft right">
+                        {% trans with { "%pts%": unitPoints } %}squad.edit.pts.%pts%{% endtrans %}
+                    </aside>
+                    <aside class="number right">
+                        {{ form_widget(form.number, {"attr" : {"data-points" : unitPoints } } ) }}
+                    </aside>
+                    {{ form.vars.value.unit.name }}
+                </h4>
+                {{ form_errors(form.number) }}
+            </div>
+
+            <div class="stuffList txtright">
+                {% for squadLineStuff in form.squadLineStuffList %}
+                    <div class="stuffListItem line">
+                        {% set stuffPoints = squadLineStuff.vars.value.unitStuff.points %}
+                        <aside class="soft right">
+                           {% trans with { "%pts%": stuffPoints } %}squad.edit.pts.%pts%{% endtrans %}
+                       </aside>
+
+                        <aside class="asManyAsUnit right">
+                            {{ form_widget(squadLineStuff.asManyAsUnit) }}
+                            <a href="javascript:;" class="inversed toggleAmau" title="{% trans from "forms" %}As many as unit{% endtrans %}">
+                                <i class="el-icon-paper-clip"></i>
+                            </a>
+                        </aside>
+
+                        <aside class="number right">
+                            {{ form_widget(
+                                squadLineStuff.number,
+                                { "read_only" : squadLineStuff.asManyAsUnit.vars.data , "attr" : {"data-points" : stuffPoints } }
+
+                            ) }}
+                            <a href="javascript:;" class="inversed toZero" title="{% trans from "forms" %}toZero{% endtrans %}">
+                                <i class="el-icon-remove"></i>
+                            </a>
+                        </aside>
+
+                        <div class="stuffName">
+                            {{ squadLineStuff.vars.value.unitStuff.stuff.name }}
+                        </div>
+
+                        {{ form_errors(squadLineStuff.asManyAsUnit) }}
+                        {{ form_errors(squadLineStuff.number) }}
+                        {{ form_rest(squadLineStuff) }}
+                    </div>
+                {% endfor %}
+            </div>
+            {{ form_rest(form) }}
+        </div>
+    </section>
+
+    {{ block("squadTotal") }}
+
+    <p class="txtright">
+        <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">
+            {{ "squad.edit.back_to_army"|trans }}
+        </a>
+        {{ block("squadAddButtonList") }}
+    </p>
+{% endblock %}
+
+{% block squadTotal %}
+    <section class="squadTotalContainer">
+        {{ "squad.total_points"|trans }} : <span id="squadTotal" class="soft">0</span>
+    </section>
+{% endblock %}
+

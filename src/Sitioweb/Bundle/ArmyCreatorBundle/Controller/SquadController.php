@@ -18,6 +18,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 
@@ -86,7 +87,6 @@ class SquadController extends Controller
         return $params + ['breed' => $breed];
     }
 
-
     /**
      * Displays a form to create a new Squad entity.
      *
@@ -131,6 +131,40 @@ class SquadController extends Controller
             'currentUnitType' => $unitType,
             'externalUser' => false
         );
+    }
+
+    /**
+     * linkUnitAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/link/{id}", name="squad_link_unit")
+     * @Template()
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"armySlug" = "slug"}})
+     * @ParamConverter(
+     *     "squad",
+     *     class="SitiowebArmyCreatorBundle:Squad",
+     *     options={ "id" = "id" }
+     * )
+     */
+    public function linkUnitAction(Army $army, Squad $squad)
+    {
+        // security
+        if ($this->getUser() != $army->getUser()) {
+            throw new AccessDeniedException();
+        }
+
+        $this->setArmyBreadCrumb($army);
+        $tmp = $this->get('translator')
+                    ->trans('breadcrumb.squad_link');
+        $this->get("apy_breadcrumb_trail")->add($tmp);
+
+        return [
+            'army' => $army,
+            'squad' => $squad,
+            'externalUser' => false
+        ];
     }
 
     /**
@@ -307,7 +341,6 @@ class SquadController extends Controller
 
         return new Response('1');
     }
-
 
     /**
      * Edits an existing Squad entity.

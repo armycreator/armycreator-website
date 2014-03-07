@@ -1,0 +1,29 @@
+{% extends 'SitiowebArmyCreatorBundle:Squad:layout.html.twig' %}
+
+{% block title %}{{ "squad.link.select_unit"|trans }}{% endblock %}
+
+{% block squadAddNavTitle %}
+    {{ "squad.link.select_unit"|trans }}
+{% endblock %}
+
+{% block squadAddNavSecondLine %}{% endblock %}
+
+{% block squadAddContent %}
+    {% for unitType in army.breed.unitTypeList %}
+        <div class="grid1-11">
+            <h3 class="grid-header mb2">
+                {{ unitType.name }}
+            </h3>
+            <ul class="inline unitGroupList mb2">
+                {% for unit in unitType.unitList %}
+                    <li>
+                        <a href="{{ path("squad_link_unit_stuff", { "armySlug": army.slug, "id": squad.id, "unitId": unit.id }) }}">
+                            {{ unit.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="clear"></div>
+        </div>
+    {% endfor %}
+{% endblock %}

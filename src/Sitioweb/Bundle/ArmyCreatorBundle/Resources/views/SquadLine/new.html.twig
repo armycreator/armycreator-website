@@ -1,6 +1,8 @@
 {% extends 'SitiowebArmyCreatorBundle:Squad:layout.html.twig' %}
 
-{% block title %}Squad line edit{% endblock %}
+{% block title %}
+    {% trans %}squad_line.edit.title{% endtrans %}
+{% endblock %}
 
 {% block squadAddContent %}
     <form action="{{ path('squad_create', {'armySlug' : army.slug, 'unitGroupId' : app.request.get('unitGroupId')}) }}" method="post" {{ form_enctype(form) }}>
