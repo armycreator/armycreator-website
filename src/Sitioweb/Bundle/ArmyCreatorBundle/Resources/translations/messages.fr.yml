@@ -90,6 +90,7 @@ squad:
             edit: 'Editer %squad_name%'
             move: 'Déplacer %squad_name%'
             delete: 'Supprimer %squad_name%'
+            duplicate: 'Dupliquer %squad_name%'
     link:
         title: "Lier une unité à une escouade"
         select_unit: "Sélectionner une unité"
