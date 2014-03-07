@@ -60,21 +60,10 @@ class DefaultController extends Controller
      *
      * @access public
      * @return string
+     *
+     * @Route("/header", name="header")
      */
     public function getHeader() {
-        return $this->get('templating')
-            ->render(
-                'SitiowebArmyCreatorBundle::header.html.twig', ['ads' => true]
-            );
-    }
-
-    /**
-     * getFooter
-     *
-     * @access public
-     * @return string
-     */
-    public function getFooter() {
         $am = $this->get('assetic.asset_manager');
         $names = $am->getNames();
         $cssList = [];
@@ -89,13 +78,28 @@ class DefaultController extends Controller
                 }
             }
         }
+
         return $this->get('templating')
             ->render(
-                'SitiowebArmyCreatorBundle::footer.html.twig',
+                'SitiowebArmyCreatorBundle::header.html.twig',
                 [
+                    'ads' => true,
                     'moreCssList' => $cssList,
                     'moreJsList' => $jsList,
                 ]
+            );
+    }
+
+    /**
+     * getFooter
+     *
+     * @access public
+     * @return string
+     */
+    public function getFooter() {
+        return $this->get('templating')
+            ->render(
+                'SitiowebArmyCreatorBundle::footer.html.twig'
             );
     }
 }

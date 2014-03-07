@@ -30,15 +30,3 @@
         </div>
     </div>
 </footer>
-
-{% if moreCssList is defined %}
-    {% for css in moreCssList %}
-        <link href="/{{ css }}" rel="stylesheet" type="text/css" />
-    {% endfor %}
-{% endif %}
-
-{% if moreJsList is defined %}
-    {% for js in moreJsList %}
-        <script type="text/javascript" src="/{{ js }}"></script>
-    {% endfor %}
-{% endif %}

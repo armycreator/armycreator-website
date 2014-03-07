@@ -5,6 +5,5 @@
 /app/logs/*
 /vendor/
 /app/config/parameters.yml
-/build/
 /src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/doc/maquettes/
 /src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/

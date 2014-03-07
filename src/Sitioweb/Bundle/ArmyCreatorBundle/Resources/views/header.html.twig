@@ -1,3 +1,15 @@
+{% if moreCssList is defined %}
+    {% for css in moreCssList %}
+        <link href="/{{ css }}" rel="stylesheet" type="text/css" />
+    {% endfor %}
+{% endif %}
+
+{% if moreJsList is defined %}
+    {% for js in moreJsList %}
+        <script type="text/javascript" src="/{{ js }}"></script>
+    {% endfor %}
+{% endif %}
+
 <header id="websiteHeader">
     {% block websiteHeaderBar %}
         <div class="headerBar">
@@ -48,12 +60,21 @@
     {% endblock %}
 
     {% if ads is defined %}
-        <div class="txtcenter">
+        <div class="txtcenter ad hide-mobile">
             {% include "SitiowebArmyCreatorBundle:Ads:render.html.twig" with
                 {
                     "slot": 7635175121,
                     "width": 728,
                     "height": 90,
+                }
+            %}
+        </div>
+        <div class="ad only-mobile">
+            {% include "SitiowebArmyCreatorBundle:Ads:render.html.twig" with
+                {
+                    "slot": 6540708410,
+                    "width": 320,
+                    "height": 50,
                 }
             %}
         </div>
