@@ -168,6 +168,57 @@ class SquadController extends Controller
     }
 
     /**
+     * duplicateAction
+     *
+     * @param Army $army
+     * @param Squad $squad
+     * @access public
+     * @return void
+     *
+     * @Route("/duplicate/{id}", name="squad_duplicate")
+     * @Template()
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"armySlug" = "slug"}})
+     * @ParamConverter("squad", class="SitiowebArmyCreatorBundle:Squad", options={ "id" = "id" })
+     */
+    public function duplicateAction(Army $army, Squad $squad)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // squad
+        $newSquad = clone $squad;
+        $newSquad->setId(null);
+
+        // squad line list
+        $squadLineList = $squad->getSquadLineList();
+        $newSquadLineList = [];
+        foreach ($squadLineList as $squadLine) {
+            $tmpSquadLine = clone $squadLine;
+            $tmpSquadLine->setId(null)
+                ->setSquad($newSquad);
+            $em->persist($tmpSquadLine);
+            $newSquadLineList[] = $tmpSquadLine;
+
+            // squad line stuff list
+            $squadLineStuffList = $squadLine->getSquadLineStuffList();
+            $newSquadLineStuffList = [];
+            foreach ($squadLineStuffList as $squadLineStuff) {
+                $tmpSquadLineStuff = clone $squadLineStuff;
+                $tmpSquadLineStuff->setId(null)
+                    ->setSquadLine($tmpSquadLine);
+                $em->persist($tmpSquadLineStuff);
+
+                $newSquadLineStuffList[] = $tmpSquadLineStuff;
+            }
+        }
+
+        $em->persist($newSquad);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('army_detail', array('slug' => $army->getSlug())));
+    }
+
+
+    /**
      * createAction
      *
      * @param mixed $armySlug

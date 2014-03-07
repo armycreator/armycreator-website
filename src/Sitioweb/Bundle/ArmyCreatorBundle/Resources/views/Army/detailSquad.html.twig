@@ -92,6 +92,14 @@
                     <i class="el-icon-pencil"></i>
                 </a>
 
+                <a
+                    href="{{ path('squad_duplicate', {'armySlug' : army.slug, 'id' : squad.id}) }}"
+                    class="acButton"
+                    title="{{ "squad.edit.%squad_name%.duplicate"|trans({ "%squad_name%": squad.name }) }}"
+                >
+                    <i class="el-icon-repeat"></i>
+                </a>
+
                 <form
                     action="{{ path('squad_delete', { 'armySlug': army.slug, 'id' : squad.id }) }}"
                     method="post"
