@@ -1,3 +1,3 @@
 {% extends 'knp_menu.html.twig' %}
 
-{% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|trans|raw }}{% else %}{{ item.label|trans }}{% endif %}{% endblock %}
+{% block label %}<span>{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|trans|raw }}{% else %}{{ item.label|trans }}{% endif %}</span>{% endblock %}

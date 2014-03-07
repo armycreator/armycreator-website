@@ -46,17 +46,21 @@
             background: rgba(255, 255, 255, .15);
         }
 
-        &:first-child a { border-left-color: transparent }
-        &:last-child a { border-right-color: transparent }
+        &:first-child a > span { border-left-color: transparent }
+        &:last-child a > span { border-right-color: transparent }
     }
 
     a {
-        padding: 0 15px;
+        display: inline-block;
         color: #fff;
-        border-left: 1px solid #595e45;
-        border-right: 1px solid #20231d;
         font-family: dinregular;
         font-size: 1.1em;
+
+        > span {
+            border-left: 1px solid #595e45;
+            border-right: 1px solid #20231d;
+            padding: 0 15px;
+        }
     }
 
     &:not(:focus) ul {
