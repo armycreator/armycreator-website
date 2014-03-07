@@ -105,7 +105,7 @@
             h5 { margin-bottom: 0.5em  }
             &:nth-child(4n) { margin-right: 0 }
             &:nth-child(4n+1) { clear: both }
-            &:only-child { width: 100% }
+            &:only-child { width: 100%; display: block }
             &:first-child:nth-last-child(2),
             &:first-child:nth-last-child(2) ~ .unit {
                 width: 48%;
@@ -127,7 +127,7 @@
                 padding: 5px 0;
                 .stuffListItem {
                     table-layout: auto; padding: 4px 8px;
-                    &:nth-child(2n) {
+                    &:nth-child(2n+1) {
                         background: lighten(@squadLineBackgroundColor, 2%);
                     }
                     > aside {
