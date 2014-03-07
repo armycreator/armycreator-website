@@ -67,16 +67,28 @@
 
     {% if not(externalUser) %}
         <aside class="actions">
-            <a href="javascript:;" class="acButton moveButton">
+            <a
+                href="javascript:;"
+                class="acButton moveButton"
+                title="{{ "squad.edit.move_%squad_name%"|trans({ "%squad_name%": squad.name }) }}"
+            >
                 <i class="el-icon-move"></i>
             </a>
 
-            <a href="{{ path('squad_link_unit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
+            <a
+                href="{{ path('squad_link_unit', {'armySlug' : army.slug, 'id' : squad.id}) }}"
+                class="acButton"
+                title="{{ "squad.link.button"|trans }}"
+            >
                 <i class="el-icon-link"></i>
             </a>
 
             <div class="right">
-                <a href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}" class="acButton">
+                <a
+                    href="{{ path('squad_edit', {'armySlug' : army.slug, 'id' : squad.id}) }}"
+                    class="acButton"
+                    title="{{ "squad.edit.edit_%squad_name%"|trans({ "%squad_name%": squad.name }) }}"
+                >
                     <i class="el-icon-pencil"></i>
                 </a>
 
@@ -88,7 +100,11 @@
                 >
                     {% set deleteSquadForm = deleteSquadListForm[squad.id] %}
                     {{ form_widget(deleteSquadForm.createView) }}
-                    <button class="acButton" type="submit">
+                    <button
+                        class="acButton"
+                        type="submit"
+                        title="{{ "squad.edit.delete_%squad_name%"|trans({ "%squad_name%": squad.name }) }}"
+                    >
                         <i class="el-icon-remove"></i>
                     </button>
                 </form>

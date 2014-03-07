@@ -83,9 +83,13 @@ squad:
         back_to_army: 'Retour à l''armée'
         choose_breed: 'Sélectionner une race'
         choose_unit_type: 'Sélectionner un type d''unité'
+        edit_%squad_name%: 'Editer %squad_name%'
+        move_%squad_name%: 'Déplacer %squad_name%'
+        delete_%squad_name%: 'Supprimer %squad_name%'
     link:
         title: "Lier une unité à une escouade"
         select_unit: "Sélectionner une unité"
+        button: "Lier une nouvelle unité"
     total_points: 'nb points de l''escouade'
 squad_line:
     new.create: Créer
