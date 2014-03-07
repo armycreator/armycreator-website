@@ -128,7 +128,7 @@ class BreedController extends Controller
 
         $entity = new Breed();
         $entity->setGame($game);
-        $form   = $this->createForm(new BreedType(), $entity);
+        $form   = $this->createForm(new BreedType($game), $entity);
 
         return array(
             'entity' => $entity,
@@ -140,11 +140,12 @@ class BreedController extends Controller
     /**
      * Creates a new Breed entity.
      *
-     * @Route("/breed/create", name="admin_breed_create")
+     * @Route("/{game}/breed/create", name="admin_breed_create")
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Breed:new.html.twig")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      */
-    public function createAction()
+    public function createAction(Game $game)
     {
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
         if (!$this->get('security.context')->isGranted('CREATE', $oi)) {
@@ -153,15 +154,20 @@ class BreedController extends Controller
 
         $entity  = new Breed();
         $request = $this->getRequest();
-        $form    = $this->createForm(new BreedType(), $entity);
+        $form    = $this->createForm(new BreedType($game), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setGame($game);
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_breed_show', array('id' => $entity->getId())));
+            $url = $this->generateUrl(
+                'admin_breed_show',
+                ['game' => $game->getCode(), 'breed' => $entity->getSlug()]
+            );
+            return $this->redirect($url);
         }
 
         return array(
@@ -182,7 +188,7 @@ class BreedController extends Controller
     {
         $this->checkPermission($breed);
 
-        $editForm = $this->createForm(new BreedType(), $breed);
+        $editForm = $this->createForm(new BreedType($breed->getGame()), $breed);
 
         return array(
             'entity'      => $breed,
@@ -208,7 +214,7 @@ class BreedController extends Controller
             throw $this->createNotFoundException('Unable to find Breed entity.');
         }
 
-        $editForm   = $this->createForm(new BreedType(), $breed);
+        $editForm   = $this->createForm(new BreedType($breed->getGame()), $breed);
 
         $request = $this->getRequest();
 

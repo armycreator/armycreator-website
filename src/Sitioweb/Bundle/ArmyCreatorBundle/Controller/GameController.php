@@ -153,7 +153,7 @@ class GameController extends Controller
             $em->flush();
 
             return $this->redirect(
-                $this->generateUrl('admin_game_edit', array('game' => $game->getCode()))
+                $this->generateUrl('admin_game')
             );
         }
 

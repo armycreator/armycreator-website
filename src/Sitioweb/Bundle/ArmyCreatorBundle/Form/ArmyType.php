@@ -41,7 +41,9 @@ class ArmyType extends AbstractType
                     'required' => true,
                     'query_builder' => function(EntityRepository $er) {
                         return $er->createQueryBuilder('b')
-                                ->add('orderBy', 'b.name ASC');
+                                ->where('b.available = :available')
+                                ->add('orderBy', 'b.name ASC')
+                                ->setParameter('available', true);
                     }
                 )
             )
