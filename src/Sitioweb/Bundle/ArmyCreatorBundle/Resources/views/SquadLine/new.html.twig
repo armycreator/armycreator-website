@@ -16,6 +16,9 @@
 {% endblock %}
 
 {% block squadAddButtonList %}
+    <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">
+        {{ "squad.edit.back_to_army"|trans }}
+    </a>
     <input type="submit" class="acButton acButtonHuge" value="{{ "squad_line.new.create"|trans }}" />
 {% endblock %}
 
@@ -24,6 +27,12 @@
         {{ form_row(form.name) }}
         {{ form_row(form.unitType) }}
     </div>
+
+    <p class="txtright mb1">
+        {{ block("squadAddButtonList") }}
+    </p>
+
+    {{ block("squadTotal") }}
 
     {% if form.squadLineList %}
         <section class="unitList">
@@ -88,15 +97,12 @@
     {{ block("squadTotal") }}
 
     <p class="txtright">
-        <a class="acButton acButtonBig" href="{{ path('army_detail', {'slug' : army.slug}) }}">
-            {{ "squad.edit.back_to_army"|trans }}
-        </a>
         {{ block("squadAddButtonList") }}
     </p>
 {% endblock %}
 
 {% block squadTotal %}
     <section class="squadTotalContainer">
-        {{ "squad.total_points"|trans }} : <span id="squadTotal" class="soft">0</span>
+        {{ "squad.total_points"|trans }} : <span class="squadTotal" class="soft">0</span>
     </section>
 {% endblock %}

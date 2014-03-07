@@ -75,7 +75,7 @@ $(document).ready(function() {
                     total += nb * parseInt($(this).attr('data-points'));
                 }
             });
-            $('#squadTotal').text(total);
+            $('.squadTotal').text(total);
         }
     }
 });
