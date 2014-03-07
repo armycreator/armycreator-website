@@ -49,14 +49,14 @@ class Weapon extends Stuff
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -72,14 +72,14 @@ class Weapon extends Stuff
     public function setRange($range)
     {
         $this->range = $range;
-    
+
         return $this;
     }
 
     /**
      * Get range
      *
-     * @return string 
+     * @return string
      */
     public function getRange()
     {
@@ -95,14 +95,14 @@ class Weapon extends Stuff
     public function setStrenght($strenght)
     {
         $this->strenght = $strenght;
-    
+
         return $this;
     }
 
     /**
      * Get strenght
      *
-     * @return string 
+     * @return string
      */
     public function getStrenght()
     {
@@ -118,17 +118,24 @@ class Weapon extends Stuff
     public function setArmorPenetration($armorPenetration)
     {
         $this->armorPenetration = $armorPenetration;
-    
+
         return $this;
     }
 
     /**
      * Get armorPenetration
      *
-     * @return string 
+     * @return string
      */
     public function getArmorPenetration()
     {
         return $this->armorPenetration;
+    }
+
+    public function getDescription()
+    {
+        return 'P ' . $this->getRange() . ' - ' .
+            'F ' . $this->getStrenght() . ' - ' .
+            'PA ' . $this->getArmorPenetration();
     }
 }

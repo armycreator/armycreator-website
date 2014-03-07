@@ -8,12 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff
  *
  * @ORM\Table(indexes={@ORM\Index(name="import_idx", columns={"breed_id", "importedId","discriminator"})})
+
  * @ORM\Entity
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discriminator", type="string")
  * @ORM\DiscriminatorMap({"weapon" = "Weapon", "equipement" = "Equipement"})
  */
-class Stuff
+abstract class Stuff
 {
     /**
      * @var integer $id
@@ -34,7 +35,7 @@ class Stuff
     /**
      * importedId
      * @ORM\Column(type="integer", nullable=true)
-     * 
+     *
      * @var int
      * @access private
      */
@@ -42,7 +43,7 @@ class Stuff
 
     /**
      * breed
-     * 
+     *
      * @var Breed
      * @access private
 	 *
@@ -52,7 +53,7 @@ class Stuff
 
 	/**
 	 * unitStuffList
-	 * 
+	 *
 	 * @var array<UnitStuff>
 	 * @access private
 	 *
@@ -69,7 +70,7 @@ class Stuff
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -109,14 +110,14 @@ class Stuff
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -132,7 +133,7 @@ class Stuff
     public function addUnitStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList)
     {
         $this->unitStuffList[] = $unitStuffList;
-    
+
         return $this;
     }
 
@@ -149,7 +150,7 @@ class Stuff
     /**
      * Get unitStuffList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUnitStuffList()
     {
@@ -165,17 +166,25 @@ class Stuff
     public function setBreed(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed $breed = null)
     {
         $this->breed = $breed;
-    
+
         return $this;
     }
 
     /**
      * Get breed
      *
-     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed 
+     * @return \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed
      */
     public function getBreed()
     {
         return $this->breed;
     }
+
+    /**
+     * getDescription
+     *
+     * @access public
+     * @return string
+     */
+    public abstract function getDescription();
 }
