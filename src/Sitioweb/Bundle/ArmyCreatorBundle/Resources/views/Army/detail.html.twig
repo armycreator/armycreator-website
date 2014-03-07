@@ -7,14 +7,16 @@
         {# ===== Unit Type length ===== #}
         <div class="unitTypeTopList">
             {% for tmp in army.squadListByType %}
-                <div>
-                    <a href="#ut-{{ tmp.unitType.slug }}{% if tmp.unitType.breed != army.breed %}-{{ tmp.unitType.breed.slug }}{% endif %}">
-                        {{ tmp.squadList|length }} {{ tmp.unitType.name }}
-                        {% if tmp.unitType.breed != army.breed %}
-                            ({{ tmp.unitType.breed.name }})
-                        {% endif %}
-                    </a>
-                </div>
+                {% if tmp.squadList or not(pdf is defined) %}
+                    <div>
+                        <a href="#ut-{{ tmp.unitType.slug }}{% if tmp.unitType.breed != army.breed %}-{{ tmp.unitType.breed.slug }}{% endif %}">
+                            {{ tmp.squadList|length }} {{ tmp.unitType.name }}
+                            {% if tmp.unitType.breed != army.breed %}
+                                ({{ tmp.unitType.breed.name }})
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
 
