@@ -373,16 +373,16 @@ class ArmyController extends Controller
      * @return void
      *
      * @Route("/{slug}/edit", name="army_edit")
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      * @Template()
      */
-    public function editAction($slug)
+    public function editAction(Army $entity)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($slug);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Army entity.');
+        if (
+            $this->getUser() != $entity->getUser() &&
+            !$this->get('oneup_acl.manager')->isGranted('ROLE_ADMIN')
+        ) {
+            throw new AccessDeniedException();
         }
 
         $editForm = $this->createForm(new ArmyType($this->getUser()), $entity);
