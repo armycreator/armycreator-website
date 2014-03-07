@@ -89,7 +89,7 @@
             {% endblock %}
 
             {% for tmp in army.squadListByType %}
-                {% if tmp.unitType.abstractUnitList.count() and (tmp.squadList or not(pdf is defined)) %}
+                {% if tmp.squadList or not(pdf is defined) %}
                     <section
                         class="unitTypeList row {% if tmp.squadList is empty %}empty{% endif %}"
                         id="ut-{{ tmp.unitType.slug }}{% if tmp.unitType.breed != army.breed %}-{{ tmp.unitType.breed.slug }}{% endif %}"
