@@ -84,6 +84,7 @@ class DefaultController extends Controller
                 'SitiowebArmyCreatorBundle::header.html.twig',
                 [
                     'ads' => true,
+                    'standalone' => true,
                     'moreCssList' => $cssList,
                     'moreJsList' => $jsList,
                 ]
@@ -99,7 +100,10 @@ class DefaultController extends Controller
     public function getFooter() {
         return $this->get('templating')
             ->render(
-                'SitiowebArmyCreatorBundle::footer.html.twig'
+                'SitiowebArmyCreatorBundle::footer.html.twig',
+                [
+                    'standalone' => true,
+                ]
             );
     }
 }

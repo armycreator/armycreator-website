@@ -58,7 +58,11 @@
             </div>
         </nav>
     {% endblock %}
+</header>
 
+{% if standalone is defined %}
+    <div id="websiteContentContainer">
+{% endif %}
     {% if ads is defined %}
         <div class="txtcenter ad hide-mobile">
             {% include "SitiowebArmyCreatorBundle:Ads:render.html.twig" with
@@ -79,5 +83,3 @@
             %}
         </div>
     {% endif %}
-</header>
-
