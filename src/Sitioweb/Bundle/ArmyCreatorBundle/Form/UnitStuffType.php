@@ -13,7 +13,7 @@ class UnitStuffType extends AbstractType
 {
     /**
      * breed
-     * 
+     *
      * @var Breed
      * @access private
      */
@@ -47,7 +47,7 @@ class UnitStuffType extends AbstractType
             ->add('visible', null, ['required' => false])
             ->add(
                 'unit',
-                null, 
+                null,
                 array(
                     'required' => true,
                     'property' => 'name',
@@ -61,7 +61,7 @@ class UnitStuffType extends AbstractType
              )
             ->add(
                 'stuff',
-                null, 
+                null,
                 array(
                     'required' => true,
                     'property' => 'name',
@@ -73,6 +73,9 @@ class UnitStuffType extends AbstractType
                     }
                 )
              )
+
+             ->add('create', 'submit')
+             ->add('createAndAdd', 'submit')
         ;
     }
 
@@ -86,7 +89,8 @@ class UnitStuffType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff',
+            'translation_domain' => 'forms'
         ));
     }
 

@@ -8,10 +8,20 @@
     {% set params = {"game": game.code, "breed": breed.slug} %}
 
     <form action="{{ path("unitstuff_create", params) }}" method="post" {{ form_enctype(form) }} class="opaque">
-        {{ form_widget(form) }}
-        <p>
-            <button type="submit">{{ "button.create"|trans }}</button>
-        </p>
+        <div>
+            {{ form_row(form.unit) }}
+            {{ form_row(form.stuff) }}
+            {{ form_row(form.points) }}
+            {{ form_row(form.auto) }}
+            {{ form_row(form.visible) }}
+        </div>
+
+        <div class="txtright">
+            {{ form_widget(form.create, {"attr": {"class": "acButton"}}) }}
+            {{ form_widget(form.createAndAdd, {"attr": {"class": "acButton"}}) }}
+        </div>
+
+        {{ form_rest(form) }}
     </form>
 
         <ul class="record_actions">

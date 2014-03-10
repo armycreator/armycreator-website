@@ -48,7 +48,7 @@ class UnitTypeController extends Controller
             $em->flush();
 
             $url = $this->generateUrl(
-                'admin_breed_show',
+                'admin_breed_unittype',
                 array(
                     'breed' => $breed->getSlug(),
                     'game' => $breed->getGame()->getCode()
@@ -122,7 +122,7 @@ class UnitTypeController extends Controller
      * Edits an existing UnitType entity.
      *
      * @Route("/{id}", name="unittype_update")
-     * @Method("POST")
+     * @Method("PUT")
      * @Template("SitiowebArmyCreatorBundle:UnitType:edit.html.twig")
      */
     public function updateAction(Request $request, $id, Breed $breed)
@@ -148,7 +148,7 @@ class UnitTypeController extends Controller
             $em->flush();
 
             $url = $this->generateUrl(
-                'admin_breed_show',
+                'admin_breed_unittype',
                 array(
                     'breed' => $breed->getSlug(),
                     'game' => $breed->getGame()->getCode()

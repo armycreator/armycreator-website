@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffType;
 
@@ -38,6 +39,7 @@ class UnitStuffController extends Controller
         }
 
         $entity  = new UnitStuff();
+        $entity->setUnit();
         $form = $this->createForm(new UnitStuffType($breed), $entity);
         $form->bind($request);
 
@@ -46,7 +48,19 @@ class UnitStuffController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->getArmyShowUrl($breed));
+            if ($form->get('createAndAdd')->isClicked()) {
+                $url = $this->generateUrl(
+                        'unitstuff_new',
+                        [
+                            'breed' => $breed->getSlug(),
+                            'game' => $breed->getGame()->getCode(),
+                            'unit' => $entity->getUnit()->getSlug()
+                        ]
+                    );
+                return $this->redirect($url);
+            } else {
+                return $this->redirect($this->getArmyShowUrl($breed));
+            }
         }
 
         return array(
@@ -58,17 +72,19 @@ class UnitStuffController extends Controller
     /**
      * Displays a form to create a new UnitStuff entity.
      *
-     * @Route("/new", name="unitstuff_new")
+     * @Route("/new/{unit}", name="unitstuff_new")
      * @Method("GET")
      * @Template()
+     * @ParamConverter("unit", class="SitiowebArmyCreatorBundle:Unit", options={"mapping": {"unit" = "slug"}})
      */
-    public function newAction(Breed $breed)
+    public function newAction(Breed $breed, Unit $unit)
     {
         if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
             throw new AccessDeniedException();
         }
 
         $entity = new UnitStuff();
+        $entity->setUnit($unit);
         $form   = $this->createForm(new UnitStuffType($breed), $entity);
 
         return array(
