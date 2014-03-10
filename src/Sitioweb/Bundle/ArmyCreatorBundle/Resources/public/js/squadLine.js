@@ -43,16 +43,16 @@ $(document).ready(function() {
         $('.unit .unitName .number')
             .on('change', 'input', function() {
                 // opacity if < 0
-                var stuffList = $(this).closest('.unit').find('.stuffList');
+                var unit = $(this).closest('.unit');
                 var newNb = $(this).val();
                 if (newNb > 0) {
-                    stuffList.fadeTo('slow', '1');
+                    unit.fadeTo('slow', '1');
                 } else {
-                    stuffList.fadeTo('slow', '.2');
+                    unit.fadeTo('slow', '.3');
                 }
 
                 // value if "as many" selected
-                stuffList.find('.asManyAsUnit input:checked').each(function () {
+                unit.find('.asManyAsUnit input:checked').each(function () {
                     $(this).closest('.stuffListItem').find('.number input').val(newNb);
                 });
 

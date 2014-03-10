@@ -79,8 +79,12 @@ $(function() {
         $('.stuffList-toggle').toggle();
     });
 
-    $('.squadLine').on('click', '.stuffList-toggle-link', function () {
-        $(this).parent().prev('.stuffList-toggle').toggle();
+    $('.stuffList-toggle-link').on('click', function () {
+        if ($(this).parent().prev('.stuffList-toggle').length > 0) {
+            $(this).parent().prev('.stuffList-toggle').toggle();
+        } else {
+            $(this).parent().next('.stuffList-toggle').toggle();
+        }
         $(this).find('.el-icon-caret-up, .el-icon-caret-down').toggle();
     });
 

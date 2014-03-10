@@ -32,6 +32,18 @@
         {{ block("squadAddButtonList") }}
     </p>
 
+    <div class="mb2">
+        <a href="javascript:;" class="acButton stuffList-show-all" title="{{ "army.detail.show_all_stuff"|trans }}">
+            <i class="el-icon-caret-down"></i>
+            {{ "army.detail.show_all_stuff"|trans }}
+        </a>
+        <a href="javascript:;" class="acButton stuffList-hide-all" title="{{ "army.detail.hide_all_stuff"|trans }}">
+            <i class="el-icon-caret-up"></i>
+            {{ "army.detail.hide_all_stuff"|trans }}
+        </a>
+    </div>
+
+
     {{ block("squadTotal") }}
 
     {% if form.squadLineList %}
@@ -52,7 +64,15 @@
                         {{ form_errors(squadLine.number) }}
                     </div>
 
-                    <div class="stuffList txtright">
+                    <div class="txtcenter stuffList-toggle-container">
+                        <a href="javascript:;" class="stuffList-toggle-link">
+                            <i class="el-icon-caret-down"></i>
+                            <i class="el-icon-caret-up hidden"></i>
+                            {{ "army.detail.toggle_stuff"|trans }}
+                        </a>
+                    </div>
+
+                    <div class="stuffList stuffList-toggle txtright">
                         {% for squadLineStuff in squadLine.squadLineStuffList %}
                             <div class="stuffListItem line">
                                 {% set stuffPoints = squadLineStuff.vars.value.unitStuff.points %}
@@ -88,6 +108,7 @@
                             </div>
                         {% endfor %}
                     </div>
+
                     {{ form_rest(squadLine) }}
                 </div>
             {% endfor %}
