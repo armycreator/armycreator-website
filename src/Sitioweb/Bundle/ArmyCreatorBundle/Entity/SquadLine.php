@@ -243,6 +243,32 @@ class SquadLine
         return $this->squadLineStuffList;
     }
 
+    public function getOrderSquadLineStuffList()
+    {
+        $squadLineStuffList = $this->squadLineStuffList;
+        if (!is_array($squadLineStuffList)) {
+            $squadLineStuffList = $squadLineStuffList->toArray();
+        }
+
+        usort(
+            $squadLineStuffList,
+            function ($a, $b) {
+                $aStuff = $a->getUnitStuff()->getStuff();
+                $bStuff = $b->getUnitStuff()->getStuff();
+                if ($aStuff instanceof Weapon && $bStuff instanceof Equipement) {
+                    return -1;
+                } elseif ($bStuff instanceof Weapon && $aStuff instanceof Equipement) {
+                    return 1;
+                }
+                return strcmp(
+                    $aStuff->getName(),
+                    $bStuff->getName()
+                );
+            }
+        );
+        return $squadLineStuffList;
+    }
+
     /**
      * getNoDefaultSquadLineStuffList
      *

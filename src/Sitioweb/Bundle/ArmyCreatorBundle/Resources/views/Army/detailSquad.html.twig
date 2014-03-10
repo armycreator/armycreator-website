@@ -27,7 +27,7 @@
                         </span>
                     {% endif %}
                 </h5>
-                {% if not(squadLine.squadLineStuffList.empty) %}
+                {% if not(squadLine.squadLineStuffList is empty) %}
                     {% if preferences.showDefaultStuff %}{{- "" -}}
                         {% set squadLineStuffList = squadLine.squadLineStuffList %}
                     {% else %}{{- "" -}}
