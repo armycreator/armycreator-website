@@ -26,9 +26,9 @@ class SquadLineType extends AbstractType
             'integer',
             array('attr' => array('size' => 4, 'title' => 'Number'))
         );
-        
+
         $builder->add(
-            'squadLineStuffList',
+            'orderSquadLineStuffList',
             'collection',
             array('type' => new SquadLineStuffType())
         );

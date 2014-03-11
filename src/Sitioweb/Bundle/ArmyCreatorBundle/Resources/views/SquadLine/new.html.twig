@@ -72,8 +72,8 @@
                         </a>
                     </div>
 
-                    <div class="stuffList stuffList-toggle txtright">
-                        {% for squadLineStuff in squadLine.squadLineStuffList %}
+                    <div class="stuffList stuffList-toggle">
+                        {% for squadLineStuff in squadLine.orderSquadLineStuffList %}
                             <div class="stuffListItem line">
                                 {% set stuffPoints = squadLineStuff.vars.value.unitStuff.points %}
                                 <aside class="soft right">

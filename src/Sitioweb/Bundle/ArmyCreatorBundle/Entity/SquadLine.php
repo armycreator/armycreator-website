@@ -243,9 +243,15 @@ class SquadLine
         return $this->squadLineStuffList;
     }
 
+    /**
+     * getOrderSquadLineStuffList
+     *
+     * @access public
+     * @return array
+     */
     public function getOrderSquadLineStuffList()
     {
-        $squadLineStuffList = $this->squadLineStuffList;
+        $squadLineStuffList = $this->getSquadLineStuffList();
         if (!is_array($squadLineStuffList)) {
             $squadLineStuffList = $squadLineStuffList->toArray();
         }
@@ -253,6 +259,11 @@ class SquadLine
         usort(
             $squadLineStuffList,
             function ($a, $b) {
+                $nDiff = $b->getNumber() - $a->getNumber();
+                if ($nDiff != 0) {
+                    return $nDiff;
+                }
+
                 $aStuff = $a->getUnitStuff()->getStuff();
                 $bStuff = $b->getUnitStuff()->getStuff();
                 if ($aStuff instanceof Weapon && $bStuff instanceof Equipement) {
@@ -260,14 +271,17 @@ class SquadLine
                 } elseif ($bStuff instanceof Weapon && $aStuff instanceof Equipement) {
                     return 1;
                 }
+
                 return strcmp(
                     $aStuff->getName(),
                     $bStuff->getName()
                 );
             }
         );
+
         return $squadLineStuffList;
     }
+
 
     /**
      * getNoDefaultSquadLineStuffList
@@ -412,6 +426,7 @@ class SquadLine
 
         if ($cascade === true) {
             $unitStuffList = $unitHasUnitGroup->getUnit()->getUnitStuffList();
+
             foreach ($unitStuffList as $unitStuff) {
                 if ($unitStuff->getVisible()) {
                     $squadLineStuff = new SquadLineStuff();
