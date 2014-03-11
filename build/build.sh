@@ -28,5 +28,5 @@ then
     mv /home/upload/code/armycreator/prod /home/upload/code/armycreator/prod_last;
 fi;
 ln -s /home/upload/code/armycreator/build/$BUILD_NUMBER /home/upload/code/armycreator/prod;
-curl http://www.w40karmycreator.com/forum/ > /dev/null;
+#curl http://www.w40karmycreator.com/forum/ > /dev/null;
 rm -rf web/forum/cache/*overall*;
