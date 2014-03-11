@@ -37,7 +37,8 @@
                     {% if squadLineStuffList %}
                         <ul class="stuffList stuffList-toggle{{ pdf is defined and pdf ? ' visible' : '' }}">
                             {% for squadLineStuff in squadLineStuffList %}
-                                <li title="{{ squadLineStuff.unitStuff.stuff.description|escape('html_attr') }}">
+                                {% set tmpDesc = squadLineStuff.unitStuff.stuff.description %}
+                                <li{% if tmpDesc %} class="tooltip" title="{{ tmpDesc|escape('html_attr') }}"{% endif %}>
                                     {{ squadLineStuff.number }}
                                     {{ squadLineStuff.unitStuff.stuff.name }}
 

@@ -98,7 +98,8 @@
                                     </a>
                                 </aside>
 
-                                <div class="stuffName">
+                                {% set tmpDesc = squadLineStuff.vars.value.unitStuff.stuff.description %}
+                                <div class="stuffName{% if tmpDesc %} tooltip{% endif %}" title="{{ tmpDesc }}">
                                     {{ squadLineStuff.vars.value.unitStuff.stuff.name }}
                                 </div>
 
