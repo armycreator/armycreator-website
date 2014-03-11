@@ -2,17 +2,22 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\CollectionType;
 
 /**
  * User controller.
+ *
+ * @Breadcrumb("breadcrumb.home", route="homepage")
+ * @Breadcrumb("main_menu.my_collection", route="user_collection")
  */
 class UserController extends Controller
 {
@@ -45,6 +50,7 @@ class UserController extends Controller
      * @Route("/collection/{breed}", name="user_collection_edit")
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
+     * @Breadcrumb("{breed.name}")
      */
     public function collectionEditAction(Breed $breed)
     {

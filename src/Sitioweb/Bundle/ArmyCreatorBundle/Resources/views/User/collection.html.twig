@@ -6,40 +6,45 @@
             {{ game.name }}
         </h2>
 
-        <ul class="inline inlineBig collection">
-            {% for breed in game.availableBreedList %}
-                {% set contained = app.user.collectionList.contains(breed) %}
+        {% for breedGroup in game.breedGroupList %}
+            <div class="grid1-11">
+                <h3 class="grid-header">
+                    {{ breedGroup.name }}
+                </h3>
 
-                <li class="w20{{ contained ? "" : " not-contained" }}">
-                    <figure class="breed left mr1">
-                        {{ breedImage(breed)|raw }}
-                    </figure>
+                <div>
+                    <ul class="inline inlineBig collection">
+                        {% for breed in breedGroup.availableBreedList %}
+                            {% set contained = app.user.collectionList.contains(breed) %}
 
-                    {% if contained %}
-                        <a href="{{ path("user_collection_edit", { "breed": breed.slug }) }}">
-                            {{ breed.name }}
-                        </a>
-                        <a
-                            href="{{ path("user_collection_remove", { "breed": breed.slug }) }}"
-                            class="acButton"
-                            title="{{ "user.collection.remove"|trans }}"
-                        >
-                            <i class="el-icon-remove"></i>
-                        </a>
-                    {% else %}
-                        {{ breed.name }}
-                        <a href="{{ path("user_collection_contains", { "breed": breed.slug }) }}">
-                            {{ "user.collection.contains"|trans }}
-                        </a>
-                        {#
-                        <a href="{{ path("admin_breed_edit", { "breed": breed.slug }) }}" class="acButton">
-                            {{ "button.edit"|trans }}
-                        </a>
-#}
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
+                            <li class="w20{{ contained ? "" : " not-contained" }}">
+                                <figure class="breed left mr1">
+                                    {{ breedImage(breed)|raw }}
+                                </figure>
+
+                                {% if contained %}
+                                    <a href="{{ path("user_collection_edit", { "breed": breed.slug }) }}">
+                                        {{ breed.name }}
+                                    </a>
+                                    <a
+                                        href="{{ path("user_collection_remove", { "breed": breed.slug }) }}"
+                                        class="acButton"
+                                        title="{{ "user.collection.remove"|trans }}"
+                                    >
+                                        <i class="el-icon-remove"></i>
+                                    </a>
+                                {% else %}
+                                    {{ breed.name }}
+                                    <a href="{{ path("user_collection_contains", { "breed": breed.slug }) }}">
+                                        {{ "user.collection.contains"|trans }}
+                                    </a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
     {% endfor %}
 {% endblock %}
 

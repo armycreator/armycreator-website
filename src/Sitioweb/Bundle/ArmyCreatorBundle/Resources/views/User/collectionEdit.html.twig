@@ -3,17 +3,43 @@
 {% block content %}
     {{ form_start(form) }}
         <div class="squadListContainer">
-            <div class="squadList">
-                {% for line in form.userHasUnitList %}
-                    <div class="squad">
-                        <div class="squadName">
-                            <h4>{{ line.vars.value.unit.name }}</h4>
+                    {% set oldUt = null %}
+                    {% for line in form.userHasUnitList %}
+                        {% if oldUt == null or oldUt != line.vars.value.unit.unitType %}
+                            {% if oldUt == null %}
+                                {% set break = "start" %}
+                            {% else %}
+                                {% set break = true %}
+                            {% endif %}
+                            {% set oldUt = line.vars.value.unit.unitType %}
+                        {% else %}
+                            {% set break = false %}
+                        {% endif %}
+
+                        {% if break %}
+                            {% if break is same as(true) %}
+                                </div>
+                                </div>
+                            {% endif %}
+                            <div class="grid1-11">
+                            <h3 class="grid-header">
+                                {{ line.vars.value.unit.unitType.name }}
+                            </h3>
+                            <div class="squadList">
+                        {% endif %}
+
+                        {% spaceless %}
+                        <div class="squad">
+                            <div class="squadName">
+                                <h4>{{ line.vars.value.unit.name }}</h4>
+                            </div>
+                            <div class="squadLine">
+                                {{ form_widget(line) }}
+                            </div>
                         </div>
-                        <div class="squadLine">
-                            {{ form_widget(line) }}
-                        </div>
-                    </div>
-                {% endfor %}
+                        {% endspaceless %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     {{ form_end(form) }}

@@ -51,6 +51,14 @@ class BreedGroup
 	private $breedList;
 
     /**
+     * availableBreedList
+     *
+     * @var array
+     * @access private
+     */
+    private $availableBreedList;
+
+    /**
      * __construct
      *
      * @access public
@@ -151,4 +159,32 @@ class BreedGroup
 	{
 		return $this->getName();
 	}
+
+    /**
+     * getAvailableBreedList
+     *
+     * @access public
+     * @return void
+     */
+    public function getAvailableBreedList()
+    {
+        if (!isset($this->availableBreedList)) {
+            $this->availableBreedList = array();
+            $breedList = $this->getBreedList();
+            foreach ($breedList as $breed) {
+                if ($breed->getAvailable()) {
+                    $this->availableBreedList[] = $breed;
+                }
+            }
+
+            usort(
+                $this->availableBreedList,
+                function($a, $b) {
+                    return strnatcasecmp($a->getName(), $b->getName());
+                }
+            );
+        }
+
+        return $this->availableBreedList;
+    }
 }

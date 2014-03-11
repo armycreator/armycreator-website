@@ -341,6 +341,19 @@ class User extends BaseUser
             }
         }
 
+        usort(
+            $list,
+            function ($a, $b) {
+                $aut = $a->getUnit()->getUnitType();
+                $but = $b->getUnit()->getUnitType();
+                if ($aut == $but) {
+                    return strcmp($a->getUnit()->getName(), $b->getUnit()->getName());
+                }
+
+                return $aut->getPosition() - $but->getPosition();
+            }
+        );
+
         return $list;
     }
 }
