@@ -132,7 +132,7 @@ class UnitGroupController extends Controller
      * Edits an existing UnitGroup entity.
      *
      * @Route("/{id}", name="unitgroup_update")
-     * @Method("POST")
+     * @Method("PUT")
      * @Template("SitiowebArmyCreatorBundle:UnitGroup:edit.html.twig")
      */
     public function updateAction(Request $request, Breed $breed, $id)

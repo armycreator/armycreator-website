@@ -167,6 +167,12 @@ class ArmyGroupController extends Controller
                 throw $this->createNotFoundException('Unable to find ArmyGroup entity.');
             }
 
+
+            $armyList = $entity->getArmyList();
+            foreach ($armyList as  $army) {
+                $army->setArmyGroup(null);
+            }
+
             $em->remove($entity);
             $em->flush();
         }

@@ -265,7 +265,7 @@ class UnitController extends Controller
     private function getArmyShowUrl(Breed $breed)
     {
         $url = $this->generateUrl(
-                'admin_breed_show',
+                'admin_breed_unit',
                 array(
                     'breed' => $breed->getSlug(),
                     'game' => $breed->getGame()->getCode()

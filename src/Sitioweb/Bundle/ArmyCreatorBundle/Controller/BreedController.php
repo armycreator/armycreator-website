@@ -32,13 +32,13 @@ class BreedController extends Controller
      */
     public function showAction(Game $game, Breed $breed)
     {
-        $url = $this->generateUrl(
-                'admin_breed_unitgroup',
-                array(
-                    'breed' => $breed->getSlug(),
-                    'game' => $breed->getGame()->getCode()
-                    )
-                );
+        $params = [ 'breed' => $breed->getSlug(), 'game' => $breed->getGame()->getCode() ];
+        if ($breed->getUnitTypeList()->isEmpty()) {
+            $url = $this->generateUrl('admin_breed_unittype', $params);
+        } else {
+            $url = $this->generateUrl('admin_breed_unitgroup', $params);
+        }
+
         return $this->redirect($url);
     }
 
