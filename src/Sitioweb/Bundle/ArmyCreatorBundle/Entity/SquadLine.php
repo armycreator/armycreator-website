@@ -223,6 +223,11 @@ class SquadLine
         return $this;
     }
 
+    public function addOrderSquadLineStuffList(SquadLineStuff $squadLineStuff)
+    {
+        return $this->addSquadLineStuffList($squadLineStuff);
+    }
+
     /**
      * Remove squadLineStuffList
      *
@@ -231,6 +236,17 @@ class SquadLine
     public function removeSquadLineStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLineStuff $squadLineStuffList)
     {
         $this->squadLineStuffList->removeElement($squadLineStuffList);
+    }
+
+
+    /**
+     * Remove squadLineStuffList
+     *
+     * @param Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLineStuff $squadLineStuffList
+     */
+    public function removeOrderSquadLineStuffList(SquadLineStuff $squadLineStuffList)
+    {
+        return $this->removeSquadLineStuffList($squadLineStuffList);
     }
 
     /**
