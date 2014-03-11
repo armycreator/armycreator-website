@@ -3,21 +3,21 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e64b225810f9a35066efde0e7e1e5a57",
+    "hash": "695962c6514fe680d2f90fd9132d8d09",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
-            "version": "v0.9",
+            "version": "v1.0",
             "target-dir": "APY/BreadcrumbTrailBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Abhoryo/APYBreadcrumbTrailBundle.git",
-                "reference": "d74f73f1edbb9bd8877ddb1579319dfb65564a89"
+                "reference": "ce649e64432e83b0482c3f07c1b5924f48a94093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Abhoryo/APYBreadcrumbTrailBundle/zipball/d74f73f1edbb9bd8877ddb1579319dfb65564a89",
-                "reference": "d74f73f1edbb9bd8877ddb1579319dfb65564a89",
+                "url": "https://api.github.com/repos/Abhoryo/APYBreadcrumbTrailBundle/zipball/ce649e64432e83b0482c3f07c1b5924f48a94093",
+                "reference": "ce649e64432e83b0482c3f07c1b5924f48a94093",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                 "fil ariane",
                 "symfony"
             ],
-            "time": "2013-11-30 08:49:29"
+            "time": "2013-12-19 17:47:37"
         },
         {
             "name": "doctrine/annotations",
@@ -1346,12 +1346,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "c730b8a019ca914bd90c0aef80dcf42c4320dcec"
+                "reference": "ff1a6e73e79c9f75c6a130d03b07f05c89fede63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/c730b8a019ca914bd90c0aef80dcf42c4320dcec",
-                "reference": "c730b8a019ca914bd90c0aef80dcf42c4320dcec",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/ff1a6e73e79c9f75c6a130d03b07f05c89fede63",
+                "reference": "ff1a6e73e79c9f75c6a130d03b07f05c89fede63",
                 "shasum": ""
             },
             "require": {
@@ -1402,7 +1402,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-03-03 11:05:54"
+            "time": "2014-03-07 15:36:26"
         },
         {
             "name": "knplabs/knp-menu-bundle",

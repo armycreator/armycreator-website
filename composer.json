@@ -27,7 +27,7 @@
         "knplabs/knp-snappy-bundle": "1.2.*",
         "raven/raven": "@stable",
 
-        "apy/breadcrumbtrail-bundle":"0.*",
+        "apy/breadcrumbtrail-bundle":"1.*",
 
         "knplabs/knp-menu":"2.0.*@dev",
         "knplabs/knp-menu-bundle":"2.0.*@dev",
