@@ -1,0 +1,21 @@
+{%- if breadcrumbs.count %}
+  <ul id="breadcrumbtrail">
+  {% for breadcrumb in breadcrumbs %}
+
+    {% set class = (loop.first ? 'home' : (loop.last ? 'current' : '')) %}
+
+    <li {% for attr,value in breadcrumb.attributes -%}
+          {%- if attr == 'class' %}{% set value = value ~ ' ' ~ class %}{% endif -%}
+          {{ attr }}="{{ value }}"
+        {%- endfor %}{% if breadcrumb.attributes.class is not defined %} class="{{ class }}"{% endif %}>
+      {%- if breadcrumb.url is null or loop.last -%}
+        {{ breadcrumb.title|trans }}
+      {%- else -%}
+        <a href="{{ breadcrumb.url }}">{{ breadcrumb.title|trans }}</a>
+      {%- endif -%}
+    </li>
+
+    <li class="breadcrumb-separator"></li>
+  {% endfor %}
+  </ul>
+{%- endif -%}
