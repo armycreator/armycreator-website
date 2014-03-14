@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "695962c6514fe680d2f90fd9132d8d09",
+    "hash": "a63d55af9707b4f1c377610a579e6b07",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
@@ -1635,6 +1635,104 @@
                 "minification"
             ],
             "time": "2014-02-28 18:17:10"
+        },
+        {
+            "name": "m6web/statsd",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jdeniau/Statsd.git",
+                "reference": "5d2542cce5a58c6566a10100f8ec67ce8f303a34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jdeniau/Statsd/zipball/5d2542cce5a58c6566a10100f8ec67ce8f303a34",
+                "reference": "5d2542cce5a58c6566a10100f8ec67ce8f303a34",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "atoum/atoum": "master-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Component easing the statsd usage",
+            "keywords": [
+                "m6web",
+                "php",
+                "statsd"
+            ],
+            "support": {
+                "source": "https://github.com/jdeniau/Statsd/tree/v1.0.0"
+            },
+            "time": "2014-01-03 10:16:27"
+        },
+        {
+            "name": "m6web/statsd-bundle",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/M6Web/StatsdBundle.git",
+                "reference": "6ed1600e0a1e744560b1149706db174538e4f551"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/M6Web/StatsdBundle/zipball/6ed1600e0a1e744560b1149706db174538e4f551",
+                "reference": "6ed1600e0a1e744560b1149706db174538e4f551",
+                "shasum": ""
+            },
+            "require": {
+                "m6web/statsd": "~1.0.0",
+                "php": ">=5.4.0",
+                "symfony/property-access": ">=2.2"
+            },
+            "require-dev": {
+                "atoum/atoum": "master-dev",
+                "symfony/event-dispatcher": "@stable",
+                "symfony/symfony": "@stable"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "M6Web",
+                    "email": "opensource@m6web.fr",
+                    "homepage": "http://tech.m6web.fr/"
+                },
+                {
+                    "name": "Olivier Mansour",
+                    "email": "olivier.mansour@m6.fr"
+                },
+                {
+                    "name": "Vincent Bouzeran",
+                    "email": "vincent.bouzeran@elao.com"
+                }
+            ],
+            "description": "bundle permettant d'utiliser Statsd",
+            "keywords": [
+                "bundle",
+                "m6web",
+                "statsd",
+                "symfony"
+            ],
+            "time": "2014-03-04 11:16:59"
         },
         {
             "name": "mjohnson/decoda",

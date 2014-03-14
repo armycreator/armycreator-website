@@ -103,6 +103,8 @@ class UserController extends Controller
         $user->addCollectionList($breed);
         $this->get('doctrine')->getManager()->flush();
 
+        $this->get('m6_statsd')->increment('armycreator.collection.w40k.contains');
+
         $url = $this->get('router')
                 ->generate('user_collection_edit', ['breed' => $breed->getSlug()]);
 
@@ -123,6 +125,8 @@ class UserController extends Controller
         $user = $this->getUser();
         $user->removeCollectionList($breed);
         $this->get('doctrine')->getManager()->flush();
+
+        $this->get('m6_statsd')->increment('armycreator.collection.w40k.remove');
 
         $url = $this->get('router')
                 ->generate('user_collection');

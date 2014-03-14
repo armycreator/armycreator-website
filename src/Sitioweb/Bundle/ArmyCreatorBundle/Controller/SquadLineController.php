@@ -112,6 +112,9 @@ class SquadLineController extends Controller
                 if ($squadLine->getNumber() > 0) {
                     $em->persist($squadLine);
                 }
+
+                $this->get('m6_statsd')->increment('armycreator.squad_line.w40k.link');
+
                 $em->flush();
                 return $this->redirect($this->generateUrl('army_detail', array('slug' => $army->getSlug())));
             }

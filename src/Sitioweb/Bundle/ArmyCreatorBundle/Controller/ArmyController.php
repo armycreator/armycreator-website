@@ -357,6 +357,8 @@ class ArmyController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('m6_statsd')->increment('armycreator.army.w40k.new');
+
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getSlug())));
         }
 
@@ -451,6 +453,8 @@ class ArmyController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('m6_statsd')->increment('armycreator.army.w40k.update');
+
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getSlug())));
         }
 
@@ -483,6 +487,8 @@ class ArmyController extends Controller
         if ($form->isValid()) {
             $em->remove($entity);
             $em->flush();
+
+            $this->get('m6_statsd')->increment('armycreator.army.w40k.delete');
         }
 
         return $this->redirect($this->generateUrl('army_list'));

@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new APY\BreadcrumbTrailBundle\APYBreadcrumbTrailBundle(),
+            new M6Web\Bundle\StatsdBundle\M6WebStatsdBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
             new FM\BbcodeBundle\FMBbcodeBundle(),
             new Oneup\AclBundle\OneupAclBundle(),

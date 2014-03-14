@@ -429,6 +429,21 @@ class Squad
 
         }
 
+        // add stuff to external units
+        foreach ($squadLineList as $squadLine) {
+            $contains = false;
+            foreach ($unitHasUnitGroupList as $unitHasUnitGroup) {
+                if ($squadLine->getUnit() == $unitHasUnitGroup->getUnit()) {
+                    $contains = true;
+                    break;
+                }
+            }
+
+            if (!$contains) {
+                $squadLine->addEmptySquadLineStuff($isEdition);
+            }
+        }
+
         return $this;
     }
 }

@@ -263,6 +263,8 @@ class SquadController extends Controller
             }
             $em->flush();
 
+            $this->get('m6_statsd')->increment('armycreator.squad.w40k.new');
+
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $army->getSlug())));
         }
 
@@ -424,6 +426,8 @@ class SquadController extends Controller
             }
             $em->flush();
 
+            $this->get('m6_statsd')->increment('armycreator.squad.w40k.update');
+
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getArmy()->getSlug())));
         }
 
@@ -459,6 +463,8 @@ class SquadController extends Controller
 
             $em->remove($entity);
             $em->flush();
+
+            $this->get('m6_statsd')->increment('armycreator.squad.w40k.delete');
         }
 
         if (isset($army)) {

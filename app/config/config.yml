@@ -141,3 +141,15 @@ knp_snappy:
         enabled:    true
         binary:     /usr/local/bin/wkhtmltopdf
         options:    []
+
+m6_statsd:
+    servers:
+        default:
+            address: 'udp://localhost'
+            port: 8125
+    clients:
+        default:
+            servers: ['default']
+            #events: 
+                #statsd.memory_usage:
+                #    count: "website.memory"

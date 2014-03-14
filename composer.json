@@ -28,6 +28,7 @@
         "raven/raven": "@stable",
 
         "apy/breadcrumbtrail-bundle":"1.*",
+        "m6web/statsd-bundle": "2.*",
 
         "knplabs/knp-menu":"2.0.*@dev",
         "knplabs/knp-menu-bundle":"2.0.*@dev",
