@@ -42,7 +42,7 @@
     {# === squad type list === #}{{- "" -}}
     {% for tmp in army.squadListByType %}{{- "" -}}
         {% if tmp.squadList %}
-            {{- "\n\n" -}}
+            {{- "\n" -}}
             {# === squad type name === #}
             {{- "[b][color=" ~ preferences.colorSquadType ~ "]" -}}
                 {{- tmp.unitType.name -}}
@@ -85,10 +85,10 @@
                                 {{- squadLineStuff.number ~ " " ~ squadLineStuff.unitStuff.stuff.name -}}
                             {% endfor %}
                         {{- "\n\t\t[/list]" -}}
-                    {% endif %}
-                {% endfor %}
+                    {% endif %}{{- "" -}}
+                {% endfor %}{{- "" -}}
                 {{- "\n\t[/list]" -}}
-            {% endfor %}
+            {% endfor %}{{- "" -}}
             {{- "\n[/list]" -}}
         {% endif %}{{- "" -}}
     {% endfor %}{{- "" -}}
