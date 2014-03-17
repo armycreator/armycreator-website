@@ -3,8 +3,16 @@ services:
         class: Sitioweb\Bundle\ArmyCreatorBundle\UserService
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+
     armycreator.twig.breed_image_extension: 
         class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\BreedImage
+        tags:
+            - { name: twig.extension }
+
+    armycreator.twig.squad_extension: 
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\Squad
+        arguments:
+            - @doctrine.orm.default_entity_manager
         tags:
             - { name: twig.extension }
 
