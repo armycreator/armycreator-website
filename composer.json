@@ -29,6 +29,7 @@
 
         "apy/breadcrumbtrail-bundle":"1.*",
         "m6web/statsd-bundle": "2.*",
+        "jdeniau/statsd-listener-bundle": "0.*",
 
         "knplabs/knp-menu":"2.0.*@dev",
         "knplabs/knp-menu-bundle":"2.0.*@dev",

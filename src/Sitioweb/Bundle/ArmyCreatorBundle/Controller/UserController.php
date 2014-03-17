@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\CollectionType;
 
 /**
@@ -79,6 +80,13 @@ class UserController extends Controller
                 }
             }
             $em->flush();
+
+            // dispatch event
+            $this->get('event_dispatcher')
+                ->dispatch(
+                    'armycreator.event.collection.edit',
+                    new GameEvent($breed->getGame())
+                );
         }
 
         return [
@@ -103,7 +111,12 @@ class UserController extends Controller
         $user->addCollectionList($breed);
         $this->get('doctrine')->getManager()->flush();
 
-        $this->get('m6_statsd')->increment('armycreator.collection.w40k.contains');
+        // dispatch event
+        $this->get('event_dispatcher')
+            ->dispatch(
+                'armycreator.event.collection.contains',
+                new GameEvent($breed->getGame())
+            );
 
         $url = $this->get('router')
                 ->generate('user_collection_edit', ['breed' => $breed->getSlug()]);
@@ -126,7 +139,12 @@ class UserController extends Controller
         $user->removeCollectionList($breed);
         $this->get('doctrine')->getManager()->flush();
 
-        $this->get('m6_statsd')->increment('armycreator.collection.w40k.remove');
+        // dispatch event
+        $this->get('event_dispatcher')
+            ->dispatch(
+                'armycreator.event.collection.contains',
+                new GameEvent($breed->getGame())
+            );
 
         $url = $this->get('router')
                 ->generate('user_collection');

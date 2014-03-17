@@ -16,6 +16,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
+use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadLineType;
 
@@ -113,7 +114,12 @@ class SquadLineController extends Controller
                     $em->persist($squadLine);
                 }
 
-                $this->get('m6_statsd')->increment('armycreator.squad_line.w40k.link');
+                // dispatch event
+                $this->get('event_dispatcher')
+                    ->dispatch(
+                        'armycreator.event.squad_line.link',
+                        new GameEvent($army->getBreed()->getGame())
+                    );
 
                 $em->flush();
                 return $this->redirect($this->generateUrl('army_detail', array('slug' => $army->getSlug())));

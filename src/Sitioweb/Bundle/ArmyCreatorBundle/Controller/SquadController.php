@@ -20,6 +20,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 
 /**
@@ -226,18 +227,13 @@ class SquadController extends Controller
      * @return void
      *
      * @Route("/create/{unitGroupId}", requirements={"id" = "\d+"}, name="squad_create")
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"armySlug" = "slug"}})
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:SquadLine:new.html.twig")
      */
-    public function createAction($armySlug, $unitGroupId)
+    public function createAction(Army $army, $unitGroupId)
     {
         $request = $this->getRequest();
-
-        // getting army
-        $army = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:Army')->findOneBySlug($armySlug);
-        if ($army === null) {
-            throw new NotFoundHttpException('Army not found');
-        }
 
         // getting unit group
         $unitGroup = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitGroup')->find($unitGroupId);
@@ -263,7 +259,12 @@ class SquadController extends Controller
             }
             $em->flush();
 
-            $this->get('m6_statsd')->increment('armycreator.squad.w40k.new');
+            // dispatch event
+            $this->get('event_dispatcher')
+                ->dispatch(
+                    'armycreator.event.squad.new',
+                    new GameEvent($army->getBreed()->getGame())
+                );
 
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $army->getSlug())));
         }
@@ -426,14 +427,20 @@ class SquadController extends Controller
             }
             $em->flush();
 
-            $this->get('m6_statsd')->increment('armycreator.squad.w40k.update');
+            // dispatch event
+            $army = $entity->getArmy();
+            $this->get('event_dispatcher')
+                ->dispatch(
+                    'armycreator.event.squad.update',
+                    new GameEvent($army->getBreed()->getGame())
+                );
 
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getArmy()->getSlug())));
         }
 
 
         return array(
-            'army'      => $entity->getArmy(),
+            'army'      => $army,
             'entity'      => $entity,
             'currentUnitType' => $entity->getUnitType(),
             'form'   => $editForm->createView(),
@@ -464,7 +471,12 @@ class SquadController extends Controller
             $em->remove($entity);
             $em->flush();
 
-            $this->get('m6_statsd')->increment('armycreator.squad.w40k.delete');
+            // dispatch event
+            $this->get('event_dispatcher')
+                ->dispatch(
+                    'armycreator.event.squad.delete',
+                    new GameEvent($army->getBreed()->getGame())
+                );
         }
 
         if (isset($army)) {

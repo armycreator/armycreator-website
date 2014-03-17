@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a63d55af9707b4f1c377610a579e6b07",
+    "hash": "40f839635be62f2eb7268ba56dde9a6f",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
@@ -732,12 +732,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "7867dfc7aa67969a24fec7f8aa1051eda23098e9"
+                "reference": "9b8bbbcf50620f7c8af9c7588d9fe29247c2fa42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/7867dfc7aa67969a24fec7f8aa1051eda23098e9",
-                "reference": "7867dfc7aa67969a24fec7f8aa1051eda23098e9",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/9b8bbbcf50620f7c8af9c7588d9fe29247c2fa42",
+                "reference": "9b8bbbcf50620f7c8af9c7588d9fe29247c2fa42",
                 "shasum": ""
             },
             "require": {
@@ -792,7 +792,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-03-04 23:23:39"
+            "time": "2014-03-16 19:14:47"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -974,6 +974,45 @@
                 "password"
             ],
             "time": "2013-04-30 19:58:08"
+        },
+        {
+            "name": "jdeniau/statsd-listener-bundle",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jdeniau/statsd-listener-bundle.git",
+                "reference": "709525c2df3e8c1b8c51db5caa2b67ff3ececbaf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jdeniau/statsd-listener-bundle/zipball/709525c2df3e8c1b8c51db5caa2b67ff3ececbaf",
+                "reference": "709525c2df3e8c1b8c51db5caa2b67ff3ececbaf",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/config": "@stable",
+                "symfony/dependency-injection": "@stable",
+                "symfony/http-kernel": "@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jdeniau\\StatsdListenerBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Julien Deniau",
+                    "email": "julien.deniau@gmail.com",
+                    "homepage": "http://www.mapado.com"
+                }
+            ],
+            "description": "Statsd Listener Bundle",
+            "time": "2014-03-17 20:11:46"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1569,12 +1608,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "8342a250cd6e8d693332e7899b2e9c62c8187156"
+                "reference": "70a1d422ee712a2384732b48d415e3680440acb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/8342a250cd6e8d693332e7899b2e9c62c8187156",
-                "reference": "8342a250cd6e8d693332e7899b2e9c62c8187156",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/70a1d422ee712a2384732b48d415e3680440acb5",
+                "reference": "70a1d422ee712a2384732b48d415e3680440acb5",
                 "shasum": ""
             },
             "require": {
@@ -1634,20 +1673,20 @@
                 "compression",
                 "minification"
             ],
-            "time": "2014-02-28 18:17:10"
+            "time": "2014-03-16 18:25:42"
         },
         {
             "name": "m6web/statsd",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jdeniau/Statsd.git",
-                "reference": "5d2542cce5a58c6566a10100f8ec67ce8f303a34"
+                "url": "https://github.com/M6Web/Statsd.git",
+                "reference": "229e29523f17c1eb039456936fea0dd44f8c901a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jdeniau/Statsd/zipball/5d2542cce5a58c6566a10100f8ec67ce8f303a34",
-                "reference": "5d2542cce5a58c6566a10100f8ec67ce8f303a34",
+                "url": "https://api.github.com/repos/M6Web/Statsd/zipball/229e29523f17c1eb039456936fea0dd44f8c901a",
+                "reference": "229e29523f17c1eb039456936fea0dd44f8c901a",
                 "shasum": ""
             },
             "require": {
@@ -1662,6 +1701,7 @@
                     "": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1671,27 +1711,24 @@
                 "php",
                 "statsd"
             ],
-            "support": {
-                "source": "https://github.com/jdeniau/Statsd/tree/v1.0.0"
-            },
-            "time": "2014-01-03 10:16:27"
+            "time": "2014-03-16 13:39:42"
         },
         {
             "name": "m6web/statsd-bundle",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/M6Web/StatsdBundle.git",
-                "reference": "6ed1600e0a1e744560b1149706db174538e4f551"
+                "reference": "d04a33be9ede95e39b376c5ab8d1621c3bdadfe6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/M6Web/StatsdBundle/zipball/6ed1600e0a1e744560b1149706db174538e4f551",
-                "reference": "6ed1600e0a1e744560b1149706db174538e4f551",
+                "url": "https://api.github.com/repos/M6Web/StatsdBundle/zipball/d04a33be9ede95e39b376c5ab8d1621c3bdadfe6",
+                "reference": "d04a33be9ede95e39b376c5ab8d1621c3bdadfe6",
                 "shasum": ""
             },
             "require": {
-                "m6web/statsd": "~1.0.0",
+                "m6web/statsd": "~1.1.0",
                 "php": ">=5.4.0",
                 "symfony/property-access": ">=2.2"
             },
@@ -1732,7 +1769,7 @@
                 "statsd",
                 "symfony"
             ],
-            "time": "2014-03-04 11:16:59"
+            "time": "2014-03-16 13:50:43"
         },
         {
             "name": "mjohnson/decoda",

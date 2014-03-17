@@ -19,6 +19,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyPreferencesType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyBbcodePreferencesType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference;
+use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
 
 /**
  * ArmyController
@@ -357,7 +358,12 @@ class ArmyController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $this->get('m6_statsd')->increment('armycreator.army.w40k.new');
+            // dispatch event
+            $this->get('event_dispatcher')
+                ->dispatch(
+                    'armycreator.event.army.new',
+                    new GameEvent($entity->getBreed()->getGame())
+                );
 
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getSlug())));
         }
@@ -453,7 +459,12 @@ class ArmyController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $this->get('m6_statsd')->increment('armycreator.army.w40k.update');
+            // dispatch event
+            $this->get('event_dispatcher')
+                ->dispatch(
+                    'armycreator.event.army.update',
+                    new GameEvent($entity->getBreed()->getGame())
+                );
 
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getSlug())));
         }
@@ -488,7 +499,12 @@ class ArmyController extends Controller
             $em->remove($entity);
             $em->flush();
 
-            $this->get('m6_statsd')->increment('armycreator.army.w40k.delete');
+            // dispatch event
+            $this->get('event_dispatcher')
+                ->dispatch(
+                    'armycreator.event.army.delete',
+                    new GameEvent($entity->getBreed()->getGame())
+                );
         }
 
         return $this->redirect($this->generateUrl('army_list'));

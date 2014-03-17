@@ -150,6 +150,32 @@ m6_statsd:
     clients:
         default:
             servers: ['default']
-            #events: 
-                #statsd.memory_usage:
-                #    count: "website.memory"
+            events: 
+                statsd.memory_usage:
+                    gauge: "website.memory"
+                statsd.time:
+                    timing: "website.time"
+                kernel.terminate:
+                    increment: "website.page_view"
+                statsd.exception:
+                    increment: "website.exception.<value>"
+                armycreator.event.collection.contains:
+                    increment: "armycreator.collection.<gameCode>.contains"
+                armycreator.event.collection.remove:
+                    increment: "armycreator.collection.<gameCode>.remove"
+                armycreator.event.collection.edit:
+                    increment: "armycreator.collection.<gameCode>.edit"
+                armycreator.event.squad.new:
+                    increment: "armycreator.squad.<gameCode>.new"
+                armycreator.event.squad.update:
+                    increment: "armycreator.squad.<gameCode>.update"
+                armycreator.event.squad.delete:
+                    increment: "armycreator.squad.<gameCode>.delete"
+                armycreator.event.army.new:
+                    increment: "armycreator.army.<gameCode>.new"
+                armycreator.event.army.update:
+                    increment: "armycreator.army.<gameCode>.update"
+                armycreator.event.army.delete:
+                    increment: "armycreator.army.<gameCode>.delete"
+                armycreator.event.squad_line.link:
+                    increment: "armycreator.squad_line.<gameCode>.link"
