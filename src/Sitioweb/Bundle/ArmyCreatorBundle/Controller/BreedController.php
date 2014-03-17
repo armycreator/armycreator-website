@@ -51,7 +51,20 @@ class BreedController extends Controller
      */
     public function unitGroupAction(Breed $breed)
     {
-        return array('breed' => $breed);
+        $unitTypeList = $breed->getUnitTypeList();
+
+        $deleteUgFormList = [];
+        foreach ($unitTypeList as $unitType) {
+            $unitGroupList = $unitType->getUnitGroupList();
+            foreach ($unitGroupList as $unitGroup) {
+                $deleteUgFormList[$unitGroup->getId()] = $this->createDeleteForm($unitGroup->getId());
+            }
+        }
+
+        return array(
+            'breed' => $breed,
+            'deleteUgFormList' => $deleteUgFormList,
+        );
     }
 
     /**
@@ -67,9 +80,15 @@ class BreedController extends Controller
                         ->getRepository('SitiowebArmyCreatorBundle:Unit')
                         ->findBy(['breed' => $breed], ['name' => 'asc']);
 
+        $deleteUnitFormList = [];
+        foreach ($unitList as $unit) {
+            $deleteUnitFormList[$unit->getId()] = $this->createDeleteForm($unit->getId());
+        }
+
         return array(
             'breed' => $breed,
             'unitList' => $unitList,
+            'deleteUnitFormList' => $deleteUnitFormList,
         );
     }
 
@@ -105,10 +124,22 @@ class BreedController extends Controller
                         ->getRepository('SitiowebArmyCreatorBundle:Equipement')
                         ->findBy(['breed' => $breed], ['name' => 'asc']);
 
+        $weaponDeleteList = [];
+        foreach ($weaponList as $weapon) {
+            $weaponDeleteList[$weapon->getId()] = $this->createDeleteForm($weapon->getId());
+        }
+
+        $equipementDeleteList = [];
+        foreach ($equipementList as $equipement) {
+            $equipementDeleteList[$equipement->getId()] = $this->createDeleteForm($equipement->getId());
+        }
+
         return array(
             'breed' => $breed,
             'weaponList' => $weaponList,
             'equipementList' => $equipementList,
+            'deleteWeaponFormList' => $weaponDeleteList,
+            'deleteEquipementFormList' => $equipementDeleteList,
         );
     }
 
@@ -287,4 +318,18 @@ class BreedController extends Controller
         }
     }
 
+    /**
+     * Creates a form to delete a Equipement entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
+    }
 }

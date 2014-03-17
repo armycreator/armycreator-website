@@ -28,6 +28,15 @@
                                     <a href="{{ path("unit_edit", params + { "unit": unit.slug}) }}" class="acButton acButtonSmall">
                                         <i class="el-icon-pencil"></i>
                                     </a>
+
+                                    <form action="{{ path('unit_delete', params + { "id": unit.id}) }}" method="post" class="inbl">
+                                        <input type="hidden" name="_method" value="DELETE" />
+                                        {% set deleteForm = deleteUnitFormList[unit.id] %}
+                                        {{ form_widget(deleteForm.createView) }}
+                                        <button class="acButton acButtonSmall" type="submit" onclick="return confirm('{{ "confirm.delete"|trans }}');">
+                                            <i class="el-icon-remove"></i>
+                                        </button>
+                                    </form>
                                 {% endif %}
                             </h4>
                         </div>

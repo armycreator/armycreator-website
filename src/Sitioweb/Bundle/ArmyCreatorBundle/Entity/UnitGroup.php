@@ -16,7 +16,7 @@ class UnitGroup extends AbstractUnit
 
 	/**
 	 * unitHasUnitGroupList
-	 * 
+	 *
 	 * @var array<UnitHasUnitGroup>
 	 * @access private
 	 *
@@ -26,7 +26,7 @@ class UnitGroup extends AbstractUnit
 
     /**
      * squadList
-     * 
+     *
      * @var array<Squad>
      * @access private
      *
@@ -57,7 +57,7 @@ class UnitGroup extends AbstractUnit
     public function addUnitHasUnitGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup $unitHasUnitGroupList)
     {
         $this->unitHasUnitGroupList[] = $unitHasUnitGroupList;
-    
+
         return $this;
     }
 
@@ -74,7 +74,7 @@ class UnitGroup extends AbstractUnit
     /**
      * Get unitHasUnitGroupList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUnitHasUnitGroupList()
     {
@@ -90,7 +90,7 @@ class UnitGroup extends AbstractUnit
     public function addSquadList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squadList)
     {
         $this->squadList[] = $squadList;
-    
+
         return $this;
     }
 
@@ -107,7 +107,7 @@ class UnitGroup extends AbstractUnit
     /**
      * Get squadList
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSquadList()
     {

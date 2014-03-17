@@ -218,7 +218,7 @@ class UnitController extends Controller
      * Deletes a Unit entity.
      *
      * @Route("/{id}/delete", name="unit_delete")
-     * @Method("POST")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, Breed $breed, $id)
     {
@@ -239,6 +239,10 @@ class UnitController extends Controller
 
             foreach ($entity->getUnitHasUnitGroupList() as $unitHasUnitGroup) {
                 $em->remove($unitHasUnitGroup);
+            }
+
+            foreach ($entity->getUnitStuffList() as $unitHasUnitStuff) {
+                $em->remove($unitHasUnitStuff);
             }
             $em->remove($entity);
             $em->flush();

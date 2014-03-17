@@ -24,9 +24,19 @@
                 <h4>
                     {{ weapon.name }}
                     {% if ac_granted("EDIT", breed) %}
-                        <a href="{{ path("weapon_edit", params + { "id": weapon.id}) }}">
+                        <a class="acButton" href="{{ path("weapon_edit", params + { "id": weapon.id}) }}">
                             <i class="el-icon-pencil"></i>
                         </a>
+                        {% if weapon.unitStuffList.count() == 0 %}
+                            <form action="{{ path('weapon_delete', params + { "id": weapon.id}) }}" method="post" class="inbl">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                {% set deleteForm = deleteWeaponFormList[weapon.id] %}
+                                {{ form_widget(deleteForm.createView) }}
+                                <button class="acButton" type="submit" onclick="return confirm('{{ "confirm.delete"|trans }}');">
+                                    <i class="el-icon-remove"></i>
+                                </button>
+                            </form>
+                        {% endif %}
                     {% endif %}
                 </h4>
                 <div>
@@ -69,9 +79,19 @@
                 <h4>
                     {{ equipement.name }}
                     {% if ac_granted("EDIT", breed) %}
-                        <a href="{{ path("equipement_edit", params + { "id": equipement.id}) }}">
+                        <a class="acButton" href="{{ path("equipement_edit", params + { "id": equipement.id}) }}">
                             <i class="el-icon-pencil"></i>
                         </a>
+                        {% if equipement.unitStuffList.count() == 0 %}
+                            <form action="{{ path('equipement_delete', params + { "id": equipement.id}) }}" method="post" class="inbl">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                {% set deleteForm = deleteEquipementFormList[equipement.id] %}
+                                {{ form_widget(deleteForm.createView) }}
+                                <button class="acButton" type="submit" onclick="return confirm('{{ "confirm.delete"|trans }}');">
+                                    <i class="el-icon-remove"></i>
+                                </button>
+                            </form>
+                        {% endif %}
                     {% endif %}
                 </h4>
                 <div>

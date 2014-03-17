@@ -20,12 +20,14 @@
             {{ "breed.back_to_breed"|trans }}
         </a>
     </li>
-    <li>
-        <form action="{{ path("equipement_delete", params + { "id": entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">{{ "button.delete"|trans }}</button>
-        </form>
-    </li>
+    {% if equipement.unitStuffList.count() == 0 %}
+        <li>
+            <form action="{{ path("equipement_delete", params + { "id": entity.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button type="submit">{{ "button.delete"|trans }}</button>
+            </form>
+        </li>
+    {% endif %}
 </ul>
 {% endblock %}

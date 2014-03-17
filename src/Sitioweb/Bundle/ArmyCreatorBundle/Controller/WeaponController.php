@@ -152,7 +152,7 @@ class WeaponController extends Controller
      * Deletes a Weapon entity.
      *
      * @Route("/{id}/delete", name="weapon_delete")
-     * @Method("POST")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id, Breed $breed)
     {

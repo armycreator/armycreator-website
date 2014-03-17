@@ -152,7 +152,7 @@ class EquipementController extends Controller
      * Deletes a Equipement entity.
      *
      * @Route("/{id}/delete", name="equipement_delete")
-     * @Method("POST")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id, Breed $breed)
     {

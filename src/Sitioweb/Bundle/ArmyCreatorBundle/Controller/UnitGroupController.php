@@ -198,6 +198,11 @@ class UnitGroupController extends Controller
                 throw $this->createNotFoundException('Unable to find UnitGroup entity.');
             }
 
+            $uhugList = $entity->getUnitHasUnitGroupList();
+            foreach ($uhugList as $uhug) {
+                $em->remove($uhug);
+            }
+
             $em->remove($entity);
             $em->flush();
         }
