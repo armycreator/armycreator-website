@@ -12,6 +12,11 @@ use Oneup\AclBundle\Mapping\Annotation as Acl;
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed
  *
  * @ORM\Entity
+ * @ORM\Table(
+ *     indexes={
+ *         @ORM\Index(name="available", columns={"available"})
+ *     }
+ * )
  * @Acl\DomainObject({
  *     @Acl\ClassPermission({ "ROLE_ADMIN": MaskBuilder::MASK_OPERATOR }),
  *     @Acl\ClassPermission({ "ROLE_CONTRIB_ALL": MaskBuilder::MASK_EDIT }),
