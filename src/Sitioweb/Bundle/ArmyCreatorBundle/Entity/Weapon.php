@@ -41,6 +41,13 @@ class Weapon extends Stuff
     private $armorPenetration;
 
     /**
+     * @var string $rule
+     *
+     * @ORM\Column(name="rule", type="text", nullable=true)
+     */
+    private $rule;
+
+    /**
      * Set type
      *
      * @param string $type
@@ -123,6 +130,29 @@ class Weapon extends Stuff
     }
 
     /**
+     * Set rule
+     *
+     * @param string $rule
+     * @return Equipement
+     */
+    public function setRule($rule)
+    {
+        $this->rule = $rule;
+
+        return $this;
+    }
+
+    /**
+     * Get rule
+     *
+     * @return string
+     */
+    public function getRule()
+    {
+        return $this->rule;
+    }
+
+    /**
      * Get armorPenetration
      *
      * @return string
@@ -132,10 +162,34 @@ class Weapon extends Stuff
         return $this->armorPenetration;
     }
 
+    /**
+     * getDescription
+     *
+     * @access public
+     * @return string
+     */
     public function getDescription()
     {
-        return 'P ' . $this->getRange() . ' - ' .
-            'F ' . $this->getStrenght() . ' - ' .
-            'PA ' . $this->getArmorPenetration();
+        $desc = '';
+
+        if ($this->getRange()) {
+            $desc .= 'P ' . $this->getRange() . ' - ';
+        }
+
+        if ($this->getStrenght()) {
+            $desc .= 'F ' . $this->getStrenght() . ' - ';
+        }
+
+        if ($this->getArmorPenetration()) {
+            $desc .= 'PA ' . $this->getArmorPenetration() . ' - ';
+        }
+
+        if ($this->getRule()) {
+            $desc .= $this->getArmorPenetration() . ' - ';
+        }
+
+        $desc = substr($desc, 0, -3);
+
+        return $desc;
     }
 }

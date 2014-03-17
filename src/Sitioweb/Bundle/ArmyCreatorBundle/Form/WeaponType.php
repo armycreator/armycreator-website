@@ -15,7 +15,8 @@ class WeaponType extends AbstractType
             ->add('type', null, ['required' => false])
             ->add('range', null, ['required' => false])
             ->add('strenght', null, ['required' => false])
-            ->add('armorPenetration', null, ['required' => false]);
+            ->add('armorPenetration', null, ['required' => false])
+            ->add('rule', null, ['required' => false]);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
