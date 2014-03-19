@@ -25,18 +25,18 @@
         </p>
     </form>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path("admin_breed_unit", params) }}">
-            {{ "breed.back_to_breed"|trans }}
-        </a>
-    </li>
-    <li>
-        <form action="{{ path("unit_delete", params + { "id": unit.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">{{ "button.delete"|trans }}</button>
-        </form>
-    </li>
-</ul>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path("admin_breed_unit", params) }}">
+                {{ "breed.back_to_breed"|trans }}
+            </a>
+        </li>
+        <li>
+            <form action="{{ path("unit_delete", params + { "id": unit.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button type="submit">{{ "button.delete"|trans }}</button>
+            </form>
+        </li>
+    </ul>
 {% endblock %}

@@ -12,16 +12,16 @@
 <table class="record_properties">
     <tbody>
         <tr>
-            <th>Id</th>
+            <th>{{ "breed.attr.id"|trans }}</th>
             <td>{{ breed.id }}</td>
         </tr>
         <tr>
-            <th>Name</th>
+            <th>{{ "breed.attr.name"|trans }}</th>
             <td>{{ breed.name }}</td>
         </tr>
         <tr>
-            <th>Available</th>
-            <td>{{ breed.available ? "1" : "0" }}</td>
+            <th>{{ "breed.attr.available"|trans }}</th>
+            <td>{{ breed.available ? "yes"|trans : "no"|trans }}</td>
         </tr>
     </tbody>
 </table>

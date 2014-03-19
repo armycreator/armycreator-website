@@ -1,4 +1,3 @@
-breed.list.new: 'Nouvelle liste'
 army.detail:
     print: Imprimer
     pdf: PDF
@@ -134,35 +133,54 @@ breadcrumb:
     squad_link: 'Lier une unité'
     squad_link.select_stuff.%unit%: 'Sélectionner les équipements'
 army_list.group_list.no_group: 'aucun groupe'
-unit_type.edit.title: 'Éditer un titre'
-breed.show.pts.%pts%: '%pts% pts'
-breed.show.unitgroup.new: 'Nouveau group'
-breed.unittype.new: 'Nouveau type'
-breed.weapon_list.type: Type
-breed.weapon_list.range: Portée
-breed.weapon_list.strenght: Force
-breed.weapon_list.armorPenetration: 'Pénétration d''armure'
-breed.weapon_list.new: 'Nouvelle arme'
-breed.equipement_list.new: 'Nouvel équipement'
-breed.detail.edit: 'Éditer la race'
-breed.detail.back_to_game: 'Retour à la liste de race'
-breed.unit_list.new: 'Nouvelle unité'
+unit_type:
+    edit:
+        title: 'Éditer les %unitType%'
+    new:
+        title: 'Ajouter un type'
+breed:
+    attr:
+        available: Disponible
+        name: Nom
+        id: Id
+    back_to_breed: 'Retourner à la race'
+    detail:
+        edit: 'Éditer la race'
+        back_to_game: 'Retour à la liste de race'
+    edit:
+        title: 'Éditer la race'
+    equipement_list.new: 'Nouvel équipement'
+    list:
+        new: 'Nouvelle liste'
+        title: 'Liste de races'
+    new:
+        title: 'Nouvelle race'
+    show:
+        pts.%pts%: '%pts% pts'
+        unitgroup.new: 'Nouveau group'
+    unit_list:
+        new: 'Nouvelle unité'
+    unittype:
+        new: 'Nouveau type'
+    weapon_list:
+        type: Type
+        range: Portée
+        strenght: Force
+        armorPenetration: 'Pénétration d''armure'
+        new: 'Nouvelle arme'
+breed_group.list:
+    title: 'Tous les groupements de races'
+    new: 'Nouveau groupement de races'
 confirm.delete: 'Confirmer la suppression ?'
 game.list.edit: 'Éditer un jeu'
 game.list.new: 'Ajouter un jeu'
 game.edit.title: 'Édition d''un jeu'
 game.detail.delete: Supprimer
 button.create: Créer
-breed.back_to_breed: 'Retourner à la race'
 button.delete: Supprimer
-breed.list.title: 'Liste de races'
 button.edit: Éditer
 button.new_entry: 'Nouvelle entrée'
-breed.new.title: 'Nouvelle race'
-breed.edit.title: 'Éditer la race'
 default.back_to_list: 'Retourner à la liste'
-breed_group.list.title: 'Tous les groupements de races'
-breed_group.list.new: 'Nouveau groupement de races'
 default.new.title: Nouveau
 user.collection.remove: 'Supprimer de ma collection'
 user.collection.contains: 'Je possède cette race'
@@ -182,3 +200,5 @@ news:
     topic_replies: "[0,1]%reply_number% réponse|[1,Inf]%reply_number% réponses"
 
 on: 'le'
+yes: Oui
+no: Non

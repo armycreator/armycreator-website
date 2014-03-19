@@ -1,16 +1,18 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block content %}
-    <h1>UnitType creation</h1>
+{% block title %}
+    {{ "unit_type.new.title"|trans }}
+{% endblock %}
 
+{% block content %}
     <form
         action="{{ path("unittype_create", {"game": breed.game.code, "breed": breed.slug}) }}"
         method="post" {{ form_enctype(form) }}
         class="opaque"
     >
         {{ form_widget(form) }}
-        <p>
-            <button type="submit">{{ "button.create"|trans }}</button>
+        <p class="txtright">
+            <button class="acButton acButtonBig" type="submit">{{ "button.create"|trans }}</button>
         </p>
     </form>
 
@@ -21,4 +23,9 @@
         </a>
     </li>
 </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+     <script src="/bundles/sitiowebexternaljs/jscolor/jscolor.js"></script>
 {% endblock %}

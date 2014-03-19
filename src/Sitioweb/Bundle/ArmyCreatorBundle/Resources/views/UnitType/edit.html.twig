@@ -1,32 +1,38 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
 {% block title %}
-    {{ "unit_type.edit.title"|trans }}
+    {{ "unit_type.edit.title"|trans({"%unitType%": entity.name }) }}
 {% endblock %}
 
 {% block content %}
-    <h1>UnitType edit</h1>
-
     <form action="{{ path("unittype_update", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
         <input type="hidden" name="_method" value="PUT" />
         {{ form_widget(edit_form) }}
-        <p>
-            <button type="submit">Edit</button>
-        </p>
+        <div class="txtright">
+            <button class="acButton acButtonBig" type="submit">{{ "button.edit"|trans }}</button>
+        </div>
     </form>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path("admin_breed_unit", {"breed": breed.slug, "game": breed.game.code }) }}">
-            {{ "breed.back_to_breed"|trans }}
-        </a>
-    </li>
-    <li>
-        <form action="{{ path("unittype_delete", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
-            {{ form_widget(delete_form) }}
-            <button type="submit">{{ "button.delete"|trans }}</button>
-        </form>
-    </li>
-</ul>
+
+    <div class="txtright">
+        <div>
+            <a href="{{ path("admin_breed_unit", {"breed": breed.slug, "game": breed.game.code }) }}">
+                {{ "breed.back_to_breed"|trans }}
+            </a>
+        </div>
+        <div>
+            <form action="{{ path("unittype_delete", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <div class="txtright">
+                    <button class="acButton" type="submit">{{ "button.delete"|trans }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+     <script src="/bundles/sitiowebexternaljs/jscolor/jscolor.js"></script>
 {% endblock %}

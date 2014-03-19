@@ -29,3 +29,9 @@ Stuff: Arme/Équipement
 Points: Points
 Auto: Équipement de base
 Visible: Visible
+Available: Disponible
+New version: Nouvelle version
+Breed group: Catégorie
+Color: Couleur
+Position: Position
+Do not create unit group: "Ne pas créer le regroupement automatiquement (cette unité est \"liée\" à une autre dans un autre regroupement)"

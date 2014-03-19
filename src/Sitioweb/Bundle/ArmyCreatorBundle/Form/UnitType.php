@@ -13,7 +13,7 @@ class UnitType extends AbstractType
 {
     /**
      * breed
-     * 
+     *
      * @var Breed
      * @access private
      */
@@ -38,7 +38,7 @@ class UnitType extends AbstractType
                 'unitType',
                 null,
                 array(
-                    'property' => 'name', 
+                    'property' => 'name',
                     'required' => true,
                     'query_builder' => function(EntityRepository $er) {
                         return $er->createQueryBuilder('t')
@@ -65,7 +65,8 @@ class UnitType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit',
+            'translation_domain' => 'forms'
         ));
     }
 

@@ -11,7 +11,7 @@
 </form>
 
 <div class="txtright">
-    <a href="{{ path('admin_breed', { "game": entity.game.code }) }}" class="acButton">
+    <a href="{{ path('admin_breed_show', {  "breed": entity.slug, "game": entity.game.code }) }}" class="acButton">
         {{ "breed.back_to_breed"|trans }}
     </a>
 </div>

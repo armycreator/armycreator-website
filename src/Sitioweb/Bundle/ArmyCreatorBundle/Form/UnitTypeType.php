@@ -12,7 +12,7 @@ class UnitTypeType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('color')
+            ->add('color', 'text', [ 'attr' => [ 'class' => 'color'] ])
             ->add('position')
         ;
     }
@@ -20,7 +20,8 @@ class UnitTypeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType',
+            'translation_domain' => 'forms'
         ));
     }
 
