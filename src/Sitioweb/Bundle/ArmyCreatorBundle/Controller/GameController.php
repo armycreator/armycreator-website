@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use JMS\SecurityExtraBundle\Annotation\SecureParam;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -18,6 +19,8 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\GameType;
  * Game controller.
  *
  * @Route("/admin/game")
+ * @Breadcrumb("breadcrumb.home", route="homepage")
+ * @Breadcrumb("breadcrumb.admin.game.list", route="admin_game")
  */
 class GameController extends Controller
 {
@@ -53,6 +56,7 @@ class GameController extends Controller
      * Displays a form to create a new Game entity.
      *
      * @Route("/new", name="admin_game_new")
+     * @Breadcrumb("breadcrumb.admin.game.new", route="admin_game_new")
      * @Template()
      */
     public function newAction()
@@ -108,6 +112,7 @@ class GameController extends Controller
      * Displays a form to edit an existing Game entity.
      *
      * @Route("/{game}/edit", name="admin_game_edit")
+     * @Breadcrumb("{game.name}", route={"name"="admin_game_edit", "parameters"={"game" = "game.code"}})
      * @Template()
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @SecureParam(name="game", permissions="EDIT")

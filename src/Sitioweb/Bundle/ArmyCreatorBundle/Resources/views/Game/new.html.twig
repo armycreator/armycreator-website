@@ -1,20 +1,20 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block h1 %}Game creation{% endblock %}
+{% block title %}
+    {{ "game.list.new"|trans }}
+{% endblock %}
 
 {% block content %}
-<form action="{{ path('admin_game_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('admin_game_create') }}" method="post" {{ form_enctype(form) }} class="opaque">
     {{ form_widget(form) }}
-    <p>
-        <button type="submit">{{ "button.create"|trans }}</button>
+    <p class="txtright">
+        <button class="acButton acButtonBig" type="submit">{{ "button.create"|trans }}</button>
     </p>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_game') }}">
-            {{ "default.back_to_list"|trans }}
-        </a>
-    </li>
-</ul>
+<div>
+    <a href="{{ path('admin_game') }}">
+        {{ "default.back_to_list"|trans }}
+    </a>
+</div>
 {% endblock %}

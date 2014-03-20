@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use JMS\SecurityExtraBundle\Annotation\SecureParam;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -19,6 +20,9 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedType;
  * Breed controller.
  *
  * @Route("/admin/breed")
+ * @Breadcrumb("breadcrumb.home", route="homepage")
+ * @Breadcrumb("breadcrumb.admin.game.list", route="admin_game")
+ * @Breadcrumb("{game.name}")
  */
 class BreedController extends Controller
 {
@@ -46,6 +50,8 @@ class BreedController extends Controller
      * Finds and displays a Breed entity.
      *
      * @Route("/{game}/{breed}/unitGroup", name="admin_breed_unitgroup")
+     * @Breadcrumb("{breed.name}")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
@@ -71,6 +77,8 @@ class BreedController extends Controller
      * Finds and displays a Breed entity.
      *
      * @Route("/{game}/{breed}/unit", name="admin_breed_unit")
+     * @Breadcrumb("{breed.name}")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
@@ -99,10 +107,12 @@ class BreedController extends Controller
      * @access public
      * @return void
      * @Route("/{game}/{breed}/unitType", name="admin_breed_unittype")
+     * @Breadcrumb("{breed.name}")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
-    public function unitTypeAction(Breed $breed)
+    public function unitTypeAction(Game $game, Breed $breed)
     {
         return array('breed' => $breed);
     }
@@ -111,6 +121,8 @@ class BreedController extends Controller
      * Finds and displays a Breed entity.
      *
      * @Route("/{game}/{breed}/stuff", name="admin_breed_stuff")
+     * @Breadcrumb("{breed.name}")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
@@ -147,6 +159,7 @@ class BreedController extends Controller
      * Displays a form to create a new Breed entity.
      *
      * @Route("/{game}/new", name="admin_breed_new")
+     * @Breadcrumb("breadcrumb.admin.breed.new")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @Template()
      */
@@ -211,17 +224,20 @@ class BreedController extends Controller
     /**
      * Displays a form to edit an existing Breed entity.
      *
-     * @Route("/breed/{breed}/edit", name="admin_breed_edit")
+     * @Route("/{game}/{breed}/edit", name="admin_breed_edit")
+     * @Breadcrumb("{breed.name}")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
-    public function editAction(Breed $breed)
+    public function editAction(Game $game, Breed $breed)
     {
         $this->checkPermission($breed);
 
         $editForm = $this->createForm(new BreedType($breed->getGame()), $breed);
 
         return array(
+            'game' => $game,
             'entity'      => $breed,
             'edit_form'   => $editForm->createView(),
         );
@@ -230,7 +246,7 @@ class BreedController extends Controller
     /**
      * Edits an existing Breed entity.
      *
-     * @Route("/breed/{breed}/update", name="admin_breed_update")
+     * @Route("/{game}/{breed}/update", name="admin_breed_update")
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Breed:edit.html.twig")

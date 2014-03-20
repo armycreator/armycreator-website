@@ -22,7 +22,7 @@
     </tbody>
 </table>
 {% if ac_granted("EDIT", breed) %}
-    <a href="{{ path('admin_breed_edit', { "breed": breed.slug, "id": breed.id }) }}" class="acButton">
+    <a href="{{ path('admin_breed_edit', { "game": breed.game.code, "breed": breed.slug, "id": breed.id }) }}" class="acButton">
         {{ "breed.detail.edit"|trans }}
     </a>
 {% endif %}

@@ -9,6 +9,7 @@
             <th>Id</th>
             <th>Group</th>
             <th>Name</th>
+            <th>Nb Unit Group</th>
             <th>Available</th>
             <th>{{ "breed.list.new"|trans }}</th>
             <th>Actions</th>
@@ -24,11 +25,12 @@
                     {{ entity.name }}
                 </a>
             </td>
+            <td>{{ entity.unitGroupList.count() }}</td>
             <td>{{ entity.available ? "Yes" : "No" }}</td>
             <td>{{ entity.newVersion }}</td>
             <td>
                 {% if ac_granted('EDIT', entity) %}
-                    <a href="{{ path("admin_breed_edit", { "breed": entity.slug }) }}" class="acButton">
+                    <a href="{{ path("admin_breed_edit", { "game": game.code, "breed": entity.slug }) }}" class="acButton">
                         {{ "button.edit"|trans }}
                     </a>
                 {% endif %}
