@@ -274,25 +274,7 @@ class SquadLine
 
         usort(
             $squadLineStuffList,
-            function ($a, $b) {
-                $nDiff = $b->getNumber() - $a->getNumber();
-                if ($nDiff != 0) {
-                    return $nDiff;
-                }
-
-                $aStuff = $a->getUnitStuff()->getStuff();
-                $bStuff = $b->getUnitStuff()->getStuff();
-                if ($aStuff instanceof Weapon && $bStuff instanceof Equipement) {
-                    return -1;
-                } elseif ($bStuff instanceof Weapon && $aStuff instanceof Equipement) {
-                    return 1;
-                }
-
-                return strcmp(
-                    $aStuff->getName(),
-                    $bStuff->getName()
-                );
-            }
+            ['Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLineStuff', 'compare']
         );
 
         return $squadLineStuffList;
@@ -307,7 +289,7 @@ class SquadLine
      */
     public function getNoDefaultSquadLineStuffList()
     {
-        $squadLineStuffList = $this->getSquadLineStuffList();
+        $squadLineStuffList = $this->getOrderSquadLineStuffList();
         $list = array();
 
         foreach ($squadLineStuffList as $squadLineStuff) {

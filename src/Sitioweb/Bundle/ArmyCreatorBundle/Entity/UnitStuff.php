@@ -37,7 +37,7 @@ class UnitStuff
 
     /**
      * visible
-     * 
+     *
      * @var boolean
      * @access private
      *
@@ -47,7 +47,7 @@ class UnitStuff
 
     /**
      * unit
-     * 
+     *
      * @var Unit
      * @access private
 	 *
@@ -57,7 +57,7 @@ class UnitStuff
 
     /**
      * stuff
-     * 
+     *
      * @var Stuff
      * @access private
 	 *
@@ -67,7 +67,7 @@ class UnitStuff
 
     /**
      * squadLineStuffList
-     * 
+     *
      * @var array<SquadLineStuff>
      * @access private
      *
@@ -92,7 +92,7 @@ class UnitStuff
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -108,14 +108,14 @@ class UnitStuff
     public function setPoints($points)
     {
         $this->points = $points;
-    
+
         return $this;
     }
 
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {
@@ -131,14 +131,14 @@ class UnitStuff
     public function setAuto($auto)
     {
         $this->auto = $auto;
-    
+
         return $this;
     }
 
     /**
      * Get auto
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getAuto()
     {
@@ -154,14 +154,14 @@ class UnitStuff
     public function setUnit(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit $unit = null)
     {
         $this->unit = $unit;
-    
+
         return $this;
     }
 
     /**
      * Get unit
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\AbstractUnit
      */
     public function getUnit()
     {
@@ -177,14 +177,14 @@ class UnitStuff
     public function setStuff(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff $stuff = null)
     {
         $this->stuff = $stuff;
-    
+
         return $this;
     }
 
     /**
      * Get stuff
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff
      */
     public function getStuff()
     {
@@ -200,7 +200,7 @@ class UnitStuff
     public function addSquadLineStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLineStuff $squadLineStuffList)
     {
         $this->squadLineStuffList[] = $squadLineStuffList;
-    
+
         return $this;
     }
 
@@ -217,7 +217,7 @@ class UnitStuff
     /**
      * Get squadLineStuffList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSquadLineStuffList()
     {
@@ -233,17 +233,42 @@ class UnitStuff
     public function setVisible($visible)
     {
         $this->visible = $visible;
-    
+
         return $this;
     }
 
     /**
      * Get visible
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getVisible()
     {
         return $this->visible;
+    }
+
+    /**
+     * compare
+     *
+     * @param UnitStuff $a
+     * @param UnitStuff $b
+     * @static
+     * @access public
+     * @return int
+     */
+    public static function compare($a, $b)
+    {
+        $aStuff = $a->getStuff();
+        $bStuff = $b->getStuff();
+        if ($aStuff instanceof Weapon && $bStuff instanceof Equipement) {
+            return -1;
+        } elseif ($bStuff instanceof Weapon && $aStuff instanceof Equipement) {
+            return 1;
+        }
+
+        return strcmp(
+            $aStuff->getName(),
+            $bStuff->getName()
+        );
     }
 }

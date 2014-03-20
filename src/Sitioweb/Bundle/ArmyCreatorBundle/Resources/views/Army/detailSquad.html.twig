@@ -29,7 +29,7 @@
                 </h5>
                 {% if not(squadLine.squadLineStuffList is empty) %}
                     {% if preferences.showDefaultStuff %}{{- "" -}}
-                        {% set squadLineStuffList = squadLine.squadLineStuffList %}
+                        {% set squadLineStuffList = squadLine.orderSquadLineStuffList %}
                     {% else %}{{- "" -}}
                         {% set squadLineStuffList = squadLine.noDefaultSquadLineStuffList %}
                     {% endif %}{{- "" -}}

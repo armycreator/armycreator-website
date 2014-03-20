@@ -208,4 +208,34 @@ class SquadLineStuff
         }
         return $this;
     }
+
+    /**
+     * compare
+     *
+     * @param SquadLineStuff $a
+     * @param SquadLineStuff $b
+     * @static
+     * @access public
+     * @return int
+     */
+    public static function compare($a, $b)
+    {
+        $nDiff = $b->getNumber() - $a->getNumber();
+        if ($nDiff != 0) {
+            return $nDiff;
+        }
+
+        $aStuff = $a->getUnitStuff()->getStuff();
+        $bStuff = $b->getUnitStuff()->getStuff();
+        if ($aStuff instanceof Weapon && $bStuff instanceof Equipement) {
+            return -1;
+        } elseif ($bStuff instanceof Weapon && $aStuff instanceof Equipement) {
+            return 1;
+        }
+
+        return strcmp(
+            $aStuff->getName(),
+            $bStuff->getName()
+        );
+    }
 }

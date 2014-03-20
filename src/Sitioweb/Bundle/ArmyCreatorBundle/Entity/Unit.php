@@ -53,7 +53,7 @@ class Unit extends AbstractUnit
 
 	/**
 	 * unitStuffList
-	 * 
+	 *
 	 * @var array<UnitStuff>
 	 * @access private
 	 *
@@ -63,7 +63,7 @@ class Unit extends AbstractUnit
 
     /**
      * squadLineList
-     * 
+     *
      * @var array<SquadLine>
      * @access private
      *
@@ -97,14 +97,14 @@ class Unit extends AbstractUnit
     public function setCanModifyNumber($canModifyNumber)
     {
         $this->canModifyNumber = $canModifyNumber;
-    
+
         return $this;
     }
 
     /**
      * Get canModifyNumber
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getCanModifyNumber()
     {
@@ -120,7 +120,7 @@ class Unit extends AbstractUnit
     public function addUnitHasUnitGroupList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup $unitHasUnitGroupList)
     {
         $this->unitHasUnitGroupList[] = $unitHasUnitGroupList;
-    
+
         return $this;
     }
 
@@ -137,7 +137,7 @@ class Unit extends AbstractUnit
     /**
      * Get unitHasUnitGroupList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUnitHasUnitGroupList()
     {
@@ -153,7 +153,7 @@ class Unit extends AbstractUnit
     public function addChildrenList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $childrenList)
     {
         $this->childrenList[] = $childrenList;
-    
+
         return $this;
     }
 
@@ -170,7 +170,7 @@ class Unit extends AbstractUnit
     /**
      * Get childrenList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getChildrenList()
     {
@@ -186,14 +186,14 @@ class Unit extends AbstractUnit
     public function setParent(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit $parent = null)
     {
         $this->parent = $parent;
-    
+
         return $this;
     }
 
     /**
      * Get parent
      *
-     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit 
+     * @return Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit
      */
     public function getParent()
     {
@@ -209,7 +209,7 @@ class Unit extends AbstractUnit
     public function addUserHasUnitList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit $userHasUnitList)
     {
         $this->userHasUnitList[] = $userHasUnitList;
-    
+
         return $this;
     }
 
@@ -226,7 +226,7 @@ class Unit extends AbstractUnit
     /**
      * Get userHasUnitList
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUserHasUnitList()
     {
@@ -242,7 +242,7 @@ class Unit extends AbstractUnit
     public function addUnitStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff $unitStuffList)
     {
         $this->unitStuffList[] = $unitStuffList;
-    
+
         return $this;
     }
 
@@ -259,11 +259,32 @@ class Unit extends AbstractUnit
     /**
      * Get unitStuffList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUnitStuffList()
     {
         return $this->unitStuffList;
+    }
+
+    /**
+     * getOrderUnitStuffList
+     *
+     * @access public
+     * @return array
+     */
+    public function getOrderUnitStuffList()
+    {
+        $unitStuffList = $this->getUnitStuffList();
+        if (!is_array($unitStuffList)) {
+            $unitStuffList = $unitStuffList->toArray();
+        }
+
+        usort(
+            $unitStuffList,
+            ['Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff', 'compare']
+        );
+
+        return $unitStuffList;
     }
 
     /**
@@ -275,7 +296,7 @@ class Unit extends AbstractUnit
     public function addSquadLineList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLineList)
     {
         $this->squadLineList[] = $squadLineList;
-    
+
         return $this;
     }
 
@@ -292,11 +313,10 @@ class Unit extends AbstractUnit
     /**
      * Get squadLineList
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSquadLineList()
     {
         return $this->squadLineList;
     }
-
 }
