@@ -1,24 +1,24 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block content %}
-    <h1>Equipement creation</h1>
+{% block title %}
+    {{ "equipement.new.title"|trans }}
+{% endblock %}
 
+{% block content %}
     {% set breed = app.request.get("breed") %}
     {% set game = breed.game %}
     {% set params = {"game": game.code, "breed": breed.slug} %}
 
     <form action="{{ path("equipement_create", params) }}" method="post" {{ form_enctype(form) }} class="opaque">
         {{ form_widget(form) }}
-        <p>
-            <button type="submit">{{ "button.create"|trans }}</button>
+        <p class="txtright">
+            <button class="acButton acButtonBig" type="submit">{{ "button.create"|trans }}</button>
         </p>
     </form>
 
-        <ul class="record_actions">
-    <li>
+    <div>
         <a href="{{ path("admin_breed_stuff", params) }}">
             {{ "breed.back_to_breed"|trans }}
         </a>
-    </li>
-</ul>
+    </div>
 {% endblock %}

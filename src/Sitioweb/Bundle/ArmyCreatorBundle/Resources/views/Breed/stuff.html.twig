@@ -7,12 +7,13 @@
 
 <div class="row">
     <div class="stuffList">
-        <h2>Weapon List</h2>
+        <h2>{{ "breed.stuff.weapon_list"|trans }}</h2>
 
         {% block weapon_new %}
             {% if ac_granted("EDIT", breed) %}
                 <aside class="txtright">
                     <a href="{{ path("weapon_new", params) }}" title="{{ "breed.weapon_list.new"|trans }}" class="acButton">
+                        <i class="el-icon-plus"></i>
                         {{ "breed.weapon_list.new"|trans }}
                     </a>
                 </aside>
@@ -62,12 +63,13 @@
     </div>
 
     <div class="stuffList">
-        <h2>Equipement List</h2>
+        <h2>{{ "breed.stuff.equipement_list"|trans }}</h2>
 
         {% block equipement_new %}
             {% if ac_granted("EDIT", breed) %}
                 <aside class="txtright">
                     <a href="{{ path("equipement_new", params) }}" title="{{ "breed.equipement_list.new"|trans }}" class="acButton">
+                        <i class="el-icon-plus"></i>
                         {{ "breed.equipement_list.new"|trans }}
                     </a>
                 </aside>

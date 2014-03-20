@@ -12,14 +12,15 @@ class EquipementType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
+            ->add('description', null, ['attr' => ['rows' => 5, 'cols' => 150]])
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Equipement'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Equipement',
+            'translation_domain' => 'forms'
         ));
     }
 

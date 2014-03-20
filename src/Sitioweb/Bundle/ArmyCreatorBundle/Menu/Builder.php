@@ -104,6 +104,13 @@ class Builder extends ContainerAware
             )
         );
         $menu->addChild(
+            'breed_show.menu.stuff',
+            array(
+                'route' => 'admin_breed_stuff',
+                'routeParameters' => $routeParameters
+            )
+        );
+        $menu->addChild(
             'breed_show.menu.unit_list',
             array(
                 'route' => 'admin_breed_unit',
@@ -114,13 +121,6 @@ class Builder extends ContainerAware
             'breed_show.menu.unitgroup',
             array(
                 'route' => 'admin_breed_unitgroup',
-                'routeParameters' => $routeParameters
-            )
-        );
-        $menu->addChild(
-            'breed_show.menu.stuff',
-            array(
-                'route' => 'admin_breed_stuff',
                 'routeParameters' => $routeParameters
             )
         );

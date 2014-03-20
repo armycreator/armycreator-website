@@ -1,8 +1,10 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block content %}
-    <h1>UnitStuff creation</h1>
+{% block title %}
+    {{ "unit_stuff.new.title"|trans({"%unit%": form.unit.vars.data.name}) }}
+{% endblock %}
 
+{% block content %}
     {% set breed = app.request.get("breed") %}
     {% set game = breed.game %}
     {% set params = {"game": game.code, "breed": breed.slug} %}

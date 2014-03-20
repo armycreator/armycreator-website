@@ -13,7 +13,7 @@ class UnitGroupType extends AbstractType
 {
     /**
      * breed
-     * 
+     *
      * @var Breed
      * @access private
      */
@@ -50,7 +50,8 @@ class UnitGroupType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup',
+            'translation_domain' => 'forms'
         ));
     }
 

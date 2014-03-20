@@ -1,8 +1,10 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
-{% block content %}
-    <h1>Unit edit</h1>
+{% block title %}
+    {{ "unit.edit.title"|trans({"%unit%": unit.name }) }}
+{% endblock %}
 
+{% block content %}
     {% set breed = app.request.get("breed") %}
     {% set game = breed.game %}
     {% set params = {"game": game.code, "breed": breed.slug} %}
@@ -20,23 +22,21 @@
 
             {{ form_widget(edit_form) }}
         </div>
-        <p>
-            <button type="submit">Edit</button>
+        <p class="txtright">
+            <button class="acButton acButtonBig" type="submit">{{ "button.edit"|trans }}</button>
         </p>
     </form>
 
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path("admin_breed_unit", params) }}">
-                {{ "breed.back_to_breed"|trans }}
-            </a>
-        </li>
-        <li>
-            <form action="{{ path("unit_delete", params + { "id": unit.id }) }}" method="post">
-                <input type="hidden" name="_method" value="DELETE" />
-                {{ form_widget(delete_form) }}
-                <button type="submit">{{ "button.delete"|trans }}</button>
-            </form>
-        </li>
-    </ul>
+    <div class="right">
+        <form action="{{ path("unit_delete", params + { "id": unit.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button class="acButton" type="submit">{{ "button.delete"|trans }}</button>
+        </form>
+    </div>
+    <div>
+        <a href="{{ path("admin_breed_unit", params) }}">
+            {{ "breed.back_to_breed"|trans }}
+        </a>
+    </div>
 {% endblock %}

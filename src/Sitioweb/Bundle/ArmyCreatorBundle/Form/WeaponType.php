@@ -22,7 +22,8 @@ class WeaponType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Weapon'
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Weapon',
+            'translation_domain' => 'forms'
         ));
     }
 

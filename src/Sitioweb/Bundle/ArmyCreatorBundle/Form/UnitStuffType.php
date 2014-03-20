@@ -72,11 +72,14 @@ class UnitStuffType extends AbstractType
                                 ->setParameter('breed', $this->breed);
                     }
                 )
-             )
+             );
 
-             ->add('create', 'submit')
-             ->add('createAndAdd', 'submit')
-        ;
+        if ($options['data']->getId()) {
+             $builder->add('edit', 'submit');
+        } else {
+             $builder->add('create', 'submit')
+                 ->add('createAndAdd', 'submit');
+        }
     }
 
     /**

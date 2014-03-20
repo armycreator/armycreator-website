@@ -133,11 +133,36 @@ breadcrumb:
     squad_link: 'Lier une unité'
     squad_link.select_stuff.%unit%: 'Sélectionner les équipements'
 army_list.group_list.no_group: 'aucun groupe'
+unit:
+    edit:
+        title: 'Éditer %unit%'
+    new:
+        title: 'Ajouter une unité'
+unit_group:
+    edit:
+        title: 'Éditer le groupe %unitGroup%'
+    new:
+        title: 'Ajouter un groupe'
 unit_type:
     edit:
         title: 'Éditer les %unitType%'
     new:
         title: 'Ajouter un type'
+weapon:
+    edit:
+        title: 'Éditer %weapon%'
+    new:
+        title: 'Ajouter une arme'
+equipement:
+    edit:
+        title: 'Éditer %equipement%'
+    new:
+        title: 'Ajouter un équipement'
+unit_stuff:
+    edit:
+        title: 'Éditer %stuff% à %unit%'
+    new:
+        title: 'Ajouter un équipemement à %unit%'
 breed:
     attr:
         available: Disponible
@@ -157,7 +182,10 @@ breed:
         title: 'Nouvelle race'
     show:
         pts.%pts%: '%pts% pts'
-        unitgroup.new: 'Nouveau group'
+        unitgroup.new: 'Nouveau groupe'
+    stuff:
+        weapon_list: 'Les armes'
+        equipement_list: 'Les équipements'
     unit_list:
         new: 'Nouvelle unité'
     unittype:
