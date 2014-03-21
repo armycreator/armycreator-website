@@ -48,6 +48,7 @@
                 <th>{{ "army.list.breed"|trans }}
                 <th>{{ "army.list.points"|trans }}
                 <th>{{ "army.list.name"|trans }}
+                <th>{{ "army.list.squad_number"|trans }}
                 <th class="hide-mobile">{{ "army.list.status"|trans }}
                 <th class="hide-mobile">{{ "army.list.created_date"|trans }}
                 <th class="hide-mobile">{{ "army.list.updated_date"|trans }}
@@ -68,7 +69,8 @@
                             {{ army.name }}
                         </a>
                     </td>
-                    <td class="hide-mobile">{{ army.status }}
+                    <td>{{ army.squadList.count() }}
+                    <td class="hide-mobile">{{ army.status|trans({}, 'forms') }}
                     <td class="hide-mobile">
                         {% if army.createDate %}
                             {{ army.createDate|format_datetime }}
@@ -84,6 +86,15 @@
                             <i class="el-icon-pencil"></i>
                             {{ "army.list.edit"|trans }}
                         </a>
+
+                        <form action="{{ path('army_clone', { 'slug': army.slug }) }}" method="post" class="inbl">
+                            {% set cloneArmyForm = cloneArmyListForm[army.id] %}
+                            {{ form_widget(cloneArmyForm.createView) }}
+                            <button class="acButton" type="submit" onclick="return confirm('{{ "army.list.clone_confirm"|trans }}');">
+                                <i class="el-icon-repeat"></i>
+                                {{ "army.list.clone"|trans }}
+                            </button>
+                        </form>
 
                         <form action="{{ path('army_delete', { 'slug': army.slug }) }}" method="post" class="inbl">
                             {% set deleteArmyForm = deleteArmyListForm[army.id] %}

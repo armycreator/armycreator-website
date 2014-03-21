@@ -12,7 +12,7 @@
 
         {% block flashes %}
             {% for key, message in app.session.getFlashes() %}
-                <div class="{{ key }}">
+                <div class="alert alert-{{ key }}">
                     {{ message }}
                 </div>
             {% endfor %}

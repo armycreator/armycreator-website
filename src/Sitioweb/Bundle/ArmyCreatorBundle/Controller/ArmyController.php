@@ -107,12 +107,14 @@ class ArmyController extends Controller
         $deleteArmyListForm = array();
         foreach ($armyList as $army) {
             $deleteArmyListForm[$army->getId()] = $this->createDeleteForm($army->getId());
+            $cloneArmyListForm[$army->getId()] = $this->createCloneForm($army->getId());
         }
 
         return array(
             'group' => $group,
             'groupId' => $groupId,
             'armyList' => $armyList,
+            'cloneArmyListForm' => $cloneArmyListForm,
             'deleteArmyListForm' => $deleteArmyListForm,
             'deleteGroupForm' => $deleteGroupForm
         );
@@ -274,8 +276,9 @@ class ArmyController extends Controller
         $army->generatePoints();
         $em->flush();
 
-        // delete form
+        // forms
         $deleteForm = $this->createDeleteForm($army->getId());
+        $cloneForm = $this->createCloneForm($army->getId());
 
         $squadList = $army->getSquadList();
         $deleteSquadListForm = array();
@@ -298,23 +301,9 @@ class ArmyController extends Controller
                 'externalUser' => $externalUser,
                 'unitTypeList' => $unitTypeList,
                 'deleteSquadListForm' => $deleteSquadListForm,
-                'deleteForm' => $deleteForm->createView()
+                'deleteForm' => $deleteForm->createView(),
+                'cloneForm' => $cloneForm->createView()
         );
-    }
-
-    /**
-     * createDeleteForm
-     *
-     * @param int $id
-     * @access private
-     * @return void
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
     }
 
     /**
@@ -511,6 +500,71 @@ class ArmyController extends Controller
     }
 
     /**
+     * cloneAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/{slug}/clone", name="army_clone")
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
+     * @Template()
+     */
+    public function cloneAction(Army $army)
+    {
+        if ($this->getUser() != $army->getUser()) {
+            throw new AccessDeniedException('Only the owner can clone an army');
+        }
+
+        $form = $this->createCloneForm($army->getId());
+        $form->bind($this->get('request'));
+
+        if (!$form->isValid()) {
+            $msg = $this->get('translator')->trans('army.fork.error_message');
+            $this->get('session')->getFlashBag()->add('warning', $msg);
+            return $this->redirect($this->generateUrl('army_list'));
+        }
+
+        $em = $this->get('doctrine')->getManager();
+        $clone = clone $army;
+        $clone->setId(null)
+            ->setSlug(null)
+            ->setName($army->getName() . ' ' . $this->get('translator')->trans('army.fork.append'));
+
+        $squadList = $army->getSquadList();
+        foreach ($squadList as $squad) {
+            $squadClone = clone $squad;
+            $squadClone->setId(null);
+            $squadClone->setArmy($clone);
+
+            $squadLineList = $squad->getSquadLineList();
+            foreach ($squadLineList as $squadLine) {
+                $squadLineClone = clone $squadLine;
+                $squadLineClone->setId(null);
+                $squadLineClone->setSquad($squadClone);
+
+                $squadLineStuffList = $squadLine->getSquadLineStuffList();
+                foreach ($squadLineStuffList as $squadLineStuff) {
+                    $squadLineStuffClone = clone $squadLineStuff;
+                    $squadLineStuffClone->setId(null);
+                    $squadLineStuffClone->setSquadLine($squadLineClone);
+
+                    $em->persist($squadLineStuffClone);
+                }
+
+                $em->persist($squadLineClone);
+            }
+
+            $em->persist($squadClone);
+        }
+
+
+        $em->persist($clone);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('army_detail', array('slug' => $clone->getSlug())));
+    }
+
+    /**
      * getUserPreference
      *
      * @access private
@@ -529,5 +583,35 @@ class ArmyController extends Controller
         } else {
             return new UserPreference;
         }
+    }
+
+    /**
+     * createDeleteForm
+     *
+     * @param int $id
+     * @access private
+     * @return void
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
+    }
+
+    /**
+     * createCloneForm
+     *
+     * @param int $id
+     * @access private
+     * @return void
+     */
+    private function createCloneForm($id)
+    {
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm()
+        ;
     }
 }

@@ -191,24 +191,20 @@ class SquadController extends Controller
 
         // squad line list
         $squadLineList = $squad->getSquadLineList();
-        $newSquadLineList = [];
         foreach ($squadLineList as $squadLine) {
             $tmpSquadLine = clone $squadLine;
             $tmpSquadLine->setId(null)
                 ->setSquad($newSquad);
             $em->persist($tmpSquadLine);
-            $newSquadLineList[] = $tmpSquadLine;
 
             // squad line stuff list
             $squadLineStuffList = $squadLine->getSquadLineStuffList();
-            $newSquadLineStuffList = [];
             foreach ($squadLineStuffList as $squadLineStuff) {
                 $tmpSquadLineStuff = clone $squadLineStuff;
                 $tmpSquadLineStuff->setId(null)
                     ->setSquadLine($tmpSquadLine);
-                $em->persist($tmpSquadLineStuff);
 
-                $newSquadLineStuffList[] = $tmpSquadLineStuff;
+                $em->persist($tmpSquadLineStuff);
             }
         }
 

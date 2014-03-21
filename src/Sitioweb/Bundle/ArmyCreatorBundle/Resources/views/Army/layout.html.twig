@@ -70,22 +70,38 @@
             {{ army.name }} |
             {{ army.breed.name }}
 
-            <a href="{{ path('army_edit', { 'slug' : army.slug }) }}" class="acButton acButtonSmall">
-                <i class="el-icon-pencil"></i>
-            </a>
+            {% if not(externalUser) %}
+            <a href="{{ path('army_edit', { 'slug' : army.slug }) }}" class="acButton acButtonSmall" title="{{ "army.list.edit"|trans }}">
+                    <i class="el-icon-pencil"></i>
+                </a>
 
-            {% if deleteForm is defined %}
-                <form
-                    action="{{ path('army_delete', { 'slug': army.slug }) }}"
-                    method="post"
-                    class="inbl"
-                    onsubmit="javascript:return confirm('{% trans %}army.detail.delete{% endtrans %}');"
-                >
-                    {{ form_widget(deleteForm) }}
-                    <button type="submit" class="acButton acButtonSmall">
-                        <i class="el-icon-remove"></i>
-                    </button>
-                </form>
+                {% if cloneForm is defined %}
+                    <form
+                        action="{{ path('army_clone', { 'slug': army.slug }) }}"
+                        method="post"
+                        class="inbl"
+                        onsubmit="javascript:return confirm('{% trans %}army.list.clone_confirm{% endtrans %}');"
+                    >
+                        {{ form_widget(deleteForm) }}
+                        <button type="submit" class="acButton acButtonSmall" title="{{ "army.list.clone"|trans }}">
+                            <i class="el-icon-remove"></i>
+                        </button>
+                    </form>
+                {% endif %}
+
+                {% if deleteForm is defined %}
+                    <form
+                        action="{{ path('army_delete', { 'slug': army.slug }) }}"
+                        method="post"
+                        class="inbl"
+                        onsubmit="javascript:return confirm('{% trans %}army.detail.delete{% endtrans %}');"
+                    >
+                        {{ form_widget(deleteForm) }}
+                        <button type="submit" class="acButton acButtonSmall" title="{{ "army.list.delete"|trans }}">
+                            <i class="el-icon-remove"></i>
+                        </button>
+                    </form>
+                {% endif %}
             {% endif %}
         </h1>
 

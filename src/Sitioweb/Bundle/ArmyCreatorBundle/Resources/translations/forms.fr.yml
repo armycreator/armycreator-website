@@ -18,8 +18,8 @@ Color squad: 'Couleur des escouades'
 Color squad detail: 'Couleur du détail des escouades'
 Number: Nombre
 Unit type: 'Type d''unité'
-Draft: Brouillon
-Finish: Terminé
+draft: Brouillon
+finish: Terminé
 Show stuff points: 'Afficher les points des équipements'
 Submit: Valider
 Create: Créer

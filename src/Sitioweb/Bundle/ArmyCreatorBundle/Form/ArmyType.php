@@ -25,7 +25,7 @@ class ArmyType extends AbstractType
                 'status',
                 'choice',
                 array(
-                    'choices' => array('draft' => 'Draft', 'finish' => 'Finish'),
+                    'choices' => array('draft' => 'draft', 'finish' => 'finish'),
                     'required' => true,
                     'expanded' => true,
                 )

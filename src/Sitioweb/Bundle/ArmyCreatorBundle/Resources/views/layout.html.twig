@@ -24,7 +24,7 @@
             {% block flashes %}
                 {% for key, messageList in app.session.flashbag.all %}
                     {% for message in messageList %}
-                        <div class="{{ key }}">
+                        <div class="alert alert-{{ key }}">
                             {{ message }}
                         </div>
                     {% endfor %}

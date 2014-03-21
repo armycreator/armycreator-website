@@ -1,52 +1,63 @@
-army.detail:
-    print: Imprimer
-    pdf: PDF
-    bb_code: BBCode
-    share: Partager
-    authorize_share: Cette liste est visible publiquement
-    delete: Supprimer
-    pts.%pts%: '%pts% pts'
-    wanted_pts.%pts%: '%pts% pts'
-    squad:
+army:
+    detail:
+        print: Imprimer
+        pdf: PDF
+        bb_code: BBCode
+        share: Partager
+        authorize_share: Cette liste est visible publiquement
         delete: Supprimer
-        add: 'Ajouter une escouade'
-        add_ally_fortress: 'Ajouter allié / forteresse'
-    preferences: préférences
-    toggle_stuff: "équipements"
-    show_all_stuff: "Afficher tous les équipements"
-    hide_all_stuff: "Masquer tous les équipements"
-    missing_units: 'Vous ne possédez pas autant d''unite'
-army.bbcode.apply: Appliquer
-army.bbcode.apply_and_save: 'Appliquer + enregistrer'
-army.bbcode.title: BBCode
-army.bb_code.points: points
-army.bbcode.back_to_army: 'Retour à l''armée'
-army.bbcode.select_all: 'Tout sélectionner'
-army.new.title: 'Nouvelle armée'
-army.new.create: Créer
-army.new.back_to_list: 'Retour aux listes'
-army.list.title: 'Listes d''armée'
-army.list.group.edit: 'Editer le groupe'
-army.list.group.delete: 'Supprimer le groupe'
-army.list.no_group: 'Aucun groupe'
+        pts.%pts%: '%pts% pts'
+        wanted_pts.%pts%: '%pts% pts'
+        squad:
+            delete: Supprimer
+            add: 'Ajouter une escouade'
+            add_ally_fortress: 'Ajouter allié / forteresse'
+        preferences: préférences
+        toggle_stuff: "équipements"
+        show_all_stuff: "Afficher tous les équipements"
+        hide_all_stuff: "Masquer tous les équipements"
+        missing_units: 'Vous ne possédez pas autant d''unite'
+    bbcode:
+        apply: Appliquer
+        apply_and_save: 'Appliquer + enregistrer'
+        title: BBCode
+        back_to_army: 'Retour à l''armée'
+        select_all: 'Tout sélectionner'
+    bb_code.points: points
+    new:
+        title: 'Nouvelle armée'
+        create: Créer
+        back_to_list: 'Retour aux listes'
+    list:
+        title: 'Listes d''armée'
+        group.edit: 'Editer le groupe'
+        group.delete: 'Supprimer le groupe'
+        no_group: 'Aucun groupe'
+        new: 'Nouvelle liste'
+        breed: Race
+        points: Points
+        name: Nom
+        status: Statut
+        created_date: Création
+        updated_date: 'Mise à jour'
+        actions: Actions
+        edit: Editer
+        delete_confirm: 'Confirmez-vous la suppression ?'
+        delete: Supprimer
+        clone: Cloner
+        clone_confirm: Cloner ?
+        squad_number: 'Nb escouades'
+    edit:
+        title: Editer
+        edit: Editer
+        back_to_army_list: 'Retour aux listes'
+        delete: Supprimer
+    fork:
+        append: '(copie)'
+        error_message: 'Une erreur est survenue durant la copie de l''armée. Veuillez réessayer ultérieurement. Si le probleme persiste, merci de le signaler dans la section Bugs du forum.'
 army_list.group_list.last_armies: 'Dernieres listes'
 army_list.group_list.all_armies: 'toutes mes listes'
 '{0} army_list.group.army_number.zero|{1} army_list.group.army_number.one|]1,Inf] army_list.group.army_number.%count%': "{0} aucune armée|{1} une armée|]1,Inf] %count% armées"
-army.list.new: 'Nouvelle liste'
-army.list.breed: Race
-army.list.points: Points
-army.list.name: Nom
-army.list.status: Statut
-army.list.created_date: Création
-army.list.updated_date: 'Mise à jour'
-army.list.actions: Actions
-army.list.edit: Editer
-army.list.delete_confirm: 'Confirmez-vous la suppression ?'
-army.list.delete: Supprimer
-army.edit.title: Editer
-army.edit.edit: Editer
-army.edit.back_to_army_list: 'Retour aux listes'
-army.edit.delete: Supprimer
 home:
     hello.%username%: 'Bonjour %username%'
     things_to_do:
