@@ -347,7 +347,8 @@ class User extends BaseUser
                 $aut = $a->getUnit()->getUnitType();
                 $but = $b->getUnit()->getUnitType();
                 if ($aut == $but) {
-                    return strcmp($a->getUnit()->getName(), $b->getUnit()->getName());
+                    $collator = new \Collator('fr');
+                    return $collator->compare($a->getUnit()->getName(), $b->getUnit()->getName());
                 }
 
                 return $aut->getPosition() - $but->getPosition();

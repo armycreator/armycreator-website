@@ -233,9 +233,7 @@ class SquadLineStuff
             return 1;
         }
 
-        return strcmp(
-            $aStuff->getName(),
-            $bStuff->getName()
-        );
+        $collator = new \Collator('fr');
+        return $collator->compare($aStuff->getName(), $bStuff->getName());
     }
 }
