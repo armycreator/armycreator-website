@@ -1,30 +1,95 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
 {% block title %}
-    {{ "army.edit.title"|trans }}
+    {% if entity.id %}
+        {{ "army.edit.title"|trans }}
+    {% else %}
+        {{ "army.new.title"|trans }}
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-<form action="{{ path('army_update', { 'slug': entity.slug }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
-    {{ form_widget(edit_form) }}
-    <div class="txtright">
-        <button type="submit" class="acButton acButtonBig">{{ "army.edit.edit"|trans }}</button>
-    </div>
-</form>
+    {% if entity.id %}
+        {% set path = path('army_update', { 'slug': entity.slug }) %}
+    {% else %}
+        {% set path = path('army_create') %}
+    {% endif %}
+    <form action="{{ path }}" method="post" {{ form_enctype(form) }} class="opaque">
+        <div>
+            {{ form_row(form.breed) }}
 
-<div class="txtright">
-    <a href="{{ path('army_detail', {'slug' : entity.slug }) }}" class="acButton">
-        {{ "army.edit.back_to_army_list"|trans }}
-    </a>
-    <form
-        action="{{ path('army_delete', { 'slug': entity.slug }) }}"
-        method="post"
-        class="inbl"
-        onsubmit="javascript:return confirm('{% trans %}army.detail.delete{% endtrans %}');"
-    >
-        {{ form_widget(delete_form) }}
-        <button type="submit" class="acButton">{{ "army.edit.delete"|trans }}</button>
+            {% if app.user.preferedBreedList %}
+                <div>
+                    <ul class="inline inlineBig">
+                        {% for tmpBreed in app.user.preferedBreedList[:10] %}
+                            {% if tmpBreed.newVersion %}
+                                {% set currentBreed = tmpBreed.newVersion %}
+                            {% else %}
+                                {% set currentBreed = tmpBreed %}
+                            {% endif %}
+
+                            <li>
+                                <a href="#" data-breed-id="{{ currentBreed.id }}"{% if currentBreed == form.breed.vars.data %} class="soft"{% endif %}>
+                                    <figure class="breed">
+                                        {{ breedImage(currentBreed)|raw }}
+
+                                        <figcaption>
+                                            {{ currentBreed.name }}
+
+                                            {% if tmpBreed.newVersion %}
+                                                <hr />
+                                                <span data-breed-id="{{ tmpBreed.id }}"{% if tmpBreed == form.breed.vars.data %} class="soft"{% endif %}>
+                                                    {{ tmpBreed.name }}
+                                                </span>
+                                            {% endif %}
+                                        </figcaption>
+                                    </figure>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {{ form_rest(form) }}
+        </div>
+
+        <div class="txtright">
+            {% if entity.id %}
+                <button type="submit" class="acButton acButtonBig">{{ "army.edit.edit"|trans }}</button>
+            {% else %}
+                <a href="{{ path('army_list') }}" class="acButton">
+                    {{ "army.new.back_to_list"|trans }}
+                </a>
+                <button type="submit" class="acButton acButtonBig">{{ "army.new.create"|trans }}</button>
+            {% endif %}
+        </div>
     </form>
-</ul>
+
+    {% if entity.id %}
+        <div class="txtright">
+            <a href="{{ path('army_detail', {'slug' : entity.slug }) }}" class="acButton">
+                {{ "army.edit.back_to_army_list"|trans }}
+            </a>
+            <form
+                action="{{ path('army_delete', { 'slug': entity.slug }) }}"
+                method="post"
+                class="inbl"
+                onsubmit="javascript:return confirm('{% trans %}army.detail.delete{% endtrans %}');"
+            >
+                {{ form_widget(delete_form) }}
+                <button type="submit" class="acButton">{{ "army.edit.delete"|trans }}</button>
+            </form>
+        </div>
+    {% endif %}
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+            '@SitiowebArmyCreatorBundle/Resources/public/js/army-new.js'
+            output='js/army-new.js'
+        %}
+             <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

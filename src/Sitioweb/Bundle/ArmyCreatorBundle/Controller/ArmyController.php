@@ -310,7 +310,7 @@ class ArmyController extends Controller
      * Displays a form to create a new Army entity.
      *
      * @Route("/action/new", name="army_new")
-     * @Template()
+     * @Template("SitiowebArmyCreatorBundle:Army:edit.html.twig")
      * @Breadcrumb("breadcrumb.army_new")
      */
     public function newAction()
@@ -327,6 +327,7 @@ class ArmyController extends Controller
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'delete_form' => null
         );
     }
 
@@ -403,7 +404,7 @@ class ArmyController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
