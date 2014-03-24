@@ -357,4 +357,36 @@ class User extends BaseUser
 
         return $list;
     }
+
+    public function getPreferedBreedList()
+    {
+        if (!isset($this->preferedBreedList)) {
+            $armyList = $this->getArmyList();
+
+            $breedScore = [];
+            $breedList = [];
+            $i = 1;
+            foreach ($armyList as $army) {
+                $breed = $army->getBreed();
+                $breedId = $breed->getId();
+                if (isset($breedScore[$breedId])) {
+                    $breedScore[$breedId] += $i;
+                } else {
+                    $breedScore[$breedId] = $i;
+                }
+                $breedList[$breedId] = $breed;
+                $i ++;
+            }
+
+            arsort($breedScore);
+
+            $this->preferedBreedList = [];
+            $breedScoreKeyList = array_keys($breedScore);
+            foreach ($breedScoreKeyList as $breedScoreKey) {
+                $this->preferedBreedList[] = $breedList[$breedScoreKey];
+            }
+        }
+
+        return $this->preferedBreedList;
+    }
 }

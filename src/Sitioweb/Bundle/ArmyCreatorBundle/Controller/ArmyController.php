@@ -317,6 +317,11 @@ class ArmyController extends Controller
     {
         $entity = new Army();
         $entity->setStatus('draft');
+        $preferedBreedList = $this->getUser()->getPreferedBreedList();
+        if ($preferedBreedList) {
+            $entity->setBreed($preferedBreedList[0]);
+        }
+
         $form   = $this->createForm(new ArmyType($this->getUser()), $entity);
 
         return array(

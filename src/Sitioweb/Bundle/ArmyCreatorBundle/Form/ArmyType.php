@@ -22,19 +22,6 @@ class ArmyType extends AbstractType
     {
         $builder
             ->add(
-                'status',
-                'choice',
-                array(
-                    'choices' => array('draft' => 'draft', 'finish' => 'finish'),
-                    'required' => true,
-                    'expanded' => true,
-                )
-            )
-            ->add('name', null, array('required' => false))
-            ->add('description')
-            ->add('wantedPoints', null, array('required' => false))
-            ->add('isShared', null, array('required' => false))
-            ->add(
                 'breed',
                 null,
                 array(
@@ -47,6 +34,9 @@ class ArmyType extends AbstractType
                     }
                 )
             )
+            ->add('name', null, array('required' => false))
+            ->add('description',null, ['attr' => ['rows' => 3, 'cols' => 50]])
+            ->add('wantedPoints', null, array('required' => false))
             ->add(
                 'armyGroup',
                 null,
@@ -58,9 +48,17 @@ class ArmyType extends AbstractType
                                 ->setParameter('user', $this->user);
                     }
                 )
+            )
+            ->add('isShared', null, array('required' => false))
+            ->add(
+                'status',
+                'choice',
+                array(
+                    'choices' => array('draft' => 'draft', 'finish' => 'finish'),
+                    'required' => true,
+                    'expanded' => true,
+                )
             );
-
-        ;
     }
 
     public function setUser(User $user)
