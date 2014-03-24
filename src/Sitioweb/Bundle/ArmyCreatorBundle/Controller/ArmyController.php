@@ -561,6 +561,13 @@ class ArmyController extends Controller
         $em->persist($clone);
         $em->flush();
 
+        // dispatch event
+        $this->get('event_dispatcher')
+            ->dispatch(
+                'armycreator.event.army.clone',
+                new GameEvent($army->getBreed()->getGame())
+            );
+
         return $this->redirect($this->generateUrl('army_detail', array('slug' => $clone->getSlug())));
     }
 

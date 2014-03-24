@@ -175,6 +175,8 @@ m6_statsd:
                     increment: "armycreator.army.<gameCode>.new"
                 armycreator.event.army.update:
                     increment: "armycreator.army.<gameCode>.update"
+                armycreator.event.army.clone:
+                    increment: "armycreator.army.<gameCode>.clone"
                 armycreator.event.army.delete:
                     increment: "armycreator.army.<gameCode>.delete"
                 armycreator.event.squad_line.link:
