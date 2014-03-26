@@ -1,0 +1,64 @@
+{% extends "SitiowebArmyCreatorBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ "exception.title"|trans({ "%statusText%": status_text }) }}
+{% endblock %}
+
+{% block body %}
+    <header id="websiteHeader">
+        {% block websiteHeaderBar %}
+            <div class="headerBar">
+                <a href="{{ path('homepage') }}" title="Army Creator">
+                    <i class="el-icon-home"></i>
+                </a>
+                <span class="hide-mobile">
+                    |
+                    {{ "header.welcome"|trans }}
+                </span>
+            </div>
+        {% endblock %}
+
+        {% block websiteHeader %}
+            <div class="logo"></div>
+        {% endblock %}
+<nav id="websiteNav" role="navigation" tabindex="0">
+            <div class="left">
+                <ul>
+                    <li class="current first">
+                        <a href="/"><span>{{ "main_menu.home"|trans }}</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        {% block websiteNav %}
+        {% endblock %}
+    </header>
+
+	<div id="websiteContentContainer">
+        <div id="websiteContent">
+            {% block h1Container %}
+                <h1>{% block h1 %}{{ block('title') }}{% endblock %}</h1>
+            {% endblock %}
+
+            {% block flashes %}
+                {% for key, messageList in app.session.flashbag.all %}
+                    {% for message in messageList %}
+                        <div class="alert alert-{{ key }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endblock %}
+
+            {% block content %}
+                <h2>{{ "exception.sub_title"|trans({ "%statusCode%": status_code, "%statusText%": status_text }) }}</h2>
+
+                <div>
+                    {{ "exception.description"|trans({ "%email%": "olynk@w40karmycreator.com" }) }}
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+
+    {% include "SitiowebArmyCreatorBundle::footer.html.twig" %}
+{% endblock %}

@@ -247,3 +247,8 @@ news:
 on: 'le'
 yes: Oui
 no: Non
+
+exception:
+    title: 'Une erreur est survenue : %statusText%'
+    sub_title: 'Le serveur a retourné une erreur "%statusCode% %statusText%".'
+    description: 'Quelque chose ne fonctionne pas normalement. Merci de m''envoyer un mail à %email% afin de m''indiquer ce que vous étiez en train de faire lorsque cela est arrivé. Je vais essayer de le corriger le plus rapidement possible. Désolé du dérangement causé.'

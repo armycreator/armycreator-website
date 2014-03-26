@@ -146,3 +146,8 @@ news:
     topic_replies: "[0,1]%reply_number% reply|[1,Inf]%reply_number% replies"
 
 on: 'on'
+
+exception:
+    title: 'An error occured: %statusText%'
+    sub_title: 'The server returned a "%statusCode% %statusText%".'
+    description: 'Something is broken. Please e-mail us at %email% and let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.'
