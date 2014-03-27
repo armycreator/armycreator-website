@@ -83,6 +83,8 @@ class DefaultController extends Controller
             }
         }
 
+        $sidParam = $this->container->getParameter('forum_sid');
+
         return $this->get('templating')
             ->render(
                 'SitiowebArmyCreatorBundle::header.html.twig',
@@ -91,6 +93,7 @@ class DefaultController extends Controller
                     'standalone' => true,
                     'moreCssList' => $cssList,
                     'moreJsList' => $jsList,
+                    'forumSid' => (isset($_COOKIE[$sidParam]) ? $_COOKIE[$sidParam] : null),
                 ]
             );
     }
