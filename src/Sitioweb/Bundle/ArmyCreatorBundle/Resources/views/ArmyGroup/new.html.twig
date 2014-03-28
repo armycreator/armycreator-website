@@ -3,18 +3,16 @@
 {% block title %}{{ "army_group.new.title"|trans }}{% endblock %}
 
 {% block content %}
-<form action="{{ path('army_group_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('army_group_create') }}" method="post" {{ form_enctype(form) }} class="opaque">
     {{ form_widget(form) }}
-    <p>
-        <button type="submit">{{ "army_group.new.create"|trans }}</button>
-    </p>
+    <div class="txtright">
+        <button type="submit" class="acButton acButtonBig">{{ "army_group.new.create"|trans }}</button>
+    </div>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('army_list') }}">
-            {{ "army_group.new.back_to_list"|trans }}
-        </a>
-    </li>
-</ul>
+<div class="txtright">
+    <a href="{{ path('army_list') }}" class="acButton">
+        {{ "army_group.new.back_to_list"|trans }}
+    </a>
+</div>
 {% endblock %}
