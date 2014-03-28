@@ -3,84 +3,87 @@
 {% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
 
 {% block breedContent %}
-{% set breed = app.request.get("breed") %}
-{% set game = breed.game %}
-{% set params = {"game": game.code, "breed": breed.slug} %}
+    {% set breed = app.request.get("breed") %}
+    {% set game = breed.game %}
+    {% set params = {"game": game.code, "breed": breed.slug} %}
+    <div class="help">
+        {{ "admin.help.unit"|trans }}
+    </div>
 
-{% for unitType in breed.unitTypeList %}
-    <section class="unitTypeList row" id="ut-{{ unitType.slug }}">
-        <h3 class="unitType mr1 pa1">
-            {{ unitTypeMacro.stick(unitType.color) }}
-            {{ unitType.name }}
-        </h3>
+    {% for unitType in breed.unitTypeList %}
+        <section class="unitTypeList row" id="ut-{{ unitType.slug }}">
+            <h3 class="unitType mr1 pa1">
+                {{ unitTypeMacro.stick(unitType.color) }}
+                {{ unitType.name }}
+            </h3>
 
-        <div class="squadListContainer">
-            <div class="squadList">
-                {% for unitGroup in unitType.unitGroupList %}
-                    <div class="squad">
-                        <div class="squadName">
-                            <h4>
-                                {{ unitGroup.name }}
-                                <span class="soft">
-                                    {% trans with { "%pts%":unitGroup.points } %}breed.show.pts.%pts%{% endtrans %}
-                                </span>
+            <div class="squadListContainer">
+                <div class="squadList">
+                    {% for unitGroup in unitType.unitGroupList %}
+                        <div class="squad">
+                            <div class="squadName">
+                                <h4>
+                                    {{ unitGroup.name }}
+                                    <span class="soft">
+                                        {% trans with { "%pts%":unitGroup.points } %}breed.show.pts.%pts%{% endtrans %}
+                                    </span>
+                                    {% if ac_granted("EDIT", breed) %}
+                                        <a href="{{ path("unitgroup_edit", params + { "unitGroupSlug": unitGroup.slug}) }}" class="acButton acButtonSmall">
+                                            <i class="el-icon-pencil"></i>
+                                        </a>
+                                        <form action="{{ path('unitgroup_delete', params + { "id": unitGroup.id}) }}" method="post" class="inbl">
+                                            <input type="hidden" name="_method" value="DELETE" />
+                                            {% set deleteForm = deleteUgFormList[unitGroup.id] %}
+                                            {{ form_widget(deleteForm.createView) }}
+                                            <button class="acButton acButtonSmall" type="submit" onclick="return confirm('{{ "confirm.delete"|trans }}');">
+                                                <i class="el-icon-remove"></i>
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                </h4>
+                            </div>
+                            <div>
+                                {% for unitHasUnitGroup in unitGroup.unitHasUnitGroupList %}
+                                    <div class="squadLine">
+                                        <h5>
+                                            {% if unitHasUnitGroup.mainUnit %}
+                                                <span class="el-icon-star soft"></span>
+                                            {% endif %}
+                                            {{ unitHasUnitGroup.unitNumber }}
+                                            {{ unitHasUnitGroup.unit.name }}
+                                            <span class="soft">
+                                                {% trans with { "%pts%":unitHasUnitGroup.unit.points } %}breed.show.pts.%pts%{% endtrans %}
+                                            </span>
+
+                                            {% if ac_granted("EDIT", breed) %}
+                                                <a href="{{ path("unithasunitgroup_edit", params + { "id": unitHasUnitGroup.id}) }}" class="acButton acButtonSmall">
+                                                    <i class="el-icon-pencil"></i>
+                                                </a>
+                                            {% endif %}
+                                        </h5>
+                                    </div>
+                                {% endfor %}
+
                                 {% if ac_granted("EDIT", breed) %}
-                                    <a href="{{ path("unitgroup_edit", params + { "unitGroupSlug": unitGroup.slug}) }}" class="acButton acButtonSmall">
-                                        <i class="el-icon-pencil"></i>
-                                    </a>
-                                    <form action="{{ path('unitgroup_delete', params + { "id": unitGroup.id}) }}" method="post" class="inbl">
-                                        <input type="hidden" name="_method" value="DELETE" />
-                                        {% set deleteForm = deleteUgFormList[unitGroup.id] %}
-                                        {{ form_widget(deleteForm.createView) }}
-                                        <button class="acButton acButtonSmall" type="submit" onclick="return confirm('{{ "confirm.delete"|trans }}');">
-                                            <i class="el-icon-remove"></i>
-                                        </button>
-                                    </form>
+                                    <div class="squadLine">
+                                        <a href="{{ path("unithasunitgroup_new", params + {"group": unitGroup.slug}) }}" class="acButton">
+                                            <i class="el-icon-plus"></i>
+                                        </a>
+                                    </div>
                                 {% endif %}
-                            </h4>
+                            </div>
                         </div>
-                        <div>
-                            {% for unitHasUnitGroup in unitGroup.unitHasUnitGroupList %}
-                                <div class="squadLine">
-                                    <h5>
-                                        {% if unitHasUnitGroup.mainUnit %}
-                                            <span class="el-icon-star soft"></span>
-                                        {% endif %}
-                                        {{ unitHasUnitGroup.unitNumber }}
-                                        {{ unitHasUnitGroup.unit.name }}
-                                        <span class="soft">
-                                            {% trans with { "%pts%":unitHasUnitGroup.unit.points } %}breed.show.pts.%pts%{% endtrans %}
-                                        </span>
-
-                                        {% if ac_granted("EDIT", breed) %}
-                                            <a href="{{ path("unithasunitgroup_edit", params + { "id": unitHasUnitGroup.id}) }}" class="acButton acButtonSmall">
-                                                <i class="el-icon-pencil"></i>
-                                            </a>
-                                        {% endif %}
-                                    </h5>
-                                </div>
-                            {% endfor %}
-
-                            {% if ac_granted("EDIT", breed) %}
-                                <div class="squadLine">
-                                    <a href="{{ path("unithasunitgroup_new", params + {"group": unitGroup.slug}) }}" class="acButton">
-                                        <i class="el-icon-plus"></i>
-                                    </a>
-                                </div>
-                            {% endif %}
+                    {% endfor %}
+                    {% if ac_granted("EDIT", breed) %}
+                        <div class="squad">
+                            <a href="{{ path("unitgroup_new", { "breed": breed.slug, "game": breed.game.code, "unitTypeSlug": unitType.slug}) }}" class="acButton">
+                                <i class="el-icon-plus"></i>
+                                {{ "breed.show.unitgroup.new"|trans }}
+                            </a>
                         </div>
-                    </div>
-                {% endfor %}
-                {% if ac_granted("EDIT", breed) %}
-                    <div class="squad">
-                        <a href="{{ path("unitgroup_new", { "breed": breed.slug, "game": breed.game.code, "unitTypeSlug": unitType.slug}) }}" class="acButton">
-                            <i class="el-icon-plus"></i>
-                            {{ "breed.show.unitgroup.new"|trans }}
-                        </a>
-                    </div>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    </section>
-{% endfor %}
+        </section>
+    {% endfor %}
 {% endblock %}

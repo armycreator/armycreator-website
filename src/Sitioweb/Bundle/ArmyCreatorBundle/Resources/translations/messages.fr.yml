@@ -1,3 +1,9 @@
+admin:
+    help:
+        unit_type: "Créer ici les types d'unités de votre armée. Ex: QG, Troupe, Héro, Unités spéciales, etc."
+        stuff: "Créer ici tout l'arsenal de votre armée. Mettez uniquement les armes dans la catégorie \"arme\". Vous pouvez préfixer les équipements d'un caractere spécial pour séparer par exemple les pouvoir psy."
+        unit: "Une unité correspond à une figurine, avec ses équipements et sa valeur unitaire en points."
+        unit_group: "Un groupe d'unités correspond à une \"escouade\", qui regroupe un certain nombre d'unités. Une escouade peut avoir un surcoût. Ex: Escouade A: 30pts + le coût des unités."
 army:
     detail:
         print: Imprimer

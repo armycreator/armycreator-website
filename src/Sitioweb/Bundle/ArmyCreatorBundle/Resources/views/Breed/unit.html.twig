@@ -3,79 +3,82 @@
 {% import "SitiowebArmyCreatorBundle:UnitType:macro.html.twig" as unitTypeMacro %}
 
 {% block breedContent %}
-{% set breed = app.request.get("breed") %}
-{% set game = breed.game %}
-{% set params = {"game": game.code, "breed": breed.slug} %}
+    {% set breed = app.request.get("breed") %}
+    {% set game = breed.game %}
+    {% set params = {"game": game.code, "breed": breed.slug} %}
+    <div class="help">
+        {{ "admin.help.unit"|trans }}
+    </div>
 
-{% for unitType in breed.unitTypeList %}
-    <section class="unitTypeList row" id="ut-{{ unitType.slug }}">
-        <h3 class="unitType mr1 pa1">
-            {{ unitTypeMacro.stick(unitType.color) }}
-            {{ unitType.name }}
-        </h3>
+    {% for unitType in breed.unitTypeList %}
+        <section class="unitTypeList row" id="ut-{{ unitType.slug }}">
+            <h3 class="unitType mr1 pa1">
+                {{ unitTypeMacro.stick(unitType.color) }}
+                {{ unitType.name }}
+            </h3>
 
-        <div class="squadListContainer">
-            <div class="squadList">
-                {% for unit in unitType.unitList %}
-                    <div class="squad">
-                        <div class="squadName">
-                            <h4>
-                                {{ unit.name }}
-                                <span class="soft">
-                                    {% trans with { "%pts%":unit.points } %}breed.show.pts.%pts%{% endtrans %}
-                                </span>
+            <div class="squadListContainer">
+                <div class="squadList">
+                    {% for unit in unitType.unitList %}
+                        <div class="squad">
+                            <div class="squadName">
+                                <h4>
+                                    {{ unit.name }}
+                                    <span class="soft">
+                                        {% trans with { "%pts%":unit.points } %}breed.show.pts.%pts%{% endtrans %}
+                                    </span>
+                                    {% if ac_granted("EDIT", breed) %}
+                                        <a href="{{ path("unit_edit", params + { "unit": unit.slug}) }}" class="acButton acButtonSmall">
+                                            <i class="el-icon-pencil"></i>
+                                        </a>
+
+                                        <form action="{{ path('unit_delete', params + { "id": unit.id}) }}" method="post" class="inbl">
+                                            <input type="hidden" name="_method" value="DELETE" />
+                                            {% set deleteForm = deleteUnitFormList[unit.id] %}
+                                            {{ form_widget(deleteForm.createView) }}
+                                            <button class="acButton acButtonSmall" type="submit" onclick="return confirm('{{ "confirm.delete"|trans }}');">
+                                                <i class="el-icon-remove"></i>
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                </h4>
+                            </div>
+                            <div>
+                                {% for unitStuff in unit.orderUnitStuffList %}
+                                    {% if unitStuff.stuff %}
+                                        <div class="squadLine">
+                                            {{ unitStuff.stuff.name }}
+                                            <span class="soft">
+                                                {% trans with { "%pts%":unitStuff.points } %}breed.show.pts.%pts%{% endtrans %}
+                                            </span>
+                                            {% if ac_granted("EDIT", breed) %}
+                                                <a href="{{ path("unitstuff_edit", params + { "id": unitStuff.id}) }}" class="acButton acButtonSmall">
+                                                    <i class="el-icon-pencil"></i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                                 {% if ac_granted("EDIT", breed) %}
-                                    <a href="{{ path("unit_edit", params + { "unit": unit.slug}) }}" class="acButton acButtonSmall">
-                                        <i class="el-icon-pencil"></i>
-                                    </a>
-
-                                    <form action="{{ path('unit_delete', params + { "id": unit.id}) }}" method="post" class="inbl">
-                                        <input type="hidden" name="_method" value="DELETE" />
-                                        {% set deleteForm = deleteUnitFormList[unit.id] %}
-                                        {{ form_widget(deleteForm.createView) }}
-                                        <button class="acButton acButtonSmall" type="submit" onclick="return confirm('{{ "confirm.delete"|trans }}');">
-                                            <i class="el-icon-remove"></i>
-                                        </button>
-                                    </form>
-                                {% endif %}
-                            </h4>
-                        </div>
-                        <div>
-                            {% for unitStuff in unit.orderUnitStuffList %}
-                                {% if unitStuff.stuff %}
                                     <div class="squadLine">
-                                        {{ unitStuff.stuff.name }}
-                                        <span class="soft">
-                                            {% trans with { "%pts%":unitStuff.points } %}breed.show.pts.%pts%{% endtrans %}
-                                        </span>
-                                        {% if ac_granted("EDIT", breed) %}
-                                            <a href="{{ path("unitstuff_edit", params + { "id": unitStuff.id}) }}" class="acButton acButtonSmall">
-                                                <i class="el-icon-pencil"></i>
-                                            </a>
-                                        {% endif %}
+                                        <a href="{{ path("unitstuff_new", params + {"unit": unit.slug}) }}" class="acButton">
+                                            <i class="el-icon-plus"></i>
+                                        </a>
                                     </div>
                                 {% endif %}
-                            {% endfor %}
-                            {% if ac_granted("EDIT", breed) %}
-                                <div class="squadLine">
-                                    <a href="{{ path("unitstuff_new", params + {"unit": unit.slug}) }}" class="acButton">
-                                        <i class="el-icon-plus"></i>
-                                    </a>
-                                </div>
-                            {% endif %}
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-                {% if ac_granted("EDIT", breed) %}
-                    <div class="squad">
-                        <a href="{{ path("unit_new", params + {"unitTypeSlug":unitType.slug}) }}" title="{{ "breed.unit_list.new"|trans }}" class="acButton">
-                            <i class="el-icon-plus"></i>
-                            {{ "breed.unit_list.new"|trans }}
-                        </a>
-                    </div>
-                {% endif %}
+                    {% endfor %}
+                    {% if ac_granted("EDIT", breed) %}
+                        <div class="squad">
+                            <a href="{{ path("unit_new", params + {"unitTypeSlug":unitType.slug}) }}" title="{{ "breed.unit_list.new"|trans }}" class="acButton">
+                                <i class="el-icon-plus"></i>
+                                {{ "breed.unit_list.new"|trans }}
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    </section>
-{% endfor %}
+        </section>
+    {% endfor %}
 {% endblock %}
