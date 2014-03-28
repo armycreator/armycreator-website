@@ -23,16 +23,11 @@ class ArmyType extends AbstractType
         $builder
             ->add(
                 'breed',
-                null,
-                array(
+                'armybreed',
+                [
                     'required' => true,
-                    'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('b')
-                                ->where('b.available = :available')
-                                ->add('orderBy', 'b.name ASC')
-                                ->setParameter('available', true);
-                    }
-                )
+                    'preferred_choices' => array_slice($this->user->getPreferedBreedList(), 0, 10)
+                ]
             )
             ->add('name', null, array('required' => false))
             ->add('description',null, ['attr' => ['rows' => 3, 'cols' => 50]])
