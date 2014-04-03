@@ -35,7 +35,6 @@ class AppKernel extends Kernel
             new Sitioweb\Bundle\ExternalJsBundle\SitiowebExternalJsBundle(),
             new Sitioweb\Bundle\DiceBundle\SitiowebDiceBundle(),
             new Sitioweb\Bundle\AclBundle\SitiowebAclBundle(),
-            new Jdeniau\StatsdListenerBundle\JdeniauStatsdListenerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

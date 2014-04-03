@@ -147,16 +147,17 @@ m6_statsd:
         default:
             address: 'udp://localhost'
             port: 8125
+    base_collectors: true
     clients:
         default:
             servers: ['default']
-            events: 
+            events:
+                kernel.terminate:
+                    increment: "website.page_view"
                 statsd.memory_usage:
                     gauge: "website.memory"
                 statsd.time:
                     timing: "website.time"
-                kernel.terminate:
-                    increment: "website.page_view"
                 statsd.exception:
                     increment: "website.exception.<value>"
                 armycreator.event.collection.contains:
