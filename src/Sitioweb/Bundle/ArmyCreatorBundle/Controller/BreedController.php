@@ -22,7 +22,6 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedType;
  * @Route("/admin/breed")
  * @Breadcrumb("breadcrumb.home", route="homepage")
  * @Breadcrumb("breadcrumb.admin.game.list", route="admin_game")
- * @Breadcrumb("{game.name}")
  */
 class BreedController extends Controller
 {
@@ -43,6 +42,8 @@ class BreedController extends Controller
             $url = $this->generateUrl('admin_breed_unitgroup', $params);
         }
 
+        $this->addBreadcrumb($game, $breed);
+
         return $this->redirect($url);
     }
 
@@ -50,12 +51,11 @@ class BreedController extends Controller
      * Finds and displays a Breed entity.
      *
      * @Route("/{game}/{breed}/unitGroup", name="admin_breed_unitgroup")
-     * @Breadcrumb("{breed.name}")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
-    public function unitGroupAction(Breed $breed)
+    public function unitGroupAction(Game $game, Breed $breed)
     {
         $unitTypeList = $breed->getUnitTypeList();
 
@@ -67,6 +67,8 @@ class BreedController extends Controller
             }
         }
 
+        $this->addBreadcrumb($game, $breed);
+
         return array(
             'breed' => $breed,
             'deleteUgFormList' => $deleteUgFormList,
@@ -77,12 +79,11 @@ class BreedController extends Controller
      * Finds and displays a Breed entity.
      *
      * @Route("/{game}/{breed}/unit", name="admin_breed_unit")
-     * @Breadcrumb("{breed.name}")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
-    public function unitAction(Breed $breed)
+    public function unitAction(Game $game, Breed $breed)
     {
         $unitList = $this->get('doctrine')
                         ->getRepository('SitiowebArmyCreatorBundle:Unit')
@@ -92,6 +93,8 @@ class BreedController extends Controller
         foreach ($unitList as $unit) {
             $deleteUnitFormList[$unit->getId()] = $this->createDeleteForm($unit->getId());
         }
+
+        $this->addBreadcrumb($game, $breed);
 
         return array(
             'breed' => $breed,
@@ -107,13 +110,14 @@ class BreedController extends Controller
      * @access public
      * @return void
      * @Route("/{game}/{breed}/unitType", name="admin_breed_unittype")
-     * @Breadcrumb("{breed.name}")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
     public function unitTypeAction(Game $game, Breed $breed)
     {
+        $this->addBreadcrumb($game, $breed);
+
         return array('breed' => $breed);
     }
 
@@ -121,12 +125,11 @@ class BreedController extends Controller
      * Finds and displays a Breed entity.
      *
      * @Route("/{game}/{breed}/stuff", name="admin_breed_stuff")
-     * @Breadcrumb("{breed.name}")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
      */
-    public function stuffAction(Breed $breed)
+    public function stuffAction(Game $game, Breed $breed)
     {
         $weaponList = $this->get('doctrine')
                         ->getRepository('SitiowebArmyCreatorBundle:Weapon')
@@ -146,6 +149,8 @@ class BreedController extends Controller
             $equipementDeleteList[$equipement->getId()] = $this->createDeleteForm($equipement->getId());
         }
 
+        $this->addBreadcrumb($game, $breed);
+
         return array(
             'breed' => $breed,
             'weaponList' => $weaponList,
@@ -159,7 +164,6 @@ class BreedController extends Controller
      * Displays a form to create a new Breed entity.
      *
      * @Route("/{game}/new", name="admin_breed_new")
-     * @Breadcrumb("breadcrumb.admin.breed.new")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @Template()
      */
@@ -173,6 +177,9 @@ class BreedController extends Controller
         $entity = new Breed();
         $entity->setGame($game);
         $form   = $this->createForm(new BreedType($game), $entity);
+
+        $this->addBreadcrumb($game);
+        $this->get("apy_breadcrumb_trail")->add('breadcrumb.admin.breed.new');
 
         return array(
             'entity' => $entity,
@@ -225,7 +232,6 @@ class BreedController extends Controller
      * Displays a form to edit an existing Breed entity.
      *
      * @Route("/{game}/{breed}/edit", name="admin_breed_edit")
-     * @Breadcrumb("{breed.name}")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template()
@@ -235,6 +241,8 @@ class BreedController extends Controller
         $this->checkPermission($breed);
 
         $editForm = $this->createForm(new BreedType($breed->getGame()), $breed);
+
+        $this->addBreadcrumb($game, $breed);
 
         return array(
             'game' => $game,
@@ -247,6 +255,7 @@ class BreedController extends Controller
      * Edits an existing Breed entity.
      *
      * @Route("/{game}/{breed}/update", name="admin_breed_update")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Breed:edit.html.twig")
@@ -347,5 +356,29 @@ class BreedController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+
+    /**
+     * addBreadcrumb
+     *
+     * @access private
+     * @return void
+     */
+    private function addBreadcrumb(Game $game, Breed $breed = null)
+    {
+        // Breadcrumb
+        $this->get("apy_breadcrumb_trail")->add(
+            $game->getName(),
+            'admin_breed',
+            ['game' =>  $game->getCode()]
+        );
+
+        if ($breed) {
+            $this->get("apy_breadcrumb_trail")->add(
+                $breed->getName(),
+                'admin_breed_show',
+                ['game' =>  $game->getCode(), 'breed' => $breed->getSlug()]
+            );
+        }
     }
 }
