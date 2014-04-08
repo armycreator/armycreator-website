@@ -596,7 +596,6 @@ class Army
 
     public function getUnitNumber(Unit $unit)
     {
-        $key = $unit->getId();
         if (!isset($this->wantedUnitList)) {
             $squadList = $this->getSquadList();
             foreach ($squadList as $squad) {
@@ -611,7 +610,7 @@ class Army
             }
         }
 
-        return $this->wantedUnitList[$key];
+        return $this->wantedUnitList[$unit->getId()];
     }
 
     /**
