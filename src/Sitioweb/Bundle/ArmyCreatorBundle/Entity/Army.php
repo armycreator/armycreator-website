@@ -434,19 +434,26 @@ class Army
      */
     public function getSquadListByType()
     {
-        if (is_null($this->squadListByType)) {
+        if (null === $this->squadListByType) {
             $squadList = $this->getSquadList();
 
             $unitTypeList = $this->getBreed()->getUnitTypeList()->toArray();
+            $externalUnitTypeList = [];
 
             foreach ($squadList as $squad) {
                 $tmpUnitType = $squad->getUnitType();
 
                 // add external breed unit types
                 if (!in_array($tmpUnitType, $unitTypeList)) {
-                    $unitTypeList[] = $tmpUnitType;
+                    $externalUnitTypeList[] = $tmpUnitType;
                 }
             }
+            usort(
+                $externalUnitTypeList,
+                ['Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType', 'compare']
+            );
+
+            $unitTypeList = array_merge($unitTypeList, $externalUnitTypeList);
 
             foreach ($unitTypeList as $unitType) {
                 $tmpArray = array();

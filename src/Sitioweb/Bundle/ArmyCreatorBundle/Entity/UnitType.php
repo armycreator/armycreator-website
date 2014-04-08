@@ -396,4 +396,23 @@ class UnitType
     {
         return $this->squadList;
     }
+
+    /**
+     * compare
+     *
+     * @param UnitStuff $a
+     * @param UnitStuff $b
+     * @static
+     * @access public
+     * @return int
+     */
+    public static function compare(UnitType $a, UnitType $b)
+    {
+        if ($a->getPosition() < $b->getPosition()) {
+            return -1;
+        } elseif ($b->getPosition() < $a->getPosition()) {
+            return 1;
+        }
+        return 0;
+    }
 }
