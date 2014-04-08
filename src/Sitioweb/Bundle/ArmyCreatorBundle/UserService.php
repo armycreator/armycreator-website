@@ -3,7 +3,9 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-
+use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Role\SwitchUserRole;
 
 class UserService
 {
@@ -53,7 +55,8 @@ class UserService
                 throw new \LogicException('The SecurityBundle is not registered in your application.');
             }
 
-            if (null === $token = $container->get('security.context')->getToken()) {
+            $token = $container->get('security.context')->getToken();
+            if (null === $token) {
                 return null;
             }
             $currentUser = $token->getUser();
@@ -62,7 +65,9 @@ class UserService
             }
             // end of inspiration
 
-            if ($user->data['is_registered']) {
+            $isOrinalToken = $this->isOriginalToken($token);
+
+            if ($user->data['is_registered'] && $isOrinalToken) {
                 if (!$currentUser || $user->data['user_id'] != $currentUser->getForumId()) {
                     $currentUser = $container->get('fos_user.user_manager')->findUserByEmail($user->data['user_email']);
                     if (!$currentUser) {
@@ -85,17 +90,52 @@ class UserService
                     $container->get('fos_user.user_manager')->updateUser($currentUser);
                     $container->get('fos_user.security.login_manager')->loginUser('main', $currentUser);
                 }
-                
+
 
                 return $currentUser;
+            } elseif (!$isOriginalToken) {
+                return $token->getUser();
             } elseif ($currentUser) {
-                $anonymousToken = new \Symfony\Component\Security\Core\Authentication\Token\AnonymousToken('main', 'anon.');
+                $anonymousToken = new AnonymousToken('main', 'anon.');
                 $container->get('security.context')->setToken($anonymousToken);
-                
-                return $container->get('security.context')->getToken()->getUser();
+
+                return $token->getUser();
                 //$this->get('fos_user.security.login_manager')->loginUser('main', null);
             }
         }
+    }
+
+    /**
+     * Gets the original Token from a switched one.
+     *
+     * @param TokenInterface $token A switched TokenInterface instance
+     *
+     * @return TokenInterface|false The original TokenInterface instance, false if the current TokenInterface is not switched
+     */
+    private function getOriginalToken(TokenInterface $token)
+    {
+        foreach ($token->getRoles() as $role) {
+            if ($role instanceof SwitchUserRole) {
+                return $role->getSource();
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * isOriginalToken
+     *
+     * @param TokenInterface $token
+     * @access private
+     * @return boolean
+     */
+    private function isOriginalToken(TokenInterface $token)
+    {
+        $originalToken = $this->getOriginalToken($token);
+        //ld($token, $originalToken);
+
+        return $originalToken === false || $token === $originalToken;
     }
 }
 
