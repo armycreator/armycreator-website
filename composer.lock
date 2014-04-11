@@ -7,17 +7,17 @@
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
-            "version": "v1.0",
+            "version": "v1.1",
             "target-dir": "APY/BreadcrumbTrailBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Abhoryo/APYBreadcrumbTrailBundle.git",
-                "reference": "ce649e64432e83b0482c3f07c1b5924f48a94093"
+                "reference": "54ed1b8c5f2604af37025e150fb67bf2dd2334f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Abhoryo/APYBreadcrumbTrailBundle/zipball/ce649e64432e83b0482c3f07c1b5924f48a94093",
-                "reference": "ce649e64432e83b0482c3f07c1b5924f48a94093",
+                "url": "https://api.github.com/repos/Abhoryo/APYBreadcrumbTrailBundle/zipball/54ed1b8c5f2604af37025e150fb67bf2dd2334f6",
+                "reference": "54ed1b8c5f2604af37025e150fb67bf2dd2334f6",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                 "fil ariane",
                 "symfony"
             ],
-            "time": "2013-12-19 17:47:37"
+            "time": "2014-04-08 12:29:53"
         },
         {
             "name": "doctrine/annotations",
@@ -732,12 +732,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "98953461473facd3bcb486b88cdd87bc5120b218"
+                "reference": "e4c000a9b19096be0135d0773b56f7c757c93542"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/98953461473facd3bcb486b88cdd87bc5120b218",
-                "reference": "98953461473facd3bcb486b88cdd87bc5120b218",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/e4c000a9b19096be0135d0773b56f7c757c93542",
+                "reference": "e4c000a9b19096be0135d0773b56f7c757c93542",
                 "shasum": ""
             },
             "require": {
@@ -792,7 +792,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-04-01 09:27:17"
+            "time": "2014-04-08 21:21:16"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1346,12 +1346,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "ff1a6e73e79c9f75c6a130d03b07f05c89fede63"
+                "reference": "7d9bcdc29b49c3fc671a9c22885176f0ffe034c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/ff1a6e73e79c9f75c6a130d03b07f05c89fede63",
-                "reference": "ff1a6e73e79c9f75c6a130d03b07f05c89fede63",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/7d9bcdc29b49c3fc671a9c22885176f0ffe034c5",
+                "reference": "7d9bcdc29b49c3fc671a9c22885176f0ffe034c5",
                 "shasum": ""
             },
             "require": {
@@ -1402,7 +1402,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-03-07 15:36:26"
+            "time": "2014-04-08 20:25:33"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -1574,12 +1574,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "5218e53cbc585e7f4a17610486c257592687471c"
+                "reference": "f2a5214034928d4c6849bc94cfd462ea832a50a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/5218e53cbc585e7f4a17610486c257592687471c",
-                "reference": "5218e53cbc585e7f4a17610486c257592687471c",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/f2a5214034928d4c6849bc94cfd462ea832a50a8",
+                "reference": "f2a5214034928d4c6849bc94cfd462ea832a50a8",
                 "shasum": ""
             },
             "require": {
@@ -1639,7 +1639,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2014-04-03 15:25:06"
+            "time": "2014-04-08 21:27:14"
         },
         {
             "name": "m6web/statsd",
@@ -1681,16 +1681,16 @@
         },
         {
             "name": "m6web/statsd-bundle",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/M6Web/StatsdBundle.git",
-                "reference": "4a358b8770fac0e9f6f01cefa46c02c853689a38"
+                "reference": "3d8f58171487b3b39f5a45aecb6d628e0d784c85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/M6Web/StatsdBundle/zipball/4a358b8770fac0e9f6f01cefa46c02c853689a38",
-                "reference": "4a358b8770fac0e9f6f01cefa46c02c853689a38",
+                "url": "https://api.github.com/repos/M6Web/StatsdBundle/zipball/3d8f58171487b3b39f5a45aecb6d628e0d784c85",
+                "reference": "3d8f58171487b3b39f5a45aecb6d628e0d784c85",
                 "shasum": ""
             },
             "require": {
@@ -1735,7 +1735,7 @@
                 "statsd",
                 "symfony"
             ],
-            "time": "2014-03-27 12:29:34"
+            "time": "2014-04-05 08:22:39"
         },
         {
             "name": "mjohnson/decoda",
@@ -1854,17 +1854,17 @@
         },
         {
             "name": "oneup/acl-bundle",
-            "version": "v0.10.0",
+            "version": "v0.10.1",
             "target-dir": "Oneup/AclBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/1up-lab/OneupAclBundle.git",
-                "reference": "de85915b49f53d9d6d811acfbd21c548ea761ed0"
+                "reference": "26afc93957504929d368ec962f2eff3c05a3cfa5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/1up-lab/OneupAclBundle/zipball/de85915b49f53d9d6d811acfbd21c548ea761ed0",
-                "reference": "de85915b49f53d9d6d811acfbd21c548ea761ed0",
+                "url": "https://api.github.com/repos/1up-lab/OneupAclBundle/zipball/26afc93957504929d368ec962f2eff3c05a3cfa5",
+                "reference": "26afc93957504929d368ec962f2eff3c05a3cfa5",
                 "shasum": ""
             },
             "require": {
@@ -1917,7 +1917,7 @@
                 "acl",
                 "security"
             ],
-            "time": "2014-03-01 15:03:52"
+            "time": "2014-04-10 15:38:12"
         },
         {
             "name": "phpoption/phpoption",
@@ -2550,17 +2550,17 @@
         },
         {
             "name": "symfony/swiftmailer-bundle",
-            "version": "v2.3.6",
+            "version": "v2.3.7",
             "target-dir": "Symfony/Bundle/SwiftmailerBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/SwiftmailerBundle.git",
-                "reference": "d272424f01656f9327198fd6c07a48499622d133"
+                "reference": "e98defd402f72e8b54a029ba4d3ac4cb51dc3577"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/d272424f01656f9327198fd6c07a48499622d133",
-                "reference": "d272424f01656f9327198fd6c07a48499622d133",
+                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/e98defd402f72e8b54a029ba4d3ac4cb51dc3577",
+                "reference": "e98defd402f72e8b54a029ba4d3ac4cb51dc3577",
                 "shasum": ""
             },
             "require": {
@@ -2603,20 +2603,20 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2014-04-03 07:36:17"
+            "time": "2014-04-05 17:15:52"
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "b70633f92ff71ef490af4c17e7ca3f3bf3d0f304"
+                "reference": "3199b2e0d194f71fe2e13c95768b2ef22206682b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/b70633f92ff71ef490af4c17e7ca3f3bf3d0f304",
-                "reference": "b70633f92ff71ef490af4c17e7ca3f3bf3d0f304",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/3199b2e0d194f71fe2e13c95768b2ef22206682b",
+                "reference": "3199b2e0d194f71fe2e13c95768b2ef22206682b",
                 "shasum": ""
             },
             "require": {
@@ -2718,7 +2718,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-02-12 19:27:03"
+            "time": "2014-04-04 10:27:02"
         },
         {
             "name": "twig/extensions",
