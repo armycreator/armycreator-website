@@ -26,13 +26,6 @@
             </form>
         {% endif %}
 
-        {% if group or groupId is sameas("0") or app.request.query.get('all') %}
-            <div class="right mt1">
-                {{ "army.list.filter"|trans }}
-                <input type="search" id="armylist-filter" />
-            </div>
-        {% endif %}
-
         <h2>
             {% if group %}
                 {{ group.name }}
@@ -46,6 +39,13 @@
             </span>
         </h2>
     </div>
+
+    {% if group or groupId is sameas("0") or app.request.query.get('all') %}
+        <div class="right mt1">
+            {{ "army.list.filter"|trans }}
+            <input type="search" id="armylist-filter" />
+        </div>
+    {% endif %}
 
     {{ block("createButton") }}
 
