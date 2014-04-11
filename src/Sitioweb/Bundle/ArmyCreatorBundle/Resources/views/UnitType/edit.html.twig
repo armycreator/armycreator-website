@@ -21,7 +21,11 @@
             </a>
         </div>
         <div>
-            <form action="{{ path("unittype_delete", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }) }}" method="post">
+            <form
+                action="{{ path("unittype_delete", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }) }}"
+                method="post"
+                onsubmit="javascript:return confirm('{% trans %}unit_type.edit.delete{% endtrans %}');"
+            >
                 <input type="hidden" name="_method" value="DELETE" />
                 {{ form_widget(delete_form) }}
                 <div class="txtright">

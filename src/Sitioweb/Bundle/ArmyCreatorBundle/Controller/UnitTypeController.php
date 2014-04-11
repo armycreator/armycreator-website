@@ -170,7 +170,7 @@ class UnitTypeController extends Controller
      * @Route("/{id}", name="unittype_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $id, Breed $breed)
     {
         if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
             throw new AccessDeniedException();
@@ -191,7 +191,11 @@ class UnitTypeController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('unittype'));
+        $url = $this->generateUrl(
+            'admin_breed_unittype',
+            ['game' => $breed->getGame()->getCode(), 'breed' => $breed->getSlug()]
+        );
+        return $this->redirect($url);
     }
 
     /**

@@ -26,6 +26,11 @@
             </form>
         {% endif %}
 
+        <div class="right mt1">
+            {{ "army.list.filter"|trans }}
+            <input type="search" id="armylist-filter" />
+        </div>
+
         <h2>
             {% if group %}
                 {{ group.name }}
@@ -65,7 +70,7 @@
                     </td>
                     <td>{{ army.points }}
                     <td>
-                        <a href="{{ path('army_detail', {'slug' : army.slug} ) }}">
+                        <a href="{{ path('army_detail', {'slug' : army.slug} ) }}" data-fuzzysearch="{{ army.breed.name }} {{ army.name }}">
                             {{ army.name }}
                         </a>
                     </td>
@@ -121,4 +126,16 @@
         <i class="el-icon-plus"></i>
         {{ "army.list.new"|trans }}
     </a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+	{% javascripts
+        '@SitiowebExternalJsBundle/Resources/public/fuzzy-search/fuzzy-min.js'
+        '@SitiowebArmyCreatorBundle/Resources/public/js/army-list.js'
+        output='js/army-list.js'
+    %}
+		 <script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 {% endblock %}

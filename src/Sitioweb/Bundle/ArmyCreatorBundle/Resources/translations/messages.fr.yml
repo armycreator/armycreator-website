@@ -35,6 +35,7 @@ army:
         create: Créer
         back_to_list: 'Retour aux listes'
     list:
+        filter: 'Filtrer'
         title: 'Listes d''armée'
         group.edit: 'Editer le groupe'
         group.delete: 'Supprimer le groupe'
@@ -169,6 +170,7 @@ unit_group:
 unit_type:
     edit:
         title: 'Éditer les %unitType%'
+        delete: 'Supprimer ce type d''unité ?'
     new:
         title: 'Ajouter un type'
 weapon:

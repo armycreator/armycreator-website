@@ -6,6 +6,7 @@
     "jquery-ui": "~1.10.0",
     "elusive-iconfont": "2.0",
     "jscolor": "http://jscolor.com/release/jscolor-1.4.2.zip",
-    "tooltipster": "~3.1.0"
+    "tooltipster": "~3.1.0",
+    "fuzzy-search": "*"
   }
 }
