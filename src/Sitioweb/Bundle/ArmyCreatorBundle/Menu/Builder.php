@@ -141,6 +141,7 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
 
         $user = $this->getUser();
+        $request = $this->container->get('request');
         $armyGroupList = $user->getArmyGroupList();
 
         $menu->addChild('army_list.group_list.last_armies', array(
@@ -166,6 +167,11 @@ class Builder extends ContainerAware
             }
         }
         $menu->addChild('+', array('route' => 'army_group_new'));
+
+        if ($request->query->get('all')) {
+            $menu['army_list.group_list.last_armies']->setCurrent(false);
+            $menu['army_list.group_list.all_armies']->setCurrent(true);
+        }
 
         return $menu;
     }
