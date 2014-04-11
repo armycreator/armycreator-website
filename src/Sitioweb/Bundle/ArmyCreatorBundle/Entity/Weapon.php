@@ -172,6 +172,10 @@ class Weapon extends Stuff
     {
         $desc = '';
 
+        if ($this->getType()) {
+            $desc .= $this->getType() . ' - ';
+        }
+
         if ($this->getRange()) {
             $desc .= 'P ' . $this->getRange() . ' - ';
         }
@@ -185,7 +189,7 @@ class Weapon extends Stuff
         }
 
         if ($this->getRule()) {
-            $desc .= $this->getArmorPenetration() . ' - ';
+            $desc .= $this->getRule() . ' - ';
         }
 
         $desc = substr($desc, 0, -3);
