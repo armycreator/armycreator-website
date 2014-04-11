@@ -38,14 +38,19 @@
                         <ul class="stuffList stuffList-toggle{{ pdf is defined and pdf ? ' visible' : '' }}">
                             {% for squadLineStuff in squadLineStuffList %}
                                 {% set tmpDesc = squadLineStuff.unitStuff.stuff.description %}
-                                <li{% if tmpDesc %} class="tooltip" title="{{ tmpDesc|escape('html_attr') }}"{% endif %}>
-                                    {{ squadLineStuff.number }}
-                                    {{ squadLineStuff.unitStuff.stuff.name }}
+                                <li{% if not(preferences.showStuffDescription) and tmpDesc %} class="tooltip" title="{{ tmpDesc|escape('html_attr') }}"{% endif %}>
+                                    <div>
+                                        {{ squadLineStuff.number }}
+                                        {{ squadLineStuff.unitStuff.stuff.name }}
 
-                                    {% if squadLineStuff.unitStuff.points > 0 and preferences.showStuffPoints %}
-                                        <span class="soft">
-                                            {% trans with { "%pts%": squadLineStuff.unitStuff.points * squadLineStuff.number } %}army.detail.pts.%pts%{% endtrans %}
-                                        </span>
+                                        {% if squadLineStuff.unitStuff.points > 0 and preferences.showStuffPoints %}
+                                            <span class="soft">
+                                                {% trans with { "%pts%": squadLineStuff.unitStuff.points * squadLineStuff.number } %}army.detail.pts.%pts%{% endtrans %}
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                    {% if preferences.showStuffDescription and tmpDesc %}
+                                        <div class="soft">{{ tmpDesc|escape('html_attr') }}</div>
                                     {% endif %}
                                 </li>
                             {% endfor %}

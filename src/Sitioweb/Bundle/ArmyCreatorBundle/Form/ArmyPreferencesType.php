@@ -11,7 +11,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
 
 class ArmyPreferencesType extends AbstractType
 {
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -20,7 +20,6 @@ class ArmyPreferencesType extends AbstractType
                 null,
                 array('required' => false)
             )
-            //->add('showStuffDescription')
             ->add(
                 'showUnitPoints',
                 null,
@@ -28,6 +27,11 @@ class ArmyPreferencesType extends AbstractType
             )
             ->add(
                 'showStuffPoints',
+                null,
+                array('required' => false)
+            )
+            ->add(
+                'showStuffDescription',
                 null,
                 array('required' => false)
             )
