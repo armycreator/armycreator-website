@@ -45,7 +45,9 @@ class NewsController extends Controller
         foreach ($news as &$n) {
             $n['post_text'] = urldecode($n['post_text']);
             $n['post_text'] = html_entity_decode($n['post_text']);
-            $n['post_text'] = preg_replace('/\[\/url(:[a-zA-Z0-9]+)\]/', '[/url]', $n['post_text']);
+            $n['post_text'] = preg_replace('/:[:a-zA-Z0-9]+\]/', ']', $n['post_text']);
+            $n['post_text'] = str_replace('[/*]', '', $n['post_text']);
+            //$n['post_text'] = preg_replace('/\[\/([a-zA-Z]+)(:[a-zA-Z0-9]+)\]/', '[/$1]', $n['post_text']);
         }
 
 
