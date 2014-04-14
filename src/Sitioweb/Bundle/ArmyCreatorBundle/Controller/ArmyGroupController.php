@@ -138,7 +138,7 @@ class ArmyGroupController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('army_group_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('army_group_list', array('groupId' => $id)));
         }
 
         return array(
