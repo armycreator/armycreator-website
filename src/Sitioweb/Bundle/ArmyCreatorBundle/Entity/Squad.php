@@ -415,7 +415,6 @@ class Squad
                 if ($squadLine->getUnit() === $unitHasUnitGroup->getUnit()) {
                     $contains = true;
                     $squadLine->addEmptySquadLineStuff($isEdition);
-                    break;
                 }
             }
 
@@ -426,7 +425,6 @@ class Squad
 
                 $this->addSquadLineList($squadLine);
             }
-
         }
 
         // add stuff to external units
