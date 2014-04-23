@@ -94,7 +94,6 @@ class DefaultController extends Controller
      */
     public function getFooter() {
         $assetList = $this->getAssetsList();
-        ldd($assetList);
 
         return $this->get('templating')
             ->render(
