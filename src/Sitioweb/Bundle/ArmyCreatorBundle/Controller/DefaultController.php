@@ -67,21 +67,9 @@ class DefaultController extends Controller
      *
      * @Route("/header", name="header")
      */
-    public function getHeader() {
-        $am = $this->get('assetic.asset_manager');
-        $names = $am->getNames();
-        $cssList = [];
-        $jsList = [];
-        foreach ($names as $nameTmp) {
-            $name = $am->get($nameTmp)->getTargetPath();
-            if (strpos($name, 'global') !== false) {
-                if (substr($name, 0, 3) === 'js/') {
-                    $jsList[] = $name;
-                } else {
-                    $cssList[] = $name;
-                }
-            }
-        }
+    public function getHeader()
+    {
+        $assetList = $this->getAssetsList();
 
         $sidParam = $this->container->getParameter('forum_sid');
 
@@ -91,8 +79,7 @@ class DefaultController extends Controller
                 [
                     'ads' => true,
                     'standalone' => true,
-                    'moreCssList' => $cssList,
-                    'moreJsList' => $jsList,
+                    'moreCssList' => $assetList['cssList'],
                     'forumSid' => (isset($_COOKIE[$sidParam]) ? $_COOKIE[$sidParam] : null),
                 ]
             );
@@ -103,14 +90,45 @@ class DefaultController extends Controller
      *
      * @access public
      * @return string
+     * @Route("/footer", name="footer")
      */
     public function getFooter() {
+        $assetList = $this->getAssetsList();
+        ldd($assetList);
+
         return $this->get('templating')
             ->render(
                 'SitiowebArmyCreatorBundle::footer.html.twig',
                 [
+                    'moreJsList' => $assetList['jsList'],
                     'standalone' => true,
                 ]
             );
+    }
+
+    /**
+     * getAssetsList
+     *
+     * @access private
+     * @return array
+     */
+    private function getAssetsList()
+    {
+        $am = $this->get('assetic.asset_manager');
+        $names = $am->getNames();
+        $cssList = [];
+        $jsList = [];
+        foreach ($names as $nameTmp) {
+            $name = $am->get($nameTmp)->getTargetPath();
+            if (strpos($name, 'global') !== false) {
+                if (substr($name, -3) === '.js') {
+                    $jsList[] = $name;
+                } else {
+                    $cssList[] = $name;
+                }
+            }
+        }
+
+        return ['cssList' => $cssList, 'jsList' => $jsList];
     }
 }

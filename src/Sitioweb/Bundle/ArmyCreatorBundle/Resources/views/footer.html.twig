@@ -34,3 +34,9 @@
         </div>
     </div>
 </footer>
+
+{% if moreJsList is defined %}
+    {% for js in moreJsList %}
+        <script type="text/javascript" src="/{{ js }}"></script>
+    {% endfor %}
+{% endif %}
