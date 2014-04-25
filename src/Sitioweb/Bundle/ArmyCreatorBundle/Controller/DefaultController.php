@@ -64,8 +64,6 @@ class DefaultController extends Controller
      *
      * @access public
      * @return string
-     *
-     * @Route("/header", name="header")
      */
     public function getHeader()
     {
@@ -90,7 +88,6 @@ class DefaultController extends Controller
      *
      * @access public
      * @return string
-     * @Route("/footer", name="footer")
      */
     public function getFooter() {
         $assetList = $this->getAssetsList();
