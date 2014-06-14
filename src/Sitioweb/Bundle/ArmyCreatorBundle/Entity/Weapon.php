@@ -196,4 +196,15 @@ class Weapon extends Stuff
 
         return $desc;
     }
+
+    /**
+     * getStuffType
+     *
+     * @access public
+     * @return string
+     */
+    public function getStuffType()
+    {
+        return 'weapon';
+    }
 }

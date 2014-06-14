@@ -28,17 +28,28 @@ class Equipement extends Stuff
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * getStuffType
+     *
+     * @access public
+     * @return string
+     */
+    public function getStuffType()
+    {
+        return 'equipement';
     }
 }

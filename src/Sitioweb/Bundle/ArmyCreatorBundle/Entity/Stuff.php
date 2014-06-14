@@ -16,6 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 abstract class Stuff
 {
+    CONST STUFF_WEAPON = 'weapon';
+    CONST STUFF_EQUIPEMENT = 'equipement';
+
     /**
      * @var integer $id
      *
@@ -187,4 +190,13 @@ abstract class Stuff
      * @return string
      */
     public abstract function getDescription();
+
+    /**
+     * getStuffType
+     *
+     * @abstract
+     * @access public
+     * @return string
+     */
+    public abstract function getStuffType();
 }

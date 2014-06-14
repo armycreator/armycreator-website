@@ -280,6 +280,26 @@ class SquadLine
         return $squadLineStuffList;
     }
 
+    /**
+     * getStuffTypeList
+     *
+     * @access public
+     * @return array
+     */
+    public function getStuffTypeList()
+    {
+        $slsList = $this->getOrderSquadLineStuffList();
+
+        $stuffTypeList = [];
+
+        foreach ($slsList as $sls) {
+            $stuffType = $sls->getUnitStuff()->getStuff()->getStuffType();
+            $stuffTypeList[$stuffType] = $stuffType;
+        }
+
+        return $stuffTypeList;
+    }
+
 
     /**
      * getNoDefaultSquadLineStuffList
