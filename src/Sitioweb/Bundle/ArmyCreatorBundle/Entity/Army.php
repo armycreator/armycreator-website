@@ -444,10 +444,11 @@ class Army
                 $tmpUnitType = $squad->getUnitType();
 
                 // add external breed unit types
-                if (!in_array($tmpUnitType, $unitTypeList)) {
+                if (!in_array($tmpUnitType, $unitTypeList) && !in_array($tmpUnitType, $externalUnitTypeList)) {
                     $externalUnitTypeList[] = $tmpUnitType;
                 }
             }
+
             usort(
                 $externalUnitTypeList,
                 ['Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType', 'compare']
