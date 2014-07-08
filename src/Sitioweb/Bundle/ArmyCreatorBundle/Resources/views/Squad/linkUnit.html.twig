@@ -6,10 +6,17 @@
     {{ "squad.link.select_unit"|trans }}
 {% endblock %}
 
-{% block squadAddNavSecondLine %}{% endblock %}
+{% block squadAddNavSecondLine %}
+    <div class="right">
+        {{ form_start(breedForm) }}
+        {{ form_widget(breedForm.breed) }}
+        {{ form_widget(breedForm.submit) }}
+        {{ form_end(breedForm) }}
+    </div>
+{% endblock %}
 
 {% block squadAddContent %}
-    {% for unitType in army.breed.unitTypeList %}
+    {% for unitType in breed.unitTypeList %}
         <div class="grid1-11">
             <h3 class="grid-header mb2">
                 {{ unitType.name }}
