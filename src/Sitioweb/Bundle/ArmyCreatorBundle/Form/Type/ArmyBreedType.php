@@ -5,6 +5,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Form\Type;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class ArmyBreedType extends AbstractType
 {
@@ -17,14 +18,25 @@ class ArmyBreedType extends AbstractType
     private $entityManager;
 
     /**
+     * securityContext
+     *
+     * @var SecurityContextInterface
+     * @access private
+     */
+    private $securityContext;
+
+    /**
      * __construct
      *
      * @param EntityManager $entityManager
+     * @param SecurityContextInterface $securityContext
      * @access public
      * @return void
      */
-    public function __construct (EntityManager $entityManager) {
+    public function __construct (EntityManager $entityManager, SecurityContextInterface $securityContext)
+    {
         $this->entityManager = $entityManager;
+        $this->securityContext = $securityContext;
     }
 
     /**
@@ -36,19 +48,23 @@ class ArmyBreedType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        //$breedList = $this->getUserBreed();
+
         $repository = $this->entityManager
             ->getRepository('SitiowebArmyCreatorBundle:Breed');
 
         $breedList = $repository->createQueryBuilder('b')
                 ->leftJoin('b.game', 'g')
-                ->where('b.available = :available')
                 ->add('orderBy', 'g.code, b.name ASC')
-                ->setParameter('available', true)
                 ->getQuery()
                 ->getResult();
 
         $choices = [];
         foreach ($breedList as $breed) {
+            if (!($breed->getAvailable() || $this->securityContext->isGranted('EDIT', $breed))) {
+                continue;
+            }
+
             if (!isset($choices[$breed->getGame()->getName()])) {
                 $choices[$breed->getGame()->getName()] = [];
             }
