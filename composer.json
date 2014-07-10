@@ -38,7 +38,8 @@
     },
 
     "require-dev": {
-        "raulfraile/ladybug-bundle": "@stable"
+        "raulfraile/ladybug-bundle": "@stable",
+        "atoum/atoum": "dev-master@dev"
     },
 
     "scripts": {
