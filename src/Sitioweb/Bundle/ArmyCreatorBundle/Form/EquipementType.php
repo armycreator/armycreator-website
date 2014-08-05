@@ -7,7 +7,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\FArm\EquipementDescriptionType as FArmEquipementDescriptionType;
 
 class EquipementType extends AbstractType
 {
@@ -79,15 +78,7 @@ class EquipementType extends AbstractType
      */
     private function addDescription(FormBuilderInterface $builder)
     {
-        switch ($this->breed->getGame()->getCode()) {
-            case 'FArm':
-                $builder->add('description', new FArmEquipementDescriptionType);
-                break;
-            default:
-                $builder->add('description', 'textarea', ['attr' => ['rows' => 5, 'cols' => 150]]);
-                break;
-        }
-
+        $builder->add('description', 'textarea', ['attr' => ['rows' => 5, 'cols' => 150]]);
 
         return $builder;
     }
