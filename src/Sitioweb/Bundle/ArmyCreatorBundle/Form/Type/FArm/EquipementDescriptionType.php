@@ -6,17 +6,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\DataTransformer\StringCollectionDataTransformer;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\RangeStrength;
 
 class EquipementDescriptionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $modelTransformer = new StringCollectionDataTransformer;
-        $builder->addModelTransformer($modelTransformer);
-
-
         $builder
             ->add(0, new RangeStrength)
             ->add(1, new RangeStrength)

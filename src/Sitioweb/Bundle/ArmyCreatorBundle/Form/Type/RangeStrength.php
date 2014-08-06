@@ -6,15 +6,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\DataTransformer\RangeStrengthTransformer;
-
 class RangeStrength extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $transformer = new RangeStrengthTransformer;
-        $builder->addModelTransformer($transformer);
-
         $builder
             ->add('range', 'integer', ['required' => false])
             ->add('strength', 'integer', ['required' => false])

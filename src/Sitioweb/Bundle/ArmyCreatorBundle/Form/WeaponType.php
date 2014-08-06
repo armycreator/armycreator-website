@@ -88,7 +88,7 @@ class WeaponType extends AbstractType
                     ->add('range', null, ['required' => false])
                     ->add('strenght', null, ['required' => false])
                     ->add('armorPenetration', null, ['required' => false])
-                    ->add('rule', null, ['required' => false]);
+                    ->add('rule', 'textarea', ['required' => false]);
                 break;
         }
 

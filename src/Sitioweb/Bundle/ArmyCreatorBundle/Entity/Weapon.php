@@ -42,8 +42,6 @@ class Weapon extends Stuff
 
     /**
      * @var string $rule
-     *
-     * @ORM\Column(name="rule", type="text", nullable=true)
      */
     private $rule;
 
@@ -137,9 +135,7 @@ class Weapon extends Stuff
      */
     public function setRule($rule)
     {
-        $this->rule = $rule;
-
-        return $this;
+        return $this->setDescription($rule);
     }
 
     /**
@@ -149,7 +145,7 @@ class Weapon extends Stuff
      */
     public function getRule()
     {
-        return $this->rule;
+        return parent::getDescription();
     }
 
     /**
