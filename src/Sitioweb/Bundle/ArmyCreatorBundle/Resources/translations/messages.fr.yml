@@ -216,10 +216,6 @@ breed:
     unittype:
         new: 'Nouveau type'
     weapon_list:
-        type: Type
-        range: Portée
-        strenght: Force
-        armorPenetration: 'Pénétration d''armure'
         new: 'Nouvelle arme'
 breed_group.list:
     title: 'Tous les groupements de races'

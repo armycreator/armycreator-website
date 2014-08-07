@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\FArm\EquipementDescriptionType as FArmEquipementDescriptionType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\Warhammer\WeaponDescriptionType as WarhammerWeaponDescriptionType;
 
 class WeaponType extends AbstractType
 {
@@ -84,7 +85,7 @@ class WeaponType extends AbstractType
                 $builder->add('description', new FArmEquipementDescriptionType);
                 break;
             default:
-                $builder->add('description', new WarhammerEquipementDescriptionType);
+                $builder->add('description', new WarhammerWeaponDescriptionType);
                 break;
                 //$builder->add('type', null, ['required' => false])
                 //    ->add('range', null, ['required' => false])

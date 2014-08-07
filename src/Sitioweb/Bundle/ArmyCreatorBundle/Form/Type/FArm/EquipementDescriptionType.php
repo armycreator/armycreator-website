@@ -37,4 +37,3 @@ class EquipementDescriptionType extends AbstractType
         return 'ac_farm_equipement';
     }
 }
-
