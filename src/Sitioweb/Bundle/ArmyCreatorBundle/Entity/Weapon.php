@@ -164,34 +164,34 @@ class Weapon extends Stuff
      * @access public
      * @return string
      */
-    public function getDescription()
-    {
-        $desc = '';
+    //public function getDescription()
+    //{
+    //    $desc = '';
 
-        if ($this->getType()) {
-            $desc .= $this->getType() . ' - ';
-        }
+    //    if ($this->getType()) {
+    //        $desc .= $this->getType() . ' - ';
+    //    }
 
-        if ($this->getRange()) {
-            $desc .= 'P ' . $this->getRange() . ' - ';
-        }
+    //    if ($this->getRange()) {
+    //        $desc .= 'P ' . $this->getRange() . ' - ';
+    //    }
 
-        if ($this->getStrenght()) {
-            $desc .= 'F ' . $this->getStrenght() . ' - ';
-        }
+    //    if ($this->getStrenght()) {
+    //        $desc .= 'F ' . $this->getStrenght() . ' - ';
+    //    }
 
-        if ($this->getArmorPenetration()) {
-            $desc .= 'PA ' . $this->getArmorPenetration() . ' - ';
-        }
+    //    if ($this->getArmorPenetration()) {
+    //        $desc .= 'PA ' . $this->getArmorPenetration() . ' - ';
+    //    }
 
-        if ($this->getRule()) {
-            $desc .= $this->getRule() . ' - ';
-        }
+    //    if ($this->getRule()) {
+    //        $desc .= $this->getRule() . ' - ';
+    //    }
 
-        $desc = substr($desc, 0, -3);
+    //    $desc = substr($desc, 0, -3);
 
-        return $desc;
-    }
+    //    return $desc;
+    //}
 
     /**
      * getStuffType

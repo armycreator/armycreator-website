@@ -81,14 +81,16 @@ class WeaponType extends AbstractType
     {
         switch ($this->breed->getGame()->getCode()) {
             case 'FArm':
-                $builder->add('rule', new FArmEquipementDescriptionType);
+                $builder->add('description', new FArmEquipementDescriptionType);
                 break;
             default:
-                $builder->add('type', null, ['required' => false])
-                    ->add('range', null, ['required' => false])
-                    ->add('strenght', null, ['required' => false])
-                    ->add('armorPenetration', null, ['required' => false])
-                    ->add('rule', 'textarea', ['required' => false]);
+                $builder->add('description', new WarhammerEquipementDescriptionType);
+                break;
+                //$builder->add('type', null, ['required' => false])
+                //    ->add('range', null, ['required' => false])
+                //    ->add('strenght', null, ['required' => false])
+                //    ->add('armorPenetration', null, ['required' => false])
+                //    ->add('rule', 'textarea', ['required' => false]);
                 break;
         }
 
