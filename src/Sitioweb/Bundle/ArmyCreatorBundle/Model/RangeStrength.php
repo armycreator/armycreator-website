@@ -68,7 +68,7 @@ class RangeStrength
      */
     public function __toString()
     {
-        if ($this->range && $this->strength) {
+        if ($this->range || $this->strength) {
             return $this->range . ': ' . $this->strength;
         }
         return '';
