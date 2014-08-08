@@ -59,4 +59,18 @@ class RangeStrength
         $this->strength = $strength;
         return $this;
     }
+
+    /**
+     * __toString
+     *
+     * @access public
+     * @return string
+     */
+    public function __toString()
+    {
+        if ($this->range && $this->strength) {
+            return $this->range . ': ' . $this->strength;
+        }
+        return '';
+    }
 }

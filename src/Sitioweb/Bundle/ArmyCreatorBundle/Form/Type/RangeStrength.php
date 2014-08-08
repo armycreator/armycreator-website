@@ -11,7 +11,7 @@ class RangeStrength extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('range', 'integer', ['required' => false])
+            ->add('range', 'text', ['required' => false])
             ->add('strength', 'integer', ['required' => false])
         ;
     }

@@ -23,6 +23,7 @@ class EquipementDescriptionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Model\PrintableArrayObject',
             'compound' => true,
         ));
     }
