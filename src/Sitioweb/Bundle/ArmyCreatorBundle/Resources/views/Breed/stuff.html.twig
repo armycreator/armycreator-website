@@ -45,18 +45,7 @@
                         {% endif %}
                     </h4>
                     <div>
-                        {{ "breed.weapon_list.type"|trans }}:
-                        {{ weapon.type }}
-                    </div>
-                    <div>
-                        {{ "breed.weapon_list.range"|trans }}:
-                        {{ weapon.range }}
-                        |
-                        {{ "breed.weapon_list.strenght"|trans }}:
-                        {{ weapon.strenght }}
-                        |
-                        {{ "breed.weapon_list.armorPenetration"|trans }}:
-                        {{ weapon.armorPenetration }}
+                        {{ weapon .description}}
                     </div>
                 </div>
             {% endfor %}

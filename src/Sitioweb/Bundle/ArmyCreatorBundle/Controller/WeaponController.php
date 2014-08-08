@@ -38,7 +38,7 @@ class WeaponController extends Controller
         }
 
         $entity  = new Weapon();
-        $form = $this->createForm(new WeaponType(), $entity);
+        $form = $this->createForm(new WeaponType($breed), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -70,7 +70,7 @@ class WeaponController extends Controller
         }
 
         $entity = new Weapon();
-        $form   = $this->createForm(new WeaponType(), $entity);
+        $form   = $this->createForm(new WeaponType($breed), $entity);
 
         return array(
             'entity' => $entity,
@@ -99,7 +99,7 @@ class WeaponController extends Controller
             throw $this->createNotFoundException('Unable to find Weapon entity.');
         }
 
-        $editForm = $this->createForm(new WeaponType(), $entity);
+        $editForm = $this->createForm(new WeaponType($breed), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -131,7 +131,7 @@ class WeaponController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new WeaponType(), $entity);
+        $editForm = $this->createForm(new WeaponType($breed), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {

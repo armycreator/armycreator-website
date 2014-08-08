@@ -1,0 +1,3 @@
+- Faire les weapon warhammer comme Farm
+- Gérer le rendu
+- Probablement remplacer le array de farm par un object contenant un toString (extends d'une SplQueue ?)

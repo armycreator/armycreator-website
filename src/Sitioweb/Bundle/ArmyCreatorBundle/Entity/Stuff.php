@@ -54,6 +54,36 @@ abstract class Stuff
      */
     private $breed;
 
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(name="description", type="object", nullable=true)
+     */
+    private $description;
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Equipement
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
 	/**
 	 * unitStuffList
 	 *
@@ -182,14 +212,6 @@ abstract class Stuff
     {
         return $this->breed;
     }
-
-    /**
-     * getDescription
-     *
-     * @access public
-     * @return string
-     */
-    public abstract function getDescription();
 
     /**
      * getStuffType
