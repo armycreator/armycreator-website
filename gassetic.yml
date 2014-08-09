@@ -8,12 +8,134 @@ requires:
 
 mimetypes:
     css:
+        dev: 
+            outputFolder: web/tmp/css
+            webPath: /tmp/css
+            tasks:
+                - { name: sourcemaps.init }
+                - { name: less }
+                - { name: sourcemaps.write }
+
+        prod: 
+            outputFolder: web/css
+            webPath: /css
+            tasks:
+                - { name: less }
+                - { name: minify }
+                - { name: concat, args: '%filename%' }
+                - { name: freeze }
+
+
+        files:
+            global.css:
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/elusive-iconfont/less/elusive-webfont.less"
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/tooltipster/css/tooltipster.css"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/knacss.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/override.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/font.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/button.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/form.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/header.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/homepage.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/content-desktop.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/footer.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/breed.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/menu.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/news.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/armyDetail-desktop.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/squadEdit.less"
+
+            dice.css:
+                - "src/Sitioweb/Bundle/DiceBundle/Resources/public/less/dice.less"
+
+            import.css:
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/css/*.css"
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/elusive-iconfont/less/elusive-webfont.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/global.less"
+
+            collection.css:
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/collection.less"
+
+            print-version.css:
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/print.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/content-print.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/armyDetail-print.less"
+
+    css-print:
+        dev: 
+            outputFolder: web/tmp/css
+            webPath: /tmp/css
+            htmlTag: '<link rel="stylesheet" href="%path%" media="print" />'
+            tasks:
+                - { name: sourcemaps.init }
+                - { name: less }
+                - { name: sourcemaps.write }
+
+        prod: 
+            outputFolder: web/css
+            webPath: /css
+            htmsTag: '<link rel="stylesheet" href="%path%" media="print" />'
+            tasks:
+                - { name: less }
+                - { name: minify }
+                - { name: concat, args: '%filename%' }
+                - { name: freeze }
+
+
+        files:
+            print.css:
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/print.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/content-print.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/armyDetail-print.less"
+
     js:
+        dev: 
+            outputFolder: web/tmp/js
+            webPath: /tmp/js
+            tasks: []
+
+        prod: 
+            outputFolder: web/js
+            webPath: /js
+            tasks:
+                - { name: uglify, args: { mangle: false } }
+                - { name: concat, args: '%filename%' }
+                - { name: freeze }
+
+        files:
+            global.js:
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/jquery/jquery.min.js"
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/tooltipster/js/jquery.tooltipster.js"
+                - "vendor/friendsofsymfony/jsrouting-bundle/FOS/JsRoutingBundle/Resources/public/js/router.js"
+                - "web/js/fos_js_routes.js"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/tooltip.js"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/squadLine.js"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/bbcode.js"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/googleAnalytics.js"
+
+            jscolor.js:
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/jscolor/jscolor.js"
+
+            army-new.js:
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/army-new.js"
+
+            army-list.js:
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/fuzzy-search/fuzzy-min.js"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/army-list.js"
+
+            army-detail.js:
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.core.js"
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.widget.js"
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.mouse.js"
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/jquery-ui/ui/jquery.ui.sortable.js"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/army.js"
 
 replacementPaths:
+    - src/Sitioweb/Bundle/**/*.html.twig
 
 default:
     - css
+    - css-print
     - js
 
 livereload:

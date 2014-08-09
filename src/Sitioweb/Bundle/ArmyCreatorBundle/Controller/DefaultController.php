@@ -67,8 +67,6 @@ class DefaultController extends Controller
      */
     public function getHeader()
     {
-        $assetList = $this->getAssetsList();
-
         $sidParam = $this->container->getParameter('forum_sid');
 
         return $this->get('templating')
@@ -77,7 +75,7 @@ class DefaultController extends Controller
                 [
                     'ads' => true,
                     'standalone' => true,
-                    'moreCssList' => $assetList['cssList'],
+                    'includeGlobalCss' => true,
                     'forumSid' => (isset($_COOKIE[$sidParam]) ? $_COOKIE[$sidParam] : null),
                 ]
             );
@@ -90,41 +88,13 @@ class DefaultController extends Controller
      * @return string
      */
     public function getFooter() {
-        $assetList = $this->getAssetsList();
-
         return $this->get('templating')
             ->render(
                 'SitiowebArmyCreatorBundle::footer.html.twig',
                 [
-                    'moreJsList' => $assetList['jsList'],
+                    'includeGlobalJs' => true,
                     'standalone' => true,
                 ]
             );
-    }
-
-    /**
-     * getAssetsList
-     *
-     * @access private
-     * @return array
-     */
-    private function getAssetsList()
-    {
-        $am = $this->get('assetic.asset_manager');
-        $names = $am->getNames();
-        $cssList = [];
-        $jsList = [];
-        foreach ($names as $nameTmp) {
-            $name = $am->get($nameTmp)->getTargetPath();
-            if (strpos($name, 'global') !== false) {
-                if (substr($name, -3) === '.js') {
-                    $jsList[] = $name;
-                } else {
-                    $cssList[] = $name;
-                }
-            }
-        }
-
-        return ['cssList' => $cssList, 'jsList' => $jsList];
     }
 }

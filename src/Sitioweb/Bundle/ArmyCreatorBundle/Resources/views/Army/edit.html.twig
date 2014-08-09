@@ -86,10 +86,12 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts
-            '@SitiowebArmyCreatorBundle/Resources/public/js/army-new.js'
-            output='js/army-new.js'
-        %}
-             <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+
+    {% if app.environment == 'dev' %}
+        <!-- dev:army-new.js -->
+<script src="/tmp/js/army-new.js/army-new_0.js"></script>
+<!-- endbuild -->
+    {% else %}
+        <!-- prod:army-new.js --><!-- endbuild -->
+    {% endif %}
 {% endblock %}

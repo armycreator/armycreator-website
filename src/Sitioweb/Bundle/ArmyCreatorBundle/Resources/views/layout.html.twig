@@ -40,54 +40,53 @@
 {% endblock %}
 
 {% block javascripts %}
-	{% javascripts
-        '@SitiowebExternalJsBundle/Resources/public/jquery/jquery.min.js'
-        '@SitiowebExternalJsBundle/Resources/public/tooltipster/js/jquery.tooltipster.js'
-        "@FOSJsRoutingBundle/Resources/public/js/router.js"
-        "js/fos_js_routes.js"
-        '@SitiowebArmyCreatorBundle/Resources/public/js/tooltip.js'
-        '@SitiowebArmyCreatorBundle/Resources/public/js/squadLine.js'
-        '@SitiowebArmyCreatorBundle/Resources/public/js/bbcode.js'
-        '@SitiowebArmyCreatorBundle/Resources/public/js/googleAnalytics.js'
-        output='js/global.js'
-    %}
-		 <script src="{{ asset_url }}"></script>
-	{% endjavascripts %}
+    {% if app.environment == 'dev' %}
+        <!-- dev:global.js -->
+<script src="/tmp/js/global.js/jquery.min_0.js"></script>
+<script src="/tmp/js/global.js/jquery.tooltipster_1.js"></script>
+<script src="/tmp/js/global.js/router_2.js"></script>
+<script src="/tmp/js/global.js/fos_js_routes_3.js"></script>
+<script src="/tmp/js/global.js/tooltip_4.js"></script>
+<script src="/tmp/js/global.js/squadLine_5.js"></script>
+<script src="/tmp/js/global.js/bbcode_6.js"></script>
+<script src="/tmp/js/global.js/googleAnalytics_7.js"></script>
+<!-- endbuild -->
+    {% else %}
+        <!-- prod:global.js --><!-- endbuild -->
+    {% endif %}
 {% endblock %}
 
 {% block stylesheets %}
-{#
-    <link rel="stylesheet" href="/bundles/sitiowebexternaljs/elusive-iconfont/css/elusive-webfont.css" />
-    #}
+    {% if app.environment == 'dev' %}
+        <!-- dev:global.css -->
+<link rel="stylesheet" href="/tmp/css/global.css/elusive-webfont_0.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/tooltipster_1.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/knacss_2.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/override_3.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/font_4.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/button_5.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/form_6.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/header_7.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/homepage_8.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/content-desktop_9.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/footer_10.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/breed_11.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/menu_12.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/news_13.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/armyDetail-desktop_14.css" />
+<link rel="stylesheet" href="/tmp/css/global.css/squadEdit_15.css" />
+<!-- endbuild -->
+    {% else %}
+        <!-- prod:global.css --><!-- endbuild -->
+    {% endif %}
 
-	{% stylesheets
-        '@SitiowebExternalJsBundle/Resources/public/elusive-iconfont/less/elusive-webfont.less'
-        '@SitiowebExternalJsBundle/Resources/public/tooltipster/css/tooltipster.css'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/knacss.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/override.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/font.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/button.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/form.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/header.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/homepage.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/content-desktop.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/footer.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/breed.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/menu.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/news.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/armyDetail-desktop.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/squadEdit.less'
-
-		filter='less,cssrewrite' output='css/global.css' %}
-		 <link rel="stylesheet" href="{{ asset_url }}" />
-	{% endstylesheets %}
-
-	{% stylesheets
-		'@SitiowebArmyCreatorBundle/Resources/public/less/print.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/content-print.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/armyDetail-print.less'
-		filter='less,cssrewrite' output='css/print.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}" media="print" />
-     {% endstylesheets %}
-
+    {% if app.environment == 'dev' %}
+        <!-- dev:print.css -->
+<link rel="stylesheet" href="/tmp/css/print.css/print_0.css" media="print" />
+<link rel="stylesheet" href="/tmp/css/print.css/content-print_1.css" media="print" />
+<link rel="stylesheet" href="/tmp/css/print.css/armyDetail-print_2.css" media="print" />
+<!-- endbuild -->
+    {% else %}
+        <!-- prod:print.css --><!-- endbuild -->
+    {% endif %}
 {% endblock %}

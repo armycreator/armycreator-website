@@ -27,5 +27,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-     <script src="/bundles/sitiowebexternaljs/jscolor/jscolor.js"></script>
+    {% if app.environment == 'dev' %}
+    <script src="/js/jscolor/jscolor.js"></script>
 {% endblock %}

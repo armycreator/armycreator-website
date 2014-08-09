@@ -133,11 +133,12 @@
 {% block javascripts %}
     {{ parent() }}
 
-	{% javascripts
-        '@SitiowebExternalJsBundle/Resources/public/fuzzy-search/fuzzy-min.js'
-        '@SitiowebArmyCreatorBundle/Resources/public/js/army-list.js'
-        output='js/army-list.js'
-    %}
-		 <script src="{{ asset_url }}"></script>
-	{% endjavascripts %}
+    {% if app.environment == 'dev' %}
+        <!-- dev:army-list.js -->
+<script src="/tmp/js/army-list.js/fuzzy-min_0.js"></script>
+<script src="/tmp/js/army-list.js/army-list_1.js"></script>
+<!-- endbuild -->
+    {% else %}
+        <!-- prod:army-list.js --><!-- endbuild -->
+    {% endif %}
 {% endblock %}

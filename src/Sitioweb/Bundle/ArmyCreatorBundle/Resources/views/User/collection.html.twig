@@ -51,9 +51,11 @@
 {% block stylesheets %}
     {{ parent() }}
 
-	{% stylesheets
-		"@SitiowebArmyCreatorBundle/Resources/public/less/collection.less"
-		filter="less,cssrewrite" output="css/collection.css" %}
-		 <link rel="stylesheet" href="{{ asset_url }}" />
-	{% endstylesheets %}
+    {% if app.environment == 'dev' %}
+        <!-- dev:collection.css -->
+<link rel="stylesheet" href="/tmp/css/collection.css/collection_0.css" />
+<!-- endbuild -->
+    {% else %}
+        <!-- prod:collection.css --><!-- endbuild -->
+    {% endif %}
 {% endblock %}
