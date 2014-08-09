@@ -6,8 +6,25 @@
 .squad {
     page-break-inside: avoid;
 }
-.unitTypeList.empty { display: none }
 
 .unitType, .squadName, .squadLine, .unitTypeTopList a {
     border: 1px solid black;
+}
+
+.unitTypeList {
+    display: block;
+
+    .empty { display: none }
+
+    .unitType {
+        display: block;
+        width: auto;
+        margin-bottom: 5px;
+    }
+
+    h3 {
+        .unitTypePts {
+            display: inline;
+        }
+    }
 }

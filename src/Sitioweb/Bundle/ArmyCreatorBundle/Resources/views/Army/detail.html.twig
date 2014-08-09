@@ -104,7 +104,7 @@
                             {% if tmp.unitType.breed != army.breed %}
                                 ({{ tmp.unitType.breed.name }})
                             {% endif %}
-                            <div>
+                            <div class="unitTypePts">
                                {% trans with { "%pts%":tmp.points } %}army.detail.pts.%pts%{% endtrans %}
                             </div>
                         </h3>
