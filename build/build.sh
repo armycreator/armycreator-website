@@ -10,6 +10,7 @@ ln -s /home/upload/code/armycreator_forum web/forum;
 composer install;
 bower update;
 
+npm install;
 ./node_modules/gassetic/bin.js build --env=prod
 php app/console cache:clear --env=prod;
 # php app/console assets:install --env=prod;
