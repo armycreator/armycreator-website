@@ -133,17 +133,28 @@ class ArmyController extends Controller
      */
     public function detailPdfGenerateAction(Army $army)
     {
-        $pageUrl = $this->generateUrl('army_detail_printable', [ "slug" => $army->getSlug() ], true);
+        //$pageUrl = $this->generateUrl('army_detail_printable', [ "slug" => $army->getSlug() ], true);
         $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
 
-        return new Response(
-            $this->get('knp_snappy.pdf')->getOutput($pageUrl),
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="'. $filename . '.pdf"'
-            )
+        $html = $this->renderView(
+            'SitiowebArmyCreatorBundle:Army:printableVersion.html.twig',
+            $this->detailAction($army) + ['pdf' => true]
         );
+
+        if ($this->get('request')->query->has('html')) {
+            return new Response($html);
+        } else {
+            $output = $this->get('knp_snappy.pdf')->getOutputFromHtml($html);
+            return new Response(
+                $output,
+                200,
+                array(
+                    'Content-Type'          => 'application/pdf',
+                    'Content-Disposition'   => 'filename="'. $filename . '.pdf"'
+                )
+            );
+        }
+
     }
 
     /**

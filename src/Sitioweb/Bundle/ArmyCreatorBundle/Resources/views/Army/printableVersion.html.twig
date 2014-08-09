@@ -3,6 +3,11 @@
 {% block ad300 %}{% endblock %}
 {% block addthis %}{% endblock %}
 
+{% block meta %}
+    {{ parent() }}
+    <base href="{{ app.request.scheme }}://{{ app.request.host }}" />
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
 
