@@ -1,0 +1,21 @@
+requires:
+    less: gulp-less
+    sourcemaps: gulp-sourcemaps
+    minify: gulp-minify-css
+    concat: gulp-concat
+    uglify: gulp-uglify
+    freeze: gulp-freeze
+
+mimetypes:
+    css:
+    js:
+
+replacementPaths:
+
+default:
+    - css
+    - js
+
+livereload:
+    options:
+        silent: false

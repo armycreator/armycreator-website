@@ -1,0 +1,15 @@
+{
+    "name": "armycreator",
+    "version": "0.0.0",
+    "description": "armycreator Website",
+    "license": "proprietary",
+    "dependencies": {
+        "gassetic": "",
+        "gulp-less": "",
+        "gulp-sourcemaps": "",
+        "gulp-minify-css": "",
+        "gulp-concat": "",
+        "gulp-uglify": "",
+        "gulp-freeze": ""
+    }
+}
