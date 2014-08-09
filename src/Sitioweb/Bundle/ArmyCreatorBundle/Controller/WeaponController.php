@@ -135,6 +135,12 @@ class WeaponController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+            // dirty fix because description object are compared by reference, not by value
+            // @see http://doctrine-orm.readthedocs.org/en/latest/reference/basic-mapping.html
+            $edesc = $entity->getDescription();
+            if (is_object($edest)) {
+                $entity->setDescription(clone $edesc);
+            }
             $em->persist($entity);
             $em->flush();
 

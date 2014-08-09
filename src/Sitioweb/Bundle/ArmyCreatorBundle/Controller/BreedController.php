@@ -21,7 +21,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedType;
  *
  * @Route("/admin/breed")
  * @Breadcrumb("breadcrumb.home", route="homepage")
- * @Breadcrumb("breadcrumb.admin.game.list", route="admin_game")
+ * @Breadcrumb("breadcrumb.admin.index", route="admin_game")
  */
 class BreedController extends Controller
 {
@@ -308,6 +308,8 @@ class BreedController extends Controller
 
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
         $canEditAll = $this->get('security.context')->isGranted('CREATE', $oi);
+
+        $this->addBreadcrumb($game);
 
         return array(
             'game' => $game,

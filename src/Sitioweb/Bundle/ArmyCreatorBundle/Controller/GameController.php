@@ -20,7 +20,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\GameType;
  *
  * @Route("/admin/game")
  * @Breadcrumb("breadcrumb.home", route="homepage")
- * @Breadcrumb("breadcrumb.admin.game.list", route="admin_game")
+ * @Breadcrumb("breadcrumb.admin.index", route="admin_game")
  */
 class GameController extends Controller
 {

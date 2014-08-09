@@ -140,8 +140,8 @@ home.welcome_text: Army Creator, qu'est-ce que tu peux faire pour moi ?
 army_group.edit.name_label: Nom
 breadcrumb:
     admin:
+        index: 'Administration'
         game:
-            list: 'Liste des jeux'
             new: 'Ajouter un jeu'
         breed:
             new: 'Ajouter une race'

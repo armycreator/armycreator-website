@@ -78,7 +78,7 @@ class EquipementType extends AbstractType
      */
     private function addDescription(FormBuilderInterface $builder)
     {
-        $builder->add('description', 'textarea', ['attr' => ['rows' => 5, 'cols' => 150]]);
+        $builder->add('description', 'textarea', ['attr' => ['rows' => 5, 'cols' => 150], 'required' => false]);
 
         return $builder;
     }
