@@ -74,7 +74,7 @@ mimetypes:
         prod: 
             outputFolder: web/css
             webPath: /css
-            htmsTag: '<link rel="stylesheet" href="%path%" media="print" />'
+            htmlTag: '<link rel="stylesheet" href="%path%" media="print" />'
             tasks:
                 - { name: less }
                 - { name: minify }
