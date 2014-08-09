@@ -11,8 +11,6 @@
         "doctrine/doctrine-bundle": "1.*",
         "stof/doctrine-extensions-bundle": "1.*",
         "twig/extensions": "1.*",
-        "kriswallsmith/assetic": "1.2.x@dev",
-        "symfony/assetic-bundle": "2.4.x@dev",
         "symfony/swiftmailer-bundle": "2.*",
         "symfony/monolog-bundle": "2.*",
         "sensio/distribution-bundle": "2.*",
@@ -46,13 +44,11 @@
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
             ],
             "post-update-cmd": [
                 "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
                 "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-                "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
                 "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
                 ]
     },

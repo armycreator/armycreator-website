@@ -24,12 +24,12 @@
 {% endblock %}
 
 {% block stylesheets %}
-	{% stylesheets
-		'@SitiowebArmyCreatorBundle/Resources/public/css/*.css'
-        'bundles/sitiowebexternaljs/elusive-iconfont/less/elusive-webfont.less'
-		'@SitiowebArmyCreatorBundle/Resources/public/less/global.less'
-		filter='less,cssrewrite' output='css/global.css' %}
-		 <link rel="stylesheet" href="{{ asset_url }}" />
-	{% endstylesheets %}
+    {% if app.environment == 'dev' %}
+        <!-- dev:import.css -->
+<link rel="stylesheet" href="/tmp/css/import.css/elusive-webfont_0.css" />
+<!-- endbuild -->
+    {% else %}
+        <!-- prod:import.css --><!-- endbuild -->
+    {% endif %}
 {% endblock %}
 

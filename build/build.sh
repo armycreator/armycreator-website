@@ -9,15 +9,16 @@ ln -s /home/upload/code/armycreator_forum web/forum;
 
 composer install;
 bower update;
+gassetic build --env=prod
 php app/console cache:clear --env=prod;
-php app/console assets:install --env=prod;
-php app/console assetic:dump --env=prod;
+# php app/console assets:install --env=prod;
+# php app/console assetic:dump --env=prod;
 
-#if [[ -d /home/upload/code/armycreator/prod ]] 
-#then
-#    cp /home/upload/code/armycreator/prod/web/js/* /home/upload/code/armycreator/build/$BUILD_NUMBER/web/js/
-#    cp /home/upload/code/armycreator/prod/web/css/* /home/upload/code/armycreator/build/$BUILD_NUMBER/web/css/
-#fi;
+if [[ -d /home/upload/code/armycreator/prod ]]
+then
+    cp /home/upload/code/armycreator/prod/web/js/* /home/upload/code/armycreator/build/$BUILD_NUMBER/web/js/
+    cp /home/upload/code/armycreator/prod/web/css/* /home/upload/code/armycreator/build/$BUILD_NUMBER/web/css/
+fi;
 
 if [[ -d /home/upload/code/armycreator/prod_last ]] 
 then
