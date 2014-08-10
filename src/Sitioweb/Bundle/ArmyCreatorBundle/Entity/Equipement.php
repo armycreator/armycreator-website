@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Equipement
  *
- * @ORM\Table()
  * @ORM\Entity
  */
 class Equipement extends Stuff

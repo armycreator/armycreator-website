@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(indexes={@ORM\Index(name="import_idx", columns={"breed_id", "importedId","discriminator"})})
 
  * @ORM\Entity
- * @ORM\InheritanceType("JOINED")
+ * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discriminator", type="string")
  * @ORM\DiscriminatorMap({"weapon" = "Weapon", "equipement" = "Equipement"})
  */

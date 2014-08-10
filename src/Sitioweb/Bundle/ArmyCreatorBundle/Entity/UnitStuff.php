@@ -260,9 +260,11 @@ class UnitStuff
     {
         $aStuff = $a->getStuff();
         $bStuff = $b->getStuff();
-        if ($aStuff instanceof Weapon && $bStuff instanceof Equipement) {
+        $aStuffType = $aStuff->getStuffType();
+        $bStuffType = $bStuff->getStuffType();
+        if ($aStuffType === 'weapon' && $bStuffType === 'equipement') {
             return -1;
-        } elseif ($bStuff instanceof Weapon && $aStuff instanceof Equipement) {
+        } elseif ($bStuffType === 'weapon' && $aStuffType === 'equipement') {
             return 1;
         }
 
