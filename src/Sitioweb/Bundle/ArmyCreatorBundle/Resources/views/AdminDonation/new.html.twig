@@ -1,0 +1,15 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block title -%}
+    {{ "admin.donation.new"|trans }}
+{%- endblock %}
+
+{% block content -%}
+    {{ form(form, { "attr": {"class": "opaque"} }) }}
+
+    <div>
+        <a href="{{ path('admin_donation') }}" class="acButton">
+            {{ "default.back_to_list"|trans }}
+        </a>
+    </div>
+{% endblock %}

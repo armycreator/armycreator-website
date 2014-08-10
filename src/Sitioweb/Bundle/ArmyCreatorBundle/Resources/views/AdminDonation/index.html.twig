@@ -1,0 +1,58 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block title -%}
+    {{ "admin.donation.index"|trans }}
+{%- endblock %}
+
+{% block content -%}
+    <table class="squadType">
+        <thead>
+            <tr>
+                <th>Createdat</th>
+                <th>Year</th>
+                <th>Email</th>
+                <th>Amount</th>
+                <th>Public</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.year }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.amount }}</td>
+                <td>{{ entity.public }}</td>
+                <td>
+                    <a href="{{ path('admin_donation_edit', { 'id': entity.id }) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <div class="txtright">
+        <a href="{{ path('admin_donation_new') }}" class="acButton acButtonBig">
+            {{ "admin.donation.new"|trans }}
+        </a>
+    </div>
+
+    <table class="squadType">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for year, total in totalByYear %}
+                <tr>
+                    <td>{{ year }}
+                    <td>{{ total }}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,4 +1,8 @@
 admin:
+    donation:
+        index: "Dons"
+        new: "Ajouter un don"
+
     help:
         unit_type: "Créer ici les types d'unités de votre armée. Ex: QG, Troupe, Héro, Unités spéciales, etc."
         stuff: "Créer ici tout l'arsenal de votre armée. Mettez uniquement les armes dans la catégorie \"arme\". Vous pouvez préfixer les équipements d'un caractere spécial pour séparer par exemple les pouvoir psy."
