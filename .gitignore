@@ -1,6 +1,10 @@
 /bin
 /web/bundles/
 /web/forum/
+/web/js/
+/web/css/
+/web/tmp/
+/web/phpinfo.php
 /app/bootstrap*
 /app/cache/*
 /app/logs/*
