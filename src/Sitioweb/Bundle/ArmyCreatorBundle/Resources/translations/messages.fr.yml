@@ -9,6 +9,7 @@ admin:
         unit: "Une unité correspond à une figurine, avec ses équipements et sa valeur unitaire en points."
         unit_group: "Un groupe d'unités correspond à une \"escouade\", qui regroupe un certain nombre d'unités. Une escouade peut avoir un surcoût. Ex: Escouade A: 30pts + le coût des unités."
 army:
+    by: "Créée par %username%"
     detail:
         print: Imprimer
         pdf: PDF
@@ -196,6 +197,12 @@ unit_stuff:
         title: 'Éditer %stuff% à %unit%'
     new:
         title: 'Ajouter un équipemement à %unit%'
+
+user:
+    public_list:
+        empty: "%username% n'a aucune liste publique"
+        title: "Toutes les listes publiques de %username%"
+
 breed:
     attr:
         available: Disponible

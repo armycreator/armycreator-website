@@ -101,7 +101,14 @@
     line-height: 2em;
     .pointBar {
         width: 400px; height: 2em; float: left; margin-right: 1em; border: 1px solid @armyDescPointBorder;
-        > div { height: 100%; background: @armyDescPointBackground; border-right: 1px solid @armyDescPointBorder; }
+        > div { height: 100%; background: #457F78; border-right: 1px solid @armyDescPointBorder; }
+    }
+}
+@media (max-width: 400px) {
+    .pointBarContainer {
+        .pointBar {
+            width: 100%;
+        }
     }
 }
 
