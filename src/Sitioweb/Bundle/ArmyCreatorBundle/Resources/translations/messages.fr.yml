@@ -51,6 +51,7 @@ army:
         status: Statut
         created_date: Création
         updated_date: 'Mise à jour'
+        user: 'Joueur'
         actions: Actions
         edit: Editer
         delete_confirm: 'Confirmez-vous la suppression ?'
@@ -66,6 +67,9 @@ army:
     fork:
         append: '(copie)'
         error_message: 'Une erreur est survenue durant la copie de l''armée. Veuillez réessayer ultérieurement. Si le probleme persiste, merci de le signaler dans la section Bugs du forum.'
+    public_list:
+        title: "Toutes les listes publiques"
+
 army_list.group_list.last_armies: 'Dernieres listes'
 army_list.group_list.all_armies: 'toutes mes listes'
 '{0} army_list.group.army_number.zero|{1} army_list.group.army_number.one|]1,Inf] army_list.group.army_number.%count%': "{0} aucune armée|{1} une armée|]1,Inf] %count% armées"

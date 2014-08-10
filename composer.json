@@ -30,6 +30,7 @@
 
         "knplabs/knp-menu":"2.0.*@dev",
         "knplabs/knp-menu-bundle":"2.0.*@dev",
+        "knplabs/knp-paginator-bundle":"2.*",
         "friendsofsymfony/user-bundle": "2.*@dev",
         "friendsofsymfony/jsrouting-bundle": "@stable",
         "helios-ag/fm-bbcode-bundle": "@stable"

@@ -34,6 +34,34 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
 class ArmyController extends Controller
 {
     /**
+     * publicListAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/public/{page}", name="army_public_list", defaults={"page": 1})
+     * @Template()
+     */
+    public function publicListAction($page)
+    {
+        $em = $this->get('doctrine.orm.default_entity_manager');
+        $query = $em->createQuery("
+            SELECT a
+            FROM SitiowebArmyCreatorBundle:Army a
+            WHERE a.points > 0
+                AND a.isShared = 1
+            ORDER BY a.createDate DESC
+        ");
+
+        $publicArmyList = $this->get('knp_paginator')
+            ->paginate($query, $page, 50);
+
+        return [
+            'armyList' => $publicArmyList
+        ];
+    }
+
+    /**
      * listAction
      *
      * @access public

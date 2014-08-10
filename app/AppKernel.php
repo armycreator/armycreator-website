@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new FM\BbcodeBundle\FMBbcodeBundle(),
             new Oneup\AclBundle\OneupAclBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
             new Sitioweb\Bundle\ArmyCreatorBundle\SitiowebArmyCreatorBundle(),
             new Sitioweb\Bundle\ArmyCreatorImportBundle\SitiowebArmyCreatorImportBundle(),
