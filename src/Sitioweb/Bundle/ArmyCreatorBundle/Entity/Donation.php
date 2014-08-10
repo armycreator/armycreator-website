@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Donation
  *
  * @ORM\Table(indexes={@ORM\Index(name="year", columns={"year"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Sitioweb\Bundle\ArmyCreatorBundle\Entity\Repository\DonationRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Donation

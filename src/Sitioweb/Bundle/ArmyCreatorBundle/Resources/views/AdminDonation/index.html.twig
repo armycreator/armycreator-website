@@ -19,13 +19,15 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.createdAt %}{{ entity.createdAt|format_date }}{% endif %}</td>
                 <td>{{ entity.year }}</td>
                 <td>{{ entity.email }}</td>
                 <td>{{ entity.amount }}</td>
                 <td>{{ entity.public }}</td>
                 <td>
-                    <a href="{{ path('admin_donation_edit', { 'id': entity.id }) }}">edit</a>
+                    <a href="{{ path('admin_donation_edit', { 'id': entity.id }) }}">
+                        {{ "edit"|trans }}
+                    </a>
                 </td>
             </tr>
         {% endfor %}

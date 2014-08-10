@@ -1,0 +1,18 @@
+{% set donationUrl = url("donation", { "cmd": donation_parameters.cmd, "hosted_button_id": donation_parameters.hosted_button_id }) %}
+{% set percent = 100 * totalAmount / server_cost %}
+{% if percent > 100 %}
+    {% set percent = 100 %}
+{% endif %}
+
+<div class="don-paypal gray-bg pa1">
+    Coût du serveur: {{ server_cost }}€/an | Reçu: {{totalAmount}}€ | {{ nbDonations }} dons
+
+    <div class="progressbar">
+        <div class="progressbar-value" style="width: {{ percent }}%;"></div>
+    </div>
+
+    <a href="{{ donationUrl }}" target="_blank" class="acButton mt1 right">
+        Aidez le développement en faisant un don
+    </a>
+    <div class="clear"></div>
+</div>

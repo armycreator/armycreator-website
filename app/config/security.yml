@@ -3,8 +3,8 @@ jms_security_extra:
     expressions: true
 
 security:
-    #encoders:
-    #    Symfony\Component\Security\Core\User\User: plaintext
+    acl:
+        connection: acl
 
     role_hierarchy:
         ROLE_CONTRIB:     ROLE_USER
@@ -15,23 +15,10 @@ security:
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username_email
-    #encoders:
-    #    FOS\UserBundle\Model\UserInterface: sha512
     encoders:
-        #Symfony\Component\Security\Core\User\User:
-         #   id: security.encoder.blowfish
-        #Symfony\Component\Security\Core\User\User:
         FOS\UserBundle\Model\UserInterface:
             algorithm: bcrypt
             cost: 15
-
-    access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/collection, role: IS_AUTHENTICATED_FULLY }
-        - { path: ^/admin/, role: ROLE_CONTRIB }
-        - { path: ^/import/, role: ROLE_SUPER_ADMIN }
 
     firewalls:
         dev:
@@ -42,27 +29,15 @@ security:
             pattern: ^/
             form_login:
                 login_path: /forum/ucp.php?mode=login
-                #provider: fos_userbundle
-                #csrf_provider: form.csrf_provider
             logout:       true
             anonymous:    true
             switch_user:  true
 
-       #secured_area:
-       #    pattern:    ^/admin
-       #    anonymous: ~
-       #    form_login: ~
-            #    check_path: /login_check
-            #    login_path: /login
-            #logout:
-            #    path:   /demo/secured/logout
-            #    target: /demo/
-            #http_basic:
-            #    realm: "Secured Demo Area"
-
-    #access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
-
-    acl:
-        connection: acl
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/collection, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin/donation, role: ROLE_ADMIN }
+        - { path: ^/admin/, role: ROLE_CONTRIB }
+        - { path: ^/import/, role: ROLE_SUPER_ADMIN }

@@ -33,6 +33,7 @@ mimetypes:
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/knacss.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/override.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/font.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/util.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/button.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/form.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/header.less"

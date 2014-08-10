@@ -24,6 +24,7 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
     globals:
+        server_cost: 165
         forum_sid: %forum_sid%
         donation_parameters: 
             cmd: _s-xclick

@@ -255,6 +255,7 @@ news:
 on: 'le'
 yes: Oui
 no: Non
+edit: "Editer"
 
 exception:
     title: 'Une erreur est survenue : %statusText%'
