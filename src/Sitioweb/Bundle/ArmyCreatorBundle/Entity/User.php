@@ -2,8 +2,9 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\User
@@ -24,6 +25,17 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * slug
+     *
+     * @var string
+     * @access protected
+     *
+     * @ORM\Column(name="slug", length=255, nullable=false)
+     * @Gedmo\Slug(fields={"username"})
+     */
+    protected $slug;
 
     /**
      * forumId
@@ -191,6 +203,29 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Gets the value of slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Sets the value of slug
+     *
+     * @param string $slug slug
+     *
+     * @return User
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
     }
 
     /**

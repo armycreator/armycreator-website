@@ -71,7 +71,7 @@
             {{ army.breed.name }}
 
             {% if not(externalUser) %}
-            <a href="{{ path('army_edit', { 'slug' : army.slug }) }}" class="acButton acButtonSmall" title="{{ "army.list.edit"|trans }}">
+                <a href="{{ path('army_edit', { 'slug' : army.slug }) }}" class="acButton acButtonSmall" title="{{ "army.list.edit"|trans }}">
                     <i class="el-icon-pencil"></i>
                 </a>
 
@@ -104,6 +104,16 @@
                 {% endif %}
             {% endif %}
         </h1>
+
+        {% if externalUser %}
+            <h4 class="mt0 mb1">
+                <a href="{{ path("user_index", { "user": army.user.slug }) }}">
+                    <strong>
+                        {{- "army.by"|trans({"%username%": army.user}) -}}
+                    </strong>
+                </a>
+            </h4>
+        {% endif %}
 
         {% if army.wantedPoints > 0 %}
             <div class="pointBarContainer">

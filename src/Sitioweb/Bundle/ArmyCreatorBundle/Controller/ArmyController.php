@@ -45,13 +45,8 @@ class ArmyController extends Controller
     public function publicListAction($page)
     {
         $em = $this->get('doctrine.orm.default_entity_manager');
-        $query = $em->createQuery("
-            SELECT a
-            FROM SitiowebArmyCreatorBundle:Army a
-            WHERE a.points > 0
-                AND a.isShared = 1
-            ORDER BY a.createDate DESC
-        ");
+        $query = $em->getRepository('SitiowebArmyCreatorBundle:Army')
+            ->findPublicQueryBuilder();
 
         $publicArmyList = $this->get('knp_paginator')
             ->paginate($query, $page, 50);
