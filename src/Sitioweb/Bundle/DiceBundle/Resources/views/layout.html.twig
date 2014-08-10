@@ -14,10 +14,11 @@
 {% block stylesheets %}
     {{ parent() }}
 
-	{% stylesheets 
-		'@SitiowebDiceBundle/Resources/public/less/dice.less' 
-		filter='less,cssrewrite' output='css/dice.css' %}
-		 <link rel="stylesheet" href="{{ asset_url }}" />
-     {% endstylesheets %}
-
+    {% if app.environment == 'dev' %}
+        <!-- dev:dice.css -->
+<link rel="stylesheet" href="/tmp/css/dice.css/dice_0.css" />
+<!-- endbuild -->
+    {% else %}
+        <!-- prod:dice.css --><!-- endbuild -->
+    {% endif %}
 {% endblock %}
