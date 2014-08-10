@@ -107,7 +107,7 @@ mimetypes:
                 - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/jquery/jquery.min.js"
                 - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/tooltipster/js/jquery.tooltipster.js"
                 - "vendor/friendsofsymfony/jsrouting-bundle/FOS/JsRoutingBundle/Resources/public/js/router.js"
-                - "web/js/fos_js_routes.js"
+                - "web/assets/js/fos_js_routes.js"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/tooltip.js"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/squadLine.js"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/bbcode.js"
