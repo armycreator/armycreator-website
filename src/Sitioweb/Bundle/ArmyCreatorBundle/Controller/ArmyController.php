@@ -42,7 +42,7 @@ class ArmyController extends Controller
      * @Route("/group/{groupId}", requirements={"groupId" = "\d+"}, name="army_group_list")
      * @Route("/", name="army_list", defaults={"groupId" = null})
      * @Template()
-     * @Security\PreAuthorize("isFullyAuthenticated()")
+     * @Security\PreAuthorize("isRememberMe()")
      */
     public function listAction($groupId, Request $request)
     {
@@ -128,7 +128,6 @@ class ArmyController extends Controller
      * @return void
      *
      * @Route("/{slug}.pdf", name="army_detail_pdf")
-     * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
     public function detailPdfGenerateAction(Army $army)
@@ -164,7 +163,6 @@ class ArmyController extends Controller
      * @return void
      *
      * @Route("/{slug}/print", name="army_detail_printable")
-     * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      * @Template()
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
@@ -180,9 +178,8 @@ class ArmyController extends Controller
      * @return void
      *
      * @Route("/{slug}/", name="army_detail")
-     * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
-     * @Template()
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
+     * @Template
      */
     public function detailAction(Army $army)
     {
@@ -234,7 +231,6 @@ class ArmyController extends Controller
      * @return void
      *
      * @Route("/{slug}/bbcode", name="army_detail_bbcode")
-     * @Security\PreAuthorize("isAnonymous() || isAuthenticated()")
      * @Template()
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
@@ -269,7 +265,7 @@ class ArmyController extends Controller
         // security
         if (
             $this->getUser() != $army->getUser() &&
-            !$army->getIsShared() && !$this->get('oneup_acl.manager') &&
+            !$army->getIsShared() && $this->get('oneup_acl.manager') &&
             !$this->get('oneup_acl.manager')->isGranted('ROLE_ADMIN')
         ) {
             throw new AccessDeniedException('Army not shared');
