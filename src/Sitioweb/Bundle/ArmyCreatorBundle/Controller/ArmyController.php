@@ -70,7 +70,7 @@ class ArmyController extends Controller
      * @Route("/group/{groupId}", requirements={"groupId" = "\d+"}, name="army_group_list")
      * @Route("/", name="army_list", defaults={"groupId" = null})
      * @Template()
-     * @Security\PreAuthorize("isRememberMe()")
+     * @Security\PreAuthorize("isFullyAuthenticated()")
      */
     public function listAction($groupId, Request $request)
     {
@@ -206,8 +206,8 @@ class ArmyController extends Controller
      * @return void
      *
      * @Route("/{slug}/", name="army_detail")
+     * @Template()
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
-     * @Template
      */
     public function detailAction(Army $army)
     {

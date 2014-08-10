@@ -31,7 +31,9 @@
     {{ form_widget(form) }}
     <p class="txtright">
         <button type="submit" class="acButton">{{ 'army.bbcode.apply'|trans }}</button>
-        <button type="submit" class="acButton" name="saveAsDefault" value="1">{{ 'army.bbcode.apply_and_save'|trans }}</button>
+        {% if not(externalUser) %}
+            <button type="submit" class="acButton" name="saveAsDefault" value="1">{{ 'army.bbcode.apply_and_save'|trans }}</button>
+        {% endif %}
     </p>
 </form>
 
