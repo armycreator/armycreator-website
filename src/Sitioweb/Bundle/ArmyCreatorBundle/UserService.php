@@ -42,6 +42,7 @@ class UserService
             require_once($container->get('kernel')->getRootDir() . '/../web/forum/common.php');
         }
 
+
         if (!empty($user)) {
             // session not already started
             if (empty($user->session_id)) {
@@ -65,9 +66,9 @@ class UserService
             }
             // end of inspiration
 
-            $isOrinalToken = $this->isOriginalToken($token);
+            $isOriginalToken = $this->isOriginalToken($token);
 
-            if ($user->data['is_registered'] && $isOrinalToken) {
+            if ($user->data['is_registered'] && $isOriginalToken) {
                 if (!$currentUser || $user->data['user_id'] != $currentUser->getForumId()) {
                     $currentUser = $container->get('fos_user.user_manager')->findUserByEmail($user->data['user_email']);
                     if (!$currentUser) {
