@@ -14,17 +14,27 @@
         {% for squadLine in squad.squadLineList %}
             <div class="squadLine">
                 <h5>
-                    {% set unitNumber = externalUser ? null : app.user.getUnitNumber(squadLine.unit) %}
-                    {% if  not(unitNumber is null) and unitNumber < army.getUnitNumber(squadLine.unit) %}
+                    {% set unit = squadLine.unit %}
+                    {% set unitNumber = externalUser ? null : app.user.getUnitNumber(unit) %}
+                    {% if  not(unitNumber is null) and unitNumber < army.getUnitNumber(unit) %}
                         <i class="el-icon-warning-sign soft" title="{{ "army.detail.missing_units"|trans }}"></i>
                     {% endif %}
 
-                    {{ squadLine.number }} {{ squadLine.unit.name }}
+                    {{ squadLine.number }} {{ unit.name }}
 
                     {% if preferences.showUnitPoints %}
                         <span class="soft">
-                            {% trans with { "%pts%": squadLine.unit.points * squadLine.number } %}army.detail.pts.%pts%{% endtrans %}
+                            {% trans with { "%pts%": unit.points * squadLine.number } %}army.detail.pts.%pts%{% endtrans %}
                         </span>
+                    {% endif %}
+
+                    {% if preferences.showUnitFeature %}
+                        {% set feature = unit_feature(unit) %}
+                        {% if feature %}
+                            <div class="soft small">
+                                {{ feature }}
+                            </div>
+                        {% endif %}
                     {% endif %}
                 </h5>
 

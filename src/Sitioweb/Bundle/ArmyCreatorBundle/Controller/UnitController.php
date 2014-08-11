@@ -198,6 +198,13 @@ class UnitController extends Controller
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+            // dirty fix because description object are compared by reference, not by value
+            // @see http://doctrine-orm.readthedocs.org/en/latest/reference/basic-mapping.html
+            $feature = $entity->getFeature();
+            if (is_object($feature)) {
+                $entity->setFeature(clone $feature);
+            }
+
             $entity->setBreed($breed);
             $em->persist($entity);
             $em->flush();

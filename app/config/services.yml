@@ -16,3 +16,12 @@ services:
         tags:
             - { name: twig.extension }
 
+
+    armycreator.twig.unit_extension: 
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\Unit
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - @security.context
+        tags:
+            - { name: twig.extension }
+

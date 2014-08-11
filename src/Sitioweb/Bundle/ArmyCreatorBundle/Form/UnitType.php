@@ -3,34 +3,19 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
-
-class UnitType extends AbstractType
+class UnitType extends AbstractUnitType
 {
     /**
-     * breed
+     * buildForm
      *
-     * @var Breed
-     * @access private
-     */
-    private $breed;
-
-    /**
-     * __construct
-     *
-     * @param Breed $breed
-     * @access private
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @access public
      * @return void
      */
-    public function __construct(Breed $breed)
-    {
-        $this->breed = $breed;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -60,8 +45,17 @@ class UnitType extends AbstractType
                     'required' => false,
                 )
             );
+
+        $builder = $this->addBreedSpecifics($builder);
     }
 
+    /**
+     * setDefaultOptions
+     *
+     * @param OptionsResolverInterface $resolver
+     * @access public
+     * @return void
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -70,6 +64,12 @@ class UnitType extends AbstractType
         ));
     }
 
+    /**
+     * getName
+     *
+     * @access public
+     * @return string
+     */
     public function getName()
     {
         return 'unittype';
