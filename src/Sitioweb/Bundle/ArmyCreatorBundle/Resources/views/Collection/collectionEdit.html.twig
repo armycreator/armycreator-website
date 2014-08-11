@@ -34,7 +34,7 @@
                             <div class="squadName">
                                 <h4>{{ unit.name }}</h4>
                                 <div>
-                                    {% set editPath = path("unit_feature_edit", { "breed": breed.slug, "unit": unit.id }) %}
+                                    {% set editPath = path("unit_feature_edit", { "breedSlug": breed.slug, "unit": unit.id }) %}
                                     {% if unitFeatureList[unit.id] is defined %}
                                         {{ unitFeatureList[unit.id].feature }}
                                         {% set linkText = 'unit_feature.edit'|trans %}

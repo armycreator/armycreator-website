@@ -171,10 +171,12 @@ class CollectionController extends Controller
      * @access public
      * @return void
      *
-     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breedSlug" = "slug"}})
      * @ParamConverter("unit", class="SitiowebArmyCreatorBundle:Unit", options={"mapping": {"unit" = "id"}})
-     * @Route("/collection/{breed}/unit_feature/{unit}", name="unit_feature_edit")
+     * @Route("/collection/{breedSlug}/unit_feature/{unit}", name="unit_feature_edit")
      * @Template
+     * @Breadcrumb("{breed.name}", routeName="user_collection_edit", routeParameters={"breed"="{breedSlug}"})
+     * @Breadcrumb("{unit.name}")
      */
     public function unitFeatureEditAction(Breed $breed, Unit $unit)
     {
@@ -206,12 +208,20 @@ class CollectionController extends Controller
                 $em->persist($unitFeature);
                 $em->flush();
 
+                // dispatch event
+                $this->get('event_dispatcher')
+                    ->dispatch(
+                        'armycreator.event.unit_feature.edit',
+                        new GameEvent($breed->getGame())
+                    );
+
                 return $this->redirect($this->generateUrl('user_collection_edit', ['breed' => $breed->getSlug()]));
             }
         }
 
 
         return [
+            'unit' => $unit,
             'form' => $editForm->createView(),
         ];
     }

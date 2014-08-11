@@ -321,7 +321,8 @@ class W40KUnitFeature
         $out .= ($this->vfl ? ' | V.fl.: ' . $this->vfl : '');
         $out .= ($this->var ? ' | V.ar.: ' . $this->var : '');
 
+        $out = substr($out, 3);
 
-        return substr($out, 3);
+        return $out ?: '';
     }
 }

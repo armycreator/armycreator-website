@@ -23,6 +23,9 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    form:
+        resources:
+            - 'SitiowebArmyCreatorBundle:Form:fields.html.twig'
     globals:
         server_cost: 165
         forum_sid: %forum_sid%
@@ -150,6 +153,8 @@ m6_statsd:
                     increment: "armycreator.collection.<gameCode>.remove"
                 armycreator.event.collection.edit:
                     increment: "armycreator.collection.<gameCode>.edit"
+                armycreator.event.unit_feature.edit:
+                    increment: "armycreator.unit_feature.<gameCode>.edit"
                 armycreator.event.squad.new:
                     increment: "armycreator.squad.<gameCode>.new"
                 armycreator.event.squad.update:

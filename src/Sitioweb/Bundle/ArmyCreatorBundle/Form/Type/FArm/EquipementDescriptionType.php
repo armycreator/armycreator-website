@@ -35,6 +35,6 @@ class EquipementDescriptionType extends AbstractType
 
     public function getName()
     {
-        return 'ac_farm_equipement';
+        return 'ac_farm_weapon';
     }
 }

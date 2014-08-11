@@ -23,6 +23,8 @@ class PrintableArrayObject extends \ArrayObject
                 $out .= ' / ' . $item;
             }
         }
-        return substr($out, 3);
+        $out = substr($out, 3);
+
+        return $out ?: '';
     }
 }

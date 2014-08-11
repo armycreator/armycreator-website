@@ -1,5 +1,9 @@
 {% extends "SitiowebArmyCreatorBundle::layout.html.twig" %}
 
+{% block title -%}
+    {{ "user.collection.unit.edit"|trans({ "%unit%": unit.name }) }}
+{%- endblock %}
+
 {% block content %}
     {{ form(form, { "attr": { "class": "opaque" }}) }}
 {% endblock %}

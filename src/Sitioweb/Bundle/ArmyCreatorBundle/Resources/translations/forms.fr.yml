@@ -41,6 +41,21 @@ Edit: Éditer
 Type: Type
 Range: Portée
 Strenght: Force
+Strength: Force
 Armor penetration: "Pénétration d'armure"
 Rule: Regles autres
 Show stuff description: "Afficher la description des équipements"
+unit_feature:
+    w40k:
+        cc: Cc
+        ct: Ct
+        fo: F
+        en: E
+        pv: PV
+        in: I
+        at: Att
+        cd: Cd
+        svg: Svg
+        vav: Véhicule avant
+        vfl: Véhicule flanc
+        var: Véhicule arriere

@@ -13,18 +13,18 @@ class W40KUnitFeatureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cc', 'integer', ['required' => false])
-            ->add('ct', 'integer', ['required' => false])
-            ->add('fo', 'integer', ['required' => false])
-            ->add('en', 'integer', ['required' => false])
-            ->add('pv', 'integer', ['required' => false])
-            ->add('in', 'integer', ['required' => false])
-            ->add('at', 'integer', ['required' => false])
-            ->add('cd', 'integer', ['required' => false])
-            ->add('svg', 'text', ['required' => false])
-            ->add('vav', 'integer', ['required' => false])
-            ->add('vfl', 'integer', ['required' => false])
-            ->add('var', 'integer', ['required' => false])
+            ->add('cc', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.cc'])
+            ->add('ct', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.ct'])
+            ->add('fo', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.fo'])
+            ->add('en', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.en'])
+            ->add('pv', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.pv'])
+            ->add('in', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.in'])
+            ->add('at', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.at'])
+            ->add('cd', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.cd'])
+            ->add('svg', 'text', ['required' => false, 'label' => 'unit_feature.w40k.svg'])
+            ->add('vav', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.vav'])
+            ->add('vfl', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.vfl'])
+            ->add('var', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.var'])
         ;
     }
 
@@ -33,6 +33,7 @@ class W40KUnitFeatureType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Model\Warhammer\W40KUnitFeature',
             'compound' => true,
+            'translation_domain' => 'forms',
         ));
     }
 

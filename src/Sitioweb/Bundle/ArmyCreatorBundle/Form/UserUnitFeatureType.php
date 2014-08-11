@@ -19,7 +19,7 @@ class UserUnitFeatureType extends AbstractUnitType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder = $this->addBreedSpecifics($builder);
-        $builder->add('submit', 'submit');
+        $builder->add('submit', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
     }
 
     /**
