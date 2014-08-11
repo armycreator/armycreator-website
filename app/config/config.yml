@@ -171,3 +171,7 @@ m6_statsd:
                     increment: "armycreator.army.<gameCode>.delete"
                 armycreator.event.squad_line.link:
                     increment: "armycreator.squad_line.<gameCode>.link"
+
+presta_sitemap:
+    dumper_base_url: 'http://www.armycreator.net/'
+    route_annotation_listener: false
