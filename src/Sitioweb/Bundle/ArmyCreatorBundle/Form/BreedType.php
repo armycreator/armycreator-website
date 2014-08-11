@@ -36,6 +36,7 @@ class BreedType extends AbstractType
         $builder
             ->add('name')
             ->add('available')
+            ->add('image')
             ->add(
                 'newVersion',
                 null,
