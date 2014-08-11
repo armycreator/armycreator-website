@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\FArm\UnitFeatureType as FArmUnitFeatureType;
 
 class UnitType extends AbstractType
 {
@@ -60,6 +61,8 @@ class UnitType extends AbstractType
                     'required' => false,
                 )
             );
+
+        $builder = $this->addBreedSpecifics($builder);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -73,5 +76,25 @@ class UnitType extends AbstractType
     public function getName()
     {
         return 'unittype';
+    }
+
+    /**
+     * addBreedSpecifics
+     *
+     * @access private
+     * @return FormBuilderInterface
+     */
+    private function addBreedSpecifics(FormBuilderInterface $builder)
+    {
+        switch ($this->breed->getGame()->getCode()) {
+            case 'FArm':
+                $builder->add('feature', new FArmUnitFeatureType);
+                break;
+            default:
+                break;
+        }
+
+
+        return $builder;
     }
 }

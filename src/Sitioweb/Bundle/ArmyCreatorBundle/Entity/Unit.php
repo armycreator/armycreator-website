@@ -22,6 +22,16 @@ class Unit extends AbstractUnit
     private $canModifyNumber;
 
     /**
+     * features
+     *
+     * @var mixed
+     * @access private
+     *
+     * @ORM\Column(name="feature", type="object", nullable=true)
+     */
+    private $feature;
+
+    /**
      * @ORM\OneToMany(targetEntity="Unit", mappedBy="parent")
      */
     private $childrenList;
@@ -109,6 +119,29 @@ class Unit extends AbstractUnit
     public function getCanModifyNumber()
     {
         return $this->canModifyNumber;
+    }
+
+    /**
+     * Gets the value of feature
+     *
+     * @return mixed
+     */
+    public function getFeature()
+    {
+        return $this->feature;
+    }
+
+    /**
+     * Sets the value of feature
+     *
+     * @param mixed $feature unit feature
+     *
+     * @return Unit
+     */
+    public function setFeature($feature)
+    {
+        $this->feature = $feature;
+        return $this;
     }
 
     /**

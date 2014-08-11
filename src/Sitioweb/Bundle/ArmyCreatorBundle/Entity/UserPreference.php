@@ -99,6 +99,16 @@ class UserPreference
     private $showPersonnalName;
 
     /**
+     * showUnitFeature
+     *
+     * @var mixed
+     * @access private
+     *
+     * @ORM\Column(name="showUnitFeature", type="boolean")
+     */
+    private $showUnitFeature;
+
+    /**
      * user
      *
      * @var User
@@ -138,6 +148,7 @@ class UserPreference
         $this->showNbIfAlone = true;
         $this->showUnitCarac = true;
         $this->showPersonnalName = true;
+        $this->showUnitFeature = false;
     }
 
     /**
@@ -401,6 +412,29 @@ class UserPreference
     public function getShowPersonnalName()
     {
         return $this->showPersonnalName;
+    }
+
+    /**
+     * Gets the value of showUnitFeature
+     *
+     * @return boolean
+     */
+    public function getShowUnitFeature()
+    {
+        return $this->showUnitFeature;
+    }
+
+    /**
+     * Sets the value of showUnitFeature
+     *
+     * @param boolean $showUnitFeature show unit features
+     *
+     * @return UserPreference
+     */
+    public function setShowUnitFeature($showUnitFeature)
+    {
+        $this->showUnitFeature = $showUnitFeature;
+        return $this;
     }
 
     /**

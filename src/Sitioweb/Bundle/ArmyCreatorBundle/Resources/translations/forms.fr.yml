@@ -10,6 +10,7 @@ Armygroup: 'Groupe d''armée'
 Army group: 'Groupe d''armée'
 Show default stuff: 'Afficher les équipements par défaut'
 Show unit points: 'Afficher les points des unités'
+Show unit feature: 'Afficher les caractéristiques des unités'
 Separator: Séparateur
 ac_armybbcode.form.carriage_return: 'Retour chariot'
 ac_armybbcode.form.slash: Slash

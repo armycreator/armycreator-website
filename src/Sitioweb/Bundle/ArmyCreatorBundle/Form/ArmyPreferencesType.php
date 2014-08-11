@@ -35,6 +35,11 @@ class ArmyPreferencesType extends AbstractType
                 null,
                 array('required' => false)
             )
+            ->add(
+                'showUnitFeature',
+                null,
+                array('required' => false)
+            )
             //->add('showNbIfAlone')
             //->add('showUnitCarac')
         ;
