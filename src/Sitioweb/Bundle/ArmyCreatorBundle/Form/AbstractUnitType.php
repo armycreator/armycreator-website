@@ -16,9 +16,9 @@ abstract class AbstractUnitType extends AbstractType
      * breed
      *
      * @var Breed
-     * @access private
+     * @access protected
      */
-    private $breed;
+    protected $breed;
 
     /**
      * __construct
