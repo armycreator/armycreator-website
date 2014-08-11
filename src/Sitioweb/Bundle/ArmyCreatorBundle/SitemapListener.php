@@ -119,14 +119,15 @@ class SitemapListener implements SitemapListenerInterface
             // army route
             $url = $this->router->generate('army_detail', ['slug' => $army->getSlug()], true);
 
-            $urlConcrete = new UrlConcrete($url, new \DateTime(), $freq, 1);
+            $updateDate = $army->getUpdateDate() ?: new \DateTime;
+            $urlConcrete = new UrlConcrete($url, $updateDate, $freq, 1);
             $this->event->getGenerator()->addUrl($urlConcrete, 'army');
 
             // user route
             $user = $army->getUser();
             if (!isset($this->treatedUsers[$user->getId()])) {
                 $url = $this->router->generate('user_index', ['user' => $user->getSlug()], true);
-                $urlConcrete = new UrlConcrete($url, new \DateTime(), $freq, 1);
+                $urlConcrete = new UrlConcrete($url, $updateDate, $freq, 1);
                 $this->event->getGenerator()->addUrl($urlConcrete, 'user');
             }
         }
