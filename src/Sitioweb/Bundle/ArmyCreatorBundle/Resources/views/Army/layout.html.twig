@@ -105,6 +105,15 @@
             {% endif %}
         </h1>
 
+        {% if not(externalUser) %}
+            <div class="mb1">
+                <a href="{{ path("user_collection_edit", { "breed": army.breed.slug }) }}" class="acButton">
+                    <i class="el-icon-list"></i>
+                    {{ "user.collection.edit"|trans({ "%breed%": army.breed }) }}
+                </a>
+            </div>
+        {% endif %}
+
         {% if externalUser %}
             <h4 class="mt0 mb1">
                 <a href="{{ path("user_index", { "user": army.user.slug }) }}">

@@ -5,13 +5,14 @@
         <div class="squadListContainer">
                     {% set oldUt = null %}
                     {% for line in form.userHasUnitList %}
-                        {% if oldUt == null or oldUt != line.vars.value.unit.unitType %}
+                        {% set unit = line.vars.value.unit %}
+                        {% if oldUt == null or oldUt != unit.unitType %}
                             {% if oldUt == null %}
                                 {% set break = "start" %}
                             {% else %}
                                 {% set break = true %}
                             {% endif %}
-                            {% set oldUt = line.vars.value.unit.unitType %}
+                            {% set oldUt = unit.unitType %}
                         {% else %}
                             {% set break = false %}
                         {% endif %}
@@ -23,7 +24,7 @@
                             {% endif %}
                             <div class="grid1-11">
                             <h3 class="grid-header">
-                                {{ line.vars.value.unit.unitType.name }}
+                                {{ unit.unitType.name }}
                             </h3>
                             <div class="squadList">
                         {% endif %}
@@ -31,7 +32,31 @@
                         {% spaceless %}
                         <div class="squad">
                             <div class="squadName">
-                                <h4>{{ line.vars.value.unit.name }}</h4>
+                                <h4>{{ unit.name }}</h4>
+                                <div>
+                                    {% set editPath = path("unit_feature_edit", { "breed": breed.slug, "unit": unit.id }) %}
+                                    {% if unitFeatureList[unit.id] is defined %}
+                                        {{ unitFeatureList[unit.id].feature }}
+                                        {% set linkText = 'unit_feature.edit'|trans %}
+
+                                        <a
+                                            href="{{ editPath }}"
+                                            class="acButton"
+                                            title="{{ linkText }}"
+                                        >
+                                            <i class="el-icon-pencil"></i>
+                                        </a>
+                                    {% else %}
+                                        {% set linkText = 'unit_feature.add'|trans %}
+                                        <a
+                                            href="{{ editPath }}"
+                                            class="acButton"
+                                            title="{{ linkText }}"
+                                        >
+                                            {{ linkText }}
+                                        </a>
+                                    {% endif %}
+                                </div>
                             </div>
                             <div class="squadLine">
                                 {{ form_widget(line) }}

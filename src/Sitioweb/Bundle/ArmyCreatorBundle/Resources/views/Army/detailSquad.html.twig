@@ -28,10 +28,13 @@
                         </span>
                     {% endif %}
 
-                    {% if preferences.showUnitFeature and unit.feature %}
-                        <div class="soft">
-                            {{ unit.feature }}
-                        </div>
+                    {% if preferences.showUnitFeature %}
+                        {% set feature = unit_feature(unit) %}
+                        {% if feature %}
+                            <div class="soft small">
+                                {{ feature }}
+                            </div>
+                        {% endif %}
                     {% endif %}
                 </h5>
 

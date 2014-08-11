@@ -11,8 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserUnitFeature;
 use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\CollectionType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\UserUnitFeatureType;
 
 /**
  * Collection controller.
@@ -89,10 +92,20 @@ class CollectionController extends Controller
                 );
         }
 
+        $unitFeatureList = $this->get('doctrine')
+            ->getRepository('SitiowebArmyCreatorBundle:UserUnitFeature')
+            ->findBy([ 'user' => $user, 'unit' => $unitList ]);
+
+        $indexedUnitFeatureList = [];
+        foreach ($unitFeatureList as $unitFeature) {
+            $indexedUnitFeatureList[$unitFeature->getUnit()->getId()] = $unitFeature;
+        }
+
         return [
             'breed' => $breed,
             'unitList' => $unitList,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'unitFeatureList' => $indexedUnitFeatureList,
         ];
     }
 
@@ -150,5 +163,56 @@ class CollectionController extends Controller
                 ->generate('user_collection');
 
         return $this->redirect($url);
+    }
+
+    /**
+     * unitFeatureEditAction
+     *
+     * @access public
+     * @return void
+     *
+     * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
+     * @ParamConverter("unit", class="SitiowebArmyCreatorBundle:Unit", options={"mapping": {"unit" = "id"}})
+     * @Route("/collection/{breed}/unit_feature/{unit}", name="unit_feature_edit")
+     * @Template
+     */
+    public function unitFeatureEditAction(Breed $breed, Unit $unit)
+    {
+        $user = $this->getUser();
+        $unitFeature = $this->get('doctrine')
+            ->getRepository('SitiowebArmyCreatorBundle:UserUnitFeature')
+            ->findOneBy([ 'user' => $user, 'unit' => $unit ]);
+
+        if (!$unitFeature) {
+            $unitFeature = new UserUnitFeature;
+            $unitFeature->setUser($user)
+                ->setUnit($unit);
+        }
+
+        $editForm = $this->createForm(new UserUnitFeatureType($breed), $unitFeature);
+
+        $request = $this->get('request');
+        if ($request->isMethod('POST')) {
+            $editForm->bind($request);
+            if ($editForm->isValid()) {
+                // dirty fix because description object are compared by reference, not by value
+                // @see http://doctrine-orm.readthedocs.org/en/latest/reference/basic-mapping.html
+                $feature = $unitFeature->getFeature();
+                if (is_object($feature)) {
+                    $unitFeature->setFeature(clone $feature);
+                }
+
+                $em = $this->get('doctrine.orm.default_entity_manager');
+                $em->persist($unitFeature);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('user_collection_edit', ['breed' => $breed->getSlug()]));
+            }
+        }
+
+
+        return [
+            'form' => $editForm->createView(),
+        ];
     }
 }

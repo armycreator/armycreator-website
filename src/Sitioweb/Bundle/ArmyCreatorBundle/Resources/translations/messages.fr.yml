@@ -246,8 +246,9 @@ button.edit: Éditer
 button.new_entry: 'Nouvelle entrée'
 default.back_to_list: 'Retourner à la liste'
 default.new.title: Nouveau
-user.collection.remove: 'Supprimer de ma collection'
 user.collection.contains: 'Je possède cette race'
+user.collection.edit: 'Editer mes %breed% (nb + carac.)'
+user.collection.remove: 'Supprimer de ma collection'
 footer.warning: Avertissement
 footer.detail: "Army Creator ne permet pas de créer une liste d'armée sans posséder le codex correspondant !\nCe site n'est pas officiel ni en aucun cas autorisé ou approuvé par Games Workshop.\nWarhammer, Warhammer 40.000, le logo Games Workshop, Games Workshop, Space Marines, Blood Angel, Dark Angel, Eldars, Eldars Noirs, Marines du chaos, Demons du chaos, Orks, Guarde Imperiale, Ordo Malleus, Ordo Hereticus, Necrons, Tau, Tyrannides, Codex, ainsi que tous les noms d'unités, d'armes et d'équipements sont des marques de Games Workshop Limited, utilisées sans autorisation et sans volonté de préjudice ou comme opposition à leur copyright."
 footer.design: 'Design par:'
@@ -272,3 +273,7 @@ exception:
     title: 'Une erreur est survenue : %statusText%'
     sub_title: 'Le serveur a retourné une erreur "%statusCode% %statusText%".'
     description: 'Quelque chose ne fonctionne pas normalement. Merci de m''envoyer un mail à %email% afin de m''indiquer ce que vous étiez en train de faire lorsque cela est arrivé. Je vais essayer de le corriger le plus rapidement possible. Désolé du dérangement causé.'
+
+unit_feature:
+    add: 'Ajouter les caractéristiques'
+    edit: 'Editer les caractéristiques'

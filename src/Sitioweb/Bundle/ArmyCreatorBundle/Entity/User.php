@@ -93,6 +93,16 @@ class User extends BaseUser
 	 */
 	private $userHasUnitList;
 
+	/**
+	 * userHasUnitList
+	 *
+	 * @var array<UserUnitFeature>
+	 * @access private
+	 *
+	 * @ORM\OneToMany(targetEntity="UserUnitFeature", mappedBy="user")
+	 */
+	private $userUnitFeatureList;
+
     /**
      * __construct
      *
@@ -105,6 +115,8 @@ class User extends BaseUser
         $this->armyList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->armyGroupList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->collectionList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userHasUnitList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userUnitFeatureList = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -317,6 +329,39 @@ class User extends BaseUser
     public function getUserHasUnitList()
     {
         return $this->userHasUnitList;
+    }
+
+    /**
+     * Add userUnitFeatureList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserUnitFeature $userUnitFeatureList
+     * @return User
+     */
+    public function addUserUnitFeatureList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserUnitFeature $userUnitFeatureList)
+    {
+        $this->userUnitFeatureList[] = $userUnitFeatureList;
+
+        return $this;
+    }
+
+    /**
+     * Remove userUnitFeatureList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserUnitFeature $userUnitFeatureList
+     */
+    public function removeUserUnitFeatureList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserUnitFeature $userUnitFeatureList)
+    {
+        $this->userUnitFeatureList->removeElement($userUnitFeatureList);
+    }
+
+    /**
+     * Get userUnitFeatureList
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserUnitFeatureList()
+    {
+        return $this->userUnitFeatureList;
     }
 
     /**

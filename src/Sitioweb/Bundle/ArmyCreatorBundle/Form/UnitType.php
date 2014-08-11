@@ -3,35 +3,19 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\FArm\UnitFeatureType as FArmUnitFeatureType;
-
-class UnitType extends AbstractType
+class UnitType extends AbstractUnitType
 {
     /**
-     * breed
+     * buildForm
      *
-     * @var Breed
-     * @access private
-     */
-    private $breed;
-
-    /**
-     * __construct
-     *
-     * @param Breed $breed
-     * @access private
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @access public
      * @return void
      */
-    public function __construct(Breed $breed)
-    {
-        $this->breed = $breed;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -65,6 +49,13 @@ class UnitType extends AbstractType
         $builder = $this->addBreedSpecifics($builder);
     }
 
+    /**
+     * setDefaultOptions
+     *
+     * @param OptionsResolverInterface $resolver
+     * @access public
+     * @return void
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -73,28 +64,14 @@ class UnitType extends AbstractType
         ));
     }
 
+    /**
+     * getName
+     *
+     * @access public
+     * @return string
+     */
     public function getName()
     {
         return 'unittype';
-    }
-
-    /**
-     * addBreedSpecifics
-     *
-     * @access private
-     * @return FormBuilderInterface
-     */
-    private function addBreedSpecifics(FormBuilderInterface $builder)
-    {
-        switch ($this->breed->getGame()->getCode()) {
-            case 'FArm':
-                $builder->add('feature', new FArmUnitFeatureType);
-                break;
-            default:
-                break;
-        }
-
-
-        return $builder;
     }
 }
