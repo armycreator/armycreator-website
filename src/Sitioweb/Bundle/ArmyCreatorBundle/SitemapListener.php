@@ -90,7 +90,7 @@ class SitemapListener implements SitemapListenerInterface
         ];
 
         foreach ($routeList as $route => $freq) {
-            $url = $this->router->generate($route);
+            $url = $this->router->generate($route, [], true);
             $urlConcrete = new UrlConcrete($url, new \DateTime(), $freq, 1);
             $this->event->getGenerator()->addUrl($urlConcrete, 'default');
         }
@@ -117,7 +117,7 @@ class SitemapListener implements SitemapListenerInterface
             $freq = $this->getArmyFrequency($army);
 
             // army route
-            $url = $this->router->generate('army_detail', ['slug' => $army->getSlug()]);
+            $url = $this->router->generate('army_detail', ['slug' => $army->getSlug()], true);
 
             $urlConcrete = new UrlConcrete($url, new \DateTime(), $freq, 1);
             $this->event->getGenerator()->addUrl($urlConcrete, 'army');
@@ -125,7 +125,7 @@ class SitemapListener implements SitemapListenerInterface
             // user route
             $user = $army->getUser();
             if (!isset($this->treatedUsers[$user->getId()])) {
-                $url = $this->router->generate('user_index', ['user' => $user->getSlug()]);
+                $url = $this->router->generate('user_index', ['user' => $user->getSlug()], true);
                 $urlConcrete = new UrlConcrete($url, new \DateTime(), $freq, 1);
                 $this->event->getGenerator()->addUrl($urlConcrete, 'user');
             }
