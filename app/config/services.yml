@@ -25,3 +25,10 @@ services:
         tags:
             - { name: twig.extension }
 
+    armycreator.sitemap.listener:
+        class: Sitioweb\Bundle\ArmyCreatorBundle\SitemapListener
+        arguments:
+            - @router
+            - @doctrine.orm.default_entity_manager
+        tags:
+            - { name: presta.sitemap.listener }

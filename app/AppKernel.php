@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Oneup\AclBundle\OneupAclBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Presta\SitemapBundle\PrestaSitemapBundle(),
 
             new Sitioweb\Bundle\ArmyCreatorBundle\SitiowebArmyCreatorBundle(),
             new Sitioweb\Bundle\ArmyCreatorImportBundle\SitiowebArmyCreatorImportBundle(),
