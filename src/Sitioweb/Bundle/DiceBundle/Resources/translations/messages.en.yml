@@ -1,0 +1,23 @@
+toolbox.weapon.title: 'Ballistics statistics'
+toolbox.dice.submit: Calculate
+toolbox.dice.title: 'Dice launch'
+toolbox.dice.results: Results
+toolbox.dice.superior: 'Superior to'
+toolbox.infight.title: Infight
+Dicenumber: 'Number of dices'
+Wantedscore: 'Minimum wanted'
+dice.menu.launcher: 'Dice launcher'
+dice.menu.weapon_statistic: 'Weapon statistics'
+dice.menu.infight_statistic: 'Infight statistics'
+Unitnumber: 'Unit number'
+Shotsbyunit: 'Shots by unit'
+Ballisticskill: 'Ballistic Skill'
+Weaponstrength: 'Weapon Strength'
+Toughness: Toughness
+Save: Save
+Secondsave: 'Second Save'
+Hitbyunit: 'Hit by unit'
+Supplementaryhit: 'One supplementary hit'
+Weaponskill: 'Weapon skill'
+Opponentweaponskill: 'Opponent weapon skill'
+Strength: Strength
