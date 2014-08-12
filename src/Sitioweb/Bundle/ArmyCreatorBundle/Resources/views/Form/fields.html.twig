@@ -26,3 +26,10 @@
     {{ form_errors(form.3) }}
     {{ form_widget(form.3) }}
 {% endblock %}
+
+{% block ac_user_info_row %}
+    {{ form_row(form.address) }}
+    {{ form_row(form.canMove) }}
+    {{ form_row(form.nbHost) }}
+    {{ form_row(form.availability) }}
+{% endblock %}

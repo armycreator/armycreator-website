@@ -83,10 +83,7 @@ class UserService
                     $currentUser->setLastLogin($lastLogin);
                     $currentUser->setEnabled($user->data['is_registered']);
                     $currentUser->setLocked(false);
-
-                    if ($currentUser->getUsername() === 'OlynK') {
-                        $currentUser->addRole('ROLE_SUPER_ADMIN');
-                    }
+                    $currentUser->setAvatar($user->data['user_avatar']);
 
                     $container->get('fos_user.user_manager')->updateUser($currentUser);
                     $container->get('fos_user.security.login_manager')->loginUser('main', $currentUser);

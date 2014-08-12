@@ -203,6 +203,17 @@ user:
         empty: "%username% n'a aucune liste publique"
         title: "Toutes les listes publiques de %username%"
 
+    profile: 
+        edit: 'Editer mon profil (%user%)'
+
+    informations:
+        want_to_play: 'Souhaite jouer avec des membres du site'
+        not_want_to_play: 'N''est pas disponible pour jouer'
+        can_move: 'Peut se déplacer'
+        address: ' Addresse'
+        nb_host: 'Capacité d''hébergement'
+        availability: 'Disponibilités'
+
 breed:
     attr:
         available: Disponible
@@ -268,7 +279,8 @@ news:
 on: 'le'
 yes: Oui
 no: Non
-edit: "Editer"
+edit: 'Editer'
+cancel: 'Annuler'
 
 exception:
     title: 'Une erreur est survenue : %statusText%'
