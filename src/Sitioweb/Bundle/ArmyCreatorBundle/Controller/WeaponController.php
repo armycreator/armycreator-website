@@ -138,7 +138,7 @@ class WeaponController extends Controller
             // dirty fix because description object are compared by reference, not by value
             // @see http://doctrine-orm.readthedocs.org/en/latest/reference/basic-mapping.html
             $edesc = $entity->getDescription();
-            if (is_object($edest)) {
+            if (is_object($edesc)) {
                 $entity->setDescription(clone $edesc);
             }
             $em->persist($entity);
