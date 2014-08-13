@@ -53,9 +53,7 @@ class Builder extends ContainerAware
 
         $menu = $factory->createItem('root');
 
-        if ($security->isGranted('ROLE_CONTRIB')) {
-            $menu->addChild('main_menu.admin', array('route' => 'admin_game'));
-        }
+        $menu->addChild('main_menu.user_list', array('route' => 'user_list'));
 
         if ($isAuth) {
             $menu->addChild('main_menu.my_collection', array('route' => 'user_collection'));

@@ -8,7 +8,7 @@
     {{ form_start(form, { "attr": { "class": "opaque" }}) }}
         {{ form_widget(form) }}
         <div class="txtright">
-            <a href="{{ path("user_index", { "user": user.slug }) }}" class="acButton acButtonBig">
+            <a href="{{ path("user_index", { "userSlug": user.slug }) }}" class="acButton acButtonBig">
                 {{- "cancel"|trans -}}
             </a>
             <input type="submit" class="acButton acButtonBig" />

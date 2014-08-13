@@ -3,6 +3,7 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
+use JMS\SecurityExtraBundle\Annotation as Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,6 +16,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\UserType;
  * User controller.
  *
  * @Breadcrumb("breadcrumb.home", route="homepage")
+ * @Security\PreAuthorize("isFullyAuthenticated()")
  */
 class ProfileController extends Controller
 {
@@ -26,6 +28,8 @@ class ProfileController extends Controller
      * @return Response
      *
      * @Route("/profile/edit", name="profile_edit")
+     * @Breadcrumb("breadcrumb.users.list")
+     * @Breadcrumb("breadcrumb.profile.edit")
      * @Template()
      */
     public function editAction(Request $request)
@@ -41,10 +45,17 @@ class ProfileController extends Controller
                     ->flush();
             }
 
-            $url = $this->generateUrl('user_index', ['user' => $user->getSlug()]);
+            $url = $this->generateUrl('user_index', ['userSlug' => $user->getSlug()]);
             return $this->redirect($url);
         }
 
+        $this->get('apy_breadcrumb_trail')->add(
+            (string) $user,
+            'user_index',
+            ['userSlug' =>  $user->getSlug()],
+            false,
+            -1
+        );
 
         return [
             'user' => $user,

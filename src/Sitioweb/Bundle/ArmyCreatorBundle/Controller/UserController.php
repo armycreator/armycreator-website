@@ -18,17 +18,40 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
 class UserController extends Controller
 {
     /**
-     * indexAction
+     * listAction
+     *
+     * @access public
+     * @return Response
+     *
+     * @Route("/user/", name="user_list")
+     * @Breadcrumb("breadcrumb.users.list")
+     * @Template()
+     */
+    public function listAction()
+    {
+        $userList = $this->get('doctrine.orm.default_entity_manager')
+            ->getRepository('SitiowebArmyCreatorBundle:User')
+            ->findByWantToPlay(true);
+
+        return [
+            'userList' => $userList,
+        ];
+    }
+
+    /**
+     * viewAction
      *
      * @param User $user
      * @access public
      * @return Response
      *
-     * @Route("/user/{user}", name="user_index")
-     * @ParamConverter("user", class="SitiowebArmyCreatorBundle:User", options={"mapping": {"user" = "slug"}})
+     * @Route("/user/{userSlug}", name="user_index")
+     * @ParamConverter("user", class="SitiowebArmyCreatorBundle:User", options={"mapping": {"userSlug" = "slug"}})
+     * @Breadcrumb("breadcrumb.users.list", routeName="user_list")
+     * @Breadcrumb("{user}")
      * @Template()
      */
-    public function indexAction(User $user)
+    public function viewAction(User $user)
     {
         $em = $this->get('doctrine.orm.default_entity_manager');
         $publicArmyList = $em->getRepository('SitiowebArmyCreatorBundle:Army')

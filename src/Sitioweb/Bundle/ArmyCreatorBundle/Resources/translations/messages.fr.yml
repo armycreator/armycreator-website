@@ -139,6 +139,7 @@ main_menu.public_lists: 'listes publiques'
 main_menu.tools: outils
 main_menu.donation: 'faire un don'
 main_menu.admin: administration
+main_menu.user_list: joueurs
 homepage_menu.last_army: 'Ma dernière liste'
 homepage_menu.create_army: 'Créer une nouvelle liste'
 homepage_menu.my_collection: 'Ma collection'
@@ -160,6 +161,10 @@ breadcrumb:
     army_delete: 'Supprimer une armée'
     bbcode: BBCode
     home: Accueil
+    users:
+        list: 'Joueurs'
+    profile:
+        edit: 'Editer mon profil'
     squad_new.%unit_type%: 'nouveau unit_type'
     squad_edit.%squad_name%: 'Editer squad_name'
     squad_new.select_breed: 'Ajouter un alié'
@@ -199,9 +204,13 @@ unit_stuff:
         title: 'Ajouter un équipemement à %unit%'
 
 user:
+    list:
+        title: 'Joueurs souhaitant jouer'
     public_list:
         empty: "%username% n'a aucune liste publique"
         title: "Toutes les listes publiques de %username%"
+
+    pm: 'Envoyer un message privé'
 
     profile: 
         edit: 'Editer mon profil (%user%)'

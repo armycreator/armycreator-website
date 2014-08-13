@@ -26,6 +26,10 @@
                 {% if user.wantToPlay %}
                     <div>
                         <i class="vmiddle el-icon-ok mr1"></i> {{ "user.informations.want_to_play"|trans }}
+                        <a href="{{ path("forum_ucp", {'i': 'pm', 'mode': 'compose', 'u': user.forumId}) }}" class="acButton ml1">
+                            <i class="el-icon-envelope txtcenter mr1"></i>
+                            {{- "user.pm"|trans -}}
+                        </a>
                     </div>
                     <div>
                         {{ "user.informations.can_move"|trans }}

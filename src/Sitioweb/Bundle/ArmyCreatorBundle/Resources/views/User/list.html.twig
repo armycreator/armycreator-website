@@ -1,0 +1,62 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block title -%}
+    {{- "user.list.title"|trans -}}
+{%- endblock %}
+
+{% block h1Container -%}
+
+    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <div>
+            <div class="right">
+                <a href="{{ path("profile_edit") }}" class="acButton" title="{{ "edit"|trans }}">
+                    <i class="el-icon-pencil mr1"></i>
+                    {{ "user.profile.edit"|trans({ "%user%": app.user }) }}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+
+    <h1>
+    {{- "user.list.title"|trans -}}
+
+    {% set count = userList|length %}
+    <span class="soft small">{{ count }}</span>
+    </h1>
+{%- endblock %}
+
+{% block content %}
+
+    <table class="squadType mt1">
+        <thead>
+            <tr>
+                <th>{{ "army.list.user"|trans }}
+                <th>{{ "user.informations.address"|trans }}
+                <th>{{ "user.informations.can_move"|trans }}
+                <th>{{ "user.informations.nb_host"|trans }}
+                <th>{{ "user.informations.availability"|trans }}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for user in userList %}
+                <tr>
+                    <td>
+                        <a href="{{ path("user_index", { "userSlug": user.slug }) }}">
+                            {{ user }}
+                        </a>
+                    </td>
+                    <td class="txtleft">
+                        <a href="http://maps.google.com/?q={{ user.informations.address }}">
+                            {{ user.informations.address }}
+                        </a>
+                    </td>
+                    <td>{{ (user.informations.canMove is defined and user.informations.canMove ? "yes" : "no")|trans }}
+                    <td>{{ user.informations.nbHost is defined and user.informations.nbHost ? user.informations.nbHost : "" }}
+                    <td class="txtleft">{{ user.informations.availability is defined ? user.informations.availability : "" }}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
