@@ -61,6 +61,7 @@ unit_feature:
         at: Att
         cd: Cd
         svg: Svg
-        vav: Véhicule avant
-        vfl: Véhicule flanc
-        var: Véhicule arriere
+        vav: 'Véhicule avant'
+        vfl: 'Véhicule flanc'
+        var: 'Véhicule arriere'
+        pc: 'Points de coque'

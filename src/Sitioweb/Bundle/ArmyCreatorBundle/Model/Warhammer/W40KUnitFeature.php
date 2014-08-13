@@ -28,6 +28,8 @@ class W40KUnitFeature
 
     private $var;
 
+    private $pc;
+
     /**
      * Gets the value of cc
      *
@@ -304,6 +306,29 @@ class W40KUnitFeature
         return $this;
     }
 
+    /**
+     * Gets the value of Pc
+     *
+     * @return int
+     */
+    public function getPc()
+    {
+        return $this->Pc;
+    }
+
+    /**
+     * Sets the value of Pc
+     *
+     * @param int $Pc pc
+     *
+     * @return W40KUnitFeature
+     */
+    public function setPc($Pc)
+    {
+        $this->Pc = $Pc;
+        return $this;
+    }
+
     public function __toString()
     {
         $out = '';
@@ -320,6 +345,7 @@ class W40KUnitFeature
         $out .= ($this->vav ? ' | V.av.: ' . $this->vav : '');
         $out .= ($this->vfl ? ' | V.fl.: ' . $this->vfl : '');
         $out .= ($this->var ? ' | V.ar.: ' . $this->var : '');
+        $out .= ($this->pc ? ' | Pc: ' . $this->pc : '');
 
         $out = substr($out, 3);
 

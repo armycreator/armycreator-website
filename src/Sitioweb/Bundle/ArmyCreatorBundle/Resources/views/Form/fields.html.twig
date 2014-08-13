@@ -1,16 +1,7 @@
 {% block ac_w40k_unitfeature_row %}
-    {{ form_row(form.cc) }}
-    {{ form_row(form.ct) }}
-    {{ form_row(form.fo) }}
-    {{ form_row(form.en) }}
-    {{ form_row(form.pv) }}
-    {{ form_row(form.in) }}
-    {{ form_row(form.at) }}
-    {{ form_row(form.cd) }}
-    {{ form_row(form.svg) }}
-    {{ form_row(form.vav) }}
-    {{ form_row(form.vfl) }}
-    {{ form_row(form.var) }}
+    {% for child in form.children %}
+        {{ form_row(child) }}
+    {% endfor %}
 {% endblock %}
 
 {% block ac_farm_weapon_row %}
@@ -28,8 +19,7 @@
 {% endblock %}
 
 {% block ac_user_info_row %}
-    {{ form_row(form.address) }}
-    {{ form_row(form.canMove) }}
-    {{ form_row(form.nbHost) }}
-    {{ form_row(form.availability) }}
+    {% for child in form.children %}
+        {{ form_row(child) }}
+    {% endfor %}
 {% endblock %}

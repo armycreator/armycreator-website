@@ -19,12 +19,13 @@ class W40KUnitFeatureType extends AbstractType
             ->add('en', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.en'])
             ->add('pv', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.pv'])
             ->add('in', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.in'])
-            ->add('at', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.at'])
+            ->add('at', 'text', ['required' => false, 'label' => 'unit_feature.w40k.at'])
             ->add('cd', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.cd'])
             ->add('svg', 'text', ['required' => false, 'label' => 'unit_feature.w40k.svg'])
             ->add('vav', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.vav'])
             ->add('vfl', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.vfl'])
             ->add('var', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.var'])
+            ->add('pc', 'integer', ['required' => false, 'label' => 'unit_feature.w40k.pc'])
         ;
     }
 
