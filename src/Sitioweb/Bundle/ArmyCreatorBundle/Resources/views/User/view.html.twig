@@ -4,6 +4,49 @@
     {{ user }}
 {%- endblock %}
 
+{% block h1Container %}
+    <header>
+        {% if user.avatar %}
+            <figure class="left mr2">
+                <img src="/forum/download/file.php?avatar={{ user.avatar }}" />
+            </figure>
+        {% endif %}
+
+        <div class="left">
+            <h1>
+                {{- user -}}
+                {% if user.id == app.user.id -%}
+                    <a href="{{ path("profile_edit") }}" class="ml1 acButton acButtonSmall" title="{{ "edit"|trans }}">
+                        <i class="el-icon-pencil"></i>
+                    </a>
+                {%- endif -%}
+            </h1>
+
+            <div>
+                {% if user.wantToPlay %}
+                    <div>
+                        <i class="vmiddle el-icon-ok mr1"></i> {{ "user.informations.want_to_play"|trans }}
+                        <a href="{{ path("forum_ucp", {'i': 'pm', 'mode': 'compose', 'u': user.forumId}) }}" class="acButton ml1">
+                            <i class="el-icon-envelope txtcenter mr1"></i>
+                            {{- "user.pm"|trans -}}
+                        </a>
+                    </div>
+                    <div>
+                        {{ "user.informations.can_move"|trans }}
+                        <i class="vmiddle {{ user.informations.canMove ? "el-icon-ok" : "el-icon-remove" }} mr1"></i>
+                    </div>
+
+                    <div>{{ "user.informations.address"|trans }}: {{ user.informations.address }}</div>
+                    <div>{{ "user.informations.nb_host"|trans }}: {{ user.informations.nbHost }}</div>
+                    <div>{{ "user.informations.availability"|trans }}: {{ user.informations.availability }}</div>
+                {% else %}
+                    <i class="vmiddle el-icon-remove mr1"></i> {{ "user.informations.not_want_to_play"|trans }}
+                {% endif %}
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
 {% block content %}
     {% if publicArmyList %}
         <h2>

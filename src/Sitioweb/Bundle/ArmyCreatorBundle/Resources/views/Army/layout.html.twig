@@ -116,7 +116,7 @@
 
         {% if externalUser %}
             <h4 class="mt0 mb1">
-                <a href="{{ path("user_index", { "user": army.user.slug }) }}">
+                <a href="{{ path("user_index", { "userSlug": army.user.slug }) }}">
                     <strong>
                         {{- "army.by"|trans({"%username%": army.user}) -}}
                     </strong>

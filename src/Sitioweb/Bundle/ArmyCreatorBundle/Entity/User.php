@@ -48,6 +48,36 @@ class User extends BaseUser
     protected $forumId;
 
     /**
+     * wantToPlay
+     *
+     * @var mixed
+     * @access private
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $wantToPlay;
+
+    /**
+     * informations
+     *
+     * @var array
+     * @access private
+     *
+     * @ORM\Column(type="json_array")
+     */
+    private $informations;
+
+    /**
+     * avatar
+     *
+     * @var string
+     * @access private
+     *
+     * @ORM\Column(type="string")
+     */
+    private $avatar;
+
+    /**
      * armyList
      *
      * @var array<Army>
@@ -241,6 +271,29 @@ class User extends BaseUser
     }
 
     /**
+     * Gets the value of avatar
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Sets the value of avatar
+     *
+     * @param string $avatar avatar
+     *
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+        return $this;
+    }
+
+    /**
      * Set preferences
      *
      * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference $preferences
@@ -362,6 +415,52 @@ class User extends BaseUser
     public function getUserUnitFeatureList()
     {
         return $this->userUnitFeatureList;
+    }
+
+    /**
+     * Gets the value of informations
+     *
+     * @return array
+     */
+    public function getInformations()
+    {
+        return $this->informations;
+    }
+
+    /**
+     * Gets the value of wantToPlay
+     *
+     * @return boolean
+     */
+    public function getWantToPlay()
+    {
+        return $this->wantToPlay;
+    }
+
+    /**
+     * Sets the value of wantToPlay
+     *
+     * @param boolean $wantToPlay
+     *
+     * @return User
+     */
+    public function setWantToPlay($wantToPlay)
+    {
+        $this->wantToPlay = $wantToPlay;
+        return $this;
+    }
+
+    /**
+     * Sets the value of informations
+     *
+     * @param array $informations user informations
+     *
+     * @return User
+     */
+    public function setInformations($informations)
+    {
+        $this->informations = $informations;
+        return $this;
     }
 
     /**

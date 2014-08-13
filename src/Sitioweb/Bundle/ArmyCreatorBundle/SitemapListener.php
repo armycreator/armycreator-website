@@ -105,8 +105,6 @@ class SitemapListener implements SitemapListenerInterface
      */
     private function populatePublicArmyList()
     {
-        $routeListe = [ 'user_index', 'army_detail', ];
-
         $publicArmyList = $this->entityManager->getRepository('SitiowebArmyCreatorBundle:Army')
             ->findPublicQueryBuilder()
             ->orderBy('a.updateDate', 'DESC')
@@ -126,7 +124,7 @@ class SitemapListener implements SitemapListenerInterface
             // user route
             $user = $army->getUser();
             if (!isset($this->treatedUsers[$user->getId()])) {
-                $url = $this->router->generate('user_index', ['user' => $user->getSlug()], true);
+                $url = $this->router->generate('user_index', ['userSlug' => $user->getSlug()], true);
                 $urlConcrete = new UrlConcrete($url, $updateDate, $freq, 1);
                 $this->event->getGenerator()->addUrl($urlConcrete, 'user');
             }

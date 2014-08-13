@@ -45,6 +45,11 @@ Strength: Force
 Armor penetration: "Pénétration d'armure"
 Rule: Regles autres
 Show stuff description: "Afficher la description des équipements"
+Want to play: 'Souhaite jouer avec les membres du site'
+Address: 'Addresse'
+Can move: 'Je peux me déplacer'
+Nb host: 'Nombre de personne que je peux héberger'
+Availability: 'Disponibilités'
 unit_feature:
     w40k:
         cc: Cc

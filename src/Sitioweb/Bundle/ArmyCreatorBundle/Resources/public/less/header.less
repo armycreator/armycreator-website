@@ -7,7 +7,14 @@
     position: relative; height: 146px;
     .headerBar {
         color: #70695f; height: 25px; line-height: 25px; padding: 0 10px;
-        a { color: #fff }
+        a {
+            color: #fff;
+
+            &.important {
+                color: @globalLinkColor;
+            }
+        }
+
         .box-shadow(0 2px 3px rgba(0,0,0,0.46));
 
         background: #3c3529;

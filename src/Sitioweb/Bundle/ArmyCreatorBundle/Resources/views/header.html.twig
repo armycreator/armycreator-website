@@ -55,6 +55,13 @@
             <span class="right">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {% trans with { "%username%": app.user.username } %}header.hello.%username%{% endtrans %}
+
+                    {% if is_granted('ROLE_CONTRIB') %}
+                        |
+                        <a href="{{ path("admin_game") }}" title="{{ "main_menu.admin"|trans }}" class="important">
+                            {{- "main_menu.admin"|trans -}}
+                        </a>
+                    {% endif %}
                     |
                     {% set sid = forumSid|default(app.request.cookies.get(forum_sid)) %}
                     <a href="{{ path("forum_ucp", { mode: 'logout', 'sid': sid }) }}" title="{{ "header.logout"|trans }}">

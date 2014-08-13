@@ -1,0 +1,17 @@
+{% extends "SitiowebArmyCreatorBundle::layout.html.twig" %}
+
+{% block title -%}
+    {{ "user.profile.edit"|trans({ "%user%": user }) }}
+{%- endblock %}
+
+{% block content %}
+    {{ form_start(form, { "attr": { "class": "opaque" }}) }}
+        {{ form_widget(form) }}
+        <div class="txtright">
+            <a href="{{ path("user_index", { "userSlug": user.slug }) }}" class="acButton acButtonBig">
+                {{- "cancel"|trans -}}
+            </a>
+            <input type="submit" class="acButton acButtonBig" />
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
