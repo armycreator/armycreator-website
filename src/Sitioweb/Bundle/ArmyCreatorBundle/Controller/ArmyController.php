@@ -7,12 +7,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use JMS\SecurityExtraBundle\Annotation as Security;
+//use JMS\SecurityExtraBundle\Annotation as Security;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyPreferencesType;
@@ -65,7 +66,7 @@ class ArmyController extends Controller
      * @Route("/group/{groupId}", requirements={"groupId" = "\d+"}, name="army_group_list")
      * @Route("/", name="army_list", defaults={"groupId" = null})
      * @Template()
-     * @Security\PreAuthorize("isFullyAuthenticated()")
+     * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
      */
     public function listAction($groupId, Request $request)
     {

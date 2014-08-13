@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9db7574ead9aaea26f6d3cf656ef0af8",
+    "hash": "62895c5d4fd85449779db89b26d47f42",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
@@ -1765,16 +1765,16 @@
         },
         {
             "name": "m6web/statsd",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/M6Web/Statsd.git",
-                "reference": "229e29523f17c1eb039456936fea0dd44f8c901a"
+                "reference": "3edc28df51b3faba1a99ca15bb718b608eac74de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/M6Web/Statsd/zipball/229e29523f17c1eb039456936fea0dd44f8c901a",
-                "reference": "229e29523f17c1eb039456936fea0dd44f8c901a",
+                "url": "https://api.github.com/repos/M6Web/Statsd/zipball/3edc28df51b3faba1a99ca15bb718b608eac74de",
+                "reference": "3edc28df51b3faba1a99ca15bb718b608eac74de",
                 "shasum": ""
             },
             "require": {
@@ -1786,7 +1786,7 @@
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "": "src/"
+                    "M6Web\\Component\\Statsd\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1799,7 +1799,7 @@
                 "php",
                 "statsd"
             ],
-            "time": "2014-03-16 13:39:42"
+            "time": "2014-08-13 13:49:51"
         },
         {
             "name": "m6web/statsd-bundle",
@@ -2291,27 +2291,35 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v2.3.4",
+            "version": "v3.0.1",
             "target-dir": "Sensio/Bundle/FrameworkExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "cce05719041d952bbec856789ca18646a1891d03"
+                "reference": "dbc1e5aa830f3bf8063b29102add3c1e476d616e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/cce05719041d952bbec856789ca18646a1891d03",
-                "reference": "cce05719041d952bbec856789ca18646a1891d03",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/dbc1e5aa830f3bf8063b29102add3c1e476d616e",
+                "reference": "dbc1e5aa830f3bf8063b29102add3c1e476d616e",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.2",
-                "symfony/framework-bundle": "~2.2"
+                "symfony/framework-bundle": "~2.5"
+            },
+            "require-dev": {
+                "symfony/expression-language": "~2.4",
+                "symfony/security-bundle": "~2.4"
+            },
+            "suggest": {
+                "symfony/expression-language": "",
+                "symfony/security-bundle": ""
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3.x-dev"
+                    "dev-master": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -2326,7 +2334,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "This bundle provides a way to configure your controllers with annotations",
@@ -2334,7 +2344,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2013-07-24 08:49:53"
+            "time": "2014-05-22 23:27:44"
         },
         {
             "name": "sensio/generator-bundle",
