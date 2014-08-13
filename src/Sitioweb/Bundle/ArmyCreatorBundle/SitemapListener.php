@@ -87,6 +87,7 @@ class SitemapListener implements SitemapListenerInterface
             'army_public_list' => UrlConcrete::CHANGEFREQ_DAILY,
             'homepage' => UrlConcrete::CHANGEFREQ_WEEKLY,
             'forum_index' => UrlConcrete::CHANGEFREQ_HOURLY,
+            'user_list' => UrlConcrete::CHANGEFREQ_MONTHLY,
         ];
 
         foreach ($routeList as $route => $freq) {
@@ -122,12 +123,40 @@ class SitemapListener implements SitemapListenerInterface
             $this->event->getGenerator()->addUrl($urlConcrete, 'army');
 
             // user route
-            $user = $army->getUser();
-            if (!isset($this->treatedUsers[$user->getId()])) {
-                $url = $this->router->generate('user_index', ['userSlug' => $user->getSlug()], true);
-                $urlConcrete = new UrlConcrete($url, $updateDate, $freq, 1);
-                $this->event->getGenerator()->addUrl($urlConcrete, 'user');
-            }
+            $this->populateUser($army->getUser(), $updateDate, $freq);
+        }
+    }
+
+    /**
+     * populateUsersList
+     *
+     * @access private
+     * @return void
+     */
+    private function populateUsersList()
+    {
+        $userList = $this->get('doctrine.orm.default_entity_manager')
+            ->getRepository('SitiowebArmyCreatorBundle:User')
+            ->findByWantToPlay(true);
+
+        foreach ($userList as $user) {
+            $this->populateUser($user, $user->getLastLogin(), UrlConcrete::CHANGEFREQ_MONTHLY);
+        }
+    }
+
+    /**
+     * populateUser
+     *
+     * @param User $user
+     * @access private
+     * @return void
+     */
+    private function populateUser($user, $updateDate, $freq)
+    {
+        if (!isset($this->treatedUsers[$user->getId()])) {
+            $url = $this->router->generate('user_index', ['userSlug' => $user->getSlug()], true);
+            $urlConcrete = new UrlConcrete($url, $updateDate, $freq, 1);
+            $this->event->getGenerator()->addUrl($urlConcrete, 'user');
         }
     }
 
