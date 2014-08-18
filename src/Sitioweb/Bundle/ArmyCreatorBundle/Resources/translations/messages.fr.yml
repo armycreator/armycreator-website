@@ -219,7 +219,7 @@ user:
         want_to_play: 'Souhaite jouer avec des membres du site'
         not_want_to_play: 'N''est pas disponible pour jouer'
         can_move: 'Peut se déplacer'
-        address: ' Addresse'
+        address: ' Adresse'
         nb_host: 'Capacité d''hébergement'
         availability: 'Disponibilités'
 
