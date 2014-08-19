@@ -21,6 +21,7 @@ class UnitGroup extends AbstractUnit
 	 * @access private
 	 *
 	 * @ORM\OneToMany(targetEntity="UnitHasUnitGroup", mappedBy="group")
+     * @ORM\OrderBy({"position": "ASC", "mainUnit": "DESC"})
 	 */
 	private $unitHasUnitGroupList;
 

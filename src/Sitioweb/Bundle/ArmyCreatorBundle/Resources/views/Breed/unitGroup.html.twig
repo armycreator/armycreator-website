@@ -20,7 +20,7 @@
             <div class="squadListContainer">
                 <div class="squadList">
                     {% for unitGroup in unitType.unitGroupList %}
-                        <div class="squad">
+                        <div class="squad" id="unitGroup-{{ unitGroup.slug }}">
                             <div class="squadName">
                                 <h4>
                                     {{ unitGroup.name }}
@@ -59,6 +59,18 @@
                                                 <a href="{{ path("unithasunitgroup_edit", params + { "id": unitHasUnitGroup.id}) }}" class="acButton acButtonSmall">
                                                     <i class="el-icon-pencil"></i>
                                                 </a>
+
+                                                {% if not loop.first %}
+                                                    <a href="{{ path("unithasunitgroup_move", params + { "id": unitHasUnitGroup.id, "position": loop.index - 1, "direction": "up"}) }}" class="acButton acButtonSmall">
+                                                        <i class="el-icon-arrow-up"></i>
+                                                    </a>
+                                                {% endif %}
+
+                                                {% if not loop.last %}
+                                                    <a href="{{ path("unithasunitgroup_move", params + { "id": unitHasUnitGroup.id, "position": loop.index + 1, "direction": "down"}) }}" class="acButton acButtonSmall">
+                                                        <i class="el-icon-arrow-down"></i>
+                                                    </a>
+                                                {% endif %}
                                             {% endif %}
                                         </h5>
                                     </div>

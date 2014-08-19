@@ -76,6 +76,16 @@ class UnitHasUnitGroup
     private $canChooseNumber;
 
     /**
+     * position
+     *
+     * @var int
+     * @access private
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $position;
+
+    /**
      * __construct
      *
      * @access public
@@ -238,5 +248,28 @@ class UnitHasUnitGroup
     public function getCanChooseNumber()
     {
         return $this->canChooseNumber;
+    }
+
+    /**
+     * Gets the value of position
+     *
+     * @return int
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * Sets the value of position
+     *
+     * @param int $position position
+     *
+     * @return UnitHasUnitGroup
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+        return $this;
     }
 }
