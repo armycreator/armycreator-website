@@ -5,8 +5,6 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use JMS\SecurityExtraBundle\Annotation\SecureParam;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -18,7 +16,6 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\GameType;
 /**
  * Game controller.
  *
- * @Route("/admin/game")
  * @Breadcrumb("breadcrumb.home", route="homepage")
  * @Breadcrumb("breadcrumb.admin.index", route="admin_game")
  */
@@ -27,7 +24,6 @@ class GameController extends Controller
     /**
      * Lists all Game entities.
      *
-     * @Route("/", name="admin_game")
      * @Template()
      */
     public function indexAction()
@@ -55,7 +51,6 @@ class GameController extends Controller
     /**
      * Displays a form to create a new Game entity.
      *
-     * @Route("/new", name="admin_game_new")
      * @Breadcrumb("breadcrumb.admin.game.new", route="admin_game_new")
      * @Template()
      */
@@ -78,8 +73,6 @@ class GameController extends Controller
     /**
      * Creates a new Game entity.
      *
-     * @Route("/create", name="admin_game_create")
-     * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Game:new.html.twig")
      */
     public function createAction()
@@ -111,7 +104,6 @@ class GameController extends Controller
     /**
      * Displays a form to edit an existing Game entity.
      *
-     * @Route("/{game}/edit", name="admin_game_edit")
      * @Breadcrumb("{game.name}", route={"name"="admin_game_edit", "parameters"={"game" = "game.code"}})
      * @Template()
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
@@ -134,8 +126,6 @@ class GameController extends Controller
     /**
      * Edits an existing Game entity.
      *
-     * @Route("/{code}/update", name="admin_game_update")
-     * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:Game:edit.html.twig")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"code" = "code"}})
      * @SecureParam(name="game", permissions="EDIT")
@@ -172,8 +162,6 @@ class GameController extends Controller
     /**
      * Deletes a Game entity.
      *
-     * @Route("/{code}/delete", name="admin_game_delete")
-     * @Method("post")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"code" = "code"}})
      */
     public function deleteAction(Game $game)

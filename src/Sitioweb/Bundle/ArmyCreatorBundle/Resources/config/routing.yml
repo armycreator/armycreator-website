@@ -1,0 +1,5 @@
+admin_game:
+    resource: "@SitiowebArmyCreatorBundle/Resources/config/routing/game.yml"
+
+admin_breed:
+    resource: "@SitiowebArmyCreatorBundle/Resources/config/routing/breed.yml"

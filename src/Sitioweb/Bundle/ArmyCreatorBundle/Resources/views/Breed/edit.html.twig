@@ -14,5 +14,17 @@
     <a href="{{ path('admin_breed_show', {  "breed": entity.slug, "game": entity.game.code }) }}" class="acButton">
         {{ "breed.back_to_breed"|trans }}
     </a>
+
+    {% if ac_granted("DELETE", entity) %}
+        <form
+            action="{{ path('admin_breed_delete', { 'game': entity.game.code, 'breed': entity.slug }) }}"
+            method="post"
+            class="inbl"
+            onsubmit="javascript:return confirm('{% trans %}breed.detail.delete{% endtrans %}');"
+        >
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="acButton">{{ "button.delete"|trans }}</button>
+        </form>
+    {% endif %}
 </div>
 {% endblock %}

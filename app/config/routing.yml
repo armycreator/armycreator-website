@@ -3,6 +3,9 @@ sitioweb_dice:
     type:     annotation
     prefix:   /toolbox
 
+armycreator:
+    resource: "@SitiowebArmyCreatorBundle/Resources/config/routing.yml"
+
 SitiowebArmyCreatorBundle:
     resource: "@SitiowebArmyCreatorBundle/Controller/"
     type:     annotation
