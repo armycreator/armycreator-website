@@ -32,7 +32,7 @@ class UnitType extends AbstractUnitType
                     }
                 )
             )
-            ->add('name')
+            ->add('name', null, ['attr' => ['autofocus' => 'autofocus']])
             ->add('points')
             /*
             ->add('unitHasUnitGroupList', 'collection', array('type' => new UnitHasUnitGroupType()))
