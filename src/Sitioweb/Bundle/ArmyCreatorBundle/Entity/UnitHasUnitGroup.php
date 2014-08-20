@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class UnitHasUnitGroup
 {
@@ -271,5 +272,27 @@ class UnitHasUnitGroup
     {
         $this->position = $position;
         return $this;
+    }
+
+    /**
+     * prePersist
+     *
+     * @access public
+     * @return void
+     *
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $maxPos = 0;
+
+        $uhugList = $this->getGroup()->getUnitHasUnitGroupList();
+        foreach ($uhugList as $uhug) {
+            if ($uhug->getPosition() > $maxPos) {
+                $maxPos = $uhug->getPosition();
+            }
+        }
+
+        $this->setPosition($maxPos + 1);
     }
 }
