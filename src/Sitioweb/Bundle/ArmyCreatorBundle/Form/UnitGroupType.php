@@ -43,8 +43,8 @@ class UnitGroupType extends AbstractType
             }
         ));
 
-        $builder->add('points');
-        $builder->add('name');
+        $builder->add('name', null, ['attr' => ['autofocus' => 'autofocus']]);
+        $builder->add('points', null, ['label' => 'Supplementary points']);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
