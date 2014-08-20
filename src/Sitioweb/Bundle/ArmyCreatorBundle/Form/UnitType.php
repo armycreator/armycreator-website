@@ -47,6 +47,13 @@ class UnitType extends AbstractUnitType
             );
 
         $builder = $this->addBreedSpecifics($builder);
+
+        if ($options['data']->getId()) {
+             $builder->add('edit', 'submit');
+        } else {
+             $builder->add('create', 'submit')
+                 ->add('createAndAdd', 'submit');
+        }
     }
 
     /**

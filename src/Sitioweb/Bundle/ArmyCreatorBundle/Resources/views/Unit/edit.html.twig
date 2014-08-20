@@ -20,11 +20,13 @@
             {{ form_row(edit_form.unitHasUnitGroupList[0].canChooseNumber) }}
             #}
 
-            {{ form_widget(edit_form) }}
+
+            <div class="txtright">
+                {{ form_widget(edit_form.edit, {"attr": {"class": "acButton acButtonBig"}}) }}
+            </div>
+
+            {{ form_rest(edit_form) }}
         </div>
-        <p class="txtright">
-            <button class="acButton acButtonBig" type="submit">{{ "button.edit"|trans }}</button>
-        </p>
     </form>
 
     <div class="right">

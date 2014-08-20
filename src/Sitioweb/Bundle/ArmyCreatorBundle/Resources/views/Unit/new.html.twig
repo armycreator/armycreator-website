@@ -23,11 +23,13 @@
             {{ form_row(form.unitHasUnitGroupList[0].canChooseNumber) }}
 #}
 
-            {{ form_widget(form) }}
+            <div class="txtright">
+                {{ form_widget(form.create, {"attr": {"class": "acButton"}}) }}
+                {{ form_widget(form.createAndAdd, {"attr": {"class": "acButton"}}) }}
+            </div>
+
+            {{ form_rest(form) }}
         </div>
-        <p class="txtright">
-            <button class="acButton acButtonBig" type="submit">{{ "button.create"|trans }}</button>
-        </p>
     </form>
 
     <div>
