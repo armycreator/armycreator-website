@@ -32,9 +32,9 @@
 }
 
 #websiteNav {
-    /*position: absolute; bottom: 0; left: 0;*/
     margin-top: 80px;
     overflow: auto;
+    position: relative;
 
     &:focus {
         outline-style: none;
@@ -87,7 +87,7 @@
         }
 
         ul {
-            max-height: 25em; /* menu masqué */
+            max-height: 25em; // menu masqué
             .transition(max-height .4s);
             overflow: hidden;
         }
@@ -100,8 +100,15 @@
             background: #213233;
             text-decoration: none;
 
+            border-top: 1px solid #44463f;
+            border-bottom: 1px solid #20231d;
+
             &:hover, &:active {
                 background: #274244;
+            }
+
+            > span {
+                border: 0;
             }
         }
     }
