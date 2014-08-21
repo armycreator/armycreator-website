@@ -41,6 +41,13 @@ class EquipementType extends AbstractType
     {
         $builder->add('name', null, ['attr' => ['autofocus' => 'autofocus']]);
         $builder = $this->addDescription($builder);
+
+        if ($options['data']->getId()) {
+             $builder->add('edit', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
+        } else {
+             $builder->add('create', 'submit', ['attr' => ['class' => 'acButton acButtonBig']])
+                 ->add('createAndAdd', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
+        }
     }
 
 

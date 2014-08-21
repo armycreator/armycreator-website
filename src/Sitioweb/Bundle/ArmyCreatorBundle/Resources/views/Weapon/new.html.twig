@@ -11,9 +11,6 @@
 
     <form action="{{ path("weapon_create", params) }}" method="post" {{ form_enctype(form) }} class="opaque">
         {{ form_widget(form) }}
-        <p class="txtright">
-            <button class="acButton acButtonBig" type="submit">{{ "button.create"|trans }}</button>
-        </p>
     </form>
 
     <div>

@@ -47,7 +47,18 @@ class EquipementController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->getArmyShowUrl($breed));
+            if ($form->get('createAndAdd')->isClicked()) {
+                $url = $this->generateUrl(
+                        'equipement_new',
+                        [
+                            'breed' => $breed->getSlug(),
+                            'game' => $breed->getGame()->getCode(),
+                        ]
+                    );
+                return $this->redirect($url);
+            } else {
+                return $this->redirect($this->getArmyShowUrl($breed));
+            }
         }
 
         return array(

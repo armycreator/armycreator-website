@@ -47,7 +47,18 @@ class WeaponController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->getArmyShowUrl($breed));
+            if ($form->get('createAndAdd')->isClicked()) {
+                $url = $this->generateUrl(
+                        'weapon_new',
+                        [
+                            'breed' => $breed->getSlug(),
+                            'game' => $breed->getGame()->getCode(),
+                        ]
+                    );
+                return $this->redirect($url);
+            } else {
+                return $this->redirect($this->getArmyShowUrl($breed));
+            }
         }
 
         return array(
