@@ -12,6 +12,8 @@ Show default stuff: 'Afficher les équipements par défaut'
 Show unit points: 'Afficher les points des unités'
 Show unit feature: 'Afficher les caractéristiques des unités'
 Separator: Séparateur
+Default points: 'Prérenseigner le nombre de points suivant'
+Default auto: 'Prérenseigner la case "équipement auto"'
 ac_armybbcode.form.carriage_return: 'Retour chariot'
 ac_armybbcode.form.slash: Slash
 ac_armybbcode.form.comma: Virgule

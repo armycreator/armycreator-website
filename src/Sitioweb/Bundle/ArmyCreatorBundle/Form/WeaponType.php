@@ -41,7 +41,9 @@ class WeaponType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', null, ['attr' => ['autofocus' => 'autofocus']]);
+        $builder->add('name', null, ['attr' => ['autofocus' => 'autofocus']])
+            ->add('defaultPoints')
+            ->add('defaultAuto', null, ['required' => false]);
 
         $builder = $this->addBreedSpecifics($builder);
 

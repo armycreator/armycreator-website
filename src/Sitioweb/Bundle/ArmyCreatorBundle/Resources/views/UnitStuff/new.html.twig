@@ -34,3 +34,14 @@
     </li>
 </ul>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if app.environment == 'dev' %}
+        <!-- dev:unitstuff-edit.js -->
+<script src="/tmp/js/unitstuff-edit.js/unitstuff-edit_0.js"></script>
+<!-- endbuild -->
+    {% else %}
+        <!-- prod:unitstuff-edit.js --><!-- endbuild -->
+    {% endif %}
+{% endblock %}

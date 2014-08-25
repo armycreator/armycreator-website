@@ -61,7 +61,7 @@ class UnitStuffType extends AbstractType
              )
             ->add(
                 'stuff',
-                null,
+                'ac_stuff',
                 array(
                     'required' => true,
                     'property' => 'name',

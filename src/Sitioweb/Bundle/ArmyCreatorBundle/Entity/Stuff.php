@@ -36,6 +36,26 @@ abstract class Stuff
     private $name;
 
     /**
+     * defaultPoints
+     *
+     * @var int
+     * @access private
+     *
+     * @ORM\Column(name="defaultPoints", type="integer")
+     */
+    private $defaultPoints;
+
+    /**
+     * defaultAuto
+     *
+     * @var boolean
+     * @access private
+     *
+     * @ORM\Column(name="auto", type="boolean")
+     */
+    private $defaultAuto;
+
+    /**
      * importedId
      * @ORM\Column(type="integer", nullable=true)
      *
@@ -211,6 +231,52 @@ abstract class Stuff
     public function getBreed()
     {
         return $this->breed;
+    }
+
+    /**
+     * Gets the value of defaultPoints
+     *
+     * @return int
+     */
+    public function getDefaultPoints()
+    {
+        return $this->defaultPoints;
+    }
+
+    /**
+     * Sets the value of defaultPoints
+     *
+     * @param int $defaultPoints
+     *
+     * @return Stuff
+     */
+    public function setDefaultPoints($defaultPoints)
+    {
+        $this->defaultPoints = $defaultPoints;
+        return $this;
+    }
+
+    /**
+     * Gets the value of defaultAuto
+     *
+     * @return boolean
+     */
+    public function getDefaultAuto()
+    {
+        return $this->defaultAuto;
+    }
+
+    /**
+     * Sets the value of defaultAuto
+     *
+     * @param boolean $defaultAuto default auto Y/N
+     *
+     * @return Stuff
+     */
+    public function setDefaultAuto($defaultAuto)
+    {
+        $this->defaultAuto = $defaultAuto;
+        return $this;
     }
 
     /**
