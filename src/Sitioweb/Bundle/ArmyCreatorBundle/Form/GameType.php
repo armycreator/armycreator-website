@@ -13,6 +13,7 @@ class GameType extends AbstractType
         $builder
             ->add('code')
             ->add('name')
+            ->add('unitFeaturePublic')
         ;
     }
 

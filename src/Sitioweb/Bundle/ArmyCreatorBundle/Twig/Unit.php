@@ -53,7 +53,9 @@ class Unit extends \Twig_Extension
             return $userFeature->getFeature();
         }
 
-        return $unit->getFeature();
+        if ($unit->getBreed()->getGame()->getUnitFeaturePublic()) {
+            return $unit->getFeature();
+        }
     }
 
     /**

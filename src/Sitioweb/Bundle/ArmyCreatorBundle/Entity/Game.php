@@ -44,6 +44,16 @@ class Game
      */
     private $name;
 
+    /**
+     * unitFeaturePublic
+     *
+     * @var mixed
+     * @access private
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $unitFeaturePublic;
+
 	/**
 	 * breedList
 	 *
@@ -76,6 +86,7 @@ class Game
     public function __construct()
     {
         $this->breedGroupList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->unitFeaturePublic = false;
     }
 
     /**
@@ -222,6 +233,29 @@ class Game
         }
 
         return $this->availableBreedList;
+    }
+
+    /**
+     * Gets the value of unitFeaturePublic
+     *
+     * @return boolean
+     */
+    public function getUnitFeaturePublic()
+    {
+        return $this->unitFeaturePublic;
+    }
+
+    /**
+     * Sets the value of unitFeaturePublic
+     *
+     * @param boolean $unitFeaturePublic
+     *
+     * @return Game
+     */
+    public function setUnitFeaturePublic($unitFeaturePublic)
+    {
+        $this->unitFeaturePublic = $unitFeaturePublic;
+        return $this;
     }
 
     /**
