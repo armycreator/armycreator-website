@@ -87,7 +87,7 @@ class UnitController extends Controller
                     );
                 return $this->redirect($url);
             } else {
-                return $this->redirect($this->getArmyShowUrl($breed));
+                return $this->redirect($this->getArmyShowUrl($breed, $entity));
             }
         }
 
@@ -221,7 +221,7 @@ class UnitController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->getArmyShowUrl($breed));
+            return $this->redirect($this->getArmyShowUrl($breed, $entity));
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -285,7 +285,7 @@ class UnitController extends Controller
         ;
     }
 
-    private function getArmyShowUrl(Breed $breed)
+    private function getArmyShowUrl(Breed $breed, Unit $unit = null)
     {
         $url = $this->generateUrl(
                 'admin_breed_unit',
@@ -294,6 +294,11 @@ class UnitController extends Controller
                     'game' => $breed->getGame()->getCode()
                     )
                 );
+
+        if ($unit) {
+            $url .= '#unit-' . $unit->getSlug();
+        }
+
         return $url;
     }
 }

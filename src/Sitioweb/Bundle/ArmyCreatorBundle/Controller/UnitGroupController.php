@@ -55,7 +55,7 @@ class UnitGroupController extends Controller
                     'game' => $breed->getGame()->getCode()
                 )
             );
-            return $this->redirect($url);
+            return $this->redirect($url . '#unitGroup-' . $entity->getSlug());
         }
 
         return array(
@@ -165,7 +165,7 @@ class UnitGroupController extends Controller
                     'game' => $breed->getGame()->getCode()
                 )
             );
-            return $this->redirect($url);
+            return $this->redirect($url . '#unitGroup-' . $entity->getSlug());
         }
 
         return array(

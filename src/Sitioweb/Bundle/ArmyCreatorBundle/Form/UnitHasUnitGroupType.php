@@ -13,7 +13,7 @@ class UnitHasUnitGroupType extends AbstractType
 {
     /**
      * breed
-     * 
+     *
      * @var Breed
      * @access private
      */
@@ -36,10 +36,11 @@ class UnitHasUnitGroupType extends AbstractType
     {
         $builder->add(
                     'unit',
-                    null, 
+                    null,
                     array(
+                        'attr' => ['autofocus' => 'autofocus'],
                         'required' => true,
-                        'property' => 'name',
+                        'property' => 'nameAndPoints',
                         'query_builder' => function(EntityRepository $er) {
                             return $er->createQueryBuilder('u')
                                     ->add('where', 'u.breed = :breed')
@@ -50,7 +51,7 @@ class UnitHasUnitGroupType extends AbstractType
                 )
                 ->add(
                     'group',
-                    null, 
+                    null,
                     array(
                         'required' => true,
                         'property' => 'name',

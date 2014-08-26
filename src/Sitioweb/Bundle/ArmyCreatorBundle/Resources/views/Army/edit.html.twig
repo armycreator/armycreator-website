@@ -20,7 +20,7 @@
 
             {% if app.user.preferedBreedList %}
                 <div>
-                    <ul class="inline inlineBig">
+                    <div class="row hide-mobile">
                         {% for tmpBreed in app.user.preferedBreedList[:10] %}
                             {% if tmpBreed.newVersion %}
                                 {% set currentBreed = tmpBreed.newVersion %}
@@ -28,7 +28,7 @@
                                 {% set currentBreed = tmpBreed %}
                             {% endif %}
 
-                            <li>
+                            <div>
                                 <a href="#" data-breed-id="{{ currentBreed.id }}"{% if currentBreed == form.breed.vars.data %} class="soft"{% endif %}>
                                     <figure class="breed">
                                         {{ breedImage(currentBreed)|raw }}
@@ -45,9 +45,9 @@
                                         </figcaption>
                                     </figure>
                                 </a>
-                            </li>
+                            </div>
                         {% endfor %}
-                    </ul>
+                    </div>
                 </div>
             {% endif %}
 

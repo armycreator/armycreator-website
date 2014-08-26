@@ -35,7 +35,7 @@ class AbstractUnit
 
     /**
      * slug
-     * 
+     *
      * @var string
      * @access private
      *
@@ -47,7 +47,7 @@ class AbstractUnit
     /**
      * points
      * @ORM\Column(name="points", type="integer")
-     * 
+     *
      * @var int
      * @access private
      */
@@ -55,7 +55,7 @@ class AbstractUnit
 
     /**
      * breed
-     * 
+     *
      * @var Breed
      * @access private
 	 *
@@ -65,7 +65,7 @@ class AbstractUnit
 
     /**
      * importedId
-     * 
+     *
      * @ORM\Column(type="integer", nullable=true)
      * @var mixed
      * @access private
@@ -74,7 +74,7 @@ class AbstractUnit
 
     /**
      * importedType
-     * 
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var mixed
      * @access private
@@ -84,7 +84,7 @@ class AbstractUnit
 
     /**
      * unitType
-     * 
+     *
      * @var UnitType
      * @access private
 	 *
@@ -108,7 +108,7 @@ class AbstractUnit
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -124,14 +124,14 @@ class AbstractUnit
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -195,14 +195,14 @@ class AbstractUnit
     public function setImportedId($importedId)
     {
         $this->importedId = $importedId;
-    
+
         return $this;
     }
 
     /**
      * Get imported id
      *
-     * @return integer 
+     * @return integer
      */
     public function getImportedId()
     {
@@ -229,18 +229,23 @@ class AbstractUnit
     public function setPoints($points)
     {
         $this->points = $points;
-    
+
         return $this;
     }
 
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {
         return $this->points;
+    }
+
+    public function getNameAndPoints()
+    {
+        return $this->getName() . ' (' . $this->getPoints() . ' pts)';
     }
 
     /**
@@ -277,7 +282,7 @@ class AbstractUnit
     public function setImportedType($importedType)
     {
         $this->importedType = $importedType;
-    
+
         return $this;
     }
 

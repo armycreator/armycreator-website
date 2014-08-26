@@ -20,7 +20,7 @@
             <div class="squadListContainer">
                 <div class="squadList">
                     {% for unit in unitType.unitList %}
-                        <div class="squad">
+                        <div class="squad" id="unit-{{ unit.slug }}">
                             <div class="squadName">
                                 <h4>
                                     {{ unit.name }}

@@ -117,6 +117,8 @@ abstract class Stuff
     public function __construct()
     {
         $this->unitStuffList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->defaultAuto = false;
+        $this->defaultPoints = 0;
     }
 
 

@@ -63,6 +63,7 @@ class UnitStuffType extends AbstractType
                 'stuff',
                 'ac_stuff',
                 array(
+                    'attr' => ['autofocus' => 'autofocus'],
                     'required' => true,
                     'property' => 'name',
                     'query_builder' => function(EntityRepository $er) {
@@ -77,8 +78,8 @@ class UnitStuffType extends AbstractType
         if ($options['data']->getId()) {
              $builder->add('edit', 'submit');
         } else {
-             $builder->add('create', 'submit')
-                 ->add('createAndAdd', 'submit');
+             $builder->add('createAndAdd', 'submit')
+                ->add('create', 'submit');
         }
     }
 

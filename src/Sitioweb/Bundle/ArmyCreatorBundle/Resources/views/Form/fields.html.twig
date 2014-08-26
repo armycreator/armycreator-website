@@ -17,7 +17,7 @@
 
 {% block ac_stuff_choice_widget_options -%}
     {% for group_label, choice in options %}
-        <option data-default-points="{{ choice.data.defaultPoints }}" data-default-auto="{{ choice.data.defaultAuto }}" value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+        <option data-default-points="{{ choice.data.defaultPoints }}" data-default-auto="{{ choice.data.defaultAuto ? "1" : "0" }}" value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
     {% endfor %}
 {%- endblock ac_stuff_choice_widget_options %}
 

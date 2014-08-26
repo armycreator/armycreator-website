@@ -53,6 +53,9 @@ Address: 'Addresse'
 Can move: 'Je peux me déplacer'
 Nb host: 'Nombre de personne que je peux héberger'
 Availability: 'Disponibilités'
+Group: 'Groupe d''unité'
+Unit number: 'Nombre d''unités'
+Can choose number: 'Le joueur peut choisir le nombre d''unité (sera obligatoirement le nombre au dessus sinon)'
 unit_feature:
     w40k:
         cc: Cc

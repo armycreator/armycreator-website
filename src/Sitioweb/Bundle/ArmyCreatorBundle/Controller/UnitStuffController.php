@@ -59,7 +59,7 @@ class UnitStuffController extends Controller
                     );
                 return $this->redirect($url);
             } else {
-                return $this->redirect($this->getArmyShowUrl($breed));
+                return $this->redirect($this->getArmyShowUrl($breed, $entity->getUnit()));
             }
         }
 
@@ -182,7 +182,7 @@ class UnitStuffController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->getArmyShowUrl($breed));
+            return $this->redirect($this->getArmyShowUrl($breed, $entity->getUnit()));
         }
 
         return array(
@@ -206,6 +206,7 @@ class UnitStuffController extends Controller
 
         $form = $this->createDeleteForm($id);
         $form->bind($request);
+        $unit = null;
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -214,12 +215,13 @@ class UnitStuffController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find UnitStuff entity.');
             }
+            $unit = $entity->getUnit();
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->getArmyShowUrl($breed));
+        return $this->redirect($this->getArmyShowUrl($breed, $unit));
     }
 
     /**
@@ -237,7 +239,7 @@ class UnitStuffController extends Controller
         ;
     }
 
-    private function getArmyShowUrl(Breed $breed)
+    private function getArmyShowUrl(Breed $breed, Unit $unit)
     {
         $url = $this->generateUrl(
                 'admin_breed_unit',
@@ -246,6 +248,9 @@ class UnitStuffController extends Controller
                     'game' => $breed->getGame()->getCode()
                     )
                 );
+
+        $url .= '#unit-' . $unit->getSlug();
+
         return $url;
     }
 }

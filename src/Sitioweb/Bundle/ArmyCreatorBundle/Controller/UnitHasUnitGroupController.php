@@ -45,7 +45,7 @@ class UnitHasUnitGroupController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->getArmyShowUrl($breed));
+            return $this->redirect($this->getArmyShowUrl($breed, $entity));
         }
 
         return array(
@@ -146,7 +146,7 @@ class UnitHasUnitGroupController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->getArmyShowUrl($breed));
+            return $this->redirect($this->getArmyShowUrl($breed, $entity));
         }
 
         return array(
@@ -267,15 +267,20 @@ class UnitHasUnitGroupController extends Controller
             ;
     }
 
-    private function getArmyShowUrl(Breed $breed)
+    private function getArmyShowUrl(Breed $breed, UnitHasUnitGroup $uhug = null)
     {
         $url = $this->generateUrl(
-            'admin_breed_show',
+            'admin_breed_unitgroup',
             array(
                 'breed' => $breed->getSlug(),
                 'game' => $breed->getGame()->getCode()
             )
         );
+
+        if ($uhug) {
+            $url .= '#unitGroup-' . $uhug->getGroup()->getSlug();
+        }
+
         return $url;
     }
 }
