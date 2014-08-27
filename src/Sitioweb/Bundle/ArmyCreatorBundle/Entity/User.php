@@ -53,7 +53,7 @@ class User extends BaseUser
      * @var mixed
      * @access private
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $wantToPlay;
 
@@ -63,7 +63,7 @@ class User extends BaseUser
      * @var array
      * @access private
      *
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="json_array", nullable=true)
      */
     private $informations;
 
