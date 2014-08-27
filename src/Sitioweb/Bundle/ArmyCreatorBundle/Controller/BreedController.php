@@ -58,7 +58,13 @@ class BreedController extends Controller
         foreach ($unitTypeList as $unitType) {
             $unitGroupList = $unitType->getUnitGroupList();
             foreach ($unitGroupList as $unitGroup) {
-                $deleteUgFormList[$unitGroup->getId()] = $this->createDeleteForm($unitGroup->getId());
+                $unitGroupUsed = $this->get('doctrine')
+                    ->getRepository('SitiowebArmyCreatorBundle:Squad')
+                    ->findOneByUnitGroup($unitGroup);
+
+                if (!$unitGroupUsed) {
+                    $deleteUgFormList[$unitGroup->getId()] = $this->createDeleteForm($unitGroup->getId());
+                }
             }
         }
 
@@ -85,7 +91,12 @@ class BreedController extends Controller
 
         $deleteUnitFormList = [];
         foreach ($unitList as $unit) {
-            $deleteUnitFormList[$unit->getId()] = $this->createDeleteForm($unit->getId());
+            $unitUsed = $this->get('doctrine')
+                ->getRepository('SitiowebArmyCreatorBundle:SquadLine')
+                ->findOneByUnit($unit);
+            if (!$unitUsed) {
+                $deleteUnitFormList[$unit->getId()] = $this->createDeleteForm($unit->getId());
+            }
         }
 
         $this->addBreadcrumb($game, $breed);

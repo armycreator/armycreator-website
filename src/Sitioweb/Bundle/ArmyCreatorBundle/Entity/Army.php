@@ -49,6 +49,17 @@ class Army
     private $slug;
 
     /**
+     * slug
+     *
+     * @var string
+     * @access private
+     *
+     * @Gedmo\Slug(fields={"name"}, unique=false, updatable=true)
+     * @ORM\Column(length=255, unique=false)
+     */
+    private $currentSlug;
+
+    /**
      * @var string $description
      *
      * @ORM\Column(name="description", type="text", nullable=true)
@@ -253,6 +264,29 @@ class Army
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Gets the value of currentSlug
+     *
+     * @return string
+     */
+    public function getCurrentSlug()
+    {
+        return $this->currentSlug;
+    }
+
+    /**
+     * Sets the value of currentSlug
+     *
+     * @param string $currentSlug currentSlug
+     *
+     * @return Army
+     */
+    public function setCurrentSlug($currentSlug)
+    {
+        $this->currentSlug = $currentSlug;
+        return $this;
     }
 
     /**

@@ -157,7 +157,7 @@ class ArmyController extends Controller
     public function detailPdfGenerateAction(Army $army)
     {
         //$pageUrl = $this->generateUrl('army_detail_printable', [ "slug" => $army->getSlug() ], true);
-        $filename = 'ArmyCreator-' . $army->getSlug() . '.pdf';
+        $filename = 'ArmyCreator-' . $army->getCurrentSlug() . '.pdf';
 
         $html = $this->renderView(
             'SitiowebArmyCreatorBundle:Army:printableVersion.html.twig',

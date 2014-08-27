@@ -31,14 +31,16 @@
                                         <a href="{{ path("unitgroup_edit", params + { "unitGroupSlug": unitGroup.slug}) }}" class="acButton acButtonSmall">
                                             <i class="el-icon-pencil"></i>
                                         </a>
-                                        <form action="{{ path('unitgroup_delete', params + { "id": unitGroup.id}) }}" method="post" class="inbl">
-                                            <input type="hidden" name="_method" value="DELETE" />
-                                            {% set deleteForm = deleteUgFormList[unitGroup.id] %}
-                                            {{ form_widget(deleteForm.createView) }}
-                                            <button class="acButton acButtonSmall" type="submit" onclick="return confirm('{{ "confirm.delete"|trans }}');">
-                                                <i class="el-icon-remove"></i>
-                                            </button>
-                                        </form>
+                                        {% if deleteUgFormList[unitGroup.id] is defined %}
+                                            <form action="{{ path('unitgroup_delete', params + { "id": unitGroup.id}) }}" method="post" class="inbl">
+                                                <input type="hidden" name="_method" value="DELETE" />
+                                                {% set deleteForm = deleteUgFormList[unitGroup.id] %}
+                                                {{ form_widget(deleteForm.createView) }}
+                                                <button class="acButton acButtonSmall" type="submit" onclick="return confirm('{{ "confirm.delete"|trans }}');">
+                                                    <i class="el-icon-remove"></i>
+                                                </button>
+                                            </form>
+                                        {% endif %}
                                     {% endif %}
                                 </h4>
                             </div>
