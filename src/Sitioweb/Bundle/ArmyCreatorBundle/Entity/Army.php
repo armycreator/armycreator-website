@@ -273,7 +273,7 @@ class Army
      */
     public function getCurrentSlug()
     {
-        return $this->currentSlug;
+        return $this->currentSlug ?: 'army';
     }
 
     /**
