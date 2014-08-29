@@ -37,9 +37,20 @@
 
 {% block javascripts %}
     {{ parent() }}
+
+    <script type="text/javascript" charset="utf-8">
+        var armycreator = {
+            "breed": {
+                "slug": "{{ entity.unit.breed.slug|e('js') }}",
+                "game": { "code": "{{ entity.unit.breed.game.code|e('js') }}" }
+            }
+        };
+    </script>
+
     {% if app.environment == 'dev' %}
         <!-- dev:unitstuff-edit.js -->
-<script src="/tmp/js/unitstuff-edit.js/unitstuff-edit_0.js"></script>
+<script src="/tmp/js/unitstuff-edit.js/fuzzy-min_0.js"></script>
+<script src="/tmp/js/unitstuff-edit.js/unitstuff-edit_1.js"></script>
 <!-- endbuild -->
     {% else %}
         <!-- prod:unitstuff-edit.js --><!-- endbuild -->

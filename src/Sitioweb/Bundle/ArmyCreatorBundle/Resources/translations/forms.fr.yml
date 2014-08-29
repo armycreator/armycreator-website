@@ -57,6 +57,7 @@ Group: 'Groupe d''unité'
 Unit number: 'Nombre d''unités'
 Can choose number: 'Le joueur peut choisir le nombre d''unité (sera obligatoirement le nombre au dessus sinon)'
 Unit feature public: 'Caractéristiques des unités publiques'
+create.quick.weapon: 'Créer en tant qu''arme'
 unit_feature:
     w40k:
         cc: Cc

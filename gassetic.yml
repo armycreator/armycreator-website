@@ -121,6 +121,7 @@ mimetypes:
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/army-new.js"
 
             unitstuff-edit.js:
+                - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/fuzzy-search/fuzzy-min.js"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/unitstuff-edit.js"
 
             army-list.js:

@@ -63,7 +63,6 @@ class UnitStuffType extends AbstractType
                 'stuff',
                 'ac_stuff',
                 array(
-                    'attr' => ['autofocus' => 'autofocus'],
                     'required' => true,
                     'property' => 'name',
                     'query_builder' => function(EntityRepository $er) {

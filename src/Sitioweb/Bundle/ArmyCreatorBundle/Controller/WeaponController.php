@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -65,6 +66,43 @@ class WeaponController extends Controller
             'entity' => $entity,
             'form'   => $form->createView(),
         );
+    }
+
+    /**
+     * quickCreateAction
+     *
+     * @access public
+     * @return void
+     *
+     * @Route("/quick-create", name="weapon_quick_create")
+     * @Method("POST")
+     */
+    public function quickCreateAction(Request $request, Breed $breed)
+    {
+        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
+            throw new AccessDeniedException();
+        }
+
+        $em = $this->get('doctrine.orm.default_entity_manager');
+        $repo = $em->getRepository('SitiowebArmyCreatorBundle:Weapon');
+
+        $name = $request->request->get('name');
+
+        $entity = $repo->findOneBy(['breed' => $breed, 'name' => $name]);
+        $isNew = false;
+
+        if (!$entity) {
+            $entity = new Weapon;
+            $entity->setBreed($breed)
+                ->setName($name);
+            $em->persist($entity);
+            $em->flush();
+            $isNew = true;
+        }
+
+        $response = new JsonResponse();
+        $response->setData([ 'id' => $entity->getId(), 'isNew' => $isNew ]);
+        return $response;
     }
 
     /**

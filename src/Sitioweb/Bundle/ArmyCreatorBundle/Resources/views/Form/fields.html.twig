@@ -13,11 +13,15 @@
         {% set options = choices -%}
         {{- block('ac_stuff_choice_widget_options') -}}
     </select>
+
+    <input class="txtright" rel="fuzzy" placeholder="{{ "filter"|trans }}" data-fuzzyfilter autofocus="autofocus" />
+    <a class="txtright acButton" data-create-quick-weapon>{{ "create.quick.weapon"|trans }}</a>
+    <a class="txtright acButton" data-create-quick-equipement>{{ "create.quick.equipement"|trans }}</a>
 {% endblock %}
 
 {% block ac_stuff_choice_widget_options -%}
     {% for group_label, choice in options %}
-        <option data-default-points="{{ choice.data.defaultPoints }}" data-default-auto="{{ choice.data.defaultAuto ? "1" : "0" }}" value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+        <option data-default-points="{{ choice.data.defaultPoints }}" data-default-auto="{{ choice.data.defaultAuto ? "1" : "0" }}" value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %} data-fuzzysearch="{{ choice.label|trans({}, translation_domain) }}">{{ choice.label|trans({}, translation_domain) }}</option>
     {% endfor %}
 {%- endblock ac_stuff_choice_widget_options %}
 

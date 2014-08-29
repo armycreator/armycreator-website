@@ -148,6 +148,8 @@ homepage_menu.donation: 'Faire un don'
 homepage_menu.my_army_list: 'Mes armées'
 home.welcome_text: Army Creator, qu'est-ce que tu peux faire pour moi ?
 army_group.edit.name_label: Nom
+create.quick.weapon: 'Créer en tant qu''arme'
+create.quick.equipement: 'Créer en tant qu''équipement'
 breadcrumb:
     admin:
         index: 'Administration'

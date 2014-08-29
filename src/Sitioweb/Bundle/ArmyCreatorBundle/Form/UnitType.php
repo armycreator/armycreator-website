@@ -44,7 +44,8 @@ class UnitType extends AbstractUnitType
                     'mapped' => false,
                     'required' => false,
                 )
-            );
+            )
+        ;
 
         $builder = $this->addBreedSpecifics($builder);
 
