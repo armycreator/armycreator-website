@@ -83,9 +83,20 @@ class Game
 	 */
 	private $breedGroupList;
 
+    /**
+     * stuffList
+     *
+     * @var array
+     * @access private
+     *
+     * @ORM\OneToMany(targetEntity="Stuff", mappedBy="game")
+     */
+    private $stuffList;
+
     public function __construct()
     {
         $this->breedGroupList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->stuffList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->unitFeaturePublic = false;
     }
 
@@ -256,6 +267,39 @@ class Game
     {
         $this->unitFeaturePublic = $unitFeaturePublic;
         return $this;
+    }
+
+    /**
+     * Add stuffList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff $stuffList
+     * @return Game
+     */
+    public function addStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff $stuffList)
+    {
+        $this->stuffList[] = $stuffList;
+
+        return $this;
+    }
+
+    /**
+     * Remove stuffList
+     *
+     * @param \Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff $stuffList
+     */
+    public function removeStuffList(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff $stuffList)
+    {
+        $this->stuffList->removeElement($stuffList);
+    }
+
+    /**
+     * Get stuffList
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStuffList()
+    {
+        return $this->stuffList;
     }
 
     /**

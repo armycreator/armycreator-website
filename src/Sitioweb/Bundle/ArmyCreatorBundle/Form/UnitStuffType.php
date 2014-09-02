@@ -61,16 +61,9 @@ class UnitStuffType extends AbstractType
              )
             ->add(
                 'stuff',
-                'ac_stuff',
+                new Type\StuffType($this->breed),
                 array(
                     'required' => true,
-                    'property' => 'name',
-                    'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('s')
-                                ->add('where', 's.breed = :breed')
-                                ->add('orderBy', 's.name ASC')
-                                ->setParameter('breed', $this->breed);
-                    }
                 )
              );
 

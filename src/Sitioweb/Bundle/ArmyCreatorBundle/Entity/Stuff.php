@@ -75,6 +75,16 @@ abstract class Stuff
     private $breed;
 
     /**
+     * game
+     *
+     * @var Breed
+     * @access private
+	 *
+	 * @ORM\ManyToOne(targetEntity="Game", inversedBy="stuffList")
+     */
+    private $game;
+
+    /**
      * @var string $description
      *
      * @ORM\Column(name="description", type="object", nullable=true)
@@ -222,6 +232,29 @@ abstract class Stuff
     {
         $this->breed = $breed;
 
+        return $this;
+    }
+
+    /**
+     * Gets the value of game
+     *
+     * @return Game
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * Sets the value of game
+     *
+     * @param Game $game game
+     *
+     * @return Stuff
+     */
+    public function setGame(Game $game = null)
+    {
+        $this->game = $game;
         return $this;
     }
 

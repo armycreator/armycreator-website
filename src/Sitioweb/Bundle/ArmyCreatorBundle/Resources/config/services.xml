@@ -16,9 +16,5 @@
             <argument type="service" id="security.context" />
             <tag name="form.type" alias="armybreed" />
         </service>
-
-        <service id="sitioweb.army_creator.form.type.stuff" class="Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\StuffType">
-            <tag name="form.type" alias="ac_stuff" />
-        </service>
     </services>
 </container>
