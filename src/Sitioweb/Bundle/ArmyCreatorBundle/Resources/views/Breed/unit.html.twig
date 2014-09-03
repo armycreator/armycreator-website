@@ -49,6 +49,9 @@
                                 {% for unitStuff in unit.orderUnitStuffList %}
                                     {% if unitStuff.stuff %}
                                         <div class="squadLine">
+                                            {% if not(unitStuff.visible) %}
+                                                <i class="el-icon-eye-close soft"></i>
+                                            {% endif %}
                                             {{ unitStuff.stuff.name }}
                                             <span class="soft">
                                                 {% trans with { "%pts%":unitStuff.points } %}breed.show.pts.%pts%{% endtrans %}
