@@ -127,6 +127,39 @@ class Builder extends ContainerAware
     }
 
     /**
+     * gameMenu
+     *
+     * @param FactoryInterface $factory
+     * @param array $options
+     * @access public
+     * @return void
+     */
+    public function gameMenu(FactoryInterface $factory, array $options)
+    {
+        $game = $this->container->get('request')->get('game');
+        $routeParameters = ['game' => $game->getCode()];
+
+        $menu = $factory->createItem('root');
+
+        $menu->addChild(
+            'game_show.menu.breed_list',
+            array(
+                'route' => 'admin_breed',
+                'routeParameters' => $routeParameters
+            )
+        );
+        $menu->addChild(
+            'game_show.menu.stuff_list',
+            array(
+                'route' => 'admin_game_stuff',
+                'routeParameters' => $routeParameters
+            )
+        );
+
+        return $menu;
+    }
+
+    /**
      * armyListMenu
      *
      * @param FactoryInterface $factory

@@ -39,7 +39,7 @@ class EquipementController extends Controller
         }
 
         $entity  = new Equipement();
-        $form = $this->createForm(new EquipementType($breed), $entity);
+        $form = $this->createForm(new EquipementType($breed->getGame()), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -119,7 +119,7 @@ class EquipementController extends Controller
         }
 
         $entity = new Equipement();
-        $form   = $this->createForm(new EquipementType($breed), $entity);
+        $form   = $this->createForm(new EquipementType($breed->getGame()), $entity);
 
         return array(
             'entity' => $entity,
@@ -148,7 +148,7 @@ class EquipementController extends Controller
             throw $this->createNotFoundException('Unable to find Equipement entity.');
         }
 
-        $editForm = $this->createForm(new EquipementType($breed), $entity);
+        $editForm = $this->createForm(new EquipementType($breed->getGame()), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -180,7 +180,7 @@ class EquipementController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new EquipementType($breed), $entity);
+        $editForm = $this->createForm(new EquipementType($breed->getGame()), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {

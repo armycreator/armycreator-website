@@ -6,27 +6,27 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 
 class EquipementType extends AbstractType
 {
     /**
-     * breed
+     * game
      *
-     * @var Breed
+     * @var Game
      * @access private
      */
-    private $breed;
+    private $game;
 
     /**
      * __construct
      *
-     * @param Breed $breed
+     * @param Game $game
      * @access public
      */
-    public function __construct(Breed $breed)
+    public function __construct(Game $game)
     {
-        $this->breed = $breed;
+        $this->game = $game;
     }
 
     /**

@@ -190,11 +190,13 @@ unit_type:
     new:
         title: 'Ajouter un type'
 weapon:
+    title: 'Arme'
     edit:
         title: 'Éditer %weapon%'
     new:
         title: 'Ajouter une arme'
 equipement:
+    title: 'Équipement'
     edit:
         title: 'Éditer %equipement%'
     new:
@@ -239,7 +241,7 @@ breed:
     equipement_list.new: 'Nouvel équipement'
     list:
         new: 'Nouvelle liste'
-        title: 'Liste de races'
+        title: '%gameName%'
     new:
         title: 'Nouvelle race'
     show:
@@ -276,6 +278,10 @@ footer.warning: Avertissement
 footer.detail: "Army Creator ne permet pas de créer une liste d'armée sans posséder le codex correspondant !\nCe site n'est pas officiel ni en aucun cas autorisé ou approuvé par Games Workshop.\nWarhammer, Warhammer 40.000, le logo Games Workshop, Games Workshop, Space Marines, Blood Angel, Dark Angel, Eldars, Eldars Noirs, Marines du chaos, Demons du chaos, Orks, Guarde Imperiale, Ordo Malleus, Ordo Hereticus, Necrons, Tau, Tyrannides, Codex, ainsi que tous les noms d'unités, d'armes et d'équipements sont des marques de Games Workshop Limited, utilisées sans autorisation et sans volonté de préjudice ou comme opposition à leur copyright."
 footer.design: 'Design par:'
 footer.made_by: 'Créé et developpé par:'
+game_show:
+    menu:
+        breed_list: "Races"
+        stuff_list: "Equipements"
 breed_show:
     menu:
         unitType_list: "Types d'unités"

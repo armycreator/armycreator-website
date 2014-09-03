@@ -1,0 +1,48 @@
+{% extends 'SitiowebArmyCreatorBundle:Breed:index.html.twig' %}
+
+
+{% block gameContent %}
+    <div class="stuffList">
+        {% block stuff_new %}
+            {% if ac_granted("ROLE_CONTRIB_ALL") %}
+                <aside class="txtright">
+                    <a href="{{ path("game_weapon_new", {"game": game.code}) }}" title="{{ "breed.weapon_list.new"|trans }}" class="acButton">
+                        <i class="el-icon-plus"></i>
+                        {{ "breed.weapon_list.new"|trans }}
+                    </a>
+                    <a href="{{ path("game_equipement_new", {"game": game.code}) }}" title="{{ "breed.equipement_list.new"|trans }}" class="acButton">
+                        <i class="el-icon-plus"></i>
+                        {{ "breed.equipement_list.new"|trans }}
+                    </a>
+                </aside>
+            {% endif %}
+        {% endblock %}
+
+        {% for stuff in stuffList %}
+            <div>
+                <h4>
+                    {% if stuff.stuffType == "weapon" %}
+                        <i class="el-icon-screenshot vmiddle soft" title="{{ "weapon.title"|trans }}"></i>
+                    {% else %}
+                        <i class="el-icon-wrench vmiddle soft" title="{{ "equipement.title"|trans }}"></i>
+                    {% endif %}
+
+                    {{- stuff.name -}}
+
+                    {% if ac_granted("ROLE_CONTRIB_ALL") %}
+                        {% set route = stuff.stuffType == 'weapon' ? "game_weapon_edit" : "game_equipement_edit" %}
+                        <a href="{{ path(route, {"game": game.code, "id": stuff.id}) }}"
+                            class="acButton"
+                        >
+                            <i class="el-icon-pencil"></i>
+                        </a>
+                    {% endif %}
+                </h4>
+
+                {{ stuff.description }}
+            </div>
+        {% endfor %}
+
+        {{ block('stuff_new') }}
+    </div>
+{% endblock %}

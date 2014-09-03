@@ -12,6 +12,10 @@ admin_game_create:
     requirements:
         _method: POST
 
+admin_game_stuff:
+    path: /admin/{game}/stuff
+    defaults: { _controller: SitiowebArmyCreatorBundle:Game:stuff }
+
 admin_game_edit:
     path: /{game}/edit
     defaults: { _controller: SitiowebArmyCreatorBundle:Game:edit }

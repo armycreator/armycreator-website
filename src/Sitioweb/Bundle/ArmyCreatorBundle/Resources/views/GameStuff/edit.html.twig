@@ -1,0 +1,28 @@
+{% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ "weapon.edit.title"|trans({ "%weapon%": entity.name }) }}
+{% endblock %}
+
+{% block content %}
+    {% set params = { "game": game.code } %}
+    {{ form(form, { "attr": { "class": "opaque" } }) }}
+
+
+    {% if entity.unitStuffList.count() == 0  and delete_form is defined %}
+        <div class="right">
+            <form action="{{ path("game_stuff_delete", params + { "id": entity.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button class="acButton" type="submit">{{ "button.delete"|trans }}</button>
+            </form>
+        </div>
+    {% endif %}
+
+    <div>
+        <a href="{{ path("admin_game_stuff", params) }}">
+            {{ "breed.back_to_game"|trans }}
+        </a>
+    </div>
+{% endblock %}
+

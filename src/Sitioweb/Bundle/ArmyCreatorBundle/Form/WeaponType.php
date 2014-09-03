@@ -6,29 +6,29 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\FArm\EquipementDescriptionType as FArmEquipementDescriptionType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\Warhammer\WeaponDescriptionType as WarhammerWeaponDescriptionType;
 
 class WeaponType extends AbstractType
 {
     /**
-     * breed
+     * game
      *
-     * @var Breed
+     * @var Game
      * @access private
      */
-    private $breed;
+    private $game;
 
     /**
      * __construct
      *
-     * @param Breed $breed
+     * @param Game $game
      * @access public
      */
-    public function __construct(Breed $breed)
+    public function __construct(Game $game)
     {
-        $this->breed = $breed;
+        $this->game = $game;
     }
 
     /**
@@ -45,7 +45,7 @@ class WeaponType extends AbstractType
             ->add('defaultPoints')
             ->add('defaultAuto', null, ['required' => false]);
 
-        $builder = $this->addBreedSpecifics($builder);
+        $builder = $this->addGameSpecifics($builder);
 
         if ($options['data']->getId()) {
              $builder->add('edit', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
@@ -82,14 +82,14 @@ class WeaponType extends AbstractType
     }
 
     /**
-     * addBreedSpecifics
+     * addGameSpecifics
      *
      * @access private
      * @return FormBuilderInterface
      */
-    private function addBreedSpecifics(FormBuilderInterface $builder)
+    private function addGameSpecifics(FormBuilderInterface $builder)
     {
-        switch ($this->breed->getGame()->getCode()) {
+        switch ($this->game->getCode()) {
             case 'FArm':
                 $builder->add('description', new FArmEquipementDescriptionType);
                 break;

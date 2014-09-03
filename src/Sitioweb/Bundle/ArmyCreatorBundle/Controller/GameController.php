@@ -49,6 +49,27 @@ class GameController extends Controller
     }
 
     /**
+     * gameStuffAction
+     *
+     * @param Game $game
+     * @access public
+     *
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
+     * @Template()
+     */
+    public function stuffAction(Game $game)
+    {
+        $stuffList = $this->get('doctrine.orm.default_entity_manager')
+                        ->getRepository('SitiowebArmyCreatorBundle:Stuff')
+                        ->findBy(['game' => $game], ['name' => 'asc']);
+
+        return [
+            'game' => $game,
+            'stuffList' => $stuffList,
+        ];
+    }
+
+    /**
      * Displays a form to create a new Game entity.
      *
      * @Breadcrumb("breadcrumb.admin.game.new", route="admin_game_new")
