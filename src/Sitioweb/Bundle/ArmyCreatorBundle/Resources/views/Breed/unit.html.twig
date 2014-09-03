@@ -49,8 +49,11 @@
                                 {% for unitStuff in unit.orderUnitStuffList %}
                                     {% if unitStuff.stuff %}
                                         <div class="squadLine">
+                                            {% if unitStuff.auto %}
+                                                <i class="el-icon-bookmark soft" title="{{ "breed.unit_stuff.auto"|trans }}"></i>
+                                            {% endif %}
                                             {% if not(unitStuff.visible) %}
-                                                <i class="el-icon-eye-close soft"></i>
+                                                <i class="el-icon-eye-close soft" title="{{ "breed.unit_stuff.invisible"|trans }}"></i>
                                             {% endif %}
                                             {{ unitStuff.stuff.name }}
                                             <span class="soft">

@@ -252,6 +252,9 @@ breed:
         equipement_list: 'Les équipements'
     unit_list:
         new: 'Nouvelle unité'
+    unit_stuff:
+        auto: 'Équipement auto'
+        invisible: 'Plus disponible'
     unittype:
         new: 'Nouveau type'
     weapon_list:
