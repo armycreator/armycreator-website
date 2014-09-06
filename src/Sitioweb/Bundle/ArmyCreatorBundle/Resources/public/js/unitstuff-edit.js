@@ -25,7 +25,9 @@ $(function() {
 
         if (!filter) {
             $('[data-fuzzysearch]').show();
-            $('select#armycreator_unitstufftype_stuff').val($('[data-fuzzysearch]:visible').val());
+            $('select#armycreator_unitstufftype_stuff')
+                .val($('[data-fuzzysearch]:visible').val())
+                .trigger('change');
         }
 
         var results = fuzzy.filter(filter, fuzzysearch);
@@ -36,7 +38,9 @@ $(function() {
             return el.string;
         });
 
-        $('select#armycreator_unitstufftype_stuff').val($('[data-fuzzysearch]:visible').val());
+        $('select#armycreator_unitstufftype_stuff')
+            .val($('[data-fuzzysearch]:visible').val())
+            .trigger('change');
     });
 
     function quickCreate(type, value) {
@@ -52,7 +56,8 @@ $(function() {
         }).done(function (data) {
             $('#armycreator_unitstufftype_stuff')
                 .append($('<option />').text(value).val(data.id))
-                .val(data.id);
+                .val(data.id)
+                .trigger('change');
         });
     }
 
