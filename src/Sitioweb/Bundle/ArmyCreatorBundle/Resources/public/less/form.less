@@ -28,7 +28,12 @@ form.toolbox, form.opaque {
             }
         }
 
-        > div { float: right; margin-left: 1em }
+        > div {
+            float: right; margin-left: 1em;
+            &.left  {
+                float: left;
+            }
+        }
         > label { display: block; float: left }
     }
 }

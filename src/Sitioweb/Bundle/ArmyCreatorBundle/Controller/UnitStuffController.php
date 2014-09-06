@@ -15,6 +15,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffMultiType;
 
 /**
  * UnitStuff controller.
@@ -83,14 +84,43 @@ class UnitStuffController extends Controller
             throw new AccessDeniedException();
         }
 
-        $entity = new UnitStuff();
-        $entity->setUnit($unit);
-        $form   = $this->createForm(new UnitStuffType($breed), $entity);
+
+
+        $form   = $this->createForm(
+            new UnitStuffMultiType($breed),
+            $this->getBreedUnitStuffList($unit)
+        );
 
         return array(
-            'entity' => $entity,
             'form'   => $form->createView(),
+            'unit' => $unit,
         );
+    }
+
+    private function getBreedUnitStuffList(Unit $unit)
+    {
+        $breed = $unit->getBreed();
+        $stuffList = $breed->getStuffList()->toArray() +
+            $breed->getGame()->getStuffList()->toArray();
+
+        $usList = [];
+        foreach ($stuffList as $stuff) {
+            $unitStuff = new UnitStuff();
+            $unitStuff->setUnit($unit)
+                ->setStuff($stuff)
+                ->setPoints($stuff->getDefaultPoints())
+                ->setAuto($stuff->getDefaultAuto());
+            $unitStuff->available = false;
+            $usList[$stuff->getId()] = $unitStuff;
+        }
+
+        foreach ($unit->getUnitStuffList() as $unitStuff) {
+            $stuff = $unitStuff->getStuff();
+            $unitStuff->available = true;
+            $usList[$stuff->getId()] = $unitStuff;
+        }
+
+        return $usList;
     }
 
     /**
