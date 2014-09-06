@@ -13,7 +13,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\DonationType;
 /**
  * Admin donation controller.
  *
- * @Route("/admin/donation")
+ * @Route("/admin/various/donation")
  */
 class AdminDonationController extends Controller
 {
