@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,180 +16,85 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffMultiType;
 
 /**
  * UnitStuff controller.
  *
- * @Route("/admin/{game}/{breed}/unitstuff")
  * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
  * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
+ * @Route("/admin/{game}/{breed}")
+ * @Breadcrumb("breadcrumb.home", route="homepage")
+ * @Breadcrumb("breadcrumb.admin.index", route="admin_game")
  */
 class UnitStuffController extends Controller
 {
     /**
-     * Creates a new UnitStuff entity.
-     *
-     * @Route("/", name="unitstuff_create")
-     * @Method("POST")
-     * @Template("SitiowebArmyCreatorBundle:UnitStuff:new.html.twig")
-     */
-    public function createAction(Request $request, Breed $breed)
-    {
-        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
-            throw new AccessDeniedException();
-        }
-
-        $entity  = new UnitStuff();
-        $entity->setUnit();
-        $form = $this->createForm(new UnitStuffType($breed), $entity);
-        $form->bind($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            if ($form->get('createAndAdd')->isClicked()) {
-                $url = $this->generateUrl(
-                        'unitstuff_new',
-                        [
-                            'breed' => $breed->getSlug(),
-                            'game' => $breed->getGame()->getCode(),
-                            'unit' => $entity->getUnit()->getSlug()
-                        ]
-                    );
-                return $this->redirect($url);
-            } else {
-                return $this->redirect($this->getArmyShowUrl($breed, $entity->getUnit()));
-            }
-        }
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
      * Displays a form to create a new UnitStuff entity.
      *
-     * @Route("/new/{unit}", name="unitstuff_new")
-     * @Method("GET")
+     * @Route("/{unit}/stuff", name="unitstuff_new")
      * @Template()
      * @ParamConverter("unit", class="SitiowebArmyCreatorBundle:Unit", options={"mapping": {"unit" = "slug"}})
      */
-    public function newAction(Breed $breed, Unit $unit)
+    public function newAction(Request $request, Breed $breed, Unit $unit)
     {
         if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
             throw new AccessDeniedException();
         }
 
-        $entity = new UnitStuff();
-        $entity->setUnit($unit);
-        $form   = $this->createForm(new UnitStuffType($breed), $entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+        $this->get("apy_breadcrumb_trail")->add(
+            $breed->getGame()->getName(),
+            'admin_breed',
+            ['game' =>  $breed->getGame()->getCode()]
         );
-    }
-
-    /**
-     * Finds and displays a UnitStuff entity.
-     *
-     * @Route("/{id}", name="unitstuff_show")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
-            throw new AccessDeniedException();
-        }
-
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitStuff')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find UnitStuff entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+        $this->get("apy_breadcrumb_trail")->add(
+            $breed->getName(),
+            'admin_breed_show',
+            ['game' =>  $breed->getGame()->getCode(), 'breed' => $breed->getSlug()]
         );
-    }
-
-    /**
-     * Displays a form to edit an existing UnitStuff entity.
-     *
-     * @Route("/{id}/edit", name="unitstuff_edit")
-     * @Method("GET")
-     * @Template()
-     */
-    public function editAction($id, Breed $breed)
-    {
-        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
-            throw new AccessDeniedException();
-        }
-
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitStuff')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find UnitStuff entity.');
-        }
-
-        $editForm = $this->createForm(new UnitStuffType($breed), $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        $this->get("apy_breadcrumb_trail")->add(
+            $this->get('translator')->trans('breadcrumb.admin.stuff'),
+            'unitstuff_new',
+            [
+                'game' =>  $breed->getGame()->getCode(),
+                'breed' => $breed->getSlug(),
+                'unit' => $unit->getSlug(),
+            ]
         );
-    }
 
-    /**
-     * Edits an existing UnitStuff entity.
-     *
-     * @Route("/{id}", name="unitstuff_update")
-     * @Method("PUT")
-     * @Template("SitiowebArmyCreatorBundle:UnitStuff:edit.html.twig")
-     */
-    public function updateAction(Request $request, $id, Breed $breed)
-    {
-        if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
-            throw new AccessDeniedException();
-        }
+        $newUnitStuffList = $this->getBreedUnitStuffList($unit);
+        $form = $this->createForm(new UnitStuffMultiType($breed), $newUnitStuffList);
 
-        $em = $this->getDoctrine()->getManager();
+        $form->handleRequest($request);
 
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitStuff')->find($id);
+        if ($form->isValid()) {
+            $em = $this->get('doctrine')
+                ->getManager();
+            foreach ($newUnitStuffList as $newUnitStuff) {
+                if ($newUnitStuff->getVisible()) {
+                    $unit->addUnitStuffList($newUnitStuff);
+                    $em->persist($newUnitStuff);
+                } else {
+                    $refExists = $em->getRepository('SitiowebArmyCreatorBundle:SquadLineStuff')
+                        ->findOneByUnitStuff($newUnitStuff);
+                    if ($refExists) {
+                        $newUnitStuff->setVisible(false);
+                        $em->persist($newUnitStuff);
+                    } else {
+                        $unit->removeUnitStuffList($newUnitStuff);
+                        $em->remove($newUnitStuff);
+                    }
+                }
+            }
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find UnitStuff entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new UnitStuffType($breed), $entity);
-        $editForm->bind($request);
-
-        if ($editForm->isValid()) {
-            $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->getArmyShowUrl($breed, $entity->getUnit()));
+            return $this->redirect($this->getArmyShowUrl($breed, $unit));
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'unit' => $unit,
+            'form'   => $form->createView(),
         );
     }
 
@@ -225,6 +131,39 @@ class UnitStuffController extends Controller
     }
 
     /**
+     * getBreedUnitStuffList
+     *
+     * @param Unit $unit
+     * @access private
+     * @return array
+     */
+    private function getBreedUnitStuffList(Unit $unit)
+    {
+        $breed = $unit->getBreed();
+        $stuffList = $breed->getStuffList()->toArray() +
+            $breed->getGame()->getStuffList()->toArray();
+
+        $usList = [];
+        foreach ($stuffList as $stuff) {
+            $unitStuff = new UnitStuff();
+            $unitStuff->setUnit($unit)
+                ->setStuff($stuff)
+                ->setPoints($stuff->getDefaultPoints())
+                ->setAuto($stuff->getDefaultAuto());
+            $unitStuff->setVisible(false);
+            $usList[$stuff->getId()] = $unitStuff;
+        }
+
+        foreach ($unit->getUnitStuffList() as $unitStuff) {
+            $stuff = $unitStuff->getStuff();
+            $unitStuff->setVisible(true);
+            $usList[$stuff->getId()] = $unitStuff;
+        }
+
+        return $usList;
+    }
+
+    /**
      * Creates a form to delete a UnitStuff entity by id.
      *
      * @param mixed $id The entity id
@@ -239,6 +178,14 @@ class UnitStuffController extends Controller
         ;
     }
 
+    /**
+     * getArmyShowUrl
+     *
+     * @param Breed $breed
+     * @param Unit $unit
+     * @access private
+     * @return string
+     */
     private function getArmyShowUrl(Breed $breed, Unit $unit)
     {
         $url = $this->generateUrl(

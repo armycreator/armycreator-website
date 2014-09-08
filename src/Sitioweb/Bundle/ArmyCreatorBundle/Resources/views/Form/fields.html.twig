@@ -4,6 +4,7 @@
     {% endfor %}
 {% endblock %}
 
+{#
 {% block ac_stuff_widget %}
     {% if required and empty_value is none and not empty_value_in_choices and not multiple -%}
         {% set required = false %}
@@ -18,6 +19,7 @@
     <a class="txtright acButton" data-create-quick-weapon>{{ "create.quick.weapon"|trans }}</a>
     <a class="txtright acButton" data-create-quick-equipement>{{ "create.quick.equipement"|trans }}</a>
 {% endblock %}
+#}
 
 {% block ac_stuff_choice_widget_options -%}
     {% for group_label, choice in options %}

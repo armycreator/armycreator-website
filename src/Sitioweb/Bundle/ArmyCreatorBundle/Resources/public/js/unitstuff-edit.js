@@ -1,5 +1,6 @@
 $(function() {
     function selectStuff (sstuff) {
+        console.log(sstuff);
         var defaultPoints, defaultAuto, selectedOption;
 
         selectedOption = $(sstuff).find('[value="' + $(sstuff).val() + '"]');

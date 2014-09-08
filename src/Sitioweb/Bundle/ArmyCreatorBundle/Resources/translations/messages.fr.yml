@@ -157,6 +157,7 @@ breadcrumb:
             new: 'Ajouter un jeu'
         breed:
             new: 'Ajouter une race'
+        stuff: 'Equipements'
     army_list: 'Listes d''armées'
     army_new: 'Nouvelle armée'
     army_edit: 'Editer une armée'

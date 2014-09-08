@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 
-class UnitStuffType extends AbstractType
+class UnitStuffMultiType extends AbstractType
 {
     /**
      * breed
@@ -32,27 +32,6 @@ class UnitStuffType extends AbstractType
     }
 
     /**
-     * buildForm
-     *
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     * @access public
-     * @return void
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add(
-                'visible',
-                'checkbox',
-                [ 'required' => false, ]
-            )
-            ->add('points')
-            ->add('auto', null, ['required' => false])
-        ;
-    }
-
-    /**
      * setDefaultOptions
      *
      * @param OptionsResolverInterface $resolver
@@ -62,10 +41,17 @@ class UnitStuffType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff',
-            'translation_domain' => 'forms'
+            'type' => new UnitStuffType($this->breed),
+            'translation_domain' => 'forms',
+            'cascade_validation' => true,
         ));
     }
+
+    public function getParent()
+    {
+        return 'collection';
+    }
+
 
     /**
      * getName
@@ -75,6 +61,6 @@ class UnitStuffType extends AbstractType
      */
     public function getName()
     {
-        return 'armycreator_unitstufftype';
+        return 'armycreator_unitstuffmulti';
     }
 }

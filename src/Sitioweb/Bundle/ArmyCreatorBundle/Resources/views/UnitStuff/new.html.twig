@@ -1,26 +1,35 @@
 {% extends 'SitiowebArmyCreatorBundle::layout.html.twig' %}
 
 {% block title %}
-    {{ "unit_stuff.new.title"|trans({"%unit%": form.unit.vars.data.name}) }}
+    {{ "unit_stuff.new.title"|trans({"%unit%": unit.name}) }}
 {% endblock %}
 
 {% block content %}
     {% set breed = app.request.get("breed") %}
     {% set game = breed.game %}
-    {% set params = {"game": game.code, "breed": breed.slug} %}
+    {% set params = {"game": game.code, "breed": breed.slug, "unit": unit.slug} %}
 
-    <form action="{{ path("unitstuff_create", params) }}" method="post" {{ form_enctype(form) }} class="opaque">
+    <form action="{{ path("unitstuff_new", params) }}" method="post" {{ form_enctype(form) }} class="opaque">
         <div>
-            {{ form_row(form.unit) }}
-            {{ form_row(form.stuff) }}
-            {{ form_row(form.points) }}
-            {{ form_row(form.auto) }}
-            {{ form_row(form.visible) }}
+            {% for unitStuffForm in form %}
+                {% if unitStuffForm.vars.id == 'armycreator_unitstuffmulti__token' %}
+                    {{ form_row(unitStuffForm) }}
+                {% else %}
+                    <div>
+                        <div class="left">
+                            {% set label = unitStuffForm.vars.value.stuff.name %}
+                            {{ form_widget(unitStuffForm.visible) }}
+                            {{ label }}
+                        </div>
+                        {{ form_row(unitStuffForm.points) }}
+                        {{ form_row(unitStuffForm.auto) }}
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
 
         <div class="txtright">
-            {{ form_widget(form.create, {"attr": {"class": "acButton"}}) }}
-            {{ form_widget(form.createAndAdd, {"attr": {"class": "acButton"}}) }}
+            <input type="submit" class="acButton acButtonBig" />
         </div>
 
         {{ form_rest(form) }}
@@ -28,7 +37,7 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path("admin_breed_unit", params) }}#unit-{{ entity.unit.slug }}">
+        <a href="{{ path("admin_breed_unit", params) }}#unit-{{ unit.slug }}">
             {{ "breed.back_to_breed"|trans }}
         </a>
     </li>
@@ -41,8 +50,8 @@
     <script type="text/javascript" charset="utf-8">
         var armycreator = {
             "breed": {
-                "slug": "{{ entity.unit.breed.slug|e('js') }}",
-                "game": { "code": "{{ entity.unit.breed.game.code|e('js') }}" }
+                "slug": "{{ unit.breed.slug|e('js') }}",
+                "game": { "code": "{{ unit.breed.game.code|e('js') }}" }
             }
         };
     </script>
