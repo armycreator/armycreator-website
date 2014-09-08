@@ -112,6 +112,7 @@ mimetypes:
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/tooltip.js"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/squadLine.js"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/bbcode.js"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/check-opacity.js"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/googleAnalytics.js"
 
             jscolor.js:

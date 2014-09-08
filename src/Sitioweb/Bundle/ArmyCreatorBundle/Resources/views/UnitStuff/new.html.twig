@@ -15,10 +15,10 @@
                 {% if unitStuffForm.vars.id == 'armycreator_unitstuffmulti__token' %}
                     {{ form_row(unitStuffForm) }}
                 {% else %}
-                    <div>
+                    <div data-opacity-target>
                         <div class="left">
                             {% set label = unitStuffForm.vars.value.stuff.name %}
-                            {{ form_widget(unitStuffForm.visible) }}
+                            {{ form_widget(unitStuffForm.visible, { "attr": { "data-opacity-trigger": "" } }) }}
                             {{ label }}
                         </div>
                         {{ form_row(unitStuffForm.points) }}
