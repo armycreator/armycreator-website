@@ -26,7 +26,7 @@
             <i class="el-icon-comment"></i>
             {{ 'army.detail.bb_code'|trans }}
         </a>
-        {% if not(externalUser) %}
+        {% if externalUser is defined and not(externalUser) %}
             <a href="javascript:;" class="acButton share-tooltip" title="{{ 'army.detail.share'|trans }}">
                 <i class="el-icon-share"></i>
                 {{ 'army.detail.share'|trans }}
@@ -70,7 +70,7 @@
             {{ army.name }} |
             {{ army.breed.name }}
 
-            {% if not(externalUser) %}
+            {% if externalUser is defined and not(externalUser) %}
                 <a href="{{ path('army_edit', { 'slug' : army.slug }) }}" class="acButton acButtonSmall" title="{{ "army.list.edit"|trans }}">
                     <i class="el-icon-pencil"></i>
                 </a>
@@ -105,7 +105,7 @@
             {% endif %}
         </h1>
 
-        {% if not(externalUser) %}
+        {% if externalUser is defined and not(externalUser) %}
             <div class="mb1">
                 <a href="{{ path("user_collection_edit", { "breed": army.breed.slug }) }}" class="acButton">
                     <i class="el-icon-list"></i>
@@ -114,7 +114,7 @@
             </div>
         {% endif %}
 
-        {% if externalUser %}
+        {% if externalUser is defined and not(externalUser) %}
             <h4 class="mt0 mb1">
                 <a href="{{ path("user_index", { "userSlug": army.user.slug }) }}">
                     <strong>
@@ -158,7 +158,7 @@
     <script type="text/javascript">
         var armycreator = {};
         armycreator.armySlug = '{{ army.slug }}'
-        armycreator.externalUser = '{{ externalUser }}'
+        armycreator.externalUser = '{{ externalUser is defined and externalUser }}'
     </script>
 {% endblock %}
 

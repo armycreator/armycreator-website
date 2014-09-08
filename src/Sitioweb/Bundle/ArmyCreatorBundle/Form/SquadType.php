@@ -13,7 +13,7 @@ class SquadType extends AbstractType
 {
     /**
      * breed
-     * 
+     *
      * @var Breed
      * @access private
      */
@@ -52,7 +52,7 @@ class SquadType extends AbstractType
         ));
 
         $builder->add('name', null, array('attr' => array('size' => 50)));
-        
+
         $builder->add('squadLineList', 'collection', array('type' => new SquadLineType()));
     }
 
@@ -68,7 +68,8 @@ class SquadType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad',
             'translation_domain' => 'forms',
-            'cascade_validation' => true
+            'cascade_validation' => true,
+            'csrf_protection' => false,
         ));
     }
 
