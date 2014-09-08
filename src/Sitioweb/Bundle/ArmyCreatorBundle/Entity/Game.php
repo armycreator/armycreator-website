@@ -90,6 +90,7 @@ class Game
      * @access private
      *
      * @ORM\OneToMany(targetEntity="Stuff", mappedBy="game")
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private $stuffList;
 

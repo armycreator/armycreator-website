@@ -142,6 +142,7 @@ class Breed
      * @access private
      *
      * @ORM\OneToMany(targetEntity="Stuff", mappedBy="breed")
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private $stuffList;
 

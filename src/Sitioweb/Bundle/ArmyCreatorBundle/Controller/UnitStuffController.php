@@ -140,8 +140,10 @@ class UnitStuffController extends Controller
     private function getBreedUnitStuffList(Unit $unit)
     {
         $breed = $unit->getBreed();
-        $stuffList = $breed->getStuffList()->toArray() +
-            $breed->getGame()->getStuffList()->toArray();
+        $stuffList = array_merge(
+            $breed->getStuffList()->toArray(),
+            $breed->getGame()->getStuffList()->toArray()
+        );
 
         $usList = [];
         foreach ($stuffList as $stuff) {
