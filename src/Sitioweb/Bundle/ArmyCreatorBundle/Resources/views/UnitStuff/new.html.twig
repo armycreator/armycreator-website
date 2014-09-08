@@ -7,9 +7,9 @@
 {% block content %}
     {% set breed = app.request.get("breed") %}
     {% set game = breed.game %}
-    {% set params = {"game": game.code, "breed": breed.slug} %}
+    {% set params = {"game": game.code, "breed": breed.slug, "unit": unit.slug} %}
 
-    <form action="{{ path("unitstuff_create", params) }}" method="post" {{ form_enctype(form) }} class="opaque">
+    <form action="{{ path("unitstuff_new", params) }}" method="post" {{ form_enctype(form) }} class="opaque">
         <div>
             {% for unitStuffForm in form %}
                 {% if unitStuffForm.vars.id == 'armycreator_unitstuffmulti__token' %}
@@ -18,10 +18,9 @@
                     <div>
                         <div class="left">
                             {% set label = unitStuffForm.vars.value.stuff.name %}
-                            {{ form_widget(unitStuffForm.available) }}
+                            {{ form_widget(unitStuffForm.visible) }}
                             {{ label }}
                         </div>
-                        {{ form_row(unitStuffForm.visible) }}
                         {{ form_row(unitStuffForm.points) }}
                         {{ form_row(unitStuffForm.auto) }}
                     </div>
@@ -29,12 +28,9 @@
             {% endfor %}
         </div>
 
-        {#
         <div class="txtright">
-            {{ form_widget(form.create, {"attr": {"class": "acButton"}}) }}
-            {{ form_widget(form.createAndAdd, {"attr": {"class": "acButton"}}) }}
+            <input type="submit" class="acButton acButtonBig" />
         </div>
-        #}
 
         {{ form_rest(form) }}
     </form>

@@ -43,15 +43,12 @@ class UnitStuffType extends AbstractType
     {
         $builder
             ->add(
-                'available',
+                'visible',
                 'checkbox',
-                [
-                    'required' => false,
-                ]
+                [ 'required' => false, ]
             )
             ->add('points')
             ->add('auto', null, ['required' => false])
-            ->add('visible', null, ['required' => false])
         ;
     }
 
