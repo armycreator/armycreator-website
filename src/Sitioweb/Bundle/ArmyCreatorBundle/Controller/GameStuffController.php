@@ -166,7 +166,11 @@ class GameStuffController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new WeaponType($game), $stuff);
+        if ($stuff->getStuffType() == 'weapon') {
+            $editForm = $this->createForm(new WeaponType($game), $stuff);
+        } else {
+            $editForm = $this->createForm(new EquipementType($game), $stuff);
+        }
         $editForm->bind($request);
 
         if ($editForm->isValid()) {

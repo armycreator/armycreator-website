@@ -96,12 +96,6 @@ class WeaponType extends AbstractType
             default:
                 $builder->add('description', new WarhammerWeaponDescriptionType);
                 break;
-                //$builder->add('type', null, ['required' => false])
-                //    ->add('range', null, ['required' => false])
-                //    ->add('strenght', null, ['required' => false])
-                //    ->add('armorPenetration', null, ['required' => false])
-                //    ->add('rule', 'textarea', ['required' => false]);
-                break;
         }
 
 
