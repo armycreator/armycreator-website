@@ -24,7 +24,7 @@ class UnitStuff
     /**
      * @var integer $points
      *
-     * @ORM\Column(name="points", type="integer")
+     * @ORM\Column(name="points", type="float")
      */
     private $points;
 

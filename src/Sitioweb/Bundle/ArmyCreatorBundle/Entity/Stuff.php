@@ -41,7 +41,7 @@ abstract class Stuff
      * @var int
      * @access private
      *
-     * @ORM\Column(name="defaultPoints", type="integer")
+     * @ORM\Column(name="defaultPoints", type="float")
      */
     private $defaultPoints;
 
