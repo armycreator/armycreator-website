@@ -4,12 +4,12 @@
     "description": "armycreator Website",
     "license": "proprietary",
     "dependencies": {
-        "gassetic": "",
-        "gulp-less": "",
-        "gulp-sourcemaps": "",
-        "gulp-minify-css": "",
-        "gulp-concat": "",
-        "gulp-uglify": "",
-        "gulp-freeze": ""
+        "gassetic": "latest",
+        "gulp-less": "latest",
+        "gulp-sourcemaps": "latest",
+        "gulp-minify-css": "latest",
+        "gulp-concat": "latest",
+        "gulp-uglify": "latest",
+        "gulp-freeze": "latest"
     }
 }

@@ -52,7 +52,6 @@ mimetypes:
             import.css:
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/css/*.css"
                 - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/elusive-iconfont/less/elusive-webfont.less"
-                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/global.less"
 
             collection.css:
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/collection.less"
