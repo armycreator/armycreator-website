@@ -93,7 +93,7 @@
                     </a>
 
                     <div>
-                        {{ "home.things_to_do.free"|trans|raw }}
+                        {{ "home.things_to_do.free"|trans({ "%url%": path("donation", donation_parameters) })|raw }}
                     </div>
                 </div>
             </div>

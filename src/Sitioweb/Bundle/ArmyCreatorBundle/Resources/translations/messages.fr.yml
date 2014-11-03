@@ -82,7 +82,7 @@ home:
         list_groups: "Je laisse le loisir d'organiser des rubriques et <strong>catégories</strong> pour que vos listes soit bien rangées et <strong>facilement retrouvables</strong> dans vos méthodes de classement."
         everywhere: "Une idée de liste au travail, en vacance ou chez un ami ? ArmyCreator est <strong>disponible 24h/24</strong> et de <strong>n'importe où</strong> pour poser à plat vos idées."
         pretty_print: "<strong>Fini les listes</strong> sur un brouillon <strong>illisible</strong> que votre adversaire ne sait même pas relire ou les documents texte qui polluent votre ordinateur et qu'on perd suite à un crash PC."
-        free: "Oui je suis <strong>gratuit</strong> et les dons restent possibles pour m'aider à vous proposer <strong>toujours plus de services</strong>."
+        free: "Oui je suis <strong>gratuit</strong> et les <a target='_blank' href='%url%'>dons restent possibles</a> pour m'aider à vous proposer <strong>toujours plus de services</strong>."
 
 army_group.new.title: 'Nouveau groupe d''armée'
 army_group.new.create: Créer
