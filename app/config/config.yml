@@ -61,14 +61,6 @@ doctrine:
                 dbname:   %database_name_acl%
                 user:     %database_user%
                 password: %database_password%
-            import:
-                driver:   %database_driver%
-                host:     %database_host%
-                port:     %database_port%
-                dbname:   %import_database_name%
-                user:     %import_database_user%
-                password: %import_database_password%
-                charset:  latin1
 
 
     orm:
@@ -83,9 +75,6 @@ doctrine:
                     FOSUserBundle: ~
             acl:
                 connection: acl
-
-            import:
-                connection: import
 
 stof_doctrine_extensions:
     default_locale: %locale%
