@@ -55,9 +55,27 @@ forum_ucp:
 #    prefix:   /_internal
 #
 
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+#fos_oauth_server_authorize:
+#    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+
+api:
+    type: rest
+    resource: "@ArmycreatorApiBundle/Resources/config/routing.yml"
+    prefix: /api/v1
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix: /api/doc
+
 armycreator_redirections:
     path: /{oldRoute}
     defaults:
         _controller: SitiowebArmyCreatorBundle:Redirect:redirect301
     requirements:
         oldRoute: ".+"
+
+

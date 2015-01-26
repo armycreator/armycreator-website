@@ -1,0 +1,9 @@
+api.users:
+    type: rest
+    resource: "ArmycreatorApiBundle:User"
+    name_prefix:  api_
+
+api.armies:
+    type: rest
+    resource: "ArmycreatorApiBundle:Army"
+    name_prefix:  api_

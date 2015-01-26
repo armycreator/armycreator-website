@@ -32,11 +32,19 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
 
+            // API
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
+
             new Sitioweb\Bundle\ArmyCreatorBundle\SitiowebArmyCreatorBundle(),
             new Sitioweb\Bundle\ArmyCreatorImportBundle\SitiowebArmyCreatorImportBundle(),
             new Sitioweb\Bundle\ExternalJsBundle\SitiowebExternalJsBundle(),
             new Sitioweb\Bundle\DiceBundle\SitiowebDiceBundle(),
             new Sitioweb\Bundle\AclBundle\SitiowebAclBundle(),
+            new Sitioweb\Bundle\ApiBundle\ArmycreatorApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

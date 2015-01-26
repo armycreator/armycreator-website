@@ -17,7 +17,8 @@ framework:
     default_locale:  %locale%
     #trust_proxy_headers: false # Should Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     trusted_proxies: ~
-    session:         ~
+    session:
+        cookie_lifetime: 31536000
 
 # Twig Configuration
 twig:
@@ -62,7 +63,6 @@ doctrine:
                 user:     %database_user%
                 password: %database_password%
 
-
     orm:
         default_entity_manager: default
         auto_generate_proxy_classes: %kernel.debug%
@@ -73,6 +73,8 @@ doctrine:
                 mappings:
                     SitiowebArmyCreatorBundle: ~
                     FOSUserBundle: ~
+                    ArmycreatorApiBundle: ~
+                    FOSOAuthServerBundle: ~
             acl:
                 connection: acl
 
@@ -165,3 +167,46 @@ m6_statsd:
 presta_sitemap:
     dumper_base_url: 'http://www.armycreator.net/'
     route_annotation_listener: false
+
+
+# API
+fos_rest:
+    routing_loader:
+        include_format: false
+        default_format: json
+    body_converter:
+        enabled: false
+    allowed_methods_listener: true
+    param_fetcher_listener: true
+    view:
+        view_response_listener: true
+
+fos_oauth_server:
+    db_driver: orm
+    client_class: Sitioweb\Bundle\ApiBundle\Entity\Client
+    access_token_class: Sitioweb\Bundle\ApiBundle\Entity\AccessToken
+    refresh_token_class: Sitioweb\Bundle\ApiBundle\Entity\RefreshToken
+    auth_code_class: Sitioweb\Bundle\ApiBundle\Entity\AuthCode
+    service:
+        storage: armycreator.oauth.storage
+        #user_provider: fos_user.user_provider.username_email
+        user_provider: fos_user.user_manager
+
+nelmio_api_doc:
+    name: ArmyCreator API
+    sandbox: 
+        authentication:
+            type: bearer
+            delivery: http
+
+jms_serializer:
+    metadata:
+        auto_detection: true
+        directories:
+            FOSUserModel:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "@SitiowebArmyCreatorBundle/Resources/config/serializer/FosUser"
+            ArmyCreatorEntities:
+                namespace_prefix: "Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity"
+                path: "@SitiowebArmyCreatorBundle/Resources/config/serializer"
+
