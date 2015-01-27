@@ -170,6 +170,8 @@ class UnitHasUnitGroupController extends Controller
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
+        $unitGroup = $entity->getGroup();
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitHasUnitGroup')->find($id);
@@ -182,7 +184,12 @@ class UnitHasUnitGroupController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('unithasunitgroup'));
+        $url = $this->generateUrl(
+            'admin_breed_unitgroup',
+            ['game' => $breed->getGame()->getCode(), 'breed' => $breed->getSlug()]
+        ) . '#unitGroup-' . $unitGroup->getSlug();
+
+        return $this->redirect($url);
     }
 
     /**
