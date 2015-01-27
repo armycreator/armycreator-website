@@ -17,17 +17,17 @@ admin_game_stuff:
     defaults: { _controller: SitiowebArmyCreatorBundle:Game:stuff }
 
 admin_game_edit:
-    path: /{game}/edit
+    path: /admin/{game}/edit
     defaults: { _controller: SitiowebArmyCreatorBundle:Game:edit }
 
 admin_game_update:
-    path: /{code}/update
+    path: /admin/{code}/update
     defaults: { _controller: SitiowebArmyCreatorBundle:Game:update }
     requirements:
         _method: POST
 
 admin_game_delete:
-    path: /{code}/delete
+    path: /admin/{code}/delete
     defaults: { _controller: SitiowebArmyCreatorBundle:Game:delete }
     requirements:
         _method: POST
