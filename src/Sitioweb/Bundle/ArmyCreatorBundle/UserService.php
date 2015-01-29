@@ -21,7 +21,6 @@ class UserService
         $container = $event->getDispatcher()->getContainer();
         $controllerClass = get_class($event->getController()[0]);
 
-        // do not use the phpbb user in the API
         if (strpos($controllerClass, 'ApiBundle') !== false) {
             return;
         }

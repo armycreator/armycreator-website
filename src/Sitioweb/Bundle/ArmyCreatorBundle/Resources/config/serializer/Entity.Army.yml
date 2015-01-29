@@ -5,4 +5,10 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
             expose: true
         name:
             expose: true
+        description:
+            expose: true
+        points:
+            expose: true
+        isShared:
+            expose: true
 

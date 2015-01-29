@@ -5,6 +5,7 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\User:
             expose: true
         username:
             expose: true
+            
 
     relations:
         - 

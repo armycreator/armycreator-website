@@ -3,6 +3,12 @@ api.users:
     resource: "ArmycreatorApiBundle:User"
     name_prefix:  api_
 
+api.user_armies:
+    type: rest
+    resource: "ArmycreatorApiBundle:UserArmy"
+    name_prefix:  api_
+    parent: api.users
+
 api.armies:
     type: rest
     resource: "ArmycreatorApiBundle:Army"

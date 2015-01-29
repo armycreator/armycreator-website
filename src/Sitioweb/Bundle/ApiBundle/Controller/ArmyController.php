@@ -16,24 +16,6 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 class ArmyController extends FOSRestController
 {
     /**
-     * Get User armies
-     *
-     * @ApiDoc(
-     *     section="Armies",
-     *     description="get users armies",
-     *     requirements={
-     *         { "name"="userId", "description"="User id", "dataType"="int" }
-     *     }
-     * )
-     * @Rest\View()
-     */
-    public function getArmiesAction($userId)
-    {
-        $user = $this->retrieveUserOr404($userId);
-        return ['data' => $user->getArmyList()];
-    }
-
-    /**
      * getAction
      *
      * @access public
@@ -52,21 +34,5 @@ class ArmyController extends FOSRestController
             ->find($id);
 
         return $army;
-    }
-
-   /**
-    * Return an user or throw a 404 Exception
-    */
-    private function retrieveUserOr404($userId)
-    {
-        $userManager = $this->get('fos_user.user_manager');
-
-        $user = $userManager->findUserBy(['id' => $userId]);
-
-        if (!$user) {
-            throw $this->createNotFoundException('User not found');
-        }
-
-        return $user;
     }
 }
