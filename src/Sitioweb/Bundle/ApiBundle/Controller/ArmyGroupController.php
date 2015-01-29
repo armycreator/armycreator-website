@@ -8,12 +8,12 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
- * ArmyController
+ * ArmyGroupController
  *
  * @uses Controller
  * @author Julien Deniau <julien.deniau@mapado.com>
  */
-class ArmyController extends FOSRestController
+class ArmyGroupController extends FOSRestController
 {
     /**
      * getAction
@@ -22,17 +22,18 @@ class ArmyController extends FOSRestController
      * @return void
      *
      * @ApiDoc(
-     *     section="Armies",
-     *     description="Get an army"
+     *     section="Army groups",
+     *     description="Get an army group"
      * )
      * @Rest\View()
      */
-    public function getArmyAction($armyId)
+    public function getArmygroupAction($armyGroupId)
     {
-        $army = $this->get('doctrine.orm.default_entity_manager')
-            ->getRepository('SitiowebArmyCreatorBundle:Army')
-            ->find($armyId);
+        $armyGroup = $this->get('doctrine.orm.default_entity_manager')
+            ->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')
+            ->find($armyGroupId);
 
-        return $army;
+        return $armyGroup;
     }
 }
+

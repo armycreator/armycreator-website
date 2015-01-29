@@ -1,0 +1,22 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\ArmyGroup:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        name:
+            expose: true
+
+    relations:
+        - 
+            rel: self
+            href:
+                route: api_get_armygroup
+                parameters:
+                    armyGroupId: expr(object.getId())
+                absolute: true
+
+        - 
+            rel: armies
+            embedded:
+                content: expr(object.getArmyList())
+

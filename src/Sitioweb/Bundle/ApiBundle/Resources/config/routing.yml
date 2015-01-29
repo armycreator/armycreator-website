@@ -3,13 +3,18 @@ api.users:
     resource: "ArmycreatorApiBundle:User"
     name_prefix:  api_
 
-api.user_armies:
+api.user_link:
     type: rest
-    resource: "ArmycreatorApiBundle:UserArmy"
+    resource: "ArmycreatorApiBundle:UserLink"
     name_prefix:  api_
     parent: api.users
 
 api.armies:
     type: rest
     resource: "ArmycreatorApiBundle:Army"
+    name_prefix:  api_
+
+api.army_groups:
+    type: rest
+    resource: "ArmycreatorApiBundle:ArmyGroup"
     name_prefix:  api_

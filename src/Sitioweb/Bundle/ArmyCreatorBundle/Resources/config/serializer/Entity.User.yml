@@ -1,17 +1,34 @@
 Sitioweb\Bundle\ArmyCreatorBundle\Entity\User:
     exclusion_policy: ALL
     properties:
-        id:
-            expose: true
-        username:
-            expose: true
-            
+        id: { expose: true }
+        username: { expose: true }
+        avatar: { expose: true }
 
     relations:
         - 
-            rel: armies
+            rel: self
             href:
-                route: api_get_armies
+                route: api_get_user
                 parameters:
                     userId: expr(object.getId())
-                absolute: true
+
+        -
+            rel: armies
+            href:
+                route: api_get_user_armies
+                parameters:
+                    userId: expr(object.getId())
+            #embedded: 
+            #    content: expr(object.getArmyList())
+
+        -
+            rel: armygroups
+            href:
+                route: api_get_user_armygroups
+                parameters:
+                    userId: expr(object.getId())
+            #embedded: 
+            #    content: expr(object.getArmyGroupList())
+            #    exclusion:
+            #        max_depth: 0

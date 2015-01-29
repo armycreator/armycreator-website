@@ -12,3 +12,11 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
         isShared:
             expose: true
 
+    relations:
+        - 
+            rel: self
+            href:
+                route: api_get_army
+                parameters:
+                    armyId: expr(object.getId())
+                absolute: true

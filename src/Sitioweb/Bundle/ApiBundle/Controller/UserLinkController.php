@@ -8,12 +8,12 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
- * UserArmyController
+ * UserLinkController
  *
  * @uses Controller
  * @author Julien Deniau <julien.deniau@mapado.com>
  */
-class UserArmyController extends FOSRestController
+class UserLinkController extends FOSRestController
 {
     /**
      * Get User armies
@@ -33,6 +33,27 @@ class UserArmyController extends FOSRestController
         return ['data' => $user->getArmyList()];
     }
 
+    /**
+     * Get user army groups
+     *
+     * @param int $userId
+     * @access public
+     *
+     * @ApiDoc(
+     *     section="Users",
+     *     description="get users army groups",
+     *     requirements={
+     *         { "name"="userId", "description"="User id", "dataType"="int" }
+     *     }
+     * )
+     * @Rest\View()
+     */
+    public function getArmygroupsAction($userId)
+    {
+        $user = $this->retrieveUserOr404($userId);
+        return ['data' => $user->getArmyGroupList()];
+    }
+
    /**
     * Return an user or throw a 404 Exception
     */
@@ -49,3 +70,4 @@ class UserArmyController extends FOSRestController
         return $user;
     }
 }
+

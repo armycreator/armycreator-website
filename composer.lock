@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d5e85ef54aaa88fe4c37720bc5a4cba0",
+    "hash": "e2223e7adb794275ade390cebc68cbd4",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
@@ -3842,16 +3842,16 @@
     "packages-dev": [
         {
             "name": "atoum/atoum",
-            "version": "dev-master",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/atoum/atoum.git",
-                "reference": "cb723f92f3ed7b95c158f224035f403a559ed366"
+                "reference": "b3a101d3dcd6cc294df70bdfb3cc75b3c76ff29a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atoum/atoum/zipball/cb723f92f3ed7b95c158f224035f403a559ed366",
-                "reference": "cb723f92f3ed7b95c158f224035f403a559ed366",
+                "url": "https://api.github.com/repos/atoum/atoum/zipball/b3a101d3dcd6cc294df70bdfb3cc75b3c76ff29a",
+                "reference": "b3a101d3dcd6cc294df70bdfb3cc75b3c76ff29a",
                 "shasum": ""
             },
             "require": {
@@ -3917,7 +3917,7 @@
                 "test",
                 "unit testing"
             ],
-            "time": "2015-01-19 13:03:03"
+            "time": "2015-01-12 13:54:27"
         },
         {
             "name": "ptachoire/cssembed",
@@ -4265,9 +4265,7 @@
         "raven/raven": 0,
         "friendsofsymfony/user-bundle": 20,
         "friendsofsymfony/jsrouting-bundle": 0,
-        "helios-ag/fm-bbcode-bundle": 0,
-        "raulfraile/ladybug-bundle": 0,
-        "atoum/atoum": 20
+        "helios-ag/fm-bbcode-bundle": 0
     },
     "prefer-stable": false,
     "prefer-lowest": false,

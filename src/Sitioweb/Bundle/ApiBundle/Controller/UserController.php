@@ -25,7 +25,7 @@ class UserController extends FOSRestController
      *     section="Users",
      *     desccription="Get the current user"
      * )
-     * @Rest\View()
+     * @Rest\View(serializerEnableMaxDepthChecks=true)
      */
     public function getMeAction()
     {
@@ -46,6 +46,7 @@ class UserController extends FOSRestController
      *         { "name"="userId", "description"="user id", "dataType"="integer" }
      *     }
      * )
+     * @Rest\View(serializerEnableMaxDepthChecks=true)
      */
     public function getUserAction($userId)
     {
