@@ -2,6 +2,8 @@ mkdir /home/upload/code/armycreator/build/$BUILD_NUMBER;
 cp -R ./ /home/upload/code/armycreator/build/$BUILD_NUMBER/;
 cd /home/upload/code/armycreator/build/$BUILD_NUMBER/;
 
+chmod -R a+r /home/upload/code/armycreator/build/$BUILD_NUMBER;
+
 cp /home/upload/parameters/armycreator.yml app/config/parameters.yml;
 rm web/app_dev.php;
 rm web/forum;
