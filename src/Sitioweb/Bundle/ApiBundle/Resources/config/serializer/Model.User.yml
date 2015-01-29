@@ -1,0 +1,5 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true

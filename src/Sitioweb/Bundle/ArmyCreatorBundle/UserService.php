@@ -19,6 +19,12 @@ class UserService
     public function onKernelController(FilterControllerEvent $event)
     {
         $container = $event->getDispatcher()->getContainer();
+        $controllerClass = get_class($event->getController()[0]);
+
+        if (strpos($controllerClass, 'ApiBundle') !== false) {
+            return;
+        }
+
         $this->getUser($container);
     }
 

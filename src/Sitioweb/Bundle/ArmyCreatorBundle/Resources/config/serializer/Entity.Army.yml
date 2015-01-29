@@ -1,0 +1,14 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        name:
+            expose: true
+        description:
+            expose: true
+        points:
+            expose: true
+        isShared:
+            expose: true
+

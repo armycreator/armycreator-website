@@ -1,0 +1,17 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        username:
+            expose: true
+            
+
+    relations:
+        - 
+            rel: armies
+            href:
+                route: api_get_armies
+                parameters:
+                    userId: expr(object.getId())
+                absolute: true

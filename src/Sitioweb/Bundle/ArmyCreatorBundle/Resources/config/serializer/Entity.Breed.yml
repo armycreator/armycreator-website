@@ -1,0 +1,8 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        name:
+            expose: true
+
