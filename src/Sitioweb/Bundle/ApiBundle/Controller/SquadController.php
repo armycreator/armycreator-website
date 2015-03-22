@@ -8,31 +8,29 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
- * ArmyController
+ * SquadController
  *
  * @uses Controller
  * @author Julien Deniau <julien.deniau@mapado.com>
  */
-class ArmyController extends FOSRestController
+class SquadController extends FOSRestController
 {
     /**
-     * getAction
+     * getSquadAction
      *
      * @access public
      * @return void
      *
      * @ApiDoc(
-     *     section="Armies",
-     *     description="Get an army"
+     *     section="Squad",
+     *     description="Get a squad"
      * )
-     * @Rest\View(serializerGroups={"BaseArmy", "ArmyDetail"})
+     * @Rest\View()
      */
-    public function getArmyAction($armyId)
+    public function getSquadAction($squadId)
     {
-        $army = $this->get('doctrine.orm.default_entity_manager')
-            ->getRepository('SitiowebArmyCreatorBundle:Army')
-            ->find($armyId);
-
-        return $army;
+        return $this->get('doctrine.orm.default_entity_manager')
+            ->getRepository('SitiowebArmyCreatorBundle:Squad')
+            ->find($squadId);
     }
 }

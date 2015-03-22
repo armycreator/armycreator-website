@@ -1,0 +1,27 @@
+Knp\Component\Pager\Pagination\AbstractPagination:
+    exclusion_policy: NONE
+    properties:
+        items:
+            expose: true
+            groups: [Lists]
+            access_type: public_method
+            accessor:
+                getter: getItems
+            type: array
+            serialized_name:
+                payload
+        currentPageNumber:
+            expose: true
+            groups: [Lists]
+            serialized_name:
+                page
+        numItemsPerPage:
+            expose: true
+            groups: [Lists]
+            serialized_name:
+                items
+        totalCount:
+            expose: true
+            groups: [Lists]
+            serialized_name:
+                totalItems

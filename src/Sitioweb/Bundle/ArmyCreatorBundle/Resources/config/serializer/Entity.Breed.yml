@@ -3,6 +3,8 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed:
     properties:
         id:
             expose: true
+            groups: [BaseArmy]
         name:
             expose: true
+            groups: [BaseArmy]
 

@@ -203,6 +203,12 @@ jms_serializer:
     metadata:
         auto_detection: true
         directories:
+            KnpPaginatorBundle:
+                namespace_prefix: "Knp\\Bundle\\PaginatorBundle"
+                path: "@SitiowebArmyCreatorBundle/Resources/config/serializer/KnpPaginatorBundle"
+            KnpPager:
+                namespace_prefix: "Knp\\Component\\Pager"
+                path: "@SitiowebArmyCreatorBundle/Resources/config/serializer/KnpPager"
             FOSUserModel:
                 namespace_prefix: "FOS\\UserBundle"
                 path: "@SitiowebArmyCreatorBundle/Resources/config/serializer/FosUser"

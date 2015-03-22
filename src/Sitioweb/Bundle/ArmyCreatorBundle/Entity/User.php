@@ -547,14 +547,16 @@ class User extends BaseUser
             $i = 1;
             foreach ($armyList as $army) {
                 $breed = $army->getBreed();
-                $breedId = $breed->getId();
-                if (isset($breedScore[$breedId])) {
-                    $breedScore[$breedId] += $i;
-                } else {
-                    $breedScore[$breedId] = $i;
+                if ($breed) {
+                    $breedId = $breed->getId();
+                    if (isset($breedScore[$breedId])) {
+                        $breedScore[$breedId] += $i;
+                    } else {
+                        $breedScore[$breedId] = $i;
+                    }
+                    $breedList[$breedId] = $breed;
+                    $i ++;
                 }
-                $breedList[$breedId] = $breed;
-                $i ++;
             }
 
             arsort($breedScore);

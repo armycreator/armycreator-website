@@ -14,6 +14,11 @@ api.armies:
     resource: "ArmycreatorApiBundle:Army"
     name_prefix:  api_
 
+api.squads:
+    type: rest
+    resource: "ArmycreatorApiBundle:Squad"
+    name_prefix:  api_
+
 api.army_groups:
     type: rest
     resource: "ArmycreatorApiBundle:ArmyGroup"

@@ -13,7 +13,6 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\ArmyGroup:
                 route: api_get_armygroup
                 parameters:
                     armyGroupId: expr(object.getId())
-                absolute: true
 
         - 
             rel: armies

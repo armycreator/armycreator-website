@@ -3,14 +3,27 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
     properties:
         id:
             expose: true
+            groups: [BaseArmy]
         name:
             expose: true
+            groups: [BaseArmy]
         description:
             expose: true
+            groups: [ArmyDetail]
         points:
             expose: true
+            groups: [BaseArmy]
         isShared:
             expose: true
+            groups: [BaseArmy]
+        #squadList:
+        #    expose: true
+
+#    virtual_properties:
+#        getSquadListByType:
+#            serialized_name: squad_list_by_type
+#            type: array
+
 
     relations:
         - 
@@ -19,4 +32,19 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
                 route: api_get_army
                 parameters:
                     armyId: expr(object.getId())
-                absolute: true
+            exclusion:
+                groups: [BaseArmy]
+
+        - 
+            rel: squad_list
+            exclusion:
+                groups: [ArmyDetail]
+            embedded: 
+                content: expr(object.getSquadList())
+
+        - 
+            rel: breed
+            embedded:
+                content: expr(object.getBreed())
+            exclusion: 
+                groups: [BaseArmy]
