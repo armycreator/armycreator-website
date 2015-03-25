@@ -197,6 +197,16 @@ fos_oauth_server:
         #user_provider: fos_user.user_provider.username_email
         user_provider: fos_user.user_manager
 
+nelmio_cors:
+    paths:
+        '^/':
+            hosts: ['^api\.']
+            origin_regex: true
+            allow_origin: ['^http://localhost:[0-9]+']
+            allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+            max_age: 3600
+
+
 nelmio_api_doc:
     name: ArmyCreator API
     sandbox: 
@@ -220,4 +230,5 @@ jms_serializer:
             ArmyCreatorEntities:
                 namespace_prefix: "Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity"
                 path: "@SitiowebArmyCreatorBundle/Resources/config/serializer"
+
 
