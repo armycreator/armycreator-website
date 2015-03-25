@@ -200,7 +200,7 @@ fos_oauth_server:
 nelmio_cors:
     paths:
         '^/':
-            hosts: ['^api\.']
+            hosts: ['^api\.', '^oauth2\.']
             origin_regex: true
             allow_origin: ['^http://localhost:[0-9]+']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
