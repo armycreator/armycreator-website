@@ -1,0 +1,10 @@
+api:
+    type: rest
+    resource: "@ArmycreatorApiBundle/Resources/config/routing.yml"
+    prefix: /v1
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix: /doc
+
+

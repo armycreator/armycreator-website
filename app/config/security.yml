@@ -26,6 +26,7 @@ security:
             security: false
 
         oauth_token:
+            host: "%domain.oauth2%"
             pattern: ^/oauth/v2/token$
             security: false
 
@@ -33,12 +34,14 @@ security:
         #    pattern: ^/oauth/v2/auth
 
         api:
+            host: "%domain.api%"
             pattern: ^/api/v.*
             fos_oauth: true
             stateless: true
             anonymous: false
 
         main:
+            host: "%domain.website%"
             pattern: ^/
             form_login:
                 login_path: /forum/ucp.php?mode=login
@@ -47,8 +50,8 @@ security:
             switch_user:  true
 
     access_control:
-        - { path: ^/api/doc/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api, role: ROLE_USER }
+        - { host: "%domain.api%", path: ^/doc/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { host: "%domain.api%", role: ROLE_USER }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -1,34 +1,15 @@
-sitioweb_dice:
-    resource: "@SitiowebDiceBundle/Controller/"
-    type:     annotation
-    prefix:   /toolbox
+website:
+    host: "%domain.website%"
+    resource: "routing/website.yml"
 
-armycreator:
-    resource: "@SitiowebArmyCreatorBundle/Resources/config/routing.yml"
+fos_oauth_server_token:
+    host: "%domain.oauth2%"
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
 
-SitiowebArmyCreatorBundle:
-    resource: "@SitiowebArmyCreatorBundle/Controller/"
-    type:     annotation
-    prefix:   /
+api:
+    host: "%domain.api%"
+    resource: "routing/api.yml"
 
-SitiowebArmyCreatorImportBundle:
-    resource: "@SitiowebArmyCreatorImportBundle/Controller/"
-    type:     annotation
-    prefix:   /import
-
-donation:
-    path: /cgi-bin/webscr
-    host: www.paypal.com
-    schemes: [https]
-
-forum_index:
-    path: /forum/
-
-forum_topic:
-    path: /forum/viewtopic.php
-
-forum_ucp:
-    path: /forum/ucp.php
 
 #fos_user_security:
 #    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -56,26 +37,8 @@ forum_ucp:
 #
 
 
-fos_oauth_server_token:
-    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
 
 #fos_oauth_server_authorize:
 #    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
-
-api:
-    type: rest
-    resource: "@ArmycreatorApiBundle/Resources/config/routing.yml"
-    prefix: /api/v1
-
-NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix: /api/doc
-
-armycreator_redirections:
-    path: /{oldRoute}
-    defaults:
-        _controller: SitiowebArmyCreatorBundle:Redirect:redirect301
-    requirements:
-        oldRoute: ".+"
 
 

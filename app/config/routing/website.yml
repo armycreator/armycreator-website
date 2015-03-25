@@ -1,0 +1,39 @@
+sitioweb_dice:
+    resource: "@SitiowebDiceBundle/Controller/"
+    type:     annotation
+    prefix:   /toolbox
+
+armycreator:
+    resource: "@SitiowebArmyCreatorBundle/Resources/config/routing.yml"
+
+SitiowebArmyCreatorBundle:
+    resource: "@SitiowebArmyCreatorBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+SitiowebArmyCreatorImportBundle:
+    resource: "@SitiowebArmyCreatorImportBundle/Controller/"
+    type:     annotation
+    prefix:   /import
+
+donation:
+    path: /cgi-bin/webscr
+    host: www.paypal.com
+    schemes: [https]
+
+forum_index:
+    path: /forum/
+
+forum_topic:
+    path: /forum/viewtopic.php
+
+forum_ucp:
+    path: /forum/ucp.php
+
+armycreator_redirections:
+    path: /{oldRoute}
+    defaults:
+        _controller: SitiowebArmyCreatorBundle:Redirect:redirect301
+    requirements:
+        oldRoute: ".+"
+
