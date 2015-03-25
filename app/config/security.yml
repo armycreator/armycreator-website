@@ -35,7 +35,7 @@ security:
 
         api:
             host: "%domain.api%"
-            pattern: ^/api/v.*
+            pattern: ^/v.*
             fos_oauth: true
             stateless: true
             anonymous: false
