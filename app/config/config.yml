@@ -203,7 +203,7 @@ nelmio_cors:
             hosts: ['^api\.', '^oauth2\.']
             origin_regex: true
             allow_origin: ['^http://localhost:[0-9]+']
-            allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+            allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'OPTIONS']
             max_age: 3600
 
 
