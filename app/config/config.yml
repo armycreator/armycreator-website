@@ -197,6 +197,25 @@ fos_oauth_server:
         #user_provider: fos_user.user_provider.username_email
         user_provider: fos_user.user_manager
 
+nelmio_cors:
+    paths:
+        '^/':
+            origin_regex: true
+            allow_credentials: true
+            allow_origin: ['localhost:[0-9]+']
+            allow_headers: ['*']
+            allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+            max_age: 3600
+            hosts: ['^oauth2\.']
+        '^/':
+            origin_regex: true
+            allow_credentials: true
+            allow_origin: ['localhost:[0-9]+']
+            allow_headers: ['*']
+            allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+            max_age: 3600
+            hosts: ['^api\.']
+
 
 nelmio_api_doc:
     name: ArmyCreator API
