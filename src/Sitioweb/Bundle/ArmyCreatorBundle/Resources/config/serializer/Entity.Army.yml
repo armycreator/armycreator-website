@@ -13,6 +13,9 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
         points:
             expose: true
             groups: [BaseArmy]
+        wantedPoints:
+            expose: true
+            groups: [BaseArmy]
         isShared:
             expose: true
             groups: [BaseArmy]
@@ -41,6 +44,13 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
                 groups: [ArmyDetail]
             embedded: 
                 content: expr(object.getSquadList())
+
+        - 
+            rel: squad_list_by_type
+            exclusion:
+                groups: [ArmyDetail]
+            embedded: 
+                content: expr(object.getSquadListByType())
 
         - 
             rel: breed

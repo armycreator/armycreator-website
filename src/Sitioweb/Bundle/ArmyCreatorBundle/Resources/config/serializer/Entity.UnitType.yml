@@ -1,0 +1,11 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [BaseArmy]
+        name:
+            expose: true
+            groups: [BaseArmy]
+
+

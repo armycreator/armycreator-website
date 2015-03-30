@@ -23,3 +23,10 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad:
     #        rel: unitType
     #        embedded: 
     #            content: expr(object.getSquadLineList())
+    relations:
+        - 
+            rel: points
+            embedded:
+                content: expr(object.getPoints())
+            exclusion: 
+                groups: [ArmyDetail]
