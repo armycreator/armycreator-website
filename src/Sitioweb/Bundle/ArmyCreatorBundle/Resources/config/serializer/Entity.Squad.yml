@@ -25,8 +25,23 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad:
     #            content: expr(object.getSquadLineList())
     relations:
         - 
+            rel: self
+            href:
+                route: api_get_squad
+                parameters:
+                    squadId: expr(object.getId())
+            exclusion:
+                groups: [BaseArmy]
+
+        - 
             rel: points
             embedded:
                 content: expr(object.getPoints())
             exclusion: 
-                groups: [ArmyDetail]
+                groups: [ArmyDetail, SquadDetail]
+        - 
+            rel: squad_line_list
+            embedded:
+                content: expr(object.getSquadLineList())
+            exclusion: 
+                groups: [SquadDetail]

@@ -1,0 +1,30 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [SquadDetail]
+#
+#        number:
+#            expose: true
+#            groups: [SquadDetail]
+#
+#        position:
+#            expose: true
+#            groups: [SquadDetail]
+
+    #relations:
+    #    - 
+    #        rel: unitType
+    #        embedded: 
+    #            content: expr(object.getUnitType())
+
+    #    - 
+    #        rel: unitType
+    #        embedded: 
+    #            content: expr(object.getUnitGroup())
+
+    #    - 
+    #        rel: unitType
+    #        embedded: 
+    #            content: expr(object.getSquadLineList())

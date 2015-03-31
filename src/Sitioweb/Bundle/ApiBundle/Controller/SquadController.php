@@ -25,12 +25,14 @@ class SquadController extends FOSRestController
      *     section="Squad",
      *     description="Get a squad"
      * )
-     * @Rest\View()
+     * @Rest\View(serializerGroups={"BaseArmy", "SquadDetail"})
      */
     public function getSquadAction($squadId)
     {
-        return $this->get('doctrine.orm.default_entity_manager')
+        $squad = $this->get('doctrine.orm.default_entity_manager')
             ->getRepository('SitiowebArmyCreatorBundle:Squad')
             ->find($squadId);
+
+        return $squad;
     }
 }

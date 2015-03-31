@@ -44,6 +44,10 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
                 groups: [ArmyDetail]
             embedded: 
                 content: expr(object.getSquadList())
+                href:
+                    route: api_get_squad
+                    parameters:
+                        squadId: expr(object.getId())
 
         - 
             rel: squad_list_by_type
@@ -51,6 +55,10 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
                 groups: [ArmyDetail]
             embedded: 
                 content: expr(object.getSquadListByType())
+                href:
+                    route: api_get_squad
+                    parameters:
+                        squadId: expr(object.getId())
 
         - 
             rel: breed
