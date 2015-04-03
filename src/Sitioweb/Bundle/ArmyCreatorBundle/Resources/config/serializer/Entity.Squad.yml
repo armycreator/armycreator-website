@@ -3,10 +3,10 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad:
     properties:
         id:
             expose: true
-            groups: [BaseSquad]
+            groups: [BaseSquad, ArmyDetail]
         name:
             expose: true
-            groups: [BaseSquad]
+            groups: [BaseSquad, ArmyDetail]
 
     #relations:
     #    - 
