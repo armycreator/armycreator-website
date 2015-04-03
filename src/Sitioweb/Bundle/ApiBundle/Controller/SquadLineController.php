@@ -22,8 +22,8 @@ class SquadLineController extends FOSRestController
      * @return void
      *
      * @ApiDoc(
-     *     section="Squad",
-     *     description="Get a squad"
+     *     section="SquadLine",
+     *     description="Get a squad line"
      * )
      * @Rest\View(serializerGroups={"BaseArmy", "BaseSquad", "SquadDetail", "SquadLineDetail", "BaseUnit"})
      */
