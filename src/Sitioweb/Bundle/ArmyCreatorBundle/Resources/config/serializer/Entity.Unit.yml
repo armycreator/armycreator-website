@@ -1,0 +1,2 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit:
+    exclusion_policy: ALL

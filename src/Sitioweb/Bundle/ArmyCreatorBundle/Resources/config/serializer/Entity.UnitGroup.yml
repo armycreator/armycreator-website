@@ -1,0 +1,3 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup:
+    exclusion_policy: ALL
+

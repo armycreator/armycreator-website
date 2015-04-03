@@ -14,7 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\DiscriminatorColumn(name="discriminator", type="string")
  * @ORM\DiscriminatorMap({"unit" = "Unit", "group" = "UnitGroup"})
  */
-class AbstractUnit
+abstract class AbstractUnit
 {
 
     /**

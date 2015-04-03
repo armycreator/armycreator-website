@@ -1,0 +1,33 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [BaseSquad]
+        number:
+            expose: true
+            groups: [BaseSquad]
+
+    relations:
+        - 
+            rel: self
+            href:
+                route: api_get_squadline
+                parameters:
+                    squadLineId: expr(object.getId())
+            exclusion:
+                groups: [BaseSquad]
+
+        - 
+            rel: squad_line_stuff_list
+            embedded:
+                content: expr(object.getSquadLineStuffList())
+            exclusion: 
+                groups: [SquadLineDetail]
+
+        - 
+            rel: unit
+            embedded:
+                content: expr(object.getUnit())
+            exclusion: 
+                groups: [SquadLineDetail, BaseSquad]
