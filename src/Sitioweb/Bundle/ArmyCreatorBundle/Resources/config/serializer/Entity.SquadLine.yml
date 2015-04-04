@@ -17,6 +17,12 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine:
                     squadLineId: expr(object.getId())
             exclusion:
                 groups: [BaseSquad, SquadDetail]
+        - 
+            rel: points
+            embedded:
+                content: expr(object.getPoints())
+            exclusion: 
+                groups: [SquadDetail]
 
         - 
             rel: squad_line_stuff_list
