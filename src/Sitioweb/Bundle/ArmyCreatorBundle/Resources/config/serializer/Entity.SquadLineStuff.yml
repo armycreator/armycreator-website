@@ -1,0 +1,17 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLineStuff:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [SquadDetail]
+        number:
+            expose: true
+            groups: [SquadDetail]
+
+    relations:
+        - 
+            rel: unit_stuff
+            embedded:
+                content: expr(object.getUnitStuff())
+            exclusion: 
+                groups: [SquadLineDetail, SquadDetail]

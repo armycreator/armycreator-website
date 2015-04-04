@@ -1,0 +1,13 @@
+Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [SquadDetail]
+        name:
+            expose: true
+            groups: [SquadDetail]
+        description:
+            expose: true
+            groups: [SquadDetail]
+

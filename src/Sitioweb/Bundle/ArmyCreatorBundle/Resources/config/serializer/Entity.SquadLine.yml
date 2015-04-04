@@ -3,10 +3,10 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine:
     properties:
         id:
             expose: true
-            groups: [BaseSquad]
+            groups: [SquadDetail]
         number:
             expose: true
-            groups: [BaseSquad]
+            groups: [SquadDetail]
 
     relations:
         - 
@@ -16,18 +16,18 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine:
                 parameters:
                     squadLineId: expr(object.getId())
             exclusion:
-                groups: [BaseSquad]
+                groups: [BaseSquad, SquadDetail]
 
         - 
             rel: squad_line_stuff_list
             embedded:
                 content: expr(object.getSquadLineStuffList())
             exclusion: 
-                groups: [SquadLineDetail]
+                groups: [SquadDetail, SquadLineDetail]
 
         - 
             rel: unit
             embedded:
                 content: expr(object.getUnit())
             exclusion: 
-                groups: [SquadLineDetail, BaseSquad]
+                groups: [SquadLineDetail, SquadDetail]
