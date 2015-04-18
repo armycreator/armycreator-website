@@ -6,6 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class RedirectController extends Controller
 {
+    public function redirectPaypalAction()
+    {
+        $this->get('event_dispatcher')->dispatch('user.donation');
+        $donationParam = $this->container->getParameter('donation_parameters');
+        $newRoute = 'https://www.paypal.com/cgi-bin/webscr?cmd='
+            . $donationParam['cmd'] . '&hosted_button_id=' . $donationParam['hosted_button_id'];
+        return $this->redirect($newRoute);
+    }
+
     /**
      * redirect301Action
      *

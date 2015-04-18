@@ -86,14 +86,14 @@
                 </div>
 
                 <div>
-                    <a href="{{ path("donation", donation_parameters) }}" title="{{ 'homepage_menu.donation'|trans }}" target="_blank">
+                    <a href="{{ path("donation") }}" title="{{ 'homepage_menu.donation'|trans }}" target="_blank">
                         <figure>
                             <i class="el-icon-eur"></i>
                         </figure>
                     </a>
 
                     <div>
-                        {{ "home.things_to_do.free"|trans({ "%url%": path("donation", donation_parameters) })|raw }}
+                        {{ "home.things_to_do.free"|trans({ "%url%": path("donation") })|raw }}
                     </div>
                 </div>
             </div>

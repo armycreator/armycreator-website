@@ -17,9 +17,9 @@ SitiowebArmyCreatorImportBundle:
     prefix:   /import
 
 donation:
-    path: /cgi-bin/webscr
-    host: www.paypal.com
-    schemes: [https]
+    path: /donation
+    defaults:
+        _controller: SitiowebArmyCreatorBundle:Redirect:redirectPaypal
 
 forum_index:
     path: /forum/

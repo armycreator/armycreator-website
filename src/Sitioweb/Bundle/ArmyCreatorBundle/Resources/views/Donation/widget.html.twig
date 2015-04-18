@@ -1,4 +1,4 @@
-{% set donationUrl = url("donation", { "cmd": donation_parameters.cmd, "hosted_button_id": donation_parameters.hosted_button_id }) %}
+{% set donationUrl = url("donation") %}
 {% set percent = 100 * totalAmount / server_cost %}
 {% if percent > 100 %}
     {% set percent = 100 %}

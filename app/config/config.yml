@@ -138,6 +138,8 @@ m6_statsd:
             events:
                 kernel.terminate:
                     increment: "website.page_view"
+                user.donation:
+                    increment: "user.donation"
                 statsd.memory_usage:
                     gauge: "website.memory"
                 statsd.time:
