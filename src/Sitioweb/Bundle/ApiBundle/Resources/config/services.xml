@@ -17,5 +17,9 @@
                 <argument>%kernel.root_dir%</argument>
             </call>
         </service>
+
+        <service id="armycreator.api.serializer_handler.squad_list" class="Sitioweb\Bundle\ApiBundle\Serializer\SquadListSerializer">
+            <tag name="jms_serializer.event_subscriber" direction="serialization" />
+        </service>
     </services>
 </container>
