@@ -161,8 +161,12 @@ class UnitHasUnitGroupController extends Controller
      *
      * @Route("/{id}/delete", name="unithasunitgroup_delete")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request,Breed $breed,  $id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitHasUnitGroup')->find($id);
+        $unitGroup = $entity->getGroup();
+
         if (!$this->get('oneup_acl.manager')->isGranted('EDIT', $breed)) {
             throw new AccessDeniedException();
         }
@@ -170,12 +174,7 @@ class UnitHasUnitGroupController extends Controller
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
-        $unitGroup = $entity->getGroup();
-
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('SitiowebArmyCreatorBundle:UnitHasUnitGroup')->find($id);
-
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find UnitHasUnitGroup entity.');
             }
