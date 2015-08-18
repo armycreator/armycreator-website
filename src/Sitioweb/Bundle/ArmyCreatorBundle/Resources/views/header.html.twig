@@ -54,7 +54,7 @@
             </span>
 
             <span class="right">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% if ac_is_granted('IS_AUTHENTICATED_FULLY') %}
                     {% trans with { "%username%": app.user.username } %}header.hello.%username%{% endtrans %}
 
                     {% if is_granted('ROLE_CONTRIB') %}

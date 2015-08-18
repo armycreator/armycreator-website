@@ -6,7 +6,7 @@
 
 {% block h1Container -%}
 
-    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    {% if ac_is_granted("IS_AUTHENTICATED_FULLY") %}
         <div>
             <div class="right">
                 <a href="{{ path("profile_edit") }}" class="acButton" title="{{ "edit"|trans }}">

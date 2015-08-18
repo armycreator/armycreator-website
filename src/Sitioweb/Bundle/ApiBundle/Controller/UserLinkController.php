@@ -40,7 +40,7 @@ class UserLinkController extends FOSRestController
 
         $em = $this->get('doctrine.orm.default_entity_manager');
         $query = $em->getRepository('SitiowebArmyCreatorBundle:Army')
-            ->findByUser($user);
+            ->findByUser($user, ['updateDate' => 'DESC']);
 
         $armyList = $this->get('knp_paginator')
             ->paginate($query, $page, $limit);

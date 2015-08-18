@@ -25,6 +25,14 @@ services:
         tags:
             - { name: twig.extension }
 
+    armycreator.twig.security: 
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\SecurityExtension
+        arguments:
+            - @twig.extension.security
+            - @security.token_storage
+        tags:
+            - { name: twig.extension }
+
     armycreator.sitemap.listener:
         class: Sitioweb\Bundle\ArmyCreatorBundle\SitemapListener
         arguments:
