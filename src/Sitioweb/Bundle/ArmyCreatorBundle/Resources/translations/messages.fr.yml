@@ -9,6 +9,7 @@ admin:
         unit: "Une unité correspond à une figurine, avec ses équipements et sa valeur unitaire en points."
         unit_group: "Un groupe d'unités correspond à une \"escouade\", qui regroupe un certain nombre d'unités. Une escouade peut avoir un surcoût. Ex: Escouade A: 30pts + le coût des unités."
 army:
+    active_points: 'Points des unités actives'
     by: "Créée par %username%"
     detail:
         print: Imprimer
@@ -23,6 +24,9 @@ army:
             delete: Supprimer
             add: 'Ajouter une escouade'
             add_ally_fortress: 'Ajouter allié / forteresse'
+        squad_line:
+            is_active: 'Ligne inactive, cliquer pour l''activer'
+            is_inactive: 'Ligne active, cliquer pour la désactiver'
         preferences: préférences
         toggle_stuff: "équipements"
         show_all_stuff: "Afficher tous les équipements"

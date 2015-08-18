@@ -37,6 +37,16 @@ class SquadLine
     private $position;
 
     /**
+     * inactive
+     *
+     * @var mixed
+     * @access private
+     *
+     * @ORM\Column(name="inactive", type="boolean")
+     */
+    private $inactive;
+
+    /**
      * unit
      *
      * @var Unit
@@ -90,6 +100,7 @@ class SquadLine
     {
         $this->squadLineStuffList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->position = 0;
+        $this->inactive = false;
     }
 
     /**
@@ -162,6 +173,29 @@ class SquadLine
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Getter for inactive
+     *
+     * return boolean
+     */
+    public function isInactive()
+    {
+        return $this->inactive;
+    }
+
+    /**
+     * Setter for inactive
+     *
+     * @param boolean $inactive
+     * @return SquadLine
+     */
+    public function setInactive($inactive)
+    {
+        $this->inactive = $inactive;
+
+        return $this;
     }
 
     /**

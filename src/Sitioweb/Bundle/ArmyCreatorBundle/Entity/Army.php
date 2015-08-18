@@ -81,6 +81,13 @@ class Army
     private $points;
 
     /**
+     * @var integer $points
+     *
+     * @ORM\Column(name="active_points", type="integer")
+     */
+    private $activePoints;
+
+    /**
      * @var boolean $isShared
      *
      * @ORM\Column(name="isShared", type="boolean")
@@ -170,6 +177,7 @@ class Army
     {
         $this->squadList = new \Doctrine\Common\Collections\ArrayCollection();
         $this->setPoints(0);
+        $this->setActivePoints(0);
         $this->setWantedPoints(0);
     }
 
@@ -359,6 +367,29 @@ class Army
     }
 
     /**
+     * Getter for activePoints
+     *
+     * return int
+     */
+    public function getActivePoints()
+    {
+        return $this->activePoints;
+    }
+
+    /**
+     * Setter for activePoints
+     *
+     * @param int $activePoints
+     * @return Army
+     */
+    public function setActivePoints($activePoints)
+    {
+        $this->activePoints = $activePoints;
+
+        return $this;
+    }
+
+    /**
      * Set isShared
      *
      * @param boolean $isShared
@@ -493,23 +524,38 @@ class Army
             foreach ($unitTypeList as $unitType) {
                 $tmpArray = array();
                 $points = 0;
+                $activePoints = 0;
 
                 foreach ($squadList as $squad) {
                     if ($squad->getUnitType() == $unitType) {
                         $tmpArray[] = $squad;
                         $points += $squad->getPoints();
+                        $activePoints += $squad->getActivePoints();
                     }
                 }
 
                 $this->squadListByType[] = array(
                     'unitType' => $unitType,
                     'squadList' => $tmpArray,
-                    'points' => $points
+                    'points' => $points,
+                    'activePoints' => $activePoints,
+                    'hasInactiveSquad' => $points != $activePoints
                 );
             }
         }
 
         return $this->squadListByType;
+    }
+
+    /**
+     * hasInactiveSquad
+     *
+     * @access public
+     * @return void
+     */
+    public function hasInactiveSquad()
+    {
+        return $this->getPoints() != $this->getActivePoints();
     }
 
     /**
@@ -629,10 +675,14 @@ class Army
         $squadList = $this->getSquadList();
 
         $points = 0;
+        $activePoints = 0;
         foreach ($squadList as $squad) {
             $points += $squad->getPoints();
+            $activePoints += $squad->getActivePoints();
         }
         $this->setPoints($points);
+        $this->setActivePoints($activePoints);
+
         return $points;
     }
 

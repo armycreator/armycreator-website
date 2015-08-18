@@ -112,6 +112,11 @@
                             {% endif %}
                             <div class="unitTypePts">
                                {% trans with { "%pts%":tmp.points } %}army.detail.pts.%pts%{% endtrans %}
+                                {% if tmp.hasInactiveSquad %}
+                                    <div title="{{ "army.active_points"|trans }}">
+                                        ({% trans with { "%pts%":tmp.activePoints } %}army.detail.pts.%pts%{% endtrans %})
+                                    </div>
+                                {% endif %}
                             </div>
                         </h3>
                         <div class="squadListContainer">

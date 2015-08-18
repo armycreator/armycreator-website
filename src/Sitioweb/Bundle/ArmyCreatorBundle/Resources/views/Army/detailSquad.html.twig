@@ -5,6 +5,12 @@
             {{ squad.name|default(squad.unitType.name ~ ' #' ~ loop.index) }}
             <span>
                 {% trans with { "%pts%": squad.points } %}army.detail.pts.%pts%{% endtrans %}
+
+                {% if squad.hasInactiveSquadLine %}
+                    <span  title="{{ "army.active_points"|trans }}">
+                        ({% trans with { "%pts%": squad.activePoints } %}army.detail.pts.%pts%{% endtrans %})
+                    </span>
+                {% endif %}
             </span>
         </h4>
     </div>
@@ -17,10 +23,26 @@
                     {% set unit = squadLine.unit %}
                     {% set unitNumber = externalUser ? null : app.user.getUnitNumber(unit) %}
                     {% if  not(unitNumber is null) and unitNumber < army.getUnitNumber(unit) %}
-                        <i class="el-icon-warning-sign soft" title="{{ "army.detail.missing_units"|trans }}"></i>
+                        <i class="el-icon-warning-sign soft small" title="{{ "army.detail.missing_units"|trans }}"></i>
                     {% endif %}
 
-                    {{ squadLine.number }} {{ unit.name }}
+                    <a
+                       href="{{ path('squad_line_changeActiveStatus', {armySlug: army.slug, id: squadLine.id, isInactive: squadLine.isInactive ? 0 : 1}) }}"
+                       class="soft"
+                    >
+                        <i
+                            class="{{ squadLine.isInactive ? 'el-icon-check-empty' : 'el-icon-check' }}"
+                            title="{{ (squadLine.isInactive ? "army.detail.squad_line.is_inactive" : "army.detail.squad_line.is_active")|trans }}"
+                       ></i>
+                    </a>
+
+                    {% if squadLine.inactive %}
+                        <span class="soft">
+                    {% endif %}
+                        {{ squadLine.number }} {{ unit.name }}
+                    {% if squadLine.inactive %}
+                        </span>
+                    {% endif %}
 
                     {% if preferences.showUnitPoints %}
                         <span class="soft">

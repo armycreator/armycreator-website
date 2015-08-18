@@ -7,6 +7,9 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine:
         number:
             expose: true
             groups: [SquadDetail]
+        inactive:
+            expose: true
+            groups: [SquadDetail]
 
     relations:
         - 

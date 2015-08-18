@@ -151,12 +151,37 @@ class SquadLineController extends Controller
     }
 
     /**
-     * setArmyBreadCrumb
+     * changeActiveStatusAction
      *
+     * @param SquadLine $squadLine
+     * @param mixed $isInactive
      * @access public
      * @return void
+     *
+     * @Route("/active_status/{id}/{isInactive}", name="squad_line_changeActiveStatus")
+     * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"armySlug" = "slug"}})
+     * @ParamConverter("squadLine", class="SitiowebArmyCreatorBundle:SquadLine", options={ "id" = "id" })
      */
-    public function setArmyBreadCrumb($army)
+    public function changeActiveStatusAction(Army $army, SquadLine $squadLine, $isInactive)
+    {
+        $squadLine->setInactive($isInactive);
+        $this->get('doctrine')->getManager()->flush();
+
+        $utSlug = $squadLine->getSquad()->getUnitType()->getSlug();
+
+        $url = $this->generateUrl('army_detail', ['slug' => $army->getSlug()])
+            . '#ut-' . $utSlug;
+
+        return $this->redirect($url);
+    }
+
+    /**
+     * setArmyBreadCrumb
+     *
+     * @access private
+     * @return void
+     */
+    private function setArmyBreadCrumb($army)
     {
         // Breadcrumb
         if ($army->getArmyGroup() !== null) {

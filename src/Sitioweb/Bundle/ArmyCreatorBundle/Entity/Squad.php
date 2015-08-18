@@ -320,14 +320,45 @@ class Squad
         return $this->unitGroup;
     }
 
-    public function getPoints()
+    public function getPoints($onlyActive = false)
     {
         $points = 0;
         $squadLineList = $this->getSquadLineList();
         foreach ($squadLineList as $squadLine) {
-            $points += $squadLine->getPoints();
+            if (!$onlyActive || !$squadLine->isInactive()) {
+                $points += $squadLine->getPoints();
+            }
         }
         return $points;
+    }
+
+    /**
+     * getActivePoints
+     *
+     * @access public
+     * @return int
+     */
+    public function getActivePoints()
+    {
+        return $this->getPoints(true);
+    }
+
+    /**
+     * hasInactiveSquadLine
+     *
+     * @access public
+     * @return void
+     */
+    public function hasInactiveSquadLine()
+    {
+        $squadLineList = $this->getSquadLineList();
+        foreach ($squadLineList as $squadLine) {
+            if ($squadLine->isInactive()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
