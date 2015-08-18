@@ -13,6 +13,9 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
         points:
             expose: true
             groups: [BaseArmy]
+        activePoints:
+            expose: true
+            groups: [BaseArmy]
         wantedPoints:
             expose: true
             groups: [BaseArmy]
@@ -29,6 +32,13 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army:
 
 
     relations:
+        - 
+            rel: has_inactive_squad
+            embedded:
+                content: expr(object.hasInactiveSquad())
+            exclusion: 
+                groups: [BaseArmy]
+
         - 
             rel: self
             href:

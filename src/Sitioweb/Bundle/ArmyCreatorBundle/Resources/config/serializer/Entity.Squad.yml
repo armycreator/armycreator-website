@@ -41,6 +41,20 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad:
                 groups: [ArmyDetail, BaseSquad, SquadDetail]
 
         - 
+            rel: active_points
+            embedded:
+                content: expr(object.getActivePoints())
+            exclusion: 
+                groups: [ArmyDetail, BaseSquad, SquadDetail]
+
+        - 
+            rel: has_inactive_squad
+            embedded:
+                content: expr(object.hasInactiveSquadLine())
+            exclusion: 
+                groups: [ArmyDetail, BaseSquad, SquadDetail]
+
+        - 
             rel: squad_line_list
             embedded:
                 content: expr(object.getSquadLineList())
