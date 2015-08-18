@@ -137,14 +137,13 @@
         {% else %}
             <strong>
                 {% trans with { "%pts%": army.points } %}army.detail.pts.%pts%{% endtrans %}
-
-
-                {% if army.hasInactiveSquad %}
-                    <span  title="{{ "army.active_points"|trans }}">
-                        ({% trans with { "%pts%": army.activePoints } %}army.detail.pts.%pts%{% endtrans %})
-                    </span>
-                {% endif %}
             </strong>
+        {% endif %}
+
+        {% if army.hasInactiveSquad %}
+            <span  title="{{ "army.active_points"|trans }}">
+                ({% trans with { "%pts%": army.activePoints } %}army.detail.pts.%pts%{% endtrans %})
+            </span>
         {% endif %}
 
         {% if army.description %}
