@@ -23,13 +23,11 @@ class Builder extends ContainerAware
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-        $isAuth = $this->container->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY');
-
         $menu = $factory->createItem('root');
 
         $menu->addChild('main_menu.home', array('route' => 'homepage'));
         $menu->addChild('main_menu.forum', array('route' => 'forum_index'));
-        if ($isAuth) {
+        if ($this->isAuthenticated()) {
             $menu->addChild('main_menu.my_army_list', array('route' => 'army_list'));
             //$menu->addChild('main_menu.my_games', array('route' => ''));
         }
@@ -49,13 +47,11 @@ class Builder extends ContainerAware
     public function secondMainMenu(FactoryInterface $factory, array $options)
     {
         $security = $this->container->get('security.context');
-        $isAuth = $security->isGranted('IS_AUTHENTICATED_FULLY');
-
         $menu = $factory->createItem('root');
 
         $menu->addChild('main_menu.user_list', array('route' => 'user_list'));
 
-        if ($isAuth) {
+        if ($this->isAuthenticated()) {
             $menu->addChild('main_menu.my_collection', array('route' => 'user_collection'));
         }
         $menu->addChild('main_menu.tools', array('route' => 'toolbox_dice'));
@@ -215,6 +211,14 @@ class Builder extends ContainerAware
      */
     private function getUser()
     {
-        return $this->container->get('security.context')->getToken()->getUser();
+        $tokenStorage = $this->container->get('security.token_storage');
+        return $tokenStorage && $tokenStorage->getToken() ? $tokenStorage->getToken()->getUser() : null;
+    }
+
+    private function isAuthenticated()
+    {
+        $tokenStorage = $this->container->get('security.token_storage');
+        $authChecker = $this->container->get('security.authorization_checker');
+        return $tokenStorage && $tokenStorage->getToken() && $authChecker->isGranted('IS_AUTHENTICATED_FULLY');
     }
 }
