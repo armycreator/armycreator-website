@@ -141,8 +141,9 @@
         {% endif %}
 
         {% if army.hasInactiveSquad %}
-            <span  title="{{ "army.active_points"|trans }}">
-                ({% trans with { "%pts%": army.activePoints } %}army.detail.pts.%pts%{% endtrans %})
+            <span>
+                {{ "army.active_points"|trans }}:
+                {% trans with { "%pts%": army.activePoints } %}army.detail.pts.%pts%{% endtrans %}
             </span>
         {% endif %}
 
