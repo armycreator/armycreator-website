@@ -447,11 +447,13 @@ class SquadLine
     public function preUpdate()
     {
         $squadLineStuffList = $this->getSquadLineStuffList();
-        foreach ($squadLineStuffList as $squadLineStuff) {
-            if ($squadLineStuff->getNumber() <= 0) {
-                $this->removeSquadLineStuffList($squadLineStuff);
-            } else {
-                $squadLineStuff->preUpdate();
+        if ($squadLineStuffList) {
+            foreach ($squadLineStuffList as $squadLineStuff) {
+                if ($squadLineStuff->getNumber() <= 0) {
+                    $this->removeSquadLineStuffList($squadLineStuff);
+                } else {
+                    $squadLineStuff->preUpdate();
+                }
             }
         }
 

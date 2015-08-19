@@ -3,9 +3,12 @@
 namespace Sitioweb\Bundle\ApiBundle\Controller;
 
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * SquadLineController
@@ -32,6 +35,36 @@ class SquadLineController extends FOSRestController
         $squadLine = $this->get('doctrine.orm.default_entity_manager')
             ->getRepository('SitiowebArmyCreatorBundle:SquadLine')
             ->find($squadLineId);
+
+        return $squadLine;
+    }
+
+    /**
+     * putSquadlineAction
+     *
+     * @param mixed $squadLineId
+     * @access public
+     * @return void
+     *
+     *
+     * @ApiDoc(
+     *     section="SquadLine",
+     *     description="Update a squad line"
+     * )
+     * @Rest\View(serializerGroups={"BaseArmy", "BaseSquad", "SquadDetail", "SquadLineDetail", "BaseUnit"})
+     *
+     * @ParamConverter("squadLine", class="SitiowebArmyCreatorBundle:SquadLine", options={"id" = "squadLine"})
+     */
+    public function putSquadlineAction(SquadLine $squadLine, Request $request)
+    {
+        $input = $this->get('jms_serializer')
+            ->deserialize($request->getContent(), 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine', 'json');
+
+        $squadLine->setNumber($input->getNumber())
+            ->setInactive($input->isInactive());
+
+        $this->get('doctrine.orm.default_entity_manager')
+            ->flush();
 
         return $squadLine;
     }

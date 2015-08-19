@@ -10,6 +10,7 @@ parameters:
     donation_parameters: 
         cmd: _s-xclick
         hosted_button_id: L7PK6V4R4LPHG
+    jms_serializer.doctrine_proxy_subscriber.class: JMS\Serializer\EventDispatcher\Subscriber\DoctrineProxySubscriber
 
 framework:
     #esi:             ~

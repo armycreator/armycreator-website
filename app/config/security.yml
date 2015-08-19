@@ -50,7 +50,7 @@ security:
             switch_user:  true
 
     access_control:
-        - { host: "%domain.api%", path: ^/doc/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { host: "%domain.api%", path: ^/doc$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { host: "%domain.api%", role: ROLE_USER }
         - { path: ^/donation$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
