@@ -304,6 +304,7 @@ class ArmyController extends Controller
                             ->findByBreed($army->getBreed());
 
         // update army points
+        // TODO find a better solution
         $army->generatePoints();
         $em->flush();
 
