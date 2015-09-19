@@ -5,7 +5,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle;
 use Presta\SitemapBundle\Service\SitemapListenerInterface;
 use Presta\SitemapBundle\Event\SitemapPopulateEvent;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
-use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 
 use Doctrine\ORM\EntityManager;
 
@@ -58,7 +58,7 @@ class SitemapListener implements SitemapListenerInterface
      * @access public
      * @return void
      */
-    public function __construct(Router $router, EntityManager $entityManager)
+    public function __construct(RouterInterface $router, EntityManager $entityManager)
     {
         $this->router = $router;
         $this->entityManager = $entityManager;

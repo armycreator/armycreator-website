@@ -24,3 +24,11 @@ monolog:
             type:  firephp
             level: info
 
+services: 
+    armycreator.dev_routing:
+        class: Sitioweb\Bundle\ArmyCreatorBundle\DevRouter
+        decorates: router
+        decoration_inner_name: router.inner
+        arguments:
+            - @router.inner
+            - @request_stack
