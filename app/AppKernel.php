@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
+            new SunCat\MobileDetectBundle\MobileDetectBundle(),
 
             // API
             new JMS\SerializerBundle\JMSSerializerBundle(),

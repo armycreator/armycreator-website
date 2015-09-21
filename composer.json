@@ -34,6 +34,7 @@
         "friendsofsymfony/jsrouting-bundle": "~1.5",
         "helios-ag/fm-bbcode-bundle": "@stable",
         "presta/sitemap-bundle": "~1.0",
+        "suncat/mobile-detect-bundle": "~0.10",
 
         "jms/serializer-bundle": "~0.13",
         "friendsofsymfony/rest-bundle": "~1.4",

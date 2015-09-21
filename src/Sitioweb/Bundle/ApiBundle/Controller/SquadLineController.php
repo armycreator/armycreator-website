@@ -63,11 +63,6 @@ class SquadLineController extends FOSRestController
         $squadLine->setNumber($input->getNumber())
             ->setInactive($input->isInactive());
 
-        // TODO find a better solution
-        $squadLine->getSquad()
-            ->getArmy()
-            ->generatePoints();
-
         $this->get('doctrine.orm.default_entity_manager')
             ->flush();
 

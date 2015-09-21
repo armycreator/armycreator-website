@@ -245,3 +245,8 @@ jms_serializer:
                 path: "@SitiowebArmyCreatorBundle/Resources/config/serializer"
 
 
+mobile_detect:
+    redirect: 
+        mobile: ~
+        tablet: ~
+    switch_device_view: ~
