@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity
  */
-class SquadLine
+class SquadLine implements HasArmy
 {
     /**
      * @var integer $id
@@ -229,6 +229,7 @@ class SquadLine
      */
     public function setSquad(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad $squad = null)
     {
+        $squad->addSquadLineList($this);
         $this->squad = $squad;
 
         return $this;
@@ -486,8 +487,6 @@ class SquadLine
                     $squadLineStuff = new SquadLineStuff();
                     $squadLineStuff->setSquadLine($this);
                     $squadLineStuff->mapUnitStuff($unitStuff);
-
-                    $this->addSquadLineStuffList($squadLineStuff);
                 }
             }
         }
@@ -522,8 +521,6 @@ class SquadLine
                     $squadLineStuff = new SquadLineStuff();
                     $squadLineStuff->setSquadLine($this);
                     $squadLineStuff->mapUnitStuff($unitStuff, $isEdition);
-
-                    $this->addSquadLineStuffList($squadLineStuff);
                 }
             }
         }
@@ -531,4 +528,8 @@ class SquadLine
         return $this;
     }
 
+    public function getArmy()
+    {
+        return $this->getSquad()->getArmy();
+    }
 }

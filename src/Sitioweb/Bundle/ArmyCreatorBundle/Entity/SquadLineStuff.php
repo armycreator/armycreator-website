@@ -162,6 +162,7 @@ class SquadLineStuff
      */
     public function setSquadLine(\Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine $squadLine = null)
     {
+        $squadLine->addSquadLineStuffList($this);
         $this->squadLine = $squadLine;
 
         return $this;

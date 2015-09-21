@@ -493,6 +493,7 @@ class SquadController extends Controller
                 throw $this->createNotFoundException('Unable to find Squad entity.');
             }
 
+            $army->removeSquadList($entity);
             $em->remove($entity);
             $em->flush();
 

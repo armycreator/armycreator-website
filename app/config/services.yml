@@ -40,3 +40,8 @@ services:
             - @doctrine.orm.default_entity_manager
         tags:
             - { name: presta.sitemap.listener }
+
+    armycreator.listener.army_point:
+        class: Sitioweb\Bundle\ArmyCreatorBundle\EventListener\ArmyPointListener
+        tags :
+            - { name: doctrine.event_subscriber, connection: default }

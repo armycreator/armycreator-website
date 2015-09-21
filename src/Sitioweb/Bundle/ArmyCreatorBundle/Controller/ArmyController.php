@@ -303,11 +303,6 @@ class ArmyController extends Controller
         $unitTypeList = $em->getRepository('SitiowebArmyCreatorBundle:UnitType')
                             ->findByBreed($army->getBreed());
 
-        // update army points
-        // TODO find a better solution
-        $army->generatePoints();
-        $em->flush();
-
         // forms
         $deleteForm = $this->createDeleteForm($army->getId());
         $cloneForm = $this->createCloneForm($army->getId());
