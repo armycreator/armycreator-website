@@ -54,6 +54,10 @@ class ArmyPointListener implements EventSubscriber
         foreach ($entityList as $entity) {
             if ($entity instanceof HasArmy) {
                 $army = $entity->getArmy();
+                if ($uow->isScheduledForDelete($army)) {
+                    continue;
+                }
+
                 if (!isset($treatedArmyList[$army->getId()])) {
                     $army->generatePoints();
 
