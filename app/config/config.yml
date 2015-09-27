@@ -122,10 +122,11 @@ fm_bbcode:
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     /usr/local/bin/wkhtmltopdf
-        #binary:     weasyprint
-        #options:
-        #    lowquality: null
+        #binary:     /usr/local/bin/wkhtmltopdf
+        binary:     weasyprint
+        options:
+            lowquality: null
+        #    print-media-type: true
 
 m6_statsd:
     servers:

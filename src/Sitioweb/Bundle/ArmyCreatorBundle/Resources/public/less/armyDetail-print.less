@@ -25,6 +25,30 @@
     h3 {
         .unitTypePts {
             display: inline;
+
+            > div {
+                display: inline-block;
+                &::after {
+                    content: "(pts unités activées)";
+                }
+            }
         }
     }
 }
+
+.unitTypeTopList {
+    display: table-row;
+
+    > div {
+        display: table-cell;
+    }
+}
+
+.el-icon-check::before {
+    content: "☑";
+}
+
+.el-icon-check-empty::before {
+    content: "□";
+}
+
