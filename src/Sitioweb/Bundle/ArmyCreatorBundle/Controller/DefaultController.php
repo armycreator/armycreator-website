@@ -73,7 +73,7 @@ class DefaultController extends Controller
             ->render(
                 'SitiowebArmyCreatorBundle::header.html.twig',
                 [
-                    'ads' => true,
+                    // 'ads' => true,
                     'standalone' => true,
                     'includeGlobalCss' => true,
                     'forumSid' => (isset($_COOKIE[$sidParam]) ? $_COOKIE[$sidParam] : null),
