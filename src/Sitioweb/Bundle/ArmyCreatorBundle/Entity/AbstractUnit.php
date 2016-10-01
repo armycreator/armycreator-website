@@ -39,8 +39,8 @@ abstract class AbstractUnit
      * @var string
      * @access private
      *
-     * @Gedmo\Slug(fields={"name"}, unique_base="breed", unique=true)
-     * @ORM\Column(length=255, unique=false, nullable=true)
+     * @Gedmo\Slug(fields={"name"}, unique=true)
+     * @ORM\Column(length=255, unique=true)
      */
     private $slug;
 
