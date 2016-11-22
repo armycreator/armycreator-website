@@ -33,7 +33,7 @@
         "friendsofsymfony/user-bundle": "dev-master#808672b",
         "friendsofsymfony/jsrouting-bundle": "~1.5",
         "helios-ag/fm-bbcode-bundle": "@stable",
-        "presta/sitemap-bundle": "~1.0",
+        "presta/sitemap-bundle": "~1.4.2",
         "suncat/mobile-detect-bundle": "~0.10",
 
         "jms/serializer-bundle": "~0.13",
@@ -41,7 +41,8 @@
         "willdurand/hateoas-bundle": "~0.4",
         "friendsofsymfony/oauth-server-bundle": "~1.4",
         "nelmio/api-doc-bundle": "~2.7",
-        "nelmio/cors-bundle": "~1.4"
+        "nelmio/cors-bundle": "~1.4",
+        "doctrine/doctrine-migrations-bundle": "^1.2"
     },
 
     "require-dev": {
