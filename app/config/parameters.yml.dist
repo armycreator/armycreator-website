@@ -5,8 +5,8 @@ parameters:
     database_name: armycreator
     database_user: ***
     database_password: ***
-    database_name_forum: armycreator_forum
-    database_name_acl: armycreator_acl
+    database_name_forum: armycreator
+    database_name_acl: armycreator
 
     mailer_transport: smtp
     mailer_host: localhost
@@ -21,3 +21,7 @@ parameters:
     donation_parameters: 
         cmd: _s-xclick
         hosted_button_id: L7PK6V4R4LPHG
+
+    domain.api: 'api.armycreator.net'
+    domain.oauth2: 'oauth2.armycreator.net'
+    domain.website: 'www.armycreator.net'
