@@ -129,6 +129,7 @@ class ArmyController extends Controller
 
         // getting armyList
         $deleteArmyListForm = array();
+        $cloneArmyListForm = [];
         foreach ($armyList as $army) {
             $deleteArmyListForm[$army->getId()] = $this->createDeleteForm($army->getId());
             $cloneArmyListForm[$army->getId()] = $this->createCloneForm($army->getId());
