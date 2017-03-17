@@ -42,18 +42,18 @@ class Version20170316203726 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $lines[] = "DELETE * FROM AbstractUnit";
-        $lines[] = "DELETE * FROM ArmyGroup";
-        $lines[] = "DELETE * FROM Breed";
-        $lines[] = "DELETE * FROM BreedGroup";
-        $lines[] = "DELETE * FROM Equipement";
-        $lines[] = "DELETE * FROM Game";
-        $lines[] = "DELETE * FROM Stuff";
-        $lines[] = "DELETE * FROM Unit";
-        $lines[] = "DELETE * FROM UnitGroup";
-        $lines[] = "DELETE * FROM UnitStuff";
-        $lines[] = "DELETE * FROM UnitType";
-        $lines[] = "DELETE * FROM Weapon";
+        $lines[] = "DELETE FROM AbstractUnit";
+        $lines[] = "DELETE FROM ArmyGroup";
+        $lines[] = "DELETE FROM Breed";
+        $lines[] = "DELETE FROM BreedGroup";
+        $lines[] = "DELETE FROM Equipement";
+        $lines[] = "DELETE FROM Game";
+        $lines[] = "DELETE FROM Stuff";
+        $lines[] = "DELETE FROM Unit";
+        $lines[] = "DELETE FROM UnitGroup";
+        $lines[] = "DELETE FROM UnitStuff";
+        $lines[] = "DELETE FROM UnitType";
+        $lines[] = "DELETE FROM Weapon";
 
         foreach ($lines as $line) {
             $line = "SET FOREIGN_KEY_CHECKS=0;" .
