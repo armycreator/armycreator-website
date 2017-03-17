@@ -4,7 +4,7 @@ require_once($armycreator_dir . 'app/bootstrap.php.cache');
 require_once($armycreator_dir . 'app/AppKernel.php');
 
 
-$kernel = new AppKernel('prod', false);
+$kernel = new AppKernel('dev', true);
 $kernel->boot();
 $kernel->loadClassCache();
 $request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();

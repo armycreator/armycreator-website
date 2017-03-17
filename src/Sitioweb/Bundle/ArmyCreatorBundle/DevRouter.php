@@ -30,7 +30,7 @@ class DevRouter implements RouterInterface
         $path = $this->baseRouter->generate($name, $parameters, $relative);
 
         $request = $this->requestStack->getMasterRequest();
-        if ($request->query->has('sid')) {
+        if ($request->query && $request->query->has('sid')) {
             $path .= '?sid=' . $request->query->get('sid');
         }
 

@@ -72,7 +72,7 @@
                         </a>
                     {% endif %}
                     |
-                    {% set sid = forumSid|default(app.request.cookies.get(forum_sid)) %}
+                    {% set sid = forumSid|default(app.request ? app.request.cookies.get(forum_sid) : 'phpbb') %}
                     <a href="{{ path("forum_ucp", { mode: 'logout', 'sid': sid }) }}" title="{{ "header.logout"|trans }}">
                         {{ "header.logout"|trans }}
                         <i class="el-icon-off"></i>
