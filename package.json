@@ -1,15 +1,16 @@
 {
-    "name": "armycreator",
-    "version": "0.0.0",
-    "description": "armycreator Website",
-    "license": "proprietary",
-    "dependencies": {
-        "gassetic": "latest",
-        "gulp-less": "latest",
-        "gulp-sourcemaps": "latest",
-        "gulp-minify-css": "latest",
-        "gulp-concat": "latest",
-        "gulp-uglify": "latest",
-        "gulp-freeze": "latest"
-    }
+  "name": "armycreator",
+  "version": "0.0.0",
+  "description": "armycreator Website",
+  "license": "proprietary",
+  "dependencies": {
+    "bower": "^1.8.0",
+    "gassetic": "latest",
+    "gulp-concat": "latest",
+    "gulp-freeze": "latest",
+    "gulp-less": "latest",
+    "gulp-minify-css": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-uglify": "latest"
+  }
 }

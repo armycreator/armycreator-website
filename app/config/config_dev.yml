@@ -1,10 +1,10 @@
 imports:
     - { resource: config.yml }
 
-parameters:
-    domain.api: 'api.dev.armycreator.net'
-    domain.oauth2: 'oauth2.dev.armycreator.net'
-    domain.website: 'dev.armycreator.net'
+# parameters:
+#     domain.api: 'api.dev.armycreator.net'
+#     domain.oauth2: 'oauth2.dev.armycreator.net'
+#     domain.website: 'dev.armycreator.net'
 
 framework:
     router:   { resource: "%kernel.root_dir%/config/routing_dev.yml" }

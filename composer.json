@@ -8,6 +8,7 @@
         "php": ">=5.3.3",
         "symfony/symfony": "~2.7",
         "doctrine/orm": "~2.0",
+        "twig/twig": "<2.0.0",
         "doctrine/doctrine-bundle": "~1.0",
         "stof/doctrine-extensions-bundle": "~1.1",
         "twig/extensions": "~1.0",
@@ -33,7 +34,7 @@
         "friendsofsymfony/user-bundle": "dev-master#808672b",
         "friendsofsymfony/jsrouting-bundle": "~1.5",
         "helios-ag/fm-bbcode-bundle": "@stable",
-        "presta/sitemap-bundle": "~1.0",
+        "presta/sitemap-bundle": "~1.4.2",
         "suncat/mobile-detect-bundle": "~0.10",
 
         "jms/serializer-bundle": "~0.13",
@@ -41,12 +42,13 @@
         "willdurand/hateoas-bundle": "~0.4",
         "friendsofsymfony/oauth-server-bundle": "~1.4",
         "nelmio/api-doc-bundle": "~2.7",
-        "nelmio/cors-bundle": "~1.4"
+        "nelmio/cors-bundle": "~1.4",
+        "doctrine/doctrine-migrations-bundle": "^1.2"
     },
 
     "require-dev": {
-        "raulfraile/ladybug-bundle": "^1.0",
-        "atoum/atoum": "~1.0"
+        "raulfraile/ladybug-bundle": "@stable",
+        "atoum/atoum": "^3.0"
     },
 
     "scripts": {
