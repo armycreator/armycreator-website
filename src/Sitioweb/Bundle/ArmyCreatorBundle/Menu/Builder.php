@@ -151,6 +151,13 @@ class Builder extends ContainerAware
                 'routeParameters' => $routeParameters
             )
         );
+        $menu->addChild(
+            'game_show.menu.breed_group',
+            array(
+                'route' => 'breedgroup',
+                'routeParameters' => $routeParameters
+            )
+        );
 
         return $menu;
     }

@@ -290,6 +290,7 @@ game_show:
     menu:
         breed_list: "Races"
         stuff_list: "Equipements"
+        breed_group: "Groupes de races"
 breed_show:
     menu:
         unitType_list: "Types d'unités"

@@ -6,7 +6,7 @@ chmod -R a+r /home/upload/code/armycreator/build/$BUILD_NUMBER;
 
 cp /home/upload/parameters/armycreator.yml app/config/parameters.yml;
 rm web/app_dev.php;
-rm web/forum;
+rm -rf web/forum;
 ln -s /home/upload/code/armycreator_forum web/forum;
 
 composer install;

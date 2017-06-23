@@ -3,24 +3,25 @@
 {% block title %}{{ "default.new.title"|trans }}{% endblock %}
 
 {% block content %}
-<form action="{{ path('breedgroup_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form
+    action="{{ path('breedgroup_update', { 'game': entity.game.code,  'id': entity.id }) }}"
+    method="post"
+    {{ form_enctype(edit_form) }}
+    class="opaque"
+>
     {{ form_widget(edit_form) }}
-    <p>
-        <button type="submit">{{ "button.edit"|trans }}</button>
+    <p class="txtRight">
+        <button class="acButton acButtonBig" type="submit">{{ "button.edit"|trans }}</button>
     </p>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('breedgroup') }}">
-            {{ "default.back_to_list"|trans }}
-        </a>
-    </li>
-    <li>
-        <form action="{{ path('breedgroup_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button type="submit">{{ "button.delete"|trans }}</button>
-        </form>
-    </li>
-</ul>
+<div class="txtright">
+    <a class="acButton" href="{{ path('breedgroup', {'game': entity.game.code }) }}">
+        {{ "default.back_to_list"|trans }}
+    </a>
+    <form class="inbl" action="{{ path('breedgroup_delete', { 'game': entity.game.code, 'id': entity.id }) }}" method="post">
+        {{ form_widget(delete_form) }}
+        <button class="acButton" type="submit">{{ "button.delete"|trans }}</button>
+    </form>
+</div>
 {% endblock %}

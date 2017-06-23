@@ -4,15 +4,17 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedGroupType;
 
 /**
  * BreedGroup controller.
  *
- * @Route("/admin/breedgroup")
+ * @Route("/admin/{game}/breedgroup")
  */
 class BreedGroupController extends Controller
 {
@@ -20,40 +22,19 @@ class BreedGroupController extends Controller
      * Lists all BreedGroup entities.
      *
      * @Route("/", name="breedgroup")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Game $game)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SitiowebArmyCreatorBundle:BreedGroup')->findAll();
+        $entities = $em->getRepository('SitiowebArmyCreatorBundle:BreedGroup')
+            ->findByGame($game);
 
         return array(
+            'game' => $game,
             'entities' => $entities,
-        );
-    }
-
-    /**
-     * Finds and displays a BreedGroup entity.
-     *
-     * @Route("/{id}/show", name="breedgroup_show")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:BreedGroup')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find BreedGroup entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
@@ -61,14 +42,17 @@ class BreedGroupController extends Controller
      * Displays a form to create a new BreedGroup entity.
      *
      * @Route("/new", name="breedgroup_new")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @Template()
      */
-    public function newAction()
+    public function newAction(Game $game)
     {
         $entity = new BreedGroup();
+        $entity->setGame($game);
         $form   = $this->createForm(new BreedGroupType(), $entity);
 
         return array(
+            'game' => $game,
             'entity' => $entity,
             'form'   => $form->createView(),
         );
@@ -78,10 +62,11 @@ class BreedGroupController extends Controller
      * Creates a new BreedGroup entity.
      *
      * @Route("/create", name="breedgroup_create")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:BreedGroup:new.html.twig")
      */
-    public function createAction()
+    public function createAction(Game $game)
     {
         $entity  = new BreedGroup();
         $request = $this->getRequest();
@@ -93,11 +78,12 @@ class BreedGroupController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('breedgroup_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('breedgroup', array('game' => $entity->getGame()->getCode())));
         }
 
         return array(
             'entity' => $entity,
+            'game' => $game,
             'form'   => $form->createView(),
         );
     }
@@ -106,23 +92,16 @@ class BreedGroupController extends Controller
      * Displays a form to edit an existing BreedGroup entity.
      *
      * @Route("/{id}/edit", name="breedgroup_edit")
+     * @ParamConverter("breedGroup", class="SitiowebArmyCreatorBundle:BreedGroup")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction(BreedGroup $breedGroup)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('SitiowebArmyCreatorBundle:BreedGroup')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find BreedGroup entity.');
-        }
-
-        $editForm = $this->createForm(new BreedGroupType(), $entity);
+        $editForm = $this->createForm(new BreedGroupType(), $breedGroup);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity'      => $breedGroup,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -156,7 +135,12 @@ class BreedGroupController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('breedgroup_edit', array('id' => $id)));
+            return $this->redirect(
+                $this->generateUrl(
+                    'breedgroup',
+                    array('game' => $entity->getGame()->getCode())
+                )
+            );
         }
 
         return array(
@@ -170,9 +154,10 @@ class BreedGroupController extends Controller
      * Deletes a BreedGroup entity.
      *
      * @Route("/{id}/delete", name="breedgroup_delete")
+     * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @Method("post")
      */
-    public function deleteAction($id)
+    public function deleteAction($id, Game $game)
     {
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
@@ -191,7 +176,7 @@ class BreedGroupController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('breedgroup'));
+        return $this->redirect($this->generateUrl('breedgroup', ['game' => $game->getCode()]));
     }
 
     private function createDeleteForm($id)

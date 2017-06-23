@@ -3,11 +3,18 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Oneup\AclBundle\Mapping\Annotation as Acl;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup
  *
  * @ORM\Entity
+ * @Acl\DomainObject({
+ *     @Acl\ClassPermission({ "ROLE_ADMIN": MaskBuilder::MASK_OPERATOR }),
+ *     @Acl\ClassPermission({ "ROLE_CONTRIB_ALL": MaskBuilder::MASK_EDIT }),
+ *     @Acl\ClassPermission({ "ROLE_CONTRIB": MaskBuilder::MASK_VIEW })
+ * })
  */
 class BreedGroup
 {
