@@ -9,10 +9,10 @@ rm web/app_dev.php;
 rm -rf web/forum;
 ln -s /home/upload/code/armycreator_forum web/forum;
 
-composer install;
-bower update;
+SYMFONY_ENV=prod composer install;
 
 npm install;
+./node_modules/.bin/bower update;
 ./node_modules/gassetic/bin.js build --env=prod
 ln -s /home/upload/code/armycreator/build/$BUILD_NUMBER/src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/elusive-iconfont/fonts web/css/
 php app/console cache:clear --env=prod;
