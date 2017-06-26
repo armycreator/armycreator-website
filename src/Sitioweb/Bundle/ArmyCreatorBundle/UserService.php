@@ -2,6 +2,9 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle;
 
+use FOS\UserBundle\Doctrine\UserManager;
+use FOS\UserBundle\Security\LoginManager;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -9,6 +12,22 @@ use Symfony\Component\Security\Core\Role\SwitchUserRole;
 
 class UserService
 {
+    private $kernelRootDir;
+
+    private $tokenStorage;
+
+    private $userManager;
+
+    private $loginManager;
+
+    public function __construct($kernelRootDir, TokenStorageInterface $tokenStorage, UserManager $userManager, LoginManager $loginManager)
+    {
+        $this->kernelRootDir = $kernelRootDir;
+        $this->tokenStorage = $tokenStorage;
+        $this->userManager = $userManager;
+        $this->loginManager = $loginManager;
+    }
+
     /**
      * onKernelController
      *
@@ -18,14 +37,13 @@ class UserService
      */
     public function onKernelController(FilterControllerEvent $event)
     {
-        $container = $event->getDispatcher()->getContainer();
         $controllerClass = get_class($event->getController()[0]);
 
         if (strpos($controllerClass, 'ApiBundle') !== false) {
             return;
         }
 
-        $this->getUser($container);
+        $this->getUser();
     }
 
     /**
@@ -34,7 +52,7 @@ class UserService
      * @access public
      * @return User
      */
-    public function getUser ($container)
+    public function getUser ()
     {
         global $db, $template, $config, $auth, $phpEx, $phpbb_root_path, $cache, $user;
         if (!defined('IN_PHPBB')) {
@@ -45,7 +63,7 @@ class UserService
             //define('PHPBB_ROOT_PATH', $container->getParameter('kernel.root_dir') . '/../web/forum/');
             $phpbb_root_path = 'forum/';
             $phpEx = 'php';
-            require_once($container->get('kernel')->getRootDir() . '/../web/forum/common.php');
+            require_once($this->kernelRootDir . '/../web/forum/common.php');
         }
 
 
@@ -58,11 +76,11 @@ class UserService
             //$user->setup();
 
             // inspired by Symfony\Bundle\FrameworkBundle\Controller\Controller::getUser()
-            if (!$container->has('security.context')) {
+            if (!$this->tokenStorage) {
                 throw new \LogicException('The SecurityBundle is not registered in your application.');
             }
 
-            $token = $container->get('security.context')->getToken();
+            $token = $this->tokenStorage->getToken();
             if (null === $token) {
                 return null;
             }
@@ -76,9 +94,9 @@ class UserService
 
             if ($user->data['is_registered'] && $isOriginalToken) {
                 if (!$currentUser || $user->data['user_id'] != $currentUser->getForumId()) {
-                    $currentUser = $container->get('fos_user.user_manager')->findUserByEmail($user->data['user_email']);
+                    $currentUser = $this->userManager->findUserByEmail($user->data['user_email']);
                     if (!$currentUser) {
-                        $currentUser = $container->get('fos_user.user_manager')->createUser();
+                        $currentUser = $this->userManager->createUser();
                     }
                     $currentUser->setForumId($user->data['user_id']);
                     $currentUser->setUsername($user->data['username']);
@@ -91,8 +109,8 @@ class UserService
                     $currentUser->setLocked(false);
                     $currentUser->setAvatar($user->data['user_avatar']);
 
-                    $container->get('fos_user.user_manager')->updateUser($currentUser);
-                    $container->get('fos_user.security.login_manager')->loginUser('main', $currentUser);
+                    $this->userManager->updateUser($currentUser);
+                    $this->loginManager->loginUser('main', $currentUser);
                 }
 
 
@@ -101,7 +119,7 @@ class UserService
                 return $token->getUser();
             } elseif ($currentUser) {
                 $anonymousToken = new AnonymousToken('main', 'anon.');
-                $container->get('security.context')->setToken($anonymousToken);
+                $this->tokenStorage->setToken($anonymousToken);
 
                 return $token->getUser();
                 //$this->get('fos_user.security.login_manager')->loginUser('main', null);

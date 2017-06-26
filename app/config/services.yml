@@ -1,6 +1,11 @@
 services: 
     user_service:
         class: Sitioweb\Bundle\ArmyCreatorBundle\UserService
+        arguments:
+            - "%kernel.root_dir%"
+            - "@security.token_storage"
+            - "@fos_user.user_manager"
+            - "@fos_user.security.login_manager"
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
 
