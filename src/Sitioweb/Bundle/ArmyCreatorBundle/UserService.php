@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -16,9 +17,9 @@ class UserService
      * @access public
      * @return void
      */
-    public function onKernelController(FilterControllerEvent $event)
+    public function onKernelController(FilterControllerEvent $event, $eventName, EventDispatcherInterface $dispatcher)
     {
-        $container = $event->getDispatcher()->getContainer();
+        $container = $dispatcher->getContainer();
         $controllerClass = get_class($event->getController()[0]);
 
         if (strpos($controllerClass, 'ApiBundle') !== false) {
@@ -34,7 +35,7 @@ class UserService
      * @access public
      * @return User
      */
-    public function getUser ($container)
+    public function getUser($container)
     {
         global $db, $template, $config, $auth, $phpEx, $phpbb_root_path, $cache, $user;
         if (!defined('IN_PHPBB')) {

@@ -10,7 +10,7 @@ admin_game_create:
     path: /admin/create
     defaults: { _controller: SitiowebArmyCreatorBundle:Game:create }
     requirements:
-        _method: POST
+        _methods: POST
 
 admin_game_stuff:
     path: /admin/{game}/stuff
@@ -24,10 +24,10 @@ admin_game_update:
     path: /admin/{code}/update
     defaults: { _controller: SitiowebArmyCreatorBundle:Game:update }
     requirements:
-        _method: POST
+        _methods: POST
 
 admin_game_delete:
     path: /admin/{code}/delete
     defaults: { _controller: SitiowebArmyCreatorBundle:Game:delete }
     requirements:
-        _method: POST
+        _methods: POST
