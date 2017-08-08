@@ -3,7 +3,7 @@
 {% block h1 %}{{ "breed.new.title"|trans }}{% endblock %}
 
 {% block content %}
-<form action="{{ path("admin_breed_create", { "game": game.code }) }}" method="post" {{ form_enctype(form) }} class="opaque">
+{{ form_start(form, {action: path("admin_breed_create", { "game": game.code }), attr: {class: 'opaque'}}) }}
     {{ form_widget(form) }}
     <div class="txtright">
         <button type="submit" class="acButton acButtonBig">{{ "button.create"|trans }}</button>

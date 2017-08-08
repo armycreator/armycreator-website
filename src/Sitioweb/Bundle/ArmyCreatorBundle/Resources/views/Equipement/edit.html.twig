@@ -9,9 +9,7 @@
     {% set game = breed.game %}
     {% set params = {"game": game.code, "breed": breed.slug} %}
 
-    <form action="{{ path("equipement_update", params + { "id": entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
-        {{ form_widget(edit_form) }}
-    </form>
+    {{ form_start(edit_form, { action: path("equipement_update", params + { "id": entity.id }), attr: {class: 'opaque'} } }}
 
     {% if entity.unitStuffList.count() == 0 %}
         <div class="right">

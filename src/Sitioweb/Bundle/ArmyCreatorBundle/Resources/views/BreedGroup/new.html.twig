@@ -3,7 +3,7 @@
 {% block title %}BreedGroup creation{% endblock %}
 
 {% block content %}
-<form action="{{ path('breedgroup_create', {'game': game.code}) }}" method="post" {{ form_enctype(form) }}>
+{{ form_start(form, {action: path('breedgroup_create', {'game': game.code})}) }}
     {{ form_widget(form) }}
     <p>
         <button type="submit">{{ "button.create"|trans }}</button>

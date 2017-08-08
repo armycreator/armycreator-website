@@ -12,7 +12,7 @@
 
 
 {% block squadAddContent %}
-    <form action="{{ path('squad_link_unit_stuff', {'armySlug' : army.slug, 'id' : squad.id, 'unitId': unit.id }) }}" method="post" {{ form_enctype(form) }}>
+{{ form_start(form, { action: path('squad_link_unit_stuff', {'armySlug' : army.slug, 'id' : squad.id, 'unitId': unit.id }) }) }}
         {{ form_errors(form) }}
 
         {{ block('squadLineList') }}

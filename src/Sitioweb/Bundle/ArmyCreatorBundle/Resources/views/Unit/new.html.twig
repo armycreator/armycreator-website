@@ -12,7 +12,7 @@
         {% set params = params + {"group": app.request.get("group")} %}
     {% endif %}
 
-    <form action="{{ path("unit_create", params) }}" method="post" {{ form_enctype(form) }} class="opaque">
+    {{ form_start(form, {action:path("unit_create", params), attr: {class: 'opaque'} }) }}
         <div id="unittype">
             {{ form_row(form.unitType) }}
             {{ form_row(form.name) }}
