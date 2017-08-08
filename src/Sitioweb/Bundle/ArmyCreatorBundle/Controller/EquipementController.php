@@ -12,8 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Equipement;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\EquipementType;
 
 /**
@@ -40,7 +40,7 @@ class EquipementController extends Controller
 
         $entity  = new Equipement();
         $form = $this->createForm(new EquipementType($breed->getGame()), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $entity->setBreed($breed);
@@ -181,7 +181,7 @@ class EquipementController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new EquipementType($breed->getGame()), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -210,7 +210,7 @@ class EquipementController extends Controller
         }
 
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

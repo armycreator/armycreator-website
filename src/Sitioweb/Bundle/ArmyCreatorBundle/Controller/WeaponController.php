@@ -40,7 +40,7 @@ class WeaponController extends Controller
 
         $entity  = new Weapon();
         $form = $this->createForm(new WeaponType($breed->getGame()), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $entity->setBreed($breed);
@@ -181,7 +181,7 @@ class WeaponController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new WeaponType($breed->getGame()), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             // dirty fix because description object are compared by reference, not by value
@@ -216,7 +216,7 @@ class WeaponController extends Controller
         }
 
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

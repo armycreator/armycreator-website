@@ -71,7 +71,7 @@ class BreedGroupController extends Controller
     {
         $entity  = new BreedGroup();
         $form    = $this->createForm(new BreedGroupType(), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -114,7 +114,7 @@ class BreedGroupController extends Controller
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:BreedGroup:edit.html.twig")
      */
-    public function updateAction($id)
+    public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -127,9 +127,7 @@ class BreedGroupController extends Controller
         $editForm   = $this->createForm(new BreedGroupType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        $request = $this->getRequest();
-
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -157,12 +155,11 @@ class BreedGroupController extends Controller
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @Method("post")
      */
-    public function deleteAction($id, Game $game)
+    public function deleteAction(Request $request, $id, Game $game)
     {
         $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

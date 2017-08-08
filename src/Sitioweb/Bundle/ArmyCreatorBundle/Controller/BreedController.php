@@ -206,7 +206,7 @@ class BreedController extends Controller
 
         $entity  = new Breed();
         $form    = $this->createForm(new BreedType($game), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -260,7 +260,7 @@ class BreedController extends Controller
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template("SitiowebArmyCreatorBundle:Breed:edit.html.twig")
      */
-    public function updateAction(Breed $breed)
+    public function updateAction(Request $request, Breed $breed)
     {
         $this->checkPermission($breed);
 
@@ -272,9 +272,7 @@ class BreedController extends Controller
 
         $editForm   = $this->createForm(new BreedType($breed->getGame()), $breed);
 
-        $request = $this->getRequest();
-
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($breed);
@@ -323,7 +321,7 @@ class BreedController extends Controller
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      */
-    public function deleteAction(Game $game, Breed $breed)
+    public function deleteAction(Request $request, Game $game, Breed $breed)
     {
         if (!$this->get('oneup_acl.manager')->isGranted('DELETE', $breed)) {
             throw new AccessDeniedException();
@@ -332,9 +330,8 @@ class BreedController extends Controller
         $id = $breed->getId();
 
         $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

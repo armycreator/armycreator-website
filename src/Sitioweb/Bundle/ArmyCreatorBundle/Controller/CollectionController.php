@@ -3,19 +3,19 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserUnitFeature;
 use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\CollectionType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UserUnitFeatureType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Collection controller.
@@ -56,7 +56,7 @@ class CollectionController extends Controller
      * @Template()
      * @Breadcrumb("{breed.name}")
      */
-    public function collectionEditAction(Breed $breed)
+    public function collectionEditAction(Request $request, Breed $breed)
     {
         $user = $this->getUser();
         $unitList = $this->get('doctrine')
@@ -67,7 +67,7 @@ class CollectionController extends Controller
         $uhuList = $user->getBreedUserHasUnitList($breed);
         $form = $this->createForm(new CollectionType(), ['userHasUnitList' => $uhuList]);
 
-        $form->handleRequest($this->get('request'));
+        $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->get('doctrine')
                 ->getManager();
@@ -178,7 +178,7 @@ class CollectionController extends Controller
      * @Breadcrumb("{breed.name}", routeName="user_collection_edit", routeParameters={"breed"="{breedSlug}"})
      * @Breadcrumb("{unit.name}")
      */
-    public function unitFeatureEditAction(Breed $breed, Unit $unit)
+    public function unitFeatureEditAction(Request $request, Breed $breed, Unit $unit)
     {
         $user = $this->getUser();
         $unitFeature = $this->get('doctrine')
@@ -193,30 +193,27 @@ class CollectionController extends Controller
 
         $editForm = $this->createForm(new UserUnitFeatureType($breed), $unitFeature);
 
-        $request = $this->get('request');
-        if ($request->isMethod('POST')) {
-            $editForm->bind($request);
-            if ($editForm->isValid()) {
-                // dirty fix because description object are compared by reference, not by value
-                // @see http://doctrine-orm.readthedocs.org/en/latest/reference/basic-mapping.html
-                $feature = $unitFeature->getFeature();
-                if (is_object($feature)) {
-                    $unitFeature->setFeature(clone $feature);
-                }
-
-                $em = $this->get('doctrine.orm.default_entity_manager');
-                $em->persist($unitFeature);
-                $em->flush();
-
-                // dispatch event
-                $this->get('event_dispatcher')
-                    ->dispatch(
-                        'armycreator.event.unit_feature.edit',
-                        new GameEvent($breed->getGame())
-                    );
-
-                return $this->redirect($this->generateUrl('user_collection_edit', ['breed' => $breed->getSlug()]));
+        $editForm->handleRequest($request);
+        if ($editForm->isValid()) {
+            // dirty fix because description object are compared by reference, not by value
+            // @see http://doctrine-orm.readthedocs.org/en/latest/reference/basic-mapping.html
+            $feature = $unitFeature->getFeature();
+            if (is_object($feature)) {
+                $unitFeature->setFeature(clone $feature);
             }
+
+            $em = $this->get('doctrine.orm.default_entity_manager');
+            $em->persist($unitFeature);
+            $em->flush();
+
+            // dispatch event
+            $this->get('event_dispatcher')
+                ->dispatch(
+                    'armycreator.event.unit_feature.edit',
+                    new GameEvent($breed->getGame())
+                );
+
+            return $this->redirect($this->generateUrl('user_collection_edit', ['breed' => $breed->getSlug()]));
         }
 
 

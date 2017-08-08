@@ -15,12 +15,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 //use JMS\SecurityExtraBundle\Annotation as Security;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyType;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyPreferencesType;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyBbcodePreferencesType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference;
 use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyBbcodePreferencesType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyPreferencesType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyType;
 
 /**
  * ArmyController
@@ -155,7 +155,7 @@ class ArmyController extends Controller
      * @Route("/{slug}.pdf", name="army_detail_pdf")
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
-    public function detailPdfGenerateAction(Army $army)
+    public function detailPdfGenerateAction(Request $request, Army $army)
     {
         //$pageUrl = $this->generateUrl('army_detail_printable', [ "slug" => $army->getSlug() ], true);
         $filename = 'ArmyCreator-' . $army->getCurrentSlug() . '.pdf';
@@ -165,7 +165,7 @@ class ArmyController extends Controller
             $this->detailAction($army) + ['pdf' => true]
         );
 
-        if ($this->get('request')->query->has('html')) {
+        if ($request->query->has('html')) {
             return new Response($html);
         } else {
             $output = $this->get('knp_snappy.pdf')->getOutputFromHtml($html);
@@ -206,7 +206,7 @@ class ArmyController extends Controller
      * @Template()
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
-    public function detailAction(Army $army)
+    public function detailAction(Request $request, Army $army)
     {
         // ge detail params
         $detailParams = $this->getDetailParams($army);
@@ -215,7 +215,7 @@ class ArmyController extends Controller
         $userPreferences = $this->getUserPreference();
         $form = $this->createForm(new ArmyPreferencesType(), $userPreferences);
 
-        $userPreferencesParams = $this->getUserPreferencesParams($form, $userPreferences);
+        $userPreferencesParams = $this->getUserPreferencesParams($request, $form, $userPreferences);
 
         return $detailParams + $userPreferencesParams;
     }
@@ -226,12 +226,11 @@ class ArmyController extends Controller
      * @access private
      * @return void
      */
-    private function getUserPreferencesParams($form, &$userPreferences)
+    private function getUserPreferencesParams(Request $request, $form, &$userPreferences)
     {
         // the user submitted the form
-        $request = $this->getRequest();
-        if ($request->getMethod() === 'POST') {
-            $form->bind($request);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
             if (!$form->isValid()) {
                 $userPreferences = $this->getUserPreference();
             } elseif ($request->request->get('saveAsDefault') == 1) {
@@ -259,7 +258,7 @@ class ArmyController extends Controller
      * @Template()
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
-    public function detailBbcodeAction(Army $army)
+    public function detailBbcodeAction(Request $request, Army $army)
     {
         // get detail parameters
         $detailParams = $this->getDetailParams($army);
@@ -268,7 +267,7 @@ class ArmyController extends Controller
         $userPreferences = $this->getUserPreference();
         $form = $this->createForm(new ArmyBbcodePreferencesType(), $userPreferences);
 
-        $userPreferencesParams = $this->getUserPreferencesParams($form, $userPreferences);
+        $userPreferencesParams = $this->getUserPreferencesParams($request, $form, $userPreferences);
 
         // breadcrumb
         $this->get("apy_breadcrumb_trail")->add($this->get('translator')->trans('breadcrumb.bbcode'));
@@ -371,7 +370,7 @@ class ArmyController extends Controller
     {
         $entity  = new Army();
         $form    = $this->createForm(new ArmyType($this->getUser()), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -446,9 +445,9 @@ class ArmyController extends Controller
      * options={"expose": true})
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
-    public function toggleShareAction(Army $army)
+    public function toggleShareAction(Request $request, Army $army)
     {
-        $army->setIsShared($this->get('request')->request->get('action') == 'share');
+        $army->setIsShared($request->request->get('action') == 'share');
         $this->get('doctrine')->getManager()->flush();
 
         return new Response('ok');
@@ -475,7 +474,7 @@ class ArmyController extends Controller
 
         $deleteForm = $this->createDeleteForm($entity->getId());
         $editForm = $this->createForm(new ArmyType($this->getUser()), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -515,7 +514,7 @@ class ArmyController extends Controller
         }
 
         $form = $this->createDeleteForm($entity->getId());
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em->remove($entity);
@@ -542,14 +541,14 @@ class ArmyController extends Controller
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      * @Template()
      */
-    public function cloneAction(Army $army)
+    public function cloneAction(Request $request, Army $army)
     {
         if ($this->getUser() != $army->getUser()) {
             throw new AccessDeniedException('Only the owner can clone an army');
         }
 
         $form = $this->createCloneForm($army->getId());
-        $form->bind($this->get('request'));
+        $form->handleRequest($request);
 
         if (!$form->isValid()) {
             $msg = $this->get('translator')->trans('army.fork.error_message');

@@ -39,7 +39,7 @@ class UnitTypeController extends Controller
 
         $entity  = new UnitType();
         $form = $this->createForm(new UnitTypeType(), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
         $entity->setBreed($breed);
 
         if ($form->isValid()) {
@@ -141,7 +141,7 @@ class UnitTypeController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new UnitTypeType(), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -177,7 +177,7 @@ class UnitTypeController extends Controller
         }
 
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

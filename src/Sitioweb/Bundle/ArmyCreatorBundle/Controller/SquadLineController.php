@@ -17,8 +17,8 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadLineType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 
 /**
  * SquadController
@@ -92,7 +92,7 @@ class SquadLineController extends Controller
      * @ParamConverter("squad", class="SitiowebArmyCreatorBundle:Squad", options={ "id" = "id" })
      * @ParamConverter("unit", class="SitiowebArmyCreatorBundle:Unit", options={ "id" = "unitId" })
      */
-    public function linkUnitStuffAction(Army $army, Squad $squad, Unit $unit)
+    public function linkUnitStuffAction(Request $request, Army $army, Squad $squad, Unit $unit)
     {
         $squadLine = new SquadLine;
         $squadLine->setUnit($unit)
@@ -101,7 +101,6 @@ class SquadLineController extends Controller
 
         $form = $this->createForm(new SquadLineType(), $squadLine);
 
-        $request = $this->get('request');
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
 

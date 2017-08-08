@@ -38,8 +38,8 @@ class ProfileController extends Controller
 
         $form = $this->createForm(new UserType, $user);
 
-        if ($request->isMethod("POST")) {
-            $form->bind($request);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $this->get('doctrine.orm.default_entity_manager')
                     ->flush();

@@ -106,7 +106,7 @@ class GameController extends Controller
 
         $entity  = new Game();
         $form    = $this->createForm(new GameType(), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -151,7 +151,7 @@ class GameController extends Controller
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"code" = "code"}})
      * @SecureParam(name="game", permissions="EDIT")
      */
-    public function updateAction(Game $game)
+    public function updateAction(Request $request, Game $game)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -160,9 +160,7 @@ class GameController extends Controller
         $editForm   = $this->createForm(new GameType(), $game);
         $deleteForm = $this->createDeleteForm($id);
 
-        $request = $this->getRequest();
-
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($game);
@@ -185,7 +183,7 @@ class GameController extends Controller
      *
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"code" = "code"}})
      */
-    public function deleteAction(Game $game)
+    public function deleteAction(Request $request, Game $game)
     {
         if (!$this->get('oneup_acl.manager')->isGranted('DELETE', $game)) {
             throw new AccessDeniedException();
@@ -194,9 +192,8 @@ class GameController extends Controller
         $id = $game->getId();
 
         $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

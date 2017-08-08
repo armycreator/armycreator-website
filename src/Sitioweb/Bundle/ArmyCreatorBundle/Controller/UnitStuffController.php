@@ -15,8 +15,8 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffMultiType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffType;
 
 /**
  * UnitStuff controller.
@@ -111,7 +111,7 @@ class UnitStuffController extends Controller
         }
 
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
         $unit = null;
 
         if ($form->isValid()) {

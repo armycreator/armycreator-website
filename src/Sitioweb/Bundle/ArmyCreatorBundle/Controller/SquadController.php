@@ -14,15 +14,15 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation as Security;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedSelectType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 
 /**
  * SquadController
@@ -362,7 +362,7 @@ class SquadController extends Controller
      *     options={ "mapping": { "breedSlug": "slug" } }
      * )
      */
-    public function moveAction(Squad $squad, Breed $breed, $unitTypeSlug)
+    public function moveAction(Request $request, Squad $squad, Breed $breed, $unitTypeSlug)
     {
         $army = $squad->getArmy();
         if ($this->getUser() != $army->getUser()) {
@@ -396,7 +396,7 @@ class SquadController extends Controller
                 ]
              );
 
-        $position = (int) $this->get('request')->query->get('position');
+        $position = (int) $request->query->get('position');
 
          $cpt = $position == 0 ? 1 : 0;
 

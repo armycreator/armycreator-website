@@ -58,9 +58,9 @@ class SquadType extends AbstractType
     }
 
     /**
-     * setDefaultOptions
+     * configureOptions
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      * @access public
      * @return void
      */

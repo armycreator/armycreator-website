@@ -50,3 +50,14 @@ services:
         class: Sitioweb\Bundle\ArmyCreatorBundle\EventListener\ArmyPointListener
         tags :
             - { name: doctrine.event_subscriber, connection: default }
+
+    armycreater.menu_builder:
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Menu\Builder
+        arguments: ["@request_stack"]
+        tags:
+            - { name: knp_menu.menu_builder, method: mainMenu, alias: main } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: secondMainMenu, alias: secondMain } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: breedShowMenu, alias: breedShow } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: gameMenu, alias: game } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: armyListMenu, alias: armyList } # The alias is what is used to retrieve the menu
+

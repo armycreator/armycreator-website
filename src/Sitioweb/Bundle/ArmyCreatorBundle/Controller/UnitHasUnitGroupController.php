@@ -38,7 +38,7 @@ class UnitHasUnitGroupController extends Controller
 
         $entity  = new UnitHasUnitGroup();
         $form = $this->createForm(new UnitHasUnitGroupType($breed), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -140,7 +140,7 @@ class UnitHasUnitGroupController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new UnitHasUnitGroupType($breed), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -172,7 +172,7 @@ class UnitHasUnitGroupController extends Controller
         }
 
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             if (!$entity) {

@@ -10,12 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Equipement;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Weapon;
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Equipement;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\WeaponType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\EquipementType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\WeaponType;
 
 /**
  * GameStuff controller.
@@ -87,7 +87,7 @@ class GameStuffController extends Controller
             $form = $this->createForm(new EquipementType($game), $entity);
             $route = 'game_equipement_new';
         }
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $entity->setGame($game);
@@ -171,7 +171,7 @@ class GameStuffController extends Controller
         } else {
             $editForm = $this->createForm(new EquipementType($game), $stuff);
         }
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             // dirty fix because description object are compared by reference, not by value
@@ -207,7 +207,7 @@ class GameStuffController extends Controller
         }
 
         $form = $this->createDeleteForm($stuff->getId());
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

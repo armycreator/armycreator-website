@@ -14,7 +14,7 @@ class AclExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'ac_granted' => new \Twig_Function_Method($this, 'acGranted'),
+            new \Twig_SimpleFunction('ac_granted', [$this, 'acGranted']),
         );
     }
 

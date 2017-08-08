@@ -12,10 +12,10 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup;
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitType;
 
 /**
  * Unit controller.
@@ -44,7 +44,7 @@ class UnitController extends Controller
         $unitHasUnitGroup->setUnit($entity);
 
         $form = $this->createForm(new UnitType($breed), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -207,7 +207,7 @@ class UnitController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $editForm = $this->createForm(new UnitType($breed), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             // dirty fix because description object are compared by reference, not by value
@@ -246,7 +246,7 @@ class UnitController extends Controller
         }
 
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

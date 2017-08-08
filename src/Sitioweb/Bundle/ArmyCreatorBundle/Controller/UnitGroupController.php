@@ -12,8 +12,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitGroupType;
 
 /**
@@ -40,7 +40,7 @@ class UnitGroupController extends Controller
 
         $entity  = new UnitGroup();
         $form = $this->createForm(new UnitGroupType($breed), $entity);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -151,7 +151,7 @@ class UnitGroupController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new UnitGroupType($breed), $entity);
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $entity->setBreed($breed);
@@ -188,7 +188,7 @@ class UnitGroupController extends Controller
         }
 
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

@@ -4,6 +4,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
@@ -13,6 +14,24 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
  */
 class Builder extends ContainerAware
 {
+    /**
+     * requestStack
+     *
+     * @var RequestStack
+     * @access private
+     */
+    private $requestStack;
+
+    /**
+     * __construct
+     *
+     * @param RequestStack $requestStack
+     */
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+    }
+
     /**
      * mainMenu
      *
@@ -84,7 +103,7 @@ class Builder extends ContainerAware
      */
     public function breedShowMenu(FactoryInterface $factory, array $options)
     {
-        $breed = $this->container->get('request')->get('breed');
+        $breed = $this->requestStack->getMasterRequest()->get('breed');
         $game = $breed->getGame();
         $routeParameters = ['breed' => $breed->getSlug(), 'game' => $game->getCode()];
 
@@ -132,7 +151,7 @@ class Builder extends ContainerAware
      */
     public function gameMenu(FactoryInterface $factory, array $options)
     {
-        $game = $this->container->get('request')->get('game');
+        $game = $this->requestStack->getMasterRequest()->get('game');
         $routeParameters = ['game' => $game->getCode()];
 
         $menu = $factory->createItem('root');
@@ -175,7 +194,7 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
 
         $user = $this->getUser();
-        $request = $this->container->get('request');
+        $request = $this->requestStack->getMasterRequest();
         $armyGroupList = $user->getArmyGroupList();
 
         $menu->addChild('army_list.group_list.last_armies', array(
