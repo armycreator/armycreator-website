@@ -2,10 +2,11 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 
@@ -38,7 +39,7 @@ class UnitStuffMultiType extends AbstractType
      * @access public
      * @return void
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'type' => new UnitStuffType($this->breed),
@@ -49,7 +50,7 @@ class UnitStuffMultiType extends AbstractType
 
     public function getParent()
     {
-        return 'collection';
+        return CollectionType::class;
     }
 
 
@@ -59,7 +60,7 @@ class UnitStuffMultiType extends AbstractType
      * @access public
      * @return void
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'armycreator_unitstuffmulti';
     }

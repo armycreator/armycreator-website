@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\DiceBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -20,7 +21,7 @@ class DiceLaunchController extends Controller
      * @Route("/", name="toolbox_dice")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         // get default
         $defaultDices = new Model\DiceLaunch();
@@ -29,7 +30,6 @@ class DiceLaunchController extends Controller
         $form = $this->createForm(new Form\DiceType(), $dices);
 
         // the user submitted the form
-        $request = $this->getRequest();
         if ($request->getMethod() === 'POST') {
             $form->bind($request);
 

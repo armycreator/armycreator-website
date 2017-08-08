@@ -2,9 +2,10 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\FArm\EquipementDescriptionType as FArmEquipementDescriptionType;
@@ -48,10 +49,10 @@ class WeaponType extends AbstractType
         $builder = $this->addGameSpecifics($builder);
 
         if ($options['data']->getId()) {
-             $builder->add('edit', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
+             $builder->add('edit', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']]);
         } else {
-             $builder->add('create', 'submit', ['attr' => ['class' => 'acButton acButtonBig']])
-                 ->add('createAndAdd', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
+             $builder->add('create', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']])
+                 ->add('createAndAdd', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']]);
         }
     }
 
@@ -62,7 +63,7 @@ class WeaponType extends AbstractType
      * @access public
      * @return void
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Weapon',
@@ -76,7 +77,7 @@ class WeaponType extends AbstractType
      * @access public
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'armycreator_weapontype';
     }

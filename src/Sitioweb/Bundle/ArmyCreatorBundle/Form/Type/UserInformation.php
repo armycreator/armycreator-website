@@ -2,9 +2,11 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserInformation extends AbstractType
 {
@@ -19,14 +21,14 @@ class UserInformation extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('address', 'text', ['required' => false])
-            ->add('canMove', 'checkbox', ['required' => false])
-            ->add('nbHost', 'text', ['required' => false])
-            ->add('availability', 'text', ['required' => false])
+        $builder->add('address', TextType::class, ['required' => false])
+            ->add('canMove', CheckboxType::class, ['required' => false])
+            ->add('nbHost', TextType::class, ['required' => false])
+            ->add('availability', TextType::class, ['required' => false])
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',
@@ -37,10 +39,10 @@ class UserInformation extends AbstractType
 
     public function getParent()
     {
-        return 'text';
+        return TextType::class;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_user_info';
     }

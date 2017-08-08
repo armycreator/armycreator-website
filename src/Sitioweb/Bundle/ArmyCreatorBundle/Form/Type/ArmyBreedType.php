@@ -4,7 +4,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Form\Type;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class ArmyBreedType extends AbstractType
@@ -46,7 +46,7 @@ class ArmyBreedType extends AbstractType
      * @access public
      * @return void
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         //$breedList = $this->getUserBreed();
 
@@ -95,7 +95,7 @@ class ArmyBreedType extends AbstractType
      * @access public
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'armybreed';
     }

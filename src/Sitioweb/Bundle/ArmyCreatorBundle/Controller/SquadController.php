@@ -256,10 +256,8 @@ class SquadController extends Controller
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:SquadLine:new.html.twig")
      */
-    public function createAction(Army $army, $unitGroupId)
+    public function createAction(Request $request, Army $army, $unitGroupId)
     {
-        $request = $this->getRequest();
-
         // getting unit group
         $unitGroup = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitGroup')->find($unitGroupId);
         if ($unitGroup === null) {

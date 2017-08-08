@@ -367,10 +367,9 @@ class ArmyController extends Controller
      * @Template("SitiowebArmyCreatorBundle:Army:new.html.twig")
      * @Breadcrumb("breadcrumb.army_new")
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
         $entity  = new Army();
-        $request = $this->getRequest();
         $form    = $this->createForm(new ArmyType($this->getUser()), $entity);
         $form->bind($request);
 

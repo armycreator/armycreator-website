@@ -2,9 +2,10 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BreedSelectType extends AbstractType
 {
@@ -18,7 +19,7 @@ class BreedSelectType extends AbstractType
                     'required' => true,
                 ]
             )
-            ->add('submit', 'submit', ['attr' => ['class' => 'acButton']])
+            ->add('submit', SubmitType::class, ['attr' => ['class' => 'acButton']])
         ;
     }
 
@@ -28,14 +29,14 @@ class BreedSelectType extends AbstractType
         return $this;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'forms'
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_breed_select';
     }

@@ -2,7 +2,6 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -10,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedGroupType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * BreedGroup controller.
@@ -66,10 +67,9 @@ class BreedGroupController extends Controller
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:BreedGroup:new.html.twig")
      */
-    public function createAction(Game $game)
+    public function createAction(Request $request, Game $game)
     {
         $entity  = new BreedGroup();
-        $request = $this->getRequest();
         $form    = $this->createForm(new BreedGroupType(), $entity);
         $form->bind($request);
 

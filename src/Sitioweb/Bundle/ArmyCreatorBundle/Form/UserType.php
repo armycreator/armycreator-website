@@ -4,7 +4,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends AbstractType
 {
@@ -25,7 +25,7 @@ class UserType extends AbstractType
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\User',
@@ -34,7 +34,7 @@ class UserType extends AbstractType
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_user';
     }

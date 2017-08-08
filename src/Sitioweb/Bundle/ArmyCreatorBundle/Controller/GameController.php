@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use JMS\SecurityExtraBundle\Annotation\SecureParam;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -96,7 +97,7 @@ class GameController extends Controller
      *
      * @Template("SitiowebArmyCreatorBundle:Game:new.html.twig")
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Game');
         if (!$this->get('security.context')->isGranted('CREATE', $oi)) {
@@ -104,7 +105,6 @@ class GameController extends Controller
         }
 
         $entity  = new Game();
-        $request = $this->getRequest();
         $form    = $this->createForm(new GameType(), $entity);
         $form->bind($request);
 

@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use JMS\SecurityExtraBundle\Annotation\SecureParam;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -196,7 +197,7 @@ class BreedController extends Controller
      * @Template("SitiowebArmyCreatorBundle:Breed:new.html.twig")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      */
-    public function createAction(Game $game)
+    public function createAction(Request $request, Game $game)
     {
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
         if (!$this->get('security.context')->isGranted('CREATE', $oi)) {
@@ -204,7 +205,6 @@ class BreedController extends Controller
         }
 
         $entity  = new Breed();
-        $request = $this->getRequest();
         $form    = $this->createForm(new BreedType($game), $entity);
         $form->bind($request);
 

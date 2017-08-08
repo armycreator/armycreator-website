@@ -5,7 +5,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 
@@ -47,7 +47,7 @@ class UnitGroupType extends AbstractType
         $builder->add('points', null, ['label' => 'Supplementary points']);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup',
@@ -55,7 +55,7 @@ class UnitGroupType extends AbstractType
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'unitgrouptype';
     }

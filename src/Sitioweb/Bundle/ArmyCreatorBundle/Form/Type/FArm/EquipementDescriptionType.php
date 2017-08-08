@@ -2,9 +2,10 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\FArm;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\RangeStrength;
 
@@ -20,7 +21,7 @@ class EquipementDescriptionType extends AbstractType
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Model\PrintableArrayObject',
@@ -30,10 +31,10 @@ class EquipementDescriptionType extends AbstractType
 
     public function getParent()
     {
-        return 'text';
+        return TextType::class;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_farm_weapon';
     }

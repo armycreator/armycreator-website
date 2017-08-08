@@ -4,7 +4,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 
@@ -37,7 +37,7 @@ class StuffType extends AbstractType
      * @access public
      * @return void
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff',
@@ -75,7 +75,7 @@ class StuffType extends AbstractType
      * @access public
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_stuff';
     }
