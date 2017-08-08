@@ -30,5 +30,5 @@ services:
         decorates: router
         decoration_inner_name: router.inner
         arguments:
-            - @router.inner
-            - @request_stack
+            - "@router.inner"
+            - "@request_stack"
