@@ -4,8 +4,8 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\HasArmy;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 
 /**
  * ArmyPointListener

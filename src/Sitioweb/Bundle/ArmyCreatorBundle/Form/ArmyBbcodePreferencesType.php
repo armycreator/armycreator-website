@@ -3,13 +3,13 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ArmyBbcodePreferencesType extends AbstractType
 {

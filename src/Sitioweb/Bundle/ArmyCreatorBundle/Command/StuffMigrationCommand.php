@@ -3,15 +3,15 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Command;
 
 use Doctrine\ORM\Query\ResultSetMapping;
+use Sitioweb\Bundle\ArmyCreatorBundle\Model\PrintableArrayObject;
+use Sitioweb\Bundle\ArmyCreatorBundle\Model\RangeStrength;
+use Sitioweb\Bundle\ArmyCreatorBundle\Model\Warhammer;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
+
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use Sitioweb\Bundle\ArmyCreatorBundle\Model\Warhammer;
-use Sitioweb\Bundle\ArmyCreatorBundle\Model\PrintableArrayObject;
-use Sitioweb\Bundle\ArmyCreatorBundle\Model\RangeStrength;
 
 class StuffMigrationCommand extends ContainerAwareCommand
 {

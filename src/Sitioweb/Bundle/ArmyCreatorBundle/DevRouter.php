@@ -2,8 +2,8 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle;
 
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class DevRouter

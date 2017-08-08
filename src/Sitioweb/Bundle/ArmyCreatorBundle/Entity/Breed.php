@@ -4,9 +4,9 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Oneup\AclBundle\Mapping\Annotation as Acl;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed

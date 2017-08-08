@@ -6,9 +6,9 @@ use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * User controller.

@@ -3,11 +3,11 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ArmyPreferencesType extends AbstractType
 {

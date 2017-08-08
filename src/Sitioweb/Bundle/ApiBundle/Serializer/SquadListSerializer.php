@@ -2,14 +2,14 @@
 
 namespace Sitioweb\Bundle\ApiBundle\Serializer;
 
-use JMS\Serializer\EventDispatcher\ObjectEvent;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
+use JMS\Serializer\EventDispatcher\ObjectEvent;
 use Opium\Component\Layout\LineLayout;
 use Opium\OpiumBundle\Entity\Directory;
 use Opium\OpiumBundle\Entity\Photo;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
 
 class SquadListSerializer implements EventSubscriberInterface
 {
