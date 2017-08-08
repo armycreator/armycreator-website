@@ -23,7 +23,7 @@ class BreedType extends AbstractType
                 [
                     'empty_value' => 'Choose a value',
                     'required' => false,
-                    'query_builder' => function(EntityRepository $er) {
+                    'query_builder' => function(EntityRepository $er) use ($options) {
                         return $er->createQueryBuilder('a')
                                 ->add('where', 'a.game = :game')
                                 ->setParameter('game', $options['game']);
@@ -35,7 +35,7 @@ class BreedType extends AbstractType
                 'breedGroup',
                 null,
                 [
-                    'query_builder' => function(EntityRepository $er) {
+                    'query_builder' => function(EntityRepository $er) use ($options) {
                         return $er->createQueryBuilder('a')
                                 ->add('where', 'a.game = :game')
                                 ->setParameter('game', $options['game']);

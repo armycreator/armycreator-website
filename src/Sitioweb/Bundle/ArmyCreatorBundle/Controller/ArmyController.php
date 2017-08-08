@@ -229,15 +229,13 @@ class ArmyController extends Controller
     {
         // the user submitted the form
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            if (!$form->isValid()) {
-                $userPreferences = $this->getUserPreference();
-            } elseif ($request->request->get('saveAsDefault') == 1) {
-                // updating user general preferences
-                $em = $this->get('doctrine')->getManager();
-                $em->persist($userPreferences);
-                $em->flush();
-            }
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            $userPreferences = $this->getUserPreference();
+        } elseif ($request->request->get('saveAsDefault') == 1) {
+            // updating user general preferences
+            $em = $this->get('doctrine')->getManager();
+            $em->persist($userPreferences);
+            $em->flush();
         }
 
         return array(
@@ -611,16 +609,17 @@ class ArmyController extends Controller
     private function getUserPreference()
     {
         $user = $this->getUser();
-        if (!$user) {
-            return new UserPreference;
+        if ($user) {
+            $pref = $user->getPreferences();
+            if ($pref) {
+                return $pref;
+            }
         }
 
-        $pref = $user->getPreferences();
-        if ($pref) {
-            return $pref;
-        } else {
-            return new UserPreference;
-        }
+        $prefs = new UserPreference();
+        $prefs->setUser($user);
+
+        return $prefs;
     }
 
     /**

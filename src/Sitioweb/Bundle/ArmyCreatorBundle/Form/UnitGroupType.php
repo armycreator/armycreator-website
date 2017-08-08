@@ -17,7 +17,7 @@ class UnitGroupType extends AbstractType
         $builder->add('unitType', null, array(
             'required' => true,
             'choice_label' => 'name',
-            'query_builder' => function(EntityRepository $er) {
+            'query_builder' => function(EntityRepository $er) use ($breed) {
                 return $er->createQueryBuilder('t')
                         ->add('where', 't.breed = :breed')
                         ->setParameter('breed', $breed);

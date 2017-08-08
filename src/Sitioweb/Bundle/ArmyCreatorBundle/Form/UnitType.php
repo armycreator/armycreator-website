@@ -25,7 +25,7 @@ class UnitType extends AbstractUnitType
                 array(
                     'choice_label' => 'name',
                     'required' => true,
-                    'query_builder' => function(EntityRepository $er) {
+                    'query_builder' => function(EntityRepository $er) use ($options) {
                         return $er->createQueryBuilder('t')
                                 ->add('where', 't.breed = :breed')
                                 ->setParameter('breed', $options['breed']);

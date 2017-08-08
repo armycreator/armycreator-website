@@ -25,7 +25,7 @@ class SquadType extends AbstractType
         $builder->add('unitType', null, array(
             'required' => true,
             'choice_label' => 'name',
-            'query_builder' => function(EntityRepository $er) {
+            'query_builder' => function(EntityRepository $er) use ($options) {
                 return $er->createQueryBuilder('t')
                         ->add('where', 't.breed = :breed')
                         ->setParameter('breed', $options['breed']);

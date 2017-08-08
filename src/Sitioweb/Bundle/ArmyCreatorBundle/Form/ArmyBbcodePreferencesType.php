@@ -36,12 +36,11 @@ class ArmyBbcodePreferencesType extends AbstractType
                 ChoiceType::class,
                 array(
                     'choices' => [
-                        '[*]' => 'ac_armybbcode.form.carriage_return',
-                        ' / ' => 'ac_armybbcode.form.slash',
-                        ', ' => 'ac_armybbcode.form.comma',
+                        'ac_armybbcode.form.carriage_return' => '[*]',
+                        'ac_armybbcode.form.slash' => '/',
+                        'ac_armybbcode.form.comma' => ',',
                     ],
                     'choices_as_values' => true,
-                    'expanded' => true,
                 )
             )
             ->add(

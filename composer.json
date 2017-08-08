@@ -46,7 +46,6 @@
     },
 
     "require-dev": {
-        "raulfraile/ladybug-bundle": "@stable",
         "atoum/atoum": "^3.0"
     },
 

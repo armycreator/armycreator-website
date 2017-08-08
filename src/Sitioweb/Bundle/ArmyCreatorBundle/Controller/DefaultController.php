@@ -26,11 +26,11 @@ class DefaultController extends Controller
     {
         $this->getUser();
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $this->get('m6_statsd')->increment('website.index.logged');
+            // $this->get('m6_statsd')->increment('website.index.logged');
 
             return $this->authenticatedIndex();
         } else {
-            $this->get('m6_statsd')->increment('website.index.anonymous');
+            // $this->get('m6_statsd')->increment('website.index.anonymous');
 
             return [];
         }

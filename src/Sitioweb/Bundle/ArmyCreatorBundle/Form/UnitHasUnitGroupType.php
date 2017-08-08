@@ -30,7 +30,7 @@ class UnitHasUnitGroupType extends AbstractType
                         'attr' => ['autofocus' => 'autofocus'],
                         'required' => true,
                         'choice_label' => 'nameAndPoints',
-                        'query_builder' => function(EntityRepository $er) {
+                        'query_builder' => function(EntityRepository $er) use ($breed) {
                             return $er->createQueryBuilder('u')
                                     ->add('where', 'u.breed = :breed')
                                     ->add('orderBy', 'u.name ASC')
@@ -44,7 +44,7 @@ class UnitHasUnitGroupType extends AbstractType
                     array(
                         'required' => true,
                         'choice_label' => 'name',
-                        'query_builder' => function(EntityRepository $er) {
+                        'query_builder' => function(EntityRepository $er) use ($breed) {
                             return $er->createQueryBuilder('u')
                                     ->add('where', 'u.breed = :breed')
                                     ->add('orderBy', 'u.name ASC')

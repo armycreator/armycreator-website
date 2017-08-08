@@ -33,7 +33,7 @@ class ArmyType extends AbstractType
                 null,
                 array(
                     'choice_label' => 'name',
-                    'query_builder' => function(EntityRepository $er) {
+                    'query_builder' => function(EntityRepository $er) use ($user) {
                         return $er->createQueryBuilder('a')
                                 ->add('where', 'a.user = :user')
                                 ->setParameter('user', $user);
