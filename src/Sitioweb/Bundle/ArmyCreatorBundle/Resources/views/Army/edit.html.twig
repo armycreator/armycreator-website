@@ -14,7 +14,7 @@
     {% else %}
         {% set path = path('army_create') %}
     {% endif %}
-    <form action="{{ path }}" method="post" {{ form_enctype(form) }} class="opaque">
+    {{ form_start(form, { action: path, attr: { class: 'opaque'} }) }}
         <div>
             {{ form_row(form.breed) }}
 

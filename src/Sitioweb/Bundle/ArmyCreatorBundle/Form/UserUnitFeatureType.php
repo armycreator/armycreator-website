@@ -4,6 +4,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,7 +21,7 @@ class UserUnitFeatureType extends AbstractUnitType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder = $this->addBreedSpecifics($builder, $options['breed']);
-        $builder->add('submit', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
+        $builder->add('submit', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']]);
     }
 
     /**

@@ -41,22 +41,28 @@ class GameStuffController extends Controller
 
         if ($type === 'equipement') {
             $entity = new Equipement();
-            $type = EquipementType::class;
-            $route = 'game_equipement_create';
+
+            $form = $this->createForm(
+                EquipementType::class,
+                $entity,
+                [
+                    'action' => $this->generateUrl('game_equipement_create', ['game' => $game->getCode()]),
+                    'method' => 'post',
+                ]
+            );
         } else {
             $entity = new Weapon();
-            $type = WeaponType::class;
-            $route = 'game_weapon_create';
+
+            $form = $this->createForm(
+                WeaponType::class,
+                $entity,
+                [
+                    'game' => $game,
+                    'action' => $this->generateUrl('game_weapon_create', ['game' => $game->getCode()]),
+                    'method' => 'post',
+                ]
+            );
         }
-        $form = $this->createForm(
-            $type,
-            $entity,
-            [
-                'game' => $game,
-                'action' => $this->generateUrl($route, ['game' => $game->getCode()]),
-                'method' => 'post',
-            ]
-        );
 
         return array(
             'game' => $game,
@@ -81,7 +87,7 @@ class GameStuffController extends Controller
 
         if ($type === 'weapon') {
             $entity  = new Weapon();
-            $form = $this->createForm(WeaponType, $entity, [ 'game' => $game ]);
+            $form = $this->createForm(WeaponType::class, $entity, [ 'game' => $game ]);
             $route = 'game_weapon_new';
         } else {
             $entity  = new Equipement();
@@ -128,20 +134,26 @@ class GameStuffController extends Controller
 
         $route = 'game_stuff_update';
         if ($stuff->getStuffType() == 'weapon') {
-            $type = WeaponType::class;
+            $editForm = $this->createForm(
+                WeaponType::class,
+                $stuff,
+                [
+                    'game' => $game,
+                    'action' => $this->generateUrl($route, ['game' => $game->getCode(), 'id' => $stuff->getId()]),
+                    'method' => 'post',
+                ]
+            );
         } else {
-            $type = EquipementType::class;
+            $editForm = $this->createForm(
+                EquipementType::class,
+                $stuff,
+                [
+                    'action' => $this->generateUrl($route, ['game' => $game->getCode(), 'id' => $stuff->getId()]),
+                    'method' => 'post',
+                ]
+            );
         }
 
-        $editForm = $this->createForm(
-            $type,
-            $stuff,
-            [
-                'game' => $game,
-                'action' => $this->generateUrl($route, ['game' => $game->getCode(), 'id' => $stuff->getId()]),
-                'method' => 'post',
-            ]
-        );
         $deleteForm = $this->createDeleteForm($id);
 
         return array(

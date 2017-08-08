@@ -119,7 +119,7 @@ class UnitGroupController extends Controller
         );
 
         $editForm = $this->createForm(UnitGroupType::class, $entity, ['breed' => $breed]);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
             'entity'      => $entity,

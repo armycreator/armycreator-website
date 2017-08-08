@@ -21,10 +21,10 @@ abstract class AbstractUnitType extends AbstractType
     {
         switch ($breed->getGame()->getCode()) {
             case 'FArm':
-                $builder->add('feature', new FArmUnitFeatureType);
+                $builder->add('feature', FArmUnitFeatureType::class);
                 break;
             case 'W40K':
-                $builder->add('feature', new W40KUnitFeatureType);
+                $builder->add('feature', W40KUnitFeatureType::class);
                 break;
             default:
                 break;

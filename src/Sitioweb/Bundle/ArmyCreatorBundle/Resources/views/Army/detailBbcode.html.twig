@@ -6,13 +6,7 @@
 {% endblock %}
 
 {% block armyDetail %}
-<form
-    action="{{ path('army_detail_bbcode', { 'slug': army.slug }) }}"
-    method="post"
-    {{ form_enctype(form) }}
-    id="armyDetailPreferenceForm"
-    class="right"
->
+{{ form_start(form, {attr: {id: 'armyDetailPreferenceForm', class: 'right'}}) }}
     <h4>{{ "army.detail.preferences"|trans }}</h4>
     {% for key, child in form.children %}
         {% if key|slice(0,1) != "_" %}

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block diceContent %}
-    <form action="{{ path('toolbox_dice') }}" method="post" {{ form_enctype(form) }} class="toolbox mb2">
+    {{ form_start(form, { attr: {class: 'toolbox mb2' }}) }}
         {{ form_widget(form) }}
 
         {{ form_rest(form) }}

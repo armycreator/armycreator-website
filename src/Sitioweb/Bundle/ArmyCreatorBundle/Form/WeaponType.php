@@ -76,10 +76,10 @@ class WeaponType extends AbstractType
     {
         switch ($game->getCode()) {
             case 'FArm':
-                $builder->add('description', new FArmEquipementDescriptionType);
+                $builder->add('description', FArmEquipementDescriptionType::class);
                 break;
             default:
-                $builder->add('description', new WarhammerWeaponDescriptionType);
+                $builder->add('description', WarhammerWeaponDescriptionType::class);
                 break;
         }
 

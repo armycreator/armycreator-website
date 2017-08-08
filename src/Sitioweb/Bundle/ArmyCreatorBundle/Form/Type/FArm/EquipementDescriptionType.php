@@ -14,10 +14,10 @@ class EquipementDescriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add(0, new RangeStrength)
-            ->add(1, new RangeStrength)
-            ->add(2, new RangeStrength)
-            ->add(3, new RangeStrength)
+            ->add(0, RangeStrength::class)
+            ->add(1, RangeStrength::class)
+            ->add(2, RangeStrength::class)
+            ->add(3, RangeStrength::class)
         ;
     }
 

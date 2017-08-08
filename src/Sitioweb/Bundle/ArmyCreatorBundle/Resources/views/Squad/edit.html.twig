@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block squadAddContent %}
-    <form action="{{ path('squad_update', {'armySlug' : army.slug, 'id' : entity.id}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_start(form, { action: path('squad_update', {'armySlug' : army.slug, 'id' : entity.id})}) }}
         {{ form_errors(form) }}
 
         {{ block('squadLineList') }}

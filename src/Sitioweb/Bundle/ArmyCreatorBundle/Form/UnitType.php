@@ -3,6 +3,7 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -50,10 +51,10 @@ class UnitType extends AbstractUnitType
         $builder = $this->addBreedSpecifics($builder, $options['breed']);
 
         if ($options['data']->getId()) {
-             $builder->add('edit', 'submit');
+             $builder->add('edit', SubmitType::class;
         } else {
-             $builder->add('create', 'submit')
-                 ->add('createAndAdd', 'submit');
+             $builder->add('create', SubmitType::class)
+                 ->add('createAndAdd', SubmitType::class);
         }
     }
 
