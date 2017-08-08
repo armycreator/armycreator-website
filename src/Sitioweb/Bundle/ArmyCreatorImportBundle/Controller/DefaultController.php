@@ -2,10 +2,10 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorImportBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -772,7 +772,6 @@ class DefaultController extends Controller
             //$lastLogin->setTimestamp($row['user_lastvisit']);
             //$entity->setLastLogin($lastLogin);
             $entity->setEnabled(true);
-            $entity->setLocked(false);
 
             // breed collection
             $collectionList = $this->emImport->query("

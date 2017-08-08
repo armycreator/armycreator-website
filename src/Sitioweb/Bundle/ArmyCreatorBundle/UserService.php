@@ -106,7 +106,6 @@ class UserService
                     $lastLogin->setTimestamp($user->data['user_lastvisit']);
                     $currentUser->setLastLogin($lastLogin);
                     $currentUser->setEnabled($user->data['is_registered']);
-                    $currentUser->setLocked(false);
                     $currentUser->setAvatar($user->data['user_avatar']);
 
                     $this->userManager->updateUser($currentUser);
