@@ -4,7 +4,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,9 +17,9 @@ class CollectionType extends AbstractType
         $builder
             ->add(
                 'userHasUnitList',
-                CollectionType::class,
+                SymfonyCollectionType::class,
                 array(
-                    'type' => UserHasUnitType::class,
+                    'entry_type' => UserHasUnitType::class,
                     'constraints' => new Valid(),
                 )
             )

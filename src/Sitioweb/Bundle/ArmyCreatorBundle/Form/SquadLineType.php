@@ -33,7 +33,7 @@ class SquadLineType extends AbstractType
             'orderSquadLineStuffList',
             CollectionType::class,
             array(
-                'type' => SquadLineStuffType::class,
+                'entry_type' => SquadLineStuffType::class,
                 'constraints' => new Valid(),
             )
         );

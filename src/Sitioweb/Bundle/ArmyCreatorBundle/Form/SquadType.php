@@ -38,7 +38,7 @@ class SquadType extends AbstractType
             'squadLineList',
             CollectionType::class,
             [
-                'type' => SquadLineType::class,
+                'entry_type' => SquadLineType::class,
                 'constraints' => new Valid(),
             ]
         );

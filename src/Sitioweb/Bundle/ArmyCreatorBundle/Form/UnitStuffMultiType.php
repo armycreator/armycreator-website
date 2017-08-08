@@ -21,7 +21,7 @@ class UnitStuffMultiType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'type' => UnitStuffType::class,
+            'entry_type' => UnitStuffType::class,
             'translation_domain' => 'forms',
         ));
     }
