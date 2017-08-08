@@ -3,9 +3,10 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form\Type;
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class ArmyBreedType extends AbstractType
 {
@@ -18,25 +19,25 @@ class ArmyBreedType extends AbstractType
     private $entityManager;
 
     /**
-     * securityContext
+     * authorizationChecker
      *
-     * @var SecurityContextInterface
+     * @var AuthorizationCheckerInterface
      * @access private
      */
-    private $securityContext;
+    private $authorizationChecker;
 
     /**
      * __construct
      *
      * @param EntityManager $entityManager
-     * @param SecurityContextInterface $securityContext
+     * @param AuthorizationCheckerInterface $authorizationChecker
      * @access public
      * @return void
      */
-    public function __construct (EntityManager $entityManager, SecurityContextInterface $securityContext)
+    public function __construct (EntityManager $entityManager, AuthorizationCheckerInterface $authorizationChecker)
     {
         $this->entityManager = $entityManager;
-        $this->securityContext = $securityContext;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     /**
@@ -61,7 +62,7 @@ class ArmyBreedType extends AbstractType
 
         $choices = [];
         foreach ($breedList as $breed) {
-            if (!($breed->getAvailable() || $this->securityContext->isGranted('EDIT', $breed))) {
+            if (!($breed->getAvailable() || $this->authorizationChecker->isGranted('EDIT', $breed))) {
                 continue;
             }
 
@@ -75,6 +76,7 @@ class ArmyBreedType extends AbstractType
         $resolver->setDefaults([
             'class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed',
             'choices' => $choices,
+            'choices_as_values' => true,
         ]);
     }
 
@@ -86,7 +88,7 @@ class ArmyBreedType extends AbstractType
      */
     public function getParent()
     {
-        return 'entity';
+        return EntityType::class;
     }
 
     /**

@@ -14,25 +14,6 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\Warhammer\WeaponDescriptionType 
 class WeaponType extends AbstractType
 {
     /**
-     * game
-     *
-     * @var Game
-     * @access private
-     */
-    private $game;
-
-    /**
-     * __construct
-     *
-     * @param Game $game
-     * @access public
-     */
-    public function __construct(Game $game)
-    {
-        $this->game = $game;
-    }
-
-    /**
      * buildForm
      *
      * @param FormBuilderInterface $builder
@@ -46,7 +27,7 @@ class WeaponType extends AbstractType
             ->add('defaultPoints')
             ->add('defaultAuto', null, ['required' => false]);
 
-        $builder = $this->addGameSpecifics($builder);
+        $builder = $this->addGameSpecifics($builder, $options['game']);
 
         if ($options['data']->getId()) {
              $builder->add('edit', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']]);
@@ -65,6 +46,9 @@ class WeaponType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired('game');
+        $resolver->setAllowedTypes('game', Game::class);
+
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Weapon',
             'translation_domain' => 'forms'
@@ -88,9 +72,9 @@ class WeaponType extends AbstractType
      * @access private
      * @return FormBuilderInterface
      */
-    private function addGameSpecifics(FormBuilderInterface $builder)
+    private function addGameSpecifics(FormBuilderInterface $builder, Game $game)
     {
-        switch ($this->game->getCode()) {
+        switch ($game->getCode()) {
             case 'FArm':
                 $builder->add('description', new FArmEquipementDescriptionType);
                 break;

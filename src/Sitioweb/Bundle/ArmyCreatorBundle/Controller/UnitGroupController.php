@@ -2,19 +2,19 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitGroupType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * UnitGroup controller.
@@ -39,7 +39,7 @@ class UnitGroupController extends Controller
         }
 
         $entity  = new UnitGroup();
-        $form = $this->createForm(new UnitGroupType($breed), $entity);
+        $form = $this->createForm(UnitGroupType::class, $entity, ['breed' => $breed]);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -89,7 +89,7 @@ class UnitGroupController extends Controller
         $entity = new UnitGroup();
         $entity->setUnitType($unitType);
         $entity->setBreed($breed);
-        $form   = $this->createForm(new UnitGroupType($breed), $entity);
+        $form   = $this->createForm(UnitGroupType::class, $entity, ['breed' => $breed]);
 
         return array(
             'entity' => $entity,
@@ -118,7 +118,7 @@ class UnitGroupController extends Controller
             )
         );
 
-        $editForm = $this->createForm(new UnitGroupType($breed), $entity);
+        $editForm = $this->createForm(UnitGroupType::class, $entity, ['breed' => $breed]);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -150,7 +150,7 @@ class UnitGroupController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new UnitGroupType($breed), $entity);
+        $editForm = $this->createForm(UnitGroupType::class, $entity, ['breed' => $breed]);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -227,7 +227,7 @@ class UnitGroupController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
             ->getForm()
         ;
     }

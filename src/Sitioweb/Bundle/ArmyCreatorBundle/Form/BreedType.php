@@ -11,26 +11,6 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 
 class BreedType extends AbstractType
 {
-    /**
-     * game
-     *
-     * @var Game
-     * @access private
-     */
-    private $game;
-
-    /**
-     * __construct
-     *
-     * @param Game $game
-     * @access public
-     * @return void
-     */
-    public function __construct(Game $game)
-    {
-        $this->game = $game;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -46,7 +26,7 @@ class BreedType extends AbstractType
                     'query_builder' => function(EntityRepository $er) {
                         return $er->createQueryBuilder('a')
                                 ->add('where', 'a.game = :game')
-                                ->setParameter('game', $this->game);
+                                ->setParameter('game', $options['game']);
                     }
                 ]
             )
@@ -58,7 +38,7 @@ class BreedType extends AbstractType
                     'query_builder' => function(EntityRepository $er) {
                         return $er->createQueryBuilder('a')
                                 ->add('where', 'a.game = :game')
-                                ->setParameter('game', $this->game);
+                                ->setParameter('game', $options['game']);
                     }
                 ]
             )
@@ -67,6 +47,9 @@ class BreedType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired('game');
+        $resolver->setAllowedTypes('game', Game::class);
+
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed',
             'translation_domain' => 'forms'

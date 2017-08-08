@@ -69,7 +69,8 @@ class SquadLineController extends Controller
         $squad = new Squad();
         $squad->mapUnitGroup($unitGroup, true);
 
-        $form = $this->createForm(new SquadType($unitGroup->getUnitType()->getBreed()), $squad);
+        $formBreed = $unitGroup->getUnitType()->getBreed();
+        $form = $this->createForm(SquadType::class, $squad, [ 'breed' => $formBreed ]);
 
         return array(
             'army' => $army,
@@ -99,7 +100,7 @@ class SquadLineController extends Controller
             ->setSquad($squad);
         $squadLine->addEmptySquadLineStuff();
 
-        $form = $this->createForm(new SquadLineType(), $squadLine);
+        $form = $this->createForm(SquadLineType::class, $squadLine);
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);

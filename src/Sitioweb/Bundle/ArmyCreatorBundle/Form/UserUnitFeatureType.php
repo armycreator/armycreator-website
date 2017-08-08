@@ -3,6 +3,7 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +19,7 @@ class UserUnitFeatureType extends AbstractUnitType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder = $this->addBreedSpecifics($builder);
+        $builder = $this->addBreedSpecifics($builder, $options['breed']);
         $builder->add('submit', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
     }
 
@@ -31,6 +32,9 @@ class UserUnitFeatureType extends AbstractUnitType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired('breed');
+        $resolver->setAllowedTypes('breed', Breed::class);
+
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserUnitFeature',
             'translation_domain' => 'forms'
@@ -38,12 +42,12 @@ class UserUnitFeatureType extends AbstractUnitType
     }
 
     /**
-     * getName
+     * getBlockPrefix
      *
      * @access public
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_userunitfeature';
     }

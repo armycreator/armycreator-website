@@ -3,15 +3,11 @@
 namespace Sitioweb\Bundle\DiceBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * Builder
- * 
- * @uses ContainerAware
  */
-class Builder extends ContainerAware
+class Builder
 {
     /**
      * mainMenu

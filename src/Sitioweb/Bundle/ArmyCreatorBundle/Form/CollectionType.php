@@ -2,12 +2,13 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class CollectionType extends AbstractType
 {
@@ -18,7 +19,8 @@ class CollectionType extends AbstractType
                 'userHasUnitList',
                 CollectionType::class,
                 array(
-                    'type' => new UserHasUnitType()
+                    'type' => UserHasUnitType::class,
+                    'constraints' => new Valid(),
                 )
             )
             ->add('submit', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig right']]);
@@ -28,7 +30,6 @@ class CollectionType extends AbstractType
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',
-            'cascade_validation' => true
         ));
     }
 

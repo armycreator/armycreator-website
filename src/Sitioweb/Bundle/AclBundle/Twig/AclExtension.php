@@ -22,9 +22,4 @@ class AclExtension extends \Twig_Extension
     {
         return $this->aclManager->isGranted($role, $object, $field);
     }
-
-    public function getName()
-    {
-        return 'armycreator_acl_extension';
-    }
 }

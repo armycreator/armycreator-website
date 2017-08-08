@@ -17,7 +17,7 @@ class BreedImage extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'breedImage' => new \Twig_Function_Method($this, 'getBreedImage')
+            new \Twig_SimpleFunction('breedImage', [$this, 'getBreedImage']),
         );
     }
 
@@ -33,7 +33,7 @@ class BreedImage extends \Twig_Extension
     public function getBreedImage(Breed $breed, $width = null, $height = null)
     {
         $breedImage = $breed->getImage();
-        
+
         $str = '<div
                     class="breedImage"';
         if (!empty($width)) {
@@ -48,16 +48,4 @@ class BreedImage extends \Twig_Extension
 
         return $str;
     }
-
-    /**
-     * getName
-     *
-     * @access public
-     * @return string
-     */
-    public function getName()
-    {
-        return 'breedImage';
-    }
 }
-

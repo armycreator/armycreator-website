@@ -36,7 +36,7 @@ class ProfileController extends Controller
     {
         $user = $this->getUser();
 
-        $form = $this->createForm(new UserType, $user);
+        $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {

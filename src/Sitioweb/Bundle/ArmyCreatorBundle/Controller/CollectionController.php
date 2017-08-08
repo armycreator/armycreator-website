@@ -65,7 +65,7 @@ class CollectionController extends Controller
 
         //$user->addEmptyUserHasUnitLine($breed);
         $uhuList = $user->getBreedUserHasUnitList($breed);
-        $form = $this->createForm(new CollectionType(), ['userHasUnitList' => $uhuList]);
+        $form = $this->createForm(CollectionType::class, ['userHasUnitList' => $uhuList]);
 
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -191,7 +191,7 @@ class CollectionController extends Controller
                 ->setUnit($unit);
         }
 
-        $editForm = $this->createForm(new UserUnitFeatureType($breed), $unitFeature);
+        $editForm = $this->createForm(UserUnitFeatureType::class, $unitFeature, ['breed' => $breed]);
 
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {

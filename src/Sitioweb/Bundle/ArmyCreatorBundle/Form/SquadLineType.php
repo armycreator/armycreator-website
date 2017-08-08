@@ -2,13 +2,13 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class SquadLineType extends AbstractType
 {
@@ -32,7 +32,10 @@ class SquadLineType extends AbstractType
         $builder->add(
             'orderSquadLineStuffList',
             CollectionType::class,
-            array('type' => new SquadLineStuffType())
+            array(
+                'type' => SquadLineStuffType::class,
+                'constraints' => new Valid(),
+            )
         );
     }
 
@@ -41,7 +44,6 @@ class SquadLineType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine',
             'translation_domain' => 'forms',
-            'cascade_validation' => true
         ));
     }
 

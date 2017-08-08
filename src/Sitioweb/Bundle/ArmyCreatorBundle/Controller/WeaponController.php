@@ -2,19 +2,19 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Weapon;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\WeaponType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Weapon controller.
@@ -39,7 +39,7 @@ class WeaponController extends Controller
         }
 
         $entity  = new Weapon();
-        $form = $this->createForm(new WeaponType($breed->getGame()), $entity);
+        $form = $this->createForm(WeaponType::class, $entity, ['game' => $breed->getGame()]);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -119,7 +119,7 @@ class WeaponController extends Controller
         }
 
         $entity = new Weapon();
-        $form   = $this->createForm(new WeaponType($breed->getGame()), $entity);
+        $form   = $this->createForm(WeaponType::class, $entity, ['game' => $breed->getGame()]);
 
         return array(
             'entity' => $entity,
@@ -148,7 +148,7 @@ class WeaponController extends Controller
             throw $this->createNotFoundException('Unable to find Weapon entity.');
         }
 
-        $editForm = $this->createForm(new WeaponType($breed->getGame()), $entity);
+        $editForm = $this->createForm(WeaponType::class, $entity, ['game' => $breed->getGame()]);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -180,7 +180,7 @@ class WeaponController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new WeaponType($breed->getGame()), $entity);
+        $editForm = $this->createForm(WeaponType::class, $entity, ['game' => $breed->getGame()]);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -243,7 +243,7 @@ class WeaponController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
             ->getForm()
         ;
     }

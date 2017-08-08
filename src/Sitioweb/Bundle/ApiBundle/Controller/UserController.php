@@ -2,10 +2,10 @@
 
 namespace Sitioweb\Bundle\ApiBundle\Controller;
 
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * UserController
@@ -29,7 +29,7 @@ class UserController extends FOSRestController
      */
     public function getMeAction()
     {
-        return $this->get('security.context')->getToken()->getUser();
+        return $this->get('security.token_storage')->getToken()->getUser();
     }
 
     /**

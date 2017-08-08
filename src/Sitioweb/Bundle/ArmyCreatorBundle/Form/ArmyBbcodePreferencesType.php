@@ -2,13 +2,12 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
 
@@ -36,15 +35,13 @@ class ArmyBbcodePreferencesType extends AbstractType
                 'separator',
                 ChoiceType::class,
                 array(
-                    'choice_list' => new ChoiceList(
-                        array('[*]', ' / ', ', '),
-                        array(
-                            'ac_armybbcode.form.carriage_return',
-                            'ac_armybbcode.form.slash',
-                            'ac_armybbcode.form.comma'
-                        )
-                    ),
-                    'expanded' => true
+                    'choices' => [
+                        '[*]' => 'ac_armybbcode.form.carriage_return',
+                        ' / ' => 'ac_armybbcode.form.slash',
+                        ', ' => 'ac_armybbcode.form.comma',
+                    ],
+                    'choices_as_values' => true,
+                    'expanded' => true,
                 )
             )
             ->add(

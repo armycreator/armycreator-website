@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\ArmyGroup;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\ArmyGroupType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -51,7 +52,7 @@ class ArmyGroupController extends Controller
     public function newAction()
     {
         $entity = new ArmyGroup();
-        $form   = $this->createForm(new ArmyGroupType(), $entity);
+        $form   = $this->createForm(ArmyGroupType::class, $entity);
 
         return array(
             'entity' => $entity,
@@ -70,7 +71,7 @@ class ArmyGroupController extends Controller
     {
         $entity  = new ArmyGroup();
         $entity->setUser($this->getUser());
-        $form = $this->createForm(new ArmyGroupType(), $entity);
+        $form = $this->createForm(ArmyGroupType::class, $entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -103,7 +104,7 @@ class ArmyGroupController extends Controller
             throw $this->createNotFoundException('Unable to find ArmyGroup entity.');
         }
 
-        $editForm = $this->createForm(new ArmyGroupType(), $entity);
+        $editForm = $this->createForm(ArmyGroupType::class, $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -131,7 +132,7 @@ class ArmyGroupController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new ArmyGroupType(), $entity);
+        $editForm = $this->createForm(ArmyGroupType::class, $entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -183,7 +184,7 @@ class ArmyGroupController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
             ->getForm()
         ;
     }

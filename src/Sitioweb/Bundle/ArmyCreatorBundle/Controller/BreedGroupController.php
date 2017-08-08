@@ -10,6 +10,7 @@ use Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedGroupType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -50,7 +51,7 @@ class BreedGroupController extends Controller
     {
         $entity = new BreedGroup();
         $entity->setGame($game);
-        $form   = $this->createForm(new BreedGroupType(), $entity);
+        $form   = $this->createForm(BreedGroupType::class, $entity);
 
         return array(
             'game' => $game,
@@ -70,7 +71,7 @@ class BreedGroupController extends Controller
     public function createAction(Request $request, Game $game)
     {
         $entity  = new BreedGroup();
-        $form    = $this->createForm(new BreedGroupType(), $entity);
+        $form    = $this->createForm(BreedGroupType::class, $entity);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -97,7 +98,7 @@ class BreedGroupController extends Controller
      */
     public function editAction(BreedGroup $breedGroup)
     {
-        $editForm = $this->createForm(new BreedGroupType(), $breedGroup);
+        $editForm = $this->createForm(BreedGroupType::class, $breedGroup);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -124,7 +125,7 @@ class BreedGroupController extends Controller
             throw $this->createNotFoundException('Unable to find BreedGroup entity.');
         }
 
-        $editForm   = $this->createForm(new BreedGroupType(), $entity);
+        $editForm   = $this->createForm(BreedGroupType::class, $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $editForm->handleRequest($request);
@@ -179,7 +180,7 @@ class BreedGroupController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
             ->getForm()
         ;
     }

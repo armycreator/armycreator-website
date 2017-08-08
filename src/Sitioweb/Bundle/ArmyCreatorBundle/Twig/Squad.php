@@ -38,7 +38,7 @@ class Squad extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'canChooseNumber' => new \Twig_Function_Method($this, 'canChooseNumber')
+            new \Twig_SimpleFunction('canChooseNumber', [$this, 'canChooseNumber']),
         );
     }
 
@@ -64,17 +64,4 @@ class Squad extends \Twig_Extension
 
         return true;
     }
-
-    /**
-     * getName
-     *
-     * @access public
-     * @return string
-     */
-    public function getName()
-    {
-        return 'squad';
-    }
 }
-
-

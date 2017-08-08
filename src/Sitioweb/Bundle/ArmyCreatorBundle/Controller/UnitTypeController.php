@@ -6,14 +6,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitTypeType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * UnitType controller.
@@ -38,7 +38,7 @@ class UnitTypeController extends Controller
         }
 
         $entity  = new UnitType();
-        $form = $this->createForm(new UnitTypeType(), $entity);
+        $form = $this->createForm(UnitTypeType::class, $entity);
         $form->handleRequest($request);
         $entity->setBreed($breed);
 
@@ -78,7 +78,7 @@ class UnitTypeController extends Controller
         }
 
         $entity = new UnitType();
-        $form   = $this->createForm(new UnitTypeType(), $entity);
+        $form   = $this->createForm(UnitTypeType::class, $entity);
 
         return array(
             'breed' => $breed,
@@ -107,7 +107,7 @@ class UnitTypeController extends Controller
             throw $this->createNotFoundException('Unable to find UnitType entity.');
         }
 
-        $editForm = $this->createForm(new UnitTypeType(), $entity);
+        $editForm = $this->createForm(UnitTypeType::class, $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -140,7 +140,7 @@ class UnitTypeController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new UnitTypeType(), $entity);
+        $editForm = $this->createForm(UnitTypeType::class, $entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -208,7 +208,7 @@ class UnitTypeController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
             ->getForm()
         ;
     }

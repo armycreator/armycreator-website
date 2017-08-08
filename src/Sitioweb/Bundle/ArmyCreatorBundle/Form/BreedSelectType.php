@@ -2,8 +2,9 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\ArmyBreedType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,7 @@ class BreedSelectType extends AbstractType
         $builder
             ->add(
                 'breed',
-                'armybreed',
+                ArmyBreedType::class,
                 [
                     'required' => true,
                 ]

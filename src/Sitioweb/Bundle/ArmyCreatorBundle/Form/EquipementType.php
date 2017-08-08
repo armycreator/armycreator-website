@@ -2,35 +2,14 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
-
 class EquipementType extends AbstractType
 {
-    /**
-     * game
-     *
-     * @var Game
-     * @access private
-     */
-    private $game;
-
-    /**
-     * __construct
-     *
-     * @param Game $game
-     * @access public
-     */
-    public function __construct(Game $game)
-    {
-        $this->game = $game;
-    }
-
     /**
      * buildForm
      *

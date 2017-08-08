@@ -2,12 +2,11 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit;
 
 class UserHasUnitType extends AbstractType
 {
@@ -34,7 +33,6 @@ class UserHasUnitType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit',
             'translation_domain' => 'forms',
-            'cascade_validation' => true
         ));
     }
 

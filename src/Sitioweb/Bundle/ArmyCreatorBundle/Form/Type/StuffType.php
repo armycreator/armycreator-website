@@ -3,10 +3,10 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 
 class StuffType extends AbstractType
 {
@@ -41,7 +41,7 @@ class StuffType extends AbstractType
     {
         $resolver->setDefaults([
             'class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff',
-            'property' => 'name',
+            'choice_label' => 'name',
             'query_builder' => function(EntityRepository $er) {
                 $qb = $er->createQueryBuilder('s');
                 $qb
@@ -66,7 +66,7 @@ class StuffType extends AbstractType
      */
     public function getParent()
     {
-        return 'entity';
+        return EntityType::class;
     }
 
     /**

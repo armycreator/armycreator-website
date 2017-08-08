@@ -2,13 +2,13 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Donation;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\DonationType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Admin donation controller.
@@ -82,7 +82,7 @@ class AdminDonationController extends Controller
      */
     private function createCreateForm(Donation $entity)
     {
-        $form = $this->createForm(new DonationType(), $entity, array(
+        $form = $this->createForm(DonationType::class, $entity, array(
             'action' => $this->generateUrl('admin_donation_create'),
             'method' => 'POST',
         ));
@@ -146,7 +146,7 @@ class AdminDonationController extends Controller
     */
     private function createEditForm(Donation $entity)
     {
-        $form = $this->createForm(new DonationType(), $entity, array(
+        $form = $this->createForm(DonationType::class, $entity, array(
             'action' => $this->generateUrl('admin_donation_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -155,6 +155,7 @@ class AdminDonationController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Donation entity.
      *
@@ -188,6 +189,7 @@ class AdminDonationController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Donation entity.
      *

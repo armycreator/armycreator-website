@@ -2,20 +2,20 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Equipement;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Stuff;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Weapon;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\EquipementType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\WeaponType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * GameStuff controller.
@@ -41,17 +41,18 @@ class GameStuffController extends Controller
 
         if ($type === 'equipement') {
             $entity = new Equipement();
-            $type = new EquipementType($game);
+            $type = EquipementType::class;
             $route = 'game_equipement_create';
         } else {
             $entity = new Weapon();
-            $type = new WeaponType($game);
+            $type = WeaponType::class;
             $route = 'game_weapon_create';
         }
         $form = $this->createForm(
             $type,
             $entity,
             [
+                'game' => $game,
                 'action' => $this->generateUrl($route, ['game' => $game->getCode()]),
                 'method' => 'post',
             ]
@@ -80,11 +81,11 @@ class GameStuffController extends Controller
 
         if ($type === 'weapon') {
             $entity  = new Weapon();
-            $form = $this->createForm(new WeaponType($game), $entity);
+            $form = $this->createForm(WeaponType, $entity, [ 'game' => $game ]);
             $route = 'game_weapon_new';
         } else {
             $entity  = new Equipement();
-            $form = $this->createForm(new EquipementType($game), $entity);
+            $form = $this->createForm(EquipementType::class, $entity);
             $route = 'game_equipement_new';
         }
         $form->handleRequest($request);
@@ -127,15 +128,16 @@ class GameStuffController extends Controller
 
         $route = 'game_stuff_update';
         if ($stuff->getStuffType() == 'weapon') {
-            $type = new WeaponType($game);
+            $type = WeaponType::class;
         } else {
-            $type = new EquipementType($game);
+            $type = EquipementType::class;
         }
 
         $editForm = $this->createForm(
             $type,
             $stuff,
             [
+                'game' => $game,
                 'action' => $this->generateUrl($route, ['game' => $game->getCode(), 'id' => $stuff->getId()]),
                 'method' => 'post',
             ]
@@ -167,9 +169,9 @@ class GameStuffController extends Controller
         $em = $this->getDoctrine()->getManager();
         $deleteForm = $this->createDeleteForm($id);
         if ($stuff->getStuffType() == 'weapon') {
-            $editForm = $this->createForm(new WeaponType($game), $stuff);
+            $editForm = $this->createForm(WeaponType::class, $stuff, ['game' => $game]);
         } else {
-            $editForm = $this->createForm(new EquipementType($game), $stuff);
+            $editForm = $this->createForm(EquipementType::class, $stuff);
         }
         $editForm->handleRequest($request);
 
@@ -228,7 +230,7 @@ class GameStuffController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
             ->getForm()
         ;
     }

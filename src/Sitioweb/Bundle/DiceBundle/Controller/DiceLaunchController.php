@@ -4,7 +4,9 @@ namespace Sitioweb\Bundle\DiceBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sitioweb\Bundle\DiceBundle\Form;
+use Sitioweb\Bundle\DiceBundle\Form\DiceType;
+use Sitioweb\Bundle\DiceBundle\Form\InfightType;
+use Sitioweb\Bundle\DiceBundle\Form\ShotFiredType;
 use Sitioweb\Bundle\DiceBundle\Model;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +29,7 @@ class DiceLaunchController extends Controller
         $defaultDices = new Model\DiceLaunch();
         $dices = $defaultDices;
 
-        $form = $this->createForm(new Form\DiceType(), $dices);
+        $form = $this->createForm(DiceType::class, $dices);
 
         // the user submitted the form
         $form->handleRequest($request);
@@ -78,7 +80,7 @@ class DiceLaunchController extends Controller
         $defaultShots = new Model\ShotFired();
         $shots = $defaultShots;
 
-        $form = $this->createForm(new Form\ShotFiredType(), $shots);
+        $form = $this->createForm(ShotFiredType::class, $shots);
 
         $form->handleRequest($request);
 
@@ -107,7 +109,7 @@ class DiceLaunchController extends Controller
         $default = new Model\Infight();
         $items = $default;
 
-        $form = $this->createForm(new Form\InfightType(), $items);
+        $form = $this->createForm(InfightType::class, $items);
 
         $form->handleRequest($request);
 

@@ -2,36 +2,15 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Doctrine\ORM\EntityRepository;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
-
 class UnitStuffMultiType extends AbstractType
 {
-    /**
-     * breed
-     *
-     * @var Breed
-     * @access private
-     */
-    private $breed;
-
-    /**
-     * __construct
-     *
-     * @param Breed $breed
-     * @access public
-     * @return void
-     */
-    public function __construct(Breed $breed)
-    {
-        $this->breed = $breed;
-    }
-
     /**
      * configureOptions
      *
@@ -42,9 +21,8 @@ class UnitStuffMultiType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'type' => new UnitStuffType($this->breed),
+            'type' => UnitStuffType::class,
             'translation_domain' => 'forms',
-            'cascade_validation' => true,
         ));
     }
 
@@ -52,7 +30,6 @@ class UnitStuffMultiType extends AbstractType
     {
         return CollectionType::class;
     }
-
 
     /**
      * getName

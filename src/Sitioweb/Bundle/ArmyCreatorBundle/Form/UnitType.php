@@ -23,12 +23,12 @@ class UnitType extends AbstractUnitType
                 'unitType',
                 null,
                 array(
-                    'property' => 'name',
+                    'choice_label' => 'name',
                     'required' => true,
                     'query_builder' => function(EntityRepository $er) {
                         return $er->createQueryBuilder('t')
                                 ->add('where', 't.breed = :breed')
-                                ->setParameter('breed', $this->breed);
+                                ->setParameter('breed', $options['breed']);
                     }
                 )
             )
@@ -47,7 +47,7 @@ class UnitType extends AbstractUnitType
             )
         ;
 
-        $builder = $this->addBreedSpecifics($builder);
+        $builder = $this->addBreedSpecifics($builder, $options['breed']);
 
         if ($options['data']->getId()) {
              $builder->add('edit', 'submit');
@@ -66,6 +66,9 @@ class UnitType extends AbstractUnitType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired('breed');
+        $resolver->setAllowedTypes('breed', Breed::class);
+
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit',
             'translation_domain' => 'forms'
@@ -73,12 +76,12 @@ class UnitType extends AbstractUnitType
     }
 
     /**
-     * getName
+     * getBlockPrefix
      *
      * @access public
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'unittype';
     }
