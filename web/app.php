@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 umask(0000);
 
+require __DIR__.'/../app/autoload.php';
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 
 // Use APC for autoloading to improve performance

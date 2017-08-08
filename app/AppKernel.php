@@ -1,7 +1,7 @@
 <?php
 
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
 class AppKernel extends Kernel
 {
@@ -31,7 +31,6 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
-            new SunCat\MobileDetectBundle\MobileDetectBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 
             // API

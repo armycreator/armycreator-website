@@ -12,7 +12,7 @@ services:
     armycreator.twig.squad_extension: 
         class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\Squad
         arguments:
-            - @doctrine.orm.default_entity_manager
+            - "@doctrine.orm.default_entity_manager"
         tags:
             - { name: twig.extension }
 
@@ -20,24 +20,24 @@ services:
     armycreator.twig.unit_extension: 
         class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\Unit
         arguments:
-            - @doctrine.orm.default_entity_manager
-            - @security.context
+            - "@doctrine.orm.default_entity_manager"
+            - "@security.context"
         tags:
             - { name: twig.extension }
 
     armycreator.twig.security: 
         class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\SecurityExtension
         arguments:
-            - @twig.extension.security
-            - @security.token_storage
+            - "@twig.extension.security"
+            - "@security.token_storage"
         tags:
             - { name: twig.extension }
 
     armycreator.sitemap.listener:
         class: Sitioweb\Bundle\ArmyCreatorBundle\SitemapListener
         arguments:
-            - @router
-            - @doctrine.orm.default_entity_manager
+            - "@router"
+            - "@doctrine.orm.default_entity_manager"
         tags:
             - { name: presta.sitemap.listener }
 
