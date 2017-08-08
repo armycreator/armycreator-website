@@ -51,7 +51,7 @@ class UnitType extends AbstractUnitType
         $builder = $this->addBreedSpecifics($builder, $options['breed']);
 
         if ($options['data']->getId()) {
-             $builder->add('edit', SubmitType::class;
+             $builder->add('edit', SubmitType::class);
         } else {
              $builder->add('create', SubmitType::class)
                  ->add('createAndAdd', SubmitType::class);
