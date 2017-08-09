@@ -21,7 +21,7 @@ class BreedType extends AbstractType
                 'newVersion',
                 null,
                 [
-                    'empty_value' => 'Choose a value',
+                    'placeholder' => 'Choose a value',
                     'required' => false,
                     'query_builder' => function(EntityRepository $er) use ($options) {
                         return $er->createQueryBuilder('a')

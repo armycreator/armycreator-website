@@ -16,12 +16,16 @@
     <a href="{{ path('army_group_list', {'groupId' : entity.id }) }}" class="acButton">
         {{ "army_group.edit.back_to_list"|trans }}
     </a>
-    <form
-        action="{{ path('army_group_delete', { 'id': entity.id }) }}"
-        method="post"
-        class="inbl"
-        onsubmit="javascript:return confirm('{% trans %}army_group.edit.delete{% endtrans %}');"
-    >
+    {{ form_start(
+        delete_form,
+        {
+            action: path('army_group_delete', { 'id': entity.id }),
+            attr: {
+                class: 'inbl',
+                onsubmit: "javascript:return confirm('{% trans %}army_group.edit.delete{% endtrans %}');",
+            }
+        }
+    ) }}
         {{ form_widget(delete_form) }}
         <button type="submit" class="acButton">{{ "army_group.edit.delete"|trans }}</button>
     </form>

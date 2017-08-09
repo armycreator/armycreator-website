@@ -30,8 +30,7 @@
     </form>
 
     <div class="right">
-        <form action="{{ path("unit_delete", params + { "id": unit.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
+        {{ form_start(delete_form, { action: path("unit_delete", params + { "id": unit.id }) }) }}
             {{ form_widget(delete_form) }}
             <button class="acButton" type="submit">{{ "button.delete"|trans }}</button>
         </form>

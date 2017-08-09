@@ -12,7 +12,6 @@ use Symfony\Component\Validator\Constraints\Valid;
 
 class SquadLineType extends AbstractType
 {
-
     /**
      * buildForm
      *

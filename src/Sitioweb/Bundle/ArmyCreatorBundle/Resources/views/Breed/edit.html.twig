@@ -16,12 +16,16 @@
     </a>
 
     {% if ac_granted("DELETE", entity) %}
-        <form
-            action="{{ path('admin_breed_delete', { 'game': entity.game.code, 'breed': entity.slug }) }}"
-            method="post"
-            class="inbl"
-            onsubmit="javascript:return confirm('{% trans %}breed.detail.delete{% endtrans %}');"
-        >
+        {{ form_start(
+            delete_form,
+            {
+                action: path('admin_breed_delete', { 'game': entity.game.code, 'breed': entity.slug }),
+                attr: {
+                    class: 'inbl',
+                    onsubmit: "javascript:return confirm('{% trans %}breed.detail.delete{% endtrans %}');",
+                }
+            }
+        ) }}
             {{ form_widget(delete_form) }}
             <button type="submit" class="acButton">{{ "button.delete"|trans }}</button>
         </form>

@@ -107,7 +107,7 @@ class UnitTypeController extends Controller
             throw $this->createNotFoundException('Unable to find UnitType entity.');
         }
 
-        $editForm = $this->createForm(UnitTypeType::class, $entity);
+        $editForm = $this->createForm(UnitTypeType::class, $entity, ['method' => 'PUT']);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -140,10 +140,10 @@ class UnitTypeController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(UnitTypeType::class, $entity);
+        $editForm = $this->createForm(UnitTypeType::class, $entity, ['method' => 'PUT']);
         $editForm->handleRequest($request);
 
-        if ($editForm->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
@@ -158,6 +158,7 @@ class UnitTypeController extends Controller
         }
 
         return array(
+            'breed'       => $breed,
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -209,6 +210,7 @@ class UnitTypeController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', HiddenType::class)
+            ->setMethod('DELETE')
             ->getForm()
         ;
     }

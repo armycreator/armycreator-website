@@ -19,12 +19,16 @@
     </a>
 
     {% if ac_granted("DELETE", entity) %}
-        <form
-            action="{{ path('admin_game_delete', { 'code': entity.code }) }}"
-            method="post"
-            class="inbl"
-            onsubmit="javascript:return confirm('{% trans %}game.detail.delete{% endtrans %}');"
-        >
+        {{ form_start(
+            delete_form,
+            {
+                action: path('admin_game_delete', { 'code': entity.code }),
+                attr: {
+                    class: 'inbl',
+                    onsubmit: "javascript:return confirm('{% trans %}game.detail.delete{% endtrans %}');"
+                }
+            }
+        ) }}
             {{ form_widget(delete_form) }}
             <button type="submit" class="acButton">{{ "button.delete"|trans }}</button>
         </form>

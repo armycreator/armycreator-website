@@ -118,7 +118,7 @@ class UnitGroupController extends Controller
             )
         );
 
-        $editForm = $this->createForm(UnitGroupType::class, $entity, ['breed' => $breed]);
+        $editForm = $this->createForm(UnitGroupType::class, $entity, ['breed' => $breed, 'method' => 'PUT']);
         $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
@@ -150,7 +150,7 @@ class UnitGroupController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(UnitGroupType::class, $entity, ['breed' => $breed]);
+        $editForm = $this->createForm(UnitGroupType::class, $entity, ['breed' => $breed, 'method' => 'PUT']);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -228,6 +228,7 @@ class UnitGroupController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', HiddenType::class)
+            ->setMethod('DELETE')
             ->getForm()
         ;
     }

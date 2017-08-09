@@ -176,6 +176,7 @@ class UnitStuffController extends Controller
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', HiddenType::class)
+            ->setMethod('DELETE')
             ->getForm()
         ;
     }

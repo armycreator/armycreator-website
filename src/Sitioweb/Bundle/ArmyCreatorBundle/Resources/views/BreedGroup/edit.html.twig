@@ -14,9 +14,8 @@
     <a class="acButton" href="{{ path('breedgroup', {'game': entity.game.code }) }}">
         {{ "default.back_to_list"|trans }}
     </a>
-    <form class="inbl" action="{{ path('breedgroup_delete', { 'game': entity.game.code, 'id': entity.id }) }}" method="post">
+    {{ form_start(delete_form, {action: path('breedgroup_delete', { 'game': entity.game.code, 'id': entity.id })}) }}
         {{ form_widget(delete_form) }}
         <button class="acButton" type="submit">{{ "button.delete"|trans }}</button>
     </form>
 </div>
-{% endblock %}

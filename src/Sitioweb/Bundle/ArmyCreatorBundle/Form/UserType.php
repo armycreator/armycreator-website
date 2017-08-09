@@ -2,6 +2,7 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\UserInformation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +23,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('wantToPlay', null, ['required' => false])
-            ->add('informations', new Type\UserInformation, [ 'constraints' => new Valid() ])
+            ->add('informations', UserInformation::class, [ 'constraints' => new Valid() ])
         ;
     }
 
@@ -39,5 +40,3 @@ class UserType extends AbstractType
         return 'ac_user';
     }
 }
-
-

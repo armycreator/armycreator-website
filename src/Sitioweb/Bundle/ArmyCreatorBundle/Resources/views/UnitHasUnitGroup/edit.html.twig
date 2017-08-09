@@ -22,8 +22,7 @@
         </a>
     </li>
     <li>
-        <form action="{{ path("unithasunitgroup_delete", params + { 'id': entity.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
+        {{ form_start(delete_form, {action: path("unithasunitgroup_delete", params + { 'id': entity.id })}) }}
             {{ form_widget(delete_form) }}
             <button type="submit" class="acButton">{{ "button.delete"|trans }}</button>
         </form>

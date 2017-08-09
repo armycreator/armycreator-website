@@ -9,12 +9,11 @@
     {% set game = breed.game %}
     {% set params = {"game": game.code, "breed": breed.slug} %}
 
-    {{ form_start(edit_form, { action: path("equipement_update", params + { "id": entity.id }), attr: {class: 'opaque'} } }}
+    {{ form(edit_form, { action: path("equipement_update", params + { "id": entity.id }), attr: {class: 'opaque'} }) }}
 
     {% if entity.unitStuffList.count() == 0 %}
         <div class="right">
-            <form action="{{ path("equipement_delete", params + { "id": entity.id }) }}" method="post">
-                <input type="hidden" name="_method" value="DELETE" />
+            {{ form_start(delete_form, {action: path("equipement_delete", params + { "id": entity.id })}) }}
                 {{ form_widget(delete_form) }}
                 <button class="acButton" type="submit">{{ "button.delete"|trans }}</button>
             </form>

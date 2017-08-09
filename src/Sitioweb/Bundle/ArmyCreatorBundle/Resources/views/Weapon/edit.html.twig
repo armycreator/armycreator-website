@@ -15,8 +15,7 @@
 
     {% if weapon.unitStuffList.count() == 0 %}
         <div class="right">
-            <form action="{{ path("weapon_delete", params + { "id": weapon.id }) }}" method="post">
-                <input type="hidden" name="_method" value="DELETE" />
+            {{ form_start(delete_form, { action: path("weapon_delete", params + { "id": weapon.id }) }) }}
                 {{ form_widget(delete_form) }}
                 <button class="acButton" type="submit">{{ "button.delete"|trans }}</button>
             </form>

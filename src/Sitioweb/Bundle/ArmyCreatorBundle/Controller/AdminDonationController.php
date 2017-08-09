@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Donation;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\DonationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -87,7 +88,7 @@ class AdminDonationController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', SubmitType::class, array('label' => 'Create', 'attr' => ['class' => 'acButton acButtonBig']));
 
         return $form;
     }
@@ -151,7 +152,7 @@ class AdminDonationController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', SubmitType::class, array('label' => 'Update', 'attr' => ['class' => 'acButton acButtonBig']));
 
         return $form;
     }
@@ -228,7 +229,7 @@ class AdminDonationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_donation_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', SubmitType::class, array('label' => 'Delete', 'attr' => ['class' => 'acButton acButtonBig']))
             ->getForm()
         ;
     }
