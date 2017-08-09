@@ -108,7 +108,7 @@ class UnitHasUnitGroupController extends Controller
             throw $this->createNotFoundException('Unable to find UnitHasUnitGroup entity.');
         }
 
-        $editForm = $this->createForm(UnitHasUnitGroupType::class, $entity, ['breed' => $breed]);
+        $editForm = $this->createForm(UnitHasUnitGroupType::class, $entity, ['breed' => $breed, 'method' => 'PUT']);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -139,7 +139,7 @@ class UnitHasUnitGroupController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(UnitHasUnitGroupType::class, $entity, ['breed' => $breed]);
+        $editForm = $this->createForm(UnitHasUnitGroupType::class, $entity, ['breed' => $breed, 'method' => 'PUT']);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {

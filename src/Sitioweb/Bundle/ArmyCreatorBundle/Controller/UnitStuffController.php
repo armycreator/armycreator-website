@@ -63,7 +63,7 @@ class UnitStuffController extends Controller
         );
 
         $newUnitStuffList = $this->getBreedUnitStuffList($unit);
-        $form = $this->createForm(UnitStuffMultiType::class, $newUnitStuffList, ['breed' => $breed]);
+        $form = $this->createForm(UnitStuffMultiType::class, $newUnitStuffList);
 
         $form->handleRequest($request);
 

@@ -3,6 +3,8 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -40,7 +42,7 @@ class UnitType extends AbstractUnitType
             */
             ->add(
                 'doNotCreateUnitGroup',
-                'checkbox',
+                CheckboxType::class,
                 array(
                     'mapped' => false,
                     'required' => false,

@@ -13,26 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class UnitStuffType extends AbstractType
 {
     /**
-     * breed
-     *
-     * @var Breed
-     * @access private
-     */
-    private $breed;
-
-    /**
-     * __construct
-     *
-     * @param Breed $breed
-     * @access public
-     * @return void
-     */
-    public function __construct(Breed $breed)
-    {
-        $this->breed = $breed;
-    }
-
-    /**
      * buildForm
      *
      * @param FormBuilderInterface $builder

@@ -8,7 +8,6 @@
     <h1>UnitHasUnitGroup edit</h1>
 
     {{ form_start(edit_form, {action: path("unithasunitgroup_update", params + { 'id': entity.id }), attr: {class: 'opaque'}}) }}
-        <input type="hidden" name="_method" value="PUT" />
         {{ form_widget(edit_form) }}
         <p class="txtright">
             <button type="submit" class="acButton">Edit</button>
