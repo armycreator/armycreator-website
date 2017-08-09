@@ -7,6 +7,8 @@ parameters:
         cmd: _s-xclick
         hosted_button_id: L7PK6V4R4LPHG
     jms_serializer.doctrine_proxy_subscriber.class: JMS\Serializer\EventDispatcher\Subscriber\DoctrineProxySubscriber
+    router.request_context.host:   "www.armycreator.net"
+    router.request_context.scheme: "https"
 
 framework:
     #esi:             ~
@@ -176,7 +178,6 @@ knp_snappy:
 #                     increment: "armycreator.squad_line.<gameCode>.link"
 
 presta_sitemap:
-    dumper_base_url: 'http://www.armycreator.net/'
     route_annotation_listener: false
 
 
