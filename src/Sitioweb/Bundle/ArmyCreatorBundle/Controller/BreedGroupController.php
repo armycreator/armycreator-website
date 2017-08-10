@@ -154,7 +154,7 @@ class BreedGroupController extends Controller
      *
      * @Route("/{id}/delete", name="breedgroup_delete")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
-     * @Method("post")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id, Game $game)
     {

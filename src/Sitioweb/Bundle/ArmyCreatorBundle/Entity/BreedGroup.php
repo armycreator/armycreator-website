@@ -3,8 +3,8 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Oneup\AclBundle\Mapping\Annotation as Acl;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup
