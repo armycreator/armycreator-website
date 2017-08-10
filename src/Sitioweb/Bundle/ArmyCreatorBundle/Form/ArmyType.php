@@ -46,7 +46,6 @@ class ArmyType extends AbstractType
                 ChoiceType::class,
                 array(
                     'choices' => array('draft' => 'draft', 'finish' => 'finish'),
-                    'choices_as_values' => true,
                     'required' => true,
                     'expanded' => true,
                 )

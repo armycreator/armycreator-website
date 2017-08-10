@@ -76,7 +76,8 @@
                             {{- "\n\t\t\t[*] " -}}
                             {% for squadLineStuff in squadLineStuffList %}{{- "" -}}
                                 {% if not loop.first %}
-                                    {{- preferences.separator -}}
+                                    {{- preferences.separator != "," ? " " : ""  -}}
+                                    {{- preferences.separator ~ " " -}}
                                 {% endif %}
                                 {{- squadLineStuff.number ~ " " ~ squadLineStuff.unitStuff.stuff.name -}}
                             {% endfor %}

@@ -76,7 +76,6 @@ class ArmyBreedType extends AbstractType
         $resolver->setDefaults([
             'class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed',
             'choices' => $choices,
-            'choices_as_values' => true,
         ]);
     }
 
