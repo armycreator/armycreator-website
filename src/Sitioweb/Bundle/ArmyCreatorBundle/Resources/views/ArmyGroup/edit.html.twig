@@ -22,7 +22,7 @@
             action: path('army_group_delete', { 'id': entity.id }),
             attr: {
                 class: 'inbl',
-                onsubmit: "javascript:return confirm('{% trans %}army_group.edit.delete{% endtrans %}');",
+                onsubmit: "javascript:return confirm('" ~ ("army_group.edit.delete"|trans) ~ "');",
             }
         }
     ) }}

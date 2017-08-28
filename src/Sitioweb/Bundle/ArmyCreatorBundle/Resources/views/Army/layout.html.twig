@@ -82,7 +82,7 @@
                         class="inbl"
                         onsubmit="javascript:return confirm('{% trans %}army.list.clone_confirm{% endtrans %}');"
                     >
-                        {{ form_widget(deleteForm) }}
+                        {{ form_widget(cloneForm) }}
                         <button type="submit" class="acButton acButtonSmall" title="{{ "army.list.clone"|trans }}">
                             <i class="el-icon-repeat"></i>
                         </button>
@@ -90,12 +90,13 @@
                 {% endif %}
 
                 {% if deleteForm is defined %}
-                    <form
-                        action="{{ path('army_delete', { 'slug': army.slug }) }}"
-                        method="post"
-                        class="inbl"
-                        onsubmit="javascript:return confirm('{% trans %}army.detail.delete{% endtrans %}');"
-                    >
+                    {{ form_start(deleteForm, {
+                        action: path('army_delete', { 'slug': army.slug }),
+                        attr: {
+                            class: "inbl",
+                            onsubmit: "javascript:return confirm('" ~ ("army.detail.delete"|trans) ~ "');"
+                        }
+                    }) }}
                         {{ form_widget(deleteForm) }}
                         <button type="submit" class="acButton acButtonSmall" title="{{ "army.list.delete"|trans }}">
                             <i class="el-icon-remove"></i>

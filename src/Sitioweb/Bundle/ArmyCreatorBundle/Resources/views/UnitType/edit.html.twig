@@ -27,7 +27,7 @@
                 {
                     action: path("unittype_delete", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }),
                     attr: {
-                        onsubmit: "javascript:return confirm('{% trans %}unit_type.edit.delete{% endtrans %}');"
+                        onsubmit: "javascript:return confirm('" ~ ("unit_type.edit.delete"|trans) ~"');"
                     }
                 }
             ) }}

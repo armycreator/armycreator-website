@@ -498,7 +498,7 @@ class ArmyController extends Controller
      * Deletes a Army entity.
      *
      * @Route("/{slug}/delete", name="army_delete")
-     * @Method("POST")
+     * @Method("DELETE")
      * @Breadcrumb("breadcrumb.army_delete")
      */
     public function deleteAction(Request $request, $slug)

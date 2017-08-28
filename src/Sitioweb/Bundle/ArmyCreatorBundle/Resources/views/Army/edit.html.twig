@@ -75,7 +75,7 @@
                 action: path('army_delete', { 'slug': entity.slug }),
                 attr: {
                     class: 'inbl',
-                    onsubmit: "javascript:return confirm('{% trans %}army.detail.delete{% endtrans %}');"
+                    onsubmit: "javascript:return confirm('" ~ ("army.detail.delete"|trans) ~ "');"
                 }
             }) }}
                 {{ form_widget(delete_form) }}

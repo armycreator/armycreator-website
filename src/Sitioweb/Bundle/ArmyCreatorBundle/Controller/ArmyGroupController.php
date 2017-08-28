@@ -153,7 +153,7 @@ class ArmyGroupController extends Controller
      * Deletes a ArmyGroup entity.
      *
      * @Route("/{id}/delete", name="army_group_delete")
-     * @Method("POST")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
