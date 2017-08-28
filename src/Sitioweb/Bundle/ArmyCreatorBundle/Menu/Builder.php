@@ -3,27 +3,72 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * Builder
  *
  * @uses ContainerAware
  */
-class Builder extends ContainerAware
+class Builder
 {
+    /**
+     * factory
+     *
+     * @var FactoryInterface
+     */
+    private $factory;
+
+    /**
+     * requestStack
+     *
+     * @var RequestStack
+     */
+    private $requestStack;
+
+    /**
+     * tokenStorage
+     *
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
+
+    /**
+     * authorizationChecker
+     *
+     * @var AuthorizationCheckerInterface
+     */
+    private $authorizationChecker;
+
+    /**
+     * __construct
+     *
+     * @param RequestStack $requestStack
+     */
+    public function __construct(
+        FactoryInterface $factory,
+        RequestStack $requestStack,
+        TokenStorageInterface $tokenStorage,
+        AuthorizationCheckerInterface $authorizationChecker
+    ) {
+        $this->factory = $factory;
+        $this->requestStack = $requestStack;
+        $this->tokenStorage = $tokenStorage;
+        $this->authorizationChecker = $authorizationChecker;
+    }
+
     /**
      * mainMenu
      *
-     * @param FactoryInterface $factory
      * @param array $options
      * @access public
      * @return void
      */
-    public function mainMenu(FactoryInterface $factory, array $options)
+    public function mainMenu(array $options)
     {
-        $menu = $factory->createItem('root');
+        $menu = $this->factory->createItem('root');
 
         $menu->addChild('main_menu.home', array('route' => 'homepage'));
         $menu->addChild('main_menu.forum', array('route' => 'forum_index'));
@@ -39,15 +84,13 @@ class Builder extends ContainerAware
     /**
      * secondMainMenu
      *
-     * @param FactoryInterface $factory
      * @param array $options
      * @access public
      * @return void
      */
-    public function secondMainMenu(FactoryInterface $factory, array $options)
+    public function secondMainMenu(array $options)
     {
-        $security = $this->container->get('security.context');
-        $menu = $factory->createItem('root');
+        $menu = $this->factory->createItem('root');
 
         $menu->addChild('main_menu.user_list', array('route' => 'user_list'));
 
@@ -77,18 +120,17 @@ class Builder extends ContainerAware
     /**
      * breedShowMenu
      *
-     * @param FactoryInterface $factory
      * @param array $options
      * @access public
      * @return void
      */
-    public function breedShowMenu(FactoryInterface $factory, array $options)
+    public function breedShowMenu(array $options)
     {
-        $breed = $this->container->get('request')->get('breed');
+        $breed = $this->requestStack->getMasterRequest()->get('breed');
         $game = $breed->getGame();
         $routeParameters = ['breed' => $breed->getSlug(), 'game' => $game->getCode()];
 
-        $menu = $factory->createItem('root');
+        $menu = $this->factory->createItem('root');
 
         $menu->addChild(
             'breed_show.menu.unitType_list',
@@ -125,17 +167,16 @@ class Builder extends ContainerAware
     /**
      * gameMenu
      *
-     * @param FactoryInterface $factory
      * @param array $options
      * @access public
      * @return void
      */
-    public function gameMenu(FactoryInterface $factory, array $options)
+    public function gameMenu(array $options)
     {
-        $game = $this->container->get('request')->get('game');
+        $game = $this->requestStack->getMasterRequest()->get('game');
         $routeParameters = ['game' => $game->getCode()];
 
-        $menu = $factory->createItem('root');
+        $menu = $this->factory->createItem('root');
 
         $menu->addChild(
             'game_show.menu.breed_list',
@@ -165,17 +206,16 @@ class Builder extends ContainerAware
     /**
      * armyListMenu
      *
-     * @param FactoryInterface $factory
      * @param array $options
      * @access public
      * @return void
      */
-    public function armyListMenu(FactoryInterface $factory, array $options)
+    public function armyListMenu(array $options)
     {
-        $menu = $factory->createItem('root');
+        $menu = $this->factory->createItem('root');
 
         $user = $this->getUser();
-        $request = $this->container->get('request');
+        $request = $this->requestStack->getMasterRequest();
         $armyGroupList = $user->getArmyGroupList();
 
         $menu->addChild('army_list.group_list.last_armies', array(
@@ -218,14 +258,16 @@ class Builder extends ContainerAware
      */
     private function getUser()
     {
-        $tokenStorage = $this->container->get('security.token_storage');
+        $tokenStorage = $this->tokenStorage;
+
         return $tokenStorage && $tokenStorage->getToken() ? $tokenStorage->getToken()->getUser() : null;
     }
 
     private function isAuthenticated()
     {
-        $tokenStorage = $this->container->get('security.token_storage');
-        $authChecker = $this->container->get('security.authorization_checker');
+        $tokenStorage = $this->tokenStorage;
+        $authChecker = $this->authorizationChecker;
+
         return $tokenStorage && $tokenStorage->getToken() && $authChecker->isGranted('IS_AUTHENTICATED_FULLY');
     }
 }

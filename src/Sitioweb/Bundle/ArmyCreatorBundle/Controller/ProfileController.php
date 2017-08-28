@@ -6,11 +6,11 @@ use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use JMS\SecurityExtraBundle\Annotation as Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UserType;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * User controller.
@@ -36,10 +36,10 @@ class ProfileController extends Controller
     {
         $user = $this->getUser();
 
-        $form = $this->createForm(new UserType, $user);
+        $form = $this->createForm(UserType::class, $user);
 
-        if ($request->isMethod("POST")) {
-            $form->bind($request);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $this->get('doctrine.orm.default_entity_manager')
                     ->flush();

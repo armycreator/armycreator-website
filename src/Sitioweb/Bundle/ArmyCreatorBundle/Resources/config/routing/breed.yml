@@ -22,7 +22,7 @@ admin_breed_create:
     path: /admin/{game}/breed/create
     defaults: { _controller: SitiowebArmyCreatorBundle:Breed:create }
     requirements:
-        _method: POST
+        _methods: POST
 
 admin_breed_edit:
     path: /admin/{game}/{breed}/edit
@@ -32,13 +32,13 @@ admin_breed_update:
     path: /admin/{game}/{breed}/update
     defaults: { _controller: SitiowebArmyCreatorBundle:Breed:update }
     requirements:
-        _method: POST
+        _methods: POST
 
 admin_breed_delete:
     path: /admin/{game}/{breed}/delete
     defaults: { _controller: SitiowebArmyCreatorBundle:Breed:delete }
     requirements:
-        _method: POST
+        _methods: POST
 
 admin_breed:
     path: /admin/{game}/

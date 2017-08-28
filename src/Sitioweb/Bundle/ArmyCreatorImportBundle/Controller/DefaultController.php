@@ -2,10 +2,11 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorImportBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -772,7 +773,6 @@ class DefaultController extends Controller
             //$lastLogin->setTimestamp($row['user_lastvisit']);
             //$entity->setLastLogin($lastLogin);
             $entity->setEnabled(true);
-            $entity->setLocked(false);
 
             // breed collection
             $collectionList = $this->emImport->query("
@@ -1542,10 +1542,10 @@ class DefaultController extends Controller
         ldd($easycases, $hardcases);
     }
 
-    private function debugOrGo($query)
+    private function debugOrGo(Request $request, $query)
     {
         $conn = $this->em->getConnection();
-        if (1 == (int) $this->get('request')->query->get('go')) {
+        if (1 == (int) $request->query->get('go')) {
             $conn->executeUpdate($query);
         } else {
             echo "<br />";

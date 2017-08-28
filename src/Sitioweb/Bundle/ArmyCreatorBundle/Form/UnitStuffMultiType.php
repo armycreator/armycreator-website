@@ -3,55 +3,33 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UnitStuffMultiType extends AbstractType
 {
     /**
-     * breed
+     * configureOptions
      *
-     * @var Breed
-     * @access private
-     */
-    private $breed;
-
-    /**
-     * __construct
-     *
-     * @param Breed $breed
+     * @param OptionsResolver $resolver
      * @access public
      * @return void
      */
-    public function __construct(Breed $breed)
-    {
-        $this->breed = $breed;
-    }
-
-    /**
-     * setDefaultOptions
-     *
-     * @param OptionsResolverInterface $resolver
-     * @access public
-     * @return void
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'type' => new UnitStuffType($this->breed),
+            'entry_type' => UnitStuffType::class,
             'translation_domain' => 'forms',
-            'cascade_validation' => true,
         ));
     }
 
     public function getParent()
     {
-        return 'collection';
+        return CollectionType::class;
     }
-
 
     /**
      * getName
@@ -59,7 +37,7 @@ class UnitStuffMultiType extends AbstractType
      * @access public
      * @return void
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'armycreator_unitstuffmulti';
     }

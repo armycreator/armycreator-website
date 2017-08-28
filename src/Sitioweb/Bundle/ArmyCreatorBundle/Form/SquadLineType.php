@@ -2,15 +2,16 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class SquadLineType extends AbstractType
 {
-
     /**
      * buildForm
      *
@@ -23,27 +24,29 @@ class SquadLineType extends AbstractType
     {
         $builder->add(
             'number',
-            'integer',
+            IntegerType::class,
             array('attr' => array('size' => 4, 'title' => 'Number'))
         );
 
         $builder->add(
             'orderSquadLineStuffList',
-            'collection',
-            array('type' => new SquadLineStuffType())
+            CollectionType::class,
+            array(
+                'entry_type' => SquadLineStuffType::class,
+                'constraints' => new Valid(),
+            )
         );
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine',
             'translation_domain' => 'forms',
-            'cascade_validation' => true
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_squadlinetype';
     }

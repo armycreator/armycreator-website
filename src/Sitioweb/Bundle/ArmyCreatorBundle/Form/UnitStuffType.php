@@ -3,34 +3,15 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\FormBuilderInterface;
+
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UnitStuffType extends AbstractType
 {
-    /**
-     * breed
-     *
-     * @var Breed
-     * @access private
-     */
-    private $breed;
-
-    /**
-     * __construct
-     *
-     * @param Breed $breed
-     * @access public
-     * @return void
-     */
-    public function __construct(Breed $breed)
-    {
-        $this->breed = $breed;
-    }
-
     /**
      * buildForm
      *
@@ -44,7 +25,7 @@ class UnitStuffType extends AbstractType
         $builder
             ->add(
                 'visible',
-                'checkbox',
+                CheckboxType::class,
                 [ 'required' => false, ]
             )
             ->add('points')
@@ -53,13 +34,13 @@ class UnitStuffType extends AbstractType
     }
 
     /**
-     * setDefaultOptions
+     * configureOptions
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      * @access public
      * @return void
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff',
@@ -73,7 +54,7 @@ class UnitStuffType extends AbstractType
      * @access public
      * @return void
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'armycreator_unitstufftype';
     }

@@ -2,11 +2,14 @@
 
 namespace Sitioweb\Bundle\DiceBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sitioweb\Bundle\DiceBundle\Form;
+use Sitioweb\Bundle\DiceBundle\Form\DiceType;
+use Sitioweb\Bundle\DiceBundle\Form\InfightType;
+use Sitioweb\Bundle\DiceBundle\Form\ShotFiredType;
 use Sitioweb\Bundle\DiceBundle\Model;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * dice launch controller.
@@ -20,18 +23,17 @@ class DiceLaunchController extends Controller
      * @Route("/", name="toolbox_dice")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         // get default
         $defaultDices = new Model\DiceLaunch();
         $dices = $defaultDices;
 
-        $form = $this->createForm(new Form\DiceType(), $dices);
+        $form = $this->createForm(DiceType::class, $dices);
 
         // the user submitted the form
-        $request = $this->getRequest();
-        if ($request->getMethod() === 'POST') {
-            $form->bind($request);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
 
             if (!$form->isValid()) {
                 $dices = $defaultDices;
@@ -72,21 +74,18 @@ class DiceLaunchController extends Controller
      * @Route("/weapon", name="toolbox_weapon_statistic")
      * @Template()
      */
-    public function weaponStatisticAction()
+    public function weaponStatisticAction(Request $request)
     {
         // get default
         $defaultShots = new Model\ShotFired();
         $shots = $defaultShots;
 
-        $form = $this->createForm(new Form\ShotFiredType(), $shots);
+        $form = $this->createForm(ShotFiredType::class, $shots);
 
-        $request = $this->getRequest();
-        if ($request->getMethod() === 'POST') {
-            $form->bind($request);
+        $form->handleRequest($request);
 
-            if (!$form->isValid()) {
-                $shots = $defaultShots;
-            }
+        if (!$form->isValid()) {
+            $shots = $defaultShots;
         }
 
         return array(
@@ -104,21 +103,18 @@ class DiceLaunchController extends Controller
      * @Route("/infight", name="toolbox_infight_statistic")
      * @Template()
      */
-    public function infightStatisticAction()
+    public function infightStatisticAction(Request $request)
     {
         // get default
         $default = new Model\Infight();
         $items = $default;
 
-        $form = $this->createForm(new Form\InfightType(), $items);
+        $form = $this->createForm(InfightType::class, $items);
 
-        $request = $this->getRequest();
-        if ($request->getMethod() === 'POST') {
-            $form->bind($request);
+        $form->handleRequest($request);
 
-            if (!$form->isValid()) {
-                $items = $default;
-            }
+        if (!$form->isValid()) {
+            $items = $default;
         }
 
         return array(

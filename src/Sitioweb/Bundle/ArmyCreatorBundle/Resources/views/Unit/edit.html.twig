@@ -9,7 +9,7 @@
     {% set game = breed.game %}
     {% set params = {"game": game.code, "breed": breed.slug} %}
 
-    <form action="{{ path("unit_update", params + { "id": unit.id }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
+    {{ form_start(edit_form, {action: path("unit_update", params + { "id": unit.id }), attr: {class: 'opaque'}}) }}
         <div id="unittype">
             {{ form_row(edit_form.unitType) }}
             {{ form_row(edit_form.name) }}
@@ -30,8 +30,7 @@
     </form>
 
     <div class="right">
-        <form action="{{ path("unit_delete", params + { "id": unit.id }) }}" method="post">
-            <input type="hidden" name="_method" value="DELETE" />
+        {{ form_start(delete_form, { action: path("unit_delete", params + { "id": unit.id }) }) }}
             {{ form_widget(delete_form) }}
             <button class="acButton" type="submit">{{ "button.delete"|trans }}</button>
         </form>

@@ -2,7 +2,6 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -10,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedGroupType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * BreedGroup controller.
@@ -49,7 +51,7 @@ class BreedGroupController extends Controller
     {
         $entity = new BreedGroup();
         $entity->setGame($game);
-        $form   = $this->createForm(new BreedGroupType(), $entity);
+        $form   = $this->createForm(BreedGroupType::class, $entity);
 
         return array(
             'game' => $game,
@@ -66,12 +68,11 @@ class BreedGroupController extends Controller
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:BreedGroup:new.html.twig")
      */
-    public function createAction(Game $game)
+    public function createAction(Request $request, Game $game)
     {
         $entity  = new BreedGroup();
-        $request = $this->getRequest();
-        $form    = $this->createForm(new BreedGroupType(), $entity);
-        $form->bind($request);
+        $form    = $this->createForm(BreedGroupType::class, $entity);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -97,7 +98,7 @@ class BreedGroupController extends Controller
      */
     public function editAction(BreedGroup $breedGroup)
     {
-        $editForm = $this->createForm(new BreedGroupType(), $breedGroup);
+        $editForm = $this->createForm(BreedGroupType::class, $breedGroup);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -114,7 +115,7 @@ class BreedGroupController extends Controller
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:BreedGroup:edit.html.twig")
      */
-    public function updateAction($id)
+    public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -124,12 +125,10 @@ class BreedGroupController extends Controller
             throw $this->createNotFoundException('Unable to find BreedGroup entity.');
         }
 
-        $editForm   = $this->createForm(new BreedGroupType(), $entity);
+        $editForm   = $this->createForm(BreedGroupType::class, $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        $request = $this->getRequest();
-
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -155,14 +154,13 @@ class BreedGroupController extends Controller
      *
      * @Route("/{id}/delete", name="breedgroup_delete")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
-     * @Method("post")
+     * @Method("DELETE")
      */
-    public function deleteAction($id, Game $game)
+    public function deleteAction(Request $request, $id, Game $game)
     {
         $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -182,7 +180,8 @@ class BreedGroupController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
+            ->setMethod('DELETE')
             ->getForm()
         ;
     }

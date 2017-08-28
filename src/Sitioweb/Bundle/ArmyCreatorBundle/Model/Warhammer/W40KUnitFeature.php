@@ -313,19 +313,19 @@ class W40KUnitFeature
      */
     public function getPc()
     {
-        return $this->Pc;
+        return $this->pc;
     }
 
     /**
      * Sets the value of Pc
      *
-     * @param int $Pc pc
+     * @param int $pc pc
      *
      * @return W40KUnitFeature
      */
-    public function setPc($Pc)
+    public function setPc($pc)
     {
-        $this->Pc = $Pc;
+        $this->pc = $pc;
         return $this;
     }
 

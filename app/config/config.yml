@@ -7,11 +7,13 @@ parameters:
         cmd: _s-xclick
         hosted_button_id: L7PK6V4R4LPHG
     jms_serializer.doctrine_proxy_subscriber.class: JMS\Serializer\EventDispatcher\Subscriber\DoctrineProxySubscriber
+    router.request_context.host:   "www.armycreator.net"
+    router.request_context.scheme: "https"
 
 framework:
     #esi:             ~
-    translator:      { fallback: %locale% }
-    secret:          %secret%
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: "%kernel.debug%"
@@ -19,22 +21,25 @@ framework:
     csrf_protection: true
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale:  %locale%
+    default_locale:  "%locale%"
     #trust_proxy_headers: false # Should Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     trusted_proxies: ~
     session:
         cookie_lifetime: 31536000
 
+sensio_framework_extra:
+    view:
+        annotations: true
+
 # Twig Configuration
 twig:
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
-    form:
-        resources:
-            - 'SitiowebArmyCreatorBundle:Form:fields.html.twig'
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+        - 'SitiowebArmyCreatorBundle:Form:fields.html.twig'
     globals:
         server_cost: 165
-        forum_sid: %forum_sid%
+        forum_sid: "%forum_sid%"
 
 # Doctrine Configuration
 doctrine:
@@ -42,32 +47,32 @@ doctrine:
         default_connection: default
         connections:
             default:
-                driver:   %database_driver%
-                host:     %database_host%
-                port:     %database_port%
-                dbname:   %database_name%
-                user:     %database_user%
-                password: %database_password%
-                charset:  UTF8
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  "UTF8"
             forum:
-                driver:   %database_driver%
-                host:     %database_host%
-                port:     %database_port%
-                dbname:   %database_name_forum%
-                user:     %database_user%
-                password: %database_password%
-                charset:  UTF8
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name_forum%"
+                user:     "%database_user%"
+                password: "%database_password%"
+                charset:  "UTF8"
             acl:
-                driver:   %database_driver%
-                host:     %database_host%
-                port:     %database_port%
-                dbname:   %database_name_acl%
-                user:     %database_user%
-                password: %database_password%
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name_acl%"
+                user:     "%database_user%"
+                password: "%database_password%"
 
     orm:
         default_entity_manager: default
-        auto_generate_proxy_classes: %kernel.debug%
+        auto_generate_proxy_classes: "%kernel.debug%"
 #       auto_mapping: true
         entity_managers:
             default:
@@ -81,17 +86,17 @@ doctrine:
                 connection: acl
 
 stof_doctrine_extensions:
-    default_locale: %locale%
+    default_locale: "%locale%"
     orm:
         default:
             sluggable: true
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
     spool:     { type: memory }
 
 fos_user:
@@ -100,6 +105,9 @@ fos_user:
     #service: 
     #    user_manager: phpbb_fos_user_manager
     user_class: Sitioweb\Bundle\ArmyCreatorBundle\Entity\User
+    from_email:
+        address: 'olynk@armycreator.net'
+        sender_name: 'ArmyCreator'
 
 #elnur_blowfish_password_encoder:
 #    cost: 15
@@ -124,53 +132,52 @@ knp_snappy:
             lowquality: null
         #    print-media-type: true
 
-m6_statsd:
-    servers:
-        default:
-            address: 'udp://localhost'
-            port: 8125
-    base_collectors: true
-    clients:
-        default:
-            servers: ['default']
-            events:
-                kernel.terminate:
-                    increment: "website.page_view"
-                user.donation:
-                    increment: "user.donation"
-                statsd.memory_usage:
-                    gauge: "website.memory"
-                statsd.time:
-                    timing: "website.time"
-                statsd.exception:
-                    increment: "website.exception.<value>"
-                armycreator.event.collection.contains:
-                    increment: "armycreator.collection.<gameCode>.contains"
-                armycreator.event.collection.remove:
-                    increment: "armycreator.collection.<gameCode>.remove"
-                armycreator.event.collection.edit:
-                    increment: "armycreator.collection.<gameCode>.edit"
-                armycreator.event.unit_feature.edit:
-                    increment: "armycreator.unit_feature.<gameCode>.edit"
-                armycreator.event.squad.new:
-                    increment: "armycreator.squad.<gameCode>.new"
-                armycreator.event.squad.update:
-                    increment: "armycreator.squad.<gameCode>.update"
-                armycreator.event.squad.delete:
-                    increment: "armycreator.squad.<gameCode>.delete"
-                armycreator.event.army.new:
-                    increment: "armycreator.army.<gameCode>.new"
-                armycreator.event.army.update:
-                    increment: "armycreator.army.<gameCode>.update"
-                armycreator.event.army.clone:
-                    increment: "armycreator.army.<gameCode>.clone"
-                armycreator.event.army.delete:
-                    increment: "armycreator.army.<gameCode>.delete"
-                armycreator.event.squad_line.link:
-                    increment: "armycreator.squad_line.<gameCode>.link"
+# m6_statsd:
+#     servers:
+#         default:
+#             address: 'udp://localhost'
+#             port: 8125
+#     base_collectors: true
+#     clients:
+#         default:
+#             servers: ['default']
+#             events:
+#                 kernel.terminate:
+#                     increment: "website.page_view"
+#                 user.donation:
+#                     increment: "user.donation"
+#                 statsd.memory_usage:
+#                     gauge: "website.memory"
+#                 statsd.time:
+#                     timing: "website.time"
+#                 statsd.exception:
+#                     increment: "website.exception.<value>"
+#                 armycreator.event.collection.contains:
+#                     increment: "armycreator.collection.<gameCode>.contains"
+#                 armycreator.event.collection.remove:
+#                     increment: "armycreator.collection.<gameCode>.remove"
+#                 armycreator.event.collection.edit:
+#                     increment: "armycreator.collection.<gameCode>.edit"
+#                 armycreator.event.unit_feature.edit:
+#                     increment: "armycreator.unit_feature.<gameCode>.edit"
+#                 armycreator.event.squad.new:
+#                     increment: "armycreator.squad.<gameCode>.new"
+#                 armycreator.event.squad.update:
+#                     increment: "armycreator.squad.<gameCode>.update"
+#                 armycreator.event.squad.delete:
+#                     increment: "armycreator.squad.<gameCode>.delete"
+#                 armycreator.event.army.new:
+#                     increment: "armycreator.army.<gameCode>.new"
+#                 armycreator.event.army.update:
+#                     increment: "armycreator.army.<gameCode>.update"
+#                 armycreator.event.army.clone:
+#                     increment: "armycreator.army.<gameCode>.clone"
+#                 armycreator.event.army.delete:
+#                     increment: "armycreator.army.<gameCode>.delete"
+#                 armycreator.event.squad_line.link:
+#                     increment: "armycreator.squad_line.<gameCode>.link"
 
 presta_sitemap:
-    dumper_base_url: 'http://www.armycreator.net/'
     route_annotation_listener: false
 
 
@@ -194,8 +201,8 @@ fos_oauth_server:
     auth_code_class: Sitioweb\Bundle\ApiBundle\Entity\AuthCode
     service:
         storage: armycreator.oauth.storage
-        #user_provider: fos_user.user_provider.username_email
-        user_provider: fos_user.user_manager
+        user_provider: fos_user.user_provider.username_email
+        #user_provider: fos_user.user_manager
 
 nelmio_cors:
     paths:
@@ -230,10 +237,10 @@ jms_serializer:
         directories:
             KnpPaginatorBundle:
                 namespace_prefix: "Knp\\Bundle\\PaginatorBundle"
-                path: "@SitiowebArmyCreatorBundle/Resources/config/serializer/KnpPaginatorBundle"
+                path: "@ArmycreatorApiBundle/Resources/config/serializer/KnpPaginatorBundle"
             KnpPager:
                 namespace_prefix: "Knp\\Component\\Pager"
-                path: "@SitiowebArmyCreatorBundle/Resources/config/serializer/KnpPager"
+                path: "@ArmycreatorApiBundle/Resources/config/serializer/KnpPager"
             FOSUserModel:
                 namespace_prefix: "FOS\\UserBundle"
                 path: "@SitiowebArmyCreatorBundle/Resources/config/serializer/FosUser"
@@ -241,9 +248,3 @@ jms_serializer:
                 namespace_prefix: "Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity"
                 path: "@SitiowebArmyCreatorBundle/Resources/config/serializer"
 
-
-mobile_detect:
-    redirect: 
-        mobile: ~
-        tablet: ~
-    switch_device_view: ~

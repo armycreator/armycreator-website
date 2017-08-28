@@ -4,14 +4,15 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use JMS\SecurityExtraBundle\Annotation\SecureParam;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\GameType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Game controller.
@@ -40,7 +41,7 @@ class GameController extends Controller
         }
 
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Game');
-        $canEditAll = $this->get('security.context')->isGranted('EDIT', $oi);
+        $canEditAll = $this->get('security.authorization_checker')->isGranted('EDIT', $oi);
 
         return array(
             'entities' => $gameList,
@@ -79,11 +80,11 @@ class GameController extends Controller
     {
         $entity = new Game();
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Game');
-        if (!$this->get('security.context')->isGranted('CREATE', $oi)) {
+        if (!$this->get('security.authorization_checker')->isGranted('CREATE', $oi)) {
             throw new AccessDeniedException();
         }
 
-        $form   = $this->createForm(new GameType(), $entity);
+        $form   = $this->createForm(GameType::class, $entity);
 
         return array(
             'entity' => $entity,
@@ -96,17 +97,16 @@ class GameController extends Controller
      *
      * @Template("SitiowebArmyCreatorBundle:Game:new.html.twig")
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Game');
-        if (!$this->get('security.context')->isGranted('CREATE', $oi)) {
+        if (!$this->get('security.authorization_checker')->isGranted('CREATE', $oi)) {
             throw new AccessDeniedException();
         }
 
         $entity  = new Game();
-        $request = $this->getRequest();
-        $form    = $this->createForm(new GameType(), $entity);
-        $form->bind($request);
+        $form    = $this->createForm(GameType::class, $entity);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -134,7 +134,7 @@ class GameController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $editForm = $this->createForm(new GameType(), $game);
+        $editForm = $this->createForm(GameType::class, $game);
         $deleteForm = $this->createDeleteForm($game->getId());
 
         return array(
@@ -151,18 +151,16 @@ class GameController extends Controller
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"code" = "code"}})
      * @SecureParam(name="game", permissions="EDIT")
      */
-    public function updateAction(Game $game)
+    public function updateAction(Request $request, Game $game)
     {
         $em = $this->getDoctrine()->getManager();
 
         $id = $game->getId();
 
-        $editForm   = $this->createForm(new GameType(), $game);
+        $editForm   = $this->createForm(GameType::class, $game);
         $deleteForm = $this->createDeleteForm($id);
 
-        $request = $this->getRequest();
-
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($game);
@@ -185,7 +183,7 @@ class GameController extends Controller
      *
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"code" = "code"}})
      */
-    public function deleteAction(Game $game)
+    public function deleteAction(Request $request, Game $game)
     {
         if (!$this->get('oneup_acl.manager')->isGranted('DELETE', $game)) {
             throw new AccessDeniedException();
@@ -194,9 +192,8 @@ class GameController extends Controller
         $id = $game->getId();
 
         $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -218,7 +215,8 @@ class GameController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
+            ->setMethod('DELETE')
             ->getForm()
         ;
     }

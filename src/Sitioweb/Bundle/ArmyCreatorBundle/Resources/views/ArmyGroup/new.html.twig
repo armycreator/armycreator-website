@@ -3,7 +3,7 @@
 {% block title %}{{ "army_group.new.title"|trans }}{% endblock %}
 
 {% block content %}
-<form action="{{ path('army_group_create') }}" method="post" {{ form_enctype(form) }} class="opaque">
+{{ form_start(form, {action: path('army_group_create'), attr: {class: 'opaque'}}) }}
     {{ form_widget(form) }}
     <div class="txtright">
         <button type="submit" class="acButton acButtonBig">{{ "army_group.new.create"|trans }}</button>

@@ -14,17 +14,12 @@ class AclExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'ac_granted' => new \Twig_Function_Method($this, 'acGranted'),
+            new \Twig_SimpleFunction('ac_granted', [$this, 'acGranted']),
         );
     }
 
     public function acGranted($role, $object = null, $field = null)
     {
         return $this->aclManager->isGranted($role, $object, $field);
-    }
-
-    public function getName()
-    {
-        return 'armycreator_acl_extension';
     }
 }

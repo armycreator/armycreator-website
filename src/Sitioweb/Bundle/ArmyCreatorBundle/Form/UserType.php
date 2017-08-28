@@ -2,9 +2,11 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\UserInformation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class UserType extends AbstractType
 {
@@ -21,23 +23,20 @@ class UserType extends AbstractType
     {
         $builder
             ->add('wantToPlay', null, ['required' => false])
-            ->add('informations', new Type\UserInformation)
+            ->add('informations', UserInformation::class, [ 'constraints' => new Valid() ])
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\User',
             'translation_domain' => 'forms',
-            'cascade_validation' => true
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_user';
     }
 }
-
-

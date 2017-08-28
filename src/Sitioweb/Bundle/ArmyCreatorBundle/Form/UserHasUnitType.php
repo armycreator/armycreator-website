@@ -2,11 +2,11 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserHasUnitType extends AbstractType
 {
@@ -23,21 +23,20 @@ class UserHasUnitType extends AbstractType
     {
         $builder->add(
             'number',
-            'integer',
+            IntegerType::class,
             array('attr' => array('size' => 4, 'title' => 'Number'))
         );
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserHasUnit',
             'translation_domain' => 'forms',
-            'cascade_validation' => true
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_userhasunittype';
     }

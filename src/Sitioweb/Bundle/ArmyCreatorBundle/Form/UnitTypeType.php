@@ -3,8 +3,10 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UnitTypeType extends AbstractType
 {
@@ -12,21 +14,16 @@ class UnitTypeType extends AbstractType
     {
         $builder
             ->add('name', null, ['attr' => ['autofocus' => 'autofocus']])
-            ->add('color', 'text', [ 'attr' => [ 'class' => 'color'] ])
+            ->add('color', TextType::class, [ 'attr' => [ 'class' => 'color'] ])
             ->add('position')
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType',
             'translation_domain' => 'forms'
         ));
-    }
-
-    public function getName()
-    {
-        return 'sitioweb_bundle_armycreatorbundle_unittypetype';
     }
 }

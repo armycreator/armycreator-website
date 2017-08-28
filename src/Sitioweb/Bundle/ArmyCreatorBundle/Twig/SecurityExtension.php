@@ -45,15 +45,4 @@ class SecurityExtension extends \Twig_Extension
 
         return $this->securityExtension->isGranted($role, $object, $field);
     }
-
-    /**
-     * getName
-     *
-     * @access public
-     * @return string
-     */
-    public function getName()
-    {
-        return 'ac_security_extension';
-    }
 }

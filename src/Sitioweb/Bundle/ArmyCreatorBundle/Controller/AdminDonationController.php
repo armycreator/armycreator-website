@@ -2,13 +2,14 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Donation;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\DonationType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Admin donation controller.
@@ -82,12 +83,12 @@ class AdminDonationController extends Controller
      */
     private function createCreateForm(Donation $entity)
     {
-        $form = $this->createForm(new DonationType(), $entity, array(
+        $form = $this->createForm(DonationType::class, $entity, array(
             'action' => $this->generateUrl('admin_donation_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', SubmitType::class, array('label' => 'Create', 'attr' => ['class' => 'acButton acButtonBig']));
 
         return $form;
     }
@@ -146,15 +147,16 @@ class AdminDonationController extends Controller
     */
     private function createEditForm(Donation $entity)
     {
-        $form = $this->createForm(new DonationType(), $entity, array(
+        $form = $this->createForm(DonationType::class, $entity, array(
             'action' => $this->generateUrl('admin_donation_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', SubmitType::class, array('label' => 'Update', 'attr' => ['class' => 'acButton acButtonBig']));
 
         return $form;
     }
+
     /**
      * Edits an existing Donation entity.
      *
@@ -188,6 +190,7 @@ class AdminDonationController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Donation entity.
      *
@@ -226,7 +229,7 @@ class AdminDonationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_donation_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', SubmitType::class, array('label' => 'Delete', 'attr' => ['class' => 'acButton acButtonBig']))
             ->getForm()
         ;
     }

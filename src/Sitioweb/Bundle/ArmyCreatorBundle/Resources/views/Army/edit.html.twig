@@ -14,7 +14,7 @@
     {% else %}
         {% set path = path('army_create') %}
     {% endif %}
-    <form action="{{ path }}" method="post" {{ form_enctype(form) }} class="opaque">
+    {{ form_start(form, { action: path, attr: { class: 'opaque'} }) }}
         <div>
             {{ form_row(form.breed) }}
 
@@ -71,12 +71,13 @@
             <a href="{{ path('army_detail', {'slug' : entity.slug }) }}" class="acButton">
                 {{ "army.edit.back_to_army_list"|trans }}
             </a>
-            <form
-                action="{{ path('army_delete', { 'slug': entity.slug }) }}"
-                method="post"
-                class="inbl"
-                onsubmit="javascript:return confirm('{% trans %}army.detail.delete{% endtrans %}');"
-            >
+            {{ form_start(delete_form, {
+                action: path('army_delete', { 'slug': entity.slug }),
+                attr: {
+                    class: 'inbl',
+                    onsubmit: "javascript:return confirm('" ~ ("army.detail.delete"|trans) ~ "');"
+                }
+            }) }}
                 {{ form_widget(delete_form) }}
                 <button type="submit" class="acButton">{{ "army.edit.delete"|trans }}</button>
             </form>

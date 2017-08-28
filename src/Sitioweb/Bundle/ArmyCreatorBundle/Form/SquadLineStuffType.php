@@ -3,8 +3,10 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SquadLineStuffType extends AbstractType
 {
@@ -12,14 +14,14 @@ class SquadLineStuffType extends AbstractType
     {
         $builder->add(
             'number',
-            'integer',
+            IntegerType::class,
             array(
                 'attr' => array('size' => 4, 'title' => 'Number')
             )
         );
         $builder->add(
             'asManyAsUnit',
-            'checkbox',
+            CheckboxType::class,
             array(
                 'required' => false,
                 'label' => 'As many as unit',
@@ -28,7 +30,7 @@ class SquadLineStuffType extends AbstractType
         );
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLineStuff',
@@ -36,7 +38,7 @@ class SquadLineStuffType extends AbstractType
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_squadlinestufftype';
     }

@@ -6,13 +6,14 @@ use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
 use JMS\SecurityExtraBundle\Annotation\SecureParam;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Breed controller.
@@ -172,13 +173,13 @@ class BreedController extends Controller
     public function newAction(Game $game)
     {
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
-        if (!$this->get('security.context')->isGranted('EDIT', $oi)) {
+        if (!$this->get('security.authorization_checker')->isGranted('EDIT', $oi)) {
             throw new AccessDeniedException();
         }
 
         $entity = new Breed();
         $entity->setGame($game);
-        $form   = $this->createForm(new BreedType($game), $entity);
+        $form   = $this->createForm(BreedType::class, $entity, ['game' => $game]);
 
         $this->addBreadcrumb($game);
         $this->get("apy_breadcrumb_trail")->add('breadcrumb.admin.breed.new');
@@ -196,17 +197,16 @@ class BreedController extends Controller
      * @Template("SitiowebArmyCreatorBundle:Breed:new.html.twig")
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      */
-    public function createAction(Game $game)
+    public function createAction(Request $request, Game $game)
     {
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
-        if (!$this->get('security.context')->isGranted('CREATE', $oi)) {
+        if (!$this->get('security.authorization_checker')->isGranted('CREATE', $oi)) {
             throw new AccessDeniedException();
         }
 
         $entity  = new Breed();
-        $request = $this->getRequest();
-        $form    = $this->createForm(new BreedType($game), $entity);
-        $form->bind($request);
+        $form    = $this->createForm(BreedType::class, $entity, ['game' => $game]);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -239,7 +239,7 @@ class BreedController extends Controller
     {
         $this->checkPermission($breed);
 
-        $editForm = $this->createForm(new BreedType($breed->getGame()), $breed);
+        $editForm = $this->createForm(BreedType::class, $breed, [ 'game' => $game ]);
 
         $this->addBreadcrumb($game, $breed);
 
@@ -260,7 +260,7 @@ class BreedController extends Controller
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      * @Template("SitiowebArmyCreatorBundle:Breed:edit.html.twig")
      */
-    public function updateAction(Breed $breed)
+    public function updateAction(Request $request, Breed $breed)
     {
         $this->checkPermission($breed);
 
@@ -270,11 +270,9 @@ class BreedController extends Controller
             throw $this->createNotFoundException('Unable to find Breed entity.');
         }
 
-        $editForm   = $this->createForm(new BreedType($breed->getGame()), $breed);
+        $editForm   = $this->createForm(BreedType::class, $breed, ['game' => $breed->getGame()]);
 
-        $request = $this->getRequest();
-
-        $editForm->bind($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($breed);
@@ -306,7 +304,7 @@ class BreedController extends Controller
             ->findBy(['game' => $game], ['name' => 'ASC']);
 
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
-        $canEditAll = $this->get('security.context')->isGranted('CREATE', $oi);
+        $canEditAll = $this->get('security.authorization_checker')->isGranted('CREATE', $oi);
 
         $this->addBreadcrumb($game);
 
@@ -323,7 +321,7 @@ class BreedController extends Controller
      * @ParamConverter("game", class="SitiowebArmyCreatorBundle:Game", options={"mapping": {"game" = "code"}})
      * @ParamConverter("breed", class="SitiowebArmyCreatorBundle:Breed", options={"mapping": {"breed" = "slug"}})
      */
-    public function deleteAction(Game $game, Breed $breed)
+    public function deleteAction(Request $request, Game $game, Breed $breed)
     {
         if (!$this->get('oneup_acl.manager')->isGranted('DELETE', $breed)) {
             throw new AccessDeniedException();
@@ -332,9 +330,8 @@ class BreedController extends Controller
         $id = $breed->getId();
 
         $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
 
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -357,13 +354,13 @@ class BreedController extends Controller
     private function checkPermission(Breed $breed = null, $permission = 'EDIT')
     {
         $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
-        $canEditAll = $this->get('security.context')->isGranted($permission, $oi);
+        $canEditAll = $this->get('security.authorization_checker')->isGranted($permission, $oi);
 
         if ($canEditAll) {
             $canEditInstance = true;
         } elseif($breed) {
             $oi = ObjectIdentity::fromDomainObject($breed);
-            $canEditInstance = $this->get('security.context')->isGranted($permission, $oi);
+            $canEditInstance = $this->get('security.authorization_checker')->isGranted($permission, $oi);
         } else {
             $canEditInstance = true;
         }
@@ -383,7 +380,8 @@ class BreedController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
+            ->setMethod('DELETE')
             ->getForm()
         ;
     }

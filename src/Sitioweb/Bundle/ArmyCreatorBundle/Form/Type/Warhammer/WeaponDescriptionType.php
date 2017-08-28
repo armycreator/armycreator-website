@@ -3,8 +3,10 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\Warhammer;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WeaponDescriptionType extends AbstractType
 {
@@ -14,11 +16,11 @@ class WeaponDescriptionType extends AbstractType
             ->add('range', null, ['required' => false])
             ->add('strenght', null, ['required' => false])
             ->add('armorPenetration', null, ['required' => false])
-            ->add('rule', 'textarea', ['required' => false])
+            ->add('rule', TextareaType::class, ['required' => false])
         ;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Model\Warhammer\Weapon',
@@ -28,10 +30,10 @@ class WeaponDescriptionType extends AbstractType
 
     public function getParent()
     {
-        return 'text';
+        return TextType::class;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_warhammer_weapon';
     }

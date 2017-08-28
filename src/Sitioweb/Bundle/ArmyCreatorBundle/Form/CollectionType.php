@@ -4,8 +4,11 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class CollectionType extends AbstractType
 {
@@ -14,23 +17,23 @@ class CollectionType extends AbstractType
         $builder
             ->add(
                 'userHasUnitList',
-                'collection',
+                SymfonyCollectionType::class,
                 array(
-                    'type' => new UserHasUnitType()
+                    'entry_type' => UserHasUnitType::class,
+                    'constraints' => new Valid(),
                 )
             )
-            ->add('submit', 'submit', ['attr' => ['class' => 'acButton acButtonBig right']]);
+            ->add('submit', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig right']]);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'translation_domain' => 'forms',
-            'cascade_validation' => true
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'collectiontype';
     }

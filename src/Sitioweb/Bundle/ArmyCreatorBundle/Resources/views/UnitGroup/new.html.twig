@@ -9,8 +9,7 @@
     {% set game = breed.game %}
     {% set params = {"game": game.code, "breed": breed.slug} %}
 
-    <form action="{{ path("unitgroup_create",  params) }}" method="post" {{ form_enctype(form) }} class="opaque">
-
+    {{ form_start(form, {action:path("unitgroup_create",  params), attr: {class: 'opaque'} }) }}
         {{ form_widget(form) }}
         <p class="txtright">
             <button class="acButton acButtonBig" type="submit">{{ "button.create"|trans }}</button>

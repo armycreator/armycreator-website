@@ -3,9 +3,9 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * DefaultController
@@ -25,12 +25,12 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $this->getUser();
-        if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $this->get('m6_statsd')->increment('website.index.logged');
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            // $this->get('m6_statsd')->increment('website.index.logged');
 
             return $this->authenticatedIndex();
         } else {
-            $this->get('m6_statsd')->increment('website.index.anonymous');
+            // $this->get('m6_statsd')->increment('website.index.anonymous');
 
             return [];
         }

@@ -21,12 +21,7 @@
         </div>
 
         {% if form is defined %}
-            <form
-                id="armyDetailPreferenceForm"
-                action="{{ path('army_detail', { 'slug': army.slug }) }}"
-                method="post"
-                {{ form_enctype(form) }}
-            >
+            {{ form_start(form, {attr: {id: "armyDetailPreferenceForm"}}) }}
                 <h4>{{ "army.detail.preferences"|trans }}</h4>
                 {% for key, child in form.children %}
                     {% if key|slice(0,1) != "_" %}

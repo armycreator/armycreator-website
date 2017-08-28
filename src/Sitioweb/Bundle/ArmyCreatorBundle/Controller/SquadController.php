@@ -3,26 +3,26 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
+use JMS\SecurityExtraBundle\Annotation as Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use JMS\SecurityExtraBundle\Annotation as Security;
-
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\BreedSelectType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * SquadController
@@ -170,7 +170,7 @@ class SquadController extends Controller
         }
 
         $action = $this->generateUrl('squad_link_unit', ['id' => $squad->getId(), 'armySlug' => $army->getSlug()]);
-        $breedListType = $this->createForm(new BreedSelectType(), ['breed' => $breed], ['action' => $action]);
+        $breedListType = $this->createForm(BreedSelectType::class, ['breed' => $breed], ['action' => $action]);
 
         if ($request->isMethod('post')) {
             $breedListType->handleRequest($request);
@@ -256,10 +256,8 @@ class SquadController extends Controller
      * @Method("post")
      * @Template("SitiowebArmyCreatorBundle:SquadLine:new.html.twig")
      */
-    public function createAction(Army $army, $unitGroupId)
+    public function createAction(Request $request, Army $army, $unitGroupId)
     {
-        $request = $this->getRequest();
-
         // getting unit group
         $unitGroup = $this->get('doctrine')->getManager()->getRepository('SitiowebArmyCreatorBundle:UnitGroup')->find($unitGroupId);
         if ($unitGroup === null) {
@@ -270,7 +268,7 @@ class SquadController extends Controller
         $entity->mapUnitGroup($unitGroup, true);
 
 
-        $form    = $this->createForm(new SquadType($unitGroup->getUnitType()->getBreed()), $entity);
+        $form    = $this->createForm(SquadType::class, $entity, ['breed' => $unitGroup->getUnitType()->getBreed()]);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -328,7 +326,7 @@ class SquadController extends Controller
         $this->get("apy_breadcrumb_trail")->add($tmp);
 
         $entity->addEmptySquadLine(true);
-        $editForm = $this->createForm(new SquadType($entity->getUnitType()->getBreed()), $entity);
+        $editForm = $this->createForm(SquadType::class, $entity, ['breed' => $entity->getUnitType()->getBreed()]);
         $deleteForm = $this->createDeleteForm($entity->getId());
 
         return array(
@@ -364,7 +362,7 @@ class SquadController extends Controller
      *     options={ "mapping": { "breedSlug": "slug" } }
      * )
      */
-    public function moveAction(Squad $squad, Breed $breed, $unitTypeSlug)
+    public function moveAction(Request $request, Squad $squad, Breed $breed, $unitTypeSlug)
     {
         $army = $squad->getArmy();
         if ($this->getUser() != $army->getUser()) {
@@ -398,7 +396,7 @@ class SquadController extends Controller
                 ]
              );
 
-        $position = (int) $this->get('request')->query->get('position');
+        $position = (int) $request->query->get('position');
 
          $cpt = $position == 0 ? 1 : 0;
 
@@ -439,7 +437,7 @@ class SquadController extends Controller
         }
 
         $entity->addEmptySquadLine(true);
-        $editForm = $this->createForm(new SquadType($entity->getUnitType()->getBreed()), $entity);
+        $editForm = $this->createForm(SquadType::class, $entity, ['breed' => $entity->getUnitType()->getBreed()]);
         $editForm->handleRequest($request);
         $deleteForm = $this->createDeleteForm($entity->getId());
 
@@ -522,7 +520,8 @@ class SquadController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
+            ->setMethod('DELETE')
             ->getForm()
         ;
     }

@@ -7,7 +7,7 @@
 
     <h1>UnitHasUnitGroup creation</h1>
 
-    <form action="{{ path('unithasunitgroup_create', params) }}" method="post" {{ form_enctype(form) }} class="opaque">
+    {{ form_start(form, {action: path('unithasunitgroup_create', params), attr: {class: 'opaque'}}) }}
         {{ form_widget(form) }}
         <p>
             <button type="submit">{{ "button.create"|trans }}</button>

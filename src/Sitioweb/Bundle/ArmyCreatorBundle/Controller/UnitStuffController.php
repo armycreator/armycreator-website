@@ -3,20 +3,20 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitStuff;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffMultiType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\UnitStuffType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * UnitStuff controller.
@@ -63,7 +63,7 @@ class UnitStuffController extends Controller
         );
 
         $newUnitStuffList = $this->getBreedUnitStuffList($unit);
-        $form = $this->createForm(new UnitStuffMultiType($breed), $newUnitStuffList);
+        $form = $this->createForm(UnitStuffMultiType::class, $newUnitStuffList);
 
         $form->handleRequest($request);
 
@@ -111,7 +111,7 @@ class UnitStuffController extends Controller
         }
 
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
         $unit = null;
 
         if ($form->isValid()) {
@@ -175,7 +175,8 @@ class UnitStuffController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
+            ->setMethod('DELETE')
             ->getForm()
         ;
     }

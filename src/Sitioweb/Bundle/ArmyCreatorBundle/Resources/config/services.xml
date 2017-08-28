@@ -13,8 +13,8 @@
     <services>
         <service id="sitioweb.army_creator.form.type.armybreed" class="Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\ArmyBreedType">
             <argument type="service" id="doctrine.orm.default_entity_manager" />
-            <argument type="service" id="security.context" />
-            <tag name="form.type" alias="armybreed" />
+            <argument type="service" id="security.authorization_checker" />
+            <tag name="form.type" />
         </service>
     </services>
 </container>

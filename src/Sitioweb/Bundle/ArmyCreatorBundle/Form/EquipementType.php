@@ -3,32 +3,13 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EquipementType extends AbstractType
 {
-    /**
-     * game
-     *
-     * @var Game
-     * @access private
-     */
-    private $game;
-
-    /**
-     * __construct
-     *
-     * @param Game $game
-     * @access public
-     */
-    public function __construct(Game $game)
-    {
-        $this->game = $game;
-    }
-
     /**
      * buildForm
      *
@@ -45,22 +26,22 @@ class EquipementType extends AbstractType
         $builder = $this->addDescription($builder);
 
         if ($options['data']->getId()) {
-             $builder->add('edit', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
+             $builder->add('edit', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']]);
         } else {
-             $builder->add('create', 'submit', ['attr' => ['class' => 'acButton acButtonBig']])
-                 ->add('createAndAdd', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
+             $builder->add('create', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']])
+                 ->add('createAndAdd', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']]);
         }
     }
 
 
     /**
-     * setDefaultOptions
+     * configureOptions
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      * @access public
      * @return void
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Equipement',
@@ -74,7 +55,7 @@ class EquipementType extends AbstractType
      * @access public
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'armycreator_equipementtype';
     }
@@ -87,7 +68,7 @@ class EquipementType extends AbstractType
      */
     private function addDescription(FormBuilderInterface $builder)
     {
-        $builder->add('description', 'textarea', ['attr' => ['rows' => 5, 'cols' => 150], 'required' => false]);
+        $builder->add('description', TextareaType::class, ['attr' => ['rows' => 5, 'cols' => 150], 'required' => false]);
 
         return $builder;
     }

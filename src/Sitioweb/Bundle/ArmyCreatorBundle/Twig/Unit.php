@@ -3,9 +3,8 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Twig;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\SecurityContextInterface;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class Unit extends \Twig_Extension
 {
@@ -18,16 +17,23 @@ class Unit extends \Twig_Extension
     private $objectManager;
 
     /**
+     * tokenStorage
+     *
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
+
+    /**
      * __construct
      *
      * @param ObjectManager $objectManager
      * @access public
      * @return void
      */
-    public function __construct(ObjectManager $objectManager, SecurityContextInterface $securityContext)
+    public function __construct(ObjectManager $objectManager, TokenStorageInterface $tokenStorage)
     {
         $this->objectManager = $objectManager;
-        $this->securityContext = $securityContext;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -39,7 +45,7 @@ class Unit extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'unit_feature' => new \Twig_Function_Method($this, 'unitFeature')
+            new \Twig_SimpleFunction('unit_feature', [$this, 'unitFeature'])
         );
     }
 
@@ -59,17 +65,6 @@ class Unit extends \Twig_Extension
     }
 
     /**
-     * getName
-     *
-     * @access public
-     * @return string
-     */
-    public function getName()
-    {
-        return 'unit';
-    }
-
-    /**
      * getUser
      *
      * @access private
@@ -77,7 +72,7 @@ class Unit extends \Twig_Extension
      */
     private function getUser()
     {
-        return $this->securityContext
+        return $this->tokenStorage
             ->getToken()
             ->getUser();
     }

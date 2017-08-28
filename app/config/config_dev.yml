@@ -18,7 +18,7 @@ monolog:
     handlers:
         main:
             type:  stream
-            path:  %kernel.logs_dir%/%kernel.environment%.log
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
         firephp:
             type:  firephp
@@ -30,5 +30,5 @@ services:
         decorates: router
         decoration_inner_name: router.inner
         arguments:
-            - @router.inner
-            - @request_stack
+            - "@router.inner"
+            - "@request_stack"

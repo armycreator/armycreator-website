@@ -9,7 +9,7 @@
     {% set game = breed.game %}
     {% set params = {"game": game.code, "breed": breed.slug, "unit": unit.slug} %}
 
-    <form action="{{ path("unitstuff_new", params) }}" method="post" {{ form_enctype(form) }} class="opaque">
+    {{ form_start(form, {action: path("unitstuff_new", params), attr: {class: 'opaque'}}) }}
         <div>
             {% for unitStuffForm in form %}
                 {% if unitStuffForm.vars.id == 'armycreator_unitstuffmulti__token' %}

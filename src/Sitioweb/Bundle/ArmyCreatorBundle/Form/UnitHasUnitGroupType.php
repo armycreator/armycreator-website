@@ -3,27 +3,14 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class UnitHasUnitGroupType extends AbstractType
 {
-    /**
-     * breed
-     *
-     * @var Breed
-     * @access private
-     */
-    private $breed;
-
-    public function __construct(Breed $breed)
-    {
-        $this->breed = $breed;
-    }
-
     /**
      * buildForm
      *
@@ -34,18 +21,20 @@ class UnitHasUnitGroupType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $breed = $options['breed'];
+
         $builder->add(
                     'unit',
                     null,
                     array(
                         'attr' => ['autofocus' => 'autofocus'],
                         'required' => true,
-                        'property' => 'nameAndPoints',
-                        'query_builder' => function(EntityRepository $er) {
+                        'choice_label' => 'nameAndPoints',
+                        'query_builder' => function(EntityRepository $er) use ($breed) {
                             return $er->createQueryBuilder('u')
                                     ->add('where', 'u.breed = :breed')
                                     ->add('orderBy', 'u.name ASC')
-                                    ->setParameter('breed', $this->breed);
+                                    ->setParameter('breed', $breed);
                         }
                     )
                 )
@@ -54,12 +43,12 @@ class UnitHasUnitGroupType extends AbstractType
                     null,
                     array(
                         'required' => true,
-                        'property' => 'name',
-                        'query_builder' => function(EntityRepository $er) {
+                        'choice_label' => 'name',
+                        'query_builder' => function(EntityRepository $er) use ($breed) {
                             return $er->createQueryBuilder('u')
                                     ->add('where', 'u.breed = :breed')
                                     ->add('orderBy', 'u.name ASC')
-                                    ->setParameter('breed', $this->breed);
+                                    ->setParameter('breed', $breed);
                         }
                     )
                 )
@@ -67,16 +56,18 @@ class UnitHasUnitGroupType extends AbstractType
                 ->add('canChooseNumber', null, array('required' => false));
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired('breed');
+        $resolver->setAllowedTypes('breed', Breed::class);
+
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitHasUnitGroup',
             'translation_domain' => 'forms',
-            'cascade_validation' => true
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_unithasunitgrouptype';
     }

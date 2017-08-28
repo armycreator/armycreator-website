@@ -3,12 +3,12 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ArmyBbcodePreferencesType extends AbstractType
 {
@@ -32,28 +32,24 @@ class ArmyBbcodePreferencesType extends AbstractType
             //->add('showStuffPoints')
             ->add(
                 'separator',
-                'choice',
+                ChoiceType::class,
                 array(
-                    'choice_list' => new ChoiceList(
-                        array('[*]', ' / ', ', '),
-                        array(
-                            'ac_armybbcode.form.carriage_return',
-                            'ac_armybbcode.form.slash',
-                            'ac_armybbcode.form.comma'
-                        )
-                    ),
-                    'expanded' => true
+                    'choices' => [
+                        'ac_armybbcode.form.carriage_return' => '[*]',
+                        'ac_armybbcode.form.slash' => '/',
+                        'ac_armybbcode.form.comma' => ',',
+                    ],
                 )
             )
             ->add(
                 'colorSquadType',
-                'text',
+                TextType::class,
                 [
                     'attr' => [ 'class' => 'color']
                 ]
             )
-            ->add('colorSquad', 'text', [ 'attr' => [ 'class' => 'color'] ])
-            ->add('colorSquadDetail', 'text', [ 'attr' => [ 'class' => 'color'] ])
+            ->add('colorSquad', TextType::class, [ 'attr' => [ 'class' => 'color'] ])
+            ->add('colorSquadDetail', TextType::class, [ 'attr' => [ 'class' => 'color'] ])
             //->add('showNbIfAlone')
             //->add('showUnitCarac')
             //->add('showPersonnalName')
@@ -63,7 +59,7 @@ class ArmyBbcodePreferencesType extends AbstractType
     }
 
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UserPreference',
@@ -71,7 +67,7 @@ class ArmyBbcodePreferencesType extends AbstractType
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ac_armybbcode';
     }

@@ -9,6 +9,6 @@ services:
     armycreator.twig_extension:
         class: Sitioweb\Bundle\AclBundle\Twig\AclExtension
         arguments:
-            - @oneup_acl.manager
+            - "@oneup_acl.manager"
         tags:
             - { name: twig.extension }

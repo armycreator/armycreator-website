@@ -3,22 +3,22 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Controller;
 
 use APY\BreadcrumbTrailBundle\Annotation\Breadcrumb;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use JMS\SecurityExtraBundle\Annotation as Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Request;
-use JMS\SecurityExtraBundle\Annotation as Security;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Army;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Squad;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
+
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Unit;
 use Sitioweb\Bundle\ArmyCreatorBundle\Event\GameEvent;
-use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadLineType;
+use Sitioweb\Bundle\ArmyCreatorBundle\Form\SquadType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * SquadController
@@ -69,7 +69,8 @@ class SquadLineController extends Controller
         $squad = new Squad();
         $squad->mapUnitGroup($unitGroup, true);
 
-        $form = $this->createForm(new SquadType($unitGroup->getUnitType()->getBreed()), $squad);
+        $formBreed = $unitGroup->getUnitType()->getBreed();
+        $form = $this->createForm(SquadType::class, $squad, [ 'breed' => $formBreed ]);
 
         return array(
             'army' => $army,
@@ -92,16 +93,15 @@ class SquadLineController extends Controller
      * @ParamConverter("squad", class="SitiowebArmyCreatorBundle:Squad", options={ "id" = "id" })
      * @ParamConverter("unit", class="SitiowebArmyCreatorBundle:Unit", options={ "id" = "unitId" })
      */
-    public function linkUnitStuffAction(Army $army, Squad $squad, Unit $unit)
+    public function linkUnitStuffAction(Request $request, Army $army, Squad $squad, Unit $unit)
     {
         $squadLine = new SquadLine;
         $squadLine->setUnit($unit)
             ->setSquad($squad);
         $squadLine->addEmptySquadLineStuff();
 
-        $form = $this->createForm(new SquadLineType(), $squadLine);
+        $form = $this->createForm(SquadLineType::class, $squadLine);
 
-        $request = $this->get('request');
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
 

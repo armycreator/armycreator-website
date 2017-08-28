@@ -2,35 +2,17 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\FArm\EquipementDescriptionType as FArmEquipementDescriptionType;
 use Sitioweb\Bundle\ArmyCreatorBundle\Form\Type\Warhammer\WeaponDescriptionType as WarhammerWeaponDescriptionType;
+use Symfony\Component\Form\AbstractType;
+
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class WeaponType extends AbstractType
 {
-    /**
-     * game
-     *
-     * @var Game
-     * @access private
-     */
-    private $game;
-
-    /**
-     * __construct
-     *
-     * @param Game $game
-     * @access public
-     */
-    public function __construct(Game $game)
-    {
-        $this->game = $game;
-    }
-
     /**
      * buildForm
      *
@@ -45,25 +27,28 @@ class WeaponType extends AbstractType
             ->add('defaultPoints')
             ->add('defaultAuto', null, ['required' => false]);
 
-        $builder = $this->addGameSpecifics($builder);
+        $builder = $this->addGameSpecifics($builder, $options['game']);
 
         if ($options['data']->getId()) {
-             $builder->add('edit', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
+             $builder->add('edit', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']]);
         } else {
-             $builder->add('create', 'submit', ['attr' => ['class' => 'acButton acButtonBig']])
-                 ->add('createAndAdd', 'submit', ['attr' => ['class' => 'acButton acButtonBig']]);
+             $builder->add('create', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']])
+                 ->add('createAndAdd', SubmitType::class, ['attr' => ['class' => 'acButton acButtonBig']]);
         }
     }
 
     /**
-     * setDefaultOptions
+     * configureOptions
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      * @access public
      * @return void
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired('game');
+        $resolver->setAllowedTypes('game', Game::class);
+
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\Weapon',
             'translation_domain' => 'forms'
@@ -76,7 +61,7 @@ class WeaponType extends AbstractType
      * @access public
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'armycreator_weapontype';
     }
@@ -87,14 +72,14 @@ class WeaponType extends AbstractType
      * @access private
      * @return FormBuilderInterface
      */
-    private function addGameSpecifics(FormBuilderInterface $builder)
+    private function addGameSpecifics(FormBuilderInterface $builder, Game $game)
     {
-        switch ($this->game->getCode()) {
+        switch ($game->getCode()) {
             case 'FArm':
-                $builder->add('description', new FArmEquipementDescriptionType);
+                $builder->add('description', FArmEquipementDescriptionType::class);
                 break;
             default:
-                $builder->add('description', new WarhammerWeaponDescriptionType);
+                $builder->add('description', WarhammerWeaponDescriptionType::class);
                 break;
         }
 

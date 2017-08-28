@@ -17,7 +17,7 @@ services:
     armycreator.twig.squad_extension: 
         class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\Squad
         arguments:
-            - @doctrine.orm.default_entity_manager
+            - "@doctrine.orm.default_entity_manager"
         tags:
             - { name: twig.extension }
 
@@ -25,24 +25,24 @@ services:
     armycreator.twig.unit_extension: 
         class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\Unit
         arguments:
-            - @doctrine.orm.default_entity_manager
-            - @security.context
+            - "@doctrine.orm.default_entity_manager"
+            - "@security.token_storage"
         tags:
             - { name: twig.extension }
 
     armycreator.twig.security: 
         class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\SecurityExtension
         arguments:
-            - @twig.extension.security
-            - @security.token_storage
+            - "@twig.extension.security"
+            - "@security.token_storage"
         tags:
             - { name: twig.extension }
 
     armycreator.sitemap.listener:
         class: Sitioweb\Bundle\ArmyCreatorBundle\SitemapListener
         arguments:
-            - @router
-            - @doctrine.orm.default_entity_manager
+            - "@router"
+            - "@doctrine.orm.default_entity_manager"
         tags:
             - { name: presta.sitemap.listener }
 
@@ -50,3 +50,18 @@ services:
         class: Sitioweb\Bundle\ArmyCreatorBundle\EventListener\ArmyPointListener
         tags :
             - { name: doctrine.event_subscriber, connection: default }
+
+    armycreater.menu_builder:
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Menu\Builder
+        arguments: 
+            - "@knp_menu.factory"
+            - "@request_stack"
+            - "@security.token_storage"
+            - "@security.authorization_checker"
+        tags:
+            - { name: knp_menu.menu_builder, method: mainMenu, alias: main } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: secondMainMenu, alias: secondMain } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: breedShowMenu, alias: breedShow } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: gameMenu, alias: game } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: armyListMenu, alias: armyList } # The alias is what is used to retrieve the menu
+

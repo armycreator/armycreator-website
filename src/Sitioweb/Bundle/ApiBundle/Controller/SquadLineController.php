@@ -2,9 +2,9 @@
 
 namespace Sitioweb\Bundle\ApiBundle\Controller;
 
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\FOSRestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\SquadLine;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

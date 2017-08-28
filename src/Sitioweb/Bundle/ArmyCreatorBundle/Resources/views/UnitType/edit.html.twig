@@ -5,13 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{{ path("unittype_update", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }) }}" method="post" {{ form_enctype(edit_form) }} class="opaque">
+    {{ form_start(edit_form, { action: path("unittype_update", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }), attr: {class: 'opaque'} }) }}
         <input type="hidden" name="_method" value="PUT" />
         {{ form_widget(edit_form) }}
         <div class="txtright">
             <button class="acButton acButtonBig" type="submit">{{ "button.edit"|trans }}</button>
         </div>
-    </form>
+        {{ form_errors(edit_form) }}
+    {{ form_end(edit_form) }}
 
 
     <div class="txtright">
@@ -21,12 +22,15 @@
             </a>
         </div>
         <div>
-            <form
-                action="{{ path("unittype_delete", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }) }}"
-                method="post"
-                onsubmit="javascript:return confirm('{% trans %}unit_type.edit.delete{% endtrans %}');"
-            >
-                <input type="hidden" name="_method" value="DELETE" />
+            {{ form_start(
+                delete_form,
+                {
+                    action: path("unittype_delete", { "id": entity.id, "breed": breed.slug, "game": breed.game.code }),
+                    attr: {
+                        onsubmit: "javascript:return confirm('" ~ ("unit_type.edit.delete"|trans) ~"');"
+                    }
+                }
+            ) }}
                 {{ form_widget(delete_form) }}
                 <div class="txtright">
                     <button class="acButton" type="submit">{{ "button.delete"|trans }}</button>

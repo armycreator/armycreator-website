@@ -3,43 +3,24 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
-use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UnitGroupType extends AbstractType
 {
-    /**
-     * breed
-     *
-     * @var Breed
-     * @access private
-     */
-    private $breed;
-
-    /**
-     * __construct
-     *
-     * @param Breed $breed
-     * @access private
-     * @return void
-     */
-    public function __construct(Breed $breed)
-    {
-        $this->breed = $breed;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $breed = $options['breed'];
+
         $builder->add('unitType', null, array(
             'required' => true,
-            'property' => 'name',
-            'query_builder' => function(EntityRepository $er) {
+            'choice_label' => 'name',
+            'query_builder' => function(EntityRepository $er) use ($breed) {
                 return $er->createQueryBuilder('t')
                         ->add('where', 't.breed = :breed')
-                        ->setParameter('breed', $this->breed);
+                        ->setParameter('breed', $breed);
             }
         ));
 
@@ -47,15 +28,18 @@ class UnitGroupType extends AbstractType
         $builder->add('points', null, ['label' => 'Supplementary points']);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired('breed');
+        $resolver->setAllowedTypes('breed', Breed::class);
+
         $resolver->setDefaults(array(
             'data_class' => 'Sitioweb\Bundle\ArmyCreatorBundle\Entity\UnitGroup',
             'translation_domain' => 'forms'
         ));
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'unitgrouptype';
     }

@@ -4,9 +4,9 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle;
 
 use FOS\UserBundle\Doctrine\UserManager;
 use FOS\UserBundle\Security\LoginManager;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Role\SwitchUserRole;
 
@@ -106,7 +106,6 @@ class UserService
                     $lastLogin->setTimestamp($user->data['user_lastvisit']);
                     $currentUser->setLastLogin($lastLogin);
                     $currentUser->setEnabled($user->data['is_registered']);
-                    $currentUser->setLocked(false);
                     $currentUser->setAvatar($user->data['user_avatar']);
 
                     $this->userManager->updateUser($currentUser);

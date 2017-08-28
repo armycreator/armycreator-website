@@ -5,25 +5,25 @@
         "psr-0": { "": "src/" }
     },
     "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "~2.7",
+        "php": "^7.0.0",
+        "symfony/symfony": "^3.2",
         "doctrine/orm": "~2.0",
-        "twig/twig": "<2.0.0",
+        "twig/twig": "^2.0.0",
         "doctrine/doctrine-bundle": "~1.0",
         "stof/doctrine-extensions-bundle": "~1.1",
-        "twig/extensions": "~1.0",
-        "symfony/swiftmailer-bundle": "~2.0",
-        "symfony/monolog-bundle": "~2.0",
-        "sensio/distribution-bundle": "~2.0",
-        "sensio/framework-extra-bundle": "~3.0",
-        "sensio/generator-bundle": "~2.0",
+        "twig/extensions": "^1.0",
+        "symfony/swiftmailer-bundle": "^3.0",
+        "symfony/monolog-bundle": "^3.0",
+        "sensio/distribution-bundle": "^5.0",
+        "sensio/framework-extra-bundle": "^3.0",
+        "sensio/generator-bundle": "^3.0",
 
         "jms/security-extra-bundle": "~1.0",
         "jms/di-extra-bundle": "~1.0",
         "sonata-project/intl-bundle": "~2.0",
         "ircmaxell/password-compat": "~1.0",
-        "oneup/acl-bundle": "~0.12",
-        "knplabs/knp-snappy-bundle": "~1.2",
+        "oneup/acl-bundle": "^1.0.0",
+        "knplabs/knp-snappy-bundle": "^1.4",
         "raven/raven": "~0.12",
 
         "apy/breadcrumbtrail-bundle":"~1.0",
@@ -31,15 +31,14 @@
 
         "knplabs/knp-menu-bundle":"~2.0",
         "knplabs/knp-paginator-bundle":"~2.0",
-        "friendsofsymfony/user-bundle": "dev-master#808672b",
+        "friendsofsymfony/user-bundle": "^2.0",
         "friendsofsymfony/jsrouting-bundle": "~1.5",
-        "helios-ag/fm-bbcode-bundle": "@stable",
-        "presta/sitemap-bundle": "~1.4.2",
-        "suncat/mobile-detect-bundle": "~0.10",
+        "helios-ag/fm-bbcode-bundle": "^7.0",
+        "presta/sitemap-bundle": "^1.4.2",
 
-        "jms/serializer-bundle": "~0.13",
-        "friendsofsymfony/rest-bundle": "~1.4",
-        "willdurand/hateoas-bundle": "~0.4",
+        "jms/serializer-bundle": "^2.0.0",
+        "friendsofsymfony/rest-bundle": "^2.1.0",
+        "willdurand/hateoas-bundle": "^1.3.0",
         "friendsofsymfony/oauth-server-bundle": "~1.4",
         "nelmio/api-doc-bundle": "~2.7",
         "nelmio/cors-bundle": "~1.4",
@@ -47,7 +46,6 @@
     },
 
     "require-dev": {
-        "raulfraile/ladybug-bundle": "@stable",
         "atoum/atoum": "^3.0"
     },
 
