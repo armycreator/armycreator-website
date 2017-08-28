@@ -247,6 +247,3 @@ jms_serializer:
             ArmyCreatorEntities:
                 namespace_prefix: "Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity"
                 path: "@SitiowebArmyCreatorBundle/Resources/config/serializer"
-
-sentry:
-    dsn: "%sentry_dsn%"

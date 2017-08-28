@@ -22,3 +22,6 @@ monolog:
             type:  stream
             path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
+
+sentry:
+    dsn: "%sentry_dsn%"
