@@ -30,6 +30,7 @@ mimetypes:
             global.css:
                 - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/elusive-iconfont/less/elusive-webfont.less"
                 - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/tooltipster/css/tooltipster.css"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/github-corner.css"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/knacss.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/override.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/font.less"
