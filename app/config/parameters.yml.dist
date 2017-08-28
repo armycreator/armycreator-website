@@ -25,3 +25,4 @@ parameters:
     domain.api: 'api.armycreator.net'
     domain.oauth2: 'oauth2.armycreator.net'
     domain.website: 'www.armycreator.net'
+    sentry_dsn: "https://xxx@sentry.io/12345"

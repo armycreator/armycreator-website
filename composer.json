@@ -24,7 +24,6 @@
         "ircmaxell/password-compat": "~1.0",
         "oneup/acl-bundle": "^1.0.0",
         "knplabs/knp-snappy-bundle": "^1.4",
-        "raven/raven": "~0.12",
 
         "apy/breadcrumbtrail-bundle":"~1.0",
         "m6web/statsd-bundle": "~2.0",
@@ -42,7 +41,8 @@
         "friendsofsymfony/oauth-server-bundle": "~1.4",
         "nelmio/api-doc-bundle": "~2.7",
         "nelmio/cors-bundle": "~1.4",
-        "doctrine/doctrine-migrations-bundle": "^1.2"
+        "doctrine/doctrine-migrations-bundle": "^1.2",
+        "sentry/sentry-symfony": "^0.8.6"
     },
 
     "require-dev": {

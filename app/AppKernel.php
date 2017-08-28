@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Presta\SitemapBundle\PrestaSitemapBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Sentry\SentryBundle\SentryBundle(),
 
             // API
             new JMS\SerializerBundle\JMSSerializerBundle(),
