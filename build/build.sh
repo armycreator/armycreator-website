@@ -16,7 +16,7 @@ npm install;
 ./node_modules/.bin/gassetic build --env=prod
 rm web/css/font
 ln -s /home/upload/code/armycreator/build/$BUILD_NUMBER/src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/elusive-iconfont/fonts web/css
-php app/console cache:clear --env=prod;
+php app/console cache:warmup --env=prod;
 # php app/console assets:install --env=prod;
 # php app/console assetic:dump --env=prod;
 
