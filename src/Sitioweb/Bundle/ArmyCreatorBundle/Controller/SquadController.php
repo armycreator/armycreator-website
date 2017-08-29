@@ -475,7 +475,7 @@ class SquadController extends Controller
      * Deletes a Squad entity.
      *
      * @Route("/{id}/delete", name="squad_delete")
-     * @Method("POST")
+     * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
     {
