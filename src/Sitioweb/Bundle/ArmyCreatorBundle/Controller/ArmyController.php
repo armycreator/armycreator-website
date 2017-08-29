@@ -161,7 +161,7 @@ class ArmyController extends Controller
 
         $html = $this->renderView(
             'SitiowebArmyCreatorBundle:Army:printableVersion.html.twig',
-            $this->detailAction($army) + ['pdf' => true]
+            $this->detailAction($request, $army) + ['pdf' => true]
         );
 
         if ($request->query->has('html')) {
@@ -190,9 +190,9 @@ class ArmyController extends Controller
      * @Template()
      * @ParamConverter("army", class="SitiowebArmyCreatorBundle:Army", options={"mapping": {"slug" = "slug"}})
      */
-    public function printableVersionAction(Army $army)
+    public function printableVersionAction(Request $request, Army $army)
     {
-        return $this->detailAction($army) + ['pdf' => true];
+        return $this->detailAction($request, $army) + ['pdf' => true];
     }
 
     /**
