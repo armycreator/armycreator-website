@@ -1,0 +1,1562 @@
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_change_load_settings.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_change_load_settings.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_change_load_settings; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_change_load_settings.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_change_load_settings.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_change_load_settings; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_change_load_settings.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_change_load_settings.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_change_load_settings; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_change_load_settings.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_change_load_settings.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\profilefield_change_load_settings; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_location.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\profilefield_location.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\profilefield_location; Time: 0.33 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_location.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_location.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_location; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_location.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_location.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\profilefield_location; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\soft_delete_mod_convert2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\soft_delete_mod_convert.
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v310\soft_delete_mod_convert
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\soft_delete_mod_convert2.
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v310\soft_delete_mod_convert2
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\ucp_popuppm_module.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\ucp_popuppm_module.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\ucp_popuppm_module; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\ucp_popuppm_module.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\ucp_popuppm_module.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\ucp_popuppm_module; Time: 0.02 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\beta1.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\beta1; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta1.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\beta1.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\beta1; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\acp_prune_users_module.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\acp_prune_users_module.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\acp_prune_users_module; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\acp_prune_users_module.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\acp_prune_users_module.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\acp_prune_users_module; Time: 0.02 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_location_cleanup.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\profilefield_location_cleanup.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\profilefield_location_cleanup; Time: 0.04 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_location_cleanup.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_location_cleanup.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\profilefield_location_cleanup; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\beta2.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\beta2; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta2.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\beta2.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\beta2; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\auth_provider_oauth2.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\auth_provider_oauth2.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\auth_provider_oauth2; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\auth_provider_oauth2.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\auth_provider_oauth2.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\auth_provider_oauth2; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\board_contact_name.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\board_contact_name.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\board_contact_name; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\board_contact_name.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\board_contact_name.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\board_contact_name; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\jquery_update2.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\jquery_update2.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\jquery_update2; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\jquery_update2.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\jquery_update2.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\jquery_update2; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\live_searches_config.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\live_searches_config; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\live_searches_config.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\live_searches_config; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\prune_shadow_topics.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\prune_shadow_topics.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\prune_shadow_topics; Time: 0.28 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\prune_shadow_topics.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\prune_shadow_topics.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\prune_shadow_topics; Time: 0.07 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\prune_shadow_topics.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\prune_shadow_topics.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\prune_shadow_topics; Time: 0.04 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\prune_shadow_topics.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\prune_shadow_topics.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\prune_shadow_topics; Time: 0.51 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\prune_shadow_topics.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\prune_shadow_topics.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\prune_shadow_topics; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\beta3.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\beta3; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta3.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\beta3.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\beta3; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\extensions_version_check_force_unstable.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\extensions_version_check_force_unstable.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\extensions_version_check_force_unstable; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\extensions_version_check_force_unstable.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\extensions_version_check_force_unstable.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\extensions_version_check_force_unstable; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\reset_missing_captcha_plugin.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\reset_missing_captcha_plugin.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\reset_missing_captcha_plugin; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\reset_missing_captcha_plugin.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\reset_missing_captcha_plugin.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\reset_missing_captcha_plugin; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\beta4.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\beta4; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\beta4.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\beta4.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\beta4; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\contact_admin_acp_module.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\contact_admin_acp_module; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\contact_admin_acp_module.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\contact_admin_acp_module; Time: 0.01 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\contact_admin_form.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\contact_admin_form.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\contact_admin_form; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\contact_admin_form.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\contact_admin_form.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\contact_admin_form; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\contact_admin_form.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\contact_admin_form.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\contact_admin_form; Time: 0.03 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\passwords_convert_p2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\passwords_convert_p1.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\passwords_convert_p1.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\passwords_convert_p1; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\passwords_convert_p2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\passwords_convert_p1.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\passwords_convert_p1.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\passwords_convert_p1; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\passwords_convert_p2.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\passwords_convert_p2.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\passwords_convert_p2; Time: 0.04 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\passwords_convert_p2.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\passwords_convert_p2.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\passwords_convert_p2; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_facebook.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\profilefield_facebook.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\profilefield_facebook; Time: 0.04 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_facebook.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_facebook.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\profilefield_facebook; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_googleplus.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\profilefield_googleplus.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\profilefield_googleplus; Time: 0.03 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_googleplus.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_googleplus.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\profilefield_googleplus; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_skype.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\profilefield_skype.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\profilefield_skype; Time: 0.03 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_skype.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_skype.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\profilefield_skype; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_twitter.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\profilefield_twitter.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\profilefield_twitter; Time: 0.03 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_twitter.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_twitter.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\profilefield_twitter; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_youtube.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\profilefield_youtube.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\profilefield_youtube; Time: 0.06 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_youtube.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_youtube.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\profilefield_youtube; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\rc1.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\rc1; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc1.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\rc1.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\rc1; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\rc2.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\rc2; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc2.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\rc2.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\rc2; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\captcha_plugins.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\captcha_plugins.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\captcha_plugins; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\captcha_plugins.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\captcha_plugins.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\captcha_plugins; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\captcha_plugins.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\captcha_plugins.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\captcha_plugins; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rename_too_long_indexes.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\rename_too_long_indexes.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\rename_too_long_indexes; Time: 0.02 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rename_too_long_indexes.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\rename_too_long_indexes.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\rename_too_long_indexes; Time: 0.07 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rename_too_long_indexes.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\rename_too_long_indexes.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\rename_too_long_indexes; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\search_type.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\search_type.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\search_type; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\search_type.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\search_type.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\search_type; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\topic_sort_username.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\topic_sort_username.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\topic_sort_username; Time: 0.13 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\topic_sort_username.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\topic_sort_username.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\topic_sort_username; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\rc3.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\rc3; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc3.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\rc3.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\rc3; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\notifications_use_full_name.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\notifications_use_full_name.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\notifications_use_full_name; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\notifications_use_full_name.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\notifications_use_full_name.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\notifications_use_full_name; Time: 0.27 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\notifications_use_full_name.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\notifications_use_full_name.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\notifications_use_full_name; Time: 0.31 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\rc4.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\rc4; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc4.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\rc4.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\rc4; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_field_validation_length.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\profilefield_field_validation_length.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\profilefield_field_validation_length; Time: 0.03 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\profilefield_field_validation_length.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\profilefield_field_validation_length.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\profilefield_field_validation_length; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\remove_acp_styles_cache.
+[DEBUG] Migration already effectively installed (skipped): \phpbb\db\migration\data\v310\remove_acp_styles_cache
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\rc5.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\rc5; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc5.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\rc5.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\rc5; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\rc6.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\rc6; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\rc6.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\rc6.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\rc6; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\bot_update.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\bot_update.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\bot_update; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\bot_update.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\bot_update.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\bot_update; Time: 0.15 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\bot_update.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\bot_update.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\bot_update; Time: 0.16 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v310\gold.
+[INFO] Installed Schema: \phpbb\db\migration\data\v310\gold; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v310\gold.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v310\gold.
+[INFO] Installed Data: \phpbb\db\migration\data\v310\gold; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\style_update.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\style_update.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\style_update; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\style_update.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\style_update.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\style_update; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\v311.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\v311; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v311.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\v311.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\v311; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\m_softdelete_global.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\m_softdelete_global.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\m_softdelete_global; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\m_softdelete_global.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\m_softdelete_global.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\m_softdelete_global; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\v312rc1.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\v312rc1; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312rc1.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\v312rc1.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\v312rc1; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\v312.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\v312; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v312.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\v312.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\v312; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\plupload_last_gc_dynamic; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\profilefield_remove_underscore_from_alpha.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\profilefield_remove_underscore_from_alpha.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\profilefield_remove_underscore_from_alpha; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\profilefield_remove_underscore_from_alpha.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\profilefield_remove_underscore_from_alpha.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\profilefield_remove_underscore_from_alpha; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\profilefield_yahoo_update_url.
+[DEBUG] Installing Schema: \phpbb\db\migration\data\v31x\profilefield_yahoo_update_url.
+[INFO] Installed Schema: \phpbb\db\migration\data\v31x\profilefield_yahoo_update_url; Time: 0.00 seconds
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc2.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\v313rc1.
+[DEBUG] Apply dependencies of \phpbb\db\migration\data\v31x\profilefield_yahoo_update_url.
+[DEBUG] Installing Data: \phpbb\db\migration\data\v31x\profilefield_yahoo_update_url.
+[INFO] Installed Data: \phpbb\db\migration\data\v31x\profilefield_yahoo_update_url; Time: 0.00 seconds

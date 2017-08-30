@@ -14,3 +14,4 @@
 /src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/doc/maquettes/
 /src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/
 node_modules/
+/web/forum/vendor/

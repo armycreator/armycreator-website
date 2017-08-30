@@ -1,10 +1,13 @@
 <?php
 /**
 *
-* @package phpBB3
-* @version $Id$
-* @copyright (c) 2007 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* This file is part of the phpBB Forum Software package.
+*
+* @copyright (c) phpBB Limited <https://www.phpbb.com>
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
+* For full copyright and license information, please see
+* the docs/CREDITS.txt file.
 *
 */
 
@@ -25,8 +28,6 @@ if (!defined('IN_PHPBB'))
 * @author Florian Schmitz (floele)
 *
 * Only slightly modified by Acyd Burn
-*
-* @package phpBB3
 */
 class jabber
 {
@@ -40,6 +41,9 @@ class jabber
 	var $username;
 	var $password;
 	var $use_ssl;
+	var $verify_peer;
+	var $verify_peer_name;
+	var $allow_self_signed;
 	var $resource = 'functions_jabber.phpbb.php';
 
 	var $enable_logging;
@@ -48,8 +52,18 @@ class jabber
 	var $features = array();
 
 	/**
+	* Constructor
+	*
+	* @param string $server Jabber server
+	* @param int $port Jabber server port
+	* @param string $username Jabber username or JID
+	* @param string $password Jabber password
+	* @param boold $use_ssl Use ssl
+	* @param bool $verify_peer Verify SSL certificate
+	* @param bool $verify_peer_name Verify Jabber peer name
+	* @param bool $allow_self_signed Allow self signed certificates
 	*/
-	function jabber($server, $port, $username, $password, $use_ssl = false)
+	function __construct($server, $port, $username, $password, $use_ssl = false, $verify_peer = true, $verify_peer_name = true, $allow_self_signed = false)
 	{
 		$this->connect_server		= ($server) ? $server : 'localhost';
 		$this->port					= ($port) ? $port : 5222;
@@ -69,7 +83,10 @@ class jabber
 		}
 
 		$this->password				= $password;
-		$this->use_ssl				= ($use_ssl && $this->can_use_ssl()) ? true : false;
+		$this->use_ssl				= ($use_ssl && self::can_use_ssl()) ? true : false;
+		$this->verify_peer			= $verify_peer;
+		$this->verify_peer_name		= $verify_peer_name;
+		$this->allow_self_signed	= $allow_self_signed;
 
 		// Change port if we use SSL
 		if ($this->port == 5222 && $this->use_ssl)
@@ -84,18 +101,17 @@ class jabber
 	/**
 	* Able to use the SSL functionality?
 	*/
-	function can_use_ssl()
+	static public function can_use_ssl()
 	{
-		// Will not work with PHP >= 5.2.1 or < 5.2.3RC2 until timeout problem with ssl hasn't been fixed (http://bugs.php.net/41236)
-		return ((version_compare(PHP_VERSION, '5.2.1', '<') || version_compare(PHP_VERSION, '5.2.3RC2', '>=')) && @extension_loaded('openssl')) ? true : false;
+		return @extension_loaded('openssl');
 	}
 
 	/**
 	* Able to use TLS?
 	*/
-	function can_use_tls()
+	static public function can_use_tls()
 	{
-		if (!@extension_loaded('openssl') || !function_exists('stream_socket_enable_crypto') || !function_exists('stream_get_meta_data') || !function_exists('socket_set_blocking') || !function_exists('stream_get_wrappers'))
+		if (!@extension_loaded('openssl') || !function_exists('stream_socket_enable_crypto') || !function_exists('stream_get_meta_data') || !function_exists('stream_set_blocking') || !function_exists('stream_get_wrappers'))
 		{
 			return false;
 		}
@@ -138,7 +154,7 @@ class jabber
 
 		$this->session['ssl'] = $this->use_ssl;
 
-		if ($this->open_socket($this->connect_server, $this->port, $this->use_ssl))
+		if ($this->open_socket($this->connect_server, $this->port, $this->use_ssl, $this->verify_peer, $this->verify_peer_name, $this->allow_self_signed))
 		{
 			$this->send("<?xml version='1.0' encoding='UTF-8' ?" . ">\n");
 			$this->send("<stream:stream to='{$this->server}' xmlns='jabber:client' xmlns:stream='http://etherx.jabber.org/streams' version='1.0'>\n");
@@ -226,10 +242,13 @@ class jabber
 	* @param string $server host to connect to
 	* @param int $port port number
 	* @param bool $use_ssl use ssl or not
+	* @param bool $verify_peer verify ssl certificate
+	* @param bool $verify_peer_name verify peer name
+	* @param bool $allow_self_signed allow self-signed ssl certificates
 	* @access public
 	* @return bool
 	*/
-	function open_socket($server, $port, $use_ssl = false)
+	function open_socket($server, $port, $use_ssl, $verify_peer, $verify_peer_name, $allow_self_signed)
 	{
 		if (@function_exists('dns_get_record'))
 		{
@@ -240,12 +259,26 @@ class jabber
 			}
 		}
 
-		$server = $use_ssl ? 'ssl://' . $server : $server;
+		$options = array();
 
-		if ($this->connection = @fsockopen($server, $port, $errorno, $errorstr, $this->timeout))
+		if ($use_ssl)
 		{
-			socket_set_blocking($this->connection, 0);
-			socket_set_timeout($this->connection, 60);
+			$remote_socket = 'ssl://' . $server . ':' . $port;
+
+			// Set ssl context options, see http://php.net/manual/en/context.ssl.php
+			$options['ssl'] = array('verify_peer' => $verify_peer, 'verify_peer_name' => $verify_peer_name, 'allow_self_signed' => $allow_self_signed);
+		}
+		else
+		{
+			$remote_socket = $server . ':' . $port;
+		}
+
+		$socket_context = stream_context_create($options);
+
+		if ($this->connection = @stream_socket_client($remote_socket, $errorno, $errorstr, $this->timeout, STREAM_CLIENT_CONNECT, $socket_context))
+		{
+			stream_set_blocking($this->connection, 0);
+			stream_set_timeout($this->connection, 60);
 
 			return true;
 		}
@@ -443,7 +476,7 @@ class jabber
 				}
 
 				// Let's use TLS if SSL is not enabled and we can actually use it
-				if (!$this->session['ssl'] && $this->can_use_tls() && $this->can_use_ssl() && isset($xml['stream:features'][0]['#']['starttls']))
+				if (!$this->session['ssl'] && self::can_use_tls() && self::can_use_ssl() && isset($xml['stream:features'][0]['#']['starttls']))
 				{
 					$this->add_to_log('Switching to TLS.');
 					$this->send("<starttls xmlns='urn:ietf:params:xml:ns:xmpp-tls'/>\n");
@@ -562,7 +595,7 @@ class jabber
 			case 'proceed':
 				// continue switching to TLS
 				$meta = stream_get_meta_data($this->connection);
-				socket_set_blocking($this->connection, 1);
+				stream_set_blocking($this->connection, 1);
 
 				if (!stream_socket_enable_crypto($this->connection, true, STREAM_CRYPTO_METHOD_TLS_CLIENT))
 				{
@@ -570,7 +603,7 @@ class jabber
 					return false;
 				}
 
-				socket_set_blocking($this->connection, $meta['blocked']);
+				stream_set_blocking($this->connection, $meta['blocked']);
 				$this->session['tls'] = true;
 
 				// new stream
@@ -869,5 +902,3 @@ class jabber
 		return $children;
 	}
 }
-
-?>
