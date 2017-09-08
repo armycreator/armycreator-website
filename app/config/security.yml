@@ -13,8 +13,8 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        fos_userbundle:
-            id: fos_user.user_provider.username_email
+        phpbb: 
+            id: phpbb.sessionsauthbundle.phpbb_user_provider
     encoders:
         FOS\UserBundle\Model\UserInterface:
             algorithm: bcrypt
@@ -48,6 +48,12 @@ security:
             logout:       true
             anonymous:    true
             switch_user:  true
+            simple_preauth:
+                authenticator: "phpbb.sessionsauthbundle.phpbb_authenticator"
+            provider: phpbb
+            # guard:
+            #     authenticators:
+            #         - "my_authenticator"
 
     access_control:
         - { host: "%domain.api%", path: ^/doc$, role: IS_AUTHENTICATED_ANONYMOUSLY }

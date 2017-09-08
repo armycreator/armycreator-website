@@ -42,7 +42,8 @@
         "nelmio/api-doc-bundle": "~2.7",
         "nelmio/cors-bundle": "~1.4",
         "doctrine/doctrine-migrations-bundle": "^1.2",
-        "sentry/sentry-symfony": "^0.8.6"
+        "sentry/sentry-symfony": "^0.8.6",
+        "judu/phpbb-sessions-auth-bundle": "dev-master@dev"
     },
 
     "require-dev": {
@@ -66,6 +67,12 @@
     "config": {
         "bin-dir": "bin"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/judu/PhpbbSessionsAuthBundle"
+        }
+    ],
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"

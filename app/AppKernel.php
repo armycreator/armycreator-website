@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new Presta\SitemapBundle\PrestaSitemapBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sentry\SentryBundle\SentryBundle(),
+            new phpBB\SessionsAuthBundle\phpbbSessionsAuthBundle(),
 
             // API
             new JMS\SerializerBundle\JMSSerializerBundle(),

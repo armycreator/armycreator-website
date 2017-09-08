@@ -54,6 +54,7 @@ class UserService
      */
     public function getUser ()
     {
+        return;
         global $db, $template, $config, $auth, $phpEx, $phpbb_root_path, $cache, $user;
         if (!defined('IN_PHPBB')) {
             define('IN_PHPBB', true);

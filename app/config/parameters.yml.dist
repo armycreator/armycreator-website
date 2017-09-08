@@ -16,7 +16,8 @@ parameters:
     locale: fr
     secret: ***
     
-    forum_sid: 'forum_ac441h_sid'
+    forum_sid: 'phpbb3_sid'
+    forum_cookiename: 'phpbb3'
 
     donation_parameters: 
         cmd: _s-xclick
