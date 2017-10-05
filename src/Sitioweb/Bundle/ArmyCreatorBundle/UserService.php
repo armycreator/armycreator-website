@@ -37,6 +37,7 @@ class UserService
      */
     public function onKernelController(FilterControllerEvent $event)
     {
+        return;
         $controllerClass = get_class($event->getController()[0]);
 
         if (strpos($controllerClass, 'ApiBundle') !== false) {
@@ -52,79 +53,59 @@ class UserService
      * @access public
      * @return User
      */
-    public function getUser ()
+    public function getUser()
     {
+        // inspired by Symfony\Bundle\FrameworkBundle\Controller\Controller::getUser()
+        if (!$this->tokenStorage) {
+            throw new \LogicException('The SecurityBundle is not registered in your application.');
+        }
+
+        $token = $this->tokenStorage->getToken();
+
+        if (null === $token) {
+            return null;
+        }
+
+        $forumUser = $token->getUser();
+        if (!is_object($forumUser)) {
+            $forumUser = null;
+        }
+        // end of inspiration
+
+        $isOriginalToken = $this->isOriginalToken($token);
+
+        if ($forumUser && $isOriginalToken) {
+            $currentUser = $this->userManager->findUserByEmail($forumUser->getEmail());
+            if (!$currentUser) {
+                $currentUser = $this->userManager->createUser();
+            }
+            $currentUser->setForumId($forumUser->getId());
+            $currentUser->setUsername($forumUser->getUsername());
+            $currentUser->setEmail($forumUser->getEmail());
+            $currentUser->setPlainPassword($forumUser->getPassword());
+            $lastLogin = new \DateTime();
+            // $lastLogin->setTimestamp($user->data['user_lastvisit']);
+            $currentUser->setLastLogin($lastLogin);
+            $currentUser->setEnabled(true);
+            // $currentUser->setAvatar($user->data['user_avatar']);
+
+            $this->userManager->updateUser($currentUser);
+            $this->loginManager->loginUser('main', $currentUser);
+
+
+            return $currentUser;
+        } elseif (!$isOriginalToken) {
+            return $token->getUser();
+        } else {
+            $anonymousToken = new AnonymousToken('main', 'anon.');
+            $this->tokenStorage->setToken($anonymousToken);
+
+            return $token->getUser();
+            //$this->get('fos_user.security.login_manager')->loginUser('main', null);
+        }
+
+
         return;
-        global $db, $template, $config, $auth, $phpEx, $phpbb_root_path, $cache, $user;
-        if (!defined('IN_PHPBB')) {
-            define('IN_PHPBB', true);
-        }
-
-        if (!$user) {
-            //define('PHPBB_ROOT_PATH', $container->getParameter('kernel.root_dir') . '/../web/forum/');
-            $phpbb_root_path = 'forum/';
-            $phpEx = 'php';
-            require_once($this->kernelRootDir . '/../web/forum/common.php');
-        }
-
-
-        if (!empty($user)) {
-            // session not already started
-            if (empty($user->session_id)) {
-                $user->session_begin();
-            }
-            $auth->acl($user->data);
-            //$user->setup();
-
-            // inspired by Symfony\Bundle\FrameworkBundle\Controller\Controller::getUser()
-            if (!$this->tokenStorage) {
-                throw new \LogicException('The SecurityBundle is not registered in your application.');
-            }
-
-            $token = $this->tokenStorage->getToken();
-            if (null === $token) {
-                return null;
-            }
-            $currentUser = $token->getUser();
-            if (!is_object($currentUser)) {
-                $currentUser = null;
-            }
-            // end of inspiration
-
-            $isOriginalToken = $this->isOriginalToken($token);
-
-            if ($user->data['is_registered'] && $isOriginalToken) {
-                if (!$currentUser || $user->data['user_id'] != $currentUser->getForumId()) {
-                    $currentUser = $this->userManager->findUserByEmail($user->data['user_email']);
-                    if (!$currentUser) {
-                        $currentUser = $this->userManager->createUser();
-                    }
-                    $currentUser->setForumId($user->data['user_id']);
-                    $currentUser->setUsername($user->data['username']);
-                    $currentUser->setEmail($user->data['user_email']);
-                    $currentUser->setPlainPassword($user->data['user_password']);
-                    $lastLogin = new \DateTime();
-                    $lastLogin->setTimestamp($user->data['user_lastvisit']);
-                    $currentUser->setLastLogin($lastLogin);
-                    $currentUser->setEnabled($user->data['is_registered']);
-                    $currentUser->setAvatar($user->data['user_avatar']);
-
-                    $this->userManager->updateUser($currentUser);
-                    $this->loginManager->loginUser('main', $currentUser);
-                }
-
-
-                return $currentUser;
-            } elseif (!$isOriginalToken) {
-                return $token->getUser();
-            } elseif ($currentUser) {
-                $anonymousToken = new AnonymousToken('main', 'anon.');
-                $this->tokenStorage->setToken($anonymousToken);
-
-                return $token->getUser();
-                //$this->get('fos_user.security.login_manager')->loginUser('main', null);
-            }
-        }
     }
 
     /**

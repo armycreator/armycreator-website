@@ -258,6 +258,7 @@ phpbb_sessions_auth:
         secure: false
         cookiename: "%forum_cookiename%"
         boardurl: "/forum/"
+        force_login: false
     database:
-        connection: "forum"
+        entity_manager: "forum"
         prefix: "phpbb_"

@@ -14,7 +14,7 @@ security:
 
     providers:
         phpbb: 
-            id: phpbb.sessionsauthbundle.phpbb_user_provider
+            id: "phpbb.sessionsauthbundle.phpbb_user_provider"
     encoders:
         FOS\UserBundle\Model\UserInterface:
             algorithm: bcrypt
@@ -43,17 +43,12 @@ security:
         main:
             host: "%domain.website%"
             pattern: ^/
-            form_login:
-                login_path: /forum/ucp.php?mode=login
             logout:       true
             anonymous:    true
             switch_user:  true
             simple_preauth:
                 authenticator: "phpbb.sessionsauthbundle.phpbb_authenticator"
             provider: phpbb
-            # guard:
-            #     authenticators:
-            #         - "my_authenticator"
 
     access_control:
         - { host: "%domain.api%", path: ^/doc$, role: IS_AUTHENTICATED_ANONYMOUSLY }
