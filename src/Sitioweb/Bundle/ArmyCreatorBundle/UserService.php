@@ -20,8 +20,12 @@ class UserService
 
     private $loginManager;
 
-    public function __construct($kernelRootDir, TokenStorageInterface $tokenStorage, UserManager $userManager, LoginManager $loginManager)
-    {
+    public function __construct(
+        $kernelRootDir,
+        TokenStorageInterface $tokenStorage,
+        UserManager $userManager,
+        LoginManager $loginManager
+    ) {
         $this->kernelRootDir = $kernelRootDir;
         $this->tokenStorage = $tokenStorage;
         $this->userManager = $userManager;
@@ -75,10 +79,13 @@ class UserService
         $isOriginalToken = $this->isOriginalToken($token);
 
         if ($forumUser && $isOriginalToken) {
-            $currentUser = $this->userManager->findUserByEmail($forumUser->getEmail());
+            $currentUser = $this->userManager
+                ->findUserByEmail($forumUser->getEmail());
+
             if (!$currentUser) {
                 $currentUser = $this->userManager->createUser();
             }
+
             $currentUser->setForumId($forumUser->getId());
             $currentUser->setUsername($forumUser->getUsername());
             $currentUser->setEmail($forumUser->getEmail());
@@ -90,22 +97,13 @@ class UserService
             // $currentUser->setAvatar($user->data['user_avatar']);
 
             $this->userManager->updateUser($currentUser);
-            $this->loginManager->loginUser('main', $currentUser);
-
 
             return $currentUser;
-        } elseif (!$isOriginalToken) {
+        } elseif (!$isOriginalToken) { // user is impersonated
             return $token->getUser();
-        } else {
-            $anonymousToken = new AnonymousToken('main', 'anon.');
-            $this->tokenStorage->setToken($anonymousToken);
-
-            return $token->getUser();
-            //$this->get('fos_user.security.login_manager')->loginUser('main', null);
         }
 
-
-        return;
+        return null;
     }
 
     /**
@@ -136,7 +134,6 @@ class UserService
     private function isOriginalToken(TokenInterface $token)
     {
         $originalToken = $this->getOriginalToken($token);
-        //ld($token, $originalToken);
 
         return $originalToken === false || $token === $originalToken;
     }
