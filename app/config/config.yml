@@ -47,6 +47,7 @@ doctrine:
         default_connection: default
         connections:
             default:
+                schema_filter: ~^(?!phpbb_|acl_)~
                 driver:   "%database_driver%"
                 host:     "%database_host%"
                 port:     "%database_port%"
