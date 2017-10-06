@@ -3,6 +3,7 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
+use Sitioweb\Bundle\ArmyCreatorBundle\UserService;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -51,12 +52,14 @@ class Builder
         FactoryInterface $factory,
         RequestStack $requestStack,
         TokenStorageInterface $tokenStorage,
-        AuthorizationCheckerInterface $authorizationChecker
+        AuthorizationCheckerInterface $authorizationChecker,
+        UserService $userService
     ) {
         $this->factory = $factory;
         $this->requestStack = $requestStack;
         $this->tokenStorage = $tokenStorage;
         $this->authorizationChecker = $authorizationChecker;
+        $this->userService = $userService;
     }
 
     /**
@@ -216,7 +219,7 @@ class Builder
 
         $user = $this->getUser();
         $request = $this->requestStack->getMasterRequest();
-        $armyGroupList = $user->getArmyGroupList();
+        $armyGroupList = $user ? $user->getArmyGroupList() : null;
 
         $menu->addChild('army_list.group_list.last_armies', array(
             'route' => 'army_list',
@@ -227,7 +230,7 @@ class Builder
             'routeParameters' => ['all' => true]
         ));
 
-        if (!$armyGroupList->isEmpty()) {
+        if ($armyGroupList && !$armyGroupList->isEmpty()) {
             $menu->addChild('army_list.group_list.no_group', array(
                 'route' => 'army_group_list',
                 'routeParameters' => array('groupId' => 0)
@@ -258,9 +261,7 @@ class Builder
      */
     private function getUser()
     {
-        $tokenStorage = $this->tokenStorage;
-
-        return $tokenStorage && $tokenStorage->getToken() ? $tokenStorage->getToken()->getUser() : null;
+        return $this->userService->getArmyCreatorUser();
     }
 
     private function isAuthenticated()

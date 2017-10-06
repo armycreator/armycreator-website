@@ -58,6 +58,7 @@ services:
             - "@request_stack"
             - "@security.token_storage"
             - "@security.authorization_checker"
+            - "@user_service"
         tags:
             - { name: knp_menu.menu_builder, method: mainMenu, alias: main } # The alias is what is used to retrieve the menu
             - { name: knp_menu.menu_builder, method: secondMainMenu, alias: secondMain } # The alias is what is used to retrieve the menu

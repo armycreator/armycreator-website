@@ -57,7 +57,7 @@ class UserService
      * @access public
      * @return User
      */
-    public function getUser()
+    public function getArmyCreatorUser()
     {
         // inspired by Symfony\Bundle\FrameworkBundle\Controller\Controller::getUser()
         if (!$this->tokenStorage) {

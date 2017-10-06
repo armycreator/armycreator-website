@@ -4,6 +4,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Twig;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity;
+use Sitioweb\Bundle\ArmyCreatorBundle\UserService;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class Unit extends \Twig_Extension
@@ -17,11 +18,11 @@ class Unit extends \Twig_Extension
     private $objectManager;
 
     /**
-     * tokenStorage
+     * UserService
      *
-     * @var TokenStorageInterface
+     * @var UserService
      */
-    private $tokenStorage;
+    private $userService;
 
     /**
      * __construct
@@ -30,10 +31,10 @@ class Unit extends \Twig_Extension
      * @access public
      * @return void
      */
-    public function __construct(ObjectManager $objectManager, TokenStorageInterface $tokenStorage)
+    public function __construct(ObjectManager $objectManager, TokenStorageInterface $userService)
     {
         $this->objectManager = $objectManager;
-        $this->tokenStorage = $tokenStorage;
+        $this->userService = $userService;
     }
 
     /**
@@ -72,8 +73,7 @@ class Unit extends \Twig_Extension
      */
     private function getUser()
     {
-        return $this->tokenStorage
-            ->getToken()
-            ->getUser();
+        return $this->userService
+            ->getArmyCreatorUser();
     }
 }

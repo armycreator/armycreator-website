@@ -24,7 +24,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $this->getUser();
+        $this->get('user_service')->getArmyCreatorUser();
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             // $this->get('m6_statsd')->increment('website.index.logged');
 
@@ -50,7 +50,7 @@ class DefaultController extends Controller
             ->getManager()
             ->getRepository('SitiowebArmyCreatorBundle:Army')
             ->findOneBy(
-                ['user' => $this->getUser()],
+                ['user' => $this->get('user_service')->getArmyCreatorUser()],
                 ['updateDate' => 'DESC']
             );
         return $this->render(

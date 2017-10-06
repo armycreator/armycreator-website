@@ -78,7 +78,7 @@ class ArmyController extends Controller
             ->where('a.user = :user')
             ->orderBy('b.name')
             ->addOrderBy('a.name')
-            ->setParameter('user', $this->getUser());
+            ->setParameter('user', $this->get('user_service')->getArmyCreatorUser());
 
         if (isset($groupId)) {
             $group = $entityManager->getRepository('SitiowebArmyCreatorBundle:ArmyGroup')
@@ -285,12 +285,12 @@ class ArmyController extends Controller
 
         // security
         if (
-            $this->getUser() != $army->getUser() &&
+            $this->get('user_service')->getArmyCreatorUser() != $army->getUser() &&
             !$army->getIsShared() && $this->get('oneup_acl.manager') &&
             !$this->get('oneup_acl.manager')->isGranted('ROLE_ADMIN')
         ) {
             throw new AccessDeniedException('Army not shared');
-        } elseif ($this->getUser() != $army->getUser()) {
+        } elseif ($this->get('user_service')->getArmyCreatorUser() != $army->getUser()) {
             $externalUser = true;
         } else {
             $externalUser = false;
@@ -341,12 +341,12 @@ class ArmyController extends Controller
     {
         $entity = new Army();
         $entity->setStatus('draft');
-        $preferedBreedList = $this->getUser()->getPreferedBreedList();
+        $preferedBreedList = $this->get('user_service')->getArmyCreatorUser()->getPreferedBreedList();
         if ($preferedBreedList) {
             $entity->setBreed($preferedBreedList[0]);
         }
 
-        $form = $this->createForm(ArmyType::class, $entity, ['user' => $this->getUser()]);
+        $form = $this->createForm(ArmyType::class, $entity, ['user' => $this->get('user_service')->getArmyCreatorUser()]);
 
         return array(
             'entity' => $entity,
@@ -366,13 +366,13 @@ class ArmyController extends Controller
     public function createAction(Request $request)
     {
         $entity  = new Army();
-        $form    = $this->createForm(ArmyType::class, $entity, ['user' => $this->getUser()]);
+        $form    = $this->createForm(ArmyType::class, $entity, ['user' => $this->get('user_service')->getArmyCreatorUser()]);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $entity->setUser($this->getUser());
+            $entity->setUser($this->get('user_service')->getArmyCreatorUser());
             $em->persist($entity);
             $em->flush();
 
@@ -405,13 +405,13 @@ class ArmyController extends Controller
     public function editAction(Army $entity)
     {
         if (
-            $this->getUser() != $entity->getUser() &&
+            $this->get('user_service')->getArmyCreatorUser() != $entity->getUser() &&
             !$this->get('oneup_acl.manager')->isGranted('ROLE_ADMIN')
         ) {
             throw new AccessDeniedException();
         }
 
-        $editForm = $this->createForm(ArmyType::class, $entity, ['user' => $this->getUser()]);
+        $editForm = $this->createForm(ArmyType::class, $entity, ['user' => $this->get('user_service')->getArmyCreatorUser()]);
         $deleteForm = $this->createDeleteForm($entity->getId());
 
         // Breadcrumb
@@ -470,7 +470,7 @@ class ArmyController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($entity->getId());
-        $editForm = $this->createForm(ArmyType::class, $entity, ['user' => $this->getUser()]);
+        $editForm = $this->createForm(ArmyType::class, $entity, ['user' => $this->get('user_service')->getArmyCreatorUser()]);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -540,7 +540,7 @@ class ArmyController extends Controller
      */
     public function cloneAction(Request $request, Army $army)
     {
-        if ($this->getUser() != $army->getUser()) {
+        if ($this->get('user_service')->getArmyCreatorUser() != $army->getUser()) {
             throw new AccessDeniedException('Only the owner can clone an army');
         }
 
@@ -608,7 +608,7 @@ class ArmyController extends Controller
      */
     private function getUserPreference()
     {
-        $user = $this->getUser();
+        $user = $this->get('user_service')->getArmyCreatorUser();
         if ($user) {
             $pref = $user->getPreferences();
             if ($pref) {

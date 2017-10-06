@@ -70,7 +70,7 @@ class ArmyGroupController extends Controller
     public function createAction(Request $request)
     {
         $entity  = new ArmyGroup();
-        $entity->setUser($this->getUser());
+        $entity->setUser($this->get('user_service')->getArmyCreatorUser());
         $form = $this->createForm(ArmyGroupType::class, $entity);
         $form->handleRequest($request);
 
