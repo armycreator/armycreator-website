@@ -3,7 +3,6 @@
 namespace Sitioweb\Bundle\ArmyCreatorBundle;
 
 use FOS\UserBundle\Doctrine\UserManager;
-use FOS\UserBundle\Security\LoginManager;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -12,43 +11,18 @@ use Symfony\Component\Security\Core\Role\SwitchUserRole;
 
 class UserService
 {
-    private $kernelRootDir;
-
     private $tokenStorage;
 
     private $userManager;
 
-    private $loginManager;
+    private $armyCreatorUser;
 
     public function __construct(
-        $kernelRootDir,
         TokenStorageInterface $tokenStorage,
-        UserManager $userManager,
-        LoginManager $loginManager
+        UserManager $userManager
     ) {
-        $this->kernelRootDir = $kernelRootDir;
         $this->tokenStorage = $tokenStorage;
         $this->userManager = $userManager;
-        $this->loginManager = $loginManager;
-    }
-
-    /**
-     * onKernelController
-     *
-     * @param FilterControllerEvent $event
-     * @access public
-     * @return void
-     */
-    public function onKernelController(FilterControllerEvent $event)
-    {
-        return;
-        $controllerClass = get_class($event->getController()[0]);
-
-        if (strpos($controllerClass, 'ApiBundle') !== false) {
-            return;
-        }
-
-        $this->getUser();
     }
 
     /**
@@ -59,6 +33,17 @@ class UserService
      */
     public function getArmyCreatorUser()
     {
+        if (!isset($this->armyCreatorUser)) {
+            $this->armyCreatorUser = $this->fetchArmyCreatorUser();
+        }
+
+        return $this->armyCreatorUser !== false
+            ? $this->armyCreatorUser
+            : null;
+    }
+
+    private function fetchArmyCreatorUser()
+    {
         // inspired by Symfony\Bundle\FrameworkBundle\Controller\Controller::getUser()
         if (!$this->tokenStorage) {
             throw new \LogicException('The SecurityBundle is not registered in your application.');
@@ -67,7 +52,7 @@ class UserService
         $token = $this->tokenStorage->getToken();
 
         if (null === $token) {
-            return null;
+            return false;
         }
 
         $forumUser = $token->getUser();
@@ -103,7 +88,7 @@ class UserService
             return $token->getUser();
         }
 
-        return null;
+        return false;
     }
 
     /**

@@ -43,9 +43,10 @@ security:
         main:
             host: "%domain.website%"
             pattern: ^/
-            logout:       true
+            # logout:       true
             anonymous:    true
             switch_user:  true
+            stateless: true
             simple_preauth:
                 authenticator: "phpbb.sessionsauthbundle.phpbb_authenticator"
             provider: phpbb
