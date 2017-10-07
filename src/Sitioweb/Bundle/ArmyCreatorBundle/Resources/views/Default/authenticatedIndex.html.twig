@@ -1,7 +1,7 @@
 {% extends 'SitiowebArmyCreatorBundle:Default:index.html.twig' %}
 
 {% block title %}
-    {% trans with { "%username%": app.user.username } %}home.hello.%username%{% endtrans %}
+    {% trans with { "%username%": armycreator_user.username } %}home.hello.%username%{% endtrans %}
 {% endblock %}
 
 {% block buttons %}

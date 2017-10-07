@@ -21,7 +21,7 @@
             <div class="squadLine">
                 <h5>
                     {% set unit = squadLine.unit %}
-                    {% set unitNumber = externalUser ? null : app.user.getUnitNumber(unit) %}
+                    {% set unitNumber = externalUser ? null : armycreator_user.getUnitNumber(unit) %}
                     {% if  not(unitNumber is null) and unitNumber < army.getUnitNumber(unit) %}
                         <i class="el-icon-warning-sign soft small" title="{{ "army.detail.missing_units"|trans }}"></i>
                     {% endif %}

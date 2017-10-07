@@ -38,6 +38,13 @@ services:
         tags:
             - { name: twig.extension }
 
+    armycreator.twig.user_extension: 
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\UserExtension
+        arguments:
+            - "@user_service"
+        tags:
+            - { name: twig.extension }
+
     armycreator.sitemap.listener:
         class: Sitioweb\Bundle\ArmyCreatorBundle\SitemapListener
         arguments:
