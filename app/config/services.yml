@@ -69,3 +69,11 @@ services:
             - { name: knp_menu.menu_builder, method: gameMenu, alias: game } # The alias is what is used to retrieve the menu
             - { name: knp_menu.menu_builder, method: armyListMenu, alias: armyList } # The alias is what is used to retrieve the menu
 
+    armycreator.security.voter:
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Security\ArmyCreatorVoter
+        arguments: 
+            - "@user_service"
+            - "@security.role_hierarchy"
+        tags:
+            - { name: security.voter }
+
