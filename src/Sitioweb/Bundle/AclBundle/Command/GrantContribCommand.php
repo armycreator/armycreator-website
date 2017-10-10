@@ -100,8 +100,8 @@ class GrantContribCommand extends Command
     private function getUser($username)
     {
         return $this->getContainer()
-            ->get('fos_user.user_manager')
-            ->findUserByUsernameOrEmail($username);
+            ->get('armycreator.repository.user')
+            ->findOneByUsername($username);
     }
 
 

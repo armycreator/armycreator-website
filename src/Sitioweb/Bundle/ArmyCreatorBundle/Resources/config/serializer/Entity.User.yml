@@ -3,7 +3,6 @@ Sitioweb\Bundle\ArmyCreatorBundle\Entity\User:
     properties:
         id: { expose: true }
         username: { expose: true }
-        avatar: { expose: true }
 
     relations:
         - 

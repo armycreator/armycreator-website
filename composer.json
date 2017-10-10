@@ -30,7 +30,6 @@
 
         "knplabs/knp-menu-bundle":"~2.0",
         "knplabs/knp-paginator-bundle":"~2.0",
-        "friendsofsymfony/user-bundle": "^2.0",
         "friendsofsymfony/jsrouting-bundle": "~1.5",
         "helios-ag/fm-bbcode-bundle": "^7.0",
         "presta/sitemap-bundle": "^1.4.2",

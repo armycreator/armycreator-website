@@ -50,11 +50,9 @@ class UserController extends FOSRestController
      */
     public function getUserAction($userId)
     {
-        $userManager = $this->get('fos_user.user_manager');
+        $userRepo = $this->get('armycreator.repository.user');
 
-        $user = $userManager->findUserBy([
-            'id' => $userId
-        ]);
+        $user = $userRepo->find($userId);
 
         if (!$user) {
             throw $this->createNotFoundException('User not found');

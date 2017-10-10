@@ -15,10 +15,6 @@ security:
     providers:
         phpbb: 
             id: "phpbb.sessionsauthbundle.phpbb_user_provider"
-    encoders:
-        FOS\UserBundle\Model\UserInterface:
-            algorithm: bcrypt
-            cost: 15
 
     firewalls:
         dev:

@@ -1,3 +1,0 @@
-FOS\UserBundle\Entity\User:
-    exclusion_policy: ALL
-
