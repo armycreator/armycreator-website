@@ -1,0 +1,6 @@
+services: 
+    armycreator.repository.user:
+        class: "Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Repository\\SaveRepository"
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        arguments:
+            - "SitiowebArmyCreatorBundle:User"

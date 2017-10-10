@@ -2,7 +2,8 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle;
 
-use FOS\UserBundle\Doctrine\UserManager;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Repository\SaveRepository;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\Authentication\Token\AnonymousToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -13,16 +14,16 @@ class UserService
 {
     private $tokenStorage;
 
-    private $userManager;
+    private $userRepository;
 
     private $armyCreatorUser;
 
     public function __construct(
         TokenStorageInterface $tokenStorage,
-        UserManager $userManager
+        SaveRepository $userRepository
     ) {
         $this->tokenStorage = $tokenStorage;
-        $this->userManager = $userManager;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -64,24 +65,20 @@ class UserService
         $isOriginalToken = $this->isOriginalToken($token);
 
         if ($forumUser && $isOriginalToken) {
-            $currentUser = $this->userManager
-                ->findUserByEmail($forumUser->getEmail());
+            $currentUser = $this->userRepository
+                ->findOneByEmail($forumUser->getEmail());
 
             if (!$currentUser) {
-                $currentUser = $this->userManager->createUser();
+                $currentUser = new User();
             }
 
             $currentUser->setForumId($forumUser->getId());
             $currentUser->setUsername($forumUser->getUsername());
             $currentUser->setEmail($forumUser->getEmail());
-            $currentUser->setPlainPassword($forumUser->getPassword());
             $lastLogin = new \DateTime();
-            // $lastLogin->setTimestamp($user->data['user_lastvisit']);
             $currentUser->setLastLogin($lastLogin);
-            $currentUser->setEnabled(true);
-            // $currentUser->setAvatar($user->data['user_avatar']);
 
-            $this->userManager->updateUser($currentUser);
+            $this->userRepository->save($currentUser);
 
             return $currentUser;
         } elseif (!$isOriginalToken) { // user is impersonated

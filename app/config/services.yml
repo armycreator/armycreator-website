@@ -3,7 +3,7 @@ services:
         class: Sitioweb\Bundle\ArmyCreatorBundle\UserService
         arguments:
             - "@security.token_storage"
-            - "@fos_user.user_manager"
+            - "@armycreator.repository.user"
 
     armycreator.twig.breed_image_extension: 
         class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\BreedImage

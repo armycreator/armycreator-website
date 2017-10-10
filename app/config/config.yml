@@ -1,6 +1,7 @@
 imports:
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: repositories.yml }
 
 parameters:
     donation_parameters: 
@@ -78,6 +79,7 @@ doctrine:
         entity_managers:
             default:
                 connection: default
+                default_repository_class: "Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Repository\\SaveRepository"
                 mappings:
                     SitiowebArmyCreatorBundle: ~
                     FOSUserBundle: ~
