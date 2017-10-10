@@ -5,6 +5,7 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\User
@@ -12,7 +13,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="Users", indexes={@ORM\Index(name="forum_id_idx", columns={"forumId"})})
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
     const ROLE_DEFAULT = 'ROLE_USER';
 
@@ -717,5 +718,25 @@ class User
     public function __toString()
     {
         return (string) $this->getUsername();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPassword() {
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSalt() {
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function eraseCredentials() {
     }
 }

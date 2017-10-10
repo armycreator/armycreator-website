@@ -1,6 +1,13 @@
 services: 
     armycreator.repository.user:
         class: "Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Repository\\SaveRepository"
-        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        factory: ["@doctrine.orm.default_entity_manager", "getRepository"]
         arguments:
             - "SitiowebArmyCreatorBundle:User"
+
+    armycreator.repository.phpbb_user:
+        class: "Doctrine\\ORM\\EntityRepository"
+        factory: ["@doctrine.orm.forum_entity_manager", "getRepository"]
+        arguments:
+            - "phpbbSessionsAuthBundle:User"
+
