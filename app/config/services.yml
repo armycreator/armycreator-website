@@ -78,7 +78,7 @@ services:
             - { name: security.voter }
 
     armycreator.security.game_voter:
-        class: Sitioweb\Bundle\ArmyCreatorBundle\Security\GameVoter
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Security\GeneralRoleContribVoter
         arguments: 
             - "@user_service"
             - "@security.role_hierarchy"

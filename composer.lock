@@ -2190,12 +2190,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jdeniau/PhpbbSessionsAuthBundle.git",
-                "reference": "9d12db34c7afa230ea875eb051d2a813d5457691"
+                "reference": "5a3faac22aa0a13465ce354c48c65728234aaac6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jdeniau/PhpbbSessionsAuthBundle/zipball/9d12db34c7afa230ea875eb051d2a813d5457691",
-                "reference": "9d12db34c7afa230ea875eb051d2a813d5457691",
+                "url": "https://api.github.com/repos/jdeniau/PhpbbSessionsAuthBundle/zipball/5a3faac22aa0a13465ce354c48c65728234aaac6",
+                "reference": "5a3faac22aa0a13465ce354c48c65728234aaac6",
                 "shasum": ""
             },
             "require": {
@@ -2243,7 +2243,7 @@
                 "issues": "https://www.phpbb.com/bugs/website/",
                 "source": "https://github.com/jdeniau/PhpbbSessionsAuthBundle/tree/master"
             },
-            "time": "2017-10-07 08:28:23"
+            "time": "2017-10-11 19:26:26"
         },
         {
             "name": "knplabs/knp-components",

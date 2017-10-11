@@ -2,6 +2,8 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Security;
 
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Breed;
+use Sitioweb\Bundle\ArmyCreatorBundle\Entity\BreedGroup;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\Game;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity\User;
 use Sitioweb\Bundle\ArmyCreatorBundle\UserService;
@@ -12,10 +14,10 @@ use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class GameVoter
+ * Class GeneralRoleContribVoter
  * @author Julien Deniau <julien.deniau@mapado.com>
  */
-class GameVoter extends Voter
+class GeneralRoleContribVoter extends Voter
 {
     /**
      * userService
@@ -50,6 +52,14 @@ class GameVoter extends Voter
             return true;
         }
 
+        if ($subject instanceof Breed) {
+            return true;
+        }
+
+        if ($subject instanceof BreedGroup) {
+            return true;
+        }
+
         return false;
     }
 
@@ -72,16 +82,20 @@ class GameVoter extends Voter
         $reachableRoles = $this->roleHierarchy->getReachableRoles($roles);
 
         foreach ($reachableRoles as $reachableRole) {
-            if ($reachableRole->getRole() === 'ROLE_CONTRIB') {
-                return $attribute === 'VIEW';
-            } elseif ($reachableRole->getRole() === 'ROLE_CONTRIB_ALL') {
+            $role = $reachableRole->getRole();
+            if ($role === 'ROLE_CONTRIB') {
+                switch ($attribute) {
+                    case 'VIEW':
+                        return true;
+                }
+            } elseif ($role === 'ROLE_CONTRIB_ALL') {
                 switch ($attribute) {
                     case 'VIEW':
                     case 'EDIT':
                     case 'CREATE':
                         return true;
                 }
-            } elseif ($reachableRole->getRole() === 'ROLE_ADMIN') {
+            } elseif ($role === 'ROLE_ADMIN') {
                 switch ($attribute) {
                     case 'VIEW':
                     case 'EDIT':
