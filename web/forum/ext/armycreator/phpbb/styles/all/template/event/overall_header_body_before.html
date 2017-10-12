@@ -1,0 +1,65 @@
+<!-- prod:global.css --><!-- endbuild -->
+
+<header id="websiteHeader">
+    {% block websiteHeaderBar %}
+        <div class="headerBar">
+            <a href="/" title="Army Creator">
+                <i class="el-icon-home"></i>
+            </a>
+            <span class="hide-mobile">
+                |
+                Bienvenue sur ArmyCreator
+            </span>
+
+            <span class="right">
+                {% if user_data.username %}
+                {#{% trans with { "%username%": armycreator_user.username } %}header.hello.%username%{% endtrans %}#}
+                    Bonjour {{ user_data.username }}
+
+                    {#
+                    {% if is_granted('ROLE_CONTRIB') %}
+                        |
+                        <a href="/admin/" title="{{ "main_menu.admin" }}" class="important">
+                            {{- "main_menu.admin" -}}
+                        </a>
+                    {% endif %}
+                    #}
+                    |
+                    {% set sid = user_data.session_id %}
+                    <a href="/forum/ucp.php?mode=logout&sid={{ sid }}" title="{{ "header.logout" }}">
+                        {{ "header.logout" }}
+                        <i class="el-icon-off"></i>
+                    </a>
+                {% else %}
+                    <a href="/forum/ucp.php?mode=login" title="{{ "header.login" }}">
+                        {{ "header.login" }}
+                    </a>
+                    |
+                    <a href="/forum/ucp.php?mode=register" title="{{ "header.sign_up" }}">
+                        {{ "header.sign_up" }}
+                    </a>
+                {% endif %}
+            </span>
+        </div>
+    {% endblock %}
+
+    {% block websiteHeader %}
+        <div class="logo"></div>
+    {% endblock %}
+
+    {% block websiteNav %}
+        <nav id="websiteNav" role="navigation" tabindex="0">
+            <div class="left">
+                {#
+                {{ knp_menu_render('main') }}
+                #}
+            </div>
+
+            <div class="right">
+                {#
+                {{ knp_menu_render('secondMain') }}
+                #}
+            </div>
+        </nav>
+    {% endblock %}
+</header>
