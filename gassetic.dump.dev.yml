@@ -1,11 +1,12 @@
 - mimetype: css
   htmlTag: <link rel="stylesheet" type="text/css" href="%path%">
   files:
+    knacss.css:
+      - /tmp/css/knacss.css/knacss.css
     global.css:
       - /tmp/css/global.css/elusive-webfont.css
       - /tmp/css/global.css/tooltipster.css
       - /tmp/css/global.css/github-corner.css
-      - /tmp/css/global.css/knacss.css
       - /tmp/css/global.css/override.css
       - /tmp/css/global.css/font.css
       - /tmp/css/global.css/util.css
@@ -20,6 +21,8 @@
       - /tmp/css/global.css/news.css
       - /tmp/css/global.css/armyDetail-desktop.css
       - /tmp/css/global.css/squadEdit.css
+    forum.css:
+      - /tmp/css/forum.css/forum-reset.css
     dice.css:
       - /tmp/css/dice.css/dice.css
     import.css:
@@ -50,6 +53,8 @@
       - /tmp/js/global.js/bbcode.js
       - /tmp/js/global.js/check-opacity.js
       - /tmp/js/global.js/googleAnalytics.js
+    forum.js:
+      - /tmp/js/forum.js/googleAnalytics.js
     jscolor.js:
       - /tmp/js/jscolor.js/jscolor.js
     army-new.js:

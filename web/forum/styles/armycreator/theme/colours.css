@@ -11,6 +11,26 @@ hr.dashed {
 	border-top-color: #CCCCCC;
 }
 
+/* Post body links */
+.postlink {
+	color: #eb9f34;
+	border-bottom: none;
+}
+
+.postlink:visited {
+	color: #eb9f34;
+	border-bottom: none;
+}
+
+.postlink:active {
+	color: #70695f;
+}
+
+.postlink:hover {
+    background: none;
+	/*background-color: #D0E4F6;*/
+	color: #70695f;
+}
 /* Search box
 --------------------------------------------- */
 
@@ -252,26 +272,6 @@ a.topictitle:active {
 	color: #70695f;
 }
 
-/* Post body links */
-.postlink {
-	color: #eb9f34;
-	border-bottom: none;
-}
-
-.postlink:visited {
-	color: #eb9f34;
-	border-bottom: none;
-}
-
-.postlink:active {
-	color: #70695f;
-}
-
-.postlink:hover {
-    background: none;
-	/*background-color: #D0E4F6;*/
-	color: #70695f;
-}
 
 .signature a, .signature a:visited, .signature a:hover, .signature a:active {
 	background-color: transparent;

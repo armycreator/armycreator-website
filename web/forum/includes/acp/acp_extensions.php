@@ -47,6 +47,7 @@ class acp_extensions
 		$this->request = $request;
 		$this->log = $phpbb_log;
 		$this->phpbb_dispatcher = $phpbb_dispatcher;
+
 		$this->ext_manager = $phpbb_extension_manager;
 
 		$this->user->add_lang(array('install', 'acp/extensions', 'migrator'));

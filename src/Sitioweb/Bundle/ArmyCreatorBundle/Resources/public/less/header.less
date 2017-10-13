@@ -2,6 +2,10 @@
 @import "mixins";
 
 #websiteHeader {
+    max-width: @minGlobalWidth;
+    margin-left: auto;
+    margin-right: auto;
+
     background: url(@globalTopBackgroudImage) top center no-repeat;
     .box-shadow(0 0 15px #000);
     position: relative; height: 146px;
@@ -32,6 +36,9 @@
 }
 
 #websiteNav {
+    max-width: @minGlobalWidth;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 80px;
     overflow: auto;
     position: relative;

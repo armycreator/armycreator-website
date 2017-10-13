@@ -5,12 +5,16 @@
 @import "mixins";
 
 
-html { font-family: @globalFontFamily }
+html {
+    font-family: @globalFontFamily;
+}
 body {
     background: url(@globalBackgroudImage) top center no-repeat @globalBackgroudColor;
     color: @globalColor; 
-    font-family: arial, @globalFontFamily;
+    font-family: @globalFontFamily;
     font-size: @globalFontSize;
+    margin: 0;
+    padding: 0;
 }
 a {
     color: @globalLinkColor; text-decoration: none;
