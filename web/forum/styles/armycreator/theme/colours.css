@@ -31,6 +31,10 @@ hr.dashed {
 	/*background-color: #D0E4F6;*/
 	color: #70695f;
 }
+
+.signature a, .signature a:visited, .signature a:hover, .signature a:active {
+	background-color: transparent;
+}
 /* Search box
 --------------------------------------------- */
 

@@ -5,9 +5,8 @@ namespace armycreator\phpbb\event;
 require(__DIR__ . '/../vendor/autoload.php');
 
 use phpbb\auth\auth;
-use phpbb\config\config;
+use phpbb\event\data;
 use phpbb\template\template;
-use phpbb\user;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\VarDumper\VarDumper\VarDumper;
 use Symfony\Component\Yaml\Yaml;
@@ -18,16 +17,10 @@ use Symfony\Component\Yaml\Yaml;
  */
 class listener implements EventSubscriberInterface
 {
-    private $auth;
+    private $template;
 
-    private $user;
-
-    public function __construct(config $config, auth $auth, user $user, template $template)
+    public function __construct(template $template)
     {
-        // var_dump($auth, $user);die;
-        $this->config = $config;
-        $this->auth = $auth;
-        $this->user = $user;
         $this->template = $template;
     }
 
@@ -36,17 +29,14 @@ class listener implements EventSubscriberInterface
         return [
             'core.user_setup' => 'user_setup',
             'core.common' => 'common',
-            // 'core.user_setup' => 'user_setup',
-            // 'core.login_box_failed' => 'login_box_failed',
         ];
     }
 
-    public function user_setup($event)
+    public function user_setup(data $event)
     {
-        $user_data = $event['data']['user_data'];
+        $user_data = $event->get_data()['user_data'];
         if ($user_data['is_registered'] && !$user_data['is_bot'])
         {
-            // $version = phpbb_version_compare($this->config['version'], '3.2.0-b2', '>=');
             $this->template->assign_vars(array(
                 'user_data' => $user_data,
             ));

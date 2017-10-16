@@ -2,9 +2,6 @@ services:
     armycreator.phpbb.listener:
         class: armycreator\phpbb\event\listener
         arguments:
-            - "@config"
-            - "@auth"
-            - "@user"
             - "@template"
         tags:
             - { name: event.listener }

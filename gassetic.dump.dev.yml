@@ -23,6 +23,7 @@
       - /tmp/css/global.css/squadEdit.css
     forum.css:
       - /tmp/css/forum.css/forum-reset.css
+      - /tmp/css/forum.css/forum-header.css
     dice.css:
       - /tmp/css/dice.css/dice.css
     import.css:

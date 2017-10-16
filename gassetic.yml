@@ -51,6 +51,7 @@ mimetypes:
 
             forum.css:
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/forum-reset.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/forum-header.less"
 
             dice.css:
                 - "src/Sitioweb/Bundle/DiceBundle/Resources/public/less/dice.less"

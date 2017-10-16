@@ -24,17 +24,17 @@
                     #}
                     |
                     {% set sid = user_data.session_id %}
-                    <a href="/forum/ucp.php?mode=logout&sid={{ sid }}" title="{{ "header.logout" }}">
-                        {{ "header.logout" }}
+                    <a href="/forum/ucp.php?mode=logout&sid={{ sid }}">
+                        Se déconnecter
                         <i class="el-icon-off"></i>
                     </a>
                 {% else %}
-                    <a href="/forum/ucp.php?mode=login" title="{{ "header.login" }}">
-                        {{ "header.login" }}
+                    <a href="/forum/ucp.php?mode=login">
+                        Connexion
                     </a>
                     |
-                    <a href="/forum/ucp.php?mode=register" title="{{ "header.sign_up" }}">
-                        {{ "header.sign_up" }}
+                    <a href="/forum/ucp.php?mode=register">
+                        Inscription
                     </a>
                 {% endif %}
             </span>
@@ -48,15 +48,46 @@
     {% block websiteNav %}
         <nav id="websiteNav" role="navigation" tabindex="0">
             <div class="left">
-                {#
-                {{ knp_menu_render('main') }}
-                #}
+                <ul>
+                    <li class="current first">
+                        <a href="/"><span>Accueil</span></a>
+                    </li>
+                    <li>
+                        <a href="/forum/"><span>forum</span></a>
+                    </li>
+                    {% if user_data.username %}
+                        <li>
+                            <a href="/army/"><span>listes d'armées</span></a>
+                        </li>
+                    {% endif %}
+                    <li class="last">
+                        <a href="/army/public"><span>listes publiques</span></a>
+                    </li>
+                </ul>
             </div>
 
             <div class="right">
-                {#
-                {{ knp_menu_render('secondMain') }}
-                #}
+                <ul>
+                    <li class="first">
+                        <a href="/user/" onclick=""><span>joueurs</span></a>
+                    </li>
+                    <li>
+                        <a href="/collection" onclick=""><span>ma collection</span></a>
+                    </li>
+                    <li>
+                        <a href="/toolbox/" onclick=""><span>outils</span></a>
+                    </li>
+                    <li class="last">
+                        <a
+                            href="/donation?cmd=_s-xclick&amp;hosted_button_id=L7PK6V4R4LPHG"
+                            target="_blank"
+                            onclick=""
+                            rel="noopener noreferrer"
+                        >
+                            <span>faire un don</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </nav>
     {% endblock %}
