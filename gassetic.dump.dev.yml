@@ -1,0 +1,74 @@
+- mimetype: css
+  htmlTag: <link rel="stylesheet" type="text/css" href="%path%">
+  files:
+    knacss.css:
+      - /tmp/css/knacss.css/knacss.css
+    global.css:
+      - /tmp/css/global.css/elusive-webfont.css
+      - /tmp/css/global.css/tooltipster.css
+      - /tmp/css/global.css/github-corner.css
+      - /tmp/css/global.css/override.css
+      - /tmp/css/global.css/font.css
+      - /tmp/css/global.css/util.css
+      - /tmp/css/global.css/button.css
+      - /tmp/css/global.css/form.css
+      - /tmp/css/global.css/header.css
+      - /tmp/css/global.css/homepage.css
+      - /tmp/css/global.css/content-desktop.css
+      - /tmp/css/global.css/footer.css
+      - /tmp/css/global.css/breed.css
+      - /tmp/css/global.css/menu.css
+      - /tmp/css/global.css/news.css
+      - /tmp/css/global.css/armyDetail-desktop.css
+      - /tmp/css/global.css/squadEdit.css
+    forum.css:
+      - /tmp/css/forum.css/forum-reset.css
+      - /tmp/css/forum.css/forum-header.css
+    dice.css:
+      - /tmp/css/dice.css/dice.css
+    import.css:
+      - /tmp/css/import.css/elusive-webfont.css
+    collection.css:
+      - /tmp/css/collection.css/collection.css
+    print-version.css:
+      - /tmp/css/print-version.css/print.css
+      - /tmp/css/print-version.css/content-print.css
+      - /tmp/css/print-version.css/armyDetail-print.css
+- mimetype: css-print
+  htmlTag: <link rel="stylesheet" href="%path%" media="print" />
+  files:
+    print.css:
+      - /tmp/css/print.css/print.css
+      - /tmp/css/print.css/content-print.css
+      - /tmp/css/print.css/armyDetail-print.css
+- mimetype: js
+  htmlTag: <script src="%path%"></script>
+  files:
+    global.js:
+      - /tmp/js/global.js/jquery.min.js
+      - /tmp/js/global.js/jquery.tooltipster.js
+      - /tmp/js/global.js/router.js
+      - /tmp/js/global.js/fos_js_routes.js
+      - /tmp/js/global.js/tooltip.js
+      - /tmp/js/global.js/squadLine.js
+      - /tmp/js/global.js/bbcode.js
+      - /tmp/js/global.js/check-opacity.js
+      - /tmp/js/global.js/googleAnalytics.js
+    forum.js:
+      - /tmp/js/forum.js/googleAnalytics.js
+    jscolor.js:
+      - /tmp/js/jscolor.js/jscolor.js
+    army-new.js:
+      - /tmp/js/army-new.js/army-new.js
+    unitstuff-edit.js:
+      - /tmp/js/unitstuff-edit.js/fuzzy-min.js
+      - /tmp/js/unitstuff-edit.js/unitstuff-edit.js
+    army-list.js:
+      - /tmp/js/army-list.js/fuzzy-min.js
+      - /tmp/js/army-list.js/army-list.js
+    army-detail.js:
+      - /tmp/js/army-detail.js/jquery.ui.core.js
+      - /tmp/js/army-detail.js/jquery.ui.widget.js
+      - /tmp/js/army-detail.js/jquery.ui.mouse.js
+      - /tmp/js/army-detail.js/jquery.ui.sortable.js
+      - /tmp/js/army-detail.js/army.js

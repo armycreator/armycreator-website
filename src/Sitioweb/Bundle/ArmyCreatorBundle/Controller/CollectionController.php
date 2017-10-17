@@ -58,7 +58,7 @@ class CollectionController extends Controller
      */
     public function collectionEditAction(Request $request, Breed $breed)
     {
-        $user = $this->getUser();
+        $user = $this->get('user_service')->getArmyCreatorUser();
         $unitList = $this->get('doctrine')
                         ->getRepository('SitiowebArmyCreatorBundle:Unit')
                         ->findBy(['breed' => $breed]);
@@ -120,7 +120,7 @@ class CollectionController extends Controller
      */
     public function collectionContainsAction(Breed $breed)
     {
-        $user = $this->getUser();
+        $user = $this->get('user_service')->getArmyCreatorUser();
         $user->addCollectionList($breed);
         $this->get('doctrine')->getManager()->flush();
 
@@ -148,7 +148,7 @@ class CollectionController extends Controller
      */
     public function collectionRemoveAction(Breed $breed)
     {
-        $user = $this->getUser();
+        $user = $this->get('user_service')->getArmyCreatorUser();
         $user->removeCollectionList($breed);
         $this->get('doctrine')->getManager()->flush();
 
@@ -180,7 +180,7 @@ class CollectionController extends Controller
      */
     public function unitFeatureEditAction(Request $request, Breed $breed, Unit $unit)
     {
-        $user = $this->getUser();
+        $user = $this->get('user_service')->getArmyCreatorUser();
         $unitFeature = $this->get('doctrine')
             ->getRepository('SitiowebArmyCreatorBundle:UserUnitFeature')
             ->findOneBy([ 'user' => $user, 'unit' => $unit ]);

@@ -55,7 +55,7 @@ class SquadController extends Controller
         $this->get("apy_breadcrumb_trail")->add($tmp);
 
         // security
-        if ($this->getUser() != $army->getUser()) {
+        if ($this->get('user_service')->getArmyCreatorUser() != $army->getUser()) {
             throw new AccessDeniedException();
         }
 
@@ -119,7 +119,7 @@ class SquadController extends Controller
         $this->get("apy_breadcrumb_trail")->add($tmp);
 
         // security
-        if ($this->getUser() != $army->getUser()) {
+        if ($this->get('user_service')->getArmyCreatorUser() != $army->getUser()) {
             throw new AccessDeniedException();
         }
 
@@ -153,7 +153,7 @@ class SquadController extends Controller
     public function linkUnitAction(Army $army, Squad $squad, Request $request)
     {
         // security
-        if ($this->getUser() != $army->getUser()) {
+        if ($this->get('user_service')->getArmyCreatorUser() != $army->getUser()) {
             throw new AccessDeniedException();
         }
 
@@ -365,7 +365,7 @@ class SquadController extends Controller
     public function moveAction(Request $request, Squad $squad, Breed $breed, $unitTypeSlug)
     {
         $army = $squad->getArmy();
-        if ($this->getUser() != $army->getUser()) {
+        if ($this->get('user_service')->getArmyCreatorUser() != $army->getUser()) {
             throw new AccessDeniedException();
         }
 

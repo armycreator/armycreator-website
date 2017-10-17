@@ -2,12 +2,8 @@ services:
     user_service:
         class: Sitioweb\Bundle\ArmyCreatorBundle\UserService
         arguments:
-            - "%kernel.root_dir%"
             - "@security.token_storage"
-            - "@fos_user.user_manager"
-            - "@fos_user.security.login_manager"
-        tags:
-            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+            - "@armycreator.repository.user"
 
     armycreator.twig.breed_image_extension: 
         class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\BreedImage
@@ -38,6 +34,13 @@ services:
         tags:
             - { name: twig.extension }
 
+    armycreator.twig.user_extension: 
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\UserExtension
+        arguments:
+            - "@user_service"
+        tags:
+            - { name: twig.extension }
+
     armycreator.sitemap.listener:
         class: Sitioweb\Bundle\ArmyCreatorBundle\SitemapListener
         arguments:
@@ -58,10 +61,27 @@ services:
             - "@request_stack"
             - "@security.token_storage"
             - "@security.authorization_checker"
+            - "@user_service"
         tags:
             - { name: knp_menu.menu_builder, method: mainMenu, alias: main } # The alias is what is used to retrieve the menu
             - { name: knp_menu.menu_builder, method: secondMainMenu, alias: secondMain } # The alias is what is used to retrieve the menu
             - { name: knp_menu.menu_builder, method: breedShowMenu, alias: breedShow } # The alias is what is used to retrieve the menu
             - { name: knp_menu.menu_builder, method: gameMenu, alias: game } # The alias is what is used to retrieve the menu
             - { name: knp_menu.menu_builder, method: armyListMenu, alias: armyList } # The alias is what is used to retrieve the menu
+
+    armycreator.security.voter:
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Security\ArmyCreatorVoter
+        arguments: 
+            - "@user_service"
+            - "@security.role_hierarchy"
+        tags:
+            - { name: security.voter }
+
+    armycreator.security.game_voter:
+        class: Sitioweb\Bundle\ArmyCreatorBundle\Security\GeneralRoleContribVoter
+        arguments: 
+            - "@user_service"
+            - "@security.role_hierarchy"
+        tags:
+            - { name: security.voter }
 

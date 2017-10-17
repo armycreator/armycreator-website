@@ -23,15 +23,17 @@ class NewsController extends Controller
      *
      * @Template
      */
-    public function newsAction($forumId = 4, $limit = 10)
+    public function newsAction($forumId = 2, $limit = 10)
     {
         $query = '
             SELECT t.topic_id, t.topic_title, t.topic_poster, t.topic_first_poster_name,
-                t.topic_time, t.topic_replies,
-                p.post_text
+                t.topic_time, COUNT(p.post_id) as topic_replies,
+                fp.post_text
             FROM phpbb_topics t
-                LEFT JOIN phpbb_posts p ON p.post_id = t.topic_first_post_id
+                LEFT JOIN phpbb_posts fp ON fp.post_id = t.topic_first_post_id
+                LEFT JOIN phpbb_posts p ON p.topic_id = t.topic_id
             WHERE t.forum_id = :forumId
+            GROUP BY t.topic_id
             ORDER BY topic_time DESC
             LIMIT :limit';
 

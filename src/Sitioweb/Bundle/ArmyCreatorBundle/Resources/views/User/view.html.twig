@@ -15,7 +15,7 @@
         <div class="left">
             <h1>
                 {{- user -}}
-                {% if user.id == app.user.id -%}
+                {% if user.id == armycreator_user.id -%}
                     <a href="{{ path("profile_edit") }}" class="ml1 acButton acButtonSmall" title="{{ "edit"|trans }}">
                         <i class="el-icon-pencil"></i>
                     </a>

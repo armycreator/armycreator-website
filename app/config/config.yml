@@ -1,6 +1,7 @@
 imports:
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: repositories.yml }
 
 parameters:
     donation_parameters: 
@@ -47,6 +48,7 @@ doctrine:
         default_connection: default
         connections:
             default:
+                schema_filter: ~^(?!phpbb_|acl_)~
                 driver:   "%database_driver%"
                 host:     "%database_host%"
                 port:     "%database_port%"
@@ -77,11 +79,16 @@ doctrine:
         entity_managers:
             default:
                 connection: default
+                default_repository_class: "Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Repository\\SaveRepository"
                 mappings:
                     SitiowebArmyCreatorBundle: ~
-                    FOSUserBundle: ~
                     ArmycreatorApiBundle: ~
                     FOSOAuthServerBundle: ~
+            forum:
+                connection: forum
+                mappings:
+                    phpbbSessionsAuthBundle: ~
+
             acl:
                 connection: acl
 
@@ -98,19 +105,6 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
-fos_user:
-    db_driver: orm
-    firewall_name: main
-    #service: 
-    #    user_manager: phpbb_fos_user_manager
-    user_class: Sitioweb\Bundle\ArmyCreatorBundle\Entity\User
-    from_email:
-        address: 'olynk@armycreator.net'
-        sender_name: 'ArmyCreator'
-
-#elnur_blowfish_password_encoder:
-#    cost: 15
 
 knp_menu:
     twig:
@@ -201,8 +195,7 @@ fos_oauth_server:
     auth_code_class: Sitioweb\Bundle\ApiBundle\Entity\AuthCode
     service:
         storage: armycreator.oauth.storage
-        user_provider: fos_user.user_provider.username_email
-        #user_provider: fos_user.user_manager
+        user_provider: phpbb.sessionsauthbundle.phpbb_user_provider
 
 nelmio_cors:
     paths:
@@ -241,9 +234,16 @@ jms_serializer:
             KnpPager:
                 namespace_prefix: "Knp\\Component\\Pager"
                 path: "@ArmycreatorApiBundle/Resources/config/serializer/KnpPager"
-            FOSUserModel:
-                namespace_prefix: "FOS\\UserBundle"
-                path: "@SitiowebArmyCreatorBundle/Resources/config/serializer/FosUser"
             ArmyCreatorEntities:
                 namespace_prefix: "Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity"
                 path: "@SitiowebArmyCreatorBundle/Resources/config/serializer"
+
+phpbb_sessions_auth:
+    session:
+        secure: false
+        cookiename: "%forum_cookiename%"
+        boardurl: "/forum/"
+        force_login: false
+    database:
+        entity_manager: "forum"
+        prefix: "phpbb_"

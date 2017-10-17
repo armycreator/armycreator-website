@@ -15,7 +15,7 @@
                 <div>
                     <ul class="inline inlineBig collection">
                         {% for breed in breedGroup.availableBreedList %}
-                            {% set contained = app.user.collectionList.contains(breed) %}
+                            {% set contained = armycreator_user.collectionList.contains(breed) %}
 
                             <li class="w20{{ contained ? "" : " not-contained" }}">
                                 <figure class="breed left mr1">

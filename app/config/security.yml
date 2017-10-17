@@ -13,12 +13,8 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        fos_userbundle:
-            id: fos_user.user_provider.username_email
-    encoders:
-        FOS\UserBundle\Model\UserInterface:
-            algorithm: bcrypt
-            cost: 15
+        phpbb: 
+            id: "phpbb.sessionsauthbundle.phpbb_user_provider"
 
     firewalls:
         dev:
@@ -43,11 +39,13 @@ security:
         main:
             host: "%domain.website%"
             pattern: ^/
-            form_login:
-                login_path: /forum/ucp.php?mode=login
-            logout:       true
+            # logout:       true
             anonymous:    true
             switch_user:  true
+            stateless: true
+            simple_preauth:
+                authenticator: "phpbb.sessionsauthbundle.phpbb_authenticator"
+            provider: phpbb
 
     access_control:
         - { host: "%domain.api%", path: ^/doc$, role: IS_AUTHENTICATED_ANONYMOUSLY }

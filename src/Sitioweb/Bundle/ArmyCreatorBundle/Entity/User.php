@@ -2,9 +2,10 @@
 
 namespace Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Sitioweb\Bundle\ArmyCreatorBundle\Entity\User
@@ -12,8 +13,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="Users", indexes={@ORM\Index(name="forum_id_idx", columns={"forumId"})})
  * @ORM\Entity
  */
-class User extends BaseUser
+class User implements UserInterface
 {
+    const ROLE_DEFAULT = 'ROLE_USER';
+
     /**
      * id
      *
@@ -25,6 +28,34 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", length=180, nullable=false, unique=true)
+     */
+    protected $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", length=180, nullable=false, unique=true)
+     */
+    protected $email;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_login", type="datetime", nullable=true)
+     */
+    protected $lastLogin;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="roles", type="array")
+     */
+    protected $roles;
 
     /**
      * slug
@@ -66,16 +97,6 @@ class User extends BaseUser
      * @ORM\Column(type="json_array", nullable=true)
      */
     private $informations;
-
-    /**
-     * avatar
-     *
-     * @var string
-     * @access private
-     *
-     * @ORM\Column(type="string")
-     */
-    private $avatar;
 
     /**
      * armyList
@@ -141,12 +162,12 @@ class User extends BaseUser
      */
     public function __construct()
     {
-        parent::__construct();
-        $this->armyList = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->armyGroupList = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->collectionList = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->userHasUnitList = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->userUnitFeatureList = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->roles = [];
+        $this->armyList = new ArrayCollection();
+        $this->armyGroupList = new ArrayCollection();
+        $this->collectionList = new ArrayCollection();
+        $this->userHasUnitList = new ArrayCollection();
+        $this->userUnitFeatureList = new ArrayCollection();
     }
 
     /**
@@ -267,29 +288,6 @@ class User extends BaseUser
     public function setSlug($slug)
     {
         $this->slug = $slug;
-        return $this;
-    }
-
-    /**
-     * Gets the value of avatar
-     *
-     * @return string
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
-
-    /**
-     * Sets the value of avatar
-     *
-     * @param string $avatar avatar
-     *
-     * @return User
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
         return $this;
     }
 
@@ -569,5 +567,176 @@ class User extends BaseUser
         }
 
         return $this->preferedBreedList;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addRole($role)
+    {
+        $role = strtoupper($role);
+        if ($role === static::ROLE_DEFAULT) {
+            return $this;
+        }
+
+        if (!in_array($role, $this->roles, true)) {
+            $this->roles[] = $role;
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Gets the last login time.
+     *
+     * @return \DateTime
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRoles()
+    {
+        $roles = $this->roles;
+
+        // we need to make sure to have at least one role
+        $roles[] = static::ROLE_DEFAULT;
+
+        return array_unique($roles);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasRole($role)
+    {
+        return in_array(strtoupper($role), $this->getRoles(), true);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isSuperAdmin()
+    {
+        return $this->hasRole(static::ROLE_SUPER_ADMIN);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeRole($role)
+    {
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+            unset($this->roles[$key]);
+            $this->roles = array_values($this->roles);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSuperAdmin($boolean)
+    {
+        if (true === $boolean) {
+            $this->addRole(static::ROLE_SUPER_ADMIN);
+        } else {
+            $this->removeRole(static::ROLE_SUPER_ADMIN);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastLogin(\DateTime $time = null)
+    {
+        $this->lastLogin = $time;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRoles(array $roles)
+    {
+        $this->roles = array();
+
+        foreach ($roles as $role) {
+            $this->addRole($role);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getUsername();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPassword() {
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSalt() {
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function eraseCredentials() {
     }
 }

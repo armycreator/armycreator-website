@@ -4,7 +4,6 @@
           <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/elusive-webfont.css">
           <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/tooltipster.css">
           <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/github-corner.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/knacss.css">
           <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/override.css">
           <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/font.css">
           <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/util.css">
@@ -66,7 +65,7 @@
 
             <span class="right">
                 {% if ac_is_granted('IS_AUTHENTICATED_FULLY') %}
-                    {% trans with { "%username%": app.user.username } %}header.hello.%username%{% endtrans %}
+                    {% trans with { "%username%": armycreator_user.username } %}header.hello.%username%{% endtrans %}
 
                     {% if is_granted('ROLE_CONTRIB') %}
                         |

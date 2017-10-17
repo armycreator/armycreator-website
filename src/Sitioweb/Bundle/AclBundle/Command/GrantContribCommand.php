@@ -99,9 +99,19 @@ class GrantContribCommand extends Command
      */
     private function getUser($username)
     {
-        return $this->getContainer()
-            ->get('fos_user.user_manager')
-            ->findUserByUsernameOrEmail($username);
+        $repo = $this->getContainer()
+            ->get('armycreator.repository.user');
+
+        $user = $repo->findOneByUsername($username);
+
+        $user->addRole('ROLE_CONTRIB');
+
+        $repo->save($user);
+
+        $forumRepo = $this->getContainer()->get('armycreator.repository.phpbb_user');
+        $forumUser = $forumRepo->find($user->getForumId());
+
+        return $forumUser;
     }
 
 

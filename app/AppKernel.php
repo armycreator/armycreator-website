@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new APY\BreadcrumbTrailBundle\APYBreadcrumbTrailBundle(),
@@ -33,6 +32,7 @@ class AppKernel extends Kernel
             new Presta\SitemapBundle\PrestaSitemapBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sentry\SentryBundle\SentryBundle(),
+            new phpBB\SessionsAuthBundle\phpbbSessionsAuthBundle(),
 
             // API
             new JMS\SerializerBundle\JMSSerializerBundle(),

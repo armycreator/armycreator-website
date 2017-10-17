@@ -34,7 +34,7 @@ class ProfileController extends Controller
      */
     public function editAction(Request $request)
     {
-        $user = $this->getUser();
+        $user = $this->get('user_service')->getArmyCreatorUser();
 
         $form = $this->createForm(UserType::class, $user);
 

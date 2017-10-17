@@ -1,10 +1,13 @@
 <?php
 /**
 *
-* @package ucp
-* @version $Id$
-* @copyright (c) 2005 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* This file is part of the phpBB Forum Software package.
+*
+* @copyright (c) phpBB Limited <https://www.phpbb.com>
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
+* For full copyright and license information, please see
+* the docs/CREDITS.txt file.
 *
 */
 
@@ -19,7 +22,6 @@ if (!defined('IN_PHPBB'))
 /**
 * ucp_remind
 * Sending password reminders
-* @package ucp
 */
 class ucp_remind
 {
@@ -27,19 +29,51 @@ class ucp_remind
 
 	function main($id, $mode)
 	{
-		global $config, $phpbb_root_path, $phpEx;
-		global $db, $user, $auth, $template;
+		global $config, $phpbb_root_path, $phpEx, $request;
+		global $db, $user, $template, $phpbb_container, $phpbb_dispatcher;
 
-		$username	= request_var('username', '', true);
-		$email		= strtolower(request_var('email', ''));
+		if (!$config['allow_password_reset'])
+		{
+			trigger_error($user->lang('UCP_PASSWORD_RESET_DISABLED', '<a href="mailto:' . htmlspecialchars($config['board_contact']) . '">', '</a>'));
+		}
+
+		$username	= $request->variable('username', '', true);
+		$email		= strtolower($request->variable('email', ''));
 		$submit		= (isset($_POST['submit'])) ? true : false;
+
+		add_form_key('ucp_remind');
 
 		if ($submit)
 		{
-			$sql = 'SELECT user_id, username, user_permissions, user_email, user_jabber, user_notify_type, user_type, user_lang, user_inactive_reason
-				FROM ' . USERS_TABLE . "
-				WHERE user_email_hash = '" . $db->sql_escape(phpbb_email_hash($email)) . "'
-					AND username_clean = '" . $db->sql_escape(utf8_clean_string($username)) . "'";
+			if (!check_form_key('ucp_remind'))
+			{
+				trigger_error('FORM_INVALID');
+			}
+
+			$sql_array = array(
+				'SELECT'	=> 'user_id, username, user_permissions, user_email, user_jabber, user_notify_type, user_type, user_lang, user_inactive_reason',
+				'FROM'		=> array(USERS_TABLE => 'u'),
+				'WHERE'		=> "user_email_hash = '" . $db->sql_escape(phpbb_email_hash($email)) . "'
+									AND username_clean = '" . $db->sql_escape(utf8_clean_string($username)) . "'"
+			);
+
+			/**
+			* Change SQL query for fetching user data
+			*
+			* @event core.ucp_remind_modify_select_sql
+			* @var	string	email		User's email from the form
+			* @var	string	username	User's username from the form
+			* @var	array	sql_array	Fully assembled SQL query with keys SELECT, FROM, WHERE
+			* @since 3.1.11-RC1
+			*/
+			$vars = array(
+				'email',
+				'username',
+				'sql_array',
+			);
+			extract($phpbb_dispatcher->trigger_event('core.ucp_remind_modify_select_sql', compact($vars)));
+
+			$sql = $db->sql_build_query('SELECT', $sql_array);
 			$result = $db->sql_query($sql);
 			$user_row = $db->sql_fetchrow($result);
 			$db->sql_freeresult($result);
@@ -67,11 +101,12 @@ class ucp_remind
 			}
 
 			// Check users permissions
-			$auth2 = new auth();
+			$auth2 = new \phpbb\auth\auth();
 			$auth2->acl($user_row);
 
 			if (!$auth2->acl_get('u_chgpasswd'))
 			{
+				send_status_line(403, 'Forbidden');
 				trigger_error('NO_AUTH_PASSWORD_REMINDER');
 			}
 
@@ -84,8 +119,12 @@ class ucp_remind
 			// For the activation key a random length between 6 and 10 will do.
 			$user_actkey = gen_rand_string(mt_rand(6, 10));
 
+			// Instantiate passwords manager
+			/* @var $manager \phpbb\passwords\manager */
+			$passwords_manager = $phpbb_container->get('passwords.manager');
+
 			$sql = 'UPDATE ' . USERS_TABLE . "
-				SET user_newpasswd = '" . $db->sql_escape(phpbb_hash($user_password)) . "', user_actkey = '" . $db->sql_escape($user_actkey) . "'
+				SET user_newpasswd = '" . $db->sql_escape($passwords_manager->hash($user_password)) . "', user_actkey = '" . $db->sql_escape($user_actkey) . "'
 				WHERE user_id = " . $user_row['user_id'];
 			$db->sql_query($sql);
 
@@ -95,8 +134,7 @@ class ucp_remind
 
 			$messenger->template('user_activate_passwd', $user_row['user_lang']);
 
-			$messenger->to($user_row['user_email'], $user_row['username']);
-			$messenger->im($user_row['user_jabber'], $user_row['username']);
+			$messenger->set_addresses($user_row);
 
 			$messenger->anti_abuse_headers($config, $user);
 
@@ -124,5 +162,3 @@ class ucp_remind
 		$this->page_title = 'UCP_REMIND';
 	}
 }
-
-?>

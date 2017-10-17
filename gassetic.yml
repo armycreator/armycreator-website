@@ -27,11 +27,13 @@ mimetypes:
 
 
         files:
+            knacss.css:
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/knacss.less"
+
             global.css:
                 - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/elusive-iconfont/less/elusive-webfont.less"
                 - "src/Sitioweb/Bundle/ExternalJsBundle/Resources/public/tooltipster/css/tooltipster.css"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/github-corner.css"
-                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/knacss.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/override.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/font.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/util.less"
@@ -46,6 +48,10 @@ mimetypes:
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/news.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/armyDetail-desktop.less"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/squadEdit.less"
+
+            forum.css:
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/forum-reset.less"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/less/forum-header.less"
 
             dice.css:
                 - "src/Sitioweb/Bundle/DiceBundle/Resources/public/less/dice.less"
@@ -113,6 +119,9 @@ mimetypes:
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/squadLine.js"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/bbcode.js"
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/check-opacity.js"
+                - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/googleAnalytics.js"
+
+            forum.js:
                 - "src/Sitioweb/Bundle/ArmyCreatorBundle/Resources/public/js/googleAnalytics.js"
 
             jscolor.js:
