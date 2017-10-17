@@ -1,3 +1,5 @@
-<link href="{T_SCRIPT_PATH}/ext/armycreator/phpbb/theme/armycreator.css?assets_version={T_ASSETS_VERSION}" rel="stylesheet" />
+{% for css_file in css_files %}
+    {{ css_file }}
+{% endfor %}
 
 {# vim: set filetype=twig: #}

@@ -7,7 +7,7 @@
         <p>
             Army Creator ne permet pas de créer une liste d'armée sans posséder le codex correspondant !
     Ce site n'est pas officiel ni en aucun cas autorisé ou approuvé par Games Workshop.
-    Warhammer, Warhammer 40.000, le logo Games Workshop, Games Workshop, Space Marines, Blood Angel, Dark Angel, Eldars, Eldars Noirs, Marines du chaos, Demons du chaos, Orks, Guarde Imperiale, Ordo Malleus, Ordo Hereticus, Necrons, Tau, Tyrannides, Codex, ainsi que tous les noms d'unités, d'armes et d'équipements sont des marques de Games Workshop Limited, utilisées sans autorisation et sans volonté de préjudice ou comme opposition à leur copyright.
+    Warhammer, Warhammer 40.000, le logo Games Workshop, Games Workshop, Space Marines, Blood Angel, Dark Angel, Eldars, Eldars Noirs, Marines du chaos, Demons du chaos, Orks, Guarde Imperiale, Ordo Malleus, Ordo Hereticus, Necrons, Tau, Tyrannides, Codex, ainsi que tous les noms d'unités, d'armes et d'équipements sont des marques de Games Workshop Limited, utilisées sans autorisation et sans volonté de préjudice ou comme opposition à leur copyright. 
         </p>
     </div>
 
@@ -31,5 +31,9 @@
         </div>
     </div>
 </footer>
+
+{% for js_file in js_files %}
+    {{ js_file }}
+{% endfor %}
 
 {# vim: set filetype=twig: #}
