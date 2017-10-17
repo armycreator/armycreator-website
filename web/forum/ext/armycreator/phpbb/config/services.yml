@@ -3,5 +3,6 @@ services:
         class: armycreator\phpbb\event\listener
         arguments:
             - "@template"
+            - "@config"
         tags:
             - { name: event.listener }

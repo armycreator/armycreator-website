@@ -5,6 +5,7 @@ namespace armycreator\phpbb\event;
 require(__DIR__ . '/../vendor/autoload.php');
 
 use phpbb\auth\auth;
+use phpbb\config\config;
 use phpbb\event\data;
 use phpbb\template\template;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -19,9 +20,12 @@ class listener implements EventSubscriberInterface
 {
     private $template;
 
-    public function __construct(template $template)
+    private $config;
+
+    public function __construct(template $template, config $config)
     {
         $this->template = $template;
+        $this->config = $config;
     }
 
     public static function getSubscribedEvents()
@@ -37,15 +41,18 @@ class listener implements EventSubscriberInterface
         $user_data = $event->get_data()['user_data'];
         if ($user_data['is_registered'] && !$user_data['is_bot'])
         {
-            $this->template->assign_vars(array(
+            $this->template->assign_vars([
                 'user_data' => $user_data,
-            ));
+            ]);
         }
     }
 
-    public function common()
+    public function common($event)
     {
-        $root = __DIR__ . '/../../../../../../';
+        $root = $this->config['armycreator_path'];
+        if (!$root) {
+            throw new \RuntimeException('armycreator_path must be set');
+        }
         $filename_list = [
             $root . 'gassetic.dump.prod.yml',
             $root . 'gassetic.dump.dev.yml',
