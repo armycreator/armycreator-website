@@ -2,14 +2,11 @@
 
 namespace armycreator\phpbb\event;
 
-require(__DIR__ . '/../vendor/autoload.php');
-
 use phpbb\auth\auth;
 use phpbb\config\config;
 use phpbb\event\data;
 use phpbb\template\template;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\VarDumper\VarDumper\VarDumper;
 use Symfony\Component\Yaml\Yaml;
 
 /**
