@@ -286,8 +286,8 @@ class ArmyController extends Controller
         // security
         if (
             $this->get('user_service')->getArmyCreatorUser() != $army->getUser() &&
-            !$army->getIsShared() && $this->get('oneup_acl.manager') &&
-            !$this->get('oneup_acl.manager')->isGranted('ROLE_ADMIN')
+            !$army->getIsShared() &&
+            !$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')
         ) {
             throw new AccessDeniedException('Army not shared');
         } elseif ($this->get('user_service')->getArmyCreatorUser() != $army->getUser()) {

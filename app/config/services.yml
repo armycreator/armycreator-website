@@ -22,7 +22,7 @@ services:
         class: Sitioweb\Bundle\ArmyCreatorBundle\Twig\Unit
         arguments:
             - "@doctrine.orm.default_entity_manager"
-            - "@security.token_storage"
+            - "@user_service"
         tags:
             - { name: twig.extension }
 

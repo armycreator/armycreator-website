@@ -33,34 +33,30 @@ class DiceLaunchController extends Controller
 
         // the user submitted the form
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
+        if (!$form->isValid()) {
+            $dices = $defaultDices;
+        } else {
+            $nbDices = $dices->getDiceNumber();
 
-            if (!$form->isValid()) {
-                $dices = $defaultDices;
-            } else {
-                $nbDices = $dices->getDiceNumber();
-
-                $resultList = array();
-                for ($i = 1; $i <= 6; $i++) {
-                    $resultList[$i] = 0;
-                    $supList[$i] = 0;
-                }
-
-                for ($i = 0; $i < $nbDices; $i++) {
-                    $rand = mt_rand(1, 6);
-                    $resultList[$rand]++;
-                    for ($j = 1; $j <= $rand; $j++) {
-                        $supList[$j]++;
-                    }
-                }
+            $resultList = [];
+            for ($i = 1; $i <= 6; $i++) {
+                $resultList[$i] = 0;
+                $supList[$i] = 0;
             }
 
+            for ($i = 0; $i < $nbDices; $i++) {
+                $rand = mt_rand(1, 6);
+                $resultList[$rand]++;
+                for ($j = 1; $j <= $rand; $j++) {
+                    $supList[$j]++;
+                }
+            }
         }
 
         return array(
             'dices' => $dices,
-            'resultList' => $resultList,
-            'supList' => $supList,
+            'resultList' => $resultList ?? null,
+            'supList' => $supList ?? null,
             'form' => $form->createView()
         );
     }

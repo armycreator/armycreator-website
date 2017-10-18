@@ -439,7 +439,8 @@ class SquadController extends Controller
         $entity->addEmptySquadLine(true);
         $editForm = $this->createForm(SquadType::class, $entity, ['breed' => $entity->getUnitType()->getBreed()]);
         $editForm->handleRequest($request);
-        $deleteForm = $this->createDeleteForm($entity->getId());
+
+        $army = $entity->getArmy();
 
         if ($editForm->isValid()) {
             $entity->preUpdate();
@@ -451,7 +452,6 @@ class SquadController extends Controller
             $em->flush();
 
             // dispatch event
-            $army = $entity->getArmy();
             $this->get('event_dispatcher')
                 ->dispatch(
                     'armycreator.event.squad.update',
@@ -461,14 +461,15 @@ class SquadController extends Controller
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getArmy()->getSlug())));
         }
 
+        $deleteForm = $this->createDeleteForm($entity->getId());
 
-        return array(
-            'army'      => $army,
-            'entity'      => $entity,
+        return [
+            'army' => $army,
+            'entity' => $entity,
             'currentUnitType' => $entity->getUnitType(),
-            'form'   => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**

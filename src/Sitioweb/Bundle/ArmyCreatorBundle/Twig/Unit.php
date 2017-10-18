@@ -5,7 +5,6 @@ namespace Sitioweb\Bundle\ArmyCreatorBundle\Twig;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sitioweb\Bundle\ArmyCreatorBundle\Entity;
 use Sitioweb\Bundle\ArmyCreatorBundle\UserService;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class Unit extends \Twig_Extension
 {
@@ -31,7 +30,7 @@ class Unit extends \Twig_Extension
      * @access public
      * @return void
      */
-    public function __construct(ObjectManager $objectManager, TokenStorageInterface $userService)
+    public function __construct(ObjectManager $objectManager, UserService $userService)
     {
         $this->objectManager = $objectManager;
         $this->userService = $userService;
