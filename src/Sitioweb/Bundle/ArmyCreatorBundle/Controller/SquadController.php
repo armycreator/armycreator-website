@@ -486,12 +486,12 @@ class SquadController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('SitiowebArmyCreatorBundle:Squad')->find($id);
-            $army = $entity->getArmy();
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Squad entity.');
             }
 
+            $army = $entity->getArmy();
             $army->removeSquadList($entity);
             $em->remove($entity);
             $em->flush();
