@@ -11,13 +11,9 @@
 {% block stylesheets %}
     {{ parent() }}
 
-    {% if app.environment == 'dev' %}
-        <!-- dev:print-version.css -->
-          <link rel="stylesheet" type="text/css" href="/tmp/css/print-version.css/print.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/print-version.css/content-print.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/print-version.css/armyDetail-print.css">
-        <!-- endbuild -->
-    {% else %}
-        <!-- prod:print-version.css --><!-- endbuild -->
-    {% endif %}
+    <!-- *:print-version.css -->
+      <link rel="stylesheet" type="text/css" href="/tmp/css/print-version.css/print.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/print-version.css/content-print.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/print-version.css/armyDetail-print.css">
+    <!-- endbuild -->
  {% endblock %}

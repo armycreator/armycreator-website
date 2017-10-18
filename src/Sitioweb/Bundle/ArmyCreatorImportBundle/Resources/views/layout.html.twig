@@ -24,12 +24,8 @@
 {% endblock %}
 
 {% block stylesheets %}
-    {% if app.environment == 'dev' %}
-        <!-- dev:import.css -->
-          <link rel="stylesheet" type="text/css" href="/tmp/css/import.css/elusive-webfont.css">
-        <!-- endbuild -->
-    {% else %}
-        <!-- prod:import.css --><!-- endbuild -->
-    {% endif %}
+    <!-- *:import.css -->
+      <link rel="stylesheet" type="text/css" href="/tmp/css/import.css/elusive-webfont.css">
+    <!-- endbuild -->
 {% endblock %}
 

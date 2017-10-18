@@ -39,3 +39,8 @@ ln -s /home/upload/code/armycreator/build/$BUILD_NUMBER /home/upload/code/armycr
 rm -rf web/forum/cache/*overall*;
 
 systemctl reload php7.0-fpm
+
+curl https://sentry.io/api/hooks/release/builtin/$SENTRY_END_URL/ \
+  -X POST \
+  -H 'Content-Type: application/json' \
+  -d '{"version": "'$BUILD_NUMBER'"}'

@@ -41,59 +41,46 @@
 {% endblock %}
 
 {% block javascripts %}
-    {% if app.environment == 'dev' %}
-        <!-- dev:global.js -->
-          <script src="/tmp/js/global.js/jquery.min.js"></script>
-          <script src="/tmp/js/global.js/jquery.tooltipster.js"></script>
-          <script src="/tmp/js/global.js/router.js"></script>
-          <script src="/tmp/js/global.js/fos_js_routes.js"></script>
-          <script src="/tmp/js/global.js/tooltip.js"></script>
-          <script src="/tmp/js/global.js/squadLine.js"></script>
-          <script src="/tmp/js/global.js/bbcode.js"></script>
-          <script src="/tmp/js/global.js/check-opacity.js"></script>
-          <script src="/tmp/js/global.js/googleAnalytics.js"></script>
-        <!-- endbuild -->
-    {% else %}
-        <!-- prod:global.js --><!-- endbuild -->
-    {% endif %}
+    <!-- *:global.js -->
+      <script src="/tmp/js/global.js/jquery.min.js"></script>
+      <script src="/tmp/js/global.js/jquery.tooltipster.js"></script>
+      <script src="/tmp/js/global.js/router.js"></script>
+      <script src="/tmp/js/global.js/fos_js_routes.js"></script>
+      <script src="/tmp/js/global.js/tooltip.js"></script>
+      <script src="/tmp/js/global.js/squadLine.js"></script>
+      <script src="/tmp/js/global.js/bbcode.js"></script>
+      <script src="/tmp/js/global.js/check-opacity.js"></script>
+      <script src="/tmp/js/global.js/googleAnalytics.js"></script>
+    <!-- endbuild -->
 {% endblock %}
 
 {% block stylesheets %}
-    {% if app.environment == 'dev' %}
-        <!-- dev:knacss.css -->
-          <link rel="stylesheet" type="text/css" href="/tmp/css/knacss.css/knacss.css">
-        <!-- endbuild -->
-        <!-- dev:global.css -->
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/elusive-webfont.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/tooltipster.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/github-corner.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/override.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/font.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/util.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/button.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/form.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/header.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/homepage.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/content-desktop.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/footer.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/breed.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/menu.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/news.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/armyDetail-desktop.css">
-          <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/squadEdit.css">
-        <!-- endbuild -->
-    {% else %}
-        <!-- prod:knacss.css --><!-- endbuild -->
-        <!-- prod:global.css --><!-- endbuild -->
-    {% endif %}
+    <!-- *:knacss.css -->
+      <link rel="stylesheet" type="text/css" href="/tmp/css/knacss.css/knacss.css">
+    <!-- endbuild -->
+    <!-- *:global.css -->
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/elusive-webfont.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/tooltipster.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/github-corner.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/override.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/font.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/util.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/button.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/form.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/header.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/homepage.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/content-desktop.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/footer.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/breed.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/menu.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/news.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/armyDetail-desktop.css">
+      <link rel="stylesheet" type="text/css" href="/tmp/css/global.css/squadEdit.css">
+    <!-- endbuild -->
 
-    {% if app.environment == 'dev' %}
-        <!-- dev:print.css -->
-          <link rel="stylesheet" href="/tmp/css/print.css/print.css" media="print" />
-          <link rel="stylesheet" href="/tmp/css/print.css/content-print.css" media="print" />
-          <link rel="stylesheet" href="/tmp/css/print.css/armyDetail-print.css" media="print" />
-        <!-- endbuild -->
-    {% else %}
-        <!-- prod:print.css --><!-- endbuild -->
-    {% endif %}
+    <!-- *:print.css -->
+      <link rel="stylesheet" href="/tmp/css/print.css/print.css" media="print" />
+      <link rel="stylesheet" href="/tmp/css/print.css/content-print.css" media="print" />
+      <link rel="stylesheet" href="/tmp/css/print.css/armyDetail-print.css" media="print" />
+    <!-- endbuild -->
 {% endblock %}

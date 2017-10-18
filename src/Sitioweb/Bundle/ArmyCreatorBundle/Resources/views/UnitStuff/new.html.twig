@@ -56,12 +56,8 @@
         };
     </script>
 
-    {% if app.environment == 'dev' %}
-        <!-- dev:unitstuff-edit.js -->
-          <script src="/tmp/js/unitstuff-edit.js/fuzzy-min.js"></script>
-          <script src="/tmp/js/unitstuff-edit.js/unitstuff-edit.js"></script>
-        <!-- endbuild -->
-    {% else %}
-        <!-- prod:unitstuff-edit.js --><!-- endbuild -->
-    {% endif %}
+    <!-- *:unitstuff-edit.js -->
+      <script src="/tmp/js/unitstuff-edit.js/fuzzy-min.js"></script>
+      <script src="/tmp/js/unitstuff-edit.js/unitstuff-edit.js"></script>
+    <!-- endbuild -->
 {% endblock %}
