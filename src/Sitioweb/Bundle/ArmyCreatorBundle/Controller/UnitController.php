@@ -55,6 +55,8 @@ class UnitController extends Controller
                 $unitGroup = $em->getRepository('SitiowebArmyCreatorBundle:UnitGroup')
                                 ->findOneBySlug($request->get('group'));
                 $mainUnit = false;
+            } else {
+                $unitGroup = null;
             }
 
             $doNotCreateUnitGroup = $form->get('doNotCreateUnitGroup')->getData();

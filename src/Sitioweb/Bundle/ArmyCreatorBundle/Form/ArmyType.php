@@ -27,7 +27,7 @@ class ArmyType extends AbstractType
             )
             ->add('name', null, array('required' => false))
             ->add('description',null, ['attr' => ['rows' => 3, 'cols' => 50]])
-            ->add('wantedPoints', null, array('required' => false))
+            ->add('wantedPoints', null, array('required' => false, 'empty_data' => 0))
             ->add(
                 'armyGroup',
                 null,

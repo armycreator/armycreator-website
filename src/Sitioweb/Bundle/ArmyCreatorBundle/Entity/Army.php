@@ -326,7 +326,7 @@ class Army
      * @param integer $wantedPoints
      * @return Army
      */
-    public function setWantedPoints($wantedPoints)
+    public function setWantedPoints(int $wantedPoints)
     {
         $this->wantedPoints = $wantedPoints;
 

@@ -487,11 +487,11 @@ class ArmyController extends Controller
             return $this->redirect($this->generateUrl('army_detail', array('slug' => $entity->getSlug())));
         }
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+        return [
+            'entity' => $entity,
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
