@@ -38,7 +38,7 @@ ln -s /home/upload/code/armycreator/build/$BUILD_NUMBER /home/upload/code/armycr
 #curl http://www.w40karmycreator.com/forum/ > /dev/null;
 rm -rf web/forum/cache/*overall*;
 
-systemctl reload php7.0-fpm
+systemctl restart php7.0-fpm
 
 curl https://sentry.io/api/hooks/release/builtin/$SENTRY_END_URL/ \
   -X POST \
