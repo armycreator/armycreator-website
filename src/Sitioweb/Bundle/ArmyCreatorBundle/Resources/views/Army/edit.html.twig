@@ -88,7 +88,13 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <!-- *:army-new.js -->
-      <script src="/tmp/js/army-new.js/army-new.js"></script>
-    <!-- endbuild -->
+    {% if app.environment == 'dev' %}
+        <!-- dev:army-new.js -->
+          <script src="/tmp/js/army-new.js/army-new.js"></script>
+        <!-- endbuild -->
+    {% else %}
+        <!-- prod:army-new.js -->
+          <script src="/js/army-new.js/army-new_d5f8c3ae8538f6924342fa1be7b87ee0.js"></script>
+        <!-- endbuild -->
+    {% endif %}
 {% endblock %}

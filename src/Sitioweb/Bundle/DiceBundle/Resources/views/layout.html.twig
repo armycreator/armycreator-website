@@ -14,7 +14,11 @@
 {% block stylesheets %}
     {{ parent() }}
 
-    <!-- *:dice.css -->
-      <link rel="stylesheet" type="text/css" href="/tmp/css/dice.css/dice.css">
-    <!-- endbuild -->
+    {% if app.environment == 'dev' %}
+        <!-- dev:dice.css -->
+          <link rel="stylesheet" type="text/css" href="/tmp/css/dice.css/dice.css">
+        <!-- endbuild -->
+    {% else %}
+        <!-- prod:dice.css --><!-- endbuild -->
+    {% endif %}
 {% endblock %}

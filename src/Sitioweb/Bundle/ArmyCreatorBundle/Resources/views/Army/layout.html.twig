@@ -172,11 +172,15 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <!-- *:army-detail.js -->
-      <script src="/tmp/js/army-detail.js/jquery.ui.core.js"></script>
-      <script src="/tmp/js/army-detail.js/jquery.ui.widget.js"></script>
-      <script src="/tmp/js/army-detail.js/jquery.ui.mouse.js"></script>
-      <script src="/tmp/js/army-detail.js/jquery.ui.sortable.js"></script>
-      <script src="/tmp/js/army-detail.js/army.js"></script>
-    <!-- endbuild -->
+    {% if app.environment == 'dev' %}
+        <!-- dev:army-detail.js -->
+          <script src="/tmp/js/army-detail.js/jquery.ui.core.js"></script>
+          <script src="/tmp/js/army-detail.js/jquery.ui.widget.js"></script>
+          <script src="/tmp/js/army-detail.js/jquery.ui.mouse.js"></script>
+          <script src="/tmp/js/army-detail.js/jquery.ui.sortable.js"></script>
+          <script src="/tmp/js/army-detail.js/army.js"></script>
+        <!-- endbuild -->
+    {% else %}
+        <!-- prod:army-detail.js --><!-- endbuild -->
+    {% endif %}
 {% endblock %}
