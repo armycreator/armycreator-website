@@ -183,7 +183,7 @@ class UnitController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $editForm = $this->createForm(UnitType::class, $unit, ['breed' => $breed]);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($unit->getId());
 
         return array(
             'unit'      => $unit,
