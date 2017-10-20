@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sentry\SentryBundle\SentryBundle(),
             new phpBB\SessionsAuthBundle\phpbbSessionsAuthBundle(),
+            new Mapado\DoctrineBlenderBundle\MapadoDoctrineBlenderBundle(),
 
             // API
             new JMS\SerializerBundle\JMSSerializerBundle(),

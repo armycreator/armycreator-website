@@ -25,7 +25,37 @@ class RefreshToken extends BaseRefreshToken
     protected $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Sitioweb\Bundle\ArmyCreatorBundle\Entity\User")
+     * userId
+     *
+     * @var mixed
+     * @access private
+     *
+     * @ORM\Column(name="user_id", type="integer")
      */
+    private $userId;
+
     protected $user;
+
+    /**
+     * Getter for userId
+     *
+     * @return int
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Setter for userId
+     *
+     * @param int $userId
+     * @return AccessToken
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
 }

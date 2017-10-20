@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4d0f5dd899a1879fafc664818159f0d",
+    "content-hash": "4b7a580bba54efe07d08013a088a0850",
     "packages": [
         {
             "name": "apy/breadcrumbtrail-bundle",
@@ -2243,7 +2243,7 @@
                 "issues": "https://www.phpbb.com/bugs/website/",
                 "source": "https://github.com/jdeniau/PhpbbSessionsAuthBundle/tree/master"
             },
-            "time": "2017-10-11 19:26:26"
+            "time": "2017-10-11T19:26:26+00:00"
         },
         {
             "name": "knplabs/knp-components",
@@ -2800,6 +2800,87 @@
                 "symfony"
             ],
             "time": "2017-06-15T15:04:41+00:00"
+        },
+        {
+            "name": "mapado/doctrine-blender",
+            "version": "v0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mapado/doctrine-blender.git",
+                "reference": "3ff7e032c6affaa8d575a22746f281617966c945"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mapado/doctrine-blender/zipball/3ff7e032c6affaa8d575a22746f281617966c945",
+                "reference": "3ff7e032c6affaa8d575a22746f281617966c945",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "2.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.2.*"
+            },
+            "suggest": {
+                "doctrine/mongodb-odm": "1.*",
+                "doctrine/orm": "2.*",
+                "mapado/elastica-query-bundle": "1.*",
+                "symfony/yaml": "2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mapado\\DoctrineBlender\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Julien Deniau",
+                    "email": "julien.deniau@gmail.com"
+                }
+            ],
+            "description": "Package in charge of \"blending\" doctrine entities (ORM, ODM, etc.)",
+            "time": "2014-10-13T09:11:11+00:00"
+        },
+        {
+            "name": "mapado/doctrine-blender-bundle",
+            "version": "v0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mapado/doctrine-blender-bundle.git",
+                "reference": "6c5a37fe5a2560e0bad8d4c2290336ae4f26a860"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mapado/doctrine-blender-bundle/zipball/6c5a37fe5a2560e0bad8d4c2290336ae4f26a860",
+                "reference": "6c5a37fe5a2560e0bad8d4c2290336ae4f26a860",
+                "shasum": ""
+            },
+            "require": {
+                "mapado/doctrine-blender": ">=0.5.0,<1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mapado\\DoctrineBlenderBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Julien Deniau",
+                    "email": "julien.deniau@gmail.com"
+                }
+            ],
+            "description": "Bundle in change of the mapado/doctrine-blender package configuration",
+            "time": "2016-04-12T12:35:11+00:00"
         },
         {
             "name": "michelf/php-markdown",
