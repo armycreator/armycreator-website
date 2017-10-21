@@ -29,7 +29,7 @@ class UserController extends FOSRestController
      */
     public function getMeAction()
     {
-        return $this->get('security.token_storage')->getToken()->getUser();
+        return $this->get('user_service')->getArmyCreatorUser();
     }
 
     /**

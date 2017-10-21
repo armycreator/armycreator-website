@@ -257,7 +257,7 @@ mapado_doctrine_blender:
                     reference_id_getter: 'getUserId' # optional, method in the source entity fetching the ref.id
                     reference_setter: 'setUser' # optional, method in the source entity to set the reference
                     reference_object_manager: 'doctrine.orm.forum_entity_manager'
-                    reference_class: 'phpbbSessionsAuthBundle\Entity\User'
+                    reference_class: 'phpBB\SessionsAuthBundle\Entity\User'
 
         refresh_token:
             source_object_manager: 'doctrine.orm.default_entity_manager'
@@ -267,7 +267,7 @@ mapado_doctrine_blender:
                     reference_id_getter: 'getUserId' # optional, method in the source entity fetching the ref.id
                     reference_setter: 'setUser' # optional, method in the source entity to set the reference
                     reference_object_manager: 'doctrine.orm.forum_entity_manager'
-                    reference_class: 'phpbbSessionsAuthBundle\Entity\User'
+                    reference_class: 'phpBB\SessionsAuthBundle\Entity\User'
 
 
         auth_code:
@@ -278,6 +278,6 @@ mapado_doctrine_blender:
                     reference_id_getter: 'getUserId' # optional, method in the source entity fetching the ref.id
                     reference_setter: 'setUser' # optional, method in the source entity to set the reference
                     reference_object_manager: 'doctrine.orm.forum_entity_manager'
-                    reference_class: 'phpbbSessionsAuthBundle\Entity\User'
+                    reference_class: 'phpBB\SessionsAuthBundle\Entity\User'
 
 
