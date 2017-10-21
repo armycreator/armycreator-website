@@ -75,7 +75,6 @@ doctrine:
     orm:
         default_entity_manager: default
         auto_generate_proxy_classes: "%kernel.debug%"
-#       auto_mapping: true
         entity_managers:
             default:
                 connection: default
@@ -194,7 +193,6 @@ fos_oauth_server:
     refresh_token_class: Sitioweb\Bundle\ApiBundle\Entity\RefreshToken
     auth_code_class: Sitioweb\Bundle\ApiBundle\Entity\AuthCode
     service:
-        storage: armycreator.oauth.storage
         user_provider: phpbb.sessionsauthbundle.phpbb_user_provider
 
 nelmio_cors:
@@ -247,3 +245,38 @@ phpbb_sessions_auth:
     database:
         entity_manager: "forum"
         prefix: "phpbb_"
+
+mapado_doctrine_blender:
+    doctrine_external_associations:
+        access_token:
+            source_object_manager: 'doctrine.orm.default_entity_manager'
+            classname: 'Sitioweb\Bundle\ApiBundle\Entity\AccessToken'
+            references:
+                user: # this is the name of the property in the source entity
+                    reference_id_getter: 'getUserId' # optional, method in the source entity fetching the ref.id
+                    reference_setter: 'setUser' # optional, method in the source entity to set the reference
+                    reference_object_manager: 'doctrine.orm.forum_entity_manager'
+                    reference_class: 'phpBB\SessionsAuthBundle\Entity\User'
+
+        refresh_token:
+            source_object_manager: 'doctrine.orm.default_entity_manager'
+            classname: 'Sitioweb\Bundle\ApiBundle\Entity\RefreshToken'
+            references:
+                user: # this is the name of the property in the source entity
+                    reference_id_getter: 'getUserId' # optional, method in the source entity fetching the ref.id
+                    reference_setter: 'setUser' # optional, method in the source entity to set the reference
+                    reference_object_manager: 'doctrine.orm.forum_entity_manager'
+                    reference_class: 'phpBB\SessionsAuthBundle\Entity\User'
+
+
+        auth_code:
+            source_object_manager: 'doctrine.orm.default_entity_manager'
+            classname: 'Sitioweb\Bundle\ApiBundle\Entity\AuthCode'
+            references:
+                user: # this is the name of the property in the source entity
+                    reference_id_getter: 'getUserId' # optional, method in the source entity fetching the ref.id
+                    reference_setter: 'setUser' # optional, method in the source entity to set the reference
+                    reference_object_manager: 'doctrine.orm.forum_entity_manager'
+                    reference_class: 'phpBB\SessionsAuthBundle\Entity\User'
+
+

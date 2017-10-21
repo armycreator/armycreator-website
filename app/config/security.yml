@@ -3,6 +3,10 @@ jms_security_extra:
     expressions: true
 
 security:
+    encoders:
+        phpBB\SessionsAuthBundle\Entity\User: 
+            algorithm: bcrypt
+
     acl:
         connection: acl
 
