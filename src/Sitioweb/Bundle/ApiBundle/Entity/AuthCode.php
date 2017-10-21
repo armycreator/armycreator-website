@@ -4,6 +4,8 @@ namespace Sitioweb\Bundle\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\OAuthServerBundle\Entity\AuthCode as BaseAuthCode;
+use phpBB\SessionsAuthBundle\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
@@ -55,6 +57,34 @@ class AuthCode extends BaseAuthCode
     public function setUserId($userId)
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Getter for user
+     *
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Setter for user
+     *
+     * @param string $user
+     * @return AccessToken
+     */
+    public function setUser(UserInterface $user)
+    {
+        if (!$user instanceof User) {
+            throw new \InvalidArgumentException('user must be instance of ' . User::class);
+        }
+
+        $this->user = $user;
+        $this->setUserId($user->getId());
 
         return $this;
     }
