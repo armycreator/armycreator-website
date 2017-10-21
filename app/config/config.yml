@@ -193,7 +193,6 @@ fos_oauth_server:
     refresh_token_class: Sitioweb\Bundle\ApiBundle\Entity\RefreshToken
     auth_code_class: Sitioweb\Bundle\ApiBundle\Entity\AuthCode
     service:
-        # storage: armycreator.oauth.storage
         user_provider: phpbb.sessionsauthbundle.phpbb_user_provider
 
 nelmio_cors:
