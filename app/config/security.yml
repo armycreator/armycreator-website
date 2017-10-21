@@ -62,4 +62,3 @@ security:
         - { path: ^/admin/donation, role: ROLE_ADMIN }
         - { path: ^/admin/, role: ROLE_CONTRIB }
         - { path: ^/import/, role: ROLE_SUPER_ADMIN }
-        - { path: ^/, role: ROLE_USER }
