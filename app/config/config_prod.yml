@@ -8,7 +8,7 @@ framework:
 
 doctrine:
     orm:
-        metadata_cache_driver: redis
+        # metadata_cache_driver: redis
         result_cache_driver: redis
         query_cache_driver: redis
 
