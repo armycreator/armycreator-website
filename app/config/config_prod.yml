@@ -8,7 +8,8 @@ framework:
 
 doctrine:
     orm:
-        # metadata_cache_driver: redis
+        # metadata_cache_driver: redis 
+        # deactivated while https://github.com/mapado/doctrine-blender-bundle/issues/1
         result_cache_driver: redis
         query_cache_driver: redis
 
