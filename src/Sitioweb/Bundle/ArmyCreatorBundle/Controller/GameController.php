@@ -40,8 +40,7 @@ class GameController extends Controller
             }
         }
 
-        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Game');
-        $canEditAll = $this->get('security.authorization_checker')->isGranted('EDIT', $oi);
+        $canEditAll = $this->get('security.authorization_checker')->isGranted('ROLE_CONTRIB_ALL');
 
         return array(
             'entities' => $gameList,
@@ -78,12 +77,11 @@ class GameController extends Controller
      */
     public function newAction()
     {
-        $entity = new Game();
-        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Game');
-        if (!$this->get('security.authorization_checker')->isGranted('CREATE', $oi)) {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_CONTRIB_ALL')) {
             throw new AccessDeniedException();
         }
 
+        $entity = new Game();
         $form   = $this->createForm(GameType::class, $entity);
 
         return array(
@@ -99,8 +97,7 @@ class GameController extends Controller
      */
     public function createAction(Request $request)
     {
-        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Game');
-        if (!$this->get('security.authorization_checker')->isGranted('CREATE', $oi)) {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_CONTRIB_ALL')) {
             throw new AccessDeniedException();
         }
 

@@ -172,8 +172,7 @@ class BreedController extends Controller
      */
     public function newAction(Game $game)
     {
-        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
-        if (!$this->get('security.authorization_checker')->isGranted('EDIT', $oi)) {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_CONTRIB_ALL')) {
             throw new AccessDeniedException();
         }
 
@@ -199,8 +198,7 @@ class BreedController extends Controller
      */
     public function createAction(Request $request, Game $game)
     {
-        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
-        if (!$this->get('security.authorization_checker')->isGranted('CREATE', $oi)) {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_CONTRIB_ALL')) {
             throw new AccessDeniedException();
         }
 
@@ -303,8 +301,7 @@ class BreedController extends Controller
         $entities = $em->getRepository('SitiowebArmyCreatorBundle:Breed')
             ->findBy(['game' => $game], ['name' => 'ASC']);
 
-        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
-        $canEditAll = $this->get('security.authorization_checker')->isGranted('CREATE', $oi);
+        $canEditAll = $this->get('security.authorization_checker')->isGranted('ROLE_CONTRIB_ALL');
 
         $this->addBreadcrumb($game);
 
@@ -347,22 +344,18 @@ class BreedController extends Controller
      * checkPermission
      *
      * @param Breed $breed
-     * @param bool $permission
      * @access private
      * @return boolean
      */
-    private function checkPermission(Breed $breed = null, $permission = 'EDIT')
+    private function checkPermission(Breed $breed)
     {
-        $oi = new ObjectIdentity('class', 'Sitioweb\\Bundle\\ArmyCreatorBundle\\Entity\\Breed');
-        $canEditAll = $this->get('security.authorization_checker')->isGranted($permission, $oi);
+        $canEditAll = $this->get('security.authorization_checker')->isGranted('ROLE_CONTRIB_ALL');
 
         if ($canEditAll) {
             $canEditInstance = true;
-        } elseif($breed) {
+        } else {
             $oi = ObjectIdentity::fromDomainObject($breed);
             $canEditInstance = $this->get('security.authorization_checker')->isGranted($permission, $oi);
-        } else {
-            $canEditInstance = true;
         }
 
         if (!$canEditInstance) {
