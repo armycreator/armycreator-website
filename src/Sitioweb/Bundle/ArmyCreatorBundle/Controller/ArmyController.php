@@ -65,7 +65,6 @@ class ArmyController extends Controller
      * @Route("/group/{groupId}", requirements={"groupId" = "\d+"}, name="army_group_list")
      * @Route("/", name="army_list", defaults={"groupId" = null})
      * @Template()
-     * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
      */
     public function listAction($groupId, Request $request)
     {

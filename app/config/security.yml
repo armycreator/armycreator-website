@@ -47,6 +47,8 @@ security:
             anonymous:    true
             switch_user:  true
             stateless: true
+            form_login: 
+                login_path: /forum/ucp.php?mode=login
             simple_preauth:
                 authenticator: "phpbb.sessionsauthbundle.phpbb_authenticator"
             provider: phpbb
@@ -62,3 +64,4 @@ security:
         - { path: ^/admin/donation, role: ROLE_ADMIN }
         - { path: ^/admin/, role: ROLE_CONTRIB }
         - { path: ^/import/, role: ROLE_SUPER_ADMIN }
+        - { path: ^/, role: IS_AUTHENTICATED_FULLY }
